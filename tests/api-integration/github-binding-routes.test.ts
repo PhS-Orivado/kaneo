@@ -181,6 +181,10 @@ describe("GitHub binding HTTP and webhook tenant boundaries", () => {
       await db.insert(schema.integrationTable).values({
         projectId: tenant.project.id,
         type: "github",
+        // RFC 0001 WP2: webhook fan-out resolves bindings by repository_key.
+        ...(config.repositoryId
+          ? { repositoryKey: `github:${config.repositoryId}` }
+          : {}),
         isActive: true,
         config: JSON.stringify({
           repositoryOwner: "owner",
