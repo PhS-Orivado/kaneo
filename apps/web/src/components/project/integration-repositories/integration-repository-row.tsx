@@ -35,6 +35,8 @@ export type RepositoryRowActions = {
 type IntegrationRepositoryRowProps = RepositoryRowActions & {
   row: RepositoryBindingRow;
   isImporting: boolean;
+  /** True when imports are unavailable for this row (permissions, verification). */
+  isImportDisabled: boolean;
 };
 
 // Module-scope menu component so a keystroke in one row cannot re-create the
@@ -43,10 +45,12 @@ function RepositoryRowMenu({
   row,
   actions,
   isImporting,
+  isImportDisabled,
 }: {
   row: RepositoryBindingRow;
   actions: RepositoryRowActions;
   isImporting: boolean;
+  isImportDisabled: boolean;
 }) {
   const { t } = useTranslation();
   const close = (action: (row: RepositoryBindingRow) => void) => () =>
@@ -81,7 +85,7 @@ function RepositoryRowMenu({
           {t("settings:repositoryBindings.actionWorkflowRules")}
         </DropdownMenuItem>
         <DropdownMenuItem
-          disabled={isImporting}
+          disabled={isImporting || isImportDisabled}
           onClick={close(actions.onImportIssues)}
         >
           <Import className="size-3.5" />
@@ -132,6 +136,7 @@ function RepositoryStatusChips({ row }: { row: RepositoryBindingRow }) {
 function IntegrationRepositoryRowImpl({
   row,
   isImporting,
+  isImportDisabled,
   ...actions
 }: IntegrationRepositoryRowProps) {
   const { t } = useTranslation();
@@ -173,7 +178,12 @@ function IntegrationRepositoryRowImpl({
         ) : null}
       </div>
       <RepositoryStatusChips row={row} />
-      <RepositoryRowMenu row={row} actions={actions} isImporting={isImporting} />
+      <RepositoryRowMenu
+        row={row}
+        actions={actions}
+        isImporting={isImporting}
+        isImportDisabled={isImportDisabled}
+      />
     </li>
   );
 }

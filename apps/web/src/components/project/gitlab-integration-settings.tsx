@@ -1,99 +1,40 @@
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import {
-  AlertTriangle,
-  CheckCircle,
-  ExternalLink,
-  GitBranch,
-  Import,
-  Link,
-  RefreshCw,
-  Unlink,
-  XCircle,
-} from "lucide-react";
-import React from "react";
-import { useForm } from "react-hook-form";
+import { Plus } from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { z } from "zod/v4";
+import { BindingSettingsDialog } from "@/components/project/integration-repositories/binding-settings-dialog";
+import { BindingSyncRulesDialog } from "@/components/project/integration-repositories/binding-sync-rules-dialog";
+import { BindingWorkflowRulesDialog } from "@/components/project/integration-repositories/binding-workflow-rules-dialog";
+import { DisconnectIntegrationDialog } from "@/components/project/integration-repositories/disconnect-integration-dialog";
+import {
+  parseAddBindingError,
+  type AddBindingError,
+} from "@/components/project/integration-repositories/add-binding-error";
+import { GitlabAddRepositoryDialog } from "@/components/project/integration-repositories/gitlab-add-repository-dialog";
+import { GitlabConnectForm } from "@/components/project/integration-repositories/gitlab-connect-form";
+import { IntegrationRepositoryList } from "@/components/project/integration-repositories/integration-repository-list";
+import { RepositoryUsageBadge } from "@/components/project/integration-repositories/repository-usage-badge";
 import { GitlabProjectBrowserModal } from "@/components/project/gitlab-project-browser-modal";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
-import type { VerifyGitlabAccessResponse } from "@/fetchers/gitlab-integration/verify-gitlab-access";
 import {
   useCreateGitlabIntegration,
   useDeleteGitlabIntegration,
-  useVerifyGitlabAccess,
 } from "@/hooks/mutations/gitlab-integration/use-create-gitlab-integration";
 import useImportGitlabIssues from "@/hooks/mutations/gitlab-integration/use-import-gitlab-issues";
 import { useUpdateGitlabIntegration } from "@/hooks/mutations/gitlab-integration/use-update-gitlab-integration";
-import useGetGitlabIntegration from "@/hooks/queries/gitlab-integration/use-get-gitlab-integration";
+import useListGitlabIntegrations from "@/hooks/queries/gitlab-integration/use-list-gitlab-integrations";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
-import { cn } from "@/lib/cn";
 import { toast } from "@/lib/toast";
+import {
+  toGitlabBindingRow,
+  type RepositoryBindingRow,
+} from "@/types/repository-binding";
 
-const GITLAB_CLOUD_URL = "https://gitlab.com";
-
-type GitlabTokenType = "private" | "bearer";
-
-type GitlabIntegrationFormValues = {
-  baseUrl: string;
-  accessToken: string;
-  tokenType: GitlabTokenType;
-  projectPath: string;
-};
-
-type GitlabVerificationSnapshot = {
-  baseUrl: string;
-  accessToken: string;
-  tokenType: GitlabTokenType;
-  projectPath: string;
-};
-
-type GitlabVerificationState = {
-  result: VerifyGitlabAccessResponse;
-  verified: GitlabVerificationSnapshot;
-};
-
-function createVerificationSnapshot(
-  values: GitlabIntegrationFormValues,
-): GitlabVerificationSnapshot {
-  return {
-    baseUrl: values.baseUrl.trim(),
-    accessToken: values.accessToken.trim(),
-    tokenType: values.tokenType,
-    projectPath: values.projectPath.trim().replace(/^\/+|\/+$/g, ""),
-  };
-}
-
-function snapshotsMatch(
-  a: GitlabVerificationSnapshot,
-  b: GitlabVerificationSnapshot,
-): boolean {
-  return (
-    a.baseUrl === b.baseUrl &&
-    a.accessToken === b.accessToken &&
-    a.tokenType === b.tokenType &&
-    a.projectPath === b.projectPath
-  );
-}
-
+/**
+ * RFC 0001 WP7: the GitLab settings surface lists every project binding of
+ * the project. The first binding is created through the connect form (with
+ * its own browser pass); further bindings are added through the add dialog,
+ * which collects fresh credentials and creates the picked project.
+ */
 export function GitlabIntegrationSettings({
   projectId,
 }: {
@@ -101,260 +42,133 @@ export function GitlabIntegrationSettings({
 }) {
   const { t } = useTranslation();
   const { canCreateTasks, canUpdateTasks } = useWorkspacePermission();
-
-  const gitlabIntegrationSchema = React.useMemo(
-    () =>
-      z.object({
-        baseUrl: z
-          .string()
-          .min(1, t("settings:gitlabIntegration.validation.baseUrlRequired"))
-          .refine((s) => {
-            try {
-              new URL(s);
-              return true;
-            } catch {
-              return false;
-            }
-          }, t("settings:gitlabIntegration.validation.baseUrlInvalid")),
-        accessToken: z.string(),
-        tokenType: z.enum(["private", "bearer"]),
-        projectPath: z
-          .string()
-          .min(1, t("settings:gitlabIntegration.validation.pathRequired"))
-          .refine(
-            (s) => /^[a-zA-Z0-9._-]+(?:\/[a-zA-Z0-9._-]+)+$/.test(s.trim()),
-            t("settings:gitlabIntegration.validation.pathInvalid"),
-          ),
-      }),
-    [t],
-  );
+  const hasImportPermission = canCreateTasks() && canUpdateTasks();
 
   const {
-    data: integration,
+    data: list,
     isLoading,
-    error: integrationError,
-    refetch: refetchIntegration,
-  } = useGetGitlabIntegration(projectId);
+    error,
+    refetch,
+  } = useListGitlabIntegrations(projectId);
+  const rows = useMemo(
+    () => (list?.integrations ?? []).map(toGitlabBindingRow),
+    [list],
+  );
+
   const { mutateAsync: createIntegration, isPending: isCreating } =
     useCreateGitlabIntegration();
-  const { mutateAsync: deleteIntegration, isPending: isDeleting } =
+  const { mutateAsync: deleteIntegration, isPending: isDisconnecting } =
     useDeleteGitlabIntegration();
-  const { mutateAsync: verifyAccess, isPending: isVerifying } =
-    useVerifyGitlabAccess();
-  const { mutateAsync: importIssues, isPending: isImporting } =
-    useImportGitlabIssues();
-  const { mutateAsync: updateGitlabSettings, isPending: isUpdatingSettings } =
+  const { mutateAsync: updateSettings, isPending: isUpdatingSettings } =
     useUpdateGitlabIntegration();
+  const { mutateAsync: importIssues } = useImportGitlabIssues();
 
-  const [verificationResult, setVerificationResult] =
-    React.useState<GitlabVerificationState | null>(null);
-  const [showProjectBrowser, setShowProjectBrowser] = React.useState(false);
-  const [showWebhookSecret, setShowWebhookSecret] = React.useState(false);
+  const [showAddDialog, setShowAddDialog] = useState(false);
+  const [showFirstBindingBrowser, setShowFirstBindingBrowser] =
+    useState(false);
+  const [firstBindingCredentials, setFirstBindingCredentials] = useState<{
+    baseUrl: string;
+    accessToken: string;
+    tokenType: "private" | "bearer";
+  }>({ baseUrl: "https://gitlab.com", accessToken: "", tokenType: "private" });
+  const [addError, setAddError] = useState<AddBindingError | null>(null);
+  const [importingIds, setImportingIds] = useState<ReadonlySet<string>>(
+    () => new Set(),
+  );
+  const [settingsRow, setSettingsRow] = useState<RepositoryBindingRow | null>(
+    null,
+  );
+  const [syncRulesRow, setSyncRulesRow] =
+    useState<RepositoryBindingRow | null>(null);
+  const [workflowRulesRow, setWorkflowRulesRow] =
+    useState<RepositoryBindingRow | null>(null);
+  const [disconnectRow, setDisconnectRow] =
+    useState<RepositoryBindingRow | null>(null);
 
-  const form = useForm<GitlabIntegrationFormValues>({
-    resolver: standardSchemaResolver(gitlabIntegrationSchema),
-    defaultValues: {
-      baseUrl: GITLAB_CLOUD_URL,
-      accessToken: "",
-      tokenType: "private",
-      projectPath: "",
-    },
-  });
-
-  const { reset: resetForm, getValues: getFormValues, formState } = form;
-
-  const resetIntegrationForm = React.useCallback(() => {
-    if (!integration?.baseUrl) {
-      return;
-    }
-
-    resetForm({
-      baseUrl: integration.baseUrl,
-      accessToken: "",
-      tokenType: integration.tokenType,
-      projectPath: integration.projectPath,
-    });
-    // Clear verify state when the form reloads so import cannot run against
-    // stale credentials.
-    setVerificationResult(null);
-    setShowWebhookSecret(false);
-  }, [
-    resetForm,
-    integration?.baseUrl,
-    integration?.projectPath,
-    integration?.tokenType,
-  ]);
-
-  React.useEffect(() => {
-    resetIntegrationForm();
-  }, [resetIntegrationForm]);
-
-  const runVerify = React.useCallback(
-    async (data: GitlabIntegrationFormValues, showToast = true) => {
-      const token = data.accessToken.trim();
-      if (!token && integration) {
-        return;
-      }
-      if (!token && !integration) {
-        if (showToast) {
-          toast.error(
-            t("settings:gitlabIntegration.toast.tokenRequiredVerify"),
-          );
-        }
-        setVerificationResult(null);
-        return;
-      }
-      try {
-        const snapshot = createVerificationSnapshot(data);
-        const result = await verifyAccess({
-          projectId,
-          baseUrl: snapshot.baseUrl,
-          accessToken: snapshot.accessToken,
-          tokenType: snapshot.tokenType,
-          projectPath: snapshot.projectPath,
-        });
-        setVerificationResult({
-          result,
-          verified: snapshot,
-        });
-        if (showToast) {
-          if (result.isInstalled && result.hasRequiredPermissions) {
-            toast.success(t("settings:gitlabIntegration.toast.verifyOk"));
-          } else if (result.failureReason === "redirected") {
-            toast.error(t("settings:gitlabIntegration.toast.redirected"));
-          } else if (result.failureReason === "not_a_gitlab_instance") {
-            toast.error(
-              t("settings:gitlabIntegration.toast.notGitlabInstance"),
-            );
-          } else if (result.failureReason === "project_not_found") {
-            toast.error(t("settings:gitlabIntegration.toast.projectNotFound"));
-          } else {
-            toast.warning(t("settings:gitlabIntegration.toast.verifyWarning"));
-          }
-        }
-      } catch (error) {
-        if (showToast) {
-          toast.error(
-            error instanceof Error
-              ? error.message
-              : t("settings:gitlabIntegration.toast.verifyError"),
-          );
-        }
-        setVerificationResult(null);
-      }
-    },
-    [verifyAccess, integration, projectId, t],
+  // Stable per-row predicate so memoized rows do not re-render on each pass
+  // (rerender-memo).
+  const isImportDisabled = useCallback(
+    () => !hasImportPermission,
+    [hasImportPermission],
   );
 
-  const baseUrl = form.watch("baseUrl");
-  const accessToken = form.watch("accessToken");
-  const tokenType = form.watch("tokenType");
-  const projectPath = form.watch("projectPath");
-  const currentVerificationSnapshot = React.useMemo(
-    () =>
-      createVerificationSnapshot({
-        baseUrl,
-        accessToken,
-        tokenType,
-        projectPath,
-      }),
-    [baseUrl, accessToken, tokenType, projectPath],
-  );
-
-  React.useEffect(() => {
-    setVerificationResult((current) => {
-      if (!current) {
-        return current;
-      }
-      return snapshotsMatch(current.verified, currentVerificationSnapshot)
-        ? current
-        : null;
-    });
-  }, [currentVerificationSnapshot]);
-
-  React.useEffect(() => {
-    if (!baseUrl || !projectPath || !formState.isValid) {
-      return;
-    }
-    if (!accessToken.trim()) {
-      return;
-    }
-    const timeoutId = window.setTimeout(() => {
-      runVerify({ baseUrl, accessToken, tokenType, projectPath }, false);
-    }, 400);
-
-    return () => {
-      window.clearTimeout(timeoutId);
-    };
-  }, [
-    baseUrl,
-    projectPath,
-    accessToken,
-    tokenType,
-    formState.isValid,
-    runVerify,
-  ]);
-
-  const onSubmit = async (data: GitlabIntegrationFormValues) => {
+  // RFC 0001 D2: a failed add keeps the browser open; the server's own
+  // blocker message (plan limit 402, duplicate 409) is shown inline.
+  const handleFirstBindingSelect = async (projectPath: string) => {
     try {
-      if (!data.accessToken.trim() && !integration) {
-        toast.error(t("settings:gitlabIntegration.toast.tokenRequired"));
-        return;
-      }
-
-      const snapshot = createVerificationSnapshot(data);
-      const hasMatchingVerification =
-        verificationResult?.result.isInstalled &&
-        verificationResult.result.hasRequiredPermissions &&
-        snapshotsMatch(verificationResult.verified, snapshot);
-
-      if (data.accessToken.trim() && !hasMatchingVerification) {
-        const verification = await verifyAccess({
-          projectId,
-          baseUrl: snapshot.baseUrl,
-          accessToken: snapshot.accessToken,
-          tokenType: snapshot.tokenType,
-          projectPath: snapshot.projectPath,
-        });
-
-        if (!verification.isInstalled || !verification.hasRequiredPermissions) {
-          toast.error(t("settings:gitlabIntegration.toast.verifyFirst"));
-          return;
-        }
-      }
-
       await createIntegration({
         projectId,
         data: {
-          baseUrl: snapshot.baseUrl,
-          ...(snapshot.accessToken
-            ? { accessToken: snapshot.accessToken }
-            : {}),
-          tokenType: snapshot.tokenType,
-          projectPath: snapshot.projectPath,
+          baseUrl: firstBindingCredentials.baseUrl,
+          accessToken: firstBindingCredentials.accessToken,
+          tokenType: firstBindingCredentials.tokenType,
+          projectPath,
         },
       });
-      form.setValue("accessToken", "");
+      setAddError(null);
+      setShowFirstBindingBrowser(false);
+      setFirstBindingCredentials({
+        baseUrl: "https://gitlab.com",
+        accessToken: "",
+        tokenType: "private",
+      });
       toast.success(t("settings:gitlabIntegration.toast.updated"));
+    } catch (error) {
+      setAddError(parseAddBindingError(error));
+    }
+  };
+
+  const handleCommentTaskLinkChange = async (
+    row: RepositoryBindingRow,
+    checked: boolean,
+  ) => {
+    try {
+      await updateSettings({
+        integrationId: row.integrationId,
+        json: { commentTaskLinkOnGitlabIssue: checked },
+      });
+      toast.success(
+        checked
+          ? t("settings:gitlabIntegration.toast.commentOnEnabled")
+          : t("settings:gitlabIntegration.toast.commentOnDisabled"),
+      );
     } catch (error) {
       toast.error(
         error instanceof Error
           ? error.message
-          : t("settings:gitlabIntegration.toast.updateError"),
+          : t("settings:gitlabIntegration.toast.settingsUpdateError"),
       );
     }
   };
 
-  const handleDelete = async () => {
+  const handleImportIssues = async (row: RepositoryBindingRow) => {
+    if (!hasImportPermission) return;
+    setImportingIds((current) => new Set(current).add(row.integrationId));
     try {
-      await deleteIntegration(projectId);
-      resetForm({
-        baseUrl: GITLAB_CLOUD_URL,
-        accessToken: "",
-        tokenType: "private",
-        projectPath: "",
+      await importIssues({ integrationId: row.integrationId, projectId });
+      toast.success(t("settings:gitlabIntegration.toast.issuesImported"));
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : t("settings:gitlabIntegration.toast.importError"),
+      );
+    } finally {
+      setImportingIds((current) => {
+        const next = new Set(current);
+        next.delete(row.integrationId);
+        return next;
       });
-      setVerificationResult(null);
+    }
+  };
+
+  const handleDisconnect = async (row: RepositoryBindingRow) => {
+    try {
+      await deleteIntegration(row.integrationId);
+      setDisconnectRow(null);
+      if (settingsRow?.integrationId === row.integrationId) {
+        setSettingsRow(null);
+      }
       toast.success(t("settings:gitlabIntegration.toast.removed"));
     } catch (error) {
       toast.error(
@@ -365,551 +179,123 @@ export function GitlabIntegrationSettings({
     }
   };
 
-  const handleImportIssues = async () => {
-    try {
-      await importIssues(projectId);
-      toast.success(t("settings:gitlabIntegration.toast.issuesImported"));
-    } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : t("settings:gitlabIntegration.toast.importError"),
-      );
-    }
-  };
-
-  const handleProjectSelect = (selectedPath: string) => {
-    form.setValue("projectPath", selectedPath, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
-    });
-    setShowProjectBrowser(false);
-    setVerificationResult(null);
-  };
-
-  const handleCopyWebhookSecret = React.useCallback(async () => {
-    if (!integration?.webhookSecret) {
-      return;
-    }
-
-    try {
-      await navigator.clipboard.writeText(integration.webhookSecret);
-      toast.success(t("settings:gitlabIntegration.toast.secretCopied"));
-    } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : t("settings:gitlabIntegration.toast.unableToCopySecret"),
-      );
-    }
-  }, [integration?.webhookSecret, t]);
-
   if (isLoading) {
     return (
       <div className="space-y-4">
-        <div className="h-10 bg-muted rounded animate-pulse w-full" />
-      </div>
-    );
-  }
-
-  if (integrationError) {
-    return (
-      <div className="space-y-4 rounded-xl border border-destructive/25 bg-card p-4">
-        <div className="flex items-start justify-between gap-4">
-          <div className="space-y-1">
-            <p className="text-sm font-medium text-destructive">
-              {t("common:error.title")}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {integrationError instanceof Error
-                ? integrationError.message
-                : t("settings:gitlabIntegration.toast.updateError")}
-            </p>
-          </div>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => refetchIntegration()}
-          >
-            {t("settings:gitlabIntegration.retry")}
-          </Button>
+        <div className="space-y-4 rounded-xl border border-border bg-card p-4">
+          <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+          <div className="h-10 w-full animate-pulse rounded bg-muted" />
+          <div className="h-10 w-full animate-pulse rounded bg-muted" />
+        </div>
+        <div className="space-y-4 rounded-xl border border-border bg-card p-4">
+          <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+          <div className="h-10 w-full animate-pulse rounded bg-muted" />
         </div>
       </div>
     );
   }
-
-  const isConnected = !!integration && integration.isActive;
-  // Import stays disabled until the user verifies again after changing
-  // connection details, so it cannot run with an unverified token.
-  const hasVerifiedCurrentValues =
-    verificationResult?.result.isInstalled &&
-    verificationResult.result.hasRequiredPermissions &&
-    snapshotsMatch(verificationResult.verified, currentVerificationSnapshot);
-  const hasImportPermission = canCreateTasks() && canUpdateTasks();
-  const canImport =
-    isConnected && Boolean(hasVerifiedCurrentValues) && hasImportPermission;
-
-  const gitlabProjectUrl = integration?.baseUrl
-    ? `${integration.baseUrl.replace(/\/$/, "")}/${integration.projectPath}`
-    : null;
 
   return (
     <div className="space-y-4">
-      <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-        <div className="flex items-center justify-between">
+      {rows.length === 0 ? (
+        <div className="space-y-4 rounded-xl border border-border bg-card p-4">
           <div className="space-y-0.5">
             <p className="text-sm font-medium">
-              {t("settings:gitlabIntegration.connectionStatus")}
+              {t("settings:repositoryBindings.addFirstTitle")}
             </p>
-            {isConnected ? (
-              <p className="text-xs text-muted-foreground">
-                {t("settings:gitlabIntegration.connectedActive")}
-              </p>
-            ) : (
-              <p className="text-xs text-muted-foreground">
-                {t("settings:gitlabIntegration.notConnectedHint")}
-              </p>
-            )}
+            <p className="text-xs text-muted-foreground">
+              {t("settings:repositoryBindings.addFirstHint")}
+            </p>
           </div>
-          {isConnected ? (
-            <Badge variant="secondary" className="gap-1">
-              <CheckCircle className="w-3 h-3" />
-              {t("settings:gitlabIntegration.badgeConnected")}
-            </Badge>
-          ) : (
-            <Badge variant="outline" className="gap-1">
-              <XCircle className="w-3 h-3" />
-              {t("settings:gitlabIntegration.badgeNotConnected")}
-            </Badge>
-          )}
+          <GitlabConnectForm
+            projectId={projectId}
+            onOpenBrowser={(credentials) => {
+              setFirstBindingCredentials(credentials);
+              setAddError(null);
+              setShowFirstBindingBrowser(true);
+            }}
+          />
         </div>
-
-        {isConnected && integration && (
-          <>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:gitlabIntegration.project")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:gitlabIntegration.projectHint")}
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <span className="font-medium">{integration.projectPath}</span>
-                {gitlabProjectUrl && (
-                  <a
-                    href={gitlabProjectUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={t("settings:gitlabIntegration.openInGitlab", {
-                      project: integration.projectPath,
-                    })}
-                    className="text-primary hover:text-primary/80 transition-colors"
-                  >
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
-                )}
-              </div>
-            </div>
-
-            <Separator />
-            <div className="flex items-center justify-between gap-4">
-              <div className="min-w-0 flex-1 space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:gitlabIntegration.commentTaskLinkTitle")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:gitlabIntegration.commentTaskLinkHint")}
-                </p>
-              </div>
-              <Switch
-                checked={integration.commentTaskLinkOnGitlabIssue ?? true}
-                onCheckedChange={async (checked) => {
-                  try {
-                    await updateGitlabSettings({
-                      projectId,
-                      json: { commentTaskLinkOnGitlabIssue: checked },
-                    });
-                    toast.success(
-                      checked
-                        ? t("settings:gitlabIntegration.toast.commentOnEnabled")
-                        : t(
-                            "settings:gitlabIntegration.toast.commentOnDisabled",
-                          ),
-                    );
-                  } catch (error) {
-                    toast.error(
-                      error instanceof Error
-                        ? error.message
-                        : t(
-                            "settings:gitlabIntegration.toast.settingsUpdateError",
-                          ),
-                    );
-                  }
-                }}
-                disabled={isUpdatingSettings}
-              />
-            </div>
-
-            {integration.webhookUrl && (
-              <>
-                <Separator />
-                <div className="space-y-2 text-xs">
-                  <p className="font-medium text-sm">
-                    {t("settings:gitlabIntegration.webhookTitle")}
-                  </p>
-                  <p className="text-muted-foreground">
-                    {t("settings:gitlabIntegration.webhookHint")}
-                  </p>
-                  <code className="block break-all rounded bg-muted px-2 py-1 text-[11px]">
-                    {integration.webhookUrl}
-                  </code>
-                  <p className="text-muted-foreground mt-2">
-                    {t("settings:gitlabIntegration.webhookSecretLabel")}
-                  </p>
-                  <div className="flex items-start gap-2">
-                    <code className="block flex-1 break-all rounded bg-muted px-2 py-1 text-[11px]">
-                      {showWebhookSecret
-                        ? integration.webhookSecret
-                        : "••••••••••••••••••••••••••••••••"}
-                    </code>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() =>
-                        setShowWebhookSecret((current) => !current)
-                      }
-                    >
-                      {showWebhookSecret
-                        ? t("settings:gitlabIntegration.webhookHide")
-                        : t("settings:gitlabIntegration.webhookShow")}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={handleCopyWebhookSecret}
-                    >
-                      {t("settings:gitlabIntegration.webhookCopy")}
-                    </Button>
-                  </div>
-                </div>
-              </>
-            )}
-          </>
-        )}
-      </div>
-
-      <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="baseUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-sm font-medium">
-                        {t("settings:gitlabIntegration.baseUrlLabel")}
-                      </FormLabel>
-                      <p className="text-xs text-muted-foreground">
-                        {t("settings:gitlabIntegration.baseUrlHint")}
-                      </p>
-                    </div>
-                    <FormControl>
-                      <Input
-                        className="w-72"
-                        placeholder={GITLAB_CLOUD_URL}
-                        {...field}
-                        disabled={isCreating || isDeleting}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Separator />
-
-            <FormField
-              control={form.control}
-              name="tokenType"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-sm font-medium">
-                        {t("settings:gitlabIntegration.tokenTypeLabel")}
-                      </FormLabel>
-                      <p className="text-xs text-muted-foreground">
-                        {t("settings:gitlabIntegration.tokenTypeHint")}
-                      </p>
-                    </div>
-                    <Select
-                      value={field.value}
-                      onValueChange={(value) =>
-                        field.onChange(value as GitlabTokenType)
-                      }
-                    >
-                      <SelectTrigger className="w-72">
-                        <SelectValue>
-                          {field.value === "bearer"
-                            ? t("settings:gitlabIntegration.tokenTypeBearer")
-                            : t("settings:gitlabIntegration.tokenTypePrivate")}
-                        </SelectValue>
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="private">
-                          {t("settings:gitlabIntegration.tokenTypePrivate")}
-                        </SelectItem>
-                        <SelectItem value="bearer">
-                          {t("settings:gitlabIntegration.tokenTypeBearer")}
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Separator />
-
-            <FormField
-              control={form.control}
-              name="accessToken"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-sm font-medium">
-                        {t("settings:gitlabIntegration.tokenLabel")}
-                      </FormLabel>
-                      <p className="text-xs text-muted-foreground">
-                        {t("settings:gitlabIntegration.tokenHint")}
-                        {integration?.maskedAccessToken
-                          ? ` (${t("settings:gitlabIntegration.currentToken")}: ${integration.maskedAccessToken})`
-                          : null}
-                      </p>
-                    </div>
-                    <FormControl>
-                      <Input
-                        className="w-72"
-                        type="password"
-                        autoComplete="off"
-                        placeholder={
-                          integration
-                            ? t(
-                                "settings:gitlabIntegration.tokenPlaceholderUpdate",
-                              )
-                            : t("settings:gitlabIntegration.tokenPlaceholder")
-                        }
-                        {...field}
-                        disabled={isCreating || isDeleting}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Separator />
-
-            <FormField
-              control={form.control}
-              name="projectPath"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between gap-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-sm font-medium">
-                        {t("settings:gitlabIntegration.projectPathLabel")}
-                      </FormLabel>
-                      <p className="text-xs text-muted-foreground">
-                        {t("settings:gitlabIntegration.projectPathHint")}
-                      </p>
-                    </div>
-                    <FormControl>
-                      <Input
-                        className="w-72"
-                        placeholder="group/subgroup/project"
-                        {...field}
-                        disabled={isCreating || isDeleting}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Separator />
-
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:gitlabIntegration.actionsTitle")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:gitlabIntegration.actionsHint")}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowProjectBrowser(true)}
-                  className="gap-2"
-                  disabled={!baseUrl || !accessToken.trim()}
-                >
-                  <GitBranch className="size-3" />
-                  {t("settings:gitlabIntegration.browse")}
-                </Button>
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => runVerify(getFormValues())}
-                  disabled={
-                    isVerifying ||
-                    !formState.isValid ||
-                    (!accessToken.trim() && !integration)
-                  }
-                  className="gap-2"
-                >
-                  <RefreshCw
-                    className={cn("size-3", isVerifying && "animate-spin")}
-                  />
-                  {t("settings:gitlabIntegration.verify")}
-                </Button>
-
-                <Button
-                  type="submit"
-                  size="sm"
-                  disabled={
-                    isCreating ||
-                    isDeleting ||
-                    !formState.isValid ||
-                    (verificationResult ? !hasVerifiedCurrentValues : false)
-                  }
-                  className="gap-2"
-                >
-                  <Link className="size-3" />
-                  {isConnected
-                    ? t("settings:gitlabIntegration.update")
-                    : t("settings:gitlabIntegration.connect")}
-                </Button>
-
-                {isConnected && (
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="sm"
-                    onClick={handleDelete}
-                    disabled={isCreating || isDeleting}
-                    className="gap-2"
-                  >
-                    <Unlink className="size-3" />
-                    {t("settings:gitlabIntegration.disconnect")}
-                  </Button>
-                )}
-              </div>
-            </div>
-          </form>
-        </Form>
-
-        {verificationResult && (
-          <>
-            <Separator />
-            <div
-              className={cn(
-                "flex items-start gap-3 p-3 border rounded-md text-sm",
-                verificationResult.result.isInstalled &&
-                  verificationResult.result.hasRequiredPermissions
-                  ? "border-success/25 bg-success/10"
-                  : verificationResult.result.failureReason
-                    ? "border-destructive/25 bg-destructive/10"
-                    : "border-warning/25 bg-warning/10",
-              )}
-            >
-              {verificationResult.result.isInstalled &&
-              verificationResult.result.hasRequiredPermissions ? (
-                <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-foreground" />
-              ) : verificationResult.result.failureReason ? (
-                <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive-foreground" />
-              ) : (
-                <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-warning-foreground" />
-              )}
-              <div className="flex-1">
-                <p className="font-medium">
-                  {verificationResult.result.message}
-                </p>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-
-      {isConnected && (
+      ) : (
         <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-          <div className="flex items-center justify-between">
-            <div className="space-y-0.5">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex min-w-0 items-center gap-2">
               <p className="text-sm font-medium">
-                {t("settings:gitlabIntegration.importSectionTitle")}
+                {t("settings:repositoryBindings.listTitle")}
               </p>
-              <p className="text-xs text-muted-foreground">
-                {t("settings:gitlabIntegration.importSectionHint")}
-              </p>
+              {list?.usage ? <RepositoryUsageBadge usage={list.usage} /> : null}
             </div>
             <Button
-              onClick={handleImportIssues}
-              disabled={isImporting || !canImport}
-              className="gap-2"
+              type="button"
               size="sm"
-              variant="outline"
+              disabled={isCreating}
+              onClick={() => setShowAddDialog(true)}
             >
-              {isImporting ? (
-                <RefreshCw className="size-3 animate-spin" />
-              ) : (
-                <Import className="size-3" />
-              )}
-              {isImporting
-                ? t("settings:gitlabIntegration.importing")
-                : t("settings:gitlabIntegration.importIssues")}
+              <Plus aria-hidden="true" className="size-3" />
+              {t("settings:repositoryBindings.addMore")}
             </Button>
           </div>
-          {!canImport && (
-            <>
-              <Separator />
-              <p className="text-xs text-muted-foreground">
-                {hasImportPermission
-                  ? t("settings:gitlabIntegration.importDisabledHint")
-                  : t("settings:gitlabIntegration.importPermissionHint")}
-              </p>
-            </>
-          )}
+          <IntegrationRepositoryList
+            rows={rows}
+            isLoading={false}
+            error={error instanceof Error ? error : null}
+            onRetry={() => void refetch()}
+            importingIds={importingIds}
+            isImportDisabled={isImportDisabled}
+            onOpenSettings={setSettingsRow}
+            onOpenSyncRules={setSyncRulesRow}
+            onOpenWorkflowRules={setWorkflowRulesRow}
+            onImportIssues={(row) => void handleImportIssues(row)}
+            onDisconnect={setDisconnectRow}
+          />
         </div>
       )}
 
-      <GitlabProjectBrowserModal
-        open={showProjectBrowser}
+      <BindingSettingsDialog
+        row={settingsRow}
+        isUpdating={isUpdatingSettings}
+        onCommentTaskLinkChange={(row, checked) =>
+          void handleCommentTaskLinkChange(row, checked)
+        }
+        onClose={() => setSettingsRow(null)}
+      />
+      <BindingSyncRulesDialog
+        row={syncRulesRow}
+        onClose={() => setSyncRulesRow(null)}
+      />
+      <BindingWorkflowRulesDialog
+        row={workflowRulesRow}
         projectId={projectId}
-        onOpenChange={setShowProjectBrowser}
-        onSelectProject={handleProjectSelect}
-        selectedProjectPath={projectPath || undefined}
-        baseUrl={baseUrl}
-        accessToken={accessToken}
-        tokenType={tokenType}
+        onClose={() => setWorkflowRulesRow(null)}
+      />
+      <DisconnectIntegrationDialog
+        row={disconnectRow}
+        isPending={isDisconnecting}
+        onConfirm={(row) => void handleDisconnect(row)}
+        onCancel={() => setDisconnectRow(null)}
+      />
+      <GitlabAddRepositoryDialog
+        projectId={projectId}
+        open={showAddDialog}
+        onOpenChange={setShowAddDialog}
+      />
+      <GitlabProjectBrowserModal
+        projectId={projectId}
+        open={showFirstBindingBrowser}
+        onOpenChange={(open) => {
+          if (!open) {
+            setAddError(null);
+          }
+          setShowFirstBindingBrowser(open);
+        }}
+        onSelectProject={(projectPath) =>
+          void handleFirstBindingSelect(projectPath)
+        }
+        baseUrl={firstBindingCredentials.baseUrl}
+        accessToken={firstBindingCredentials.accessToken}
+        tokenType={firstBindingCredentials.tokenType}
+        addError={addError}
+        onDismissError={() => setAddError(null)}
       />
     </div>
   );

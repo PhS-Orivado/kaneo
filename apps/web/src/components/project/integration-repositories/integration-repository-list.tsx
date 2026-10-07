@@ -17,6 +17,8 @@ export type IntegrationRepositoryListProps = RepositoryRowActions & {
   emptyContent?: ReactNode;
   /** Set of integration ids whose import mutation is running. */
   importingIds: ReadonlySet<string>;
+  /** True when imports are unavailable for a row (permissions, verification). */
+  isImportDisabled: (row: RepositoryBindingRow) => boolean;
 };
 
 // Skeleton rows match the final row layout so loading does not shift content.
@@ -44,6 +46,7 @@ export function IntegrationRepositoryList({
   onRetry,
   emptyContent,
   importingIds,
+  isImportDisabled,
   ...actions
 }: IntegrationRepositoryListProps) {
   const { t } = useTranslation();
@@ -91,6 +94,7 @@ export function IntegrationRepositoryList({
           key={row.integrationId}
           row={row}
           isImporting={importingIds.has(row.integrationId)}
+          isImportDisabled={isImportDisabled(row)}
           {...actions}
         />
       ))}
