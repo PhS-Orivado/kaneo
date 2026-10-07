@@ -30,6 +30,7 @@ export function isValidBranchName(branchName: string): boolean {
   if (branchName.length < 1 || branchName.length > 255) return false;
   if (/^\.|\/\/|\.lock$|^-|\/\.$|\.\/|^\/|\/$/.test(branchName)) return false;
   if (branchName.includes("..") || branchName.includes("@{")) return false;
+  // eslint-disable-next-line no-control-regex -- git check-ref-format forbids control characters, spaces, and the listed ASCII symbols.
   if (/[\x00-\x20\x7f?*[\]~^:]/.test(branchName)) return false;
   return !branchName.endsWith(".");
 }

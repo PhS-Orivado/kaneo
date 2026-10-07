@@ -31,17 +31,17 @@ export function classifyResourceUrl(url: string): ClassifiedResource {
 
   const githubPr = path.match(GITHUB_PULL_REQUEST);
   if (githubPr) {
-    return { resourceType: "pull_request", externalId: githubPr[3] };
+    return { resourceType: "pull_request", externalId: githubPr[3] as string };
   }
 
   const giteaPr = path.match(GITEA_PULL_REQUEST);
   if (giteaPr) {
-    return { resourceType: "pull_request", externalId: giteaPr[4] };
+    return { resourceType: "pull_request", externalId: giteaPr[4] as string };
   }
 
   const gitlabMr = path.match(GITLAB_MERGE_REQUEST);
   if (gitlabMr) {
-    return { resourceType: "pull_request", externalId: gitlabMr[3] };
+    return { resourceType: "pull_request", externalId: gitlabMr[3] as string };
   }
 
   // Tree URLs carry the branch name after /tree/. Branch names may contain
@@ -50,17 +50,17 @@ export function classifyResourceUrl(url: string): ClassifiedResource {
   // linked through the branch search instead.
   const githubBranch = path.match(GITHUB_BRANCH);
   if (githubBranch) {
-    return { resourceType: "branch", externalId: githubBranch[3] };
+    return { resourceType: "branch", externalId: githubBranch[3] as string };
   }
 
   const giteaBranch = path.match(GITEA_BRANCH);
   if (giteaBranch) {
-    return { resourceType: "branch", externalId: giteaBranch[4] };
+    return { resourceType: "branch", externalId: giteaBranch[4] as string };
   }
 
   const gitlabBranch = path.match(GITLAB_BRANCH);
   if (gitlabBranch) {
-    return { resourceType: "branch", externalId: gitlabBranch[3] };
+    return { resourceType: "branch", externalId: gitlabBranch[3] as string };
   }
 
   return { resourceType: "url", externalId: null };

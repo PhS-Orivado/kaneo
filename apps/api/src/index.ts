@@ -1083,6 +1083,7 @@ export type AppType =
   | typeof giteaIntegrationApi
   | typeof gitlabIntegrationApi
   | typeof genericWebhookIntegrationApi
+  | typeof repositoryBindingsApi
   | typeof discordIntegrationApi
   | typeof mattermostIntegrationApi
   | typeof slackIntegrationApi

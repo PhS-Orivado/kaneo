@@ -49,10 +49,10 @@ export function IntegrationRow({
           </div>
           {isSetUp && status?.details?.length ? (
             <ul className="space-y-0.5">
-              {status.details.map((repository, index) => (
+              {status.details.map((repository) => (
                 <li
                   className="truncate font-mono text-xs text-muted-foreground"
-                  key={`${repository}-${index}`}
+                  key={repository}
                 >
                   {repository}
                 </li>

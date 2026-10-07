@@ -2,6 +2,8 @@ import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { integrationTable } from "../../database/schema";
+import { repositoryLinkedToSchema } from "../../integrations/response";
+import { type z } from "../../openapi";
 import { normalizeGiteaBaseUrl } from "../../plugins/gitea/config";
 import {
   createGiteaClient,
@@ -63,7 +65,11 @@ async function listGiteaRepositories({
   baseUrl: string;
   accessToken: string;
 }): Promise<{
-  repositories: Array<RepoRow & { linkedTo: unknown }>;
+  repositories: Array<
+    RepoRow & {
+      linkedTo: z.infer<typeof repositoryLinkedToSchema> | null;
+    }
+  >;
 }> {
   const normalized = normalizeGiteaBaseUrl(baseUrl);
 

@@ -100,7 +100,7 @@ describe("Gitea import task numbers", () => {
   });
 
   it("repairs a legacy counter without renumbering existing references, and is idempotent", async () => {
-    const { user, project, integration } = await setup();
+    const { user, project } = await setup();
     await db.insert(schema.taskTable).values([
       { projectId: project.id, title: "Legacy import", number: 42 },
       { projectId: project.id, title: "Earlier task", number: 41 },
