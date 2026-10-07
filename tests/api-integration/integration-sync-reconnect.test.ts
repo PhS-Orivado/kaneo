@@ -115,11 +115,9 @@ it.each(["gitea", "gitlab"] as const)(
     // The legacy row keeps the rules saved during verification.
     expect(
       JSON.parse(
-        (
-          await db.query.integrationTable.findFirst({
-            where: eq(schema.integrationTable.id, legacy!.id),
-          })
-        )!.config,
+        (await db.query.integrationTable.findFirst({
+          where: eq(schema.integrationTable.id, legacy!.id),
+        }))!.config,
       ).syncRules,
     ).toEqual(rules);
     // A new keyed binding row exists with a fresh webhook secret.

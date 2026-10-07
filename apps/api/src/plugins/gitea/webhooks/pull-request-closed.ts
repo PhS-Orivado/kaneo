@@ -122,8 +122,7 @@ export async function handleGiteaPullRequestClosed(
               "pr_merged",
               config.statusTransitions?.onPRMerge || "done",
               database,
-            integration.id,
-
+              integration.id,
             );
             const statusResult = await updateTaskStatus(
               task.id,

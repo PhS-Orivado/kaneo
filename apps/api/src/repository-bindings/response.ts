@@ -13,13 +13,10 @@ export const repositoryBindingSummarySchema = z
       description:
         "owner/name for GitHub and Gitea, the full project path for GitLab.",
     }),
-    host: z
-      .string()
-      .nullable()
-      .openapi({
-        description:
-          "Instance host for self-hosted Gitea and GitLab; null for github.com.",
-      }),
+    host: z.string().nullable().openapi({
+      description:
+        "Instance host for self-hosted Gitea and GitLab; null for github.com.",
+    }),
     externalUrl: z
       .string()
       .openapi({ description: "Web URL of the repository." }),

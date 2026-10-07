@@ -6,10 +6,7 @@ import { publishEvent } from "../../events";
 import { pauseIssueLinks } from "../../plugins/sync/pause-issue-links";
 import { outgoingPredicate } from "../../plugins/sync/task-predicate";
 import { readSyncRules, type SyncRules } from "../../plugins/sync/rules";
-import {
-  getSyncIntegration,
-  getSyncIntegrationById,
-} from "./get-integration";
+import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 import { previewSyncRules } from "./preview-rules";
 

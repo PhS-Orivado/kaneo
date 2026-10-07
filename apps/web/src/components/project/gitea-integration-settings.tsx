@@ -35,11 +35,7 @@ import {
  * its own browser pass); further bindings are added through the add dialog,
  * which collects fresh credentials and creates the picked repository.
  */
-export function GiteaIntegrationSettings({
-  projectId,
-}: {
-  projectId: string;
-}) {
+export function GiteaIntegrationSettings({ projectId }: { projectId: string }) {
   const { t } = useTranslation();
   const { canCreateTasks, canUpdateTasks } = useWorkspacePermission();
   const hasImportPermission = canCreateTasks() && canUpdateTasks();
@@ -64,8 +60,7 @@ export function GiteaIntegrationSettings({
   const { mutateAsync: importIssues } = useImportGiteaIssues();
 
   const [showAddDialog, setShowAddDialog] = useState(false);
-  const [showFirstBindingBrowser, setShowFirstBindingBrowser] =
-    useState(false);
+  const [showFirstBindingBrowser, setShowFirstBindingBrowser] = useState(false);
   const [firstBindingCredentials, setFirstBindingCredentials] = useState<{
     baseUrl: string;
     accessToken: string;
@@ -77,8 +72,9 @@ export function GiteaIntegrationSettings({
   const [settingsRow, setSettingsRow] = useState<RepositoryBindingRow | null>(
     null,
   );
-  const [syncRulesRow, setSyncRulesRow] =
-    useState<RepositoryBindingRow | null>(null);
+  const [syncRulesRow, setSyncRulesRow] = useState<RepositoryBindingRow | null>(
+    null,
+  );
   const [workflowRulesRow, setWorkflowRulesRow] =
     useState<RepositoryBindingRow | null>(null);
   const [disconnectRow, setDisconnectRow] =

@@ -3,9 +3,7 @@ import type { InferResponseType } from "hono/client";
 import { HttpError } from "@/lib/http-error";
 
 export type ListRepositoryBranchesResponse = InferResponseType<
-  (typeof client)["github-integration"]["integration"][":integrationId"][
-    "branches"
-  ]["$get"],
+  (typeof client)["github-integration"]["integration"][":integrationId"]["branches"]["$get"],
   200
 >;
 
@@ -23,13 +21,12 @@ async function listRepositoryBranches(
   integrationId: string,
   query?: string,
 ): Promise<RepositoryBranchList> {
-  const response =
-    await client["github-integration"].integration[":integrationId"].branches.$get(
-      {
-        param: { integrationId },
-        ...(query ? { query: { query } } : {}),
-      },
-    );
+  const response = await client["github-integration"].integration[
+    ":integrationId"
+  ].branches.$get({
+    param: { integrationId },
+    ...(query ? { query: { query } } : {}),
+  });
 
   if (!response.ok) {
     throw new HttpError(response.status, await response.text());

@@ -65,21 +65,23 @@ vi.mock("../../../apps/api/src/utils/validate-workspace-access", async () => {
   };
 });
 
-vi.mock("../../../apps/api/src/project-access/assert-project-access", async () => {
-  const { HTTPException } = await import("hono/http-exception");
-  return {
-    assertProjectAccess: async (_userId: string, projectIds: string[]) => {
-      state.assertedProjectIds.push(projectIds);
-      if (projectIds.includes("project-theirs")) {
-        throw new HTTPException(403, { message: "No project access" });
-      }
-    },
-  };
-});
-
-const { workspaceAccess } = await import(
-  "../../../apps/api/src/utils/workspace-access-middleware"
+vi.mock(
+  "../../../apps/api/src/project-access/assert-project-access",
+  async () => {
+    const { HTTPException } = await import("hono/http-exception");
+    return {
+      assertProjectAccess: async (_userId: string, projectIds: string[]) => {
+        state.assertedProjectIds.push(projectIds);
+        if (projectIds.includes("project-theirs")) {
+          throw new HTTPException(403, { message: "No project access" });
+        }
+      },
+    };
+  },
 );
+
+const { workspaceAccess } =
+  await import("../../../apps/api/src/utils/workspace-access-middleware");
 
 // Mirrors the RFC 0001 id-keyed routes: the integrationId travels in the path
 // param, or in the JSON body when the route has no param.
@@ -89,9 +91,13 @@ function buildApp() {
       c.set("userId", "user-1");
       return next();
     })
-    .delete("/integration/:integrationId", workspaceAccess.fromIntegration(), async (c) => {
-      return c.json({ actedOn: c.req.param("integrationId") });
-    })
+    .delete(
+      "/integration/:integrationId",
+      workspaceAccess.fromIntegration(),
+      async (c) => {
+        return c.json({ actedOn: c.req.param("integrationId") });
+      },
+    )
     .post("/sync", workspaceAccess.fromIntegration(), async (c) => {
       const body = (await c.req.json()) as { integrationId: string };
       return c.json({ actedOn: body.integrationId });

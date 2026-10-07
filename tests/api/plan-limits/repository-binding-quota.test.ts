@@ -4,16 +4,13 @@ vi.mock("../../../apps/api/src/events", () => ({
   publishEvent: vi.fn(async () => {}),
 }));
 
-const { resolveRepositoryBindingLimits } = await import(
-  "../../../apps/api/src/plan-limits/resolve-limits"
-);
+const { resolveRepositoryBindingLimits } =
+  await import("../../../apps/api/src/plan-limits/resolve-limits");
 const {
   assertRepositoryBindingQuota,
   countActiveRepositoryBindings,
   getRepositoryBindingUsage,
-} = await import(
-  "../../../apps/api/src/plan-limits/repository-binding-quota"
-);
+} = await import("../../../apps/api/src/plan-limits/repository-binding-quota");
 const { publishEvent } = await import("../../../apps/api/src/events");
 
 // Minimal drizzle-shaped stubs. The two helpers run select chains that differ
@@ -98,9 +95,7 @@ describe("repository binding quota (WP10)", () => {
   it("counts active repository bindings via the injected database", async () => {
     const database = fakeDatabase({ limitRow: [], countRow: { count: 3 } });
 
-    expect(
-      await countActiveRepositoryBindings(PROJECT, database),
-    ).toBe(3);
+    expect(await countActiveRepositoryBindings(PROJECT, database)).toBe(3);
   });
 
   it("throws 402 with used and limit when the project is at the limit", async () => {

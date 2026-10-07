@@ -422,7 +422,10 @@ describe("bounded resumable GitHub import", () => {
             }),
           })
           .where(eq(schema.integrationTable.id, integration.id));
-      result = await importIssues({ integrationId: integration.id, runId: result.runId });
+      result = await importIssues({
+        integrationId: integration.id,
+        runId: result.runId,
+      });
       expect(result).toMatchObject({
         pending: false,
         imported: existing ? 0 : 1,
@@ -435,7 +438,9 @@ describe("bounded resumable GitHub import", () => {
       expect(
         JSON.parse((await db.query.externalLinkTable.findFirst())!.metadata!),
       ).toMatchObject({ syncFilterPaused: true });
-      expect(await importIssues({ integrationId: integration.id })).toMatchObject({
+      expect(
+        await importIssues({ integrationId: integration.id }),
+      ).toMatchObject({
         pending: false,
         imported: 0,
         skipped: 1,
@@ -546,7 +551,10 @@ describe("bounded resumable GitHub import", () => {
     mocks.graphql.mockImplementation(original);
     let result = await importIssues({ integrationId: integration.id });
     while (result.pending)
-      result = await importIssues({ integrationId: integration.id, runId: result.runId });
+      result = await importIssues({
+        integrationId: integration.id,
+        runId: result.runId,
+      });
     expect(result).toMatchObject({ imported: 7, updated: 0 });
     expect(await db.query.taskTable.findMany()).toHaveLength(7);
   });
@@ -632,7 +640,10 @@ describe("bounded resumable GitHub import", () => {
       phase: "comments",
       currentIssue: { commentCursor: "60", labelsRemaining: 0 },
     });
-    result = await importIssues({ integrationId: integration.id, runId: result.runId });
+    result = await importIssues({
+      integrationId: integration.id,
+      runId: result.runId,
+    });
     expect(result.pending).toBe(false);
     expect(await db.query.labelTable.findMany()).toHaveLength(25);
     expect(await db.query.activityTable.findMany()).toHaveLength(82);
@@ -653,7 +664,10 @@ describe("bounded resumable GitHub import", () => {
     });
     result = await importIssues({ integrationId: integration.id });
     while (result.pending)
-      result = await importIssues({ integrationId: integration.id, runId: result.runId });
+      result = await importIssues({
+        integrationId: integration.id,
+        runId: result.runId,
+      });
     expect(result).toMatchObject({ imported: 0, updated: 1 });
     expect(await db.query.activityTable.findMany()).toHaveLength(82);
     expect(await db.query.labelTable.findMany()).toHaveLength(25);
@@ -689,10 +703,12 @@ describe("bounded resumable GitHub import", () => {
         };
       return emptyPulls();
     });
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
-      pending: false,
-      imported: 1,
-    });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      {
+        pending: false,
+        imported: 1,
+      },
+    );
     expect(await db.query.activityTable.findMany()).toHaveLength(21);
     mocks.graphql.mockImplementation(async (query: string) =>
       query.includes("query ImportIssues(")
@@ -704,10 +720,12 @@ describe("bounded resumable GitHub import", () => {
           )
         : emptyPulls(),
     );
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
-      pending: false,
-      imported: 0,
-    });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      {
+        pending: false,
+        imported: 0,
+      },
+    );
     expect(await db.query.taskTable.findMany()).toHaveLength(1);
   });
 
@@ -725,7 +743,9 @@ describe("bounded resumable GitHub import", () => {
       ),
     );
     try {
-      await expect(importIssues({ integrationId: integration.id })).rejects.toThrow();
+      await expect(
+        importIssues({ integrationId: integration.id }),
+      ).rejects.toThrow();
       expect(await db.query.taskTable.findMany()).toHaveLength(0);
       expect(await db.query.externalLinkTable.findMany()).toHaveLength(0);
       expect((await saved())?.state).toMatchObject({
@@ -742,10 +762,12 @@ describe("bounded resumable GitHub import", () => {
       );
       await db.execute(sql.raw("DROP FUNCTION fail_import_progress()"));
     }
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
-      imported: 1,
-      pending: false,
-    });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      {
+        imported: 1,
+        pending: false,
+      },
+    );
     expect(await db.query.taskTable.findFirst()).toMatchObject({ number: 1 });
   });
 
@@ -775,7 +797,9 @@ describe("bounded resumable GitHub import", () => {
       .update(schema.integrationTable)
       .set({ config: JSON.stringify({ ...config, repositoryId: 22 }) })
       .where(eq(schema.integrationTable.id, integration.id));
-    await expect(importIssues({ integrationId: integration.id, runId: first.runId })).rejects.toMatchObject({
+    await expect(
+      importIssues({ integrationId: integration.id, runId: first.runId }),
+    ).rejects.toMatchObject({
       status: 409,
     });
     expect(mocks.graphql).toHaveBeenCalledTimes(4);
@@ -790,7 +814,9 @@ describe("bounded resumable GitHub import", () => {
         .where(eq(schema.integrationTable.id, integration.id));
       return issuePage([issue(1)]);
     });
-    await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
+    await expect(
+      importIssues({ integrationId: integration.id }),
+    ).rejects.toMatchObject({
       status: 409,
     });
     expect(await db.query.taskTable.findMany()).toHaveLength(0);
@@ -813,7 +839,9 @@ describe("bounded resumable GitHub import", () => {
             ? issuePage([issue(1)], true, null)
             : issuePage([issue(1), issue(2)]),
       );
-      await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
+      await expect(
+        importIssues({ integrationId: integration.id }),
+      ).rejects.toMatchObject({
         status: kind === "identity" ? 409 : 502,
       });
       expect((await saved())?.state.imported).toBe(0);
@@ -824,7 +852,9 @@ describe("bounded resumable GitHub import", () => {
   it("pauses on an empty unfinished page instead of silently dropping remaining issues", async () => {
     const { project, integration } = await setup();
     mocks.graphql.mockResolvedValue(issuePage([], true, "next", 10));
-    await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
+    await expect(
+      importIssues({ integrationId: integration.id }),
+    ).rejects.toMatchObject({
       status: 502,
     });
     expect((await saved())?.state).toMatchObject({
@@ -836,7 +866,9 @@ describe("bounded resumable GitHub import", () => {
   it("does not loop on a repeated cursor and retains earlier pages", async () => {
     const { project, integration } = await setup();
     mocks.graphql.mockResolvedValue(issuePage([issue(1)], true, "same", 100));
-    await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
+    await expect(
+      importIssues({ integrationId: integration.id }),
+    ).rejects.toMatchObject({
       status: 502,
     });
     expect(mocks.graphql).toHaveBeenCalledTimes(2);
@@ -869,11 +901,13 @@ describe("bounded resumable GitHub import", () => {
         return emptyPulls();
       },
     );
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
-      pending: false,
-      imported: 2,
-      skipped: 1,
-    });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      {
+        pending: false,
+        imported: 2,
+        skipped: 1,
+      },
+    );
     expect(await db.query.taskTable.findMany()).toHaveLength(2);
   });
 
@@ -1065,7 +1099,9 @@ describe("bounded resumable GitHub import", () => {
           },
         };
       });
-      expect((await importIssues({ integrationId: integration.id })).pending).toBe(false);
+      expect(
+        (await importIssues({ integrationId: integration.id })).pending,
+      ).toBe(false);
       expect(
         await db.query.externalLinkTable.findFirst({
           where: eq(schema.externalLinkTable.resourceType, "pull_request"),
@@ -1175,10 +1211,12 @@ it.each(["labels", "comments"])(
       }
       return emptyPulls();
     });
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
-      pending: false,
-      skipped: 1,
-    });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      {
+        pending: false,
+        skipped: 1,
+      },
+    );
     const saved = await db.query.taskTable.findFirst({
       where: eq(schema.taskTable.id, movedTaskId!),
     });

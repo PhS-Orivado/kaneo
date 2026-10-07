@@ -151,8 +151,7 @@ export async function handleGiteaIssueClosed(
               "issue_closed",
               "done",
               db,
-            integration.id,
-
+              integration.id,
             );
 
             const statusResult = await updateTaskStatus(

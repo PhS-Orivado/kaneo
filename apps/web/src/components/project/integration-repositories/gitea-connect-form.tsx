@@ -23,7 +23,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import type { VerifyGiteaAccessResponse } from "@/fetchers/gitea-integration/verify-gitea-access";
-import { useCreateGiteaIntegration, useVerifyGiteaAccess } from "@/hooks/mutations/gitea-integration/use-create-gitea-integration";
+import {
+  useCreateGiteaIntegration,
+  useVerifyGiteaAccess,
+} from "@/hooks/mutations/gitea-integration/use-create-gitea-integration";
 import { cn } from "@/lib/cn";
 import { toast } from "@/lib/toast";
 
@@ -51,7 +54,10 @@ function createSnapshot(values: GiteaConnectFormValues) {
 type GiteaConnectFormProps = {
   projectId: string;
   /** Opens the repository browser with the entered instance credentials. */
-  onOpenBrowser: (credentials: { baseUrl: string; accessToken: string }) => void;
+  onOpenBrowser: (credentials: {
+    baseUrl: string;
+    accessToken: string;
+  }) => void;
 };
 
 /**

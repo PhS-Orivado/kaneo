@@ -10,15 +10,15 @@ export default async function resumeSync(
 ) {
   const response =
     scope.kind === "binding"
-      ? await client["integration-sync"].integration[
-          ":integrationId"
-        ].links[":linkId"].resume.$post({
+      ? await client["integration-sync"].integration[":integrationId"].links[
+          ":linkId"
+        ].resume.$post({
           param: { integrationId: scope.integrationId, linkId },
           json: { token, source },
         })
-      : await client["integration-sync"].project[":projectId"][":provider"].links[
-          ":linkId"
-        ].resume.$post({
+      : await client["integration-sync"].project[":projectId"][
+          ":provider"
+        ].links[":linkId"].resume.$post({
           param: {
             projectId: scope.projectId,
             provider: scope.provider,

@@ -179,8 +179,7 @@ export async function handleGitlabMergeRequestOpened(
         "pr_opened",
         config.statusTransitions?.onPROpen || "in-review",
         database,
-      integration.id,
-
+        integration.id,
       );
 
       const wasDraft =

@@ -33,7 +33,8 @@ export function useDeleteGiteaIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (integrationId: string) => deleteGiteaIntegration(integrationId),
+    mutationFn: (integrationId: string) =>
+      deleteGiteaIntegration(integrationId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["gitea-integrations"] });
       queryClient.invalidateQueries({ queryKey: ["external-links"] });

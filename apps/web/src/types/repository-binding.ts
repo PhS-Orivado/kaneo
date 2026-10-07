@@ -13,7 +13,9 @@ export const repositoryBindingUsageSchema = z.object({
   // null = the plan has no repository limit.
   limit: z.number().nullable(),
 });
-export type RepositoryBindingUsage = z.infer<typeof repositoryBindingUsageSchema>;
+export type RepositoryBindingUsage = z.infer<
+  typeof repositoryBindingUsageSchema
+>;
 
 /** RFC 0001: linked-state annotation of listed provider repositories. */
 export const repositoryLinkedToSchema = z.object({

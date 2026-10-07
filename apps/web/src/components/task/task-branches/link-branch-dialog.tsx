@@ -63,10 +63,7 @@ export function LinkBranchDialog({
     if (!nextOpen) onClose();
   };
 
-  const handleLink = async (
-    integrationId: string,
-    branchName: string,
-  ) => {
+  const handleLink = async (integrationId: string, branchName: string) => {
     setLinking(branchKey(integrationId, branchName));
     try {
       await createRepositoryBranch.mutateAsync({

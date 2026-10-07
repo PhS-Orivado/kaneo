@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import getSyncRules from "@/fetchers/integration-sync/get-sync-rules";
-import { syncScopeKey, type SyncScope } from "@/fetchers/integration-sync/types";
+import {
+  syncScopeKey,
+  type SyncScope,
+} from "@/fetchers/integration-sync/types";
 
 export function useSyncRules(scope: SyncScope, after?: string) {
   const key = syncScopeKey(scope);

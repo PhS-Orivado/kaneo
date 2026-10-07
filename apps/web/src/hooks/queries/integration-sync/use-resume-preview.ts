@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import reviewSyncResume from "@/fetchers/integration-sync/review-sync-resume";
-import { syncScopeKey, type SyncScope } from "@/fetchers/integration-sync/types";
+import {
+  syncScopeKey,
+  type SyncScope,
+} from "@/fetchers/integration-sync/types";
 
 export function useResumePreview(
   scope: SyncScope,

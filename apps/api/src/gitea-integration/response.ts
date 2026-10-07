@@ -38,9 +38,9 @@ export const giteaIntegrationSchema = z
 // workspace's repository binding usage summary (WP10).
 export const giteaIntegrationListSchema = z
   .object({
-    integrations: z
-      .array(giteaIntegrationSchema)
-      .openapi({ description: "Every Gitea binding of the project, oldest first." }),
+    integrations: z.array(giteaIntegrationSchema).openapi({
+      description: "Every Gitea binding of the project, oldest first.",
+    }),
     usage: repositoryBindingUsageSchema,
   })
   .openapi("GiteaIntegrationList");
@@ -56,9 +56,9 @@ export const giteaRepositorySchema = z
     // RFC 0001 WP3: linked-state annotation. Same-project links block
     // selection in the picker; cross-project links (allowed per decision D1)
     // are informational only.
-    linkedTo: repositoryLinkedToSchema
-      .nullable()
-      .openapi({ description: "The binding this repository is already linked to, if any." }),
+    linkedTo: repositoryLinkedToSchema.nullable().openapi({
+      description: "The binding this repository is already linked to, if any.",
+    }),
   })
   .openapi("GiteaRepository");
 

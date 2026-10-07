@@ -256,11 +256,9 @@ describe("GitLab repository binding semantics (RFC 0001 WP4)", () => {
       limit: 1,
     });
     expect(
-      (
-        await db.query.integrationTable.findMany({
-          where: eq(schema.integrationTable.projectId, project.id),
-        })
-      ),
+      await db.query.integrationTable.findMany({
+        where: eq(schema.integrationTable.projectId, project.id),
+      }),
     ).toHaveLength(1);
 
     mockAuthenticatedSession(member.user);

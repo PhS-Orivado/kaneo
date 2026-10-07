@@ -162,7 +162,10 @@ describe("Integration sync binding routes (RFC 0001 WP5)", () => {
       ],
       [
         `/api/integration-sync/integration/${first.id}`,
-        { method: "PATCH", ...json({ rules: defaultSyncRules, previewToken: token }) },
+        {
+          method: "PATCH",
+          ...json({ rules: defaultSyncRules, previewToken: token }),
+        },
       ],
       [
         `/api/integration-sync/integration/${first.id}/links/link-1/review`,
@@ -177,9 +180,8 @@ describe("Integration sync binding routes (RFC 0001 WP5)", () => {
       expect((await app.request(url, init)).status).toBe(403);
     }
     expect(
-      (
-        await app.request(`/api/integration-sync/integration/${randomUUID()}`)
-      ).status,
+      (await app.request(`/api/integration-sync/integration/${randomUUID()}`))
+        .status,
     ).toBe(404);
   });
 
@@ -209,11 +211,8 @@ describe("Integration sync binding routes (RFC 0001 WP5)", () => {
     const sibling = await getSyncIntegrationById(second.id);
     expect(JSON.parse(sibling.config).syncRules).toEqual(defaultSyncRules);
     expect(
-      (
-        await app.request(
-          `/api/integration-sync/project/${project.id}/github`,
-        )
-      ).status,
+      (await app.request(`/api/integration-sync/project/${project.id}/github`))
+        .status,
     ).toBe(404);
   });
 

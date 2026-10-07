@@ -255,9 +255,7 @@ const updateIntegrationRoute = createRoute({
       "The updated integration",
       githubIntegrationSchema.nullable(),
     ),
-    409: errorResponse(
-      "Integration changed; refresh before updating",
-    ),
+    409: errorResponse("Integration changed; refresh before updating"),
     402: errorResponse(
       "The plan's repository binding limit is reached (binding_limit_exceeded)",
     ),
@@ -347,7 +345,10 @@ const listRepositoryBranchesRoute = createRoute({
     query: repositoryBranchesQuery,
   },
   responses: {
-    200: jsonResponse("Matching branches of the linked repository", githubBranchListSchema),
+    200: jsonResponse(
+      "Matching branches of the linked repository",
+      githubBranchListSchema,
+    ),
     400: errorResponse("Invalid query"),
     403: errorResponse(
       "No workspace access, or missing task:update permission",

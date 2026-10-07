@@ -30,7 +30,9 @@ export async function resolveRepositoryBindingLimits(
   database: IntegrationDatabase = db,
 ): Promise<RepositoryBindingLimits> {
   const [row] = await database
-    .select({ maxRepositoriesPerProject: workspaceLimitTable.maxRepositoriesPerProject })
+    .select({
+      maxRepositoriesPerProject: workspaceLimitTable.maxRepositoriesPerProject,
+    })
     .from(workspaceLimitTable)
     .where(eq(workspaceLimitTable.workspaceId, workspaceId))
     .limit(1);

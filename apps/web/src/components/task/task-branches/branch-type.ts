@@ -20,10 +20,7 @@ export function ticketId(
   return `${projectSlug.toUpperCase()}-${taskNumber}`;
 }
 
-export function buildTypedBranchName(
-  type: BranchType,
-  ticket: string,
-): string {
+export function buildTypedBranchName(type: BranchType, ticket: string): string {
   return ticket ? `${type}/${ticket}` : "";
 }
 

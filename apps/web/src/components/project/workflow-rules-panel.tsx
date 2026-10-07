@@ -117,7 +117,9 @@ export function WorkflowRulesPanel({
             >
               <SelectTrigger className="w-48 h-8 text-sm">
                 <SelectValue
-                  placeholder={t("settings:workflowEditor.selectColumnPlaceholder")}
+                  placeholder={t(
+                    "settings:workflowEditor.selectColumnPlaceholder",
+                  )}
                 >
                   {columns.find((column) => column.id === currentRule?.columnId)
                     ?.name ??

@@ -18,10 +18,7 @@ function useImportGithubIssues() {
         queryClient.invalidateQueries({ queryKey: ["assigned-tasks"] }),
         queryClient.invalidateQueries({ queryKey: ["workspace-activity"] }),
         queryClient.invalidateQueries({
-          queryKey: [
-            "github-integrations",
-            variables.projectId ?? "",
-          ],
+          queryKey: ["github-integrations", variables.projectId ?? ""],
         }),
       ]);
     },

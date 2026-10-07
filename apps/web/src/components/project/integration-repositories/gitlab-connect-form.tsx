@@ -30,7 +30,10 @@ import {
 } from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import type { VerifyGitlabAccessResponse } from "@/fetchers/gitlab-integration/verify-gitlab-access";
-import { useCreateGitlabIntegration, useVerifyGitlabAccess } from "@/hooks/mutations/gitlab-integration/use-create-gitlab-integration";
+import {
+  useCreateGitlabIntegration,
+  useVerifyGitlabAccess,
+} from "@/hooks/mutations/gitlab-integration/use-create-gitlab-integration";
 import { cn } from "@/lib/cn";
 import { toast } from "@/lib/toast";
 
@@ -103,8 +106,7 @@ export function GitlabConnectForm({
           .string()
           .min(1, t("settings:gitlabIntegration.validation.pathRequired"))
           .refine(
-            (s) =>
-              /^[a-zA-Z0-9._-]+(?:\/[a-zA-Z0-9._-]+)+$/.test(s.trim()),
+            (s) => /^[a-zA-Z0-9._-]+(?:\/[a-zA-Z0-9._-]+)+$/.test(s.trim()),
             t("settings:gitlabIntegration.validation.pathInvalid"),
           ),
       }),
@@ -190,14 +192,12 @@ export function GitlabConnectForm({
         tokenType,
         projectPath,
       });
-      return (
-        Object.entries(current.verified).every(
-          ([key, value]) =>
-            now[key as keyof typeof now] === (value as string | undefined),
-        )
-          ? current
-          : null
-      );
+      return Object.entries(current.verified).every(
+        ([key, value]) =>
+          now[key as keyof typeof now] === (value as string | undefined),
+      )
+        ? current
+        : null;
     });
   }, [baseUrl, accessToken, tokenType, projectPath]);
 

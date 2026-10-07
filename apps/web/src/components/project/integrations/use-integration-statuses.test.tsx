@@ -140,9 +140,7 @@ describe("useIntegrationStatuses", () => {
   });
   it("starts with an unknown status when switching projects", async () => {
     fetchers.github.mockImplementation((projectId: string) =>
-      projectId === "p1"
-        ? Promise.resolve(bindingList)
-        : new Promise(() => {}),
+      projectId === "p1" ? Promise.resolve(bindingList) : new Promise(() => {}),
     );
     const { result, rerender } = renderHook(
       ({ projectId }) => useIntegrationStatuses(projectId),
@@ -231,9 +229,7 @@ describe("useIntegrationStatuses", () => {
     },
     {
       data: {
-        integrations: [
-          { ...githubBinding, isActive: false },
-        ],
+        integrations: [{ ...githubBinding, isActive: false }],
         usage: { used: 1, limit: null },
       },
       expected: { state: "paused", details: ["acme/web"] },
@@ -256,9 +252,9 @@ describe("useIntegrationStatuses", () => {
           queryKey: ["github-integrations", "p1"],
         });
       });
-      expect(
-        client.getQueryState(["github-integrations", "p1"])?.status,
-      ).toBe("error");
+      expect(client.getQueryState(["github-integrations", "p1"])?.status).toBe(
+        "error",
+      );
       expect(result.current.statuses.github).toEqual(expected);
     },
   );

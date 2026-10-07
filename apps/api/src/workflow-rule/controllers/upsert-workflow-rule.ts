@@ -49,8 +49,7 @@ async function upsertWorkflowRule({
       });
     if (binding.type !== integrationType)
       throw new HTTPException(400, {
-        message:
-          "Integration type does not match the rule's integration type",
+        message: "Integration type does not match the rule's integration type",
       });
   }
 

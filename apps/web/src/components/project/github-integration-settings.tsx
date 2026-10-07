@@ -81,8 +81,9 @@ export function GitHubIntegrationSettings({
   const [settingsRow, setSettingsRow] = useState<RepositoryBindingRow | null>(
     null,
   );
-  const [syncRulesRow, setSyncRulesRow] =
-    useState<RepositoryBindingRow | null>(null);
+  const [syncRulesRow, setSyncRulesRow] = useState<RepositoryBindingRow | null>(
+    null,
+  );
   const [workflowRulesRow, setWorkflowRulesRow] =
     useState<RepositoryBindingRow | null>(null);
   const [disconnectRow, setDisconnectRow] =
@@ -313,7 +314,10 @@ export function GitHubIntegrationSettings({
         }
         onClose={() => setSettingsRow(null)}
       />
-      <BindingSyncRulesDialog row={syncRulesRow} onClose={() => setSyncRulesRow(null)} />
+      <BindingSyncRulesDialog
+        row={syncRulesRow}
+        onClose={() => setSyncRulesRow(null)}
+      />
       <BindingWorkflowRulesDialog
         row={workflowRulesRow}
         projectId={projectId}

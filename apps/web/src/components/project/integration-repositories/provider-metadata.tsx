@@ -9,7 +9,10 @@ export type ProviderMetadata = {
   /** The provider's settings i18n namespace. */
   namespace: "githubIntegration" | "giteaIntegration" | "gitlabIntegration";
   /** The list query key of the provider (RFC 0001 WP7). */
-  listQueryKey: "github-integrations" | "gitea-integrations" | "gitlab-integrations";
+  listQueryKey:
+    | "github-integrations"
+    | "gitea-integrations"
+    | "gitlab-integrations";
 };
 
 export const PROVIDER_METADATA: Record<RepositoryProvider, ProviderMetadata> = {

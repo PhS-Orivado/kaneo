@@ -91,10 +91,5 @@ export async function lockResumeScope(
   tx: IntegrationDatabase,
 ) {
   const integration = await getSyncIntegration(projectId, provider, tx);
-  return lockResumeScopeById(
-    integration.id,
-    linkId,
-    authorizedWorkspaceId,
-    tx,
-  );
+  return lockResumeScopeById(integration.id, linkId, authorizedWorkspaceId, tx);
 }

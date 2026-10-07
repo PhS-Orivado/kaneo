@@ -69,12 +69,7 @@ async function resumeWithLease(
   let updatedAt: string | null = null;
   let adoption: Awaited<ReturnType<typeof applySyncResume>>;
   const validate = async (tx: Parameters<typeof lockResumeScopeById>[3]) => {
-    await lockResumeScopeById(
-      integrationId,
-      linkId,
-      authorizedWorkspaceId,
-      tx,
-    );
+    await lockResumeScopeById(integrationId, linkId, authorizedWorkspaceId, tx);
     const review = await reviewSyncResumeById(
       integrationId,
       linkId,

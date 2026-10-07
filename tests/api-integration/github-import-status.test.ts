@@ -91,7 +91,9 @@ describe("GitHub import project workflow validation", () => {
   it("maps arbitrary external statuses to a real local column for new tasks", async () => {
     const { integration, columns } = await setup();
     m.labels = ["status:hidden"];
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({ imported: 1 });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      { imported: 1 },
+    );
     expect(await storedTask()).toMatchObject({
       status: "to-do",
       columnId: columns.todo.id,
@@ -103,7 +105,9 @@ describe("GitHub import project workflow validation", () => {
     m.labels = ["status:in-progress"];
     await importIssues({ integrationId: integration.id });
     m.labels = ["status:hidden"];
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({ updated: 1 });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      { updated: 1 },
+    );
     expect(await storedTask()).toMatchObject({
       status: "in-progress",
       columnId: columns.inProgress.id,
@@ -182,11 +186,13 @@ describe("GitHub import project workflow validation", () => {
       url: "https://github.com/example/repo/issues/1",
     });
     m.labels = ["status:archived"];
-    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
-      imported: 0,
-      updated: 0,
-      skipped: 1,
-    });
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject(
+      {
+        imported: 0,
+        updated: 0,
+        skipped: 1,
+      },
+    );
     expect(await storedTask()).toMatchObject({
       title: "Untouched",
       status: "to-do",

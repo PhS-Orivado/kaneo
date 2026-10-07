@@ -24,13 +24,12 @@ async function createRepositoryBranch({
   branchName,
   create = true,
 }: CreateRepositoryBranchRequest) {
-  const response =
-    await client["github-integration"].integration[":integrationId"].branches.$post(
-      {
-        param: { integrationId },
-        json: { taskId, branchName, create },
-      },
-    );
+  const response = await client["github-integration"].integration[
+    ":integrationId"
+  ].branches.$post({
+    param: { integrationId },
+    json: { taskId, branchName, create },
+  });
 
   if (!response.ok) {
     throw new HttpError(response.status, await response.text());

@@ -9,21 +9,19 @@ export default async function saveSyncRules(
 ) {
   const response =
     scope.kind === "binding"
-      ? await client["integration-sync"].integration[
-          ":integrationId"
-        ].$patch({
+      ? await client["integration-sync"].integration[":integrationId"].$patch({
           param: { integrationId: scope.integrationId },
           json: { rules, previewToken },
         })
-      : await client["integration-sync"].project[":projectId"][":provider"].$patch(
-          {
-            param: {
-              projectId: scope.projectId,
-              provider: scope.provider,
-            },
-            json: { rules, previewToken },
+      : await client["integration-sync"].project[":projectId"][
+          ":provider"
+        ].$patch({
+          param: {
+            projectId: scope.projectId,
+            provider: scope.provider,
           },
-        );
+          json: { rules, previewToken },
+        });
   if (!response.ok) throw new HttpError(response.status, await response.text());
   return response.json();
 }

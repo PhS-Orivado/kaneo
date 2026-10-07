@@ -173,10 +173,7 @@ describe("Workflow rules per repository binding (RFC 0001 WP6)", () => {
     const { project: outsiderProject } = await createProjectFixture({
       workspaceId: outsider.workspace.id,
     });
-    const outsiderBinding = await insertBinding(
-      outsiderProject.id,
-      "repo-y",
-    );
+    const outsiderBinding = await insertBinding(outsiderProject.id, "repo-y");
 
     // A binding of another project in the same workspace: 400.
     expect(
@@ -272,12 +269,12 @@ describe("Workflow rules per repository binding (RFC 0001 WP6)", () => {
       .where(eq(schema.workflowRuleTable.projectId, project.id));
     expect(rows).toHaveLength(2);
     expect(rows.find((row) => row.integrationId === first.id)).toBeUndefined();
-    expect(
-      rows.find((row) => row.integrationId === null),
-    ).toMatchObject({ columnId: columns.inReview.id });
-    expect(
-      rows.find((row) => row.integrationId === second.id),
-    ).toMatchObject({ columnId: columns.todo.id });
+    expect(rows.find((row) => row.integrationId === null)).toMatchObject({
+      columnId: columns.inReview.id,
+    });
+    expect(rows.find((row) => row.integrationId === second.id)).toMatchObject({
+      columnId: columns.todo.id,
+    });
   });
 
   it("carries different rules per project binding for a shared repository (decision D1)", async () => {
@@ -312,7 +309,13 @@ describe("Workflow rules per repository binding (RFC 0001 WP6)", () => {
     // Resolution is keyed by the integration row, not the repository key:
     // the same shared repository behaves differently per project binding.
     expect(
-      await resolveTargetStatus(project.id, "issue_closed", "done", db, first.id),
+      await resolveTargetStatus(
+        project.id,
+        "issue_closed",
+        "done",
+        db,
+        first.id,
+      ),
     ).toBe("in-review");
     expect(
       await resolveTargetStatus(

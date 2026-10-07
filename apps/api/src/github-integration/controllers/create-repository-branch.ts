@@ -57,9 +57,8 @@ export async function createRepositoryBranch({
     throw new HTTPException(400, { message: "Invalid branch name" });
   }
 
-  const { integration, config, octokit } = await resolveVerifiedIntegration(
-    integrationId,
-  );
+  const { integration, config, octokit } =
+    await resolveVerifiedIntegration(integrationId);
   const { repositoryOwner: owner, repositoryName: repo } = config;
 
   const task = await db.query.taskTable.findFirst({

@@ -31,14 +31,17 @@ vi.mock("@/lib/auth-client", () => ({
     linkSocial: m.link,
   },
 }));
-vi.mock("@/hooks/queries/github-integration/use-list-github-integrations", () => ({
-  default: () => ({
-    data: m.list.current,
-    isLoading: false,
-    error: null,
-    refetch: vi.fn(),
+vi.mock(
+  "@/hooks/queries/github-integration/use-list-github-integrations",
+  () => ({
+    default: () => ({
+      data: m.list.current,
+      isLoading: false,
+      error: null,
+      refetch: vi.fn(),
+    }),
   }),
-}));
+);
 vi.mock(
   "@/hooks/mutations/github-integration/use-create-github-integration",
   () => ({

@@ -74,7 +74,10 @@ export default function WorkflowEditor({ projectId }: WorkflowEditorProps) {
               {t("settings:workflowEditor.scopeTypeWide")}
             </SelectItem>
             {bindings.map((binding) => (
-              <SelectItem key={binding.integrationId} value={binding.integrationId}>
+              <SelectItem
+                key={binding.integrationId}
+                value={binding.integrationId}
+              >
                 {t(
                   `settings:${PROVIDER_METADATA[binding.provider].namespace}.providerName`,
                 )}{" "}
@@ -152,7 +155,10 @@ function ProviderSection({
           {t(`settings:workflowEditor.${hintKey}`)}
         </p>
       </div>
-      <WorkflowRulesPanel projectId={projectId} integrationType={integrationType} />
+      <WorkflowRulesPanel
+        projectId={projectId}
+        integrationType={integrationType}
+      />
     </div>
   );
 }

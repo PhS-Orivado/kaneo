@@ -7,10 +7,7 @@ import { isTaskInFinalState } from "../../plugins/github/services/task-service";
 import { taskMatchesRule } from "../../plugins/sync/eligibility";
 import { providerIssue } from "../../plugins/sync/provider-issue";
 import { isSyncPaused, readSyncRules } from "../../plugins/sync/rules";
-import {
-  getSyncIntegration,
-  getSyncIntegrationById,
-} from "./get-integration";
+import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 import type { IntegrationDatabase } from "../../plugins/github/services/integration-task-scope";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";

@@ -19,8 +19,7 @@ const GITEA_BRANCH =
   /^https?:\/\/([^/\s]+)\/([^/\s]+)\/([^/\s]+)\/src\/branch\/(.+)$/i;
 const GITLAB_MERGE_REQUEST =
   /^https?:\/\/([^/\s]+)\/(.+)\/-\/merge_requests\/(\d+)(?:\/\S*)?$/i;
-const GITLAB_BRANCH =
-  /^https?:\/\/([^/\s]+)\/(.+)\/-\/tree\/(.+)$/i;
+const GITLAB_BRANCH = /^https?:\/\/([^/\s]+)\/(.+)\/-\/tree\/(.+)$/i;
 
 /** Query and fragment never belong to a resource id. */
 function withoutQueryAndFragment(url: string): string {

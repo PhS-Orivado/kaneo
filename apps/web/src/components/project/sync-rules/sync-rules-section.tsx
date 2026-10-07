@@ -106,7 +106,11 @@ export function SyncRulesSection({ scope }: { scope: SyncScope }) {
       )}
       {advanced && canManage ? (
         <SyncRulesEditor
-          key={scope.kind === "binding" ? scope.integrationId : `${scope.projectId}:${scope.provider}`}
+          key={
+            scope.kind === "binding"
+              ? scope.integrationId
+              : `${scope.projectId}:${scope.provider}`
+          }
           scope={scope}
           saved={data}
         />

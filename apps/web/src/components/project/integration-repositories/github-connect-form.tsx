@@ -326,7 +326,7 @@ export function GithubConnectForm({
           {verified ? (
             <CheckCircle className="mt-0.5 size-4 shrink-0 text-success-foreground" />
           ) : verification.result.isInstalled ||
-              verification.result.repositoryExists ? (
+            verification.result.repositoryExists ? (
             <AlertTriangle className="mt-0.5 size-4 shrink-0 text-warning-foreground" />
           ) : (
             <XCircle className="mt-0.5 size-4 shrink-0 text-destructive-foreground" />

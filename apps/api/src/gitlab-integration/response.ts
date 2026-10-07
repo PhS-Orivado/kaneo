@@ -42,9 +42,9 @@ export const gitlabIntegrationSchema = z
 // workspace's repository binding usage summary (WP10).
 export const gitlabIntegrationListSchema = z
   .object({
-    integrations: z
-      .array(gitlabIntegrationSchema)
-      .openapi({ description: "Every GitLab binding of the project, oldest first." }),
+    integrations: z.array(gitlabIntegrationSchema).openapi({
+      description: "Every GitLab binding of the project, oldest first.",
+    }),
     usage: repositoryBindingUsageSchema,
   })
   .openapi("GitlabIntegrationList");
@@ -60,9 +60,9 @@ export const gitlabProjectSchema = z
     // RFC 0001 WP4: linked-state annotation. Same-project links block
     // selection in the picker; cross-project links (allowed per decision D1)
     // are informational only.
-    linkedTo: repositoryLinkedToSchema
-      .nullable()
-      .openapi({ description: "The binding this project is already linked to, if any." }),
+    linkedTo: repositoryLinkedToSchema.nullable().openapi({
+      description: "The binding this project is already linked to, if any.",
+    }),
   })
   .openapi("GitlabProject");
 

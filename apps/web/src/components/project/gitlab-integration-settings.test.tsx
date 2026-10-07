@@ -5,7 +5,14 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vite-plus/test";
 
 // RFC 0001 WP9 (ledger item 6.6): the GitLab settings shell matches the
 // GitHub and Gitea suites — list with instance host and plan usage, the
@@ -82,9 +89,7 @@ vi.mock(
 vi.mock(
   "@/components/project/integration-repositories/gitlab-connect-form",
   () => ({
-    GitlabConnectForm: () => (
-      <button type="button">gitlab-connect-form</button>
-    ),
+    GitlabConnectForm: () => <button type="button">gitlab-connect-form</button>,
   }),
 );
 vi.mock("@/lib/toast", () => ({

@@ -64,8 +64,7 @@ export function GitlabIntegrationSettings({
   const { mutateAsync: importIssues } = useImportGitlabIssues();
 
   const [showAddDialog, setShowAddDialog] = useState(false);
-  const [showFirstBindingBrowser, setShowFirstBindingBrowser] =
-    useState(false);
+  const [showFirstBindingBrowser, setShowFirstBindingBrowser] = useState(false);
   const [firstBindingCredentials, setFirstBindingCredentials] = useState<{
     baseUrl: string;
     accessToken: string;
@@ -78,8 +77,9 @@ export function GitlabIntegrationSettings({
   const [settingsRow, setSettingsRow] = useState<RepositoryBindingRow | null>(
     null,
   );
-  const [syncRulesRow, setSyncRulesRow] =
-    useState<RepositoryBindingRow | null>(null);
+  const [syncRulesRow, setSyncRulesRow] = useState<RepositoryBindingRow | null>(
+    null,
+  );
   const [workflowRulesRow, setWorkflowRulesRow] =
     useState<RepositoryBindingRow | null>(null);
   const [disconnectRow, setDisconnectRow] =

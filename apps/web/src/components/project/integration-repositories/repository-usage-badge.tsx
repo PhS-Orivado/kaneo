@@ -7,7 +7,11 @@ import type { RepositoryBindingUsage } from "@/types/repository-binding";
  * renders only the server-provided usage summary; the client never counts
  * bindings itself, so the badge cannot drift from the server's truth.
  */
-export function RepositoryUsageBadge({ usage }: { usage: RepositoryBindingUsage }) {
+export function RepositoryUsageBadge({
+  usage,
+}: {
+  usage: RepositoryBindingUsage;
+}) {
   const { t } = useTranslation();
 
   return (

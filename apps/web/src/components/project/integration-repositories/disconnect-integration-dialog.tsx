@@ -48,9 +48,7 @@ export function DisconnectIntegrationDialog({
           <AlertDialogDescription>
             {t("settings:repositoryBindings.disconnectDescription", {
               repository: row?.identity ?? "",
-              provider: provider
-                ? t(`settings:${provider}.providerName`)
-                : "",
+              provider: provider ? t(`settings:${provider}.providerName`) : "",
             })}
           </AlertDialogDescription>
         </AlertDialogHeader>

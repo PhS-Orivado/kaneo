@@ -128,9 +128,9 @@ describe("extractTaskNumberFromBranch", () => {
   });
 
   it("extracts the task number from a typed branch like fix/EC-123", () => {
-    expect(
-      extractTaskNumberFromBranch("fix/EC-123", baseConfig, "ec"),
-    ).toBe(123);
+    expect(extractTaskNumberFromBranch("fix/EC-123", baseConfig, "ec")).toBe(
+      123,
+    );
     expect(
       extractTaskNumberFromBranch("docs/EC-123-more-context", baseConfig, "ec"),
     ).toBe(123);

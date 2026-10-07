@@ -167,9 +167,14 @@ describe.each(["github", "gitea"] as const)(
         expect(result.errors).toBeUndefined();
         return;
       }
-      let result = await importIssues({ integrationId: fixture.integration.id });
+      let result = await importIssues({
+        integrationId: fixture.integration.id,
+      });
       for (let attempt = 0; result.pending && attempt < 10; attempt++) {
-        result = await importIssues({ integrationId: fixture.integration.id, runId: result.runId });
+        result = await importIssues({
+          integrationId: fixture.integration.id,
+          runId: result.runId,
+        });
       }
       expect(result.pending).toBe(false);
     };

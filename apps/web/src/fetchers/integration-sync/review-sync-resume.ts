@@ -9,17 +9,17 @@ export default async function reviewSyncResume(
 ) {
   const response =
     scope.kind === "binding"
-      ? await client["integration-sync"].integration[
-          ":integrationId"
-        ].links[":linkId"].review.$get(
+      ? await client["integration-sync"].integration[":integrationId"].links[
+          ":linkId"
+        ].review.$get(
           {
             param: { integrationId: scope.integrationId, linkId },
           },
           { init: { signal } },
         )
-      : await client["integration-sync"].project[":projectId"][":provider"].links[
-          ":linkId"
-        ].review.$get(
+      : await client["integration-sync"].project[":projectId"][
+          ":provider"
+        ].links[":linkId"].review.$get(
           {
             param: {
               projectId: scope.projectId,

@@ -51,9 +51,7 @@ export function CreateBranchDialog({
   labelNames,
 }: CreateBranchDialogProps) {
   const { t } = useTranslation();
-  const [type, setType] = useState<BranchType>(
-    defaultBranchType(labelNames),
-  );
+  const [type, setType] = useState<BranchType>(defaultBranchType(labelNames));
   const [selectedRepos, setSelectedRepos] = useState<string[]>(
     githubBindings.map((binding) => binding.id),
   );
@@ -98,12 +96,17 @@ export function CreateBranchDialog({
 
       if (succeeded > 0) {
         toast.success(
-          t("tasks:branches.createdIn", { count: succeeded, branch: branchName }),
+          t("tasks:branches.createdIn", {
+            count: succeeded,
+            branch: branchName,
+          }),
         );
       }
       for (const result of results) {
         if (result.status === "rejected") {
-          toast.error(t("tasks:branches.createRepoError", { branch: branchName }));
+          toast.error(
+            t("tasks:branches.createRepoError", { branch: branchName }),
+          );
           break;
         }
       }
@@ -188,9 +191,7 @@ export function CreateBranchDialog({
             </Button>
             <Button
               type="submit"
-              disabled={
-                !ticket || selectedRepos.length === 0 || isSubmitting
-              }
+              disabled={!ticket || selectedRepos.length === 0 || isSubmitting}
             >
               {isSubmitting
                 ? t("tasks:branches.creating")

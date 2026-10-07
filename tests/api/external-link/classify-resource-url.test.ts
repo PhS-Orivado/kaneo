@@ -16,14 +16,14 @@ describe("classifyResourceUrl", () => {
   });
 
   it("recognizes Gitea and GitLab pull request URLs", () => {
-    expect(classifyResourceUrl("https://git.example.com/a/b/pulls/7")).toEqual(
-      {
-        resourceType: "pull_request",
-        externalId: "7",
-      },
-    );
+    expect(classifyResourceUrl("https://git.example.com/a/b/pulls/7")).toEqual({
+      resourceType: "pull_request",
+      externalId: "7",
+    });
     expect(
-      classifyResourceUrl("https://gitlab.com/group/project/-/merge_requests/5"),
+      classifyResourceUrl(
+        "https://gitlab.com/group/project/-/merge_requests/5",
+      ),
     ).toEqual({
       resourceType: "pull_request",
       externalId: "5",

@@ -50,8 +50,7 @@ function enrichGiteaIntegration(
     baseUrl: config.baseUrl,
     repositoryOwner:
       integration.repositoryOwner ?? config.repositoryOwner ?? "",
-    repositoryName:
-      integration.repositoryName ?? config.repositoryName ?? "",
+    repositoryName: integration.repositoryName ?? config.repositoryName ?? "",
     maskedAccessToken: maskToken(config.accessToken),
     webhookUrl: giteaWebhookUrl(integration.id),
     webhookSecret: includeWebhookSecret ? (config.webhookSecret ?? "") : "",
@@ -117,8 +116,4 @@ async function getGiteaIntegration(
 }
 
 export default getGiteaIntegration;
-export {
-  getGiteaIntegration,
-  getGiteaIntegrationById,
-  listGiteaIntegrations,
-};
+export { getGiteaIntegration, getGiteaIntegrationById, listGiteaIntegrations };

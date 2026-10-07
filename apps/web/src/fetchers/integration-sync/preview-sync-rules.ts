@@ -14,15 +14,15 @@ export default async function previewSyncRules(
           param: { integrationId: scope.integrationId },
           json: { rules },
         })
-      : await client["integration-sync"].project[":projectId"][":provider"].preview.$post(
-          {
-            param: {
-              projectId: scope.projectId,
-              provider: scope.provider,
-            },
-            json: { rules },
+      : await client["integration-sync"].project[":projectId"][
+          ":provider"
+        ].preview.$post({
+          param: {
+            projectId: scope.projectId,
+            provider: scope.provider,
           },
-        );
+          json: { rules },
+        });
   if (!response.ok) throw new HttpError(response.status, await response.text());
   return response.json();
 }

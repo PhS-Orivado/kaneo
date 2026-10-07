@@ -41,9 +41,8 @@ export function TaskBranches({
   const canManageBranches = canUpdateTasks();
   const [dialog, setDialog] = useState<BranchDialog>(null);
 
-  const { data: bindingsData, isLoading } = useListProjectRepositoryBindings(
-    projectId,
-  );
+  const { data: bindingsData, isLoading } =
+    useListProjectRepositoryBindings(projectId);
 
   const bindings = useMemo(
     () => (bindingsData?.bindings ?? []).filter((binding) => binding.isActive),
@@ -69,7 +68,8 @@ export function TaskBranches({
   const linkedBranchKeys = useMemo(() => {
     const keys = new Set<string>();
     for (const link of branchLinks) {
-      if (link.integrationId) keys.add(branchKey(link.integrationId, link.externalId));
+      if (link.integrationId)
+        keys.add(branchKey(link.integrationId, link.externalId));
     }
     return keys;
   }, [branchLinks]);

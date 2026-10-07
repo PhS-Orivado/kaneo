@@ -26,7 +26,10 @@ function ListSkeleton() {
   return (
     <ul className="divide-y divide-border" aria-hidden="true">
       {[0, 1, 2].map((slot) => (
-        <li key={`repository-skeleton-${slot}`} className="flex items-center gap-3 py-2.5">
+        <li
+          key={`repository-skeleton-${slot}`}
+          className="flex items-center gap-3 py-2.5"
+        >
           <div className="size-8 rounded-lg bg-muted animate-pulse" />
           <div className="flex-1 space-y-1.5">
             <div className="h-4 w-48 rounded bg-muted animate-pulse" />
@@ -65,7 +68,12 @@ export function IntegrationRepositoryList({
           <AlertTriangle className="size-4" />
           {t("settings:repositoryBindings.listError")}
         </p>
-        <Button size="sm" type="button" variant="outline" onClick={() => onRetry()}>
+        <Button
+          size="sm"
+          type="button"
+          variant="outline"
+          onClick={() => onRetry()}
+        >
           {t("common:error.tryAgain")}
         </Button>
       </div>

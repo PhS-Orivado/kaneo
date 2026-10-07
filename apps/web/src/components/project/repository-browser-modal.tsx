@@ -245,7 +245,9 @@ export function RepositoryBrowserModal({
                       // project cannot be selected again; cross-project links
                       // stay selectable and are informational only.
                       disabled={repository.linkedTo?.projectId === projectId}
-                      aria-disabled={repository.linkedTo?.projectId === projectId}
+                      aria-disabled={
+                        repository.linkedTo?.projectId === projectId
+                      }
                       className={cn(
                         "w-full p-4 border rounded-md text-left transition-colors group bg-sidebar",
                         "hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",

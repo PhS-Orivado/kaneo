@@ -2,7 +2,10 @@ import { eq } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { integrationTable } from "../../database/schema";
-import { type GitHubConfig, hasVerifiedGitHubBinding } from "../../plugins/github/config";
+import {
+  type GitHubConfig,
+  hasVerifiedGitHubBinding,
+} from "../../plugins/github/config";
 import { getVerifiedInstallationOctokit } from "../../plugins/github/utils/github-app";
 
 /**

@@ -43,9 +43,8 @@ vi.mock("../../../apps/api/src/plugins/gitea/utils/gitea-api", () => ({
   verifyGiteaToken: m.verify,
   createGiteaClient: () => ({ getRepo: m.getRepo }),
 }));
-const { default: createGiteaIntegration, giteaRepositoryKey } = await import(
-  "../../../apps/api/src/gitea-integration/controllers/create-gitea-integration"
-);
+const { default: createGiteaIntegration, giteaRepositoryKey } =
+  await import("../../../apps/api/src/gitea-integration/controllers/create-gitea-integration");
 
 const input = {
   projectId: "project",
@@ -164,9 +163,8 @@ describe("Gitea repository linking (RFC 0001 WP3)", () => {
   });
 
   it("maps provider failures to their upstream status without inserting", async () => {
-    const { GiteaApiError } = await import(
-      "../../../apps/api/src/plugins/gitea/utils/gitea-api"
-    );
+    const { GiteaApiError } =
+      await import("../../../apps/api/src/plugins/gitea/utils/gitea-api");
     m.verify.mockRejectedValueOnce(new GiteaApiError("Invalid token", 401));
     await expect(createGiteaIntegration(input)).rejects.toMatchObject({
       status: 401,
@@ -180,8 +178,8 @@ describe("Gitea repository linking (RFC 0001 WP3)", () => {
   });
 
   it("derives the repository key from normalized lowercased coordinates", () => {
-    expect(
-      giteaRepositoryKey("https://gitea.example", "Owner", "Repo"),
-    ).toBe("gitea:https://gitea.example/owner/repo");
+    expect(giteaRepositoryKey("https://gitea.example", "Owner", "Repo")).toBe(
+      "gitea:https://gitea.example/owner/repo",
+    );
   });
 });

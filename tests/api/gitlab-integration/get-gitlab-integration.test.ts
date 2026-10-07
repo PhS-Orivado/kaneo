@@ -76,9 +76,9 @@ describe("listGitlabIntegrations (RFC 0001 WP4)", () => {
 
   it("includes each row's own webhook secret for settings managers", async () => {
     const integrations = await listGitlabIntegrations("project-1", true);
-    expect(integrations.map((integration) => integration.webhookSecret)).toEqual(
-      ["webhook-secret", "webhook-secret"],
-    );
+    expect(
+      integrations.map((integration) => integration.webhookSecret),
+    ).toEqual(["webhook-secret", "webhook-secret"]);
   });
 });
 

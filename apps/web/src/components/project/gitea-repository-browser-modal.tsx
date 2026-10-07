@@ -199,12 +199,13 @@ export function GiteaRepositoryBrowserModal({
                           repo.linkedTo.projectId === projectId ? (
                             <Badge variant="outline" className="text-xs gap-1">
                               <Link2 className="size-3" />
-                              {t(
-                                "settings:repositoryBindings.linkedInProject",
-                              )}
+                              {t("settings:repositoryBindings.linkedInProject")}
                             </Badge>
                           ) : (
-                            <Badge variant="secondary" className="text-xs gap-1">
+                            <Badge
+                              variant="secondary"
+                              className="text-xs gap-1"
+                            >
                               <Link2 className="size-3" />
                               {t(
                                 "settings:repositoryBindings.linkedInOtherProject",

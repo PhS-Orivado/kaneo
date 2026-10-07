@@ -32,7 +32,8 @@ export function useDeleteGitlabIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (integrationId: string) => deleteGitlabIntegration(integrationId),
+    mutationFn: (integrationId: string) =>
+      deleteGitlabIntegration(integrationId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["gitlab-integrations"] });
       queryClient.invalidateQueries({ queryKey: ["external-links"] });

@@ -300,11 +300,14 @@ describe("GitLab repository binding routes (RFC 0001 WP4)", () => {
       link(project.id),
     );
     const [row] = await db.query.integrationTable.findMany();
-    const imported = await app.request("/api/gitlab-integration/import-issues", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ integrationId: row.id }),
-    });
+    const imported = await app.request(
+      "/api/gitlab-integration/import-issues",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ integrationId: row.id }),
+      },
+    );
     expect(imported.status).toBe(200);
     expect(await imported.json()).toMatchObject({
       imported: 0,
@@ -312,14 +315,17 @@ describe("GitLab repository binding routes (RFC 0001 WP4)", () => {
       skipped: 0,
     });
     expect(provider.listIssues).toHaveBeenCalledTimes(1);
-    const mismatch = await app.request("/api/gitlab-integration/import-issues", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        integrationId: row.id,
-        projectId: otherProject.id,
-      }),
-    });
+    const mismatch = await app.request(
+      "/api/gitlab-integration/import-issues",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          integrationId: row.id,
+          projectId: otherProject.id,
+        }),
+      },
+    );
     expect(mismatch.status).toBe(404);
   });
 });

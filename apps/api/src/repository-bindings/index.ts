@@ -1,4 +1,10 @@
-import { apiRouter, type BaseVariables, createRoute, errorResponse, jsonResponse } from "../openapi";
+import {
+  apiRouter,
+  type BaseVariables,
+  createRoute,
+  errorResponse,
+  jsonResponse,
+} from "../openapi";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import listProjectRepositoryBindings from "./controllers/list-project-repository-bindings";
 import { repositoryBindingListSchema } from "./response";

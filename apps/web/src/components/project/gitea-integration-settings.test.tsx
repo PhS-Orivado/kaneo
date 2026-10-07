@@ -5,7 +5,14 @@ import {
   screen,
   waitFor,
 } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from "vite-plus/test";
 
 const m = vi.hoisted(() => ({
   importIssues: vi.fn(),
@@ -22,14 +29,17 @@ vi.mock("@/hooks/use-workspace-permission", () => ({
 vi.mock("react-i18next", () => ({
   useTranslation: () => ({ t: (key: string) => key }),
 }));
-vi.mock("@/hooks/queries/gitea-integration/use-list-gitea-integrations", () => ({
-  default: () => ({
-    data: m.list.current,
-    isLoading: false,
-    error: null,
-    refetch: vi.fn(),
+vi.mock(
+  "@/hooks/queries/gitea-integration/use-list-gitea-integrations",
+  () => ({
+    default: () => ({
+      data: m.list.current,
+      isLoading: false,
+      error: null,
+      refetch: vi.fn(),
+    }),
   }),
-}));
+);
 vi.mock(
   "@/hooks/mutations/gitea-integration/use-create-gitea-integration",
   () => ({

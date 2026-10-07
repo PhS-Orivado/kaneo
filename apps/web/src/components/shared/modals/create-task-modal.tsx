@@ -1245,17 +1245,14 @@ function CreateTaskModalContent({
                           )
                         }
                       >
-                        {syncIntegrationIds.length ===
-                        syncableBindings.length
+                        {syncIntegrationIds.length === syncableBindings.length
                           ? t("common:modals.createTask.repositoriesNone")
                           : t("common:modals.createTask.repositoriesAll")}
                       </button>
                     </div>
                     <div className="space-y-1">
                       {syncableBindings.map((binding) => {
-                        const checked = syncIntegrationIds.includes(
-                          binding.id,
-                        );
+                        const checked = syncIntegrationIds.includes(binding.id);
                         return (
                           <button
                             key={binding.id}

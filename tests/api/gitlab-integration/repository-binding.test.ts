@@ -43,9 +43,8 @@ vi.mock("../../../apps/api/src/plugins/gitlab/utils/gitlab-api", () => ({
   verifyGitlabToken: m.verify,
   createGitlabClient: () => ({ getProject: m.getProject }),
 }));
-const { default: createGitlabIntegration, gitlabRepositoryKey } = await import(
-  "../../../apps/api/src/gitlab-integration/controllers/create-gitlab-integration"
-);
+const { default: createGitlabIntegration, gitlabRepositoryKey } =
+  await import("../../../apps/api/src/gitlab-integration/controllers/create-gitlab-integration");
 
 const input = {
   projectId: "project",
@@ -174,9 +173,8 @@ describe("GitLab repository linking (RFC 0001 WP4)", () => {
   });
 
   it("maps provider failures to their upstream status without inserting", async () => {
-    const { GitlabApiError } = await import(
-      "../../../apps/api/src/plugins/gitlab/utils/gitlab-api"
-    );
+    const { GitlabApiError } =
+      await import("../../../apps/api/src/plugins/gitlab/utils/gitlab-api");
     m.verify.mockRejectedValueOnce(new GitlabApiError("Invalid token", 401));
     await expect(createGitlabIntegration(input)).rejects.toMatchObject({
       status: 401,
