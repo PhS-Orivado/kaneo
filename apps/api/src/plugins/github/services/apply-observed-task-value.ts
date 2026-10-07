@@ -101,7 +101,7 @@ export async function writeInboundTaskField(
   tx: IntegrationDatabase,
   afterCommit: (effect: () => Promise<void>) => void,
   link: { taskId: string },
-  integration: { projectId: string; type: string },
+  integration: { id: string; projectId: string; type: string },
   field: IssueField,
   value: string,
 ) {
@@ -113,6 +113,7 @@ export async function writeInboundTaskField(
       value === "closed" ? "issue_closed" : "issue_reopened",
       value === "closed" ? "done" : "to-do",
       tx,
+      integration.id,
     );
     const result = await updateTaskStatus(link.taskId, status, tx);
     if (result.applied && result.before.status !== result.after.status)

@@ -150,6 +150,8 @@ export async function handlePush(payload: PushPayload) {
           "branch_push",
           config.statusTransitions?.onBranchPush || "in-progress",
           database,
+        integration.id,
+
         );
         console.log(
           `[Push] Target status: ${targetStatus}, current: ${task.status}`,

@@ -5,7 +5,10 @@ import {
   jsonResponse,
 } from "../openapi";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
-import { workspaceAccess } from "../utils/workspace-access-middleware";
+import {
+  workspaceAccess,
+  workspaceAccessMiddleware,
+} from "../utils/workspace-access-middleware";
 import deleteWorkflowRule from "./controllers/delete-workflow-rule";
 import getWorkflowRules from "./controllers/get-workflow-rules";
 import upsertWorkflowRule from "./controllers/upsert-workflow-rule";
@@ -16,6 +19,18 @@ import {
   workflowRuleParam,
 } from "./schema";
 
+// RFC 0001 WP6: when the body targets a repository binding, the binding is
+// the addressed resource and authorizes the request (WP1: 404 for an
+// unknown integration id, 403 for a binding of a foreign workspace) before
+// the project-keyed fallback authorizes type-wide rules, whose body carries
+// no integrationId.
+const ruleAccess = workspaceAccessMiddleware({
+  sources: [
+    { type: "lookup", resource: "integration", idKey: "integrationId" },
+    { type: "lookup", resource: "project", idKey: "projectId" },
+  ],
+});
+
 const getWorkflowRulesRoute = createRoute({
   method: "get",
   operationId: "getWorkflowRules",
@@ -23,7 +38,7 @@ const getWorkflowRulesRoute = createRoute({
   tags: ["Workflow Rules"],
   summary: "Get workflow rules",
   description:
-    "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires.",
+    "Get every workflow rule for a project, including each rule's scope: a rule with an integrationId targets one repository binding, a rule without one applies to every repository of that integration type (RFC 0001 WP6).",
   middleware: [workspaceAccess.fromProject("projectId")] as const,
   request: { params: projectIdParam },
   responses: {
@@ -42,9 +57,9 @@ const upsertWorkflowRuleRoute = createRoute({
   tags: ["Workflow Rules"],
   summary: "Upsert workflow rule",
   description:
-    "Create a workflow rule, or update the target column of the existing rule for the same integration and event.",
+    "Create a workflow rule, or update the target column of the existing rule for the same integration and event. An optional integrationId scopes the rule to one repository binding; without it the rule stays type-wide and applies to every repository of that integration type in the project. A repository-specific rule and a type-wide rule for the same event coexist; resolution prefers the repository-specific one.",
   middleware: [
-    workspaceAccess.fromProject("projectId"),
+    ruleAccess,
     requireWorkspacePermission({ project: ["update"] }),
   ] as const,
   request: {
@@ -56,10 +71,13 @@ const upsertWorkflowRuleRoute = createRoute({
   },
   responses: {
     200: jsonResponse("The created or updated rule", workflowRuleRowSchema),
-    400: errorResponse("Invalid body, or unknown project"),
+    400: errorResponse(
+      "Invalid body, unknown project, or the integration does not belong to the project or its type does not match",
+    ),
     403: errorResponse(
       "No workspace access, or missing project:update permission",
     ),
+    404: errorResponse("Integration not found"),
   },
 });
 
@@ -92,11 +110,13 @@ const workflowRule = apiRouter()
   )
   .openapi(upsertWorkflowRuleRoute, async (c) => {
     const { projectId } = c.req.valid("param");
-    const { integrationType, eventType, columnId } = c.req.valid("json");
+    const { integrationType, integrationId, eventType, columnId } =
+      c.req.valid("json");
     return c.json(
       await upsertWorkflowRule({
         projectId,
         integrationType,
+        integrationId: integrationId ?? null,
         eventType,
         columnId,
       }),
