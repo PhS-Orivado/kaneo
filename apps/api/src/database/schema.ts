@@ -469,11 +469,13 @@ export const workflowRuleTable = pgTable(
     // RFC 0001: optional binding to a specific integration row; null keeps
     // the legacy type-wide semantics (the rule applies to every repository
     // of that type in the project).
-    integrationId: text("integration_id")
-      .references(() => integrationTable.id, {
+    integrationId: text("integration_id").references(
+      () => integrationTable.id,
+      {
         onDelete: "cascade",
         onUpdate: "cascade",
-      }),
+      },
+    ),
     eventType: text("event_type").notNull(),
     columnId: text("column_id")
       .notNull()

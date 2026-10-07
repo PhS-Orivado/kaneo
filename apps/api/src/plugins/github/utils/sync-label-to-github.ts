@@ -50,7 +50,15 @@ async function getGitHubContext(taskId: string) {
   const externalLink = await db.query.externalLinkTable.findFirst({
     where: eq(externalLinkTable.taskId, taskId),
     with: {
-      integration: true,
+      integration: {
+        columns: {
+          id: true,
+          projectId: true,
+          type: true,
+          config: true,
+          isActive: true,
+        },
+      },
     },
   });
 

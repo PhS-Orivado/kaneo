@@ -50,7 +50,15 @@ async function getGitlabIssueContext(taskId: string) {
   const externalLinks = await db.query.externalLinkTable.findMany({
     where: eq(externalLinkTable.taskId, taskId),
     with: {
-      integration: true,
+      integration: {
+        columns: {
+          id: true,
+          projectId: true,
+          type: true,
+          config: true,
+          isActive: true,
+        },
+      },
     },
   });
 
