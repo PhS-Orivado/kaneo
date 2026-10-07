@@ -102,6 +102,8 @@ export async function handleIssueOpened(
         closed ? "issue_closed" : "issue_opened",
         closed ? "done" : status || "to-do",
         tx,
+      integration.id,
+
       );
       let targetColumn = await tx.query.columnTable.findFirst({
         where: and(
