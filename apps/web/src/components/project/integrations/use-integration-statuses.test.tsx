@@ -116,7 +116,7 @@ describe("useIntegrationStatuses", () => {
     await waitFor(() =>
       expect(result.current.statuses.github).toEqual({
         state: "connected",
-        detail: "acme/web",
+        details: ["acme/web"],
       }),
     );
   });
@@ -153,7 +153,7 @@ describe("useIntegrationStatuses", () => {
     );
     rerender({ projectId: "p2" });
     expect(result.current.statuses.github.state).toBe("loading");
-    expect(result.current.statuses.github.detail).toBeUndefined();
+    expect(result.current.statuses.github.details).toBeUndefined();
   });
   it("shows loading during a delayed retry and reuses the in-flight request", async () => {
     let resolve!: (value: unknown) => void;
@@ -183,7 +183,7 @@ describe("useIntegrationStatuses", () => {
       expect(result.current.statuses.github.state).toBe("disconnected"),
     );
   });
-  it("reports the first binding of a multi-binding project as the detail", async () => {
+  it("reports every binding of a multi-binding project in the details", async () => {
     fetchers.gitea.mockResolvedValue({
       integrations: [
         {
@@ -219,7 +219,7 @@ describe("useIntegrationStatuses", () => {
     await waitFor(() =>
       expect(result.current.statuses.gitea).toEqual({
         state: "connected",
-        detail: "first/repo",
+        details: ["first/repo", "second/repo"],
       }),
     );
   });
@@ -227,7 +227,7 @@ describe("useIntegrationStatuses", () => {
   it.each([
     {
       data: bindingList,
-      expected: { state: "connected", detail: "acme/web" },
+      expected: { state: "connected", details: ["acme/web"] },
     },
     {
       data: {
@@ -236,7 +236,7 @@ describe("useIntegrationStatuses", () => {
         ],
         usage: { used: 1, limit: null },
       },
-      expected: { state: "paused", detail: "acme/web" },
+      expected: { state: "paused", details: ["acme/web"] },
     },
     { data: emptyList, expected: { state: "disconnected" } },
   ])(

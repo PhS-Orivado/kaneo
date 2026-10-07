@@ -16,7 +16,7 @@ import useGetTelegramIntegration from "@/hooks/queries/telegram-integration/use-
 // RFC 0001 WP7: the git providers are multi-binding surfaces, so the list
 // result drives the status: configured means the project has at least one
 // repository binding, active means at least one binding is active, and the
-// detail names the first binding. Shares query keys with the settings
+// details list every bound repository. Shares query keys with the settings
 // panels, so opening a panel reuses what the list already loaded.
 export function useIntegrationStatuses(projectId: string) {
   const github = useListGithubIntegrations(projectId);
@@ -41,9 +41,8 @@ export function useIntegrationStatuses(projectId: string) {
         githubBindings.length > 0
           ? githubBindings.some((binding) => binding.isActive !== false)
           : null,
-      detail: formatRepository(
-        githubBindings[0]?.repositoryOwner,
-        githubBindings[0]?.repositoryName,
+      details: githubBindings.map((binding) =>
+        formatRepository(binding.repositoryOwner, binding.repositoryName),
       ),
     }),
     gitea: getIntegrationStatus({
@@ -54,9 +53,8 @@ export function useIntegrationStatuses(projectId: string) {
         giteaBindings.length > 0
           ? giteaBindings.some((binding) => binding.isActive !== false)
           : null,
-      detail: formatRepository(
-        giteaBindings[0]?.repositoryOwner,
-        giteaBindings[0]?.repositoryName,
+      details: giteaBindings.map((binding) =>
+        formatRepository(binding.repositoryOwner, binding.repositoryName),
       ),
     }),
     gitlab: getIntegrationStatus({
@@ -67,7 +65,7 @@ export function useIntegrationStatuses(projectId: string) {
         gitlabBindings.length > 0
           ? gitlabBindings.some((binding) => binding.isActive !== false)
           : null,
-      detail: gitlabBindings[0]?.projectPath,
+      details: gitlabBindings.map((binding) => binding.projectPath),
     }),
     slack: getIntegrationStatus({
       queryStatus: slack.status,
