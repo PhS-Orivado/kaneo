@@ -174,6 +174,11 @@ it.each(
         projectId: project.id,
         type: provider,
         isActive: true,
+        // RFC 0001 WP2: github webhook events resolve their binding by the
+        // repository identity key, so the row must carry it.
+        ...(provider === "github"
+          ? { repositoryKey: "github:1", repositoryId: 1 }
+          : {}),
         config: JSON.stringify({
           repositoryOwner: "team",
           repositoryName: "repo",

@@ -172,16 +172,17 @@ describe("GitHub repository binding semantics (RFC 0001 WP2)", () => {
     const find = db.query.integrationTable.findFirst.bind(
       db.query.integrationTable,
     );
-    let lookups = 0;
+    let flipped = false;
     const spy = vi
       .spyOn(db.query.integrationTable, "findFirst")
       .mockImplementation(async (...args: Parameters<typeof find>) => {
         const row = await find(...args);
-        // The fromIntegration access lookup runs first; the PATCH handler's
-        // row read is the second findFirst on the integration table. Changing
-        // the config between the read and the compare-and-set yields 409.
-        lookups += 1;
-        if (lookups === 2 && row) {
+        // The fromIntegration access middleware resolves the binding with a
+        // plain select, so the PATCH handler's row read is the first
+        // findFirst on the integration table. Changing the config between
+        // the read and the compare-and-set yields 409.
+        if (!flipped && row?.id === integration.id) {
+          flipped = true;
           await db
             .update(schema.integrationTable)
             .set({ config: nextConfig })
