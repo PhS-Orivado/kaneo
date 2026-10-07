@@ -1,0 +1,36 @@
+name: WP8 OpenAPI regeneration (one-shot)
+
+on:
+  push:
+    branches: [feat/multi-repo-wp8-docs-openapi-mcp]
+    paths-ignore:
+      - 'apps/docs/openapi.json'
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Regenerate the OpenAPI export
+        run: pnpm openapi:check:fix
+      - name: Commit and push the regenerated export
+        run: |
+          if [ -n "$(git status --porcelain apps/docs/openapi.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add apps/docs/openapi.json
+            git commit -m "docs(openapi): regenerate the export for the multi-repository routes (WP8)"
+            git push
+          else
+            echo "apps/docs/openapi.json is already up to date"
+          fi
