@@ -25,12 +25,28 @@ jobs:
         run: pnpm openapi:check:fix
       - name: Commit and push the regenerated export
         run: |
-          if [ -n "$(git status --porcelain apps/docs/openapi.json)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add apps/docs/openapi.json
-            git commit -m "docs(openapi): regenerate the export for the multi-repository routes (WP8)"
-            git push
-          else
+          set +e
+          status="$(git status --porcelain apps/docs/openapi.json)"
+          if [ -z "$status" ]; then
             echo "apps/docs/openapi.json is already up to date"
+            exit 0
           fi
+          echo "changes: $status"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git branch --show-current > /tmp/branch.txt 2>&1
+          echo "current branch: $(cat /tmp/branch.txt)"
+          git add apps/docs/openapi.json
+          git commit --no-verify -m "docs(openapi): regenerate the export for the multi-repository routes (WP8)" > /tmp/commit.log 2>&1
+          code=$?
+          if [ $code -ne 0 ]; then
+            echo "::error::git commit failed (exit $code): $(head -c 400 /tmp/commit.log)"
+            exit 1
+          fi
+          git push origin HEAD:refs/heads/feat/multi-repo-wp8-docs-openapi-mcp > /tmp/push.log 2>&1
+          code=$?
+          if [ $code -ne 0 ]; then
+            echo "::error::git push failed (exit $code): $(head -c 400 /tmp/push.log)"
+            exit 1
+          fi
+          echo "regenerated export pushed"
