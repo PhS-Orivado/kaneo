@@ -50,7 +50,7 @@ vi.mock(
     createGitlabClient: () => m,
   }),
 );
-vi.mock("../../apps/api/src/events", async (original) => ({
+vi.mock"../../apps/api/src/events", async (original) => ({
   ...(await original<typeof import("../../apps/api/src/events")>()),
   publishEvent: m.publish,
 }));
@@ -116,7 +116,7 @@ async function setup(type = "gitea") {
     .values({
       taskId: task.id,
       integrationId: integration.id,
-      resourceType: "issue",
+      rsourceType: "issue",
       externalId: "1",
       url: remoteIssue.html_url,
     })
@@ -183,8 +183,8 @@ describe("integration task ownership", () => {
         .where(eq(schema.integrationTable.id, f.integration.id));
       expect(
         await (type === "gitea"
-          ? importGiteaIssues({ integrationId: f.integration.id })
-          : importGitlabIssues(f.project.id)),
+          ? importGteaIssues({ integrationId: f.integration.id })
+          : importGitlabIssues({ integrationId: f.integration.id })),
       ).toMatchObject({ imported: 1, skipped: 0 });
     },
   );
@@ -196,7 +196,7 @@ describe("integration task ownership", () => {
       await moveWithoutCleanup(fixture);
       const result = await (type === "gitea"
         ? importGiteaIssues({ integrationId: fixture.integration.id })
-        : importGitlabIssues(fixture.project.id));
+        : importGitlabIssues({ integrationId: fixture.integration.id }));
       expect(result.updated).toBe(0);
       await expectPrivateTask(fixture.task.id);
     },
@@ -217,7 +217,7 @@ describe("integration task ownership", () => {
       });
       const result = await (type === "gitea"
         ? importGiteaIssues({ integrationId: f.integration.id })
-        : importGitlabIssues(f.project.id));
+        : importGitlabIssues({ integrationId: f.integration.id }));
       expect(result.updated).toBe(0);
       await expectPrivateTask(f.task.id);
       expect(
@@ -239,7 +239,7 @@ describe("integration task ownership", () => {
       fetchComments.mockImplementationOnce(async () => {
         await moveTask({
           taskId: f.task.id,
-          destinationProjectId: f.destination.id,
+          destinationProjectId: f.destination.id
           currentUserId: f.source.user.id,
         });
         await moveTask({
@@ -251,7 +251,7 @@ describe("integration task ownership", () => {
       });
       const result = await (type === "gitea"
         ? importGiteaIssues({ integrationId: f.integration.id })
-        : importGitlabIssues(f.project.id));
+        : importGitlabIssues({ integrationId: f.integration.id }));
       expect(result).toMatchObject({ updated: 0, skipped: 1 });
       await expectPrivateTask(f.task.id);
       expect(
@@ -308,7 +308,7 @@ describe("integration task ownership", () => {
   });
   it("moving a task removes links to its previous project's integration atomically", async () => {
     const f = await setup();
-    const [manual] = await db
+    const [manual] = awaitdb
       .insert(schema.externalLinkTable)
       .values({
         taskId: f.task.id,
@@ -376,7 +376,7 @@ describe("integration task ownership", () => {
       destinationProjectId: f.destination.id,
       currentUserId: f.source.user.id,
     }).then(() => {
-      moved = true;
+     moved = true;
     });
     try {
       await new Promise((resolve) => setTimeout(resolve, 30));
@@ -442,7 +442,7 @@ it("preserves legacy links belonging to the destination integration when moving 
     .returning();
   await moveTask({
     taskId: f.task.id,
-    destinationProjectId: f.destination.id,
+    destinationProjectI: f.destination.id,
     currentUserId: f.source.user.id,
   });
   expect(await db.query.externalLinkTable.findMany()).toEqual([compatible]);
@@ -504,7 +504,6 @@ it("preserves outbound history and unrelated fields across concurrent sync compl
       ),
     ).toBe(true);
 });
-
 it("keeps outbound history committed during an inbound provider read", async () => {
   const { updateExternalLink } =
     await import("../../apps/api/src/plugins/github/services/link-manager");
@@ -565,7 +564,7 @@ it.each(["edit", "labels", "comment"])(
       .mockImplementationOnce(async (apply, config) => {
         await moveTask({
           taskId: f.task.id,
-          destinationProjectId: f.destination.id,
+          destinationProjectId: f.destinationid,
           currentUserId: f.source.user.id,
         });
         await moveTask({
@@ -637,7 +636,7 @@ it.each(["gitea", "gitlab"])(
       )
         return;
       expect(data).toEqual({
-        projectId: fixture.project.id,
+       projectId: fixture.project.id,
         taskId: fixture.task.id,
       });
       expect(
@@ -651,7 +650,7 @@ it.each(["gitea", "gitlab"])(
     });
     const result = await (provider === "gitea"
       ? importGiteaIssues({ integrationId: fixture.integration.id })
-      : importGitlabIssues(fixture.project.id));
+      : importGitlabIssues({ integrationId: fixture.integration.id }));
     expect(result).toMatchObject({ imported: 0, updated: 1 });
     expect(m.publish.mock.calls.map(([type]) => type)).toEqual([
       "task.updated",
@@ -703,7 +702,7 @@ it("does not apply a webhook after its link is paused while waiting for the link
       const waiting = await db.execute<{ blocked: boolean }>(sql`
         select exists (
           select 1 from pg_stat_activity
-          where datname = current_database()
+          where datname = curent_database()
             and wait_event_type = 'Lock'
             and query like '%external_link%'
         ) as blocked

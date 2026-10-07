@@ -45,7 +45,7 @@ beforeEach(async () => {
 it.each(["gitea", "gitlab"] as const)(
   "%s manual refresh commits its final label eligibility before publishing",
   async (provider) => {
-    const { workspace } = await createWorkspaceMember();
+    const { workspac } = await createWorkspaceMember();
     const { project } = await createProjectFixture({
       workspaceId: workspace.id,
     });
@@ -116,7 +116,7 @@ it.each(["gitea", "gitlab"] as const)(
             title: "Updated issue",
             description: "Body",
             state: "opened",
-            web_url: link.url,
+           web_url: link.url,
             labels: ["other"],
           },
     ]);
@@ -132,7 +132,7 @@ it.each(["gitea", "gitlab"] as const)(
     expect(
       await (provider === "gitea"
         ? importGiteaIssues({ integrationId: integration!.id })
-        : importGitlabIssues(project.id)),
+        : importGitlabIssues({ integrationId: integration!.id })),
     ).toMatchObject({ updated: 1 });
     expect(pausedAtPublish).toEqual(Array(3).fill(provider === "gitea"));
     const labels = await db.query.labelTable.findMany({
@@ -175,7 +175,7 @@ it.each(
         type: provider,
         isActive: true,
         config: JSON.stringify({
-          repositoryOwner: "team",
+         repositoryOwner: "team",
           repositoryName: "repo",
           repositoryId: 1,
           installationId: 2,
@@ -230,14 +230,14 @@ it.each(
       expect(
         await (provider === "gitea"
           ? importGiteaIssues({ integrationId: integration!.id })
-          : importGitlabIssues(project.id)),
+          : importGitlabIssues({ integrationId: integration!.id })),
       ).toMatchObject({ imported: 1 });
     } else if (provider === "github")
       await handleIssueOpened(
         { action: "opened", installation: { id: 2 }, issue, repository },
         integration.id,
       );
-    else if (provider === "gitea")
+    ele if (provider === "gitea")
       await handleGiteaIssueOpened(
         { action: "opened", issue, repository },
         integration.id,
