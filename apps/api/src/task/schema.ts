@@ -85,6 +85,16 @@ export const createTaskBody = z.object({
   customFields: z
     .array(z.object({ fieldId: z.string(), value: z.string() }))
     .optional(),
+  syncIntegrationIds: z
+    .array(z.string().min(1).max(128))
+    .max(20)
+    .optional()
+    .openapi({
+      description:
+        "Repository bindings that should create an issue for this task. " +
+        "Omit to keep the previous behavior of every active binding creating an issue; " +
+        "send an empty array to create the task without any issue.",
+    }),
 });
 
 export const updateTaskBody = z.object({

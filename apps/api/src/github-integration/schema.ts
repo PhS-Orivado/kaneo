@@ -38,3 +38,37 @@ export const importGitHubBody = z.object({
   projectId: z.string().min(1).max(128).optional(),
   runId: z.string().min(1).max(128).optional(),
 });
+
+export const repositoryBranchesQuery = z.object({
+  query: z
+    .string()
+    .max(200)
+    .optional()
+    .openapi({
+      description:
+        "Case-insensitive substring filter applied to branch names server-side.",
+    }),
+});
+
+export const createRepositoryBranchBody = z.object({
+  taskId: z
+    .string()
+    .min(1)
+    .max(128)
+    .openapi({ description: "The task the branch is created for." }),
+  branchName: z
+    .string()
+    .min(1)
+    .max(255)
+    .openapi({
+      description:
+        "The branch to create, e.g. fix/EC-123. Must satisfy git ref name rules.",
+    }),
+  create: z
+    .boolean()
+    .default(true)
+    .openapi({
+      description:
+        "Create the ref on GitHub from the default branch head when it does not exist yet. Set to false to only link an existing branch.",
+    }),
+});

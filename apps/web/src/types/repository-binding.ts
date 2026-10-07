@@ -97,6 +97,25 @@ export const gitlabBindingListSchema = z.object({
   usage: repositoryBindingUsageSchema,
 });
 
+/** Minimal binding summary every workspace member may read. */
+export const projectRepositoryBindingSchema = z.object({
+  id: z.string(),
+  type: z.enum(["github", "gitea", "gitlab"]),
+  identity: z.string(),
+  host: z.string().nullable(),
+  externalUrl: z.string(),
+  isActive: z.boolean(),
+  requiresVerification: z.boolean(),
+  createdAt: z.string(),
+});
+export type ProjectRepositoryBinding = z.infer<
+  typeof projectRepositoryBindingSchema
+>;
+
+export const projectRepositoryBindingListSchema = z.object({
+  bindings: z.array(projectRepositoryBindingSchema),
+});
+
 /**
  * Normalized row shape shared by the settings list of every provider. The
  * provider-specific binding is denormalized once during render, so the shared

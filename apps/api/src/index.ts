@@ -55,6 +55,7 @@ import { migrateGitHubIntegration } from "./plugins/github/migration";
 import project from "./project";
 import { assertProjectAccess } from "./project-access/assert-project-access";
 import { getPublicProject } from "./project/controllers/get-public-project";
+import repositoryBindings from "./repository-bindings";
 import { initializeScheduler, shutdownScheduler } from "./scheduler";
 import search from "./search";
 import slackIntegration from "./slack-integration";
@@ -780,6 +781,10 @@ export function createApp() {
   );
   const taskRelationApi = api.route("/task-relation", taskRelation);
   const externalLinkApi = api.route("/external-link", externalLink);
+  const repositoryBindingsApi = api.route(
+    "/repository-bindings",
+    repositoryBindings,
+  );
   const workflowRuleApi = api.route("/workflow-rule", workflowRule);
   const invitationApi = api.route("/invitation", invitation);
   const workspaceApi = api.route("/workspace", workspace);
@@ -889,6 +894,7 @@ export function createApp() {
     discordIntegrationApi,
     externalLinkApi,
     genericWebhookIntegrationApi,
+    repositoryBindingsApi,
     integrationSyncApi,
     githubIntegrationApi,
     giteaIntegrationApi,
@@ -1020,6 +1026,7 @@ const {
   discordIntegrationApi,
   externalLinkApi,
   genericWebhookIntegrationApi,
+  repositoryBindingsApi,
   integrationSyncApi,
   githubIntegrationApi,
   giteaIntegrationApi,
