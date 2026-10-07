@@ -207,7 +207,7 @@ describe("Repository binding quota lifecycle (RFC 0001 WP10)", () => {
     const { member, project } = await adminWithProject();
     await db.insert(schema.workspaceLimitTable).values({
       workspaceId: member.workspace.id,
-      maxRepositoriesPerProject: 2,
+      maxRepositoriesPerProject: 3,
     });
     const { app } = createApp();
 
@@ -220,28 +220,46 @@ describe("Repository binding quota lifecycle (RFC 0001 WP10)", () => {
       ).status,
     ).toBe(200);
 
-    // A GitHub binding of the same project counts toward the same quota,
-    // even though it was not created through the Gitea routes.
-    await db.insert(schema.integrationTable).values({
-      projectId: project.id,
-      type: "github",
-      isActive: true,
-      repositoryKey: "github:707",
-      config: JSON.stringify({
-        baseUrl: "https://github.com",
-        repositoryOwner: "team",
-        repositoryName: "repo",
-        repositoryId: 707,
-        installationId: 2,
-        verifiedGithubAccountId: "3",
-        verifiedByUserId: "test-user",
-        accessToken: "test-only",
-        syncRules: {
-          outgoing: { mode: "all" },
-          incoming: { mode: "all" },
-        },
-      }),
-    });
+    // GitHub and GitLab bindings of the same project count toward the same
+    // quota, even though they were not created through the Gitea routes.
+    await db.insert(schema.integrationTable).values([
+      {
+        projectId: project.id,
+        type: "github",
+        isActive: true,
+        repositoryKey: "github:707",
+        config: JSON.stringify({
+          baseUrl: "https://github.com",
+          repositoryOwner: "team",
+          repositoryName: "repo",
+          repositoryId: 707,
+          installationId: 2,
+          verifiedGithubAccountId: "3",
+          verifiedByUserId: "test-user",
+          accessToken: "test-only",
+          syncRules: {
+            outgoing: { mode: "all" },
+            incoming: { mode: "all" },
+          },
+        }),
+      },
+      {
+        projectId: project.id,
+        type: "gitlab",
+        isActive: true,
+        repositoryKey: "gitlab:https://gitlab.example/team/repo",
+        config: JSON.stringify({
+          baseUrl: "https://gitlab.example",
+          accessToken: "token",
+          projectPath: "team/repo",
+          syncRules: {
+            outgoing: { mode: "all" },
+            incoming: { mode: "all" },
+          },
+        }),
+      },
+    ]);
+    expect(await usage(app, project.id)).toMatchObject({ used: 3, limit: 3 });
 
     const refused = await app.request(
       `/api/gitea-integration/project/${project.id}`,
@@ -250,13 +268,12 @@ describe("Repository binding quota lifecycle (RFC 0001 WP10)", () => {
     expect(refused.status).toBe(402);
     expect(await refused.json()).toMatchObject({
       code: "binding_limit_exceeded",
-      used: 2,
-      limit: 2,
+      used: 3,
+      limit: 3,
     });
-    expect(await usage(app, project.id)).toMatchObject({ used: 2, limit: 2 });
 
-    // Deactivating the Gitea binding frees a slot while the GitHub binding
-    // keeps counting, so a second Gitea repository fits.
+    // Deactivating the Gitea binding frees a slot while the GitHub and
+    // GitLab bindings keep counting, so a second Gitea repository fits.
     const alphaId = await bindingId(project.id, "alpha");
     expect(
       (
@@ -266,7 +283,7 @@ describe("Repository binding quota lifecycle (RFC 0001 WP10)", () => {
         )
       ).status,
     ).toBe(200);
-    expect(await usage(app, project.id)).toMatchObject({ used: 1, limit: 2 });
+    expect(await usage(app, project.id)).toMatchObject({ used: 2, limit: 3 });
     expect(
       (
         await app.request(
@@ -275,6 +292,6 @@ describe("Repository binding quota lifecycle (RFC 0001 WP10)", () => {
         )
       ).status,
     ).toBe(200);
-    expect(await usage(app, project.id)).toMatchObject({ used: 2, limit: 2 });
+    expect(await usage(app, project.id)).toMatchObject({ used: 3, limit: 3 });
   });
 });
