@@ -38,7 +38,8 @@ describe("github and gitea import permissions", () => {
       const { project } = await createProjectFixture({
         workspaceId: member.workspace.id,
       });
-      // RFC 0001 WP2/WP3: both import routes are keyed by integration id.
+      // The github and gitea import routes are keyed by integration id
+      // (RFC 0001 WP2/WP3).
       const [integration] = await db
         .insert(schema.integrationTable)
         .values({

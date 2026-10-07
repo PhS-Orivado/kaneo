@@ -42,12 +42,14 @@ beforeEach(async () => {
 async function setup() {
   const { user, workspace } = await createWorkspaceMember();
   const { project } = await createProjectFixture({ workspaceId: workspace.id });
-  // RFC 0001 WP3: imports are keyed by the binding's integration id.
   const [integration] = await db
     .insert(schema.integrationTable)
     .values({
       projectId: project.id,
       type: "gitea",
+      repositoryKey: "gitea:https://gitea.example/owner/repo",
+      repositoryOwner: "owner",
+      repositoryName: "repo",
       config: JSON.stringify({
         baseUrl: "https://gitea.example",
         accessToken: "fake-local-token",
@@ -98,7 +100,7 @@ describe("Gitea import task numbers", () => {
   });
 
   it("repairs a legacy counter without renumbering existing references, and is idempotent", async () => {
-    const { user, project } = await setup();
+    const { user, project, integration } = await setup();
     await db.insert(schema.taskTable).values([
       { projectId: project.id, title: "Legacy import", number: 42 },
       { projectId: project.id, title: "Earlier task", number: 41 },
