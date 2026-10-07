@@ -57,6 +57,7 @@ async function createTask({
   priority,
   customFields,
   draftAssetIds,
+  syncIntegrationIds,
 }: {
   projectId: string;
   currentUserId: string;
@@ -69,6 +70,7 @@ async function createTask({
   priority?: string;
   customFields?: CustomFieldInput[];
   draftAssetIds?: string[];
+  syncIntegrationIds?: string[];
 }) {
   const resolvedStatus = status || "to-do";
   const resolvedPriority = priority || "no-priority";
@@ -222,6 +224,9 @@ async function createTask({
     currentUserId: currentUserId,
     type: "created",
     content: null,
+    // When the caller selected repositories, restrict issue creation to
+    // those bindings; an empty array means no issue at all.
+    ...(syncIntegrationIds ? { syncIntegrationIds } : {}),
   });
 
   return {

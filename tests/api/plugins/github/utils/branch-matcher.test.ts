@@ -7,6 +7,8 @@ import {
   extractTaskNumberFromPRBody,
   extractTaskNumberFromPRTitle,
   generateBranchName,
+  generateTypedBranchName,
+  isValidBranchName,
 } from "../../../../../apps/api/src/plugins/github/utils/branch-matcher";
 
 const baseConfig: GitHubConfig = {
@@ -40,6 +42,23 @@ describe("createBranchRegex", () => {
     expect(regex.test("kan-7-polish-sidebar")).toBe(true);
     expect(regex.test("kan-7-polish-sidebar-part-2")).toBe(true);
     expect(regex.test("ops-7-polish-sidebar")).toBe(false);
+  });
+
+  it("matches a branch-type prefix in front of the pattern", () => {
+    const regex = createBranchRegex("{slug}-{number}", "EC");
+
+    expect(regex.test("fix/EC-123")).toBe(true);
+    expect(regex.test("docs/ec-123")).toBe(true);
+    expect(regex.test("feature/ec-123-part-2")).toBe(true);
+    // The prefix may not hide a different project key.
+    expect(regex.test("fix/OPS-123")).toBe(false);
+  });
+
+  it("rejects a prefix that carries a foreign ticket number", () => {
+    const regex = createBranchRegex("{slug}-{number}", "EC");
+
+    expect(regex.test("release/kan-42")).toBe(false);
+    expect(regex.test("kan-42")).toBe(false);
   });
 });
 
@@ -106,6 +125,39 @@ describe("extractTaskNumberFromBranch", () => {
       ),
     ).toBeNull();
     expect(consoleError).toHaveBeenCalledOnce();
+  });
+
+  it("extracts the task number from a typed branch like fix/EC-123", () => {
+    expect(
+      extractTaskNumberFromBranch("fix/EC-123", baseConfig, "ec"),
+    ).toBe(123);
+    expect(
+      extractTaskNumberFromBranch("docs/EC-123-more-context", baseConfig, "ec"),
+    ).toBe(123);
+  });
+});
+
+describe("generateTypedBranchName", () => {
+  it("builds fix/EC-123 from the branch kind and the ticket key", () => {
+    expect(generateTypedBranchName("fix", "ec", 123)).toBe("fix/EC-123");
+    expect(generateTypedBranchName("docs", "kaneo", 7)).toBe("docs/KANEO-7");
+  });
+});
+
+describe("isValidBranchName", () => {
+  it("accepts task branch names", () => {
+    expect(isValidBranchName("fix/EC-123")).toBe(true);
+    expect(isValidBranchName("feature/ec-123-fix-login")).toBe(true);
+  });
+
+  it("rejects names git refuses to create", () => {
+    expect(isValidBranchName("has space")).toBe(false);
+    expect(isValidBranchName("ends.lock")).toBe(false);
+    expect(isValidBranchName("double//slash")).toBe(false);
+    expect(isValidBranchName("range..name")).toBe(false);
+    expect(isValidBranchName("-leading-dash")).toBe(false);
+    expect(isValidBranchName("")).toBe(false);
+    expect(isValidBranchName("reflog@{one}")).toBe(false);
   });
 });
 

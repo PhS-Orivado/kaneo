@@ -244,7 +244,9 @@ export function ExternalLinksAccordion({
                   </a>
                   {canAddResource &&
                     link.integrationId === null &&
-                    link.resourceType === "url" && (
+                    (link.resourceType === "url" ||
+                      link.resourceType === "pull_request" ||
+                      link.resourceType === "branch") && (
                       <Button
                         type="button"
                         variant="ghost"

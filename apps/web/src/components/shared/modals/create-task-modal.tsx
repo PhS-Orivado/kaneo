@@ -3,6 +3,7 @@ import { produce } from "immer";
 import {
   CalendarIcon,
   Check,
+  FolderGit,
   FolderKanban,
   Plus,
   Search,
@@ -12,6 +13,9 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { GiteaIcon } from "@/components/icons/gitea-icon";
+import { GithubIcon } from "@/components/icons/github-icon";
+import { GitlabIcon } from "@/components/icons/gitlab-icon";
 import TaskDescriptionEditor from "@/components/task/task-description-editor";
 import {
   Accordion,
@@ -83,6 +87,7 @@ import useCreateTask from "@/hooks/mutations/task/use-create-task";
 import useGetCustomFieldsByProject from "@/hooks/queries/custom-field/use-get-custom-fields-by-project";
 import useGetLabelsByWorkspace from "@/hooks/queries/label/use-get-labels-by-workspace";
 import useGetProjects from "@/hooks/queries/project/use-get-projects";
+import useListProjectRepositoryBindings from "@/hooks/queries/repository-bindings/use-list-project-repository-bindings";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { useGetActiveWorkspaceUsers } from "@/hooks/queries/workspace-users/use-get-active-workspace-users";
 import useGetProjectMembers from "@/hooks/queries/workspace-users/use-get-project-members";
@@ -256,6 +261,7 @@ function CreateTaskModalContent({
   const [createMore, setCreateMore] = useState(false);
   const [labels, setLabels] = useState<Label[]>([]);
   const [discardConfirmationOpen, setDiscardConfirmationOpen] = useState(false);
+  const [syncIntegrationIds, setSyncIntegrationIds] = useState<string[]>([]);
 
   const [labelsOpen, setLabelsOpen] = useState(false);
   const [labelsStep, setLabelsStep] = useState<PopoverStep>("select");
@@ -332,6 +338,28 @@ function CreateTaskModalContent({
   const didSubmitRef = useRef(false);
 
   const { mutateAsync: createTask } = useCreateTask();
+
+  const { data: repositoryBindingsData } = useListProjectRepositoryBindings(
+    open ? resolvedProjectId : "",
+  );
+  const syncableBindings = useMemo(
+    () =>
+      (repositoryBindingsData?.bindings ?? []).filter(
+        (binding) => binding.isActive && !binding.requiresVerification,
+      ),
+    [repositoryBindingsData],
+  );
+  const toggleSyncIntegration = (integrationId: string) => {
+    setSyncIntegrationIds((previous) =>
+      previous.includes(integrationId)
+        ? previous.filter((id) => id !== integrationId)
+        : [...previous, integrationId],
+    );
+  };
+  // Repository selections belong to the project they were made for.
+  useEffect(() => {
+    setSyncIntegrationIds([]);
+  }, [resolvedProjectId]);
 
   const { data: rawCustomFields } = useGetCustomFieldsByProject(
     resolvedProjectId,
@@ -544,6 +572,11 @@ function CreateTaskModalContent({
         submitStatus = getInitialTaskColumn(workflow.data)?.slug ?? "planned";
       }
       didSubmitRef.current = true;
+      // Only bindings of the resolved project may receive an issue, and an
+      // empty selection means the task is created without any issue.
+      const selectedSyncIntegrationIds = syncableBindings
+        .filter((binding) => syncIntegrationIds.includes(binding.id))
+        .map((binding) => binding.id);
       const savedTask = normalizeTask(
         await createTask({
           title: title.trim(),
@@ -563,6 +596,9 @@ function CreateTaskModalContent({
               fieldId,
               value,
             })),
+          ...(syncableBindings.length > 0
+            ? { syncIntegrationIds: selectedSyncIntegrationIds }
+            : {}),
         }),
       );
 
@@ -596,6 +632,7 @@ function CreateTaskModalContent({
         setSearchValue("");
         setSelectedColor("gray");
         setNewLabelName("");
+        setSyncIntegrationIds([]);
         stagedAssetsRef.current = [];
         setEditorVersion((version) => version + 1);
         didSubmitRef.current = false;
@@ -1165,6 +1202,83 @@ function CreateTaskModalContent({
                           )}
                         </button>
                       ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
+              {syncableBindings.length > 0 && (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className={cn(
+                        "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors border border-border hover:bg-accent/50",
+                        syncIntegrationIds.length > 0
+                          ? "bg-accent/30 text-foreground"
+                          : "text-muted-foreground",
+                      )}
+                    >
+                      <FolderGit className="w-3.5 h-3.5" />
+                      <span>
+                        {syncIntegrationIds.length === 0
+                          ? t("common:modals.createTask.repositories")
+                          : t("common:modals.createTask.issuesIn", {
+                              count: syncIntegrationIds.length,
+                            })}
+                      </span>
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-72 p-1" align="start">
+                    <div className="flex items-center justify-between gap-2 px-2 py-1">
+                      <span className="text-xs text-muted-foreground">
+                        {t("common:modals.createTask.repositoriesHint")}
+                      </span>
+                      <button
+                        type="button"
+                        className="text-xs font-medium text-primary hover:underline"
+                        onClick={() =>
+                          setSyncIntegrationIds(
+                            syncIntegrationIds.length ===
+                              syncableBindings.length
+                              ? []
+                              : syncableBindings.map((binding) => binding.id),
+                          )
+                        }
+                      >
+                        {syncIntegrationIds.length ===
+                        syncableBindings.length
+                          ? t("common:modals.createTask.repositoriesNone")
+                          : t("common:modals.createTask.repositoriesAll")}
+                      </button>
+                    </div>
+                    <div className="space-y-1">
+                      {syncableBindings.map((binding) => {
+                        const checked = syncIntegrationIds.includes(
+                          binding.id,
+                        );
+                        return (
+                          <button
+                            key={binding.id}
+                            type="button"
+                            className="w-full flex items-center gap-2 px-2 py-1.5 text-sm hover:bg-accent/50 text-left transition-colors h-8"
+                            onClick={() => toggleSyncIntegration(binding.id)}
+                          >
+                            {binding.type === "github" ? (
+                              <GithubIcon className="h-3.5 w-3.5 shrink-0" />
+                            ) : binding.type === "gitea" ? (
+                              <GiteaIcon className="h-3.5 w-3.5 shrink-0" />
+                            ) : (
+                              <GitlabIcon className="h-3.5 w-3.5 shrink-0" />
+                            )}
+                            <span className="text-sm truncate flex-1">
+                              {binding.identity}
+                            </span>
+                            {checked && (
+                              <Check className="ml-auto h-4 w-4 shrink-0" />
+                            )}
+                          </button>
+                        );
+                      })}
                     </div>
                   </PopoverContent>
                 </Popover>

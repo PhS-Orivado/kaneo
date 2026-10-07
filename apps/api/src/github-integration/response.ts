@@ -171,3 +171,41 @@ export const deleteResultSchema = z
 export const integrationNotFoundSchema = z
   .object({ error: z.string() })
   .openapi("GitHubIntegrationNotFound");
+
+export const githubBranchSchema = z
+  .object({
+    name: z.string(),
+    commitSha: z
+      .string()
+      .nullable()
+      .openapi({ description: "Head commit of the branch, when exposed." }),
+  })
+  .openapi("GitHubBranch");
+
+export const githubBranchListSchema = z
+  .object({
+    branches: z.array(githubBranchSchema),
+    hasMore: z.boolean().openapi({
+      description:
+        "The repository holds more branches than the bounded page returned.",
+    }),
+  })
+  .openapi("GitHubBranchList");
+
+export const githubBranchResultSchema = z
+  .object({
+    integrationId: z.string(),
+    repositoryOwner: z.string(),
+    repositoryName: z.string(),
+    branchName: z.string(),
+    url: z.string().openapi({
+      description: "Web URL of the branch on GitHub.",
+    }),
+    branchCreated: z.boolean().openapi({
+      description: "Whether the ref had to be created on GitHub.",
+    }),
+    linkCreated: z.boolean().openapi({
+      description: "Whether a new branch link was added to the task.",
+    }),
+  })
+  .openapi("GitHubBranchResult");

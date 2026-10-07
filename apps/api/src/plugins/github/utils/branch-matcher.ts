@@ -1,5 +1,39 @@
 import type { GitHubConfig } from "../config";
 
+/** Branch kind prefixes offered when creating a task branch. */
+export const BRANCH_TYPE_PREFIXES = [
+  "fix",
+  "feature",
+  "docs",
+  "chore",
+  "refactor",
+  "test",
+  "release",
+] as const;
+
+export type BranchTypePrefix = (typeof BRANCH_TYPE_PREFIXES)[number];
+
+/** Branch name for a task branch created by kind, e.g. fix/EC-123. */
+export function generateTypedBranchName(
+  prefix: BranchTypePrefix,
+  projectSlug: string,
+  taskNumber: number,
+): string {
+  return `${prefix}/${projectSlug.toUpperCase()}-${taskNumber}`;
+}
+
+/**
+ * Minimal guard mirroring git check-ref-format rules for branch names, so a
+ * typed branch never fails GitHub-side ref creation with a cryptic 422.
+ */
+export function isValidBranchName(branchName: string): boolean {
+  if (branchName.length < 1 || branchName.length > 255) return false;
+  if (/^\.|\/\/|\.lock$|^-|\/\.$|\.\/|^\/|\/$/.test(branchName)) return false;
+  if (branchName.includes("..") || branchName.includes("@{")) return false;
+  if (/[\x00-\x20\x7f?*[\]~^:]/.test(branchName)) return false;
+  return !branchName.endsWith(".");
+}
+
 function slugify(text: string): string {
   return text
     .toLowerCase()
@@ -34,8 +68,14 @@ export function createBranchRegex(
     // generateBranchName emits the separator with no name after it.
     .replace("\\{title\\}", "([a-z0-9-]*)");
 
-  // Allow optional suffix after the pattern (e.g., lif-3-part-1)
-  return new RegExp(`^${regexPattern}(?:-.*)?$`, "i");
+  // Allow an optional suffix after the pattern (e.g., lif-3-part-1) and an
+  // optional branch-type prefix before it, so task branches named after their
+  // kind (fix/EC-123, docs/EC-123) match even when the configured pattern does
+  // not carry the prefix itself.
+  return new RegExp(
+    `^(?:[a-z0-9][a-z0-9._-]*\\/)?${regexPattern}(?:-.*)?$`,
+    "i",
+  );
 }
 
 export function extractTaskNumberFromBranch(

@@ -27,12 +27,14 @@ import { requireUserSession } from "../utils/require-user-session";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import createGithubIntegration from "./controllers/create-github-integration";
+import { createRepositoryBranch } from "./controllers/create-repository-branch";
 import deleteGithubIntegration from "./controllers/delete-github-integration";
 import getGithubIntegration, {
   getGithubIntegrationById,
   listGithubIntegrations,
 } from "./controllers/get-github-integration";
 import { importIssues } from "./controllers/import-issues";
+import { listRepositoryBranches } from "./controllers/list-repository-branches";
 import listUserRepositories from "./controllers/list-user-repositories";
 import verifyGithubInstallation from "./controllers/verify-github-installation";
 import { verifyRepositoryOwner } from "./controllers/verify-repository-owner";
@@ -40,6 +42,8 @@ import {
   createdGithubIntegrationSchema,
   deleteResultSchema,
   githubAppInfoSchema,
+  githubBranchListSchema,
+  githubBranchResultSchema,
   githubIntegrationListSchema,
   githubIntegrationSchema,
   githubRepositoryListSchema,
@@ -49,7 +53,9 @@ import {
 } from "./response";
 import {
   createGitHubBody,
+  createRepositoryBranchBody,
   importGitHubBody,
+  repositoryBranchesQuery,
   repositoryPageQuery,
   updateGitHubBody,
   verifyGitHubBody,
@@ -324,6 +330,67 @@ const importIssuesRoute = createRoute({
   },
 });
 
+const listRepositoryBranchesRoute = createRoute({
+  method: "get",
+  operationId: "listGitHubRepositoryBranches",
+  path: "/integration/{integrationId}/branches",
+  tags: ["GitHub"],
+  summary: "Search branches of a linked repository",
+  description:
+    "List the branches of the repository behind one binding, optionally filtered by a case-insensitive substring such as the task ticket key. At most 500 branches per call are examined.",
+  middleware: [
+    workspaceAccess.fromIntegration("integrationId"),
+    requireWorkspacePermission({ task: ["update"] }),
+  ] as const,
+  request: {
+    params: integrationIdParam,
+    query: repositoryBranchesQuery,
+  },
+  responses: {
+    200: jsonResponse("Matching branches of the linked repository", githubBranchListSchema),
+    400: errorResponse("Invalid query"),
+    403: errorResponse(
+      "No workspace access, or missing task:update permission",
+    ),
+    404: errorResponse("Integration not found"),
+    409: errorResponse("Integration requires verification"),
+  },
+});
+
+const createRepositoryBranchRoute = createRoute({
+  method: "post",
+  operationId: "createGitHubRepositoryBranch",
+  path: "/integration/{integrationId}/branches",
+  tags: ["GitHub"],
+  summary: "Create or link a task branch",
+  description:
+    "Create a branch for a task in the bound repository, based on the default branch head, and link it to the task. When the branch already exists it is only linked. With create=false the branch must already exist.",
+  middleware: [
+    workspaceAccess.fromIntegration("integrationId"),
+    requireWorkspacePermission({ task: ["update"] }),
+  ] as const,
+  request: {
+    params: integrationIdParam,
+    body: {
+      required: true,
+      content: {
+        "application/json": { schema: createRepositoryBranchBody },
+      },
+    },
+  },
+  responses: {
+    200: jsonResponse("The created or linked branch", githubBranchResultSchema),
+    400: errorResponse(
+      "Invalid branch name, or the task belongs to another project",
+    ),
+    403: errorResponse(
+      "No workspace access, or missing task:update permission",
+    ),
+    404: errorResponse("Integration or task not found"),
+    409: errorResponse("Integration requires verification"),
+  },
+});
+
 const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getAppInfoRoute, async (c) => {
     const account = await db.query.accountTable.findFirst({
@@ -485,6 +552,24 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       runId,
     });
     return result.pending ? c.json(result, 202) : c.json(result, 200);
+  })
+  .openapi(listRepositoryBranchesRoute, async (c) => {
+    const { integrationId } = c.req.valid("param");
+    const { query } = c.req.valid("query");
+    const result = await listRepositoryBranches({ integrationId, query });
+    return c.json(result, 200);
+  })
+  .openapi(createRepositoryBranchRoute, async (c) => {
+    const { integrationId } = c.req.valid("param");
+    const { taskId, branchName, create } = c.req.valid("json");
+    const result = await createRepositoryBranch({
+      integrationId,
+      taskId,
+      branchName,
+      create,
+      userId: c.get("userId"),
+    });
+    return c.json(result, 200);
   });
 
 export async function handleGithubWebhookRoute(c: Context) {
