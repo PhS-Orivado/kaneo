@@ -3,6 +3,7 @@ import db from "../../database";
 import { integrationTable } from "../../database/schema";
 
 const GIT_PROVIDERS = ["github", "gitea", "gitlab"] as const;
+type GitProvider = (typeof GIT_PROVIDERS)[number];
 
 function trimTrailingSlash(url: string): string {
   return url.replace(/\/+$/, "");
@@ -59,7 +60,7 @@ export default async function listProjectRepositoryBindings({
         gitlabProjectPath(integration.config) || `${owner}/${name}`;
       return {
         id: integration.id,
-        type: integration.type,
+        type: integration.type as GitProvider,
         identity: projectPath,
         host,
         externalUrl: `${host ?? ""}/${projectPath}`,
@@ -72,7 +73,7 @@ export default async function listProjectRepositoryBindings({
     const identity = `${owner}/${name}`;
     return {
       id: integration.id,
-      type: integration.type,
+      type: integration.type as GitProvider,
       identity,
       host: integration.type === "github" ? null : host,
       externalUrl:

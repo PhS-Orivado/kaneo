@@ -2,6 +2,8 @@ import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { integrationTable } from "../../database/schema";
+import { repositoryLinkedToSchema } from "../../integrations/response";
+import { type z } from "../../openapi";
 import type { GitlabTokenType } from "../../plugins/gitlab/config";
 import {
   createGitlabClient,
@@ -68,7 +70,13 @@ async function listGitlabProjects({
   baseUrl: string;
   accessToken: string;
   tokenType: GitlabTokenType;
-}): Promise<{ projects: Array<ProjectRow & { linkedTo: unknown }> }> {
+}): Promise<{
+  projects: Array<
+    ProjectRow & {
+      linkedTo: z.infer<typeof repositoryLinkedToSchema> | null;
+    }
+  >;
+}> {
   const normalized = parseGitlabBaseUrl(baseUrl);
 
   try {

@@ -55,7 +55,11 @@ vi.mock("@/fetchers/integration-sync/resume-sync", () => ({
 }));
 vi.mock("@/lib/toast", () => ({ toast: { success: vi.fn() } }));
 
-const param = { projectId: "project-1", provider: "gitea" as const };
+const param = {
+  kind: "project" as const,
+  projectId: "project-1",
+  provider: "gitea" as const,
+};
 const saved: SyncPreview = {
   isActive: true,
   rules: {
@@ -94,7 +98,7 @@ beforeEach(() => {
   });
 });
 afterEach(cleanup);
-function mount(node = <SyncRulesSection {...param} />) {
+function mount(node = <SyncRulesSection scope={param} />) {
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   });
@@ -179,8 +183,8 @@ describe("advanced sync settings", () => {
   });
 
   it.each([
-    { projectId: "another-project", provider: "gitea" as const },
-    { projectId: param.projectId, provider: "github" as const },
+    { kind: "project", projectId: "another-project", provider: "gitea" } as const,
+    { kind: "project", projectId: param.projectId, provider: "github" } as const,
   ])(
     "does not show a previous integration's data while changing scope to %j",
     async (nextParam) => {
@@ -191,6 +195,7 @@ describe("advanced sync settings", () => {
       });
       mocks.get.mockImplementation(async (scope) => {
         if (
+          scope.kind === "project" &&
           scope.projectId === nextParam.projectId &&
           scope.provider === nextParam.provider
         )
@@ -201,7 +206,7 @@ describe("advanced sync settings", () => {
       await screen.findByRole("checkbox", { name: "sync" });
       rerender(
         <QueryClientProvider client={client}>
-          <SyncRulesSection {...nextParam} />
+          <SyncRulesSection scope={nextParam} />
         </QueryClientProvider>,
       );
       try {
@@ -244,7 +249,7 @@ describe("advanced sync settings", () => {
       };
       act(() =>
         client.setQueryData(
-          ["integration-sync", param.projectId, param.provider, ""],
+          ["integration-sync", param.projectId, param.provider, "", ""],
           {
             ...initial,
             rules: { outgoing: { mode: "all" }, incoming: { mode: "all" } },
@@ -285,7 +290,7 @@ describe("advanced sync settings", () => {
     await screen.findByRole("checkbox", { name: "sync" });
     act(() =>
       client.setQueryData(
-        ["integration-sync", param.projectId, param.provider, ""],
+        ["integration-sync", param.projectId, param.provider, "", ""],
         {
           ...saved,
           rules: { outgoing: { mode: "all" }, incoming: { mode: "all" } },
@@ -302,7 +307,7 @@ describe("advanced sync settings", () => {
   it("invalidates a cached rule preview after resuming a link", async () => {
     const { client } = mount(
       <ResumeSyncDialog
-        param={param}
+        scope={param}
         linkId="link-1"
         taskId="task-1"
         onClose={vi.fn()}
@@ -312,6 +317,7 @@ describe("advanced sync settings", () => {
       "integration-sync-preview",
       param.projectId,
       param.provider,
+      "",
       saved.rules,
     ];
     client.setQueryData(key, { ...saved, paused: 1, needsReview: 1 });
@@ -364,7 +370,7 @@ describe("advanced sync settings", () => {
   it("refreshes an open comparison and submits its new token after invalidation", async () => {
     const { client } = mount(
       <ResumeSyncDialog
-        param={param}
+        scope={param}
         linkId="link-1"
         taskId="task-1"
         onClose={vi.fn()}
@@ -581,7 +587,7 @@ describe("advanced sync settings", () => {
     mocks.resume.mockRejectedValue(new Error("Comparison changed"));
     mount(
       <ResumeSyncDialog
-        param={param}
+        scope={param}
         linkId="link-1"
         taskId="task-1"
         onClose={onClose}

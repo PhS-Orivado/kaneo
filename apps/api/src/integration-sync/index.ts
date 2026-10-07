@@ -6,7 +6,6 @@ import {
   jsonResponse,
   z,
 } from "../openapi";
-import { integrationIdParam } from "../integrations/schema";
 import { readSyncRules } from "../plugins/sync/rules";
 import db from "../database";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
