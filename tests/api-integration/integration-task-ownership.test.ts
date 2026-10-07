@@ -184,7 +184,7 @@ describe("integration task ownership", () => {
       expect(
         await (type === "gitea"
           ? importGiteaIssues({ integrationId: f.integration.id })
-          : importGitlabIssues(f.project.id)),
+          : importGitlabIssues({ integrationId: f.integration.id })),
       ).toMatchObject({ imported: 1, skipped: 0 });
     },
   );
@@ -196,7 +196,7 @@ describe("integration task ownership", () => {
       await moveWithoutCleanup(fixture);
       const result = await (type === "gitea"
         ? importGiteaIssues({ integrationId: fixture.integration.id })
-        : importGitlabIssues(fixture.project.id));
+        : importGitlabIssues({ integrationId: fixture.integration.id }));
       expect(result.updated).toBe(0);
       await expectPrivateTask(fixture.task.id);
     },
@@ -217,7 +217,7 @@ describe("integration task ownership", () => {
       });
       const result = await (type === "gitea"
         ? importGiteaIssues({ integrationId: f.integration.id })
-        : importGitlabIssues(f.project.id));
+        : importGitlabIssues({ integrationId: f.integration.id }));
       expect(result.updated).toBe(0);
       await expectPrivateTask(f.task.id);
       expect(
@@ -251,7 +251,7 @@ describe("integration task ownership", () => {
       });
       const result = await (type === "gitea"
         ? importGiteaIssues({ integrationId: f.integration.id })
-        : importGitlabIssues(f.project.id));
+        : importGitlabIssues({ integrationId: f.integration.id }));
       expect(result).toMatchObject({ updated: 0, skipped: 1 });
       await expectPrivateTask(f.task.id);
       expect(
@@ -651,7 +651,7 @@ it.each(["gitea", "gitlab"])(
     });
     const result = await (provider === "gitea"
       ? importGiteaIssues({ integrationId: fixture.integration.id })
-      : importGitlabIssues(fixture.project.id));
+      : importGitlabIssues({ integrationId: fixture.integration.id }));
     expect(result).toMatchObject({ imported: 0, updated: 1 });
     expect(m.publish.mock.calls.map(([type]) => type)).toEqual([
       "task.updated",

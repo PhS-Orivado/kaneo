@@ -36,3 +36,11 @@ export const updateGitlabBody = z.object({
   isActive: z.boolean().optional(),
   commentTaskLinkOnGitlabIssue: z.boolean().optional(),
 });
+
+// RFC 0001 WP4: imports are keyed by the integration id of the binding.
+export const importGitlabBody = z.object({
+  integrationId: z.string().min(1).max(128),
+  // Compat: the old project-keyed body sent projectId; when present it must
+  // match the binding's project (404 otherwise).
+  projectId: z.string().min(1).max(128).optional(),
+});
