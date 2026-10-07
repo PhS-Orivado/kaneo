@@ -1,19 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import getSyncRules from "@/fetchers/integration-sync/get-sync-rules";
-import type { SyncParams } from "@/fetchers/integration-sync/types";
+import { syncScopeKey, type SyncScope } from "@/fetchers/integration-sync/types";
 
-export function useSyncRules(param: SyncParams, after?: string) {
+export function useSyncRules(scope: SyncScope, after?: string) {
+  const key = syncScopeKey(scope);
   return useQuery({
     queryKey: [
       "integration-sync",
-      param.projectId,
-      param.provider,
+      key.projectId,
+      key.provider,
+      key.integrationId,
       after ?? "",
     ],
-    queryFn: () => getSyncRules(param, after),
+    queryFn: () => getSyncRules(scope, after),
     placeholderData: (previousData, previousQuery) =>
-      previousQuery?.queryKey[1] === param.projectId &&
-      previousQuery.queryKey[2] === param.provider
+      previousQuery?.queryKey[1] === key.projectId &&
+      previousQuery.queryKey[2] === key.provider &&
+      previousQuery.queryKey[3] === key.integrationId
         ? previousData
         : undefined,
   });

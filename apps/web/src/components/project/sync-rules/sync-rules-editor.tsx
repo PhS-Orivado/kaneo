@@ -11,16 +11,16 @@ import { toast } from "@/lib/toast";
 import { LabelRuleEditor } from "./label-rule-editor";
 
 export function SyncRulesEditor({
-  param,
+  scope,
   saved,
 }: {
-  param: SyncParams;
+  scope: SyncScope;
   saved: SyncPreview;
 }) {
   const { t } = useTranslation();
   const [rules, setRules] = useState(saved.rules);
   const [previousSavedRules, setPreviousSavedRules] = useState(saved.rules);
-  const save = useSaveSyncRules(param);
+  const save = useSaveSyncRules(scope);
   const rulesKey = JSON.stringify(rules);
   const savedKey = JSON.stringify(saved.rules);
   const previousSavedKey = JSON.stringify(previousSavedRules);
@@ -40,7 +40,7 @@ export function SyncRulesEditor({
   );
   const pendingExports = saved.isActive && saved.willCreate > 0;
   const preview = useSyncPreview(
-    param,
+    scope,
     rules,
     (dirty || pendingExports) && valid,
   );
