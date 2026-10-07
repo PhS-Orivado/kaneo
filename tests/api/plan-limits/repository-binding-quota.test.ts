@@ -16,9 +16,10 @@ const {
 );
 const { publishEvent } = await import("../../../apps/api/src/events");
 
-// Minimal drizzle-shaped stubs. The helpers run, in order:
-//   resolveRepositoryBindingLimits -> select().from().where().limit() (awaited)
-//   countActiveRepositoryBindings  -> select().from().where()         (awaited)
+// Minimal drizzle-shaped stubs. The two helpers run select chains that differ
+// in shape, so the stubs are keyed by the query itself, not the call order:
+//   resolveRepositoryBindingLimits -> select({...}).from().where().limit() (awaited)
+//   countActiveRepositoryBindings  -> select({count}).from().where()         (awaited)
 function fakeDatabase({
   limitRow,
   countRow,
@@ -26,21 +27,17 @@ function fakeDatabase({
   limitRow: unknown[];
   countRow: { count: number };
 }) {
-  let stage: "limit" | "count" = "limit";
   return {
-    select: () =>
-      stage === "limit"
-        ? {
+    select: (projection: Record<string, unknown>) =>
+      "count" in projection
+        ? { from: () => ({ where: async () => [countRow] }) }
+        : {
             from: () => ({
               where: () => ({
-                limit: async () => {
-                  stage = "count";
-                  return limitRow;
-                },
+                limit: async () => limitRow,
               }),
             }),
-          }
-        : { from: () => ({ where: async () => [countRow] }) },
+          },
   } as never;
 }
 

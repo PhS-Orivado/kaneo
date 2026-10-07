@@ -92,7 +92,7 @@ describe("getGitlabIntegrationById (RFC 0001 WP4)", () => {
       maskedAccessToken: "glpa••••••mnop",
     });
     expect(integration?.webhookUrl).toBe(
-      "http://localhost:1337/gitlab-integration/webhook/integration-1",
+      "http://localhost:1337/api/gitlab-integration/webhook/integration-1",
     );
   });
 
