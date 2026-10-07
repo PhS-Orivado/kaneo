@@ -6,22 +6,28 @@ import { publishEvent } from "../../events";
 import { pauseIssueLinks } from "../../plugins/sync/pause-issue-links";
 import { outgoingPredicate } from "../../plugins/sync/task-predicate";
 import { readSyncRules, type SyncRules } from "../../plugins/sync/rules";
-import { getSyncIntegration } from "./get-integration";
+import {
+  getSyncIntegration,
+  getSyncIntegrationById,
+} from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 import { previewSyncRules } from "./preview-rules";
 
-export async function saveSyncRules(
-  projectId: string,
-  provider: string,
+// RFC 0001 WP5: the save flow is keyed by integration id. Each repository
+// binding owns its rules: saving on one binding never rewrites a sibling
+// binding of the same project, and the preview token comparison stays bound
+// to the addressed row's config.
+export async function saveSyncRulesById(
+  integrationId: string,
   rules: SyncRules,
   previewToken: string,
   authorizedWorkspaceId: string,
 ) {
-  const integration = await getSyncIntegration(projectId, provider);
+  const integration = await getSyncIntegrationById(integrationId);
   const savedPreview = await db.transaction(async (tx) => {
     // Keep the workspace authorized by middleware stable through the save.
     const project = await getAuthorizedSyncProject(
-      projectId,
+      integration.projectId,
       authorizedWorkspaceId,
       tx,
       true,
@@ -61,7 +67,7 @@ export async function saveSyncRules(
       tx,
     );
     await pauseIssueLinks(
-      projectId,
+      integration.projectId,
       integration.id,
       or(not(oldScope.predicate), not(nextScope.predicate))!,
       tx,
@@ -83,9 +89,31 @@ export async function saveSyncRules(
     );
   });
   await publishEvent("integration.sync_rules_changed", {
-    projectId,
+    projectId: integration.projectId,
     integrationId: integration.id,
   });
-  await publishEvent("project.updated", { projectId, linksChanged: true });
+  await publishEvent("project.updated", {
+    projectId: integration.projectId,
+    linksChanged: true,
+  });
   return savedPreview;
+}
+
+// Compat shim (RFC 0001 WP5, section 5): the project-keyed route saves to
+// the project's first binding of the provider until the new web client
+// ships; removed with the cleanup PR.
+export async function saveSyncRules(
+  projectId: string,
+  provider: string,
+  rules: SyncRules,
+  previewToken: string,
+  authorizedWorkspaceId: string,
+) {
+  const integration = await getSyncIntegration(projectId, provider);
+  return saveSyncRulesById(
+    integration.id,
+    rules,
+    previewToken,
+    authorizedWorkspaceId,
+  );
 }
