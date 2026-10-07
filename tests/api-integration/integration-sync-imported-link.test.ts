@@ -45,7 +45,7 @@ beforeEach(async () => {
 it.each(["gitea", "gitlab"] as const)(
   "%s manual refresh commits its final label eligibility before publishing",
   async (provider) => {
-    const { workspac } = await createWorkspaceMember();
+    const { workspace } = await createWorkspaceMember();
     const { project } = await createProjectFixture({
       workspaceId: workspace.id,
     });
@@ -116,7 +116,7 @@ it.each(["gitea", "gitlab"] as const)(
             title: "Updated issue",
             description: "Body",
             state: "opened",
-           web_url: link.url,
+            web_url: link.url,
             labels: ["other"],
           },
     ]);
@@ -175,7 +175,7 @@ it.each(
         type: provider,
         isActive: true,
         config: JSON.stringify({
-         repositoryOwner: "team",
+          repositoryOwner: "team",
           repositoryName: "repo",
           repositoryId: 1,
           installationId: 2,
@@ -237,7 +237,7 @@ it.each(
         { action: "opened", installation: { id: 2 }, issue, repository },
         integration.id,
       );
-    ele if (provider === "gitea")
+    else if (provider === "gitea")
       await handleGiteaIssueOpened(
         { action: "opened", issue, repository },
         integration.id,

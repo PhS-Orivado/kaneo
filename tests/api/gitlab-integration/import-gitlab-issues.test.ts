@@ -114,6 +114,23 @@ describe("importGitlabIssues labels on an already linked task", () => {
   });
 });
 
+// RFC 0001 WP4: imports are keyed by integration id. A compat projectId in
+// the body must match the binding's project; a mismatch is a 404, never a
+// 403, so the endpoint does not confirm the existence of a foreign binding.
+describe("importGitlabIssues binding resolution", () => {
+  it("rejects a projectId that does not match the binding", async () => {
+    mocks.listIssues.mockResolvedValueOnce([]);
+
+    await expect(
+      importGitlabIssues({
+        integrationId: "integration-1",
+        projectId: "other-project",
+      }),
+    ).rejects.toMatchObject({ status: 404 });
+    expect(mocks.listIssues).not.toHaveBeenCalled();
+  });
+});
+
 // Ownership locking is covered by integration-task-scope.test.ts. These cases
 // exercise provider behavior with the transaction's existing database mock.
 vi.mock(

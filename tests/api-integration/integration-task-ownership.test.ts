@@ -50,7 +50,7 @@ vi.mock(
     createGitlabClient: () => m,
   }),
 );
-vi.mock"../../apps/api/src/events", async (original) => ({
+vi.mock("../../apps/api/src/events", async (original) => ({
   ...(await original<typeof import("../../apps/api/src/events")>()),
   publishEvent: m.publish,
 }));
@@ -116,7 +116,7 @@ async function setup(type = "gitea") {
     .values({
       taskId: task.id,
       integrationId: integration.id,
-      rsourceType: "issue",
+      resourceType: "issue",
       externalId: "1",
       url: remoteIssue.html_url,
     })
@@ -183,7 +183,7 @@ describe("integration task ownership", () => {
         .where(eq(schema.integrationTable.id, f.integration.id));
       expect(
         await (type === "gitea"
-          ? importGteaIssues({ integrationId: f.integration.id })
+          ? importGiteaIssues({ integrationId: f.integration.id })
           : importGitlabIssues({ integrationId: f.integration.id })),
       ).toMatchObject({ imported: 1, skipped: 0 });
     },
@@ -239,7 +239,7 @@ describe("integration task ownership", () => {
       fetchComments.mockImplementationOnce(async () => {
         await moveTask({
           taskId: f.task.id,
-          destinationProjectId: f.destination.id
+          destinationProjectId: f.destination.id,
           currentUserId: f.source.user.id,
         });
         await moveTask({
@@ -308,7 +308,7 @@ describe("integration task ownership", () => {
   });
   it("moving a task removes links to its previous project's integration atomically", async () => {
     const f = await setup();
-    const [manual] = awaitdb
+    const [manual] = await db
       .insert(schema.externalLinkTable)
       .values({
         taskId: f.task.id,
@@ -376,7 +376,7 @@ describe("integration task ownership", () => {
       destinationProjectId: f.destination.id,
       currentUserId: f.source.user.id,
     }).then(() => {
-     moved = true;
+      moved = true;
     });
     try {
       await new Promise((resolve) => setTimeout(resolve, 30));
@@ -442,7 +442,7 @@ it("preserves legacy links belonging to the destination integration when moving 
     .returning();
   await moveTask({
     taskId: f.task.id,
-    destinationProjectI: f.destination.id,
+    destinationProjectId: f.destination.id,
     currentUserId: f.source.user.id,
   });
   expect(await db.query.externalLinkTable.findMany()).toEqual([compatible]);
@@ -504,6 +504,7 @@ it("preserves outbound history and unrelated fields across concurrent sync compl
       ),
     ).toBe(true);
 });
+
 it("keeps outbound history committed during an inbound provider read", async () => {
   const { updateExternalLink } =
     await import("../../apps/api/src/plugins/github/services/link-manager");
@@ -564,7 +565,7 @@ it.each(["edit", "labels", "comment"])(
       .mockImplementationOnce(async (apply, config) => {
         await moveTask({
           taskId: f.task.id,
-          destinationProjectId: f.destinationid,
+          destinationProjectId: f.destination.id,
           currentUserId: f.source.user.id,
         });
         await moveTask({
@@ -636,7 +637,7 @@ it.each(["gitea", "gitlab"])(
       )
         return;
       expect(data).toEqual({
-       projectId: fixture.project.id,
+        projectId: fixture.project.id,
         taskId: fixture.task.id,
       });
       expect(
@@ -702,7 +703,7 @@ it("does not apply a webhook after its link is paused while waiting for the link
       const waiting = await db.execute<{ blocked: boolean }>(sql`
         select exists (
           select 1 from pg_stat_activity
-          where datname = curent_database()
+          where datname = current_database()
             and wait_event_type = 'Lock'
             and query like '%external_link%'
         ) as blocked
