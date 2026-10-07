@@ -209,6 +209,24 @@ export const workspaceBillingTable = pgTable(
   (table) => [index("workspace_billing_workspaceId_idx").on(table.workspaceId)],
 );
 
+// RFC 0001 WP0 (for WP10): per-workspace plan limit overrides written by the
+// billing system. The API only reads this table; a NULL
+// max_repositories_per_project means "no workspace override; fall back to the
+// instance default (KANEO_MAX_REPOSITORIES_PER_PROJECT)".
+export const workspaceLimitTable = pgTable("workspace_limit", {
+  workspaceId: text("workspace_id")
+    .primaryKey()
+    .references(() => workspaceTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+  maxRepositoriesPerProject: integer("max_repositories_per_project"),
+  updatedAt: timestamp("updated_at", { mode: "date" })
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
 export const trialGrantTable = pgTable("trial_grant", {
   emailHash: text("email_hash").primaryKey(),
   trialEndsAt: timestamp("trial_ends_at", { mode: "date" }).notNull(),
@@ -473,6 +491,15 @@ export const workflowRuleTable = pgTable(
     index("workflow_rule_projectId_idx").on(table.projectId),
     index("workflow_rule_columnId_idx").on(table.columnId),
     index("workflow_rule_integrationId_idx").on(table.integrationId),
+    // RFC 0001 WP6: keeps repository-specific rule resolution a single
+    // indexed lookup: (project, type, event, integration), where
+    // integration_id is NULL for type-wide rules.
+    index("workflow_rule_resolution_idx").on(
+      table.projectId,
+      table.integrationType,
+      table.eventType,
+      table.integrationId,
+    ),
   ],
 );
 
@@ -1007,19 +1034,26 @@ export const integrationTable = pgTable(
   (table) => [
     index("integration_projectId_idx").on(table.projectId),
     index("integration_type_idx").on(table.type),
-    index("integration_type_repositoryKey_idx").on(
+    index("integration_type_repository_key_idx").on(
       table.type,
       table.repositoryKey,
     ),
-    // RFC 0001: one binding per repository per project. Cross-project
-    // repository sharing is allowed, so there is deliberately no
-    // instance-wide unique. Legacy rows have a NULL repository_key; unique
-    // constraints treat NULLs as distinct, so they coexist until backfill.
-    unique("integration_project_type_repository_key_unique").on(
+    // RFC 0001 WP0: one binding per repository per project. Cross-project
+    // repository sharing is allowed, so there is deliberately no instance-wide
+    // unique. Legacy rows have a NULL repository_key; unique constraints treat
+    // NULLs as distinct, so they coexist until backfill.
+    unique("integration_project_type_repo_unique").on(
       table.projectId,
       table.type,
       table.repositoryKey,
     ),
+    // RFC 0001 WP0: preserves the one-row-per-project guarantee for
+    // integrations without repository identity (Slack, Discord, Mattermost,
+    // Telegram, generic webhook) after integration_project_type_unique was
+    // dropped.
+    uniqueIndex("integration_project_type_null_repo_unique")
+      .on(table.projectId, table.type)
+      .where(sql`repository_key IS NULL`),
   ],
 );
 
