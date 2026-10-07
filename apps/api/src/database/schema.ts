@@ -448,6 +448,14 @@ export const workflowRuleTable = pgTable(
         onUpdate: "cascade",
       }),
     integrationType: text("integration_type").notNull(),
+    // RFC 0001: optional binding to a specific integration row; null keeps
+    // the legacy type-wide semantics (the rule applies to every repository
+    // of that type in the project).
+    integrationId: text("integration_id")
+      .references(() => integrationTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
     eventType: text("event_type").notNull(),
     columnId: text("column_id")
       .notNull()
@@ -464,6 +472,7 @@ export const workflowRuleTable = pgTable(
   (table) => [
     index("workflow_rule_projectId_idx").on(table.projectId),
     index("workflow_rule_columnId_idx").on(table.columnId),
+    index("workflow_rule_integrationId_idx").on(table.integrationId),
   ],
 );
 
@@ -977,6 +986,17 @@ export const integrationTable = pgTable(
       }),
     type: text("type").notNull(),
     config: text("config").notNull(),
+    // RFC 0001: repository identity for multi-repository projects. The key
+    // is provider-scoped (github:<repositoryId>, gitea:<baseUrl>/<owner>/<name>,
+    // gitlab:<baseUrl>/<projectPath>); owner/name/id are denormalized from the
+    // config so list views do not parse JSON.
+    repositoryKey: text("repository_key"),
+    repositoryOwner: text("repository_owner"),
+    repositoryName: text("repository_name"),
+    repositoryId: integer("repository_id"),
+    // RFC 0001: baseUrl for self-hosted Gitea/GitLab instances; null for
+    // github.com and default installs.
+    baseUrl: text("base_url"),
     isActive: boolean("is_active").default(true),
     createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date" })
@@ -987,7 +1007,19 @@ export const integrationTable = pgTable(
   (table) => [
     index("integration_projectId_idx").on(table.projectId),
     index("integration_type_idx").on(table.type),
-    unique("integration_project_type_unique").on(table.projectId, table.type),
+    index("integration_type_repositoryKey_idx").on(
+      table.type,
+      table.repositoryKey,
+    ),
+    // RFC 0001: one binding per repository per project. Cross-project
+    // repository sharing is allowed, so there is deliberately no
+    // instance-wide unique. Legacy rows have a NULL repository_key; unique
+    // constraints treat NULLs as distinct, so they coexist until backfill.
+    unique("integration_project_type_repository_key_unique").on(
+      table.projectId,
+      table.type,
+      table.repositoryKey,
+    ),
   ],
 );
 
