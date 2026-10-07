@@ -1163,7 +1163,8 @@
 			"reverifyHint": "請重新連線此 Repo 以驗證存取權限並繼續同步。",
 			"resumeImport": "繼續匯入",
 			"importPaused": "此匯入已儲存進度，可以繼續。",
-			"importSummary": "已建立：{{imported}} · 已更新：{{updated}} · 已略過：{{skipped}}"
+			"importSummary": "已建立：{{imported}} · 已更新：{{updated}} · 已略過：{{skipped}}",
+			"providerName": "GitHub"
 		},
 		"giteaIntegration": {
 			"validation": {
@@ -1239,7 +1240,8 @@
 			"searchRepos": "搜尋…",
 			"browseNeedsCredentials": "請輸入 Gitea URL 與 Token 以瀏覽",
 			"loadingRepos": "正在載入 Repo…",
-			"retry": "重試"
+			"retry": "重試",
+			"providerName": "Gitea"
 		},
 		"slackIntegration": {
 			"validation": {
@@ -1502,7 +1504,11 @@
 				"issue_closed": "Issue 已關閉"
 			},
 			"gitlabHeading": "GitLab",
-			"gitlabHint": "發生 GitLab Webhook 事件時，將連結的任務移到指定欄位。"
+			"gitlabHint": "發生 GitLab Webhook 事件時，將連結的任務移到指定欄位。",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
 		},
 		"externalLinks": {
 			"resources": "資源",
@@ -1739,7 +1745,8 @@
 			"webhookShow": "顯示",
 			"webhookTitle": "Webhook",
 			"loadProjectsError": "無法載入專案",
-			"importPermissionHint": "匯入需要建立與更新任務的權限。"
+			"importPermissionHint": "匯入需要建立與更新任務的權限。",
+			"providerName": "GitLab"
 		},
 		"calendarFeeds": {
 			"title": "行事曆訂閱源",
@@ -2010,6 +2017,57 @@
 				"transferError": "Failed to transfer ownership"
 			},
 			"workspaceCount_other": "{{count}} workspaces"
+		},
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
 		}
 	},
 	"navigation": {

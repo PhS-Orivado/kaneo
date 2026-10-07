@@ -20,21 +20,22 @@ export function useCreateGitlabIntegration() {
     }) => createGitlabIntegration(projectId, data),
     onSuccess: (_, { projectId }) => {
       queryClient.invalidateQueries({
-        queryKey: ["gitlab-integration", projectId],
+        queryKey: ["gitlab-integrations", projectId],
       });
     },
   });
 }
 
+// RFC 0001 WP4/WP7: deletes are keyed by the integration id; the binding's
+// issue links disappear with it, so the external-link cache is dropped too.
 export function useDeleteGitlabIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (projectId: string) => deleteGitlabIntegration(projectId),
-    onSuccess: (_, projectId) => {
-      queryClient.invalidateQueries({
-        queryKey: ["gitlab-integration", projectId],
-      });
+    mutationFn: (integrationId: string) => deleteGitlabIntegration(integrationId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["gitlab-integrations"] });
+      queryClient.invalidateQueries({ queryKey: ["external-links"] });
     },
   });
 }

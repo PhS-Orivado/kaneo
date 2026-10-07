@@ -19,7 +19,8 @@ const m = vi.hoisted(() => ({
   appInfo: vi.fn(),
   link: vi.fn(),
   importIssues: vi.fn(),
-  integration: { current: null as null | Record<string, unknown> },
+  create: vi.fn(),
+  list: { current: null as null | Record<string, unknown> },
 }));
 vi.mock("@/fetchers/github-integration/get-app-info", () => ({
   default: m.appInfo,
@@ -30,17 +31,19 @@ vi.mock("@/lib/auth-client", () => ({
     linkSocial: m.link,
   },
 }));
-vi.mock(
-  "@/hooks/queries/github-integration/use-get-github-integration",
-  () => ({
-    default: () => ({ data: m.integration.current, isLoading: false }),
+vi.mock("@/hooks/queries/github-integration/use-list-github-integrations", () => ({
+  default: () => ({
+    data: m.list.current,
+    isLoading: false,
+    error: null,
+    refetch: vi.fn(),
   }),
-);
+}));
 vi.mock(
   "@/hooks/mutations/github-integration/use-create-github-integration",
   () => ({
     useCreateGithubIntegration: () => ({
-      mutateAsync: vi.fn(),
+      mutateAsync: m.create,
       isPending: false,
     }),
     useDeleteGithubIntegration: () => ({
@@ -68,8 +71,24 @@ vi.mock(
     }),
   }),
 );
+// The browser is exercised through its own tests; here it only needs to offer
+// a selection so the add flow of the shell can be driven end to end.
 vi.mock("@/components/project/repository-browser-modal", () => ({
-  RepositoryBrowserModal: () => null,
+  RepositoryBrowserModal: ({
+    open,
+    onSelectRepository,
+  }: {
+    open: boolean;
+    onSelectRepository: (repository: { owner: string; name: string }) => void;
+  }) =>
+    open ? (
+      <button
+        type="button"
+        onClick={() => onSelectRepository({ owner: "owner", name: "picked" })}
+      >
+        browser-select
+      </button>
+    ) : null,
 }));
 const permissions = vi.hoisted(() => ({ create: true, update: true }));
 vi.mock("@/hooks/use-workspace-permission", () => ({
@@ -79,15 +98,46 @@ vi.mock("@/hooks/use-workspace-permission", () => ({
   }),
 }));
 vi.mock("react-i18next", () => ({
-  useTranslation: () => ({ t: (key: string) => key }),
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
 }));
 vi.mock("@/lib/toast", () => ({
   toast: { error: vi.fn(), success: vi.fn(), warning: vi.fn() },
 }));
 
 import { toast } from "@/lib/toast";
-
 import { GitHubIntegrationSettings } from "./github-integration-settings";
+
+const activeBinding = {
+  id: "integration-1",
+  projectId: "project",
+  repositoryOwner: "owner",
+  repositoryName: "repo",
+  installationId: 1,
+  requiresVerification: false,
+  importProgress: {
+    runId: "saved-run",
+    pending: true,
+    imported: 4,
+    updated: 0,
+    skipped: 0,
+  },
+  isActive: true,
+  createdAt: "2026-01-01T00:00:00.000Z",
+  updatedAt: "2026-01-01T00:00:00.000Z",
+};
+const legacyBinding = {
+  id: "integration-2",
+  projectId: "project",
+  repositoryOwner: "legacy",
+  repositoryName: "old",
+  installationId: null,
+  requiresVerification: true,
+  isActive: false,
+  createdAt: "2026-01-01T00:00:00.000Z",
+  updatedAt: "2026-01-01T00:00:00.000Z",
+};
 
 function show() {
   const client = new QueryClient({
@@ -102,11 +152,18 @@ function show() {
 afterEach(() => cleanup());
 beforeEach(() => {
   vi.clearAllMocks();
-  m.integration.current = null;
+  m.list.current = null;
+  m.appInfo.mockResolvedValue({
+    accountConnected: true,
+    accountLinkingAvailable: true,
+  });
+  m.link.mockResolvedValue({ error: null });
+  m.create.mockResolvedValue({});
+  m.importIssues.mockResolvedValue({ imported: 9, updated: 1, skipped: 2 });
   permissions.create = true;
   permissions.update = true;
-  m.link.mockResolvedValue({ error: null });
 });
+
 describe("GitHub account verification flow", () => {
   it("offers explicit account linking and returns to the same settings page", async () => {
     m.appInfo.mockResolvedValue({
@@ -124,9 +181,6 @@ describe("GitHub account verification flow", () => {
         callbackURL: window.location.href,
       }),
     );
-    expect(
-      screen.getByRole("button", { name: "settings:githubIntegration.browse" }),
-    ).toBeDisabled();
   });
   it("explains the administrator prerequisite when GitHub sign-in is disabled", async () => {
     m.appInfo.mockResolvedValue({
@@ -145,81 +199,85 @@ describe("GitHub account verification flow", () => {
       }),
     ).not.toBeInTheDocument();
   });
-  it("shows reconnection for legacy integrations and still permits removal", async () => {
-    m.appInfo.mockResolvedValue({
-      accountConnected: true,
-      accountLinkingAvailable: true,
-    });
-    m.integration.current = {
-      repositoryOwner: "owner",
-      repositoryName: "repo",
-      requiresVerification: true,
-      isActive: false,
+});
+
+describe("repository binding list (RFC 0001 WP7)", () => {
+  it("lists every binding with its status chip and the plan usage", async () => {
+    m.list.current = {
+      integrations: [activeBinding, legacyBinding],
+      usage: { used: 2, limit: 5 },
     };
     show();
     expect(
-      await screen.findByText("settings:githubIntegration.reverifyHint"),
+      await screen.findByText("settings:repositoryBindings.usageLimited"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("owner/repo")).toBeInTheDocument();
+    expect(screen.getByText("legacy/old")).toBeInTheDocument();
+    expect(
+      screen.getByText("settings:repositoryBindings.statusActive"),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", {
-        name: "settings:githubIntegration.disconnect",
-      }),
+      screen.getByText("settings:repositoryBindings.statusNeedsVerification"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("settings:repositoryBindings.importMeta"),
+    ).toBeInTheDocument();
+  });
+  it("shows the first-binding connect form while the project has no binding", async () => {
+    m.list.current = { integrations: [], usage: { used: 0, limit: null } };
+    show();
+    expect(
+      await screen.findByText("settings:repositoryBindings.addFirstTitle"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "settings:githubIntegration.browse" }),
     ).toBeEnabled();
-    expect(
-      screen.getByText("settings:githubIntegration.badgeNotConnected"),
-    ).toBeInTheDocument();
+  });
+  it("creates a picked browser repository as a new binding", async () => {
+    m.list.current = {
+      integrations: [activeBinding],
+      usage: { used: 1, limit: 5 },
+    };
+    show();
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "settings:repositoryBindings.addMore",
+      }),
+    );
+    fireEvent.click(await screen.findByText("browser-select"));
+    await waitFor(() =>
+      expect(m.create).toHaveBeenCalledWith({
+        projectId: "project",
+        data: { repositoryOwner: "owner", repositoryName: "picked" },
+      }),
+    );
   });
 });
 
 describe("saved GitHub import progress", () => {
-  it("offers resume after refresh and forwards the persisted run ID", async () => {
-    m.appInfo.mockResolvedValue({
-      accountConnected: true,
-      accountLinkingAvailable: true,
-    });
-    m.integration.current = {
-      repositoryOwner: "owner",
-      repositoryName: "repo",
-      installationId: 1,
-      requiresVerification: false,
-      isActive: true,
-      importProgress: {
-        runId: "saved-run",
-        pending: true,
-        imported: 4,
-        updated: 0,
-        skipped: 0,
-      },
+  it("resumes through the row menu and forwards the persisted run ID", async () => {
+    m.list.current = {
+      integrations: [activeBinding],
+      usage: { used: 1, limit: 5 },
     };
-    let complete!: (result: unknown) => void;
-    m.importIssues.mockImplementation(
-      () =>
-        new Promise((resolve) => {
-          complete = resolve;
-        }),
-    );
     show();
-    const resume = await screen.findByRole("button", {
-      name: "settings:githubIntegration.resumeImport",
-    });
-    expect(screen.getByRole("status")).toHaveTextContent(
-      "settings:githubIntegration.importPaused",
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "settings:repositoryBindings.rowMenuLabel",
+      }),
     );
-    fireEvent.click(resume);
+    const importItem = await screen.findByText(
+      "settings:repositoryBindings.actionImportIssues",
+    );
+    expect(importItem).toBeEnabled();
+    fireEvent.click(importItem);
     await waitFor(() =>
       expect(m.importIssues).toHaveBeenCalledWith({
+        integrationId: "integration-1",
         projectId: "project",
         runId: "saved-run",
       }),
     );
-    expect(toast.success).not.toHaveBeenCalled();
-    complete({
-      runId: "saved-run",
-      pending: false,
-      imported: 9,
-      updated: 1,
-      skipped: 2,
-    });
     await waitFor(() =>
       expect(toast.success).toHaveBeenCalledWith(
         "settings:githubIntegration.toast.issuesImported",
@@ -227,31 +285,42 @@ describe("saved GitHub import progress", () => {
       ),
     );
   });
-});
-
-it.each(["create", "update"] as const)(
-  "disables GitHub imports without %s permission",
-  async (permission) => {
-    permissions[permission] = false;
-    m.appInfo.mockResolvedValue({
-      accountConnected: true,
-      accountLinkingAvailable: true,
-    });
-    m.integration.current = {
-      repositoryOwner: "owner",
-      repositoryName: "repo",
-      isActive: true,
-      requiresVerification: false,
+  it("keeps a binding that needs verification non-importable", async () => {
+    m.list.current = {
+      integrations: [legacyBinding],
+      usage: { used: 1, limit: 5 },
     };
     show();
-    const button = await screen.findByRole("button", {
-      name: "settings:githubIntegration.importIssues",
-    });
-    expect(button).toBeDisabled();
-    fireEvent.click(button);
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "settings:repositoryBindings.rowMenuLabel",
+      }),
+    );
+    const importItem = await screen.findByText(
+      "settings:repositoryBindings.actionImportIssues",
+    );
+    expect(importItem).toHaveAttribute("aria-disabled", "true");
+    fireEvent.click(importItem);
     expect(m.importIssues).not.toHaveBeenCalled();
-    expect(
-      screen.getByText("settings:gitlabIntegration.importPermissionHint"),
-    ).toBeInTheDocument();
-  },
-);
+  });
+});
+
+it("disables the import action without create or update permission", async () => {
+  permissions.create = false;
+  m.list.current = {
+    integrations: [activeBinding],
+    usage: { used: 1, limit: 5 },
+  };
+  show();
+  fireEvent.click(
+    await screen.findByRole("button", {
+      name: "settings:repositoryBindings.rowMenuLabel",
+    }),
+  );
+  const importItem = await screen.findByText(
+    "settings:repositoryBindings.actionImportIssues",
+  );
+  expect(importItem).toHaveAttribute("aria-disabled", "true");
+  fireEvent.click(importItem);
+  expect(m.importIssues).not.toHaveBeenCalled();
+});

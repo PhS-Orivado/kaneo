@@ -5,12 +5,15 @@ import {
   ExternalLink,
   GitBranch,
   Globe,
+  Link2,
   Lock,
   Search,
   Settings,
 } from "lucide-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { AddBindingErrorAlert } from "@/components/project/integration-repositories/add-binding-error-alert";
+import type { AddBindingError } from "@/components/project/integration-repositories/add-binding-error";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -39,6 +42,12 @@ type RepositoryBrowserModalProps = {
   onOpenChange: (open: boolean) => void;
   onSelectRepository: (repository: { owner: string; name: string }) => void;
   selectedRepository?: string;
+  /**
+   * RFC 0001 WP7 D2: an add-flow failure rendered inline. The modal stays
+   * open; the blocker and the action that resolves it are shown together.
+   */
+  addError?: AddBindingError | null;
+  onDismissError?: () => void;
 };
 
 export function RepositoryBrowserModal({
@@ -47,6 +56,8 @@ export function RepositoryBrowserModal({
   onOpenChange,
   onSelectRepository,
   selectedRepository,
+  addError,
+  onDismissError,
 }: RepositoryBrowserModalProps) {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -158,6 +169,14 @@ export function RepositoryBrowserModal({
         <Separator />
 
         <div className="flex-1 overflow-y-auto min-h-[300px]">
+          {addError && onDismissError ? (
+            <div className="px-6 pt-4">
+              <AddBindingErrorAlert
+                error={addError}
+                onDismiss={onDismissError}
+              />
+            </div>
+          ) : null}
           {isLoading && (
             <div className="px-6 py-4 space-y-3">
               {[0, 1, 2, 3, 4].map((slot) => (
@@ -222,9 +241,15 @@ export function RepositoryBrowserModal({
                       key={repository.id}
                       type="button"
                       onClick={() => handleSelectRepository(repository)}
+                      // RFC 0001 D1: a repository already linked to this very
+                      // project cannot be selected again; cross-project links
+                      // stay selectable and are informational only.
+                      disabled={repository.linkedTo?.projectId === projectId}
+                      aria-disabled={repository.linkedTo?.projectId === projectId}
                       className={cn(
                         "w-full p-4 border rounded-md text-left transition-colors group bg-sidebar",
                         "hover:bg-accent focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                        "disabled:cursor-not-allowed disabled:opacity-60",
                         selectedRepository === repository.full_name
                           ? "border-primary bg-accent"
                           : "border-border",
@@ -270,6 +295,36 @@ export function RepositoryBrowserModal({
                                 )}{" "}
                                 {formatTimeAgo(repository.updated_at)}
                               </div>
+                              {repository.linkedTo ? (
+                                repository.linkedTo.projectId === projectId ? (
+                                  <Badge
+                                    variant="outline"
+                                    className="text-xs gap-1"
+                                  >
+                                    <Link2 className="size-3" />
+                                    {t(
+                                      "settings:repositoryBindings.linkedInProject",
+                                    )}
+                                  </Badge>
+                                ) : (
+                                  <Badge
+                                    variant="secondary"
+                                    className="text-xs gap-1"
+                                  >
+                                    <Link2 className="size-3" />
+                                    {t(
+                                      "settings:repositoryBindings.linkedInOtherProject",
+                                      {
+                                        project:
+                                          repository.linkedTo.projectName ??
+                                          t(
+                                            "settings:repositoryBindings.linkedInUnknownProject",
+                                          ),
+                                      },
+                                    )}
+                                  </Badge>
+                                )
+                              ) : null}
                             </div>
                           </div>
                         </div>

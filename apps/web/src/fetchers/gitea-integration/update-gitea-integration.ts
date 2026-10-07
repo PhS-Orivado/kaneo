@@ -3,33 +3,24 @@ import type { InferRequestType } from "hono";
 import { HttpError } from "@/lib/http-error";
 
 export type UpdateGiteaIntegrationRequest = InferRequestType<
-  (typeof client)["gitea-integration"]["project"][":projectId"]["$patch"]
+  (typeof client)["gitea-integration"]["integration"][":integrationId"]["$patch"]
 >["json"];
 
+// RFC 0001 WP3/WP7: updates are keyed by the integration id of the binding
+// the row represents; omitted fields keep their current value.
 async function updateGiteaIntegration(
-  projectId: string,
+  integrationId: string,
   json: UpdateGiteaIntegrationRequest,
 ) {
-  const response = await client["gitea-integration"].project[
-    ":projectId"
+  const response = await client["gitea-integration"].integration[
+    ":integrationId"
   ].$patch({
-    param: { projectId },
+    param: { integrationId },
     json,
   });
 
   if (!response.ok) {
-    const error = await response
-      .clone()
-      .json()
-      .catch(async () => ({
-        message: (await response.text()) || "Request failed",
-      }));
-    throw new HttpError(
-      response.status,
-      typeof error === "object" && error && "message" in error
-        ? String(error.message)
-        : "Request failed",
-    );
+    throw new HttpError(response.status, await response.text());
   }
 
   return response.json();

@@ -1,14 +1,28 @@
 import { client } from "@kaneo/libs";
 import { HttpError } from "@/lib/http-error";
-import type { SyncParams, SyncRules } from "./types";
+import type { SyncRules, SyncScope } from "./types";
 
 export default async function previewSyncRules(
-  param: SyncParams,
+  scope: SyncScope,
   rules: SyncRules,
 ) {
-  const response = await client["integration-sync"].project[":projectId"][
-    ":provider"
-  ].preview.$post({ param, json: { rules } });
+  const response =
+    scope.kind === "binding"
+      ? await client["integration-sync"].integration[
+          ":integrationId"
+        ].preview.$post({
+          param: { integrationId: scope.integrationId },
+          json: { rules },
+        })
+      : await client["integration-sync"].project[":projectId"][":provider"].preview.$post(
+          {
+            param: {
+              projectId: scope.projectId,
+              provider: scope.provider,
+            },
+            json: { rules },
+          },
+        );
   if (!response.ok) throw new HttpError(response.status, await response.text());
   return response.json();
 }

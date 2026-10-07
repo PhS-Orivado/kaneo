@@ -2,7 +2,7 @@ import { Filter, Pause } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import type { SyncParams } from "@/fetchers/integration-sync/types";
+import type { SyncScope } from "@/fetchers/integration-sync/types";
 import { useSyncRules } from "@/hooks/queries/integration-sync/use-sync-rules";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
 import { useUserPreferencesStore } from "@/store/user-preferences";
@@ -10,7 +10,7 @@ import { ResumeSyncDialog } from "./resume-sync-dialog";
 import { RuleSummary } from "./rule-summary";
 import { SyncRulesEditor } from "./sync-rules-editor";
 
-export function SyncRulesSection({ projectId, provider }: SyncParams) {
+export function SyncRulesSection({ scope }: { scope: SyncScope }) {
   const { t } = useTranslation();
   const advanced = useUserPreferencesStore((state) => state.advancedSettings);
   const { canManageSettings, canUpdateTasks } = useWorkspacePermission();
@@ -21,8 +21,10 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
     taskId: string;
     linkId: string;
   } | null>(null);
-  const param = { projectId, provider };
-  const query = useSyncRules(param, pages.at(-1));
+  // RFC 0001 WP5/WP7: the section is addressed by the repository binding the
+  // row represents, never by the project, so sibling bindings never share
+  // rules, paused links or a resume flow by accident.
+  const query = useSyncRules(scope, pages.at(-1));
   const data = query.data;
   if (query.isPending)
     return (
@@ -104,8 +106,8 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
       )}
       {advanced && canManage ? (
         <SyncRulesEditor
-          key={`${projectId}:${provider}`}
-          param={param}
+          key={scope.kind === "binding" ? scope.integrationId : `${scope.projectId}:${scope.provider}`}
+          scope={scope}
           saved={data}
         />
       ) : !advanced && canManage ? (
@@ -184,7 +186,7 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
       )}
       {reviewTask && (
         <ResumeSyncDialog
-          param={param}
+          scope={scope}
           linkId={reviewTask.linkId}
           taskId={reviewTask.taskId}
           onClose={() => setReviewTask(null)}
