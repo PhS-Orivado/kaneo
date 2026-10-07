@@ -4,12 +4,13 @@ import { HTTPException } from "hono/http-exception";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
 import db from "../../database";
 import { integrationTable, projectTable } from "../../database/schema";
+import { mapIntegrationUniqueViolation } from "../../integrations/map-unique-violation";
+import { assertRepositoryBindingQuota } from "../../plan-limits/repository-binding-quota";
 import {
   type GitlabConfig,
   type GitlabTokenType,
   getDefaultGitlabConfig,
   normalizeGitlabBaseUrl,
-  normalizeProjectPath,
   validateGitlabConfig,
 } from "../../plugins/gitlab/config";
 import {
@@ -22,22 +23,34 @@ import {
   parseGitlabProjectPath,
 } from "../utils/normalize-input";
 
-function pickSettings(config: Partial<GitlabConfig>): Partial<GitlabConfig> {
-  const settings: Partial<GitlabConfig> = {};
-  if (config.branchPattern !== undefined) {
-    settings.branchPattern = config.branchPattern;
-  }
-  if (config.customBranchRegex !== undefined) {
-    settings.customBranchRegex = config.customBranchRegex;
-  }
-  if (config.commentTaskLinkOnGitlabIssue !== undefined) {
-    settings.commentTaskLinkOnGitlabIssue = config.commentTaskLinkOnGitlabIssue;
-  }
-  if (config.statusTransitions !== undefined) {
-    settings.statusTransitions = config.statusTransitions;
-  }
-  if (config.syncRules !== undefined) settings.syncRules = config.syncRules;
-  return settings;
+// RFC 0001 WP4: one integration row per GitLab project. The old
+// update-in-place branch (which reused the stored webhook secret and carried
+// settings over) and the O(n) cross-project JSON scan are both deleted. Per
+// governing decision D1 cross-project duplicates are valid rows; per WP0
+// same-project duplicates are rejected by integration_project_type_repo_unique.
+// GitLab addresses repositories by namespaced project path, so the identity
+// key is the normalized base URL plus the lowercased full path; the derived
+// owner/name columns are display convenience only.
+
+/** Repository identity key: `gitlab:<normalizedBase>/<projectPath>` lowercased. */
+export function gitlabRepositoryKey(
+  normalizedBase: string,
+  projectPath: string,
+): string {
+  return `gitlab:${normalizedBase}/${projectPath.toLowerCase()}`;
+}
+
+function repositoryIdentity(projectPath: string): {
+  repositoryOwner: string;
+  repositoryName: string;
+} {
+  const segments = projectPath.split("/");
+  return {
+    // Top-level group, display convenience only.
+    repositoryOwner: segments[0] ?? "",
+    // Final path segment, display convenience only.
+    repositoryName: segments[segments.length - 1] ?? "",
+  };
 }
 
 async function createGitlabIntegration({
@@ -64,6 +77,8 @@ async function createGitlabIntegration({
   const normalizedBase = parseGitlabBaseUrl(baseUrl);
   const normalizedPath = parseGitlabProjectPath(projectPath);
 
+  // A saved credential is only authorized for its original server. The first
+  // binding row holds the stored token for the unchanged base URL.
   const existingIntegration = await db.query.integrationTable.findFirst({
     where: and(
       eq(integrationTable.projectId, projectId),
@@ -84,7 +99,6 @@ async function createGitlabIntegration({
   }
 
   const suppliedToken = accessToken?.trim();
-  // A saved credential is only authorized for its original server and path.
   if (!suppliedToken && previousConfig.accessToken) {
     let savedBase: string | undefined;
     try {
@@ -124,54 +138,22 @@ async function createGitlabIntegration({
     throw error;
   }
 
-  const allGitlab = await db.query.integrationTable.findMany({
-    where: eq(integrationTable.type, "gitlab"),
-  });
+  // WP10: enforce the per-project repository binding quota after project
+  // verification and before the insert. 402 propagates unchanged.
+  await assertRepositoryBindingQuota(projectId, project.workspaceId);
 
-  for (const integration of allGitlab) {
-    if (integration.projectId === projectId || !integration.isActive) {
-      continue;
-    }
-    try {
-      const config = JSON.parse(integration.config) as {
-        baseUrl?: string;
-        projectPath?: string;
-      };
-      if (
-        normalizeGitlabBaseUrl(config.baseUrl ?? "") === normalizedBase &&
-        normalizeProjectPath(config.projectPath ?? "") === normalizedPath
-      ) {
-        throw new HTTPException(409, {
-          message: `Project ${normalizedPath} on this GitLab instance is already linked to another project`,
-        });
-      }
-    } catch (error) {
-      if (error instanceof HTTPException) {
-        throw error;
-      }
-      console.warn(
-        "Skipping invalid GitLab integration config during conflict check",
-        {
-          integrationId: integration.id,
-          error,
-        },
-      );
-    }
-  }
+  // One secret per binding, never copied from an existing row: each row's
+  // webhook route verifies with its own secret, so two bindings of the same
+  // GitLab project never interfere.
+  const webhookSecret = randomBytes(24).toString("hex");
 
-  const webhookSecret =
-    previousConfig.webhookSecret ?? randomBytes(24).toString("hex");
-
-  const config: GitlabConfig = {
-    ...getDefaultGitlabConfig(
-      normalizedBase,
-      resolvedToken,
-      tokenType,
-      normalizedPath,
-      webhookSecret,
-    ),
-    ...pickSettings(previousConfig),
-  };
+  const config: GitlabConfig = getDefaultGitlabConfig(
+    normalizedBase,
+    resolvedToken,
+    tokenType,
+    normalizedPath,
+    webhookSecret,
+  );
 
   const validation = await validateGitlabConfig(config);
   if (!validation.valid) {
@@ -180,68 +162,43 @@ async function createGitlabIntegration({
     });
   }
 
-  if (existingIntegration) {
-    const [updated] = await db
-      .update(integrationTable)
-      .set({
+  const identity = repositoryIdentity(normalizedPath);
+
+  try {
+    const [newIntegration] = await db
+      .insert(integrationTable)
+      .values({
+        projectId,
+        type: "gitlab",
         config: JSON.stringify(config),
+        repositoryKey: gitlabRepositoryKey(normalizedBase, normalizedPath),
+        repositoryOwner: identity.repositoryOwner,
+        repositoryName: identity.repositoryName,
+        baseUrl: normalizedBase,
         isActive: true,
-        updatedAt: new Date(),
       })
-      .where(
-        and(
-          eq(integrationTable.id, existingIntegration.id),
-          eq(integrationTable.config, existingIntegration.config),
-        ),
-      )
       .returning();
 
-    if (!updated) {
-      throw new HTTPException(409, {
-        message: "GitLab integration changed; refresh before reconnecting",
+    if (!newIntegration) {
+      throw new HTTPException(500, {
+        message: "Failed to create GitLab integration",
       });
     }
 
     return {
-      id: updated.id,
-      projectId: updated.projectId,
+      id: newIntegration.id,
+      projectId: newIntegration.projectId,
       baseUrl: normalizedBase,
       projectPath: normalizedPath,
       tokenType,
       webhookSecret,
-      isActive: updated.isActive,
-      createdAt: updated.createdAt,
-      updatedAt: updated.updatedAt,
+      isActive: newIntegration.isActive,
+      createdAt: newIntegration.createdAt,
+      updatedAt: newIntegration.updatedAt,
     };
+  } catch (error) {
+    mapIntegrationUniqueViolation(error, { projectId, type: "gitlab" });
   }
-
-  const [newIntegration] = await db
-    .insert(integrationTable)
-    .values({
-      projectId,
-      type: "gitlab",
-      config: JSON.stringify(config),
-      isActive: true,
-    })
-    .returning();
-
-  if (!newIntegration) {
-    throw new HTTPException(500, {
-      message: "Failed to create GitLab integration",
-    });
-  }
-
-  return {
-    id: newIntegration.id,
-    projectId: newIntegration.projectId,
-    baseUrl: normalizedBase,
-    projectPath: normalizedPath,
-    tokenType,
-    webhookSecret,
-    isActive: newIntegration.isActive,
-    createdAt: newIntegration.createdAt,
-    updatedAt: newIntegration.updatedAt,
-  };
 }
 
 export default createGitlabIntegration;
