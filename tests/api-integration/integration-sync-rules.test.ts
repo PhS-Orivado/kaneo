@@ -694,7 +694,7 @@ describe("reviewed sync resume", () => {
           tx,
         );
       }),
-    ).rejects.toMatchObject({ status: 404, message: "Linked task not found" });
+    ).rejects.toMatchObject({ status: 404, message: "Integration not found" });
     expect(
       await db.query.externalLinkTable.findFirst({
         where: eq(schema.externalLinkTable.id, f.link.id),
@@ -1843,6 +1843,7 @@ describe("reviewed sync resume", () => {
           {
             projectId: f.project.id,
             provider: "gitea",
+            integrationId: f.integration.id,
             linkId: f.link.id,
           },
         );

@@ -103,6 +103,7 @@ async function resumeWithLease(
       if ("error" in result) {
         console.error("Sync resume provider write failed", {
           projectId,
+          provider: initial.integration.type,
           integrationId,
           linkId,
         });

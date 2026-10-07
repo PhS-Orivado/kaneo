@@ -36,6 +36,13 @@ async function insertBinding(projectId: string, repositoryName: string) {
       projectId,
       type: "gitea",
       isActive: true,
+      // RFC 0001 WP0: two bindings of one project must carry distinct
+      // repository keys; NULL keys would collide on
+      // integration_project_type_null_repo_unique.
+      repositoryKey: `gitea:https://git.example/team/${repositoryName}`,
+      repositoryOwner: "team",
+      repositoryName,
+      baseUrl: "https://git.example",
       config: JSON.stringify({
         baseUrl: "https://git.example",
         accessToken: "test-only",

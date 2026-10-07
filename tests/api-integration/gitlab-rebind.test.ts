@@ -18,11 +18,19 @@ import {
 } from "./helpers/fixtures";
 
 const { verify } = vi.hoisted(() => ({ verify: vi.fn() }));
-vi.mock("../../apps/api/src/plugins/gitlab/utils/gitlab-api", () => ({
-  GitlabApiError: class extends Error {},
-  verifyGitlabToken: verify,
-  createGitlabClient: () => ({ getProject: async () => ({}) }),
-}));
+vi.mock(
+  "../../apps/api/src/plugins/gitlab/utils/gitlab-api",
+  async (original) => ({
+    // Keep the real module exports (tokenTypeOf, GitlabApiError, ...) so the
+    // enrichment path of the list route works; only the network calls are
+    // stubbed.
+    ...(await original<
+      typeof import("../../apps/api/src/plugins/gitlab/utils/gitlab-api")
+    >()),
+    verifyGitlabToken: verify,
+    createGitlabClient: () => ({ getProject: async () => ({}) }),
+  }),
+);
 beforeEach(async () => {
   await resetTestDatabase();
   verify.mockReset().mockResolvedValue({ id: 1 });
