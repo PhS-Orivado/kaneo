@@ -1,4 +1,8 @@
 import { responseTimestamp, z } from "../openapi";
+import {
+  repositoryBindingUsageSchema,
+  repositoryLinkedToSchema,
+} from "../integrations/response";
 
 // Tokens are masked; the webhook secret needs manage_settings.
 export const gitlabIntegrationSchema = z
@@ -34,6 +38,17 @@ export const gitlabIntegrationSchema = z
   })
   .openapi("GitlabIntegration");
 
+// RFC 0001 WP4: list response of the project's GitLab bindings with the
+// workspace's repository binding usage summary (WP10).
+export const gitlabIntegrationListSchema = z
+  .object({
+    integrations: z
+      .array(gitlabIntegrationSchema)
+      .openapi({ description: "Every GitLab binding of the project, oldest first." }),
+    usage: repositoryBindingUsageSchema,
+  })
+  .openapi("GitlabIntegrationList");
+
 export const gitlabProjectSchema = z
   .object({
     id: z.number(),
@@ -42,6 +57,12 @@ export const gitlabProjectSchema = z
     name_with_namespace: z.string(),
     visibility: z.string(),
     web_url: z.string(),
+    // RFC 0001 WP4: linked-state annotation. Same-project links block
+    // selection in the picker; cross-project links (allowed per decision D1)
+    // are informational only.
+    linkedTo: repositoryLinkedToSchema
+      .nullable()
+      .openapi({ description: "The binding this project is already linked to, if any." }),
   })
   .openapi("GitlabProject");
 

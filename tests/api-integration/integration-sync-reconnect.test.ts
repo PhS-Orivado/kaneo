@@ -34,8 +34,15 @@ beforeEach(async () => {
   vi.spyOn(events, "publishEvent").mockResolvedValue(undefined);
 });
 
+// RFC 0001 WP3/WP4: the gitea and gitlab create controllers insert a fresh
+// binding row instead of updating the single existing row in place, so a
+// reconnect can no longer overwrite rules saved during verification: the
+// legacy row keeps its rules untouched and the new binding carries its own
+// fresh webhook secret. A legacy NULL repository_key row does not collide
+// with the new keyed row (the partial unique constraint only applies to
+// non-NULL keys).
 it.each(["gitea", "gitlab"] as const)(
-  "%s reconnect cannot overwrite rules saved during verification",
+  "%s reconnect adds a fresh binding instead of overwriting saved rules",
   async (type) => {
     const { workspace } = await createWorkspaceMember();
     const { project } = await createProjectFixture({
@@ -46,7 +53,7 @@ it.each(["gitea", "gitlab"] as const)(
       accessToken: "test-only",
       webhookSecret: "test-hook",
     };
-    const [integration] = await db
+    const [legacy] = await db
       .insert(schema.integrationTable)
       .values({
         projectId: project.id,
@@ -54,9 +61,9 @@ it.each(["gitea", "gitlab"] as const)(
         isActive: true,
         config: JSON.stringify({
           ...base,
-          repositoryOwner: "team",
-          repositoryName: "repo",
-          projectPath: "team/repo",
+          ...(type === "gitea"
+            ? { repositoryOwner: "team", repositoryName: "repo" }
+            : { projectPath: "team/repo" }),
           syncRules: defaultSyncRules,
         }),
       })
@@ -84,7 +91,6 @@ it.each(["gitea", "gitlab"] as const)(
       return { id: 1 };
     });
     const pending = reconnect();
-    const conflict = expect(pending).rejects.toMatchObject({ status: 409 });
     const rules: SyncRules = {
       ...defaultSyncRules,
       incoming: { mode: "labels", match: "all", labels: ["ready"] },
@@ -104,22 +110,27 @@ it.each(["gitea", "gitlab"] as const)(
       );
     } finally {
       release();
-      await conflict;
     }
+    const created = await pending;
+    // The legacy row keeps the rules saved during verification.
     expect(
       JSON.parse(
-        (await db.query.integrationTable.findFirst({
-          where: eq(schema.integrationTable.id, integration!.id),
-        }))!.config,
+        (
+          await db.query.integrationTable.findFirst({
+            where: eq(schema.integrationTable.id, legacy!.id),
+          })
+        )!.config,
       ).syncRules,
     ).toEqual(rules);
-    await reconnect();
-    expect(
-      JSON.parse(
-        (await db.query.integrationTable.findFirst({
-          where: eq(schema.integrationTable.id, integration!.id),
-        }))!.config,
-      ).syncRules,
-    ).toEqual(rules);
+    // A new keyed binding row exists with a fresh webhook secret.
+    const rows = await db.query.integrationTable.findMany({
+      where: eq(schema.integrationTable.projectId, project.id),
+    });
+    expect(rows).toHaveLength(2);
+    const fresh = rows.find((row) => row.id !== legacy!.id)!;
+    expect(fresh.repositoryKey).toBe(`${type}:https://git.example/team/repo`);
+    expect(JSON.parse(fresh.config).webhookSecret).not.toBe("test-hook");
+    expect(created.webhookSecret).not.toBe("test-hook");
+    expect(created.id).not.toBe(legacy!.id);
   },
 );

@@ -79,11 +79,12 @@ async function setup(actions: string[] = ["create", "update"]) {
   });
   mockAuthenticatedSession(member.user);
   const { app } = createApp();
+  // RFC 0001 WP4: the import route is keyed by the integration id.
   const request = () =>
     app.request("/api/gitlab-integration/import-issues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ projectId: project.id }),
+      body: JSON.stringify({ integrationId: integration.id }),
     });
   return { ...member, project, task, integration, request };
 }

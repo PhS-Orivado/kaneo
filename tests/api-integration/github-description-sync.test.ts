@@ -32,6 +32,7 @@ async function setup() {
     .values({
       projectId: project.id,
       type: "github",
+      repositoryKey: "github:20",
       config: JSON.stringify({
         repositoryOwner: "example",
         repositoryName: "repo",

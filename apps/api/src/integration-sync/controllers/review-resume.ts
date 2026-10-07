@@ -7,24 +7,31 @@ import { isTaskInFinalState } from "../../plugins/github/services/task-service";
 import { taskMatchesRule } from "../../plugins/sync/eligibility";
 import { providerIssue } from "../../plugins/sync/provider-issue";
 import { isSyncPaused, readSyncRules } from "../../plugins/sync/rules";
-import { getSyncIntegration } from "./get-integration";
+import {
+  getSyncIntegration,
+  getSyncIntegrationById,
+} from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 import type { IntegrationDatabase } from "../../plugins/github/services/integration-task-scope";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";
 
-export async function reviewSyncResume(
-  projectId: string,
-  provider: string,
+// RFC 0001 WP5: review operates on one repository binding. The paused link
+// and its task must belong to the addressed binding; a sibling binding's
+// links are never visible here, and the comparison token stays bound to the
+// addressed row.
+export async function reviewSyncResumeById(
+  integrationId: string,
   linkId: string,
   authorizedWorkspaceId: string,
   database: IntegrationDatabase = db,
   providerSnapshot?: ResumeProviderSnapshot,
 ) {
-  const integration = await getSyncIntegration(projectId, provider, database);
+  const integration = await getSyncIntegrationById(integrationId, database);
   if (integration.project.workspaceId !== authorizedWorkspaceId)
     throw new HTTPException(403, {
       message: "Project no longer belongs to the authorized workspace",
     });
+  const projectId = integration.projectId;
   const link = await database.query.externalLinkTable.findFirst({
     where: and(
       eq(externalLinkTable.id, linkId),
@@ -71,7 +78,8 @@ export async function reviewSyncResume(
     } catch {
       console.error("Sync resume provider read failed", {
         projectId,
-        provider,
+        provider: integration.type,
+        integrationId,
         linkId,
       });
       throw new HTTPException(502, {
@@ -109,4 +117,25 @@ export async function reviewSyncResume(
     remoteIssueUpdatedAt: remoteIssue.updatedAt,
     token,
   };
+}
+
+// Compat shim (RFC 0001 WP5, section 5): the project-keyed route reviews the
+// project's first binding of the provider until the new web client ships;
+// removed with the cleanup PR.
+export async function reviewSyncResume(
+  projectId: string,
+  provider: string,
+  linkId: string,
+  authorizedWorkspaceId: string,
+  database: IntegrationDatabase = db,
+  providerSnapshot?: ResumeProviderSnapshot,
+) {
+  const integration = await getSyncIntegration(projectId, provider, database);
+  return reviewSyncResumeById(
+    integration.id,
+    linkId,
+    authorizedWorkspaceId,
+    database,
+    providerSnapshot,
+  );
 }

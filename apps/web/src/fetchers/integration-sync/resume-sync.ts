@@ -1,19 +1,31 @@
 import { client } from "@kaneo/libs";
 import { HttpError } from "@/lib/http-error";
-import type { SyncParams } from "./types";
+import type { SyncScope } from "./types";
 
 export default async function resumeSync(
-  param: SyncParams,
+  scope: SyncScope,
   linkId: string,
   token: string,
   source: "kaneo" | "provider",
 ) {
-  const response = await client["integration-sync"].project[":projectId"][
-    ":provider"
-  ].links[":linkId"].resume.$post({
-    param: { ...param, linkId },
-    json: { token, source },
-  });
+  const response =
+    scope.kind === "binding"
+      ? await client["integration-sync"].integration[
+          ":integrationId"
+        ].links[":linkId"].resume.$post({
+          param: { integrationId: scope.integrationId, linkId },
+          json: { token, source },
+        })
+      : await client["integration-sync"].project[":projectId"][":provider"].links[
+          ":linkId"
+        ].resume.$post({
+          param: {
+            projectId: scope.projectId,
+            provider: scope.provider,
+            linkId,
+          },
+          json: { token, source },
+        });
   if (!response.ok) throw new HttpError(response.status, await response.text());
   return response.json();
 }

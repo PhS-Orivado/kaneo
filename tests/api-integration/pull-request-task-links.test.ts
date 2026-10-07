@@ -83,6 +83,11 @@ async function createFixture(
     .values({
       projectId: project.id,
       type: provider,
+      // RFC 0001 WP2: github webhook fan-out resolves bindings by
+      // repository_key; gitea deliveries stay keyed by integration id.
+      ...(provider === "github"
+        ? { repositoryKey: `github:${repo === "repo" ? 2 : 3}` }
+        : {}),
       isActive: true,
       config: JSON.stringify({
         repositoryOwner: "acme",
@@ -156,13 +161,15 @@ describe.each(["github", "gitea"] as const)(
     });
     const runImport = async () => {
       if (provider === "gitea") {
-        const result = await importGiteaIssues(fixture.project.id);
+        const result = await importGiteaIssues({
+          integrationId: fixture.integration.id,
+        });
         expect(result.errors).toBeUndefined();
         return;
       }
-      let result = await importIssues(fixture.project.id);
+      let result = await importIssues({ integrationId: fixture.integration.id });
       for (let attempt = 0; result.pending && attempt < 10; attempt++) {
-        result = await importIssues(fixture.project.id, result.runId);
+        result = await importIssues({ integrationId: fixture.integration.id, runId: result.runId });
       }
       expect(result.pending).toBe(false);
     };

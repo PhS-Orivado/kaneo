@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import saveSyncRules from "@/fetchers/integration-sync/save-sync-rules";
-import type { SyncParams, SyncRules } from "@/fetchers/integration-sync/types";
+import type { SyncRules, SyncScope } from "@/fetchers/integration-sync/types";
 
-export function useSaveSyncRules(param: SyncParams) {
+export function useSaveSyncRules(scope: SyncScope) {
   const client = useQueryClient();
   return useMutation({
     mutationFn: ({
@@ -11,14 +11,11 @@ export function useSaveSyncRules(param: SyncParams) {
     }: {
       rules: SyncRules;
       previewToken: string;
-    }) => saveSyncRules(param, rules, previewToken),
+    }) => saveSyncRules(scope, rules, previewToken),
     onSuccess: async () => {
-      await client.invalidateQueries({
-        queryKey: ["integration-sync", param.projectId],
-      });
-      await client.invalidateQueries({
-        queryKey: ["integration-sync-preview", param.projectId],
-      });
+      // The sync, preview and review keys share the "integration-sync"
+      // prefix, so one invalidation covers the whole surface.
+      await client.invalidateQueries({ queryKey: ["integration-sync"] });
       await client.invalidateQueries({ queryKey: ["external-links"] });
     },
   });

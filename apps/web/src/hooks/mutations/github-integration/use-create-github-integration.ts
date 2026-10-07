@@ -20,21 +20,22 @@ export function useCreateGithubIntegration() {
     }) => createGithubIntegration(projectId, data),
     onSuccess: (_, { projectId }) => {
       queryClient.invalidateQueries({
-        queryKey: ["github-integration", projectId],
+        queryKey: ["github-integrations", projectId],
       });
     },
   });
 }
 
+// RFC 0001 WP2/WP7: deletes are keyed by the integration id; the binding's
+// external links disappear with it, so the external-link cache is dropped too.
 export function useDeleteGithubIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (projectId: string) => deleteGithubIntegration(projectId),
-    onSuccess: (_, projectId) => {
-      queryClient.invalidateQueries({
-        queryKey: ["github-integration", projectId],
-      });
+    mutationFn: (integrationId: string) => deleteGithubIntegration(integrationId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["github-integrations"] });
+      queryClient.invalidateQueries({ queryKey: ["external-links"] });
     },
   });
 }

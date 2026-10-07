@@ -53,13 +53,38 @@ function toPriorityLabels(labels: GiteaLabel[]): LabelLike[] {
   return labels.map((label) => ({ name: label.name }));
 }
 
-export async function importGiteaIssues(
-  projectId: string,
-): Promise<ImportResult> {
+// RFC 0001 WP3: imports are keyed by integration id, so every binding keeps
+// its own issue and pull request links. When a projectId is also provided
+// (compat with the old project-keyed body), it must match the binding's
+// project; a mismatch is a 404, never a 403, so the endpoint does not
+// confirm the existence of a foreign binding.
+export async function importGiteaIssues({
+  integrationId,
+  projectId: expectedProjectId,
+}: {
+  integrationId: string;
+  projectId?: string;
+}): Promise<ImportResult> {
   const errors: string[] = [];
   let imported = 0;
   let updated = 0;
   let skipped = 0;
+
+  const integration = await db.query.integrationTable.findFirst({
+    where: and(
+      eq(integrationTable.id, integrationId),
+      eq(integrationTable.type, "gitea"),
+    ),
+  });
+
+  if (!integration) {
+    throw new HTTPException(404, { message: "Gitea integration not found" });
+  }
+
+  const projectId = integration.projectId;
+  if (expectedProjectId && expectedProjectId !== projectId) {
+    throw new HTTPException(404, { message: "Gitea integration not found" });
+  }
 
   const project = await db.query.projectTable.findFirst({
     where: eq(projectTable.id, projectId),
@@ -67,17 +92,6 @@ export async function importGiteaIssues(
 
   if (!project) {
     throw new HTTPException(404, { message: "Project not found" });
-  }
-
-  const integration = await db.query.integrationTable.findFirst({
-    where: and(
-      eq(integrationTable.projectId, projectId),
-      eq(integrationTable.type, "gitea"),
-    ),
-  });
-
-  if (!integration) {
-    throw new HTTPException(404, { message: "Gitea integration not found" });
   }
 
   if (!integration.isActive) {

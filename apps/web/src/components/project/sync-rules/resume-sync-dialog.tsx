@@ -10,24 +10,24 @@ import {
   DialogPopup,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { SyncParams } from "@/fetchers/integration-sync/types";
+import type { SyncScope } from "@/fetchers/integration-sync/types";
 import { useResumeSync } from "@/hooks/mutations/integration-sync/use-resume-sync";
 import { useResumePreview } from "@/hooks/queries/integration-sync/use-resume-preview";
 
 export function ResumeSyncDialog({
-  param,
+  scope,
   linkId,
   taskId,
   onClose,
 }: {
-  param: SyncParams;
+  scope: SyncScope;
   linkId: string;
   taskId: string;
   onClose: () => void;
 }) {
   const { t } = useTranslation();
-  const preview = useResumePreview(param, linkId, taskId);
-  const resume = useResumeSync(param, linkId);
+  const preview = useResumePreview(scope, linkId, taskId);
+  const resume = useResumeSync(scope, linkId);
   const data = preview.data;
   const choose = (source: "kaneo" | "provider") => {
     if (data)

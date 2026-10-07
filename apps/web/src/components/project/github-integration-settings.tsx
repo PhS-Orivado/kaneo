@@ -1,55 +1,43 @@
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { useQuery } from "@tanstack/react-query";
-import {
-  AlertTriangle,
-  CheckCircle,
-  ExternalLink,
-  GitBranch,
-  Import,
-  Link,
-  RefreshCw,
-  Unlink,
-  XCircle,
-} from "lucide-react";
-import React from "react";
-import { useForm } from "react-hook-form";
+import { Plus } from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { z } from "zod/v4";
 import { GithubIcon } from "@/components/icons/github-icon";
-import { RepositoryBrowserModal } from "@/components/project/repository-browser-modal";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { BindingSettingsDialog } from "@/components/project/integration-repositories/binding-settings-dialog";
+import { BindingSyncRulesDialog } from "@/components/project/integration-repositories/binding-sync-rules-dialog";
+import { BindingWorkflowRulesDialog } from "@/components/project/integration-repositories/binding-workflow-rules-dialog";
+import { DisconnectIntegrationDialog } from "@/components/project/integration-repositories/disconnect-integration-dialog";
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
+  parseAddBindingError,
+  type AddBindingError,
+} from "@/components/project/integration-repositories/add-binding-error";
+import { GithubConnectForm } from "@/components/project/integration-repositories/github-connect-form";
+import { IntegrationRepositoryList } from "@/components/project/integration-repositories/integration-repository-list";
+import { RepositoryUsageBadge } from "@/components/project/integration-repositories/repository-usage-badge";
+import { RepositoryBrowserModal } from "@/components/project/repository-browser-modal";
+import { Button } from "@/components/ui/button";
 import getGitHubAppInfo from "@/fetchers/github-integration/get-app-info";
-import type { VerifyGithubInstallationResponse } from "@/fetchers/github-integration/verify-github-installation";
 import {
   useCreateGithubIntegration,
   useDeleteGithubIntegration,
-  useVerifyGithubInstallation,
 } from "@/hooks/mutations/github-integration/use-create-github-integration";
 import useImportGithubIssues from "@/hooks/mutations/github-integration/use-import-github-issues";
 import { useUpdateGithubIntegration } from "@/hooks/mutations/github-integration/use-update-github-integration";
-import useGetGithubIntegration from "@/hooks/queries/github-integration/use-get-github-integration";
+import useListGithubIntegrations from "@/hooks/queries/github-integration/use-list-github-integrations";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
 import { authClient } from "@/lib/auth-client";
-import { cn } from "@/lib/cn";
 import { toast } from "@/lib/toast";
+import {
+  toGithubBindingRow,
+  type RepositoryBindingRow,
+} from "@/types/repository-binding";
 
-type GithubIntegrationFormValues = {
-  repositoryOwner: string;
-  repositoryName: string;
-};
-
+/**
+ * RFC 0001 WP7: the GitHub settings surface lists every repository binding of
+ * the project. The first binding is created through the connect form or the
+ * repository browser; further bindings are added from the same browser, and
+ * every row manages its own settings, sync rules, workflow rules and import.
+ */
 export function GitHubIntegrationSettings({
   projectId,
 }: {
@@ -64,7 +52,51 @@ export function GitHubIntegrationSettings({
     queryFn: getGitHubAppInfo,
     enabled: Boolean(session?.user.id),
   });
-  const [isLinkingAccount, setIsLinkingAccount] = React.useState(false);
+
+  const {
+    data: list,
+    isLoading,
+    error,
+    refetch,
+  } = useListGithubIntegrations(projectId);
+  const rows = useMemo(
+    () => (list?.integrations ?? []).map(toGithubBindingRow),
+    [list],
+  );
+
+  const { mutateAsync: createIntegration, isPending: isCreating } =
+    useCreateGithubIntegration();
+  const { mutateAsync: deleteIntegration, isPending: isDisconnecting } =
+    useDeleteGithubIntegration();
+  const { mutateAsync: updateSettings, isPending: isUpdatingSettings } =
+    useUpdateGithubIntegration();
+  const { mutateAsync: importIssues } = useImportGithubIssues();
+
+  const [isLinkingAccount, setIsLinkingAccount] = useState(false);
+  const [showBrowser, setShowBrowser] = useState(false);
+  const [addError, setAddError] = useState<AddBindingError | null>(null);
+  const [importingIds, setImportingIds] = useState<ReadonlySet<string>>(
+    () => new Set(),
+  );
+  const [settingsRow, setSettingsRow] = useState<RepositoryBindingRow | null>(
+    null,
+  );
+  const [syncRulesRow, setSyncRulesRow] =
+    useState<RepositoryBindingRow | null>(null);
+  const [workflowRulesRow, setWorkflowRulesRow] =
+    useState<RepositoryBindingRow | null>(null);
+  const [disconnectRow, setDisconnectRow] =
+    useState<RepositoryBindingRow | null>(null);
+
+  // Stable per-row predicate so memoized rows do not re-render on each pass
+  // (rerender-memo); legacy bindings without a verified installation and
+  // members without task permissions cannot start an import.
+  const isImportDisabled = useCallback(
+    (row: RepositoryBindingRow) =>
+      !hasImportPermission || row.requiresVerification,
+    [hasImportPermission],
+  );
+
   const linkAccount = async () => {
     setIsLinkingAccount(true);
     try {
@@ -83,189 +115,65 @@ export function GitHubIntegrationSettings({
       setIsLinkingAccount(false);
     }
   };
-  const githubIntegrationSchema = React.useMemo(
-    () =>
-      z.object({
-        repositoryOwner: z
-          .string()
-          .min(1, t("settings:githubIntegration.validation.ownerRequired"))
-          .regex(
-            /^[a-zA-Z0-9-]+$/,
-            t("settings:githubIntegration.validation.ownerInvalid"),
-          ),
-        repositoryName: z
-          .string()
-          .min(1, t("settings:githubIntegration.validation.nameRequired"))
-          .regex(
-            /^[a-zA-Z0-9._-]+$/,
-            t("settings:githubIntegration.validation.nameInvalid"),
-          ),
-      }),
-    [t],
-  );
 
-  const { data: integration, isLoading } = useGetGithubIntegration(projectId);
-  const { mutateAsync: createIntegration, isPending: isCreating } =
-    useCreateGithubIntegration();
-  const { mutateAsync: deleteIntegration, isPending: isDeleting } =
-    useDeleteGithubIntegration();
-  const { mutateAsync: verifyInstallation, isPending: isVerifying } =
-    useVerifyGithubInstallation();
-  const { mutateAsync: importIssues, isPending: isImporting } =
-    useImportGithubIssues();
-  const { mutateAsync: updateGithubSettings, isPending: isUpdatingSettings } =
-    useUpdateGithubIntegration();
-
-  const [verificationResult, setVerificationResult] =
-    React.useState<VerifyGithubInstallationResponse | null>(null);
-  const [showRepositoryBrowser, setShowRepositoryBrowser] =
-    React.useState(false);
-
-  const form = useForm<GithubIntegrationFormValues>({
-    resolver: standardSchemaResolver(githubIntegrationSchema),
-    defaultValues: {
-      repositoryOwner: integration?.repositoryOwner || "",
-      repositoryName: integration?.repositoryName || "",
-    },
-  });
-
-  React.useEffect(() => {
-    if (integration) {
-      form.reset({
-        repositoryOwner: integration.repositoryOwner,
-        repositoryName: integration.repositoryName,
-      });
-    }
-  }, [integration, form]);
-
-  const repositoryOwner = form.watch("repositoryOwner");
-  const repositoryName = form.watch("repositoryName");
-
-  const handleVerifyInstallation = React.useCallback(
-    async (data: GithubIntegrationFormValues, showToast = true) => {
-      try {
-        const result = await verifyInstallation({ ...data, projectId });
-        setVerificationResult(result);
-
-        if (showToast) {
-          if (result.isInstalled && result.hasRequiredPermissions) {
-            toast.success(t("settings:githubIntegration.toast.installedOk"));
-          } else if (result.isInstalled) {
-            toast.warning(
-              t("settings:githubIntegration.toast.installedMissingPerms"),
-            );
-          } else if (result.repositoryExists) {
-            toast.warning(
-              t("settings:githubIntegration.toast.needsInstallOnRepo"),
-            );
-          } else {
-            toast.error(t("settings:githubIntegration.toast.repoNotFound"));
-          }
-        }
-      } catch (error) {
-        if (showToast) {
-          toast.error(
-            error instanceof Error
-              ? error.message
-              : t("settings:githubIntegration.toast.verifyError"),
-          );
-        }
-        setVerificationResult(null);
-      }
-    },
-    [verifyInstallation, projectId, t],
-  );
-
-  React.useEffect(() => {
-    if (
-      appInfo?.accountConnected &&
-      repositoryOwner &&
-      repositoryName &&
-      form.formState.isValid
-    ) {
-      handleVerifyInstallation({ repositoryOwner, repositoryName }, false);
-    }
-  }, [
-    appInfo?.accountConnected,
-    repositoryOwner,
-    repositoryName,
-    form.formState.isValid,
-    handleVerifyInstallation,
-  ]);
-
-  const handleRepositorySelect = (repository: {
+  // RFC 0001 D2: a failed add keeps the browser open; the server's own
+  // blocker message (plan limit 402, duplicate 409) is shown inline.
+  const handleBrowserSelect = async (repository: {
     owner: string;
     name: string;
   }) => {
-    form.setValue("repositoryOwner", repository.owner, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
-    });
-    form.setValue("repositoryName", repository.name, {
-      shouldValidate: true,
-      shouldDirty: true,
-      shouldTouch: true,
-    });
-    setShowRepositoryBrowser(false);
-
-    setVerificationResult(null);
-  };
-
-  const onSubmit = async (data: GithubIntegrationFormValues) => {
     try {
-      const verification = await verifyInstallation({ ...data, projectId });
-
-      if (!verification.isInstalled) {
-        toast.error(t("settings:githubIntegration.toast.installAppFirst"));
-        return;
-      }
-
-      if (!verification.hasRequiredPermissions) {
-        toast.error(
-          t("settings:githubIntegration.toast.missingPermsDetail", {
-            list: verification.missingPermissions?.join(", ") || "issues",
-          }),
-        );
-        return;
-      }
-
       await createIntegration({
         projectId,
-        data,
+        data: {
+          repositoryOwner: repository.owner,
+          repositoryName: repository.name,
+        },
       });
+      setAddError(null);
+      setShowBrowser(false);
       toast.success(t("settings:githubIntegration.toast.updated"));
     } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : t("settings:githubIntegration.toast.updateError"),
-      );
+      setAddError(parseAddBindingError(error));
     }
   };
 
-  const handleDelete = async () => {
+  const handleCommentTaskLinkChange = async (
+    row: RepositoryBindingRow,
+    checked: boolean,
+  ) => {
     try {
-      await deleteIntegration(projectId);
-      form.reset({ repositoryOwner: "", repositoryName: "" });
-      setVerificationResult(null);
-      toast.success(t("settings:githubIntegration.toast.removed"));
+      await updateSettings({
+        integrationId: row.integrationId,
+        json: { commentTaskLinkOnGitHubIssue: checked },
+      });
+      toast.success(
+        checked
+          ? t("settings:githubIntegration.toast.commentOnEnabled")
+          : t("settings:githubIntegration.toast.commentOnDisabled"),
+      );
     } catch (error) {
       toast.error(
         error instanceof Error
           ? error.message
-          : t("settings:githubIntegration.toast.removeError"),
+          : t("settings:githubIntegration.toast.settingsUpdateError"),
       );
     }
   };
 
-  const handleImportIssues = async () => {
+  const handleImportIssues = async (row: RepositoryBindingRow) => {
     if (!hasImportPermission) return;
+    if (row.requiresVerification) {
+      toast.warning(t("settings:githubIntegration.reverifyHint"));
+      return;
+    }
+    setImportingIds((current) => new Set(current).add(row.integrationId));
     try {
       const result = await importIssues({
+        integrationId: row.integrationId,
         projectId,
-        ...(integration?.importProgress?.pending
-          ? { runId: integration.importProgress.runId }
+        ...(row.importProgress?.pending
+          ? { runId: row.importProgress.runId }
           : {}),
       });
       toast.success(t("settings:githubIntegration.toast.issuesImported"), {
@@ -277,6 +185,29 @@ export function GitHubIntegrationSettings({
           ? error.message
           : t("settings:githubIntegration.toast.importError"),
       );
+    } finally {
+      setImportingIds((current) => {
+        const next = new Set(current);
+        next.delete(row.integrationId);
+        return next;
+      });
+    }
+  };
+
+  const handleDisconnect = async (row: RepositoryBindingRow) => {
+    try {
+      await deleteIntegration(row.integrationId);
+      setDisconnectRow(null);
+      if (settingsRow?.integrationId === row.integrationId) {
+        setSettingsRow(null);
+      }
+      toast.success(t("settings:githubIntegration.toast.removed"));
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : t("settings:githubIntegration.toast.removeError"),
+      );
     }
   };
 
@@ -284,28 +215,17 @@ export function GitHubIntegrationSettings({
     return (
       <div className="space-y-4">
         <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-          <div className="space-y-4">
-            <div className="h-4 bg-muted rounded animate-pulse w-40" />
-            <div className="h-4 bg-muted rounded animate-pulse w-full" />
-            <div className="h-10 bg-muted rounded animate-pulse w-full" />
-          </div>
+          <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+          <div className="h-10 w-full animate-pulse rounded bg-muted" />
         </div>
         <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-          <div className="space-y-4">
-            <div className="h-4 bg-muted rounded animate-pulse w-40" />
-            <div className="h-10 bg-muted rounded animate-pulse w-full" />
-            <div className="h-10 bg-muted rounded animate-pulse w-full" />
-          </div>
+          <div className="h-4 w-40 animate-pulse rounded bg-muted" />
+          <div className="h-10 w-full animate-pulse rounded bg-muted" />
+          <div className="h-10 w-full animate-pulse rounded bg-muted" />
         </div>
       </div>
     );
   }
-
-  const isConnected = !!integration && integration.isActive;
-  // The saved binding is verified again by each import request. Resuming must
-  // also work after refresh, without a new administrator-only account check.
-  const canImport =
-    hasImportPermission && isConnected && !integration.requiresVerification;
 
   return (
     <div className="space-y-4">
@@ -331,459 +251,94 @@ export function GitHubIntegrationSettings({
           )}
         </div>
       )}
-      {integration?.requiresVerification && (
-        <p
-          role="status"
-          className="rounded-md border border-border p-4 text-sm"
-        >
-          {t("settings:githubIntegration.reverifyHint")}
-        </p>
-      )}
-      <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-        <div className="flex items-center justify-between">
+
+      {rows.length === 0 ? (
+        <div className="space-y-4 rounded-xl border border-border bg-card p-4">
           <div className="space-y-0.5">
             <p className="text-sm font-medium">
-              {t("settings:githubIntegration.connectionStatus")}
+              {t("settings:repositoryBindings.addFirstTitle")}
             </p>
-            {isConnected ? (
-              <p className="text-xs text-muted-foreground">
-                {t("settings:githubIntegration.connectedActive")}
-              </p>
-            ) : (
-              <p className="text-xs text-muted-foreground">
-                {t("settings:githubIntegration.notConnectedHint")}
-              </p>
-            )}
+            <p className="text-xs text-muted-foreground">
+              {t("settings:repositoryBindings.addFirstHint")}
+            </p>
           </div>
-          <div className="flex items-center gap-3">
-            {isConnected ? (
-              <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="gap-1">
-                  <CheckCircle className="w-3 h-3" />
-                  {t("settings:githubIntegration.badgeConnected")}
-                </Badge>
-              </div>
-            ) : (
-              <Badge variant="outline" className="gap-1">
-                <XCircle className="w-3 h-3" />
-                {t("settings:githubIntegration.badgeNotConnected")}
-              </Badge>
-            )}
-          </div>
+          <GithubConnectForm
+            projectId={projectId}
+            onOpenBrowser={() => setShowBrowser(true)}
+          />
         </div>
-
-        {isConnected && (
-          <>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:githubIntegration.repository")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:githubIntegration.repositoryHint")}
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <GithubIcon className="w-4 h-4" />
-                <span className="font-medium">
-                  {integration.repositoryOwner}/{integration.repositoryName}
-                </span>
-                <a
-                  href={`https://github.com/${integration.repositoryOwner}/${integration.repositoryName}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-primary/80 transition-colors"
-                >
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              </div>
-            </div>
-
-            <Separator />
-            <div className="flex items-center justify-between gap-4">
-              <div className="min-w-0 flex-1 space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:githubIntegration.commentTaskLinkTitle")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:githubIntegration.commentTaskLinkHint")}
-                </p>
-              </div>
-              <Switch
-                checked={integration.commentTaskLinkOnGitHubIssue !== false}
-                onCheckedChange={async (checked) => {
-                  try {
-                    await updateGithubSettings({
-                      projectId,
-                      json: { commentTaskLinkOnGitHubIssue: checked },
-                    });
-                    toast.success(
-                      checked
-                        ? t("settings:githubIntegration.toast.commentOnEnabled")
-                        : t(
-                            "settings:githubIntegration.toast.commentOnDisabled",
-                          ),
-                    );
-                  } catch (error) {
-                    toast.error(
-                      error instanceof Error
-                        ? error.message
-                        : t(
-                            "settings:githubIntegration.toast.settingsUpdateError",
-                          ),
-                    );
-                  }
-                }}
-                disabled={isUpdatingSettings}
-              />
-            </div>
-          </>
-        )}
-
-        {isConnected && verificationResult && (
-          <>
-            <Separator />
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:githubIntegration.appStatusTitle")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:githubIntegration.appStatusHint")}
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                {verificationResult.isInstalled &&
-                verificationResult.hasRequiredPermissions ? (
-                  <>
-                    <CheckCircle className="h-4 w-4 text-success-foreground" />
-                    <span className="font-medium text-success-foreground">
-                      {t("settings:githubIntegration.statusProperlyConfigured")}
-                    </span>
-                  </>
-                ) : verificationResult.isInstalled ? (
-                  <>
-                    <AlertTriangle className="h-4 w-4 text-warning-foreground" />
-                    <span className="font-medium text-warning-foreground">
-                      {t("settings:githubIntegration.statusMissingPermissions")}
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <XCircle className="h-4 w-4 text-destructive-foreground" />
-                    <span className="font-medium text-destructive-foreground">
-                      {t("settings:githubIntegration.statusNotInstalled")}
-                    </span>
-                  </>
-                )}
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-      <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <FormField
-              control={form.control}
-              name="repositoryOwner"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-sm font-medium">
-                        {t("settings:githubIntegration.ownerLabel")}
-                      </FormLabel>
-                      <p className="text-xs text-muted-foreground">
-                        {t("settings:githubIntegration.ownerHint")}
-                      </p>
-                    </div>
-                    <FormControl>
-                      <Input
-                        className="w-64"
-                        placeholder={t(
-                          "settings:githubIntegration.ownerPlaceholder",
-                        )}
-                        {...field}
-                        disabled={isCreating || isDeleting}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Separator />
-
-            <FormField
-              control={form.control}
-              name="repositoryName"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="flex items-center justify-between">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-sm font-medium">
-                        {t("settings:githubIntegration.repoNameLabel")}
-                      </FormLabel>
-                      <p className="text-xs text-muted-foreground">
-                        {t("settings:githubIntegration.repoNameHint")}
-                      </p>
-                    </div>
-                    <FormControl>
-                      <Input
-                        className="w-64"
-                        placeholder={t(
-                          "settings:githubIntegration.repoNamePlaceholder",
-                        )}
-                        {...field}
-                        disabled={isCreating || isDeleting}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <Separator />
-
-            <div className="flex items-center justify-between">
-              <div className="space-y-0.5">
-                <p className="text-sm font-medium">
-                  {t("settings:githubIntegration.actionsTitle")}
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  {t("settings:githubIntegration.actionsHint")}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setShowRepositoryBrowser(true)}
-                  disabled={!appInfo?.accountConnected}
-                  className="gap-2"
-                >
-                  <GitBranch className="size-3" />
-                  {t("settings:githubIntegration.browse")}
-                </Button>
-
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleVerifyInstallation(form.getValues())}
-                  disabled={
-                    !appInfo?.accountConnected ||
-                    isVerifying ||
-                    !form.formState.isValid
-                  }
-                  className="gap-2"
-                >
-                  <RefreshCw
-                    className={cn("size-3", isVerifying && "animate-spin")}
-                  />
-                  {t("settings:githubIntegration.verify")}
-                </Button>
-
-                <Button
-                  type="submit"
-                  size="sm"
-                  disabled={
-                    !appInfo?.accountConnected ||
-                    isCreating ||
-                    isDeleting ||
-                    !form.formState.isValid ||
-                    (verificationResult
-                      ? !verificationResult.isInstalled ||
-                        !verificationResult.hasRequiredPermissions
-                      : false)
-                  }
-                  className="gap-2"
-                >
-                  <Link className="size-3" />
-                  {isConnected
-                    ? t("settings:githubIntegration.update")
-                    : t("settings:githubIntegration.connect")}
-                </Button>
-
-                {integration && (
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    size="sm"
-                    onClick={handleDelete}
-                    disabled={isCreating || isDeleting}
-                    className="gap-2"
-                  >
-                    <Unlink className="size-3" />
-                    {t("settings:githubIntegration.disconnect")}
-                  </Button>
-                )}
-              </div>
-            </div>
-          </form>
-        </Form>
-
-        {verificationResult && (
-          <>
-            <Separator />
-            <div className="space-y-2">
-              <div
-                className={cn(
-                  "flex items-start gap-3 p-3 border rounded-md text-sm",
-                  verificationResult.isInstalled &&
-                    verificationResult.hasRequiredPermissions
-                    ? "border-success/25 bg-success/10"
-                    : verificationResult.isInstalled
-                      ? "border-warning/25 bg-warning/10"
-                      : verificationResult.repositoryExists
-                        ? "border-warning/25 bg-warning/10"
-                        : "border-destructive/25 bg-destructive/10",
-                )}
-              >
-                {verificationResult.isInstalled &&
-                verificationResult.hasRequiredPermissions ? (
-                  <CheckCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-success-foreground" />
-                ) : verificationResult.isInstalled ||
-                  verificationResult.repositoryExists ? (
-                  <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-warning-foreground" />
-                ) : (
-                  <XCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-destructive-foreground" />
-                )}
-                <div className="flex-1">
-                  <p className="font-medium">{verificationResult.message}</p>
-
-                  {verificationResult.isInstalled &&
-                    !verificationResult.hasRequiredPermissions &&
-                    verificationResult.missingPermissions && (
-                      <div className="mt-2">
-                        <p className="text-xs mb-2">
-                          {t(
-                            "settings:githubIntegration.missingPermissionsLabel",
-                          )}{" "}
-                          <strong>
-                            {verificationResult.missingPermissions.join(", ")}
-                          </strong>
-                        </p>
-                        <div className="flex gap-2">
-                          {verificationResult.settingsUrl && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              onClick={() =>
-                                window.open(
-                                  verificationResult.settingsUrl,
-                                  "_blank",
-                                )
-                              }
-                              className="gap-2"
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                              {t(
-                                "settings:githubIntegration.updatePermissions",
-                              )}
-                            </Button>
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                  {!verificationResult.isInstalled &&
-                    verificationResult.repositoryExists && (
-                      <div className="mt-2">
-                        {verificationResult.installationUrl && (
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            onClick={() =>
-                              window.open(
-                                verificationResult.installationUrl,
-                                "_blank",
-                              )
-                            }
-                            className="gap-2"
-                          >
-                            <ExternalLink className="w-3 h-3" />
-                            {t("settings:githubIntegration.installGithubApp")}
-                          </Button>
-                        )}
-                      </div>
-                    )}
-                </div>
-              </div>
-            </div>
-          </>
-        )}
-      </div>
-
-      {isConnected && (
+      ) : (
         <div className="space-y-4 rounded-xl border border-border bg-card p-4">
-          <div className="flex items-center justify-between">
-            <div className="space-y-0.5">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex min-w-0 items-center gap-2">
               <p className="text-sm font-medium">
-                {t("settings:githubIntegration.importSectionTitle")}
+                {t("settings:repositoryBindings.listTitle")}
               </p>
-              <p className="text-xs text-muted-foreground">
-                {t("settings:githubIntegration.importSectionHint")}
-              </p>
+              {list?.usage ? <RepositoryUsageBadge usage={list.usage} /> : null}
             </div>
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={handleImportIssues}
-                disabled={isImporting || !canImport}
-                className="gap-2"
-                size="sm"
-                variant="outline"
-              >
-                {isImporting ? (
-                  <RefreshCw className="size-3 animate-spin" />
-                ) : (
-                  <Import className="size-3" />
-                )}
-                {isImporting
-                  ? t("settings:githubIntegration.importing")
-                  : integration?.importProgress?.pending
-                    ? t("settings:githubIntegration.resumeImport")
-                    : t("settings:githubIntegration.importIssues")}
-              </Button>
-            </div>
+            <Button
+              type="button"
+              size="sm"
+              disabled={isCreating}
+              onClick={() => {
+                setAddError(null);
+                setShowBrowser(true);
+              }}
+            >
+              <Plus aria-hidden="true" className="size-3" />
+              {t("settings:repositoryBindings.addMore")}
+            </Button>
           </div>
-          {integration?.importProgress?.pending && !isImporting && (
-            <p role="status" className="text-xs text-muted-foreground">
-              {t("settings:githubIntegration.importPaused")}{" "}
-              {t(
-                "settings:githubIntegration.importSummary",
-                integration.importProgress,
-              )}
-            </p>
-          )}
-          {!canImport && (
-            <>
-              <Separator />
-              <p className="text-xs text-muted-foreground">
-                {hasImportPermission
-                  ? t("settings:githubIntegration.importDisabledHint")
-                  : t("settings:gitlabIntegration.importPermissionHint")}
-              </p>
-            </>
-          )}
+          <IntegrationRepositoryList
+            rows={rows}
+            isLoading={false}
+            error={error instanceof Error ? error : null}
+            onRetry={() => void refetch()}
+            importingIds={importingIds}
+            isImportDisabled={isImportDisabled}
+            onOpenSettings={setSettingsRow}
+            onOpenSyncRules={setSyncRulesRow}
+            onOpenWorkflowRules={setWorkflowRulesRow}
+            onImportIssues={(row) => void handleImportIssues(row)}
+            onDisconnect={setDisconnectRow}
+          />
         </div>
       )}
 
+      <BindingSettingsDialog
+        row={settingsRow}
+        isUpdating={isUpdatingSettings}
+        onCommentTaskLinkChange={(row, checked) =>
+          void handleCommentTaskLinkChange(row, checked)
+        }
+        onClose={() => setSettingsRow(null)}
+      />
+      <BindingSyncRulesDialog row={syncRulesRow} onClose={() => setSyncRulesRow(null)} />
+      <BindingWorkflowRulesDialog
+        row={workflowRulesRow}
+        projectId={projectId}
+        onClose={() => setWorkflowRulesRow(null)}
+      />
+      <DisconnectIntegrationDialog
+        row={disconnectRow}
+        isPending={isDisconnecting}
+        onConfirm={(row) => void handleDisconnect(row)}
+        onCancel={() => setDisconnectRow(null)}
+      />
       <RepositoryBrowserModal
         projectId={projectId}
-        open={showRepositoryBrowser}
-        onOpenChange={setShowRepositoryBrowser}
-        onSelectRepository={handleRepositorySelect}
-        selectedRepository={
-          repositoryOwner && repositoryName
-            ? `${repositoryOwner}/${repositoryName}`
-            : undefined
+        open={showBrowser}
+        onOpenChange={(open) => {
+          if (!open) {
+            setAddError(null);
+          }
+          setShowBrowser(open);
+        }}
+        onSelectRepository={(repository) =>
+          void handleBrowserSelect(repository)
         }
+        addError={addError}
+        onDismissError={() => setAddError(null)}
       />
     </div>
   );

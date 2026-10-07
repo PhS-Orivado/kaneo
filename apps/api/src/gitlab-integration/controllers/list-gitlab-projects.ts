@@ -1,10 +1,14 @@
+import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
+import db from "../../database";
+import { integrationTable } from "../../database/schema";
 import type { GitlabTokenType } from "../../plugins/gitlab/config";
 import {
   createGitlabClient,
   verifyGitlabToken,
 } from "../../plugins/gitlab/utils/gitlab-api";
 import { parseGitlabBaseUrl } from "../utils/normalize-input";
+import { gitlabRepositoryKey } from "./create-gitlab-integration";
 
 type ProjectRow = {
   id: number;
@@ -18,6 +22,44 @@ type ProjectRow = {
 const PER_PAGE = 50;
 const MAX_PAGES = 50;
 
+// RFC 0001 WP4: annotate each listed project with its linked state using a
+// single query on repository_key. Per decision D1 the annotation is
+// informational for cross-project links; the picker blocks only same-project
+// duplicates. When the picker shows a project already linked to the
+// addressed project, selection is blocked with an inline reason;
+// cross-project links remain selectable.
+async function annotateLinkedState(
+  normalizedBase: string,
+  projects: ProjectRow[],
+) {
+  if (projects.length === 0) return [];
+  const keys = projects.map((project) =>
+    gitlabRepositoryKey(normalizedBase, project.path_with_namespace),
+  );
+  const links = await db.query.integrationTable.findMany({
+    where: and(
+      eq(integrationTable.type, "gitlab"),
+      inArray(integrationTable.repositoryKey, keys),
+    ),
+    columns: { id: true, projectId: true, repositoryKey: true },
+    with: { project: { columns: { name: true } } },
+  });
+  const linksByKey = new Map(
+    links.map((link) => [
+      link.repositoryKey,
+      {
+        integrationId: link.id,
+        projectId: link.projectId,
+        projectName: link.project?.name ?? null,
+      },
+    ]),
+  );
+  return projects.map((project, index) => ({
+    ...project,
+    linkedTo: linksByKey.get(keys[index] as string) ?? null,
+  }));
+}
+
 async function listGitlabProjects({
   baseUrl,
   accessToken,
@@ -26,7 +68,7 @@ async function listGitlabProjects({
   baseUrl: string;
   accessToken: string;
   tokenType: GitlabTokenType;
-}): Promise<{ projects: ProjectRow[] }> {
+}): Promise<{ projects: Array<ProjectRow & { linkedTo: unknown }> }> {
   const normalized = parseGitlabBaseUrl(baseUrl);
 
   try {
@@ -63,7 +105,7 @@ async function listGitlabProjects({
     if (batch.length < PER_PAGE) break;
   }
 
-  return { projects };
+  return { projects: await annotateLinkedState(normalized, projects) };
 }
 
 export default listGitlabProjects;

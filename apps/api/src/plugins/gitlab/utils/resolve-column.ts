@@ -1,12 +1,17 @@
-import { and, asc, eq } from "drizzle-orm";
+import { and, asc, eq, isNull } from "drizzle-orm";
 import db from "../../../database";
 import { columnTable, workflowRuleTable } from "../../../database/schema";
 
+// RFC 0001 WP6: resolution prefers the repository-specific rule of the
+// addressed binding and falls back to the type-wide rule
+// (integration_id NULL). Callers without binding context keep today's
+// type-wide-only behavior.
 export async function resolveTargetStatus(
   projectId: string,
   eventType: string,
   fallbackStatus: string,
   database: Pick<typeof db, "select" | "query"> = db,
+  integrationId?: string | null,
 ): Promise<string> {
   const projectColumns = await database
     .select({
@@ -21,13 +26,26 @@ export async function resolveTargetStatus(
     return fallbackStatus;
   }
 
-  const rule = await database.query.workflowRuleTable.findFirst({
-    where: and(
-      eq(workflowRuleTable.projectId, projectId),
-      eq(workflowRuleTable.integrationType, "gitlab"),
-      eq(workflowRuleTable.eventType, eventType),
-    ),
-  });
+  const specific = integrationId
+    ? await database.query.workflowRuleTable.findFirst({
+        where: and(
+          eq(workflowRuleTable.projectId, projectId),
+          eq(workflowRuleTable.integrationType, "gitlab"),
+          eq(workflowRuleTable.eventType, eventType),
+          eq(workflowRuleTable.integrationId, integrationId),
+        ),
+      })
+    : undefined;
+  const rule =
+    specific ??
+    (await database.query.workflowRuleTable.findFirst({
+      where: and(
+        eq(workflowRuleTable.projectId, projectId),
+        eq(workflowRuleTable.integrationType, "gitlab"),
+        eq(workflowRuleTable.eventType, eventType),
+        isNull(workflowRuleTable.integrationId),
+      ),
+    }));
 
   if (rule) {
     const mappedColumn = projectColumns.find(

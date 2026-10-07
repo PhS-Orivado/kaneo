@@ -6,14 +6,18 @@ import { withSyncLease } from "../../plugins/sync/lease";
 import { SyncLeaseBusyError } from "../../plugins/sync/lease-busy-error";
 import { publishTaskMutation } from "../../task/controllers/task-mutation-effects";
 import { applySyncResume } from "./apply-resume";
-import { lockResumeScope } from "./lock-resume-scope";
-import { reviewSyncResume } from "./review-resume";
+import { getSyncIntegration } from "./get-integration";
+import { lockResumeScopeById } from "./lock-resume-scope";
+import { reviewSyncResumeById } from "./review-resume";
 import { verifyResumeProvider } from "./verify-resume-provider";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";
 
-export async function resumeSync(
-  projectId: string,
-  provider: string,
+// RFC 0001 WP5: the resume flow is keyed by integration id. The lease is
+// held per link and the scope locks are taken on the addressed binding's
+// rows only, so concurrent resumes of two different bindings never contend
+// on one lock.
+export async function resumeSyncById(
+  integrationId: string,
   linkId: string,
   token: string,
   source: "kaneo" | "provider",
@@ -22,8 +26,7 @@ export async function resumeSync(
   try {
     return await withSyncLease(`sync-resume:${linkId}`, () =>
       resumeWithLease(
-        projectId,
-        provider,
+        integrationId,
         linkId,
         token,
         source,
@@ -38,20 +41,19 @@ export async function resumeSync(
 }
 
 async function resumeWithLease(
-  projectId: string,
-  provider: string,
+  integrationId: string,
   linkId: string,
   token: string,
   source: "kaneo" | "provider",
   authorizedWorkspaceId: string,
 ) {
   // Provider latency must not retain a pooled connection or block local edits.
-  const initial = await reviewSyncResume(
-    projectId,
-    provider,
+  const initial = await reviewSyncResumeById(
+    integrationId,
     linkId,
     authorizedWorkspaceId,
   );
+  const projectId = initial.integration.projectId;
   const { snapshot } = initial;
   let request:
     | Promise<
@@ -66,17 +68,15 @@ async function resumeWithLease(
   let providerWritten = false;
   let updatedAt: string | null = null;
   let adoption: Awaited<ReturnType<typeof applySyncResume>>;
-  const validate = async (tx: Parameters<typeof lockResumeScope>[4]) => {
-    await lockResumeScope(
-      projectId,
-      provider,
+  const validate = async (tx: Parameters<typeof lockResumeScopeById>[3]) => {
+    await lockResumeScopeById(
+      integrationId,
       linkId,
       authorizedWorkspaceId,
       tx,
     );
-    const review = await reviewSyncResume(
-      projectId,
-      provider,
+    const review = await reviewSyncResumeById(
+      integrationId,
       linkId,
       authorizedWorkspaceId,
       tx,
@@ -103,7 +103,7 @@ async function resumeWithLease(
       if ("error" in result) {
         console.error("Sync resume provider write failed", {
           projectId,
-          provider,
+          integrationId,
           linkId,
         });
         throw new HTTPException(502, {
@@ -115,7 +115,13 @@ async function resumeWithLease(
     }
     await db.transaction(async (tx) => {
       const review = await validate(tx);
-      adoption = await applySyncResume(review, provider, source, updatedAt, tx);
+      adoption = await applySyncResume(
+        review,
+        review.integration.type,
+        source,
+        updatedAt,
+        tx,
+      );
     });
   } catch (error) {
     // Dispatch can outlive a failed scope transaction. Observe its result before
@@ -146,7 +152,7 @@ async function resumeWithLease(
     verificationError = error;
     console.error("Sync resume provider verification failed", {
       projectId,
-      provider,
+      integrationId,
       linkId,
     });
     await updateExternalLink(linkId, {
@@ -162,4 +168,25 @@ async function resumeWithLease(
   await publishEvent("project.updated", { projectId });
   if (verificationError) throw verificationError;
   return { success: true };
+}
+
+// Compat shim (RFC 0001 WP5, section 5): the project-keyed route resumes on
+// the project's first binding of the provider until the new web client
+// ships; removed with the cleanup PR.
+export async function resumeSync(
+  projectId: string,
+  provider: string,
+  linkId: string,
+  token: string,
+  source: "kaneo" | "provider",
+  authorizedWorkspaceId: string,
+) {
+  const integration = await getSyncIntegration(projectId, provider);
+  return resumeSyncById(
+    integration.id,
+    linkId,
+    token,
+    source,
+    authorizedWorkspaceId,
+  );
 }

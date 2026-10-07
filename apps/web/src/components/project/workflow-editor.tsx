@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { PROVIDER_METADATA } from "@/components/project/integration-repositories/provider-metadata";
+import { WorkflowRulesPanel } from "@/components/project/workflow-rules-panel";
 import {
   Select,
   SelectContent,
@@ -6,51 +8,141 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useUpsertWorkflowRule } from "@/hooks/mutations/workflow-rule/use-upsert-workflow-rule";
-import { useGetColumns } from "@/hooks/queries/column/use-get-columns";
-import { useGetWorkflowRules } from "@/hooks/queries/workflow-rule/use-get-workflow-rules";
-import { toast } from "@/lib/toast";
+import useListGiteaIntegrations from "@/hooks/queries/gitea-integration/use-list-gitea-integrations";
+import useListGithubIntegrations from "@/hooks/queries/github-integration/use-list-github-integrations";
+import useListGitlabIntegrations from "@/hooks/queries/gitlab-integration/use-list-gitlab-integrations";
+import {
+  toGiteaBindingRow,
+  toGithubBindingRow,
+  toGitlabBindingRow,
+  type RepositoryBindingRow,
+} from "@/types/repository-binding";
+import { useMemo, useState } from "react";
 
-const GITHUB_EVENT_TYPES = [
-  "branch_push",
-  "pr_opened",
-  "pr_merged",
-  "issue_opened",
-  "issue_closed",
-] as const;
+const TYPE_WIDE = "__every_repository__";
 
 type WorkflowEditorProps = {
   projectId: string;
 };
 
+// RFC 0001 WP6/WP7: workflow rules are written for the project (type-wide,
+// the default) or for one repository binding chosen from the linked
+// repositories. A repository-specific rule and a type-wide rule coexist;
+// resolution prefers the repository-specific one.
 export default function WorkflowEditor({ projectId }: WorkflowEditorProps) {
   const { t } = useTranslation();
-  const { data: columns, isLoading: columnsLoading } = useGetColumns(projectId);
-  const { data: rules, isLoading: rulesLoading } =
-    useGetWorkflowRules(projectId);
-  const { mutateAsync: upsertRule } = useUpsertWorkflowRule();
+  const [selectedIntegrationId, setSelectedIntegrationId] = useState(TYPE_WIDE);
 
-  if (columnsLoading || rulesLoading) {
-    return (
-      <div className="text-sm text-muted-foreground">
-        {t("settings:workflowEditor.loading")}
+  const { data: github } = useListGithubIntegrations(projectId);
+  const { data: gitea } = useListGiteaIntegrations(projectId);
+  const { data: gitlab } = useListGitlabIntegrations(projectId);
+
+  const bindings = useMemo<RepositoryBindingRow[]>(
+    () => [
+      ...(github?.integrations ?? []).map(toGithubBindingRow),
+      ...(gitea?.integrations ?? []).map(toGiteaBindingRow),
+      ...(gitlab?.integrations ?? []).map(toGitlabBindingRow),
+    ],
+    [github, gitea, gitlab],
+  );
+
+  const selectedBinding = bindings.find(
+    (binding) => binding.integrationId === selectedIntegrationId,
+  );
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-2">
+        <Select
+          value={selectedIntegrationId}
+          onValueChange={setSelectedIntegrationId}
+        >
+          <SelectTrigger className="w-64 h-8 text-sm">
+            <SelectValue
+              aria-label={t("settings:workflowEditor.scopeLabel")}
+              placeholder={t("settings:workflowEditor.scopeTypeWide")}
+            >
+              {selectedBinding
+                ? `${t(
+                    `settings:${PROVIDER_METADATA[selectedBinding.provider].namespace}.providerName`,
+                  )} · ${selectedBinding.identity}`
+                : t("settings:workflowEditor.scopeTypeWide")}
+            </SelectValue>
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={TYPE_WIDE}>
+              {t("settings:workflowEditor.scopeTypeWide")}
+            </SelectItem>
+            {bindings.map((binding) => (
+              <SelectItem key={binding.integrationId} value={binding.integrationId}>
+                {t(
+                  `settings:${PROVIDER_METADATA[binding.provider].namespace}.providerName`,
+                )}{" "}
+                · {binding.identity}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+        {selectedBinding ? (
+          <p className="text-xs text-muted-foreground">
+            {t("settings:workflowEditor.bindingScopeHint", {
+              repository: selectedBinding.identity,
+            })}
+          </p>
+        ) : (
+          <p className="text-xs text-muted-foreground">
+            {t("settings:workflowEditor.typeWideScopeHint")}
+          </p>
+        )}
       </div>
-    );
-  }
 
-  if (!columns || columns.length === 0) {
-    return (
-      <div className="text-sm text-muted-foreground">
-        {t("settings:workflowEditor.createColumnsFirst")}
-      </div>
-    );
-  }
+      {selectedBinding ? (
+        <WorkflowRulesPanel
+          key={selectedBinding.integrationId}
+          projectId={projectId}
+          integrationType={selectedBinding.provider}
+          integrationId={selectedBinding.integrationId}
+        />
+      ) : (
+        <div className="space-y-10">
+          <ProviderSection
+            projectId={projectId}
+            integrationType="github"
+            headingKey="githubHeading"
+            hintKey="githubHint"
+          />
+          <ProviderSection
+            projectId={projectId}
+            integrationType="gitea"
+            headingKey="giteaHeading"
+            hintKey="giteaHint"
+          />
+          <ProviderSection
+            projectId={projectId}
+            integrationType="gitlab"
+            headingKey="gitlabHeading"
+            hintKey="gitlabHint"
+          />
+        </div>
+      )}
+    </div>
+  );
+}
 
-  const renderRuleSection = (
-    integrationType: "github" | "gitea" | "gitlab",
-    headingKey: "githubHeading" | "giteaHeading" | "gitlabHeading",
-    hintKey: "githubHint" | "giteaHint" | "gitlabHint",
-  ) => (
+function ProviderSection({
+  projectId,
+  integrationType,
+  headingKey,
+  hintKey,
+}: {
+  projectId: string;
+  integrationType: "github" | "gitea" | "gitlab";
+  headingKey: "githubHeading" | "giteaHeading" | "gitlabHeading";
+  hintKey: "githubHint" | "giteaHint" | "gitlabHint";
+}) {
+  const { t } = useTranslation();
+
+  return (
     <div className="space-y-4">
       <div className="space-y-1">
         <h3 className="text-sm font-medium">
@@ -60,77 +152,7 @@ export default function WorkflowEditor({ projectId }: WorkflowEditorProps) {
           {t(`settings:workflowEditor.${hintKey}`)}
         </p>
       </div>
-
-      <div className="space-y-2">
-        {GITHUB_EVENT_TYPES.map((eventType) => {
-          const currentRule = rules?.find(
-            (r) =>
-              r.integrationType === integrationType &&
-              r.eventType === eventType,
-          );
-
-          return (
-            <div
-              key={`${integrationType}-${eventType}`}
-              className="flex items-center justify-between gap-4 p-3 border border-border rounded-md bg-sidebar"
-            >
-              <span className="text-sm">
-                {t(`settings:workflowEditor.events.${eventType}`)}
-              </span>
-              <Select
-                value={currentRule?.columnId ?? ""}
-                onValueChange={async (value) => {
-                  if (!value) return;
-                  try {
-                    await upsertRule({
-                      projectId,
-                      data: {
-                        integrationType,
-                        eventType,
-                        columnId: value,
-                      },
-                    });
-                    toast.success(t("settings:workflowEditor.toastUpdated"));
-                  } catch (error) {
-                    toast.error(
-                      error instanceof Error
-                        ? error.message
-                        : t("settings:workflowEditor.toastError"),
-                    );
-                  }
-                }}
-              >
-                <SelectTrigger className="w-48 h-8 text-sm">
-                  <SelectValue
-                    placeholder={t(
-                      "settings:workflowEditor.selectColumnPlaceholder",
-                    )}
-                  >
-                    {columns.find((c) => c.id === currentRule?.columnId)
-                      ?.name ??
-                      t("settings:workflowEditor.selectColumnPlaceholder")}
-                  </SelectValue>
-                </SelectTrigger>
-                <SelectContent>
-                  {columns.map((col) => (
-                    <SelectItem key={col.id} value={col.id}>
-                      {col.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-
-  return (
-    <div className="space-y-10">
-      {renderRuleSection("github", "githubHeading", "githubHint")}
-      {renderRuleSection("gitea", "giteaHeading", "giteaHint")}
-      {renderRuleSection("gitlab", "gitlabHeading", "gitlabHint")}
+      <WorkflowRulesPanel projectId={projectId} integrationType={integrationType} />
     </div>
   );
 }

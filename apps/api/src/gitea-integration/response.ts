@@ -1,4 +1,8 @@
 import { responseTimestamp, z } from "../openapi";
+import {
+  repositoryBindingUsageSchema,
+  repositoryLinkedToSchema,
+} from "../integrations/response";
 
 // Credentials are only ever returned masked; the webhook secret goes only to
 // callers holding workspace:manage_settings.
@@ -30,6 +34,17 @@ export const giteaIntegrationSchema = z
   })
   .openapi("GiteaIntegration");
 
+// RFC 0001 WP3: list response of the project's Gitea bindings with the
+// workspace's repository binding usage summary (WP10).
+export const giteaIntegrationListSchema = z
+  .object({
+    integrations: z
+      .array(giteaIntegrationSchema)
+      .openapi({ description: "Every Gitea binding of the project, oldest first." }),
+    usage: repositoryBindingUsageSchema,
+  })
+  .openapi("GiteaIntegrationList");
+
 export const giteaRepositorySchema = z
   .object({
     id: z.number(),
@@ -38,6 +53,12 @@ export const giteaRepositorySchema = z
     owner: z.object({ login: z.string() }).openapi("GiteaRepositoryOwner"),
     private: z.boolean(),
     html_url: z.string(),
+    // RFC 0001 WP3: linked-state annotation. Same-project links block
+    // selection in the picker; cross-project links (allowed per decision D1)
+    // are informational only.
+    linkedTo: repositoryLinkedToSchema
+      .nullable()
+      .openapi({ description: "The binding this repository is already linked to, if any." }),
   })
   .openapi("GiteaRepository");
 

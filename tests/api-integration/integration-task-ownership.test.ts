@@ -182,9 +182,9 @@ describe("integration task ownership", () => {
         })
         .where(eq(schema.integrationTable.id, f.integration.id));
       expect(
-        await (type === "gitea" ? importGiteaIssues : importGitlabIssues)(
-          f.project.id,
-        ),
+        await (type === "gitea"
+          ? importGiteaIssues({ integrationId: f.integration.id })
+          : importGitlabIssues({ integrationId: f.integration.id })),
       ).toMatchObject({ imported: 1, skipped: 0 });
     },
   );
@@ -194,9 +194,9 @@ describe("integration task ownership", () => {
     async (type) => {
       const fixture = await setup(type);
       await moveWithoutCleanup(fixture);
-      const result = await (
-        type === "gitea" ? importGiteaIssues : importGitlabIssues
-      )(fixture.project.id);
+      const result = await (type === "gitea"
+        ? importGiteaIssues({ integrationId: fixture.integration.id })
+        : importGitlabIssues({ integrationId: fixture.integration.id }));
       expect(result.updated).toBe(0);
       await expectPrivateTask(fixture.task.id);
     },
@@ -215,9 +215,9 @@ describe("integration task ownership", () => {
         });
         return [];
       });
-      const result = await (
-        type === "gitea" ? importGiteaIssues : importGitlabIssues
-      )(f.project.id);
+      const result = await (type === "gitea"
+        ? importGiteaIssues({ integrationId: f.integration.id })
+        : importGitlabIssues({ integrationId: f.integration.id }));
       expect(result.updated).toBe(0);
       await expectPrivateTask(f.task.id);
       expect(
@@ -249,9 +249,9 @@ describe("integration task ownership", () => {
         });
         return [];
       });
-      const result = await (
-        type === "gitea" ? importGiteaIssues : importGitlabIssues
-      )(f.project.id);
+      const result = await (type === "gitea"
+        ? importGiteaIssues({ integrationId: f.integration.id })
+        : importGitlabIssues({ integrationId: f.integration.id }));
       expect(result).toMatchObject({ updated: 0, skipped: 1 });
       await expectPrivateTask(f.task.id);
       expect(
@@ -649,9 +649,9 @@ it.each(["gitea", "gitlab"])(
         description: "Remote description",
       });
     });
-    const result = await (
-      provider === "gitea" ? importGiteaIssues : importGitlabIssues
-    )(fixture.project.id);
+    const result = await (provider === "gitea"
+      ? importGiteaIssues({ integrationId: fixture.integration.id })
+      : importGitlabIssues({ integrationId: fixture.integration.id }));
     expect(result).toMatchObject({ imported: 0, updated: 1 });
     expect(m.publish.mock.calls.map(([type]) => type)).toEqual([
       "task.updated",

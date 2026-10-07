@@ -1,20 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import reviewSyncResume from "@/fetchers/integration-sync/review-sync-resume";
-import type { SyncParams } from "@/fetchers/integration-sync/types";
+import { syncScopeKey, type SyncScope } from "@/fetchers/integration-sync/types";
 
 export function useResumePreview(
-  param: SyncParams,
+  scope: SyncScope,
   linkId: string,
   taskId: string,
 ) {
+  const key = syncScopeKey(scope);
   return useQuery({
     queryKey: [
       "integration-sync-review",
-      param.projectId,
-      param.provider,
+      key.projectId,
+      key.provider,
+      key.integrationId,
       linkId,
     ],
-    queryFn: ({ signal }) => reviewSyncResume(param, linkId, signal),
+    queryFn: ({ signal }) => reviewSyncResume(scope, linkId, signal),
     meta: { taskId },
     retry: false,
     staleTime: 0,

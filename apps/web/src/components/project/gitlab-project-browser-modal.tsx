@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { ExternalLink, GitBranch, Lock, Search } from "lucide-react";
+import { ExternalLink, GitBranch, Link2, Lock, Search } from "lucide-react";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { AddBindingErrorAlert } from "@/components/project/integration-repositories/add-binding-error-alert";
+import type { AddBindingError } from "@/components/project/integration-repositories/add-binding-error";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +29,12 @@ type GitlabProjectBrowserModalProps = {
   baseUrl: string;
   accessToken: string;
   tokenType: "private" | "bearer";
+  /**
+   * RFC 0001 WP7 D2: an add-flow failure rendered inline. The modal stays
+   * open; the blocker and the action that resolves it are shown together.
+   */
+  addError?: AddBindingError | null;
+  onDismissError?: () => void;
 };
 
 export function GitlabProjectBrowserModal({
@@ -38,6 +46,8 @@ export function GitlabProjectBrowserModal({
   baseUrl,
   accessToken,
   tokenType,
+  addError,
+  onDismissError,
 }: GitlabProjectBrowserModalProps) {
   const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -110,6 +120,14 @@ export function GitlabProjectBrowserModal({
         </div>
 
         <div className="flex-1 overflow-y-auto border-t border-border px-6 py-2">
+          {addError && onDismissError ? (
+            <div className="py-2">
+              <AddBindingErrorAlert
+                error={addError}
+                onDismiss={onDismissError}
+              />
+            </div>
+          ) : null}
           {!canFetch && (
             <p className="text-sm text-muted-foreground py-8 text-center">
               {t("settings:gitlabIntegration.browseNeedsCredentials")}
@@ -144,9 +162,15 @@ export function GitlabProjectBrowserModal({
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
+                      // RFC 0001 D1: a project already linked to this very
+                      // project cannot be selected again; cross-project
+                      // links stay selectable and are informational only.
+                      disabled={project.linkedTo?.projectId === projectId}
+                      aria-disabled={project.linkedTo?.projectId === projectId}
                       onClick={() => handleSelectProject(project)}
                       className={cn(
                         "flex-1 flex items-center justify-between gap-3 rounded-md px-3 py-2 text-left text-sm hover:bg-muted/80 transition-colors",
+                        "disabled:cursor-not-allowed disabled:opacity-60",
                         selectedProjectPath === project.path_with_namespace &&
                           "bg-muted",
                       )}
@@ -158,9 +182,34 @@ export function GitlabProjectBrowserModal({
                         {project.visibility !== "public" ? (
                           <Lock className="size-3.5 text-muted-foreground" />
                         ) : null}
-                        <Badge variant="secondary" className="text-xs">
-                          {project.visibility}
-                        </Badge>
+                        {project.linkedTo ? (
+                          project.linkedTo.projectId === projectId ? (
+                            <Badge variant="outline" className="text-xs gap-1">
+                              <Link2 className="size-3" />
+                              {t(
+                                "settings:repositoryBindings.linkedInProject",
+                              )}
+                            </Badge>
+                          ) : (
+                            <Badge variant="secondary" className="text-xs gap-1">
+                              <Link2 className="size-3" />
+                              {t(
+                                "settings:repositoryBindings.linkedInOtherProject",
+                                {
+                                  project:
+                                    project.linkedTo.projectName ??
+                                    t(
+                                      "settings:repositoryBindings.linkedInUnknownProject",
+                                    ),
+                                },
+                              )}
+                            </Badge>
+                          )
+                        ) : (
+                          <Badge variant="secondary" className="text-xs">
+                            {project.visibility}
+                          </Badge>
+                        )}
                       </div>
                     </button>
                     <a

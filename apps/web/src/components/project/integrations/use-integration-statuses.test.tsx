@@ -20,13 +20,13 @@ const fetchers = vi.hoisted(() => ({
   telegram: vi.fn(),
   webhook: vi.fn(),
 }));
-vi.mock("@/fetchers/github-integration/get-github-integration", () => ({
+vi.mock("@/fetchers/github-integration/list-github-integrations", () => ({
   default: fetchers.github,
 }));
-vi.mock("@/fetchers/gitea-integration/get-gitea-integration", () => ({
+vi.mock("@/fetchers/gitea-integration/list-gitea-integrations", () => ({
   default: fetchers.gitea,
 }));
-vi.mock("@/fetchers/gitlab-integration/get-gitlab-integration", () => ({
+vi.mock("@/fetchers/gitlab-integration/list-gitlab-integrations", () => ({
   default: fetchers.gitlab,
 }));
 vi.mock("@/fetchers/slack-integration/get-slack-integration", () => ({
@@ -46,6 +46,23 @@ vi.mock(
   () => ({ default: fetchers.webhook }),
 );
 
+const githubBinding = {
+  id: "integration-1",
+  projectId: "p1",
+  repositoryOwner: "acme",
+  repositoryName: "web",
+  installationId: 1,
+  requiresVerification: false,
+  isActive: true,
+  createdAt: "2026-01-01T00:00:00.000Z",
+  updatedAt: "2026-01-01T00:00:00.000Z",
+};
+const emptyList = { integrations: [], usage: { used: 0, limit: null } };
+const bindingList = {
+  integrations: [githubBinding],
+  usage: { used: 1, limit: null },
+};
+
 let client: QueryClient;
 function wrapper({ children }: { children: ReactNode }) {
   return <QueryClientProvider client={client}>{children}</QueryClientProvider>;
@@ -54,6 +71,9 @@ beforeEach(() => {
   client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
   for (const fetcher of Object.values(fetchers))
     fetcher.mockReset().mockResolvedValue(null);
+  fetchers.github.mockResolvedValue(emptyList);
+  fetchers.gitea.mockResolvedValue(emptyList);
+  fetchers.gitlab.mockResolvedValue(emptyList);
 });
 afterEach(() => {
   cleanup();
@@ -91,11 +111,7 @@ describe("useIntegrationStatuses", () => {
     });
     expect(result.current.statuses.github.state).toBe("loading");
     await act(async () => {
-      resolve({
-        repositoryOwner: "acme",
-        repositoryName: "web",
-        isActive: true,
-      });
+      resolve(bindingList);
     });
     await waitFor(() =>
       expect(result.current.statuses.github).toEqual({
@@ -107,7 +123,7 @@ describe("useIntegrationStatuses", () => {
   it("retries only the failed integration and recovers", async () => {
     fetchers.github
       .mockRejectedValueOnce(new Error("Network unavailable"))
-      .mockResolvedValue(null);
+      .mockResolvedValue(emptyList);
     const { result } = renderHook(() => useIntegrationStatuses("p1"), {
       wrapper,
     });
@@ -125,11 +141,7 @@ describe("useIntegrationStatuses", () => {
   it("starts with an unknown status when switching projects", async () => {
     fetchers.github.mockImplementation((projectId: string) =>
       projectId === "p1"
-        ? Promise.resolve({
-            repositoryOwner: "acme",
-            repositoryName: "web",
-            isActive: true,
-          })
+        ? Promise.resolve(bindingList)
         : new Promise(() => {}),
     );
     const { result, rerender } = renderHook(
@@ -165,23 +177,68 @@ describe("useIntegrationStatuses", () => {
     act(() => result.current.retry("github"));
     expect(fetchers.github).toHaveBeenCalledTimes(2);
     await act(async () => {
-      resolve(null);
+      resolve(emptyList);
     });
     await waitFor(() =>
       expect(result.current.statuses.github.state).toBe("disconnected"),
     );
   });
+  it("reports the first binding of a multi-binding project as the detail", async () => {
+    fetchers.gitea.mockResolvedValue({
+      integrations: [
+        {
+          id: "integration-a",
+          projectId: "p1",
+          baseUrl: "https://gitea.example",
+          repositoryOwner: "first",
+          repositoryName: "repo",
+          maskedAccessToken: "gitea_****",
+          commentTaskLinkOnGiteaIssue: true,
+          isActive: true,
+          createdAt: "2026-01-01T00:00:00.000Z",
+          updatedAt: "2026-01-01T00:00:00.000Z",
+        },
+        {
+          id: "integration-b",
+          projectId: "p1",
+          baseUrl: "https://gitea.example",
+          repositoryOwner: "second",
+          repositoryName: "repo",
+          maskedAccessToken: "gitea_****",
+          commentTaskLinkOnGiteaIssue: true,
+          isActive: false,
+          createdAt: "2026-01-02T00:00:00.000Z",
+          updatedAt: "2026-01-02T00:00:00.000Z",
+        },
+      ],
+      usage: { used: 2, limit: 5 },
+    });
+    const { result } = renderHook(() => useIntegrationStatuses("p1"), {
+      wrapper,
+    });
+    await waitFor(() =>
+      expect(result.current.statuses.gitea).toEqual({
+        state: "connected",
+        detail: "first/repo",
+      }),
+    );
+  });
 
   it.each([
     {
-      data: { repositoryOwner: "acme", repositoryName: "web", isActive: true },
+      data: bindingList,
       expected: { state: "connected", detail: "acme/web" },
     },
     {
-      data: { repositoryOwner: "acme", repositoryName: "web", isActive: null },
+      data: {
+        integrations: [
+          { ...githubBinding, isActive: false },
+        ],
+        usage: { used: 1, limit: null },
+      },
       expected: { state: "paused", detail: "acme/web" },
     },
-    { data: null, expected: { state: "disconnected" } },
+    { data: emptyList, expected: { state: "disconnected" } },
   ])(
     "keeps the last loaded status after a failed background refresh: $expected.state",
     async ({ data, expected }) => {
@@ -195,11 +252,13 @@ describe("useIntegrationStatuses", () => {
         expect(result.current.statuses.github).toEqual(expected),
       );
       await act(async () => {
-        await client.refetchQueries({ queryKey: ["github-integration", "p1"] });
+        await client.refetchQueries({
+          queryKey: ["github-integrations", "p1"],
+        });
       });
-      expect(client.getQueryState(["github-integration", "p1"])?.status).toBe(
-        "error",
-      );
+      expect(
+        client.getQueryState(["github-integrations", "p1"])?.status,
+      ).toBe("error");
       expect(result.current.statuses.github).toEqual(expected);
     },
   );
