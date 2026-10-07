@@ -154,7 +154,14 @@
 					"rose": "Rosa",
 					"crimson": "Carmesim"
 				},
-				"statusLoadError": "Project statuses couldn’t be loaded."
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_many": "Issues in {{count}} repos",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
 			}
 		},
 		"boolean": {
@@ -2874,6 +2881,50 @@
 		},
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_many": "Created {{branch}} in {{count}} repositories",
+			"createdIn_one": "Created {{branch}} in {{count}} repository",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
 		}
 	},
 	"invitations": {
