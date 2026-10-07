@@ -63,7 +63,8 @@ export const sessionTable = pgTable(
     activeTeamId: text("active_team_id"),
     impersonatedBy: text("impersonated_by"),
   },
-  (table) => [index("session_userId_idx").on(table.userId)],
+  (table) => [index("session_userId_idx").on(table.userId
+)],
 );
 
 export const accountTable = pgTable(
@@ -130,7 +131,8 @@ export const verificationTable = pgTable(
     identifier: text("identifier").notNull(),
     value: text("value").notNull(),
     expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+   
+ createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date" })
       .defaultNow()
       .$onUpdate(() => /* @__PURE__ */ new Date())
@@ -193,7 +195,8 @@ export const workspaceBillingTable = pgTable(
     trialEndsAt: timestamp("trial_ends_at", { mode: "date" }),
     creemCustomerId: text("creem_customer_id"),
     creemSubscriptionId: text("creem_subscription_id").unique(),
-    creemProductId: text("creem_product_id"),
+    creemProductId: text("creem_produc
+t_id"),
     plan: text("plan"),
     billingInterval: text("billing_interval"),
     status: text("status"),
@@ -253,7 +256,8 @@ export const teamMemberTable = pgTable(
   },
   (table) => [
     index("teamMember_teamId_idx").on(table.teamId),
-    index("teamMember_userId_idx").on(table.userId),
+    index("teamMember_userId_idx
+").on(table.userId),
   ],
 );
 
@@ -322,7 +326,8 @@ export const projectTable = pgTable(
       .primaryKey(),
     workspaceId: text("workspace_id")
       .notNull()
-      .references(() => workspaceTable.id, {
+      .re
+ferences(() => workspaceTable.id, {
         onDelete: "cascade",
         onUpdate: "cascade",
       }),
@@ -379,7 +384,8 @@ export const workspaceMemberAccessTable = pgTable(
   ],
 );
 
-export const workspaceMemberProjectTable = pgTable(
+export const workspaceMemberPr
+ojectTable = pgTable(
   "workspace_member_project",
   {
     id: text("id")
@@ -448,6 +454,16 @@ export const workflowRuleTable = pgTable(
         onUpdate: "cascade",
       }),
     integrationType: text("integration_type").notNull(),
+    // RFC 0001: NULL applies the rule to every repository of
+    // integration_type in the project; a set value scopes it to one
+    // integration binding.
+    integrationId: text("integration_id").references(
+      () => integrationTable.id,
+      {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      },
+    ),
     eventType: text("event_type").notNull(),
     columnId: text("column_id")
       .notNull()
@@ -464,6 +480,7 @@ export const workflowRuleTable = pgTable(
   (table) => [
     index("workflow_rule_projectId_idx").on(table.projectId),
     index("workflow_rule_columnId_idx").on(table.columnId),
+    index("workflow_rule_integrationId_idx").on(table.integrationId),
   ],
 );
 
@@ -512,7 +529,8 @@ export const taskTable = pgTable(
       onDelete: "set null",
       onUpdate: "cascade",
     }),
-    priority: text("priority").default("low").notNull(),
+    pri
+ority: text("priority").default("low").notNull(),
     startDate: timestamp("start_date", { mode: "date" }),
     dueDate: timestamp("due_date", { mode: "date" }),
     createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
@@ -573,7 +591,8 @@ export const jobLeaseTable = pgTable("job_lease", {
 });
 
 export const taskReminderSentTable = pgTable(
-  "task_reminder_sent",
+ 
+ "task_reminder_sent",
   {
     id: text("id")
       .$defaultFn(() => createId())
@@ -645,7 +664,8 @@ export const activityTable = pgTable(
         onUpdate: "cascade",
       }),
     type: text("type").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+  
+  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date" })
       .defaultNow()
       .$onUpdate(() => new Date())
@@ -706,7 +726,8 @@ export const assetTable = pgTable(
     kind: text("kind").notNull().default("image"),
     surface: text("surface").notNull().default("description"),
     createdBy: text("created_by").references(() => userTable.id, {
-      onDelete: "set null",
+     
+ onDelete: "set null",
       onUpdate: "cascade",
     }),
     createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
@@ -767,7 +788,8 @@ export const notificationTable = pgTable(
     id: text("id")
       .$defaultFn(() => createId())
       .primaryKey(),
-    userId: text("user_id")
+ 
+   userId: text("user_id")
       .notNull()
       .references(() => userTable.id, {
         onDelete: "cascade",
@@ -822,7 +844,8 @@ export const userNotificationPreferenceTable = pgTable(
     taskStatusChangeEnabled: boolean("task_status_change_enabled")
       .default(true)
       .notNull(),
-    dueDateReminderEnabled: boolean("due_date_reminder_enabled")
+    dueDateReminderEnabled: boolean("due_date_reminde
+r_enabled")
       .default(true)
       .notNull(),
     dueDateReminderLeadTimeMinutes: integer(
@@ -884,7 +907,8 @@ export const userNotificationWorkspaceRuleTable = pgTable(
   ],
 );
 
-export const userNotificationWorkspaceProjectTable = pgTable(
+export const userNotificationWor
+kspaceProjectTable = pgTable(
   "user_notification_workspace_project",
   {
     id: text("id")
@@ -950,7 +974,8 @@ export const githubIntegrationTable = pgTable("github_integration", {
     .references(() => projectTable.id, {
       onDelete: "cascade",
       onUpdate: "cascade",
-    })
+    
+})
     .unique(),
   repositoryOwner: text("repository_owner").notNull(),
   repositoryName: text("repository_name").notNull(),
@@ -977,6 +1002,13 @@ export const integrationTable = pgTable(
       }),
     type: text("type").notNull(),
     config: text("config").notNull(),
+    // RFC 0001: repository identity derived from config. Nullable until the
+    // backfill migration populates it for existing rows.
+    repositoryKey: text("repository_key"),
+    repositoryOwner: text("repository_owner"),
+    repositoryName: text("repository_name"),
+    repositoryId: integer("repository_id"),
+    baseUrl: text("base_url"),
     isActive: boolean("is_active").default(true),
     createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
     updatedAt: timestamp("updated_at", { mode: "date" })
@@ -987,7 +1019,19 @@ export const integrationTable = pgTable(
   (table) => [
     index("integration_projectId_idx").on(table.projectId),
     index("integration_type_idx").on(table.type),
-    unique("integration_project_type_unique").on(table.projectId, table.type),
+    index("integration_type_repositoryKey_idx").on(
+      table.type,
+      table.repositoryKey,
+    ),
+    // RFC 0001: cross-project repository sharing is allowed. The same
+    // repository may be linked to several projects, but never twice to one
+    // project. Rows with a NULL repository_key (pending backfill) never
+    // conflict under PostgreSQL NULLS DISTINCT semantics.
+    unique("integration_project_type_repository_key_unique").on(
+      table.projectId,
+      table.type,
+      table.repositoryKey,
+    ),
   ],
 );
 
@@ -1017,7 +1061,8 @@ export const externalLinkTable = pgTable(
     taskId: text("task_id")
       .notNull()
       .references(() => taskTable.id, {
-        onDelete: "cascade",
+        o
+nDelete: "cascade",
         onUpdate: "cascade",
       }),
     integrationId: text("integration_id").references(
@@ -1040,338 +1085,6 @@ export const externalLinkTable = pgTable(
   },
   (table) => [
     index("external_link_taskId_idx").on(table.taskId),
-    index("external_link_integrationId_idx").on(table.integrationId),
-    index("external_link_externalId_idx").on(table.externalId),
-    index("external_link_resourceType_idx").on(table.resourceType),
-    index("external_link_deferred_issue_idx")
-      .on(table.id)
-      .where(
-        sql`${table.resourceType} = 'issue' AND ${table.metadata} LIKE '%"deferredIssueEdit":%'`,
-      ),
-  ],
-);
+    index("external_link_integrationId_idx").on(t
 
-export const commentTable = pgTable(
-  "comment",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    taskId: text("task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    userId: text("user_id")
-      .notNull()
-      .references(() => userTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    content: text("content").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("comment_task_idx").on(table.taskId),
-    index("comment_user_idx").on(table.userId),
-  ],
-);
-
-export const taskRelationTable = pgTable(
-  "task_relation",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    sourceTaskId: text("source_task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    targetTaskId: text("target_task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    relationType: text("relation_type").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-  },
-  (table) => [
-    index("task_relation_source_idx").on(table.sourceTaskId),
-    index("task_relation_target_idx").on(table.targetTaskId),
-  ],
-);
-
-export const apikeyTable = pgTable(
-  "apikey",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    configId: text("config_id").default("default").notNull(),
-    name: text("name"),
-    start: text("start"),
-    referenceId: text("reference_id")
-      .notNull()
-      .references(() => userTable.id, { onDelete: "cascade" }),
-    prefix: text("prefix"),
-    key: text("key").notNull(),
-    userId: text("user_id").references(() => userTable.id, {
-      onDelete: "cascade",
-    }),
-    refillInterval: integer("refill_interval"),
-    refillAmount: integer("refill_amount"),
-    lastRefillAt: timestamp("last_refill_at", { mode: "date" }),
-    enabled: boolean("enabled").default(true),
-    rateLimitEnabled: boolean("rate_limit_enabled").default(true),
-    rateLimitTimeWindow: integer("rate_limit_time_window").default(86400000),
-    rateLimitMax: integer("rate_limit_max").default(10),
-    requestCount: integer("request_count").default(0),
-    remaining: integer("remaining"),
-    lastRequest: timestamp("last_request", { mode: "date" }),
-    expiresAt: timestamp("expires_at", { mode: "date" }),
-    createdAt: timestamp("created_at", { mode: "date" }).notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" }).notNull(),
-    permissions: text("permissions"),
-    metadata: text("metadata"),
-  },
-  (table) => [
-    index("apikey_configId_idx").on(table.configId),
-    index("apikey_key_idx").on(table.key),
-    index("apikey_referenceId_idx").on(table.referenceId),
-    index("apikey_userId_idx").on(table.userId),
-  ],
-);
-
-export const deviceCodeTable = pgTable(
-  "device_code",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    deviceCode: text("device_code").notNull(),
-    userCode: text("user_code").notNull(),
-    userId: text("user_id").references(() => userTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-    status: text("status").notNull(),
-    lastPolledAt: timestamp("last_polled_at", { mode: "date" }),
-    pollingInterval: integer("polling_interval"),
-    clientId: text("client_id"),
-    scope: text("scope"),
-  },
-  (table) => [
-    uniqueIndex("device_code_device_code_uidx").on(table.deviceCode),
-    uniqueIndex("device_code_user_code_uidx").on(table.userCode),
-    index("device_code_user_id_idx").on(table.userId),
-  ],
-);
-
-export const mcpOauthStateTable = pgTable(
-  "mcp_oauth_state",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    kind: text("kind").notNull(),
-    key: text("key").notNull(),
-    payload: jsonb("payload").notNull(),
-    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    uniqueIndex("mcp_oauth_state_kind_key_uidx").on(table.kind, table.key),
-    index("mcp_oauth_state_expiresAt_idx").on(table.expiresAt),
-  ],
-);
-
-// Auth-schema compatible aliases in schema.ts
-export const user = userTable;
-export const session = sessionTable;
-export const account = accountTable;
-export const verification = verificationTable;
-export const workspace = workspaceTable;
-export const team = teamTable;
-export const teamMember = teamMemberTable;
-export const workspace_member = workspaceUserTable;
-export const invitation = invitationTable;
-export const organizationRole = workspaceRoleTable;
-export const apikey = apikeyTable;
-export const deviceCode = deviceCodeTable;
-
-// Auth-schema compatible relation exports in schema.ts
-export const userRelations = relations(user, ({ many }) => ({
-  sessions: many(session),
-  accounts: many(account),
-  teamMembers: many(teamMember),
-  workspace_members: many(workspace_member),
-  invitations: many(invitation),
-}));
-
-export const sessionRelations = relations(session, ({ one }) => ({
-  user: one(user, {
-    fields: [session.userId],
-    references: [user.id],
-  }),
-}));
-
-export const accountRelations = relations(account, ({ one }) => ({
-  user: one(user, {
-    fields: [account.userId],
-    references: [user.id],
-  }),
-}));
-
-export const workspaceRelations = relations(workspace, ({ many }) => ({
-  teams: many(team),
-  workspace_members: many(workspace_member),
-  invitations: many(invitation),
-}));
-
-export const teamRelations = relations(team, ({ one, many }) => ({
-  workspace: one(workspace, {
-    fields: [team.workspaceId],
-    references: [workspace.id],
-  }),
-  teamMembers: many(teamMember),
-}));
-
-export const teamMemberRelations = relations(teamMember, ({ one }) => ({
-  team: one(team, {
-    fields: [teamMember.teamId],
-    references: [team.id],
-  }),
-  user: one(user, {
-    fields: [teamMember.userId],
-    references: [user.id],
-  }),
-}));
-
-export const workspace_memberRelations = relations(
-  workspace_member,
-  ({ one }) => ({
-    workspace: one(workspace, {
-      fields: [workspace_member.workspaceId],
-      references: [workspace.id],
-    }),
-    user: one(user, {
-      fields: [workspace_member.userId],
-      references: [user.id],
-    }),
-  }),
-);
-
-export const invitationRelations = relations(invitation, ({ one }) => ({
-  workspace: one(workspace, {
-    fields: [invitation.workspaceId],
-    references: [workspace.id],
-  }),
-  user: one(user, {
-    fields: [invitation.inviterId],
-    references: [user.id],
-  }),
-}));
-
-export const organizationRoleRelations = relations(
-  organizationRole,
-  ({ one }) => ({
-    workspace: one(workspace, {
-      fields: [organizationRole.workspaceId],
-      references: [workspace.id],
-    }),
-  }),
-);
-
-export const customFieldDefinitionTable = pgTable(
-  "custom_field_definition",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    projectId: text("project_id")
-      .notNull()
-      .references(() => projectTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    name: text("name").notNull(),
-    type: text("type").notNull(), // 'text' | 'number' | 'date' | 'dropdown' | 'boolean'
-    required: boolean("required").default(false).notNull(),
-    defaultValue: text("default_value"),
-    options: jsonb("options"),
-    position: integer("position").default(0).notNull(),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("custom_field_def_projectId_idx").on(table.projectId)],
-);
-
-export const customFieldValueTable = pgTable(
-  "custom_field_value",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    taskId: text("task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    fieldId: text("field_id")
-      .notNull()
-      .references(() => customFieldDefinitionTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    value: text("value"),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("custom_field_value_taskId_idx").on(table.taskId),
-    index("custom_field_value_fieldId_idx").on(table.fieldId),
-    unique("custom_field_value_task_field_unique").on(
-      table.taskId,
-      table.fieldId,
-    ),
-  ],
-);
-
-// These records outlive their original owner so failed object deletion can retry.
-export const storageCleanupTable = pgTable("storage_cleanup", {
-  objectKey: text("object_key").primaryKey(),
-  lastAttemptAt: timestamp("last_attempt_at", { mode: "date" }),
-  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-});
-
-export const dataMigrationTable = pgTable("data_migration", {
-  id: text("id").primaryKey(),
-  completedAt: timestamp("completed_at", { mode: "date" })
-    .defaultNow()
-    .notNull(),
-});
+... [Content truncated]
