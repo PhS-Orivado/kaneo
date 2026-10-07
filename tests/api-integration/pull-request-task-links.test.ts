@@ -161,7 +161,9 @@ describe.each(["github", "gitea"] as const)(
     });
     const runImport = async () => {
       if (provider === "gitea") {
-        const result = await importGiteaIssues(fixture.project.id);
+        const result = await importGiteaIssues({
+          integrationId: fixture.integration.id,
+        });
         expect(result.errors).toBeUndefined();
         return;
       }
