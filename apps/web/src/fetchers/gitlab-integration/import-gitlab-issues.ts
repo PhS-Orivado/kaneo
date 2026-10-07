@@ -1,13 +1,25 @@
 import { client } from "@kaneo/libs";
+import type { InferRequestType, InferResponseType } from "hono";
+import { HttpError } from "@/lib/http-error";
 
-async function importGitlabIssues(projectId: string) {
+export type ImportGitlabIssuesRequest = InferRequestType<
+  (typeof client)["gitlab-integration"]["import-issues"]["$post"]
+>["json"];
+export type ImportGitlabIssuesResponse = InferResponseType<
+  (typeof client)["gitlab-integration"]["import-issues"]["$post"],
+  200
+>;
+
+// RFC 0001 WP4/WP7: imports are keyed by the integration id of the binding
+// whose project is imported. A projectId in the body is accepted for compat
+// and must match the binding's project.
+async function importGitlabIssues(data: ImportGitlabIssuesRequest) {
   const response = await client["gitlab-integration"]["import-issues"].$post({
-    json: { projectId },
+    json: data,
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    throw new Error(error);
+    throw new HttpError(response.status, await response.text());
   }
 
   return response.json();

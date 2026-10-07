@@ -20,21 +20,23 @@ export function useCreateGiteaIntegration() {
     }) => createGiteaIntegration(projectId, data),
     onSuccess: (_, { projectId }) => {
       queryClient.invalidateQueries({
-        queryKey: ["gitea-integration", projectId],
+        queryKey: ["gitea-integrations", projectId],
       });
     },
   });
 }
 
+// RFC 0001 WP3/WP7: deletes are keyed by the integration id; the binding's
+// issue and pull request links disappear with it, so the external-link cache is
+// dropped too.
 export function useDeleteGiteaIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (projectId: string) => deleteGiteaIntegration(projectId),
-    onSuccess: (_, projectId) => {
-      queryClient.invalidateQueries({
-        queryKey: ["gitea-integration", projectId],
-      });
+    mutationFn: (integrationId: string) => deleteGiteaIntegration(integrationId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["gitea-integrations"] });
+      queryClient.invalidateQueries({ queryKey: ["external-links"] });
     },
   });
 }
