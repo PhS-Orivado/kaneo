@@ -621,6 +621,36 @@
 										"rose",
 										"crimson"
 									]
+								},
+								"repositories": {
+									"type": "string"
+								},
+								"issuesIn_one": {
+									"type": "string"
+								},
+								"issuesIn_zero": {
+									"type": "string"
+								},
+								"issuesIn_two": {
+									"type": "string"
+								},
+								"issuesIn_few": {
+									"type": "string"
+								},
+								"issuesIn_many": {
+									"type": "string"
+								},
+								"issuesIn_other": {
+									"type": "string"
+								},
+								"repositoriesHint": {
+									"type": "string"
+								},
+								"repositoriesAll": {
+									"type": "string"
+								},
+								"repositoriesNone": {
+									"type": "string"
 								}
 							},
 							"required": [
@@ -658,7 +688,11 @@
 								"discardDescription",
 								"discardButton",
 								"untitledTask",
-								"labelColors"
+								"labelColors",
+								"repositories",
+								"repositoriesHint",
+								"repositoriesAll",
+								"repositoriesNone"
 							]
 						}
 					},
@@ -12206,6 +12240,188 @@
 					"required": [
 						"reorderFailed"
 					]
+				},
+				"branches": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"empty": {
+							"type": "string"
+						},
+						"create": {
+							"type": "string"
+						},
+						"createTitle": {
+							"type": "string"
+						},
+						"typeLabel": {
+							"type": "string"
+						},
+						"nameLabel": {
+							"type": "string"
+						},
+						"namePlaceholder": {
+							"type": "string"
+						},
+						"nameHint": {
+							"type": "string"
+						},
+						"repositories": {
+							"type": "string"
+						},
+						"createButton": {
+							"type": "string"
+						},
+						"creating": {
+							"type": "string"
+						},
+						"createdIn_one": {
+							"type": "string"
+						},
+						"createdIn_zero": {
+							"type": "string"
+						},
+						"createdIn_two": {
+							"type": "string"
+						},
+						"createdIn_few": {
+							"type": "string"
+						},
+						"createdIn_many": {
+							"type": "string"
+						},
+						"createdIn_other": {
+							"type": "string"
+						},
+						"createError": {
+							"type": "string"
+						},
+						"createRepoError": {
+							"type": "string"
+						},
+						"find": {
+							"type": "string"
+						},
+						"findTitle": {
+							"type": "string"
+						},
+						"findDescription": {
+							"type": "string"
+						},
+						"searchPlaceholder": {
+							"type": "string"
+						},
+						"link": {
+							"type": "string"
+						},
+						"linking": {
+							"type": "string"
+						},
+						"linked": {
+							"type": "string"
+						},
+						"noMatches": {
+							"type": "string"
+						},
+						"moreResults": {
+							"type": "string"
+						},
+						"searchError": {
+							"type": "string"
+						},
+						"noGithubRepos": {
+							"type": "string"
+						},
+						"pastePr": {
+							"type": "string"
+						},
+						"pastePrTitle": {
+							"type": "string"
+						},
+						"pastePrDescription": {
+							"type": "string"
+						},
+						"pastePrButton": {
+							"type": "string"
+						},
+						"pasting": {
+							"type": "string"
+						},
+						"remove": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"empty",
+						"create",
+						"createTitle",
+						"typeLabel",
+						"nameLabel",
+						"namePlaceholder",
+						"nameHint",
+						"repositories",
+						"createButton",
+						"creating",
+						"createError",
+						"createRepoError",
+						"find",
+						"findTitle",
+						"findDescription",
+						"searchPlaceholder",
+						"link",
+						"linking",
+						"linked",
+						"noMatches",
+						"moreResults",
+						"searchError",
+						"noGithubRepos",
+						"pastePr",
+						"pastePrTitle",
+						"pastePrDescription",
+						"pastePrButton",
+						"pasting",
+						"remove"
+					]
+				},
+				"branchTypes": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"fix": {
+							"type": "string"
+						},
+						"feature": {
+							"type": "string"
+						},
+						"docs": {
+							"type": "string"
+						},
+						"chore": {
+							"type": "string"
+						},
+						"refactor": {
+							"type": "string"
+						},
+						"test": {
+							"type": "string"
+						},
+						"release": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"fix",
+						"feature",
+						"docs",
+						"chore",
+						"refactor",
+						"test",
+						"release"
+					]
 				}
 			},
 			"required": [
@@ -12248,7 +12464,9 @@
 				"descriptionRetry",
 				"descriptionLoading",
 				"descriptionLoadError",
-				"board"
+				"board",
+				"branches",
+				"branchTypes"
 			]
 		},
 		"invitations": {
