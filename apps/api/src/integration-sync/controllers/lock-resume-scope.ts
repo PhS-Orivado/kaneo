@@ -8,18 +8,25 @@ import {
 } from "../../database/schema";
 import type { IntegrationDatabase } from "../../plugins/github/services/integration-task-scope";
 import { readSyncRules } from "../../plugins/sync/rules";
-import { getSyncIntegration } from "./get-integration";
+import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 
-export async function lockResumeScope(
-  projectId: string,
-  provider: string,
+// RFC 0001 WP5: scope locks are taken on the addressed binding's rows only.
+// The lock derives from the integration id (never from project + provider),
+// so sibling bindings of the same project never serialize each other.
+export async function lockResumeScopeById(
+  integrationId: string,
   linkId: string,
   authorizedWorkspaceId: string,
   tx: IntegrationDatabase,
 ) {
-  await getAuthorizedSyncProject(projectId, authorizedWorkspaceId, tx, true);
-  const integration = await getSyncIntegration(projectId, provider, tx);
+  const integration = await getSyncIntegrationById(integrationId, tx);
+  await getAuthorizedSyncProject(
+    integration.projectId,
+    authorizedWorkspaceId,
+    tx,
+    true,
+  );
   const [binding] = await tx
     .select()
     .from(integrationTable)
@@ -37,7 +44,10 @@ export async function lockResumeScope(
     .select({ id: taskTable.id })
     .from(taskTable)
     .where(
-      and(eq(taskTable.id, link.taskId), eq(taskTable.projectId, projectId)),
+      and(
+        eq(taskTable.id, link.taskId),
+        eq(taskTable.projectId, integration.projectId),
+      ),
     )
     .for("no key update");
   const rule = readSyncRules(binding!.config)?.outgoing;
@@ -68,4 +78,23 @@ export async function lockResumeScope(
     .from(externalLinkTable)
     .where(eq(externalLinkTable.id, linkId))
     .for("update");
+}
+
+// Compat shim (RFC 0001 WP5, section 5): the project-keyed flow locks the
+// scope of the project's first binding of the provider until the new web
+// client ships; removed with the cleanup PR.
+export async function lockResumeScope(
+  projectId: string,
+  provider: string,
+  linkId: string,
+  authorizedWorkspaceId: string,
+  tx: IntegrationDatabase,
+) {
+  const integration = await getSyncIntegration(projectId, provider, tx);
+  return lockResumeScopeById(
+    integration.id,
+    linkId,
+    authorizedWorkspaceId,
+    tx,
+  );
 }
