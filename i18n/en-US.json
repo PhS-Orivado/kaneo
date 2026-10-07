@@ -160,7 +160,13 @@
 					"terracotta": "Terracotta",
 					"rose": "Rose",
 					"crimson": "Crimson"
-				}
+				},
+				"repositories": "Issues",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesAll": "Select all",
+				"repositoriesNone": "Clear"
 			}
 		}
 	},
@@ -2858,6 +2864,49 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"title": "Branches",
+			"empty": "No branches linked to this task.",
+			"create": "Create branch",
+			"createTitle": "Create task branch",
+			"typeLabel": "Branch type",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"repositories": "Repositories",
+			"createButton": "Create branch",
+			"creating": "Creating...",
+			"createdIn_one": "Created {{branch}} in {{count}} repository",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"find": "Find branch",
+			"findTitle": "Find a branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"link": "Link",
+			"linking": "Linking...",
+			"linked": "Linked",
+			"noMatches": "No matching branches.",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"searchError": "Failed to load branches.",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"pastePr": "Add pull request",
+			"pastePrTitle": "Link a pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrButton": "Link pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}"
+		},
+		"branchTypes": {
+			"fix": "Fix",
+			"feature": "Feature",
+			"docs": "Documentation",
+			"chore": "Chore",
+			"refactor": "Refactor",
+			"test": "Test",
+			"release": "Release"
 		}
 	},
 	"invitations": {
