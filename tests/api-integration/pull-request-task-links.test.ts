@@ -83,6 +83,11 @@ async function createFixture(
     .values({
       projectId: project.id,
       type: provider,
+      // RFC 0001 WP2: github webhook fan-out resolves bindings by
+      // repository_key; gitea deliveries stay keyed by integration id.
+      ...(provider === "github"
+        ? { repositoryKey: `github:${repo === "repo" ? 2 : 3}` }
+        : {}),
       isActive: true,
       config: JSON.stringify({
         repositoryOwner: "acme",

@@ -19,6 +19,14 @@ vi.mock(
     verifyRepositoryOwner: verify,
   }),
 );
+// RFC 0001 WP10: the create controller enforces the repository binding quota
+// before the insert; the quota wiring itself is covered by the plan-limits
+// tests (tests/api/plan-limits/repository-binding-quota.test.ts).
+vi.mock("../../apps/api/src/plan-limits/repository-binding-quota", () => ({
+  assertRepositoryBindingQuota: vi.fn(async () => {}),
+  countActiveRepositoryBindings: vi.fn(async () => 0),
+  getRepositoryBindingUsage: vi.fn(async () => ({ used: 0, limit: null })),
+}));
 beforeEach(async () => {
   await resetTestDatabase();
   verify.mockReset();
@@ -43,6 +51,8 @@ async function setup() {
     .values({
       projectId: project.id,
       type: "github",
+      // RFC 0001 WP2: the binding row carries its repository identity key.
+      repositoryKey: "github:2",
       isActive: true,
       config: JSON.stringify(config),
     })
@@ -84,75 +94,66 @@ async function setup() {
   return { project, config, integration, task, link, connect, app };
 }
 
-describe("GitHub repository changes preserve link ownership", () => {
-  it("rejects a different numeric repository even when its name is identical", async () => {
-    const { integration, config, link, connect } = await setup();
-    verify.mockResolvedValue({ ...config, repositoryId: 99 });
-    await expect(connect()).rejects.toMatchObject({ status: 409 });
+describe("GitHub repository binding semantics (RFC 0001 WP2)", () => {
+  it("rejects relinking the same repository with the documented 409 code", async () => {
+    const { project, integration, link, connect } = await setup();
+    const error = await connect().then(
+      () => {
+        throw new Error("expected the duplicate link to be rejected");
+      },
+      (rejected) => rejected,
+    );
+    expect(error.status).toBe(409);
+    expect(JSON.parse(await error.getResponse().text())).toMatchObject({
+      code: "repository_already_linked",
+      projectId: project.id,
+      type: "github",
+    });
+    expect(await db.query.integrationTable.findMany()).toHaveLength(1);
     expect(await db.query.integrationTable.findFirst()).toMatchObject({
       id: integration.id,
-      config: integration.config,
     });
     expect(await db.query.externalLinkTable.findFirst()).toMatchObject(link);
     expect(await db.query.githubImportTable.findFirst()).toBeDefined();
   });
-  it("preserves links, pending imports and settings when the same repository is renamed or reinstalled", async () => {
+
+  it("links a different repository as an additional binding without touching the first", async () => {
     const { config, integration, link, connect } = await setup();
     verify.mockResolvedValue({
-      repositoryOwner: "new-owner",
-      repositoryName: "renamed",
-      repositoryId: 2,
-      installationId: 88,
+      repositoryOwner: "owner",
+      repositoryName: "other",
+      repositoryId: 99,
+      installationId: 1,
       verifiedGithubAccountId: "3",
       verifiedByUserId: config.verifiedByUserId,
     });
-    expect(await connect()).toMatchObject({
-      id: integration.id,
-      repositoryName: "renamed",
-      installationId: 88,
+    const next = await connect();
+    expect(next.id).not.toBe(integration.id);
+    expect(next).toMatchObject({
+      repositoryOwner: "owner",
+      repositoryName: "other",
+      isActive: true,
     });
-    expect(
-      JSON.parse((await db.query.integrationTable.findFirst())?.config ?? "{}"),
-    ).toMatchObject({
-      branchPattern: config.branchPattern,
-      commentTaskLinkOnGitHubIssue: false,
-      repositoryId: 2,
-    });
+    const rows = await db.query.integrationTable.findMany();
+    expect(rows).toHaveLength(2);
+    expect(rows.map((row) => row.repositoryKey).sort()).toEqual([
+      "github:2",
+      "github:99",
+    ]);
     expect(await db.query.externalLinkTable.findFirst()).toMatchObject(link);
     expect(await db.query.githubImportTable.findFirst()).toBeDefined();
   });
-  it("allows administrator reverification of a matching legacy name, but requires disconnect for a different name", async () => {
-    const { config, integration, connect } = await setup();
-    const legacy = {
-      repositoryOwner: "OWNER",
-      repositoryName: "REPO",
-      installationId: 1,
-    };
-    await db
-      .update(schema.integrationTable)
-      .set({ config: JSON.stringify(legacy) })
-      .where(eq(schema.integrationTable.id, integration.id));
-    verify.mockResolvedValue({ ...config, repositoryName: "another" });
-    await expect(connect()).rejects.toMatchObject({ status: 409 });
-    verify.mockResolvedValue(config);
-    await expect(connect()).resolves.toMatchObject({ id: integration.id });
-  });
-  it("requires an explicit disconnect when an existing configuration cannot establish repository identity", async () => {
-    const { integration, connect } = await setup();
-    await db
-      .update(schema.integrationTable)
-      .set({ config: "invalid" })
-      .where(eq(schema.integrationTable.id, integration.id));
-    await expect(connect()).rejects.toMatchObject({ status: 409 });
-    expect(await db.query.externalLinkTable.findFirst()).toBeDefined();
-  });
-  it("permits switching after disconnect without reusing old links or import cursors", async () => {
-    const { project, config, integration, task, connect } = await setup();
-    await deleteIntegration(project.id);
+
+  it("permits relinking after disconnect without reusing old links or import cursors", async () => {
+    const { config, integration, task, connect } = await setup();
+    await deleteIntegration(integration.id);
     verify.mockResolvedValue({
-      ...config,
-      repositoryId: 99,
+      repositoryOwner: "owner",
       repositoryName: "other",
+      repositoryId: 99,
+      installationId: 1,
+      verifiedGithubAccountId: "3",
+      verifiedByUserId: config.verifiedByUserId,
     });
     const next = await connect();
     expect(next.id).not.toBe(integration.id);
@@ -160,48 +161,49 @@ describe("GitHub repository changes preserve link ownership", () => {
     expect(await db.query.githubImportTable.findMany()).toHaveLength(0);
     expect(await db.query.taskTable.findFirst()).toMatchObject({ id: task.id });
   });
-  it.each(["reconnect", "settings"])(
-    "rejects a concurrent repository change during %s instead of overwriting the new binding",
-    async (operation) => {
-      const { project, config, integration, connect, app } = await setup();
-      const nextConfig = JSON.stringify({
-        ...config,
-        repositoryId: 99,
-        repositoryName: "new",
-      });
-      const find = db.query.integrationTable.findFirst.bind(
-        db.query.integrationTable,
-      );
-      const spy = vi
-        .spyOn(db.query.integrationTable, "findFirst")
-        .mockImplementationOnce(async (...args) => {
-          const row = await find(...args);
+
+  it("rejects a concurrent settings change instead of overwriting the new config", async () => {
+    const { config, integration, app } = await setup();
+    const nextConfig = JSON.stringify({
+      ...config,
+      repositoryId: 99,
+      repositoryName: "new",
+    });
+    const find = db.query.integrationTable.findFirst.bind(
+      db.query.integrationTable,
+    );
+    let lookups = 0;
+    const spy = vi
+      .spyOn(db.query.integrationTable, "findFirst")
+      .mockImplementation(async (...args: Parameters<typeof find>) => {
+        const row = await find(...args);
+        // The fromIntegration access lookup runs first; the PATCH handler's
+        // row read is the second findFirst on the integration table. Changing
+        // the config between the read and the compare-and-set yields 409.
+        lookups += 1;
+        if (lookups === 2 && row) {
           await db
             .update(schema.integrationTable)
             .set({ config: nextConfig })
             .where(eq(schema.integrationTable.id, integration.id));
-          return row;
-        });
-      try {
-        if (operation === "reconnect")
-          await expect(connect()).rejects.toMatchObject({ status: 409 });
-        else {
-          const response = await app.request(
-            `/api/github-integration/project/${project.id}`,
-            {
-              method: "PATCH",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ commentTaskLinkOnGitHubIssue: true }),
-            },
-          );
-          expect(response.status).toBe(409);
         }
-      } finally {
-        spy.mockRestore();
-      }
-      expect((await db.query.integrationTable.findFirst())?.config).toBe(
-        nextConfig,
+        return row;
+      });
+    try {
+      const response = await app.request(
+        `/api/github-integration/integration/${integration.id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ commentTaskLinkOnGitHubIssue: true }),
+        },
       );
-    },
-  );
+      expect(response.status).toBe(409);
+    } finally {
+      spy.mockRestore();
+    }
+    expect((await db.query.integrationTable.findFirst())?.config).toBe(
+      nextConfig,
+    );
+  });
 });
