@@ -30,6 +30,7 @@ import {
   resumePreviewSchema,
   rulesBody,
   saveRulesBody,
+  syncBindingParams,
   syncParams,
   syncPreviewSchema,
 } from "./schema";

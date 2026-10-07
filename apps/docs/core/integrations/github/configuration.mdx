@@ -1,6 +1,6 @@
 ---
 title: "Connect a GitHub repository"
-description: "Add the app credentials, connect a project, and verify synchronization."
+description: "Add the app credentials, connect repositories to a project, and verify synchronization."
 ---
 
 First [create and install a GitHub App](/core/integrations/github/setup). GitHub sign-in is separate and uses [OAuth settings](/core/social-providers/github).
@@ -26,7 +26,7 @@ docker compose up -d --force-recreate kaneo
 
 For Kubernetes, pass the same values through a Secret using your deployment's existing secret configuration. Do not create a second API deployment just for this integration.
 
-## Connect the project
+## Connect the first repository
 
 1. Open **Settings → Projects**, select the project, then open **Integrations**.
 2. In GitHub, browse the repositories available to your installed app, or enter the owner and repository name.
@@ -35,9 +35,47 @@ For Kubernetes, pass the same values through a Secret using your deployment's ex
 
 Use a test repository for the first check, since synchronization creates real issues and comments. Review the event-to-column mappings under **Workflow → Automation Rules**.
 
-### Changing the connected repository
+## Add more repositories
 
-Disconnect the existing integration before connecting a different repository. This preserves local tasks but removes their old external links and any unfinished import progress. Reconnecting the same verified repository, including after a rename or reinstall, preserves its links and project preferences. Legacy integrations without a verified numeric identity can be reverified for the same repository name; review their existing links before enabling synchronization.
+A project is not limited to one GitHub repository. Select **Add repository** to open the repository browser and connect further repositories available to your installed app. A project can also hold Gitea and GitLab bindings alongside GitHub bindings.
+
+The browser marks repositories that are already linked in the current project and prevents selecting them twice. A repository that is connected to a different project can still be added; see cross-project sharing below.
+
+## The repository list
+
+Every connected repository appears as a row in the GitHub integration list, together with the project's current binding usage, for example `3 / 5`. Each row represents one repository binding with its own settings:
+
+- **Settings** opens the binding details, including the toggle that links new issues back to their Kaneo task with a comment.
+- **Sync rules** restricts which tasks synchronize by label, for this binding only.
+- **Workflow rules** maps branch pushes and pull request events to columns, either type-wide or for this repository only.
+- **Import issues** starts or resumes an import for this repository.
+- **Disconnect** removes the binding after a confirmation step.
+
+The list header indicates whether the project is configured and connected across its bindings.
+
+### Disconnect a repository
+
+Disconnecting a single binding removes that binding together with its external links and any unfinished import progress; the Kaneo tasks remain. Reconnecting the same verified repository, including after a rename or reinstall, preserves its links and project preferences. Legacy integrations without a verified numeric identity can be reverified for the same repository name; review their existing links before enabling synchronization.
+
+### Needs verification
+
+Bindings created before repository identities were verified are marked **Needs verification**. Their repository rows cannot be imported or edited until the identity is confirmed. Reverify the binding for the same repository name to restore the full feature set, and review the existing links before enabling synchronization.
+
+### Cross-project repository sharing
+
+The same repository may be connected to more than one project. GitHub events fan out to every project bound to the repository, and each project applies its own sync rules, workflow rules, and task numbering. The repository browser shows when a repository is already linked in another project; it can still be connected.
+
+### Workflow rule scope
+
+Workflow rules apply either to all repositories of a provider type (type-wide) or to a single repository binding. A repository-specific rule wins over the type-wide rule for that repository, while the other repositories keep following the type-wide rule.
+
+### Task numbering
+
+All repositories feed one per-project task sequence. A task created from an issue in any connected repository receives the next number from the same project counter.
+
+### Repository limits
+
+Cloud instances limit the number of active repository bindings per project across GitHub, Gitea, and GitLab, and self-hosted instances can configure `KANEO_MAX_REPOSITORIES_PER_PROJECT`. See [repository limits](/core/integrations/repository-limits) for the details.
 
 ## Testing the Integration
 
@@ -71,7 +109,7 @@ Test branch-based workflow:
 7. Verify the task moves to "done"
 
 <Info>
-Default branch pattern is `{slug}-{number}`. You can customize this in project settings.
+Default branch pattern is `{slug}-{number}`. You can customize this in the repository binding's workflow rules.
 </Info>
 </Step>
 
@@ -103,7 +141,7 @@ Test both directions:
 
 ### Branch Naming Patterns
 
-Configure how Kaneo matches branches to tasks in your project's GitHub integration settings:
+Configure how Kaneo matches branches to tasks in each repository binding's workflow rules:
 
 **Predefined Patterns:**
 - `{slug}-{number}` (default) - e.g., `proj-123`
@@ -144,7 +182,7 @@ Customize when tasks automatically change status:
 | PR Opened | `in-review` | ✅ |
 | PR Merged | `done` | ✅ |
 
-Configure these in your project's GitHub integration settings to match your workflow.
+Configure these in each repository binding's workflow rules to match your workflow.
 
 <Warning>
 A completed task moves again only when new work starts on it: the first push to a branch that is not yet linked to the task, or a pull request that is not yet linked to it. More pushes to a linked branch, or reopening a pull request, leave a completed task where it is.
@@ -167,7 +205,7 @@ If you need to connect repositories from multiple GitHub organizations:
 
 1. Install your GitHub App on each organization
 2. Grant appropriate permissions for each organization
-3. Each Kaneo project can connect to any repository where your app is installed
+3. Each Kaneo project can connect multiple repositories where your app is installed, and one repository can be shared by several projects
 
 ---
 
@@ -175,10 +213,10 @@ If you need to connect repositories from multiple GitHub organizations:
 
 ## Import existing issues
 
-Select **Import Issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
+Select **Import issues** on a repository's row in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
 
-Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to these settings and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
+Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
 
 Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
 
-If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the integration if its repository verification no longer succeeds. Unlinking the integration also removes saved import progress; already imported tasks remain.
+If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the binding if its repository verification no longer succeeds. Disconnecting the binding also removes its saved import progress; already imported tasks remain.
