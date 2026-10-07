@@ -125,4 +125,26 @@ describe("IntegrationRow", () => {
       ).toBeEnabled();
     },
   );
+
+  it.each(["connected", "paused"] as const)(
+    "lists every connected repository for a %s integration",
+    (state) => {
+      render(
+        <IntegrationRow
+          integration={integration}
+          projectId="p1"
+          status={{ state, details: ["acme/web", "acme/api"] }}
+          onRetry={vi.fn()}
+        />,
+      );
+      expect(screen.getByText("acme/web")).toBeVisible();
+      expect(screen.getByText("acme/api")).toBeVisible();
+      fireEvent.click(
+        screen.getByRole("button", {
+          name: "settings:projectIntegrations.configure",
+        }),
+      );
+      expect(screen.getByText("Integration settings")).toBeVisible();
+    },
+  );
 });

@@ -47,7 +47,18 @@ export function IntegrationRow({
             <p className="truncate text-sm font-medium">{name}</p>
             <IntegrationStatusBadge state={state} />
           </div>
-          {isSetUp && status?.detail ? (
+          {isSetUp && status?.details?.length ? (
+            <ul className="space-y-0.5">
+              {status.details.map((repository, index) => (
+                <li
+                  className="truncate font-mono text-xs text-muted-foreground"
+                  key={`${repository}-${index}`}
+                >
+                  {repository}
+                </li>
+              ))}
+            </ul>
+          ) : isSetUp && status?.detail ? (
             <p className="truncate font-mono text-xs text-muted-foreground">
               {status.detail}
             </p>
