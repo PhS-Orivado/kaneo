@@ -5016,6 +5016,12 @@
 						"telegramSectionSubtitle": {
 							"type": "string"
 						},
+						"matrixSectionTitle": {
+							"type": "string"
+						},
+						"matrixSectionSubtitle": {
+							"type": "string"
+						},
 						"codeHostingTitle": {
 							"type": "string"
 						},
@@ -5058,6 +5064,8 @@
 						"mattermostSectionSubtitle",
 						"telegramSectionTitle",
 						"telegramSectionSubtitle",
+						"matrixSectionTitle",
+						"matrixSectionSubtitle",
 						"codeHostingTitle",
 						"chatTitle",
 						"statusConnected",
@@ -7180,6 +7188,193 @@
 						"disconnect"
 					]
 				},
+				"matrixIntegration": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"validation": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"connectionInvalid": {
+									"type": "string"
+								},
+								"homeserverInvalid": {
+									"type": "string"
+								},
+								"userIdInvalid": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"connectionInvalid",
+								"homeserverInvalid",
+								"userIdInvalid"
+							]
+						},
+						"toast": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"saved": {
+									"type": "string"
+								},
+								"saveError": {
+									"type": "string"
+								},
+								"enabled": {
+									"type": "string"
+								},
+								"disabled": {
+									"type": "string"
+								},
+								"updateError": {
+									"type": "string"
+								},
+								"removed": {
+									"type": "string"
+								},
+								"removeError": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"saved",
+								"saveError",
+								"enabled",
+								"disabled",
+								"updateError",
+								"removed",
+								"removeError"
+							]
+						},
+						"connectionTitle": {
+							"type": "string"
+						},
+						"connectionHint": {
+							"type": "string"
+						},
+						"connected": {
+							"type": "string"
+						},
+						"paused": {
+							"type": "string"
+						},
+						"homeserverLabel": {
+							"type": "string"
+						},
+						"homeserverHint": {
+							"type": "string"
+						},
+						"userLabel": {
+							"type": "string"
+						},
+						"userHint": {
+							"type": "string"
+						},
+						"tokenLabel": {
+							"type": "string"
+						},
+						"tokenPlaceholder": {
+							"type": "string"
+						},
+						"tokenHint": {
+							"type": "string"
+						},
+						"tokenMasked": {
+							"type": "string"
+						},
+						"spacePrefixLabel": {
+							"type": "string"
+						},
+						"spacePrefixPlaceholder": {
+							"type": "string"
+						},
+						"spacePrefixHint": {
+							"type": "string"
+						},
+						"inviteUsersLabel": {
+							"type": "string"
+						},
+						"inviteUsersHint": {
+							"type": "string"
+						},
+						"eventsTitle": {
+							"type": "string"
+						},
+						"eventsHint": {
+							"type": "string"
+						},
+						"events": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"taskCreated": {
+									"type": "string"
+								},
+								"taskStatusChanged": {
+									"type": "string"
+								},
+								"taskPriorityChanged": {
+									"type": "string"
+								},
+								"taskTitleChanged": {
+									"type": "string"
+								},
+								"taskDescriptionChanged": {
+									"type": "string"
+								},
+								"taskCommentCreated": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"taskCreated",
+								"taskStatusChanged",
+								"taskPriorityChanged",
+								"taskTitleChanged",
+								"taskDescriptionChanged",
+								"taskCommentCreated"
+							]
+						},
+						"connect": {
+							"type": "string"
+						},
+						"saveChanges": {
+							"type": "string"
+						},
+						"disconnect": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"validation",
+						"toast",
+						"connectionTitle",
+						"connectionHint",
+						"connected",
+						"paused",
+						"homeserverLabel",
+						"homeserverHint",
+						"userLabel",
+						"userHint",
+						"tokenLabel",
+						"tokenPlaceholder",
+						"tokenHint",
+						"tokenMasked",
+						"spacePrefixLabel",
+						"spacePrefixPlaceholder",
+						"spacePrefixHint",
+						"inviteUsersLabel",
+						"inviteUsersHint",
+						"eventsTitle",
+						"eventsHint",
+						"events",
+						"connect",
+						"saveChanges",
+						"disconnect"
+					]
+				},
 				"repositoryBrowser": {
 					"type": "object",
 					"additionalProperties": false,
@@ -8465,6 +8660,7 @@
 				"mattermostIntegration",
 				"genericWebhookIntegration",
 				"telegramIntegration",
+				"matrixIntegration",
 				"repositoryBrowser",
 				"tasksImportExport",
 				"workflowEditor",
