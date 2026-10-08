@@ -1190,9 +1190,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Saisissez une URL de serveur d'accueil, un identifiant d'utilisateur et un jeton d'accès valides",
+				"connectionInvalid": "Saisissez une URL de serveur d'accueil et un jeton d'accès valides",
 				"homeserverInvalid": "Saisissez une URL de serveur d'accueil valide",
-				"userIdInvalid": "Saisissez un identifiant d'utilisateur Matrix valide"
+				"roomIdInvalid": "Saisissez un identifiant ou un alias de salon valide"
 			},
 			"toast": {
 				"saved": "Intégration Matrix enregistrée avec succès",
@@ -1209,8 +1209,15 @@
 			"paused": "En pause",
 			"homeserverLabel": "URL du serveur d'accueil",
 			"homeserverHint": "URL de base de votre serveur d'accueil Matrix, par exemple https://matrix.example.com.",
-			"userLabel": "Identifiant de l'utilisateur bot",
-			"userHint": "Identifiant Matrix complet du compte bot, par exemple @kaneo-bot:example.com.",
+			"modeLabel": "Mode de connexion",
+			"modeProvision": "Créer les espaces et salons Kaneo",
+			"modeProvisionHint": "Kaneo crée un espace de l'espace de travail, un sous-espace de projet ainsi que des salons Updates et Général, et publie les mises à jour de tâches dans le salon Updates.",
+			"modeExisting": "Utiliser un salon existant",
+			"modeExistingHint": "Kaneo rejoint un salon que vous gérez et y publie les mises à jour de tâches.",
+			"roomIdLabel": "Identifiant ou alias de salon",
+			"roomIdHint": "Le salon que Kaneo rejoint et dans lequel il publie, par exemple #kaneo-updates:example.com ou !abc123:example.com.",
+			"parentSpaceLabel": "Espace parent",
+			"parentSpaceHint": "Identifiant ou alias facultatif d'un espace sous lequel l'espace de l'espace de travail est imbriqué.",
 			"tokenLabel": "Jeton d'accès",
 			"tokenPlaceholder": "syt_JetonDaccesExemple123456789",
 			"tokenHint": "Jeton d'accès du compte bot. Laissez vide pour conserver le jeton actuel.",
@@ -1220,6 +1227,8 @@
 			"spacePrefixHint": "Préfixe facultatif pour le nom de l'espace de l'espace de travail. Les espaces sont nommés \"<préfixe> · <nom de l'espace de travail>\".",
 			"inviteUsersLabel": "Inviter des utilisateurs",
 			"inviteUsersHint": "Identifiants d'utilisateurs Matrix facultatifs, séparés par des virgules, à inviter dans chaque espace et salon créés.",
+			"botUserLabel": "Compte bot",
+			"targetRoomLabel": "Salon cible",
 			"eventsTitle": "Notifications d'événements",
 			"eventsHint": "Choisissez les changements de projet à envoyer vers Matrix.",
 			"events": {
@@ -1228,7 +1237,12 @@
 				"taskPriorityChanged": "Changements de priorité",
 				"taskTitleChanged": "Changements de titre",
 				"taskDescriptionChanged": "Changements de description",
-				"taskCommentCreated": "Nouveaux commentaires"
+				"taskCommentCreated": "Nouveaux commentaires",
+				"taskDeleted": "Tâches supprimées",
+				"taskMoved": "Tâches déplacées",
+				"taskDueDateChanged": "Changements de date d'échéance",
+				"taskAssigneeChanged": "Changements d'assignation",
+				"taskUnassigned": "Assignations retirées"
 			},
 			"connect": "Connecter Matrix",
 			"saveChanges": "Enregistrer les modifications",

@@ -1188,9 +1188,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Εισαγάγετε έγκυρη διεύθυνση URL διακομιστή, αναγνωριστικό χρήστη και token πρόσβασης",
+				"connectionInvalid": "Εισαγάγετε έγκυρη διεύθυνση URL διακομιστή και token πρόσβασης",
 				"homeserverInvalid": "Εισαγάγετε έγκυρη διεύθυνση URL διακομιστή",
-				"userIdInvalid": "Εισαγάγετε έγκυρο αναγνωριστικό χρήστη Matrix"
+				"roomIdInvalid": "Εισαγάγετε έγκυρο αναγνωριστικό ή ψευδώνυμο δωματίου"
 			},
 			"toast": {
 				"saved": "Η ενσωμάτωση Matrix αποθηκεύτηκε με επιτυχία",
@@ -1207,8 +1207,15 @@
 			"paused": "Σε παύση",
 			"homeserverLabel": "URL διακομιστή",
 			"homeserverHint": "Βασική διεύθυνση URL του διακομιστή Matrix σας, για παράδειγμα https://matrix.example.com.",
-			"userLabel": "Αναγνωριστικό χρήστη bot",
-			"userHint": "Πλήρες αναγνωριστικό Matrix του λογαριασμού bot, για παράδειγμα @kaneo-bot:example.com.",
+			"modeLabel": "Λειτουργία σύνδεσης",
+			"modeProvision": "Δημιουργία χώρων και δωματίων Kaneo",
+			"modeProvisionHint": "Το Kaneo δημιουργεί τον χώρο του χώρου εργασίας, έναν υποχώρο έργου καθώς και τα δωμάτια Updates και General, και δημοσιεύει τις ενημερώσεις εργασιών στο δωμάτιο Updates.",
+			"modeExisting": "Χρήση υπάρχοντος δωματίου",
+			"modeExistingHint": "Το Kaneo συνδέεται με ένα δωμάτιο που διαχειρίζεστε και δημοσιεύει εκεί τις ενημερώσεις εργασιών.",
+			"roomIdLabel": "Αναγνωριστικό ή ψευδώνυμο δωματίου",
+			"roomIdHint": "Το δωμάτιο στο οποίο συνδέεται και δημοσιεύει το Kaneo, για παράδειγμα #kaneo-updates:example.com ή !abc123:example.com.",
+			"parentSpaceLabel": "Γονικός χώρος",
+			"parentSpaceHint": "Προαιρετικό αναγνωριστικό ή ψευδώνυμο ενός χώρου μέσα στον οποίο τοποθετείται ο χώρος του χώρου εργασίας.",
 			"tokenLabel": "Token πρόσβασης",
 			"tokenPlaceholder": "syt_ΠαράδειγμαTokenΠρόσβασης123456789",
 			"tokenHint": "Token πρόσβασης του λογαριασμού bot. Αφήστε κενό για να διατηρήσετε το τρέχον token.",
@@ -1218,6 +1225,8 @@
 			"spacePrefixHint": "Προαιρετικό πρόθεμα για το όνομα του χώρου του χώρου εργασίας. Οι χώροι ονομάζονται \"<πρόθεμα> · <όνομα χώρου εργασίας>\".",
 			"inviteUsersLabel": "Πρόσκληση χρηστών",
 			"inviteUsersHint": "Προαιρετικά αναγνωριστικά χρηστών Matrix, διαχωρισμένα με κόμμα, για πρόσκληση σε κάθε χώρο και δωμάτιο που δημιουργείται.",
+			"botUserLabel": "Λογαριασμός bot",
+			"targetRoomLabel": "Δωμάτιο προορισμού",
 			"eventsTitle": "Ειδοποιήσεις γεγονότων",
 			"eventsHint": "Επιλέξτε ποιες αλλαγές έργου θα δημοσιεύονται στο Matrix.",
 			"events": {
@@ -1226,7 +1235,12 @@
 				"taskPriorityChanged": "Αλλαγές προτεραιότητας",
 				"taskTitleChanged": "Αλλαγές τίτλου",
 				"taskDescriptionChanged": "Αλλαγές περιγραφής",
-				"taskCommentCreated": "Νέα σχόλια"
+				"taskCommentCreated": "Νέα σχόλια",
+				"taskDeleted": "Διαγραμμένες εργασίες",
+				"taskMoved": "Μετακινημένες εργασίες",
+				"taskDueDateChanged": "Αλλαγές ημερομηνίας λήξης",
+				"taskAssigneeChanged": "Αλλαγές αναθέσεων",
+				"taskUnassigned": "Καταργημένες αναθέσεις"
 			},
 			"connect": "Σύνδεση Matrix",
 			"saveChanges": "Αποθήκευση αλλαγών",
