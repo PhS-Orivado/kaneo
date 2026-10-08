@@ -1622,8 +1622,8 @@
 			"slackSectionTitle": "Integracja ze Slackiem",
 			"subtitle": "Połącz projekt z zewnętrznymi narzędziami i usługami, aby usprawnić obieg pracy.",
 			"telegramSectionSubtitle": "Wysyłaj aktualizacje zadań projektu do czatu lub wątku w Telegramie za pomocą bota.",
-			"matrixSectionTitle": "Integracja Element",
-			"matrixSectionSubtitle": "Wysyła aktualizacje zadań projektu do Element (Matrix) przez konto bota; tworzy przestrzeń dla każdego obszaru roboczego oraz podprzestrzeń i pokój dla każdego projektu.",
+			"matrixSectionTitle": "Integracja Matrix",
+			"matrixSectionSubtitle": "Wysyła aktualizacje zadań projektu do Matrix przez konto bota; tworzy przestrzeń dla każdego obszaru roboczego oraz podprzestrzeń i pokój dla każdego projektu.",
 			"telegramSectionTitle": "Integracja z Telegramem",
 			"title": "Integracje projektu",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
@@ -1797,15 +1797,15 @@
 				"userIdInvalid": "Wpisz prawidłowy identyfikator użytkownika Matrix"
 			},
 			"toast": {
-				"saved": "Integrację ze Elementiem zapisano pomyślnie",
-				"saveError": "Nie udało się zapisać integracji ze Elementiem",
-				"enabled": "Powiadomienia Element włączone",
-				"disabled": "Powiadomienia Element wstrzymane",
-				"updateError": "Nie udało się zaktualizować integracji ze Elementiem",
-				"removed": "Integrację ze Elementiem usunięto pomyślnie",
-				"removeError": "Nie udało się usunąć integracji ze Elementiem"
+				"saved": "Integrację ze Matrixiem zapisano pomyślnie",
+				"saveError": "Nie udało się zapisać integracji ze Matrixiem",
+				"enabled": "Powiadomienia Matrix włączone",
+				"disabled": "Powiadomienia Matrix wstrzymane",
+				"updateError": "Nie udało się zaktualizować integracji ze Matrixiem",
+				"removed": "Integrację ze Matrixiem usunięto pomyślnie",
+				"removeError": "Nie udało się usunąć integracji ze Matrixiem"
 			},
-			"connectionTitle": "Połączenie bota Element",
+			"connectionTitle": "Połączenie bota Matrix",
 			"connectionHint": "Użyj konta bota Matrix i tokenu dostępu, aby wysyłać aktualizacje zadań projektu do pokoju.",
 			"connected": "Połączono",
 			"paused": "Wstrzymano",
@@ -1823,7 +1823,7 @@
 			"inviteUsersLabel": "Zaproś użytkowników",
 			"inviteUsersHint": "Opcjonalne, oddzielone przecinkami identyfikatory użytkowników Matrix do zaproszenia do każdej utworzonej przestrzeni i pokoju.",
 			"eventsTitle": "Powiadomienia o zdarzeniach",
-			"eventsHint": "Wybierz, które zmiany w projekcie mają być publikowane na Elementu.",
+			"eventsHint": "Wybierz, które zmiany w projekcie mają być publikowane na Matrixu.",
 			"events": {
 				"taskCreated": "Nowe zadania",
 				"taskStatusChanged": "Zmiany statusu",
@@ -1832,7 +1832,7 @@
 				"taskDescriptionChanged": "Zmiany opisu",
 				"taskCommentCreated": "Nowe komentarze"
 			},
-			"connect": "Połącz Element",
+			"connect": "Połącz Matrix",
 			"saveChanges": "Zapisz zmiany",
 			"disconnect": "Rozłącz"
 		},

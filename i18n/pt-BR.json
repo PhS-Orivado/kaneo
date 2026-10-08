@@ -1046,8 +1046,8 @@
 			"slackSectionSubtitle": "Envie atualizações de tarefas do projeto para um canal do Slack com um webhook de entrada.",
 			"telegramSectionTitle": "Integração com Telegram",
 			"telegramSectionSubtitle": "Envie atualizações de tarefas do projeto para um chat ou tópico do Telegram com um bot.",
-			"matrixSectionTitle": "Integração do Element",
-			"matrixSectionSubtitle": "Envia atualizações de tarefas do projeto para o Element (Matrix) por meio de uma conta de bot; cria um espaço por workspace, além de um subespaço e uma sala por projeto.",
+			"matrixSectionTitle": "Integração do Matrix",
+			"matrixSectionSubtitle": "Envia atualizações de tarefas do projeto para o Matrix por meio de uma conta de bot; cria um espaço por workspace, além de um subespaço e uma sala por projeto.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1431,15 +1431,15 @@
 				"userIdInvalid": "Digite um ID de usuário Matrix válido"
 			},
 			"toast": {
-				"saved": "Integração com o Element salva com sucesso",
-				"saveError": "Falha ao salvar a integração com o Element",
-				"enabled": "Notificações do Element ativadas",
-				"disabled": "Notificações do Element pausadas",
-				"updateError": "Falha ao atualizar a integração com o Element",
-				"removed": "Integração com o Element removida com sucesso",
-				"removeError": "Falha ao remover a integração com o Element"
+				"saved": "Integração com o Matrix salva com sucesso",
+				"saveError": "Falha ao salvar a integração com o Matrix",
+				"enabled": "Notificações do Matrix ativadas",
+				"disabled": "Notificações do Matrix pausadas",
+				"updateError": "Falha ao atualizar a integração com o Matrix",
+				"removed": "Integração com o Matrix removida com sucesso",
+				"removeError": "Falha ao remover a integração com o Matrix"
 			},
-			"connectionTitle": "Conexão do bot do Element",
+			"connectionTitle": "Conexão do bot do Matrix",
 			"connectionHint": "Use uma conta de bot do Matrix e um token de acesso para enviar atualizações de tarefas do projeto para uma sala.",
 			"connected": "Conectado",
 			"paused": "Pausado",
@@ -1457,7 +1457,7 @@
 			"inviteUsersLabel": "Convidar usuários",
 			"inviteUsersHint": "IDs de usuário Matrix opcionais, separados por vírgula, para convidar para cada espaço e sala criados.",
 			"eventsTitle": "Notificações de eventos",
-			"eventsHint": "Escolha quais alterações do projeto devem ser publicadas no Element.",
+			"eventsHint": "Escolha quais alterações do projeto devem ser publicadas no Matrix.",
 			"events": {
 				"taskCreated": "Novas tarefas",
 				"taskStatusChanged": "Mudanças de status",
@@ -1466,7 +1466,7 @@
 				"taskDescriptionChanged": "Mudanças de descrição",
 				"taskCommentCreated": "Novos comentários"
 			},
-			"connect": "Conectar Element",
+			"connect": "Conectar Matrix",
 			"saveChanges": "Salvar alterações",
 			"disconnect": "Desconectar"
 		},

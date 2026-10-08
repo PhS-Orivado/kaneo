@@ -704,8 +704,8 @@
 			"giteaSectionSubtitle": "Synchroniseer taken met een zelf-gehoste Gitea-instantie (issues, PR's, webhooks).",
 			"telegramSectionTitle": "Telegram Integratie",
 			"telegramSectionSubtitle": "Verstuur updates van projecttaken naar een Telegram-chat of -topic met een bot.",
-			"matrixSectionTitle": "Element-integratie",
-			"matrixSectionSubtitle": "Stuurt projecttaakupdates naar Element (Matrix) via een botaccount; maakt een space per werkruimte en een subspace en kamer per project.",
+			"matrixSectionTitle": "Matrix-integratie",
+			"matrixSectionSubtitle": "Stuurt projecttaakupdates naar Matrix via een botaccount; maakt een space per werkruimte en een subspace en kamer per project.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1506,15 +1506,15 @@
 				"userIdInvalid": "Voer een geldige Matrix-gebruikers-ID in"
 			},
 			"toast": {
-				"saved": "Element-integratie succesvol opgeslagen",
-				"saveError": "Opslaan Element-integratie mislukt",
-				"enabled": "Element-meldingen ingeschakeld",
-				"disabled": "Element-meldingen gepauzeerd",
-				"updateError": "Bijwerken Element-integratie mislukt",
-				"removed": "Element-integratie succesvol verwijderd",
-				"removeError": "Verwijderen Element-integratie mislukt"
+				"saved": "Matrix-integratie succesvol opgeslagen",
+				"saveError": "Opslaan Matrix-integratie mislukt",
+				"enabled": "Matrix-meldingen ingeschakeld",
+				"disabled": "Matrix-meldingen gepauzeerd",
+				"updateError": "Bijwerken Matrix-integratie mislukt",
+				"removed": "Matrix-integratie succesvol verwijderd",
+				"removeError": "Verwijderen Matrix-integratie mislukt"
 			},
-			"connectionTitle": "Element-botverbinding",
+			"connectionTitle": "Matrix-botverbinding",
 			"connectionHint": "Gebruik een Matrix-botaccount en toegangstoken om projecttaakupdates naar een kamer te sturen.",
 			"connected": "Verbonden",
 			"paused": "Gepauzeerd",
@@ -1532,7 +1532,7 @@
 			"inviteUsersLabel": "Gebruikers uitnodigen",
 			"inviteUsersHint": "Optionele, door komma's gescheiden Matrix-gebruikers-ID's om uit te nodigen voor elke gemaakte space en kamer.",
 			"eventsTitle": "Gebeurtenis-meldingen",
-			"eventsHint": "Kies welke projectwijzigingen naar Element gepost moeten worden.",
+			"eventsHint": "Kies welke projectwijzigingen naar Matrix gepost moeten worden.",
 			"events": {
 				"taskCreated": "Nieuwe taken",
 				"taskStatusChanged": "Statuswijzigingen",
@@ -1541,7 +1541,7 @@
 				"taskDescriptionChanged": "Beschrijvingswijzigingen",
 				"taskCommentCreated": "Nieuwe reacties"
 			},
-			"connect": "Verbind Element",
+			"connect": "Verbind Matrix",
 			"saveChanges": "Wijzigingen opslaan",
 			"disconnect": "Ontkoppelen"
 		},
