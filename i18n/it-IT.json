@@ -1046,8 +1046,8 @@
 			"slackSectionSubtitle": "Invia aggiornamenti delle attività del progetto in un canale Slack tramite webhook in entrata.",
 			"telegramSectionTitle": "Integrazione Telegram",
 			"telegramSectionSubtitle": "Invia aggiornamenti delle attività del progetto in una chat o topic Telegram con un bot.",
-			"matrixSectionTitle": "Integrazione Element",
-			"matrixSectionSubtitle": "Invia gli aggiornamenti delle attività del progetto in Element (Matrix) tramite un account bot; crea uno spazio per ogni workspace, oltre a un sotto-spazio e una stanza per ogni progetto.",
+			"matrixSectionTitle": "Integrazione Matrix",
+			"matrixSectionSubtitle": "Invia gli aggiornamenti delle attività del progetto in Matrix tramite un account bot; crea uno spazio per ogni workspace, oltre a un sotto-spazio e una stanza per ogni progetto.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1431,15 +1431,15 @@
 				"userIdInvalid": "Inserisci un ID utente Matrix valido"
 			},
 			"toast": {
-				"saved": "Integrazione Element salvata con successo",
-				"saveError": "Salvataggio integrazione Element fallito",
-				"enabled": "Notifiche Element attivate",
-				"disabled": "Notifiche Element in pausa",
-				"updateError": "Aggiornamento integrazione Element fallito",
-				"removed": "Integrazione Element rimossa con successo",
-				"removeError": "Rimozione integrazione Element fallita"
+				"saved": "Integrazione Matrix salvata con successo",
+				"saveError": "Salvataggio integrazione Matrix fallito",
+				"enabled": "Notifiche Matrix attivate",
+				"disabled": "Notifiche Matrix in pausa",
+				"updateError": "Aggiornamento integrazione Matrix fallito",
+				"removed": "Integrazione Matrix rimossa con successo",
+				"removeError": "Rimozione integrazione Matrix fallita"
 			},
-			"connectionTitle": "Connessione del bot Element",
+			"connectionTitle": "Connessione del bot Matrix",
 			"connectionHint": "Usa un account bot Matrix e un token di accesso per inviare gli aggiornamenti delle attività del progetto in una stanza.",
 			"connected": "Connesso",
 			"paused": "In pausa",
@@ -1457,7 +1457,7 @@
 			"inviteUsersLabel": "Invita utenti",
 			"inviteUsersHint": "ID utente Matrix facoltativi, separati da virgole, da invitare in ogni spazio e stanza creati.",
 			"eventsTitle": "Notifiche eventi",
-			"eventsHint": "Scegli quali modifiche del progetto pubblicare su Element.",
+			"eventsHint": "Scegli quali modifiche del progetto pubblicare su Matrix.",
 			"events": {
 				"taskCreated": "Nuove attività",
 				"taskStatusChanged": "Cambiamenti di stato",
@@ -1466,7 +1466,7 @@
 				"taskDescriptionChanged": "Cambiamenti di descrizione",
 				"taskCommentCreated": "Nuovi commenti"
 			},
-			"connect": "Connetti Element",
+			"connect": "Connetti Matrix",
 			"saveChanges": "Salva modifiche",
 			"disconnect": "Disconnetti"
 		},

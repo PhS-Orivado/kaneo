@@ -806,8 +806,8 @@
 			"slackSectionSubtitle": "Kirim pembaruan tugas proyek ke kanal Slack dengan incoming webhook.",
 			"telegramSectionTitle": "Integrasi Telegram",
 			"telegramSectionSubtitle": "Kirim pembaruan tugas proyek ke chat atau topik Telegram dengan bot.",
-			"matrixSectionTitle": "Integrasi Element",
-			"matrixSectionSubtitle": "Mengirim pembaruan tugas proyek ke Element (Matrix) melalui akun bot; membuat satu space per ruang kerja serta satu subspace dan ruangan per proyek.",
+			"matrixSectionTitle": "Integrasi Matrix",
+			"matrixSectionSubtitle": "Mengirim pembaruan tugas proyek ke Matrix melalui akun bot; membuat satu space per ruang kerja serta satu subspace dan ruangan per proyek.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1191,15 +1191,15 @@
 				"userIdInvalid": "Masukkan ID pengguna Matrix yang valid"
 			},
 			"toast": {
-				"saved": "Integrasi Element berhasil disimpan",
-				"saveError": "Gagal menyimpan integrasi Element",
-				"enabled": "Notifikasi Element diaktifkan",
-				"disabled": "Notifikasi Element dijeda",
-				"updateError": "Gagal memperbarui integrasi Element",
-				"removed": "Integrasi Element berhasil dihapus",
-				"removeError": "Gagal menghapus integrasi Element"
+				"saved": "Integrasi Matrix berhasil disimpan",
+				"saveError": "Gagal menyimpan integrasi Matrix",
+				"enabled": "Notifikasi Matrix diaktifkan",
+				"disabled": "Notifikasi Matrix dijeda",
+				"updateError": "Gagal memperbarui integrasi Matrix",
+				"removed": "Integrasi Matrix berhasil dihapus",
+				"removeError": "Gagal menghapus integrasi Matrix"
 			},
-			"connectionTitle": "Koneksi bot Element",
+			"connectionTitle": "Koneksi bot Matrix",
 			"connectionHint": "Gunakan akun bot Matrix dan token akses untuk mengirim pembaruan tugas proyek ke sebuah ruangan.",
 			"connected": "Terhubung",
 			"paused": "Dijeda",
@@ -1217,7 +1217,7 @@
 			"inviteUsersLabel": "Undang pengguna",
 			"inviteUsersHint": "ID pengguna Matrix opsional yang dipisahkan koma untuk diundang ke setiap space dan ruangan yang dibuat.",
 			"eventsTitle": "Notifikasi event",
-			"eventsHint": "Pilih perubahan proyek yang harus diposting ke Element.",
+			"eventsHint": "Pilih perubahan proyek yang harus diposting ke Matrix.",
 			"events": {
 				"taskCreated": "Tugas baru",
 				"taskStatusChanged": "Perubahan status",
@@ -1226,7 +1226,7 @@
 				"taskDescriptionChanged": "Perubahan deskripsi",
 				"taskCommentCreated": "Komentar baru"
 			},
-			"connect": "Hubungkan Element",
+			"connect": "Hubungkan Matrix",
 			"saveChanges": "Simpan perubahan",
 			"disconnect": "Putuskan"
 		},
