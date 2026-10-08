@@ -14,9 +14,9 @@ import {
 // The HTTP body is validated by updateMatrixBody in ../schema; this is the
 // shape it produces. Every event toggle is genuinely optional -- a patch merges
 // the toggles it carries over the stored ones and leaves the rest alone.
+// The connected mode, parent space, and target room are fixed at connect time.
 export type MatrixIntegrationPatchBody = {
   homeserverUrl?: string;
-  userId?: string;
   accessToken?: string;
   spaceNamePrefix?: string | null;
   inviteUsers?: string[] | null;
@@ -32,15 +32,13 @@ export function buildNextMatrixConfigFromPatch(
     "homeserverUrl" in body
       ? (body.homeserverUrl?.trim() ?? "")
       : currentConfig.homeserverUrl;
-  const nextUserId =
-    "userId" in body ? (body.userId?.trim() ?? "") : currentConfig.userId;
   const nextAccessToken =
     "accessToken" in body
       ? (body.accessToken?.trim() ?? "")
       : currentConfig.accessToken;
   return {
+    ...currentConfig,
     homeserverUrl: nextHomeserverUrl,
-    userId: nextUserId,
     accessToken: nextAccessToken,
     spaceNamePrefix:
       body.spaceNamePrefix === undefined
@@ -72,9 +70,11 @@ function sanitizeMatrixConfigForLog(rawConfig: string): string {
     for (const key of [
       "accessToken",
       "homeserverUrl",
-      "userId",
+      "botUserId",
       "inviteUsers",
       "spaceNamePrefix",
+      "roomId",
+      "parentSpaceId",
     ] as const) {
       if (key in parsed) {
         parsed[key] = "[REDACTED]";
@@ -120,10 +120,16 @@ export function toResponse(integration: MatrixIntegrationRecord) {
   return {
     id: integration.id,
     projectId: integration.projectId,
+    mode: config.mode ?? "provision",
     homeserverUrl: config.homeserverUrl,
-    userId: config.userId,
+    botUserId: config.botUserId ?? null,
     spaceNamePrefix: config.spaceNamePrefix ?? null,
     inviteUsers: config.inviteUsers ?? [],
+    parentSpaceId: config.parentSpaceId ?? null,
+    spaceId: config.spaceId ?? null,
+    updatesRoomId: config.updatesRoomId ?? null,
+    generalRoomId: config.generalRoomId ?? null,
+    roomId: config.roomId ?? null,
     tokenConfigured: Boolean(config.accessToken),
     maskedAccessToken: config.accessToken
       ? maskAccessToken(config.accessToken)

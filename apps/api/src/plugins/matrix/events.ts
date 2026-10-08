@@ -9,12 +9,17 @@ import {
 } from "../../database/schema";
 import type {
   PluginContext,
+  TaskAssigneeChangedEvent,
   TaskCommentCreatedEvent,
   TaskCreatedEvent,
+  TaskDeletedEvent,
   TaskDescriptionChangedEvent,
+  TaskDueDateChangedEvent,
+  TaskMovedEvent,
   TaskPriorityChangedEvent,
   TaskStatusChangedEvent,
   TaskTitleChangedEvent,
+  TaskUnassignedEvent,
 } from "../types";
 import { safeMatrixError, sendMatrixMessage } from "./client";
 import type { MatrixConfig, MatrixEventKey } from "./config";
@@ -60,9 +65,30 @@ function escapeHtml(value: string): string {
     .replace(/>/g, "&gt;");
 }
 
+function stripTags(value: string): string {
+  return value.replace(/<[^>]+>/g, "");
+}
+
+function formatDueDate(value: Date | null): string {
+  return value ? value.toISOString().slice(0, 10) : "none";
+}
+
+// Provisioned integrations post to the Updates room; existing-room
+// integrations post to the joined room. A provisioned integration that has
+// not stored a room yet falls back to lazily provisioning the structure.
+function getMatrixTargetRoomId(config: MatrixConfig): string | null {
+  if (config.mode === "existing") {
+    return config.roomId ?? null;
+  }
+
+  return config.updatesRoomId ?? null;
+}
+
 function getSafeMatrixTargetIdentifier(config: MatrixConfig): string {
   const hash = createHash("sha256")
-    .update(`${config.homeserverUrl}:${config.userId}`)
+    .update(
+      `${config.homeserverUrl}:${getMatrixTargetRoomId(config) ?? "unprovisioned"}`,
+    )
     .digest("hex")
     .slice(0, 12);
 
@@ -145,30 +171,11 @@ async function getMatrixEventData(
   };
 }
 
-async function sendMatrixNotification(
-  config: MatrixConfig,
+export function buildMatrixNoticeContent(
   title: string,
   body: string,
   data: MatrixEventData,
-): Promise<void> {
-  let roomId: string;
-  try {
-    const structure = await ensureMatrixStructure(config, {
-      workspaceId: data.workspaceId,
-      workspaceName: data.workspaceName,
-      projectId: data.projectId,
-      projectName: data.projectName,
-    });
-    roomId = structure.roomId;
-  } catch (error) {
-    console.error("sendMatrixNotification ensureMatrixStructure failed", {
-      error: safeMatrixError(error),
-      matrixTarget: getSafeMatrixTargetIdentifier(config),
-      taskUrl: data.taskUrl,
-    });
-    return;
-  }
-
+): { plain: string; html: string } {
   const issueKey =
     data.taskNumber !== null ? `#${data.taskNumber}` : "Task update";
   const taskLabel = `${issueKey} ${data.taskTitle}`;
@@ -177,27 +184,73 @@ async function sendMatrixNotification(
     ? `<a href="${escapeHtml(data.taskUrl)}">${escapedTaskLabel}</a>`
     : escapedTaskLabel;
 
-  const lines = [
-    `<strong>${escapeHtml(title)}</strong>`,
-    escapeHtml(body),
-    "",
-    `<strong>Task:</strong> ${taskLine}`,
-    `<strong>Project:</strong> ${escapeHtml(data.projectName)}`,
-    `<strong>Status:</strong> ${escapeHtml(toSentenceCase(data.status))}`,
-    `<strong>Priority:</strong> ${escapeHtml(toSentenceCase(data.priority))}`,
-    `<strong>Triggered by:</strong> ${escapeHtml(data.actorName ?? "Kaneo")}`,
+  const fields = [
+    ["Task", taskLine],
+    ["Project", escapeHtml(data.projectName)],
+    ["Status", escapeHtml(toSentenceCase(data.status))],
+    ["Priority", escapeHtml(toSentenceCase(data.priority))],
+    ["Triggered by", escapeHtml(data.actorName ?? "Kaneo")],
   ];
+
+  const plain =
+    [title, body, ""]
+      .concat(fields.map(([label, value]) => `${label}: ${stripTags(value)}`))
+      .join("\n") + (data.taskUrl ? `\n${data.taskUrl}` : "");
+  const html =
+    `<strong>${escapeHtml(title)}</strong><br>` +
+    `${escapeHtml(body)}<br><br>` +
+    fields
+      .map(([label, value]) => `<strong>${label}:</strong> ${value}`)
+      .join("<br>");
+
+  return { plain, html };
+}
+
+async function sendMatrixNotification(
+  config: MatrixConfig,
+  title: string,
+  body: string,
+  data: MatrixEventData,
+): Promise<void> {
+  let roomId = getMatrixTargetRoomId(config);
+
+  if (!roomId && config.mode !== "existing") {
+    try {
+      const structure = await ensureMatrixStructure(config, {
+        workspaceId: data.workspaceId,
+        workspaceName: data.workspaceName,
+        projectId: data.projectId,
+        projectName: data.projectName,
+      });
+      roomId = structure.roomId;
+    } catch (error) {
+      console.error("sendMatrixNotification ensureMatrixStructure failed", {
+        error: safeMatrixError(error),
+        matrixTarget: getSafeMatrixTargetIdentifier(config),
+        taskUrl: data.taskUrl,
+      });
+      return;
+    }
+  }
+
+  if (!roomId) {
+    console.error("Matrix target room is missing; skipping notification", {
+      reason: "Missing target room",
+      matrixTarget: getSafeMatrixTargetIdentifier(config),
+      taskUrl: data.taskUrl,
+    });
+    return;
+  }
+
+  const { plain, html } = buildMatrixNoticeContent(title, body, data);
 
   try {
     await sendMatrixMessage(
       config.homeserverUrl,
       config.accessToken,
       roomId,
-      lines.join("<br/>"),
-      lines
-        .map((line) => line.replace(/<[^>]+>/g, ""))
-        .join("\n")
-        .replace(/\n{3,}/g, "\n\n"),
+      html,
+      plain,
     );
   } catch (error) {
     console.error("sendMatrixNotification sendMatrixMessage failed", {
@@ -223,7 +276,7 @@ async function runMatrixHandler(
   featureKey: MatrixEventKey,
   buildMessage: () => MatrixMessageContent,
 ): Promise<void> {
-  const validation = validateMatrixConfig(context.config);
+  const validation = await validateMatrixConfig(context.config);
   if (!validation.valid) {
     console.error("Invalid Matrix plugin config; skipping event dispatch", {
       reason: "Invalid configuration",
@@ -305,5 +358,55 @@ export async function handleTaskCommentCreated(
   await runMatrixHandler(context, event, "taskCommentCreated", () => ({
     title: "New task comment",
     body: truncate(event.comment.replace(/\s+/g, " "), 200),
+  }));
+}
+
+export async function handleTaskDeleted(
+  event: TaskDeletedEvent,
+  context: PluginContext,
+): Promise<void> {
+  await runMatrixHandler(context, event, "taskDeleted", () => ({
+    title: "Task deleted",
+    body: `${event.title} was deleted.`,
+  }));
+}
+
+export async function handleTaskMoved(
+  event: TaskMovedEvent,
+  context: PluginContext,
+): Promise<void> {
+  await runMatrixHandler(context, event, "taskMoved", () => ({
+    title: "Task moved",
+    body: `${event.title} moved from project ${event.fromProjectName} to project ${event.toProjectName}.`,
+  }));
+}
+
+export async function handleTaskDueDateChanged(
+  event: TaskDueDateChangedEvent,
+  context: PluginContext,
+): Promise<void> {
+  await runMatrixHandler(context, event, "taskDueDateChanged", () => ({
+    title: "Task due date changed",
+    body: `${event.title} due date changed from ${formatDueDate(event.oldDueDate)} to ${formatDueDate(event.newDueDate)}.`,
+  }));
+}
+
+export async function handleTaskAssigneeChanged(
+  event: TaskAssigneeChangedEvent,
+  context: PluginContext,
+): Promise<void> {
+  await runMatrixHandler(context, event, "taskAssigneeChanged", () => ({
+    title: "Task assignee changed",
+    body: `${event.title} was assigned to ${event.newAssignee ?? "a new assignee"}.`,
+  }));
+}
+
+export async function handleTaskUnassigned(
+  event: TaskUnassignedEvent,
+  context: PluginContext,
+): Promise<void> {
+  await runMatrixHandler(context, event, "taskUnassigned", () => ({
+    title: "Task unassigned",
+    body: `${event.title} was unassigned.`,
   }));
 }

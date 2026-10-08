@@ -148,6 +148,7 @@ export async function createMatrixRoom(
     aliasLocalpart?: string;
     isSpace?: boolean;
     inviteUsers?: string[];
+    powerLevelContentOverride?: Record<string, unknown>;
   },
 ): Promise<MatrixRoom> {
   const body: Record<string, unknown> = {
@@ -166,6 +167,10 @@ export async function createMatrixRoom(
 
   if (options.inviteUsers && options.inviteUsers.length > 0) {
     body.invite = options.inviteUsers;
+  }
+
+  if (options.powerLevelContentOverride) {
+    body.power_level_content_override = options.powerLevelContentOverride;
   }
 
   const result = (await matrixRequest(
@@ -189,6 +194,58 @@ export async function createMatrixRoom(
   return {
     roomId: result.room_id,
   };
+}
+
+// Resolves the bot's own user ID. Homeservers reject the call for invalid
+// tokens, so it doubles as the connect-time credential check.
+export async function getMatrixWhoami(
+  homeserverUrl: string,
+  accessToken: string,
+): Promise<string> {
+  const result = (await matrixRequest(
+    homeserverUrl,
+    accessToken,
+    "account/whoami",
+  )) as { user_id?: string } | null;
+
+  if (
+    !result ||
+    typeof result !== "object" ||
+    typeof result.user_id !== "string"
+  ) {
+    throw new MatrixRequestError("response");
+  }
+
+  return result.user_id;
+}
+
+// Joins a room by ID or alias; the homeserver resolves aliases itself, but
+// resolving first keeps the stored target stable and independent of later
+// alias changes.
+export async function joinMatrixRoom(
+  homeserverUrl: string,
+  accessToken: string,
+  roomIdOrAlias: string,
+): Promise<string> {
+  const result = (await matrixRequest(
+    homeserverUrl,
+    accessToken,
+    `join/${encodeURIComponent(roomIdOrAlias)}`,
+    {
+      method: "POST",
+      body: {},
+    },
+  )) as { room_id?: string } | null;
+
+  if (
+    !result ||
+    typeof result !== "object" ||
+    typeof result.room_id !== "string"
+  ) {
+    throw new MatrixRequestError("response");
+  }
+
+  return result.room_id;
 }
 
 export function serverNameFromHomeserverUrl(homeserverUrl: string): string {
@@ -216,6 +273,29 @@ export async function linkSpaceChild(
         via: [serverNameFromHomeserverUrl(homeserverUrl)],
         suggested: options.suggested ?? false,
         ...(options.order !== undefined ? { order: options.order } : {}),
+      },
+    },
+  );
+}
+
+// Child -> parent backlink; clients that only read m.space.parent use it to
+// place the child inside its space.
+export async function linkSpaceParent(
+  homeserverUrl: string,
+  accessToken: string,
+  childId: string,
+  parentId: string,
+  options: { canonical?: boolean } = {},
+): Promise<void> {
+  await matrixRequest(
+    homeserverUrl,
+    accessToken,
+    `rooms/${encodeURIComponent(childId)}/state/m.space.parent/${encodeURIComponent(parentId)}`,
+    {
+      method: "PUT",
+      body: {
+        via: [serverNameFromHomeserverUrl(homeserverUrl)],
+        canonical: options.canonical ?? true,
       },
     },
   );

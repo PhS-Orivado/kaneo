@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
-import { integrationTable } from "../database/schema";
+import { integrationTable, projectTable, workspaceTable } from "../database/schema";
 import { publishEvent } from "../events";
 import { deletedSchema, projectIdParam } from "../integrations/schema";
 import {
@@ -16,6 +16,14 @@ import {
   normalizeMatrixConfig,
   validateMatrixConfig,
 } from "../plugins/matrix/config";
+import {
+  getMatrixWhoami,
+  joinMatrixRoom,
+  resolveRoomAlias,
+  safeMatrixError,
+  sendMatrixMessage,
+} from "../plugins/matrix/client";
+import { ensureMatrixStructure } from "../plugins/matrix/structure";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import {
@@ -79,7 +87,7 @@ const createMatrixIntegrationRoute = createRoute({
   tags: ["Matrix"],
   summary: "Create Matrix integration",
   description:
-    "Create or replace the Matrix integration for a project. The homeserver URL, user ID, and access token are checked for shape only, not against the homeserver.",
+    "Connect a Matrix bot account for a project. In provision mode Kaneo creates a workspace space with a project subspace and Updates and General rooms (optionally nested under a parent space); in existing mode it joins and posts to a room you manage. The homeserver must pass destination validation and the bot credentials are verified during the request.",
   middleware: manageAccess,
   request: {
     params: projectIdParam,
@@ -94,7 +102,7 @@ const createMatrixIntegrationRoute = createRoute({
       matrixIntegrationSchema.nullable(),
     ),
     400: errorResponse(
-      "The homeserver URL, user ID, or access token failed validation",
+      "The homeserver rejected the connection, or the config failed validation",
     ),
     403: errorResponse(
       "No workspace access, or missing workspace:manage_settings",
@@ -109,7 +117,7 @@ const updateMatrixIntegrationRoute = createRoute({
   tags: ["Matrix"],
   summary: "Update Matrix integration",
   description:
-    "Update the Matrix integration. Omitted fields keep their current value; spaceNamePrefix and inviteUsers accept null to clear them.",
+    "Update credentials, event toggles, or the active flag. The connected space or room cannot change; disconnect and reconnect to move the project.",
   middleware: manageAccess,
   request: {
     params: projectIdParam,
@@ -123,7 +131,9 @@ const updateMatrixIntegrationRoute = createRoute({
       "The updated integration",
       matrixIntegrationSchema.nullable(),
     ),
-    400: errorResponse("The resulting config failed validation"),
+    400: errorResponse(
+      "The resulting config failed validation, or the homeserver rejected the new credentials",
+    ),
     403: errorResponse(
       "No workspace access, or missing workspace:manage_settings",
     ),
@@ -137,7 +147,8 @@ const deleteMatrixIntegrationRoute = createRoute({
   path: "/project/{projectId}",
   tags: ["Matrix"],
   summary: "Delete Matrix integration",
-  description: "Remove the Matrix integration from a project.",
+  description:
+    "Remove the Matrix integration from a project. Created spaces and rooms are kept on the homeserver.",
   middleware: manageAccess,
   request: { params: projectIdParam },
   responses: {
@@ -152,6 +163,42 @@ const deleteMatrixIntegrationRoute = createRoute({
   },
 });
 
+function homeserverError(error: unknown): HTTPException {
+  return new HTTPException(400, {
+    message: `Matrix homeserver rejected the connection: ${safeMatrixError(error)}`,
+  });
+}
+
+async function requireProjectAndWorkspaceNames(projectId: string): Promise<{
+  projectId: string;
+  projectName: string;
+  workspaceId: string;
+  workspaceName: string;
+}> {
+  const [row] = await db
+    .select({
+      projectId: projectTable.id,
+      projectName: projectTable.name,
+      workspaceId: workspaceTable.id,
+      workspaceName: workspaceTable.name,
+    })
+    .from(projectTable)
+    .innerJoin(
+      workspaceTable,
+      eq(projectTable.workspaceId, workspaceTable.id),
+    )
+    .where(eq(projectTable.id, projectId))
+    .limit(1);
+
+  if (!row) {
+    throw new HTTPException(400, {
+      message: "Unknown project, or its workspace could not be determined",
+    });
+  }
+
+  return row;
+}
+
 const matrixIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getMatrixIntegrationRoute, async (c) => {
     const { projectId } = c.req.valid("param");
@@ -164,18 +211,96 @@ const matrixIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
 
     const config = normalizeMatrixConfig({
       homeserverUrl: body.homeserverUrl,
-      userId: body.userId,
       accessToken: body.accessToken,
+      mode: body.mode,
       spaceNamePrefix: body.spaceNamePrefix,
+      parentSpaceId: body.parentSpaceId,
+      roomId: body.roomId,
       inviteUsers: body.inviteUsers,
       events: { ...defaultMatrixEvents, ...body.events },
     });
 
-    const validation = validateMatrixConfig(config);
+    const validation = await validateMatrixConfig(config);
     if (!validation.valid) {
       throw new HTTPException(400, {
         message: validation.errors?.join(", ") ?? "Invalid config",
       });
+    }
+
+    // Verify the bot credentials against the homeserver before storing
+    // anything; the discovered user ID is kept for display and diagnostics.
+    try {
+      config.botUserId = await getMatrixWhoami(
+        config.homeserverUrl,
+        config.accessToken,
+      );
+    } catch (error) {
+      throw homeserverError(error);
+    }
+
+    if (config.mode === "existing") {
+      if (!config.roomId) {
+        throw new HTTPException(400, {
+          message: "A room ID or alias is required in existing mode",
+        });
+      }
+
+      try {
+        let targetRoomId = config.roomId;
+        if (targetRoomId.startsWith("#")) {
+          const resolved = await resolveRoomAlias(
+            config.homeserverUrl,
+            config.accessToken,
+            targetRoomId,
+          );
+
+          if (!resolved) {
+            throw new HTTPException(400, {
+              message: "The room alias could not be resolved",
+            });
+          }
+
+          targetRoomId = resolved;
+        }
+        await joinMatrixRoom(
+          config.homeserverUrl,
+          config.accessToken,
+          targetRoomId,
+        );
+        config.roomId = targetRoomId;
+      } catch (error) {
+        if (error instanceof HTTPException) throw error;
+        throw homeserverError(error);
+      }
+    } else {
+      const names = await requireProjectAndWorkspaceNames(projectId);
+
+      let structure;
+      try {
+        structure = await ensureMatrixStructure(config, names);
+      } catch (error) {
+        throw homeserverError(error);
+      }
+
+      config.spaceId = structure.spaceId;
+      config.updatesRoomId = structure.roomId;
+      config.generalRoomId = structure.generalRoomId;
+
+      // The welcome notice is cosmetic; a failure never fails the connect.
+      try {
+        await sendMatrixMessage(
+          config.homeserverUrl,
+          config.accessToken,
+          structure.roomId,
+          `<strong>Kaneo connected.</strong> Task updates for <strong>${names.projectName}</strong> will be posted in this room.`,
+          `Kaneo connected. Task updates for ${names.projectName} will be posted in this room.`,
+        );
+      } catch (error) {
+        console.error("Matrix welcome notice failed", {
+          error: safeMatrixError(error),
+          projectId,
+        });
+      }
     }
 
     const priorIntegration = await db.query.integrationTable.findFirst({
@@ -257,11 +382,23 @@ const matrixIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       return c.json(toResponse(existing), 200);
     }
 
-    const validation = validateMatrixConfig(nextConfig);
+    const validation = await validateMatrixConfig(nextConfig);
     if (!validation.valid) {
       throw new HTTPException(400, {
         message: validation.errors?.join(", ") ?? "Invalid config",
       });
+    }
+
+    if (body.homeserverUrl !== undefined || body.accessToken !== undefined) {
+      // Re-verify the bot account whenever credentials change.
+      try {
+        nextConfig.botUserId = await getMatrixWhoami(
+          nextConfig.homeserverUrl,
+          nextConfig.accessToken,
+        );
+      } catch (error) {
+        throw homeserverError(error);
+      }
     }
 
     await db
