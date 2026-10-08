@@ -1041,6 +1041,8 @@
 			"mattermostSectionSubtitle": "透過 Incoming Webhook 將專案任務更新傳送到 Mattermost 頻道。",
 			"telegramSectionTitle": "Telegram 整合",
 			"telegramSectionSubtitle": "透過 Bot 將專案任務更新傳送到 Telegram 聊天室或主題。",
+			"matrixSectionTitle": "Element 整合",
+			"matrixSectionSubtitle": "透過機器人帳號將專案任務更新傳送至 Element (Matrix)；為每個工作區建立空間，並為每個專案建立子空間和聊天室。",
 			"gitlabSectionSubtitle": "與 GitLab.com 或自行管理的執行個體同步任務（Issues、Merge Request、Webhook）。",
 			"gitlabSectionTitle": "GitLab 整合",
 			"codeHostingTitle": "程式碼託管",
@@ -1450,6 +1452,52 @@
 				"taskCommentCreated": "新留言"
 			},
 			"connect": "連線 Telegram",
+			"saveChanges": "儲存變更",
+			"disconnect": "中斷連線"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "請輸入有效的家伺服器 URL、使用者 ID 和存取權杖",
+				"homeserverInvalid": "請輸入有效的家伺服器 URL",
+				"userIdInvalid": "請輸入有效的 Matrix 使用者 ID"
+			},
+			"toast": {
+				"saved": "Element 整合已儲存",
+				"saveError": "無法儲存 Element 整合",
+				"enabled": "Element 通知已啟用",
+				"disabled": "Element 通知已暫停",
+				"updateError": "無法更新 Element 整合",
+				"removed": "Element 整合已移除",
+				"removeError": "無法移除 Element 整合"
+			},
+			"connectionTitle": "Element 機器人連線",
+			"connectionHint": "使用 Matrix 機器人帳號和存取權杖，將專案任務更新傳送到聊天室。",
+			"connected": "已連線",
+			"paused": "已暫停",
+			"homeserverLabel": "家伺服器 URL",
+			"homeserverHint": "Matrix 家伺服器的基礎 URL，例如 https://matrix.example.com。",
+			"userLabel": "機器人使用者 ID",
+			"userHint": "機器人帳號的完整 Matrix ID，例如 @kaneo-bot:example.com。",
+			"tokenLabel": "存取權杖",
+			"tokenPlaceholder": "syt_範例存取權杖123456789",
+			"tokenHint": "機器人帳號的存取權杖。保留空白以保留目前的權杖。",
+			"tokenMasked": "權杖已設定",
+			"spacePrefixLabel": "空間名稱前綴",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "工作區空間名稱的選填前綴。空間名為「<前綴> · <工作區名稱>」。",
+			"inviteUsersLabel": "邀請使用者",
+			"inviteUsersHint": "選填的以逗號分隔的 Matrix 使用者 ID，將受邀加入每個建立的空間和聊天室。",
+			"eventsTitle": "事件通知",
+			"eventsHint": "選擇哪些專案變更要發佈到 Element。",
+			"events": {
+				"taskCreated": "新任務",
+				"taskStatusChanged": "狀態變更",
+				"taskPriorityChanged": "優先順序變更",
+				"taskTitleChanged": "標題變更",
+				"taskDescriptionChanged": "說明變更",
+				"taskCommentCreated": "新留言"
+			},
+			"connect": "連線 Element",
 			"saveChanges": "儲存變更",
 			"disconnect": "中斷連線"
 		},

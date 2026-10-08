@@ -1042,6 +1042,8 @@
 			"mattermostSectionSubtitle": "借助 Incoming Webhook，把项目任务动态推送到 Mattermost 频道。",
 			"telegramSectionTitle": "Telegram 集成",
 			"telegramSectionSubtitle": "通过 Bot 将项目任务更新发送到 Telegram 聊天或话题。",
+			"matrixSectionTitle": "Element 集成",
+			"matrixSectionSubtitle": "通过机器人账号将项目任务更新发送到 Element (Matrix)；为每个工作区创建空间，并为每个项目创建子空间和聊天室。",
 			"gitlabSectionSubtitle": "与 GitLab.com 或自建实例同步任务（Issue、合并请求、Webhook）。",
 			"gitlabSectionTitle": "GitLab 集成",
 			"codeHostingTitle": "代码托管",
@@ -1451,6 +1453,52 @@
 				"taskCommentCreated": "新评论"
 			},
 			"connect": "连接 Telegram",
+			"saveChanges": "保存更改",
+			"disconnect": "断开连接"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "请输入有效的家庭服务器 URL、用户 ID 和访问令牌",
+				"homeserverInvalid": "请输入有效的家庭服务器 URL",
+				"userIdInvalid": "请输入有效的 Matrix 用户 ID"
+			},
+			"toast": {
+				"saved": "Element 集成保存成功",
+				"saveError": "保存 Element 集成失败",
+				"enabled": "Element 通知已启用",
+				"disabled": "Element 通知已暂停",
+				"updateError": "更新 Element 集成失败",
+				"removed": "Element 集成已移除",
+				"removeError": "移除 Element 集成失败"
+			},
+			"connectionTitle": "Element 机器人连接",
+			"connectionHint": "使用 Matrix 机器人账号和访问令牌，将项目任务更新发送到聊天室。",
+			"connected": "已连接",
+			"paused": "已暂停",
+			"homeserverLabel": "家庭服务器 URL",
+			"homeserverHint": "Matrix 家庭服务器的基础 URL，例如 https://matrix.example.com。",
+			"userLabel": "机器人用户 ID",
+			"userHint": "机器人账号的完整 Matrix ID，例如 @kaneo-bot:example.com。",
+			"tokenLabel": "访问令牌",
+			"tokenPlaceholder": "syt_示例访问令牌123456789",
+			"tokenHint": "机器人账号的访问令牌。留空以保留当前令牌。",
+			"tokenMasked": "令牌已配置",
+			"spacePrefixLabel": "空间名称前缀",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "工作区空间名称的可选前缀。空间命名为 \"<前缀> · <工作区名称>\"。",
+			"inviteUsersLabel": "邀请用户",
+			"inviteUsersHint": "可选的以逗号分隔的 Matrix 用户 ID，将受邀加入每个创建的空间和聊天室。",
+			"eventsTitle": "事件通知",
+			"eventsHint": "选择应发布到 Element 的项目变更。",
+			"events": {
+				"taskCreated": "新任务",
+				"taskStatusChanged": "状态变更",
+				"taskPriorityChanged": "优先级变更",
+				"taskTitleChanged": "标题变更",
+				"taskDescriptionChanged": "描述变更",
+				"taskCommentCreated": "新评论"
+			},
+			"connect": "连接 Element",
 			"saveChanges": "保存更改",
 			"disconnect": "断开连接"
 		},
