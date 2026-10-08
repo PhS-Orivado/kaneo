@@ -131,7 +131,7 @@ describe("API integration: billing enforcement", () => {
       trialEndsAt: new Date(Date.now() - 60_000),
       status: "active",
       plan: "personal",
-      creemSubscriptionId: `sub-${member.workspace.id}`,
+      subscriptionId: `sub-${member.workspace.id}`,
     });
 
     mockAuthenticatedSession(member.user);

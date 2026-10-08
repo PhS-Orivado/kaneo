@@ -31,8 +31,8 @@ async function seedBilling(
     plan: "team",
     status: "active",
     seats: 1,
-    creemSubscriptionId: `sub-${workspaceId}`,
-    creemProductId: "prod_team_monthly",
+    subscriptionId: `sub-${workspaceId}`,
+    productId: "prod_team_monthly",
     currentPeriodEnd: PERIOD_END,
     ...overrides,
   });
@@ -55,9 +55,9 @@ function subscriptionEvent(
     id,
     type: "subscription.canceled",
     data: {
-      id: `sub-${workspaceId}`,
+      subscriptionId: `sub-${workspaceId}`,
       status: "canceled",
-      product: { id: "prod_team_monthly" },
+      productId: "prod_team_monthly",
       ...data,
     },
   };
@@ -112,8 +112,11 @@ describe("API integration: billing webhooks", () => {
 
     await handleWebhook({
       id: "evt-paid",
-      type: "subscription.paid",
-      data: { id: `sub-${owner.workspace.id}`, status: "active" },
+      type: "subscription.active",
+      data: {
+        subscriptionId: `sub-${owner.workspace.id}`,
+        status: "active",
+      },
     });
 
     expect((await readBilling(owner.workspace.id)).currentPeriodEnd).toEqual(
@@ -129,7 +132,10 @@ describe("API integration: billing webhooks", () => {
     await handleWebhook({
       id: "evt-active",
       type: "subscription.active",
-      data: { id: `sub-${owner.workspace.id}`, status: "active" },
+      data: {
+        subscriptionId: `sub-${owner.workspace.id}`,
+        status: "active",
+      },
     });
 
     expect((await readBilling(owner.workspace.id)).canceledAt).toEqual(
@@ -147,9 +153,11 @@ describe("API integration: billing webhooks", () => {
       id: "evt-resumed",
       type: "subscription.active",
       data: {
-        id: `sub-${owner.workspace.id}`,
+        subscriptionId: `sub-${owner.workspace.id}`,
         status: "active",
-        canceled_at: null,
+        // The provider adapter forwards an explicit null so the recorded
+        // cancellation is cleared rather than preserved.
+        canceledAt: null,
       },
     });
 

@@ -236,8 +236,8 @@ describe("API integration: admin user removal", () => {
       await seedCredentials(owner.user.id);
       await db.insert(schema.workspaceBillingTable).values({
         workspaceId: owner.workspace.id,
-        creemSubscriptionId: "sub_active",
-        creemProductId: "prod_1",
+        subscriptionId: "sub_active",
+        productId: "prod_1",
         plan: "team",
         status: "active",
       });

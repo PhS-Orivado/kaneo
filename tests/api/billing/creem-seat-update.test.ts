@@ -6,7 +6,7 @@ import {
   it,
   vi,
 } from "vite-plus/test";
-import { updateSubscriptionSeats } from "../../../apps/api/src/billing/creem-client";
+import { updateSubscriptionSeats } from "../../../apps/api/src/billing/providers/creem/client";
 
 // Indexed rather than read literally so Biome does not demand a turbo.json
 // env declaration for a key only this test sets.
