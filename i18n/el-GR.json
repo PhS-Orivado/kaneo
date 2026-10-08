@@ -802,6 +802,8 @@
 			"giteaSectionSubtitle": "Συγχρονίστε εργασίες με μια αυτο-φιλοξενούμενη εγκατάσταση Gitea (issues, PRs, webhooks).",
 			"telegramSectionTitle": "Ενσωμάτωση Telegram",
 			"telegramSectionSubtitle": "Στείλτε ενημερώσεις εργασιών έργου σε συνομιλία ή θέμα Telegram με bot.",
+			"matrixSectionTitle": "Ενσωμάτωση Element",
+			"matrixSectionSubtitle": "Στέλνει ενημερώσεις εργασιών του έργου στο Element (Matrix) μέσω λογαριασμού bot· δημιουργεί έναν χώρο ανά χώρο εργασίας και έναν υποχώρο και δωμάτιο ανά έργο.",
 			"discordSectionTitle": "Ενσωμάτωση Discord",
 			"discordSectionSubtitle": "Στείλτε ενημερώσεις εργασιών έργου σε κανάλι Discord μέσω webhook.",
 			"genericWebhookSectionTitle": "Γενικά Webhooks",
@@ -1181,6 +1183,52 @@
 				"taskCommentCreated": "Νέα σχόλια"
 			},
 			"connect": "Σύνδεση Telegram",
+			"saveChanges": "Αποθήκευση αλλαγών",
+			"disconnect": "Αποσύνδεση"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Εισαγάγετε έγκυρη διεύθυνση URL διακομιστή, αναγνωριστικό χρήστη και token πρόσβασης",
+				"homeserverInvalid": "Εισαγάγετε έγκυρη διεύθυνση URL διακομιστή",
+				"userIdInvalid": "Εισαγάγετε έγκυρο αναγνωριστικό χρήστη Matrix"
+			},
+			"toast": {
+				"saved": "Η ενσωμάτωση Element αποθηκεύτηκε με επιτυχία",
+				"saveError": "Αποτυχία αποθήκευσης της ενσωμάτωσης Element",
+				"enabled": "Οι ειδοποιήσεις Element ενεργοποιήθηκαν",
+				"disabled": "Οι ειδοποιήσεις Element τέθηκαν σε παύση",
+				"updateError": "Αποτυχία ενημέρωσης της ενσωμάτωσης Element",
+				"removed": "Η ενσωμάτωση Element αφαιρέθηκε με επιτυχία",
+				"removeError": "Αποτυχία αφαίρεσης της ενσωμάτωσης Element"
+			},
+			"connectionTitle": "Σύνδεση bot Element",
+			"connectionHint": "Χρησιμοποιήστε έναν λογαριασμό bot Matrix και ένα token πρόσβασης για την αποστολή ενημερώσεων εργασιών του έργου σε ένα δωμάτιο.",
+			"connected": "Συνδεδεμένο",
+			"paused": "Σε παύση",
+			"homeserverLabel": "URL διακομιστή",
+			"homeserverHint": "Βασική διεύθυνση URL του διακομιστή Matrix σας, για παράδειγμα https://matrix.example.com.",
+			"userLabel": "Αναγνωριστικό χρήστη bot",
+			"userHint": "Πλήρες αναγνωριστικό Matrix του λογαριασμού bot, για παράδειγμα @kaneo-bot:example.com.",
+			"tokenLabel": "Token πρόσβασης",
+			"tokenPlaceholder": "syt_ΠαράδειγμαTokenΠρόσβασης123456789",
+			"tokenHint": "Token πρόσβασης του λογαριασμού bot. Αφήστε κενό για να διατηρήσετε το τρέχον token.",
+			"tokenMasked": "Ένα token έχει ήδη ρυθμιστεί",
+			"spacePrefixLabel": "Πρόθεμα ονόματος χώρου",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Προαιρετικό πρόθεμα για το όνομα του χώρου του χώρου εργασίας. Οι χώροι ονομάζονται \"<πρόθεμα> · <όνομα χώρου εργασίας>\".",
+			"inviteUsersLabel": "Πρόσκληση χρηστών",
+			"inviteUsersHint": "Προαιρετικά αναγνωριστικά χρηστών Matrix, διαχωρισμένα με κόμμα, για πρόσκληση σε κάθε χώρο και δωμάτιο που δημιουργείται.",
+			"eventsTitle": "Ειδοποιήσεις γεγονότων",
+			"eventsHint": "Επιλέξτε ποιες αλλαγές έργου θα δημοσιεύονται στο Element.",
+			"events": {
+				"taskCreated": "Νέες εργασίες",
+				"taskStatusChanged": "Αλλαγές κατάστασης",
+				"taskPriorityChanged": "Αλλαγές προτεραιότητας",
+				"taskTitleChanged": "Αλλαγές τίτλου",
+				"taskDescriptionChanged": "Αλλαγές περιγραφής",
+				"taskCommentCreated": "Νέα σχόλια"
+			},
+			"connect": "Σύνδεση Element",
 			"saveChanges": "Αποθήκευση αλλαγών",
 			"disconnect": "Αποσύνδεση"
 		},

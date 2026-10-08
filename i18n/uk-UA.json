@@ -812,6 +812,8 @@
 			"slackSectionSubtitle": "Надсилайте оновлення завдань проєкту до каналу Slack за допомогою вхідного вебхука.",
 			"telegramSectionTitle": "Інтеґрація з Telegram",
 			"telegramSectionSubtitle": "Надсилайте оновлення завдань проєкту до чату або теми Telegram за допомогою бота.",
+			"matrixSectionTitle": "Інтеграція Element",
+			"matrixSectionSubtitle": "Надсилає оновлення завдань проєкту в Element (Matrix) через обліковий запис бота; створює простір для кожної робочої області, а також підпростір і кімнату для кожного проєкту.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1185,6 +1187,52 @@
 				"taskCommentCreated": "Нові коментарі"
 			},
 			"connect": "Підключити Telegram",
+			"saveChanges": "Зберегти зміни",
+			"disconnect": "Від'єднати"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Введіть коректний URL домашнього сервера, ідентифікатор користувача та токен доступу",
+				"homeserverInvalid": "Введіть коректний URL домашнього сервера",
+				"userIdInvalid": "Введіть коректний ідентифікатор користувача Matrix"
+			},
+			"toast": {
+				"saved": "Інтеґрацію зі Element успішно збережено",
+				"saveError": "Не вдалося зберегти інтеґрацію зі Element",
+				"enabled": "Сповіщення Element увімкнено",
+				"disabled": "Сповіщення Element призупинено",
+				"updateError": "Не вдалося оновити інтеґрацію зі Element",
+				"removed": "Інтеґрацію зі Element успішно видалено",
+				"removeError": "Не вдалося видалити інтеґрацію зі Element"
+			},
+			"connectionTitle": "Підключення бота Element",
+			"connectionHint": "Використовуйте обліковий запис бота Matrix і токен доступу, щоб надсилати оновлення завдань проєкту в кімнату.",
+			"connected": "Підключено",
+			"paused": "Призупинено",
+			"homeserverLabel": "URL домашнього сервера",
+			"homeserverHint": "Базова URL-адреса вашого домашнього сервера Matrix, наприклад https://matrix.example.com.",
+			"userLabel": "Ідентифікатор користувача бота",
+			"userHint": "Повний Matrix ID облікового запису бота, наприклад @kaneo-bot:example.com.",
+			"tokenLabel": "Токен доступу",
+			"tokenPlaceholder": "syt_ПрикладТокенуДоступу123456789",
+			"tokenHint": "Токен доступу облікового запису бота. Залиште порожнім, щоб зберегти поточний токен.",
+			"tokenMasked": "Токен уже налаштовано",
+			"spacePrefixLabel": "Префікс назви простору",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Необов'язковий префікс для назви простору робочої області. Простори називаються \"<префікс> · <назва робочої області>\".",
+			"inviteUsersLabel": "Запросити користувачів",
+			"inviteUsersHint": "Необов'язкові ідентифікатори користувачів Matrix через кому, яких буде запрошено до кожного створеного простору та кімнати.",
+			"eventsTitle": "Сповіщення про події",
+			"eventsHint": "Оберіть, які зміни в проєкті мають публікуватися в Element.",
+			"events": {
+				"taskCreated": "Нові завдання",
+				"taskStatusChanged": "Зміни статусу",
+				"taskPriorityChanged": "Зміни пріоритету",
+				"taskTitleChanged": "Зміни назви",
+				"taskDescriptionChanged": "Зміни опису",
+				"taskCommentCreated": "Нові коментарі"
+			},
+			"connect": "Підключити Element",
 			"saveChanges": "Зберегти зміни",
 			"disconnect": "Від'єднати"
 		},
