@@ -1186,9 +1186,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Masukkan URL homeserver, ID pengguna, dan token akses yang valid",
+				"connectionInvalid": "Masukkan URL homeserver dan token akses yang valid",
 				"homeserverInvalid": "Masukkan URL homeserver yang valid",
-				"userIdInvalid": "Masukkan ID pengguna Matrix yang valid"
+				"roomIdInvalid": "Masukkan ID atau alias ruangan yang valid"
 			},
 			"toast": {
 				"saved": "Integrasi Matrix berhasil disimpan",
@@ -1205,8 +1205,15 @@
 			"paused": "Dijeda",
 			"homeserverLabel": "URL homeserver",
 			"homeserverHint": "URL dasar dari homeserver Matrix Anda, misalnya https://matrix.example.com.",
-			"userLabel": "ID pengguna bot",
-			"userHint": "ID Matrix lengkap dari akun bot, misalnya @kaneo-bot:example.com.",
+			"modeLabel": "Mode koneksi",
+			"modeProvision": "Buat space dan ruangan Kaneo",
+			"modeProvisionHint": "Kaneo membuat space ruang kerja, subspace proyek, serta ruangan Updates dan Umum, dan memposting pembaruan tugas ke ruangan Updates.",
+			"modeExisting": "Gunakan ruangan yang sudah ada",
+			"modeExistingHint": "Kaneo bergabung ke ruangan yang Anda kelola dan memposting pembaruan tugas di sana.",
+			"roomIdLabel": "ID atau alias ruangan",
+			"roomIdHint": "Ruangan yang Kaneo ikuti dan gunakan untuk memposting, misalnya #kaneo-updates:example.com atau !abc123:example.com.",
+			"parentSpaceLabel": "Space induk",
+			"parentSpaceHint": "ID atau alias ruangan space (opsional) tempat space ruang kerja disarangkan.",
 			"tokenLabel": "Token akses",
 			"tokenPlaceholder": "syt_ContohTokenAkses123456789",
 			"tokenHint": "Token akses untuk akun bot. Biarkan kosong untuk menyimpan token saat ini.",
@@ -1216,6 +1223,8 @@
 			"spacePrefixHint": "Awalan opsional untuk nama space ruang kerja. Space dinamai \"<awalan> · <nama ruang kerja>\".",
 			"inviteUsersLabel": "Undang pengguna",
 			"inviteUsersHint": "ID pengguna Matrix opsional yang dipisahkan koma untuk diundang ke setiap space dan ruangan yang dibuat.",
+			"botUserLabel": "Akun bot",
+			"targetRoomLabel": "Ruangan tujuan",
 			"eventsTitle": "Notifikasi event",
 			"eventsHint": "Pilih perubahan proyek yang harus diposting ke Matrix.",
 			"events": {
@@ -1224,7 +1233,12 @@
 				"taskPriorityChanged": "Perubahan prioritas",
 				"taskTitleChanged": "Perubahan judul",
 				"taskDescriptionChanged": "Perubahan deskripsi",
-				"taskCommentCreated": "Komentar baru"
+				"taskCommentCreated": "Komentar baru",
+				"taskDeleted": "Tugas yang dihapus",
+				"taskMoved": "Tugas yang dipindahkan",
+				"taskDueDateChanged": "Perubahan tenggat waktu",
+				"taskAssigneeChanged": "Perubahan penerima tugas",
+				"taskUnassigned": "Penghapusan penerima tugas"
 			},
 			"connect": "Hubungkan Matrix",
 			"saveChanges": "Simpan perubahan",
