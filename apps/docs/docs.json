@@ -138,6 +138,7 @@
 							"core/integrations/github/troubleshooting",
 							"core/integrations/gitea/setup",
 							"core/integrations/gitlab/setup",
+							"core/integrations/jira/setup",
 							"core/integrations/repository-limits"
 						]
 					},
