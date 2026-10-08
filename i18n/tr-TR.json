@@ -1188,9 +1188,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Geçerli bir ana sunucu URL'si, kullanıcı kimliği ve erişim belirteci girin",
+				"connectionInvalid": "Geçerli bir ana sunucu URL'si ve erişim belirteci girin",
 				"homeserverInvalid": "Geçerli bir ana sunucu URL'si girin",
-				"userIdInvalid": "Geçerli bir Matrix kullanıcı kimliği girin"
+				"roomIdInvalid": "Geçerli bir oda kimliği veya takma ad girin"
 			},
 			"toast": {
 				"saved": "Matrix entegrasyonu başarıyla kaydedildi",
@@ -1207,8 +1207,15 @@
 			"paused": "Duraklatıldı",
 			"homeserverLabel": "Ana sunucu URL'si",
 			"homeserverHint": "Matrix ana sunucunuzun temel URL'si, örneğin https://matrix.example.com.",
-			"userLabel": "Bot kullanıcı kimliği",
-			"userHint": "Bot hesabının tam Matrix kimliği, örneğin @kaneo-bot:example.com.",
+			"modeLabel": "Bağlantı modu",
+			"modeProvision": "Kaneo alanlarını ve odalarını oluştur",
+			"modeProvisionHint": "Kaneo; bir çalışma alanı alanı, bir proje alt alanı ve Updates ile General odalarını oluşturur ve talep güncellemelerini Updates odasına gönderir.",
+			"modeExisting": "Var olan bir odayı kullan",
+			"modeExistingHint": "Kaneo, yönettiğiniz bir odaya katılır ve talep güncellemelerini oraya gönderir.",
+			"roomIdLabel": "Oda kimliği veya takma ad",
+			"roomIdHint": "Kaneo'nun katılıp gönderilerde bulunduğu oda, örneğin #kaneo-updates:example.com veya !abc123:example.com.",
+			"parentSpaceLabel": "Üst alan",
+			"parentSpaceHint": "Çalışma alanı alanının altına yerleştirileceği alanın isteğe bağlı oda kimliği veya takma adı.",
 			"tokenLabel": "Erişim belirteci",
 			"tokenPlaceholder": "syt_OrnekErisimBelirteci123456789",
 			"tokenHint": "Bot hesabının erişim belirteci. Geçerli belirteci korumak için boş bırakın.",
@@ -1218,6 +1225,8 @@
 			"spacePrefixHint": "Çalışma alanı alanının adı için isteğe bağlı ön ek. Alanlar \"<ön ek> · <çalışma alanı adı>\" olarak adlandırılır.",
 			"inviteUsersLabel": "Kullanıcıları davet et",
 			"inviteUsersHint": "Oluşturulan her alana ve odaya davet edilecek, virgülle ayrılmış isteğe bağlı Matrix kullanıcı kimlikleri.",
+			"botUserLabel": "Bot hesabı",
+			"targetRoomLabel": "Hedef oda",
 			"eventsTitle": "Olay bildirimleri",
 			"eventsHint": "Hangi proje değişikliklerinin Matrix'e gönderileceğini seçin.",
 			"events": {
@@ -1226,7 +1235,12 @@
 				"taskPriorityChanged": "Öncelik değişiklikleri",
 				"taskTitleChanged": "Başlık değişiklikleri",
 				"taskDescriptionChanged": "Açıklama değişiklikleri",
-				"taskCommentCreated": "Yeni yorumlar"
+				"taskCommentCreated": "Yeni yorumlar",
+				"taskDeleted": "Silinen talepler",
+				"taskMoved": "Taşınan talepler",
+				"taskDueDateChanged": "Son tarih değişiklikleri",
+				"taskAssigneeChanged": "Atanan kişi değişiklikleri",
+				"taskUnassigned": "Atama kaldırma"
 			},
 			"connect": "Matrix bağla",
 			"saveChanges": "Değişiklikleri kaydet",
