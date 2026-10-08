@@ -804,8 +804,8 @@
 			"giteaSectionSubtitle": "Synchronisez les tâches avec une instance Gitea auto-hébergée (issues, PRs, webhooks).",
 			"telegramSectionTitle": "Intégration Telegram",
 			"telegramSectionSubtitle": "Envoyez les mises à jour des tâches du projet dans un chat ou un sujet Telegram avec un bot.",
-			"matrixSectionTitle": "Intégration Element",
-			"matrixSectionSubtitle": "Envoie les mises à jour des tâches du projet dans Element (Matrix) via un compte bot ; crée un espace par espace de travail, ainsi qu'un sous-espace et un salon par projet.",
+			"matrixSectionTitle": "Intégration Matrix",
+			"matrixSectionSubtitle": "Envoie les mises à jour des tâches du projet dans Matrix via un compte bot ; crée un espace par espace de travail, ainsi qu'un sous-espace et un salon par projet.",
 			"discordSectionTitle": "Intégration Discord",
 			"discordSectionSubtitle": "Envoyez les mises à jour des tâches du projet dans un canal Discord via un webhook.",
 			"genericWebhookSectionTitle": "Webhooks génériques",
@@ -1195,15 +1195,15 @@
 				"userIdInvalid": "Saisissez un identifiant d'utilisateur Matrix valide"
 			},
 			"toast": {
-				"saved": "Intégration Element enregistrée avec succès",
-				"saveError": "Échec de l'enregistrement de l'intégration Element",
-				"enabled": "Notifications Element activées",
-				"disabled": "Notifications Element en pause",
-				"updateError": "Échec de la mise à jour de l'intégration Element",
-				"removed": "Intégration Element supprimée avec succès",
-				"removeError": "Échec de la suppression de l'intégration Element"
+				"saved": "Intégration Matrix enregistrée avec succès",
+				"saveError": "Échec de l'enregistrement de l'intégration Matrix",
+				"enabled": "Notifications Matrix activées",
+				"disabled": "Notifications Matrix en pause",
+				"updateError": "Échec de la mise à jour de l'intégration Matrix",
+				"removed": "Intégration Matrix supprimée avec succès",
+				"removeError": "Échec de la suppression de l'intégration Matrix"
 			},
-			"connectionTitle": "Connexion du bot Element",
+			"connectionTitle": "Connexion du bot Matrix",
 			"connectionHint": "Utilisez un compte bot Matrix et un jeton d'accès pour envoyer les mises à jour des tâches du projet dans un salon.",
 			"connected": "Connecté",
 			"paused": "En pause",
@@ -1221,7 +1221,7 @@
 			"inviteUsersLabel": "Inviter des utilisateurs",
 			"inviteUsersHint": "Identifiants d'utilisateurs Matrix facultatifs, séparés par des virgules, à inviter dans chaque espace et salon créés.",
 			"eventsTitle": "Notifications d'événements",
-			"eventsHint": "Choisissez les changements de projet à envoyer vers Element.",
+			"eventsHint": "Choisissez les changements de projet à envoyer vers Matrix.",
 			"events": {
 				"taskCreated": "Nouvelles tâches",
 				"taskStatusChanged": "Changements de statut",
@@ -1230,7 +1230,7 @@
 				"taskDescriptionChanged": "Changements de description",
 				"taskCommentCreated": "Nouveaux commentaires"
 			},
-			"connect": "Connecter Element",
+			"connect": "Connecter Matrix",
 			"saveChanges": "Enregistrer les modifications",
 			"disconnect": "Déconnecter"
 		},

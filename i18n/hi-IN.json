@@ -1043,8 +1043,8 @@
 			"slackSectionSubtitle": "इनकमिंग वेबहुक के साथ Slack चैनल में प्रोजेक्ट कार्य अपडेट भेजें।",
 			"telegramSectionTitle": "Telegram एकीकरण",
 			"telegramSectionSubtitle": "बॉट के साथ Telegram चैट या टॉपिक में प्रोजेक्ट कार्य अपडेट भेजें।",
-			"matrixSectionTitle": "Element इंटीग्रेशन",
-			"matrixSectionSubtitle": "बॉट खाते के माध्यम से प्रोजेक्ट कार्य अपडेट Element (Matrix) में भेजता है; प्रत्येक वर्कस्पेस के लिए एक स्पेस और प्रत्येक प्रोजेक्ट के लिए एक सबस्पेस व कमरा बनाता है।",
+			"matrixSectionTitle": "Matrix इंटीग्रेशन",
+			"matrixSectionSubtitle": "बॉट खाते के माध्यम से प्रोजेक्ट कार्य अपडेट Matrix में भेजता है; प्रत्येक वर्कस्पेस के लिए एक स्पेस और प्रत्येक प्रोजेक्ट के लिए एक सबस्पेस व कमरा बनाता है।",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1428,15 +1428,15 @@
 				"userIdInvalid": "वैध Matrix उपयोगकर्ता ID दर्ज करें"
 			},
 			"toast": {
-				"saved": "Element एकीकरण सफलतापूर्वक सहेजा गया",
-				"saveError": "Element एकीकरण सहेजने में विफल",
-				"enabled": "Element सूचनाएँ सक्षम",
-				"disabled": "Element सूचनाएँ रुकी हुई",
-				"updateError": "Element एकीकरण अपडेट करने में विफल",
-				"removed": "Element एकीकरण सफलतापूर्वक हटाया गया",
-				"removeError": "Element एकीकरण हटाने में विफल"
+				"saved": "Matrix एकीकरण सफलतापूर्वक सहेजा गया",
+				"saveError": "Matrix एकीकरण सहेजने में विफल",
+				"enabled": "Matrix सूचनाएँ सक्षम",
+				"disabled": "Matrix सूचनाएँ रुकी हुई",
+				"updateError": "Matrix एकीकरण अपडेट करने में विफल",
+				"removed": "Matrix एकीकरण सफलतापूर्वक हटाया गया",
+				"removeError": "Matrix एकीकरण हटाने में विफल"
 			},
-			"connectionTitle": "Element बॉट कनेक्शन",
+			"connectionTitle": "Matrix बॉट कनेक्शन",
 			"connectionHint": "प्रोजेक्ट कार्य अपडेट किसी कमरे में भेजने के लिए Matrix बॉट खाते और एक्सेस टोकन का उपयोग करें।",
 			"connected": "जुड़ा हुआ",
 			"paused": "रुका हुआ",
@@ -1454,7 +1454,7 @@
 			"inviteUsersLabel": "उपयोगकर्ताओं को आमंत्रित करें",
 			"inviteUsersHint": "बनाए गए प्रत्येक स्पेस और कमरे में आमंत्रित करने के लिए कॉमा से अलग किए गए वैकल्पिक Matrix उपयोगकर्ता ID।",
 			"eventsTitle": "इवेंट सूचनाएँ",
-			"eventsHint": "चुनें कि कौन से प्रोजेक्ट परिवर्तन Element पर पोस्ट होने चाहिए।",
+			"eventsHint": "चुनें कि कौन से प्रोजेक्ट परिवर्तन Matrix पर पोस्ट होने चाहिए।",
 			"events": {
 				"taskCreated": "नए कार्य",
 				"taskStatusChanged": "स्थिति परिवर्तन",
@@ -1463,7 +1463,7 @@
 				"taskDescriptionChanged": "विवरण परिवर्तन",
 				"taskCommentCreated": "नई टिप्पणियाँ"
 			},
-			"connect": "Element कनेक्ट करें",
+			"connect": "Matrix कनेक्ट करें",
 			"saveChanges": "परिवर्तन सहेजें",
 			"disconnect": "डिस्कनेक्ट करें"
 		},

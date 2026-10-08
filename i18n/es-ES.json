@@ -706,8 +706,8 @@
 			"giteaSectionSubtitle": "Sincroniza tareas con una instancia autoalojada de Gitea (issues, PRs, webhooks).",
 			"telegramSectionTitle": "Integración con Telegram",
 			"telegramSectionSubtitle": "Envía actualizaciones de las tareas del proyecto a un chat o tema de Telegram mediante un bot.",
-			"matrixSectionTitle": "Integración de Element",
-			"matrixSectionSubtitle": "Envía actualizaciones de tareas del proyecto a Element (Matrix) mediante una cuenta bot; crea un espacio por espacio de trabajo y un subespacio y sala por proyecto.",
+			"matrixSectionTitle": "Integración de Matrix",
+			"matrixSectionSubtitle": "Envía actualizaciones de tareas del proyecto a Matrix mediante una cuenta bot; crea un espacio por espacio de trabajo y un subespacio y sala por proyecto.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1509,15 +1509,15 @@
 				"userIdInvalid": "Introduce un ID de usuario de Matrix válido"
 			},
 			"toast": {
-				"saved": "Integración con Element guardada correctamente",
-				"saveError": "Error al guardar la integración con Element",
-				"enabled": "Notificaciones de Element activadas",
-				"disabled": "Notificaciones de Element pausadas",
-				"updateError": "Error al actualizar la integración de Element",
-				"removed": "Integración con Element eliminada correctamente",
-				"removeError": "Error al eliminar la integración con Element"
+				"saved": "Integración con Matrix guardada correctamente",
+				"saveError": "Error al guardar la integración con Matrix",
+				"enabled": "Notificaciones de Matrix activadas",
+				"disabled": "Notificaciones de Matrix pausadas",
+				"updateError": "Error al actualizar la integración de Matrix",
+				"removed": "Integración con Matrix eliminada correctamente",
+				"removeError": "Error al eliminar la integración con Matrix"
 			},
-			"connectionTitle": "Conexión del bot de Element",
+			"connectionTitle": "Conexión del bot de Matrix",
 			"connectionHint": "Usa una cuenta bot de Matrix y un token de acceso para enviar actualizaciones de tareas del proyecto a una sala.",
 			"connected": "Conectado",
 			"paused": "Pausado",
@@ -1535,7 +1535,7 @@
 			"inviteUsersLabel": "Invitar usuarios",
 			"inviteUsersHint": "IDs de usuario de Matrix opcionales, separados por comas, para invitar a cada espacio y sala creados.",
 			"eventsTitle": "Notificaciones de eventos",
-			"eventsHint": "Elige qué cambios en el proyecto deben ser notificados en Element.",
+			"eventsHint": "Elige qué cambios en el proyecto deben ser notificados en Matrix.",
 			"events": {
 				"taskCreated": "Nuevas tareas",
 				"taskStatusChanged": "Cambios en el estado",
@@ -1544,7 +1544,7 @@
 				"taskDescriptionChanged": "Cambios en la descripción",
 				"taskCommentCreated": "Nuevos comentarios"
 			},
-			"connect": "Conectar con Element",
+			"connect": "Conectar con Matrix",
 			"saveChanges": "Guardar cambios",
 			"disconnect": "Desconectar"
 		},

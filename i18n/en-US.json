@@ -1275,8 +1275,8 @@
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"telegramSectionTitle": "Telegram Integration",
 			"telegramSectionSubtitle": "Send project task updates into a Telegram chat or topic with a bot.",
-			"matrixSectionTitle": "Element integration",
-			"matrixSectionSubtitle": "Sends project task updates to Element (Matrix) through a bot account; creates a space per workspace plus a subspace and room per project.",
+			"matrixSectionTitle": "Matrix integration",
+			"matrixSectionSubtitle": "Sends project task updates to Matrix through a bot account; creates a space per workspace plus a subspace and room per project.",
 			"codeHostingTitle": "Code hosting",
 			"chatTitle": "Chat & webhooks",
 			"statusConnected": "Connected",
@@ -1809,15 +1809,15 @@
 				"userIdInvalid": "Enter a valid Matrix user ID"
 			},
 			"toast": {
-				"saved": "Element integration saved successfully",
-				"saveError": "Failed to save Element integration",
-				"enabled": "Element notifications enabled",
-				"disabled": "Element notifications paused",
-				"updateError": "Failed to update Element integration",
-				"removed": "Element integration removed successfully",
-				"removeError": "Failed to remove Element integration"
+				"saved": "Matrix integration saved successfully",
+				"saveError": "Failed to save Matrix integration",
+				"enabled": "Matrix notifications enabled",
+				"disabled": "Matrix notifications paused",
+				"updateError": "Failed to update Matrix integration",
+				"removed": "Matrix integration removed successfully",
+				"removeError": "Failed to remove Matrix integration"
 			},
-			"connectionTitle": "Element bot connection",
+			"connectionTitle": "Matrix bot connection",
 			"connectionHint": "Use a Matrix bot account and access token to post project task updates to a room.",
 			"connected": "Connected",
 			"paused": "Paused",
@@ -1835,7 +1835,7 @@
 			"inviteUsersLabel": "Invite users",
 			"inviteUsersHint": "Optional comma-separated Matrix user IDs to invite to every created space and room.",
 			"eventsTitle": "Event notifications",
-			"eventsHint": "Choose which project changes should post to Element.",
+			"eventsHint": "Choose which project changes should post to Matrix.",
 			"events": {
 				"taskCreated": "New tasks",
 				"taskStatusChanged": "Status changes",
@@ -1844,7 +1844,7 @@
 				"taskDescriptionChanged": "Description changes",
 				"taskCommentCreated": "New comments"
 			},
-			"connect": "Connect Element",
+			"connect": "Connect Matrix",
 			"saveChanges": "Save changes",
 			"disconnect": "Disconnect"
 		},

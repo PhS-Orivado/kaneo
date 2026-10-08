@@ -1045,8 +1045,8 @@
 			"mattermostSectionSubtitle": "Layihənin tapşırıq yeniləmələrini daxil olan Webhook ilə Mattermost kanalına göndərin.",
 			"telegramSectionTitle": "Telegram inteqrasiyası",
 			"telegramSectionSubtitle": "Layihənin tapşırıq yeniləmələrini bot ilə Telegram söhbətinə və ya mövzusuna göndərin.",
-			"matrixSectionTitle": "Element inteqrasiyası",
-			"matrixSectionSubtitle": "Layihə tapşırıq yeniliklərini bot hesabı vasitəsilə Element-ə (Matrix) göndərir; hər iş sahəsi üçün sahə, hər layihə üçün isə altsahə və otaq yaradır.",
+			"matrixSectionTitle": "Matrix inteqrasiyası",
+			"matrixSectionSubtitle": "Layihə tapşırıq yeniliklərini bot hesabı vasitəsilə Matrix-ə göndərir; hər iş sahəsi üçün sahə, hər layihə üçün isə altsahə və otaq yaradır.",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
 			"gitlabSectionTitle": "GitLab Integration",
 			"codeHostingTitle": "Kod hostinqi",
@@ -1466,15 +1466,15 @@
 				"userIdInvalid": "Etibarlı Matrix istifadəçi identifikatoru daxil edin"
 			},
 			"toast": {
-				"saved": "Element inteqrasiyası uğurla yadda saxlanıldı",
-				"saveError": "Element inteqrasiyasını yadda saxlamaq alınmadı",
-				"enabled": "Element bildirişləri aktivləşdirildi",
-				"disabled": "Element bildirişləri dayandırıldı",
-				"updateError": "Element inteqrasiyasını yeniləmək alınmadı",
-				"removed": "Element inteqrasiyası uğurla çıxarıldı",
-				"removeError": "Element inteqrasiyasını çıxarmaq alınmadı"
+				"saved": "Matrix inteqrasiyası uğurla yadda saxlanıldı",
+				"saveError": "Matrix inteqrasiyasını yadda saxlamaq alınmadı",
+				"enabled": "Matrix bildirişləri aktivləşdirildi",
+				"disabled": "Matrix bildirişləri dayandırıldı",
+				"updateError": "Matrix inteqrasiyasını yeniləmək alınmadı",
+				"removed": "Matrix inteqrasiyası uğurla çıxarıldı",
+				"removeError": "Matrix inteqrasiyasını çıxarmaq alınmadı"
 			},
-			"connectionTitle": "Element bot bağlantısı",
+			"connectionTitle": "Matrix bot bağlantısı",
 			"connectionHint": "Layihə tapşırıq yeniliklərini otağa göndərmək üçün Matrix bot hesabından və giriş nişanından istifadə edin.",
 			"connected": "Qoşulub",
 			"paused": "Dayandırılıb",
@@ -1492,7 +1492,7 @@
 			"inviteUsersLabel": "İstifadəçiləri dəvət et",
 			"inviteUsersHint": "Yaradılan hər sahəyə və otağa dəvət ediləcək, vergüllə ayrılmış istəyə bağlı Matrix istifadəçi identifikatorları.",
 			"eventsTitle": "Hadisə bildirişləri",
-			"eventsHint": "Hansı layihə dəyişikliklərinin Element-ə göndəriləcəyini seçin.",
+			"eventsHint": "Hansı layihə dəyişikliklərinin Matrix-ə göndəriləcəyini seçin.",
 			"events": {
 				"taskCreated": "Yeni tapşırıqlar",
 				"taskStatusChanged": "Vəziyyət dəyişiklikləri",
@@ -1501,7 +1501,7 @@
 				"taskDescriptionChanged": "Təsvir dəyişiklikləri",
 				"taskCommentCreated": "Yeni şərhlər"
 			},
-			"connect": "Element-ə qoşul",
+			"connect": "Matrix-ə qoşul",
 			"saveChanges": "Dəyişiklikləri yadda saxla",
 			"disconnect": "Ayır"
 		},

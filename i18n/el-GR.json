@@ -802,8 +802,8 @@
 			"giteaSectionSubtitle": "Συγχρονίστε εργασίες με μια αυτο-φιλοξενούμενη εγκατάσταση Gitea (issues, PRs, webhooks).",
 			"telegramSectionTitle": "Ενσωμάτωση Telegram",
 			"telegramSectionSubtitle": "Στείλτε ενημερώσεις εργασιών έργου σε συνομιλία ή θέμα Telegram με bot.",
-			"matrixSectionTitle": "Ενσωμάτωση Element",
-			"matrixSectionSubtitle": "Στέλνει ενημερώσεις εργασιών του έργου στο Element (Matrix) μέσω λογαριασμού bot· δημιουργεί έναν χώρο ανά χώρο εργασίας και έναν υποχώρο και δωμάτιο ανά έργο.",
+			"matrixSectionTitle": "Ενσωμάτωση Matrix",
+			"matrixSectionSubtitle": "Στέλνει ενημερώσεις εργασιών του έργου στο Matrix μέσω λογαριασμού bot· δημιουργεί έναν χώρο ανά χώρο εργασίας και έναν υποχώρο και δωμάτιο ανά έργο.",
 			"discordSectionTitle": "Ενσωμάτωση Discord",
 			"discordSectionSubtitle": "Στείλτε ενημερώσεις εργασιών έργου σε κανάλι Discord μέσω webhook.",
 			"genericWebhookSectionTitle": "Γενικά Webhooks",
@@ -1193,15 +1193,15 @@
 				"userIdInvalid": "Εισαγάγετε έγκυρο αναγνωριστικό χρήστη Matrix"
 			},
 			"toast": {
-				"saved": "Η ενσωμάτωση Element αποθηκεύτηκε με επιτυχία",
-				"saveError": "Αποτυχία αποθήκευσης της ενσωμάτωσης Element",
-				"enabled": "Οι ειδοποιήσεις Element ενεργοποιήθηκαν",
-				"disabled": "Οι ειδοποιήσεις Element τέθηκαν σε παύση",
-				"updateError": "Αποτυχία ενημέρωσης της ενσωμάτωσης Element",
-				"removed": "Η ενσωμάτωση Element αφαιρέθηκε με επιτυχία",
-				"removeError": "Αποτυχία αφαίρεσης της ενσωμάτωσης Element"
+				"saved": "Η ενσωμάτωση Matrix αποθηκεύτηκε με επιτυχία",
+				"saveError": "Αποτυχία αποθήκευσης της ενσωμάτωσης Matrix",
+				"enabled": "Οι ειδοποιήσεις Matrix ενεργοποιήθηκαν",
+				"disabled": "Οι ειδοποιήσεις Matrix τέθηκαν σε παύση",
+				"updateError": "Αποτυχία ενημέρωσης της ενσωμάτωσης Matrix",
+				"removed": "Η ενσωμάτωση Matrix αφαιρέθηκε με επιτυχία",
+				"removeError": "Αποτυχία αφαίρεσης της ενσωμάτωσης Matrix"
 			},
-			"connectionTitle": "Σύνδεση bot Element",
+			"connectionTitle": "Σύνδεση bot Matrix",
 			"connectionHint": "Χρησιμοποιήστε έναν λογαριασμό bot Matrix και ένα token πρόσβασης για την αποστολή ενημερώσεων εργασιών του έργου σε ένα δωμάτιο.",
 			"connected": "Συνδεδεμένο",
 			"paused": "Σε παύση",
@@ -1219,7 +1219,7 @@
 			"inviteUsersLabel": "Πρόσκληση χρηστών",
 			"inviteUsersHint": "Προαιρετικά αναγνωριστικά χρηστών Matrix, διαχωρισμένα με κόμμα, για πρόσκληση σε κάθε χώρο και δωμάτιο που δημιουργείται.",
 			"eventsTitle": "Ειδοποιήσεις γεγονότων",
-			"eventsHint": "Επιλέξτε ποιες αλλαγές έργου θα δημοσιεύονται στο Element.",
+			"eventsHint": "Επιλέξτε ποιες αλλαγές έργου θα δημοσιεύονται στο Matrix.",
 			"events": {
 				"taskCreated": "Νέες εργασίες",
 				"taskStatusChanged": "Αλλαγές κατάστασης",
@@ -1228,7 +1228,7 @@
 				"taskDescriptionChanged": "Αλλαγές περιγραφής",
 				"taskCommentCreated": "Νέα σχόλια"
 			},
-			"connect": "Σύνδεση Element",
+			"connect": "Σύνδεση Matrix",
 			"saveChanges": "Αποθήκευση αλλαγών",
 			"disconnect": "Αποσύνδεση"
 		},
