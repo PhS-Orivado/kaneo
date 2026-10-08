@@ -1040,6 +1040,8 @@
 			"slackSectionSubtitle": "Gửi cập nhật công việc dự án vào kênh Slack bằng webhook đến.",
 			"telegramSectionTitle": "Tích hợp Telegram",
 			"telegramSectionSubtitle": "Gửi cập nhật công việc dự án vào cuộc trò chuyện hoặc chủ đề Telegram bằng bot.",
+			"matrixSectionTitle": "Tích hợp Element",
+			"matrixSectionSubtitle": "Gửi các cập nhật nhiệm vụ của dự án tới Element (Matrix) thông qua tài khoản bot; tạo một không gian cho mỗi không gian làm việc, cùng một không gian con và phòng cho mỗi dự án.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1413,6 +1415,52 @@
 				"taskCommentCreated": "Bình luận mới"
 			},
 			"connect": "Kết nối Telegram",
+			"saveChanges": "Lưu thay đổi",
+			"disconnect": "Ngắt kết nối"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Nhập URL máy chủ, ID người dùng và mã truy cập hợp lệ",
+				"homeserverInvalid": "Nhập URL máy chủ hợp lệ",
+				"userIdInvalid": "Nhập ID người dùng Matrix hợp lệ"
+			},
+			"toast": {
+				"saved": "Đã lưu tích hợp Element thành công",
+				"saveError": "Không thể lưu tích hợp Element",
+				"enabled": "Đã bật thông báo Element",
+				"disabled": "Đã tạm dừng thông báo Element",
+				"updateError": "Không thể cập nhật tích hợp Element",
+				"removed": "Gỡ bỏ tích hợp Element thành công",
+				"removeError": "Không thể gỡ bỏ tích hợp Element"
+			},
+			"connectionTitle": "Kết nối bot Element",
+			"connectionHint": "Sử dụng tài khoản bot Matrix và mã truy cập để gửi các cập nhật nhiệm vụ của dự án vào một phòng.",
+			"connected": "Đã kết nối",
+			"paused": "Đã tạm dừng",
+			"homeserverLabel": "URL máy chủ",
+			"homeserverHint": "URL cơ sở của máy chủ Matrix của bạn, ví dụ https://matrix.example.com.",
+			"userLabel": "ID người dùng bot",
+			"userHint": "ID Matrix đầy đủ của tài khoản bot, ví dụ @kaneo-bot:example.com.",
+			"tokenLabel": "Mã truy cập",
+			"tokenPlaceholder": "syt_MaTruyCapViDu123456789",
+			"tokenHint": "Mã truy cập của tài khoản bot. Để trống để giữ mã hiện tại.",
+			"tokenMasked": "Mã đã được cấu hình",
+			"spacePrefixLabel": "Tiền tố tên không gian",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Tiền tố tùy chọn cho tên không gian của không gian làm việc. Các không gian được đặt tên \"<tiền tố> · <tên không gian làm việc>\".",
+			"inviteUsersLabel": "Mời người dùng",
+			"inviteUsersHint": "ID người dùng Matrix tùy chọn, phân tách bằng dấu phẩy, để mời vào mọi không gian và phòng được tạo.",
+			"eventsTitle": "Thông báo sự kiện",
+			"eventsHint": "Chọn thay đổi dự án nào sẽ đăng lên Element.",
+			"events": {
+				"taskCreated": "Công việc mới",
+				"taskStatusChanged": "Thay đổi trạng thái",
+				"taskPriorityChanged": "Thay đổi mức ưu tiên",
+				"taskTitleChanged": "Thay đổi tiêu đề",
+				"taskDescriptionChanged": "Thay đổi mô tả",
+				"taskCommentCreated": "Bình luận mới"
+			},
+			"connect": "Kết nối Element",
 			"saveChanges": "Lưu thay đổi",
 			"disconnect": "Ngắt kết nối"
 		},

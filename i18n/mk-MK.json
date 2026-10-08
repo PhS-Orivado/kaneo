@@ -802,6 +802,8 @@
 			"giteaSectionSubtitle": "Синхронизирај задачи со само-хостирана Gitea инстанца (issues, PRs, webhooks).",
 			"telegramSectionTitle": "Telegram интеграција",
 			"telegramSectionSubtitle": "Испраќај ажурирања за задачи од проектот во Telegram разговор или тема со бот.",
+			"matrixSectionTitle": "Интеграција Element",
+			"matrixSectionSubtitle": "Испраќа ажурирања на задачите од проектот во Element (Matrix) преку бот-сметка; создава простор за секој работен простор, како и подпростор и просторија за секој проект.",
 			"discordSectionTitle": "Discord интеграција",
 			"discordSectionSubtitle": "Испрати ажурирања за задачи на проектот во Discord канал преку webhook.",
 			"genericWebhookSectionTitle": "Општи webhooks",
@@ -1181,6 +1183,52 @@
 				"taskCommentCreated": "Нови коментари"
 			},
 			"connect": "Поврзи Telegram",
+			"saveChanges": "Зачувај промени",
+			"disconnect": "Откачи"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Внесете важечки URL-адреса на домашен сервер, корисничко ID и токен за пристап",
+				"homeserverInvalid": "Внесете важечка URL-адреса на домашен сервер",
+				"userIdInvalid": "Внесете важечко Matrix корисничко ID"
+			},
+			"toast": {
+				"saved": "Element интеграцијата е успешно зачувана",
+				"saveError": "Не успеа зачувувањето на Element интеграцијата",
+				"enabled": "Element известувањата се вклучени",
+				"disabled": "Element известувањата се паузирани",
+				"updateError": "Не успеа ажурирањето на Element интеграцијата",
+				"removed": "Element интеграцијата е успешно отстранета",
+				"removeError": "Не успеа отстранувањето на Element интеграцијата"
+			},
+			"connectionTitle": "Поврзување на Element бот",
+			"connectionHint": "Користете Matrix бот-сметка и токен за пристап за испраќање на ажурирања на задачите од проектот во просторија.",
+			"connected": "Поврзано",
+			"paused": "Паузирано",
+			"homeserverLabel": "URL-адреса на домашен сервер",
+			"homeserverHint": "Основна URL-адреса на вашиот Matrix домашен сервер, на пример https://matrix.example.com.",
+			"userLabel": "Корисничко ID на бот",
+			"userHint": "Целосно Matrix ID на бот-сметката, на пример @kaneo-bot:example.com.",
+			"tokenLabel": "Токен за пристап",
+			"tokenPlaceholder": "syt_ПримерТокенЗаПристап123456789",
+			"tokenHint": "Токен за пристап на бот-сметката. Оставете празно за да го задржите моменталниот токен.",
+			"tokenMasked": "Токенот е веќе конфигуриран",
+			"spacePrefixLabel": "Префикс на името на просторот",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Изборен префикс за името на просторот на работниот простор. Просторите се именуваат како \"<префикс> · <име на работниот простор>\".",
+			"inviteUsersLabel": "Покани корисници",
+			"inviteUsersHint": "Изборни Matrix кориснички ID-а, одделени со запирка, за поканување во секој создаден простор и просторија.",
+			"eventsTitle": "Известувања за настани",
+			"eventsHint": "Избери кои промени на проектот да се испраќаат во Element.",
+			"events": {
+				"taskCreated": "Нови задачи",
+				"taskStatusChanged": "Промени на статус",
+				"taskPriorityChanged": "Промени на приоритет",
+				"taskTitleChanged": "Промени на наслов",
+				"taskDescriptionChanged": "Промени на опис",
+				"taskCommentCreated": "Нови коментари"
+			},
+			"connect": "Поврзи Element",
 			"saveChanges": "Зачувај промени",
 			"disconnect": "Откачи"
 		},
