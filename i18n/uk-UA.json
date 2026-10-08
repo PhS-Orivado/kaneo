@@ -812,8 +812,8 @@
 			"slackSectionSubtitle": "Надсилайте оновлення завдань проєкту до каналу Slack за допомогою вхідного вебхука.",
 			"telegramSectionTitle": "Інтеґрація з Telegram",
 			"telegramSectionSubtitle": "Надсилайте оновлення завдань проєкту до чату або теми Telegram за допомогою бота.",
-			"matrixSectionTitle": "Інтеграція Element",
-			"matrixSectionSubtitle": "Надсилає оновлення завдань проєкту в Element (Matrix) через обліковий запис бота; створює простір для кожної робочої області, а також підпростір і кімнату для кожного проєкту.",
+			"matrixSectionTitle": "Інтеграція Matrix",
+			"matrixSectionSubtitle": "Надсилає оновлення завдань проєкту в Matrix через обліковий запис бота; створює простір для кожної робочої області, а також підпростір і кімнату для кожного проєкту.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1197,15 +1197,15 @@
 				"userIdInvalid": "Введіть коректний ідентифікатор користувача Matrix"
 			},
 			"toast": {
-				"saved": "Інтеґрацію зі Element успішно збережено",
-				"saveError": "Не вдалося зберегти інтеґрацію зі Element",
-				"enabled": "Сповіщення Element увімкнено",
-				"disabled": "Сповіщення Element призупинено",
-				"updateError": "Не вдалося оновити інтеґрацію зі Element",
-				"removed": "Інтеґрацію зі Element успішно видалено",
-				"removeError": "Не вдалося видалити інтеґрацію зі Element"
+				"saved": "Інтеґрацію зі Matrix успішно збережено",
+				"saveError": "Не вдалося зберегти інтеґрацію зі Matrix",
+				"enabled": "Сповіщення Matrix увімкнено",
+				"disabled": "Сповіщення Matrix призупинено",
+				"updateError": "Не вдалося оновити інтеґрацію зі Matrix",
+				"removed": "Інтеґрацію зі Matrix успішно видалено",
+				"removeError": "Не вдалося видалити інтеґрацію зі Matrix"
 			},
-			"connectionTitle": "Підключення бота Element",
+			"connectionTitle": "Підключення бота Matrix",
 			"connectionHint": "Використовуйте обліковий запис бота Matrix і токен доступу, щоб надсилати оновлення завдань проєкту в кімнату.",
 			"connected": "Підключено",
 			"paused": "Призупинено",
@@ -1223,7 +1223,7 @@
 			"inviteUsersLabel": "Запросити користувачів",
 			"inviteUsersHint": "Необов'язкові ідентифікатори користувачів Matrix через кому, яких буде запрошено до кожного створеного простору та кімнати.",
 			"eventsTitle": "Сповіщення про події",
-			"eventsHint": "Оберіть, які зміни в проєкті мають публікуватися в Element.",
+			"eventsHint": "Оберіть, які зміни в проєкті мають публікуватися в Matrix.",
 			"events": {
 				"taskCreated": "Нові завдання",
 				"taskStatusChanged": "Зміни статусу",
@@ -1232,7 +1232,7 @@
 				"taskDescriptionChanged": "Зміни опису",
 				"taskCommentCreated": "Нові коментарі"
 			},
-			"connect": "Підключити Element",
+			"connect": "Підключити Matrix",
 			"saveChanges": "Зберегти зміни",
 			"disconnect": "Від'єднати"
 		},

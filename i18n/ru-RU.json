@@ -812,8 +812,8 @@
 			"slackSectionSubtitle": "Отправка обновлений по задачам проекта в канал Slack через входящий вебхук.",
 			"telegramSectionTitle": "Интеграция с Telegram",
 			"telegramSectionSubtitle": "Отправка обновлений по задачам проекта в чат или тему Telegram через бота.",
-			"matrixSectionTitle": "Интеграция Element",
-			"matrixSectionSubtitle": "Отправляет обновления задач проекта в Element (Matrix) через аккаунт бота; создаёт пространство для каждой рабочей области, а также подпространство и комнату для каждого проекта.",
+			"matrixSectionTitle": "Интеграция Matrix",
+			"matrixSectionSubtitle": "Отправляет обновления задач проекта в Matrix через аккаунт бота; создаёт пространство для каждой рабочей области, а также подпространство и комнату для каждого проекта.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Синхронизация задач с GitLab.com или self-managed экземпляром (issues, merge requests, вебхуки).",
@@ -1197,15 +1197,15 @@
 				"userIdInvalid": "Введите корректный Matrix ID пользователя"
 			},
 			"toast": {
-				"saved": "Интеграция со Element успешно сохранена",
-				"saveError": "Не удалось сохранить интеграцию со Element",
-				"enabled": "Уведомления Element включены",
-				"disabled": "Уведомления Element приостановлены",
-				"updateError": "Не удалось обновить интеграцию со Element",
-				"removed": "Интеграция со Element успешно удалена",
-				"removeError": "Не удалось удалить интеграцию со Element"
+				"saved": "Интеграция с Matrix успешно сохранена",
+				"saveError": "Не удалось сохранить интеграцию с Matrix",
+				"enabled": "Уведомления Matrix включены",
+				"disabled": "Уведомления Matrix приостановлены",
+				"updateError": "Не удалось обновить интеграцию с Matrix",
+				"removed": "Интеграция с Matrix успешно удалена",
+				"removeError": "Не удалось удалить интеграцию с Matrix"
 			},
-			"connectionTitle": "Подключение бота Element",
+			"connectionTitle": "Подключение бота Matrix",
 			"connectionHint": "Используйте аккаунт бота Matrix и токен доступа, чтобы отправлять обновления задач проекта в комнату.",
 			"connected": "Подключён",
 			"paused": "Приостановлен",
@@ -1223,7 +1223,7 @@
 			"inviteUsersLabel": "Пригласить пользователей",
 			"inviteUsersHint": "Необязательные идентификаторы пользователей Matrix через запятую, приглашаемые в каждое созданное пространство и комнату.",
 			"eventsTitle": "Уведомления о событиях",
-			"eventsHint": "Выберите, какие изменения проекта отправлять в Element.",
+			"eventsHint": "Выберите, какие изменения проекта отправлять в Matrix.",
 			"events": {
 				"taskCreated": "Новые задачи",
 				"taskStatusChanged": "Изменения статуса",
@@ -1232,7 +1232,7 @@
 				"taskDescriptionChanged": "Изменения описания",
 				"taskCommentCreated": "Новые комментарии"
 			},
-			"connect": "Подключить Element",
+			"connect": "Подключить Matrix",
 			"saveChanges": "Сохранить изменения",
 			"disconnect": "Отключить"
 		},
