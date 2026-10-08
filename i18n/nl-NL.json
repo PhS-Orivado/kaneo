@@ -1501,9 +1501,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Voer een geldige homeserver-URL, gebruikers-ID en toegangstoken in",
+				"connectionInvalid": "Voer een geldige homeserver-URL en toegangstoken in",
 				"homeserverInvalid": "Voer een geldige homeserver-URL in",
-				"userIdInvalid": "Voer een geldige Matrix-gebruikers-ID in"
+				"roomIdInvalid": "Voer een geldige room-id of roomalias in"
 			},
 			"toast": {
 				"saved": "Matrix-integratie succesvol opgeslagen",
@@ -1520,8 +1520,15 @@
 			"paused": "Gepauzeerd",
 			"homeserverLabel": "Homeserver-URL",
 			"homeserverHint": "Basis-URL van je Matrix-homeserver, bijvoorbeeld https://matrix.example.com.",
-			"userLabel": "Bot-gebruikers-ID",
-			"userHint": "Volledige Matrix-ID van het botaccount, bijvoorbeeld @kaneo-bot:example.com.",
+			"modeLabel": "Verbindingsmodus",
+			"modeProvision": "Kaneo-spaces en rooms aanmaken",
+			"modeProvisionHint": "Kaneo maakt een werkruimte-space, een project-subspace en de rooms Updates en General aan, en plaatst taakupdates in de room Updates.",
+			"modeExisting": "Bestaande room gebruiken",
+			"modeExistingHint": "Kaneo wordt lid van een room die je beheert en plaatst daar taakupdates.",
+			"roomIdLabel": "Room-id of roomalias",
+			"roomIdHint": "De room waar Kaneo lid van wordt en in plaatst, bijvoorbeeld #kaneo-updates:example.com of !abc123:example.com.",
+			"parentSpaceLabel": "Bovenliggende space",
+			"parentSpaceHint": "Optionele room-id of roomalias van een space waaronder de werkruimte-space wordt geplaatst.",
 			"tokenLabel": "Toegangstoken",
 			"tokenPlaceholder": "syt_voorbeeldToegangstoken123456789",
 			"tokenHint": "Toegangstoken van het botaccount. Laat leeg om de huidige token te behouden.",
@@ -1531,6 +1538,8 @@
 			"spacePrefixHint": "Optioneel voorvoegsel voor de spacenaam van de werkruimte. Spaces worden \"<voorvoegsel> · <naam werkruimte>\" genoemd.",
 			"inviteUsersLabel": "Gebruikers uitnodigen",
 			"inviteUsersHint": "Optionele, door komma's gescheiden Matrix-gebruikers-ID's om uit te nodigen voor elke gemaakte space en kamer.",
+			"botUserLabel": "Botaccount",
+			"targetRoomLabel": "Doelroom",
 			"eventsTitle": "Gebeurtenis-meldingen",
 			"eventsHint": "Kies welke projectwijzigingen naar Matrix gepost moeten worden.",
 			"events": {
@@ -1539,7 +1548,12 @@
 				"taskPriorityChanged": "Prioriteitswijzigingen",
 				"taskTitleChanged": "Titelwijzigingen",
 				"taskDescriptionChanged": "Beschrijvingswijzigingen",
-				"taskCommentCreated": "Nieuwe reacties"
+				"taskCommentCreated": "Nieuwe reacties",
+				"taskDeleted": "Verwijderde taken",
+				"taskMoved": "Verplaatste taken",
+				"taskDueDateChanged": "Deadlinewijzigingen",
+				"taskAssigneeChanged": "Toewijzingswijzigingen",
+				"taskUnassigned": "Verwijderde toewijzingen"
 			},
 			"connect": "Verbind Matrix",
 			"saveChanges": "Wijzigingen opslaan",

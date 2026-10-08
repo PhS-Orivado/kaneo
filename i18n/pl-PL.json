@@ -1792,9 +1792,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Wpisz prawidłowy adres URL serwera domowego, identyfikator użytkownika i token dostępu",
+				"connectionInvalid": "Wpisz prawidłowy adres URL serwera domowego i token dostępu",
 				"homeserverInvalid": "Wpisz prawidłowy adres URL serwera domowego",
-				"userIdInvalid": "Wpisz prawidłowy identyfikator użytkownika Matrix"
+				"roomIdInvalid": "Wpisz prawidłowy identyfikator lub alias pokoju"
 			},
 			"toast": {
 				"saved": "Integrację ze Matrixiem zapisano pomyślnie",
@@ -1811,8 +1811,15 @@
 			"paused": "Wstrzymano",
 			"homeserverLabel": "Adres URL serwera domowego",
 			"homeserverHint": "Podstawowy adres URL Twojego serwera domowego Matrix, na przykład https://matrix.example.com.",
-			"userLabel": "Identyfikator użytkownika bota",
-			"userHint": "Pełny identyfikator Matrix konta bota, na przykład @kaneo-bot:example.com.",
+			"modeLabel": "Tryb połączenia",
+			"modeProvision": "Utwórz przestrzenie i pokoje Kaneo",
+			"modeProvisionHint": "Kaneo tworzy przestrzeń obszaru roboczego, podprzestrzeń projektu oraz pokoje Updates i General, i publikuje aktualizacje zadań w pokoju Updates.",
+			"modeExisting": "Użyj istniejącego pokoju",
+			"modeExistingHint": "Kaneo dołącza do pokoju, którym zarządzasz, i publikuje tam aktualizacje zadań.",
+			"roomIdLabel": "Identyfikator lub alias pokoju",
+			"roomIdHint": "Pokój, do którego dołącza i w którym publikuje Kaneo, na przykład #kaneo-updates:example.com lub !abc123:example.com.",
+			"parentSpaceLabel": "Przestrzeń nadrzędna",
+			"parentSpaceHint": "Opcjonalny identyfikator lub alias przestrzeni, pod którą umieszczana jest przestrzeń obszaru roboczego.",
 			"tokenLabel": "Token dostępu",
 			"tokenPlaceholder": "syt_PrzykladowyTokenDostepu123456789",
 			"tokenHint": "Token dostępu konta bota. Pozostaw puste, aby zachować bieżący token.",
@@ -1822,6 +1829,8 @@
 			"spacePrefixHint": "Opcjonalny prefiks dla nazwy przestrzeni obszaru roboczego. Przestrzenie mają nazwy \"<prefiks> · <nazwa obszaru roboczego>\".",
 			"inviteUsersLabel": "Zaproś użytkowników",
 			"inviteUsersHint": "Opcjonalne, oddzielone przecinkami identyfikatory użytkowników Matrix do zaproszenia do każdej utworzonej przestrzeni i pokoju.",
+			"botUserLabel": "Konto bota",
+			"targetRoomLabel": "Pokój docelowy",
 			"eventsTitle": "Powiadomienia o zdarzeniach",
 			"eventsHint": "Wybierz, które zmiany w projekcie mają być publikowane na Matrixu.",
 			"events": {
@@ -1830,7 +1839,12 @@
 				"taskPriorityChanged": "Zmiany priorytetu",
 				"taskTitleChanged": "Zmiany tytułu",
 				"taskDescriptionChanged": "Zmiany opisu",
-				"taskCommentCreated": "Nowe komentarze"
+				"taskCommentCreated": "Nowe komentarze",
+				"taskDeleted": "Usunięte zadania",
+				"taskMoved": "Przeniesione zadania",
+				"taskDueDateChanged": "Zmiany terminu",
+				"taskAssigneeChanged": "Zmiany osoby przypisanej",
+				"taskUnassigned": "Usunięte przypisania"
 			},
 			"connect": "Połącz Matrix",
 			"saveChanges": "Zapisz zmiany",
