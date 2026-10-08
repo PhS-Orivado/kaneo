@@ -1040,8 +1040,8 @@
 			"slackSectionSubtitle": "Gửi cập nhật công việc dự án vào kênh Slack bằng webhook đến.",
 			"telegramSectionTitle": "Tích hợp Telegram",
 			"telegramSectionSubtitle": "Gửi cập nhật công việc dự án vào cuộc trò chuyện hoặc chủ đề Telegram bằng bot.",
-			"matrixSectionTitle": "Tích hợp Element",
-			"matrixSectionSubtitle": "Gửi các cập nhật nhiệm vụ của dự án tới Element (Matrix) thông qua tài khoản bot; tạo một không gian cho mỗi không gian làm việc, cùng một không gian con và phòng cho mỗi dự án.",
+			"matrixSectionTitle": "Tích hợp Matrix",
+			"matrixSectionSubtitle": "Gửi các cập nhật nhiệm vụ của dự án tới Matrix thông qua tài khoản bot; tạo một không gian cho mỗi không gian làm việc, cùng một không gian con và phòng cho mỗi dự án.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1425,15 +1425,15 @@
 				"userIdInvalid": "Nhập ID người dùng Matrix hợp lệ"
 			},
 			"toast": {
-				"saved": "Đã lưu tích hợp Element thành công",
-				"saveError": "Không thể lưu tích hợp Element",
-				"enabled": "Đã bật thông báo Element",
-				"disabled": "Đã tạm dừng thông báo Element",
-				"updateError": "Không thể cập nhật tích hợp Element",
-				"removed": "Gỡ bỏ tích hợp Element thành công",
-				"removeError": "Không thể gỡ bỏ tích hợp Element"
+				"saved": "Đã lưu tích hợp Matrix thành công",
+				"saveError": "Không thể lưu tích hợp Matrix",
+				"enabled": "Đã bật thông báo Matrix",
+				"disabled": "Đã tạm dừng thông báo Matrix",
+				"updateError": "Không thể cập nhật tích hợp Matrix",
+				"removed": "Gỡ bỏ tích hợp Matrix thành công",
+				"removeError": "Không thể gỡ bỏ tích hợp Matrix"
 			},
-			"connectionTitle": "Kết nối bot Element",
+			"connectionTitle": "Kết nối bot Matrix",
 			"connectionHint": "Sử dụng tài khoản bot Matrix và mã truy cập để gửi các cập nhật nhiệm vụ của dự án vào một phòng.",
 			"connected": "Đã kết nối",
 			"paused": "Đã tạm dừng",
@@ -1451,7 +1451,7 @@
 			"inviteUsersLabel": "Mời người dùng",
 			"inviteUsersHint": "ID người dùng Matrix tùy chọn, phân tách bằng dấu phẩy, để mời vào mọi không gian và phòng được tạo.",
 			"eventsTitle": "Thông báo sự kiện",
-			"eventsHint": "Chọn thay đổi dự án nào sẽ đăng lên Element.",
+			"eventsHint": "Chọn thay đổi dự án nào sẽ đăng lên Matrix.",
 			"events": {
 				"taskCreated": "Công việc mới",
 				"taskStatusChanged": "Thay đổi trạng thái",
@@ -1460,7 +1460,7 @@
 				"taskDescriptionChanged": "Thay đổi mô tả",
 				"taskCommentCreated": "Bình luận mới"
 			},
-			"connect": "Kết nối Element",
+			"connect": "Kết nối Matrix",
 			"saveChanges": "Lưu thay đổi",
 			"disconnect": "Ngắt kết nối"
 		},
