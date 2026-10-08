@@ -25,3 +25,28 @@ export const updateMemberProjectAccessBody = z.object({
       'Projects the member can access when projectAccess is "selected".',
   }),
 });
+
+export const createWorkspaceInvitationsBody = z.object({
+  role: z.string().default("member").openapi({
+    description:
+      "Workspace role granted when an invitation is accepted. Owner cannot be granted by invitation; add the user and transfer ownership instead.",
+  }),
+  invitations: z
+    .array(
+      z.object({
+        email: z.email().openapi({
+          description:
+            "The invitee's email address, lowercased before use.",
+        }),
+        sendEmail: z.boolean().default(false).openapi({
+          description:
+            "Send the standard workspace invitation email to this address. The invitation is always created; leave this false to share the link manually.",
+        }),
+      }),
+    )
+    .min(1)
+    .max(100)
+    .openapi({
+      description: "Email addresses to invite. Up to 100 per request.",
+    }),
+});

@@ -49,6 +49,29 @@ describe("parseArgs", () => {
     expect(args.skipComments).toBe(true);
     expect(args.yes).toBe(true);
   });
+
+  it("invites Jira users by default and --no-invite-users disables it", () => {
+    expect(parseArgs([]).inviteUsers).toBe(true);
+    expect(parseArgs(["--no-invite-users"]).inviteUsers).toBe(false);
+  });
+
+  it("collects --invite-emails as a deduplicated, lowercased list", () => {
+    const args = parseArgs([
+      "--invite-emails",
+      "Alice@Example.com, bob@example.com",
+      "--invite-emails=alice@example.com",
+    ]);
+    expect(args.inviteEmails).toEqual([
+      "alice@example.com",
+      "bob@example.com",
+    ]);
+  });
+
+  it("rejects --invite-emails without a value", () => {
+    expect(() => parseArgs(["--invite-emails"])).toThrow(
+      "--invite-emails requires a value",
+    );
+  });
 });
 
 describe("buildJql", () => {

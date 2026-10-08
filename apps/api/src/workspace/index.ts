@@ -8,15 +8,18 @@ import {
 import { listWorkspaceProjectAccess } from "../project-access/list-workspace-project-access";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
+import createWorkspaceInvitationsCtrl from "./controllers/create-workspace-invitations";
 import getMyProjectAccessCtrl from "./controllers/get-my-project-access";
 import getWorkspaceMembersCtrl from "./controllers/get-workspace-members";
 import updateMemberProjectAccessCtrl from "./controllers/update-member-project-access";
 import {
   memberProjectAccessListSchema,
   memberProjectAccessSchema,
+  workspaceInvitationListSchema,
   workspaceMemberListSchema,
 } from "./response";
 import {
+  createWorkspaceInvitationsBody,
   updateMemberProjectAccessBody,
   workspaceIdParam,
   workspaceMemberParam,
@@ -116,6 +119,37 @@ const updateMemberProjectAccessRoute = createRoute({
   },
 });
 
+const createWorkspaceInvitationsRoute = createRoute({
+  method: "post",
+  operationId: "createWorkspaceInvitations",
+  path: "/{workspaceId}/invitations",
+  tags: ["Workspaces"],
+  summary: "Invite users without sending emails",
+  description:
+    "Create pending workspace invitations in bulk, for example when migrating from another tool. No email is sent unless an address is marked sendEmail, so the caller decides who is notified; every result includes the invitation id so the link can be shared manually. Members and existing unexpired invitations are not duplicated, matching the app's invite flow.",
+  middleware: [
+    workspaceAccess.fromParam("workspaceId"),
+    requireWorkspacePermission({ invitation: ["create"] }),
+  ] as const,
+  request: {
+    params: workspaceIdParam,
+    body: {
+      required: true,
+      content: {
+        "application/json": { schema: createWorkspaceInvitationsBody },
+      },
+    },
+  },
+  responses: {
+    200: jsonResponse("Invitation results", workspaceInvitationListSchema),
+    400: errorResponse("Invalid body or unknown role"),
+    403: errorResponse(
+      "No workspace access, or missing invitation:create permission",
+    ),
+    404: errorResponse("Workspace not found"),
+  },
+});
+
 const workspace = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getWorkspaceMembersRoute, async (c) =>
     c.json(
@@ -149,6 +183,18 @@ const workspace = apiRouter<BaseVariables & { workspaceId: string }>()
         userId,
         projectAccess: body.projectAccess,
         projectIds: body.projectIds,
+      }),
+      200,
+    );
+  })
+  .openapi(createWorkspaceInvitationsRoute, async (c) => {
+    const body = c.req.valid("json");
+    return c.json(
+      await createWorkspaceInvitationsCtrl({
+        workspaceId: c.get("workspaceId"),
+        actorId: c.get("userId"),
+        role: body.role,
+        invitations: body.invitations,
       }),
       200,
     );

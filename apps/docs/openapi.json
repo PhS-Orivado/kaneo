@@ -4726,6 +4726,59 @@
           "projectIds"
         ]
       },
+      "WorkspaceInvitationList": {
+        "type": "object",
+        "properties": {
+          "invitations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceInvitationResult"
+            }
+          }
+        },
+        "required": [
+          "invitations"
+        ]
+      },
+      "WorkspaceInvitationResult": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "already_member",
+              "already_invited",
+              "error"
+            ],
+            "description": "\"created\": a new pending invitation. \"already_member\": the email belongs to a current member, nothing was created. \"already_invited\": an unexpired pending invitation already exists and was reused; its expiry is refreshed when it was re-sent. \"error\": no invitation was created, see error."
+          },
+          "id": {
+            "type": "string",
+            "description": "Invitation id, present whenever an invitation exists for this email."
+          },
+          "expiresAt": {
+            "type": "string",
+            "description": "When the invitation expires. Like invitations sent from the app, it stays valid for 48 hours."
+          },
+          "emailed": {
+            "type": "boolean",
+            "description": "Whether the standard workspace invitation email was sent for this invitation."
+          },
+          "error": {
+            "type": "string",
+            "description": "Failure reason when status is \"error\", or why the invitation email could not be sent."
+          }
+        },
+        "required": [
+          "email",
+          "status",
+          "emailed"
+        ]
+      },
       "CustomFieldDefinition": {
         "type": "object",
         "properties": {
@@ -21555,6 +21608,115 @@
           },
           "404": {
             "description": "Member not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/workspace/{workspaceId}/invitations": {
+      "post": {
+        "operationId": "createWorkspaceInvitations",
+        "tags": [
+          "Workspaces"
+        ],
+        "summary": "Invite users without sending emails",
+        "description": "Create pending workspace invitations in bulk, for example when migrating from another tool. No email is sent unless an address is marked sendEmail, so the caller decides who is notified; every result includes the invitation id so the link can be shared manually. Members and existing unexpired invitations are not duplicated, matching the app's invite flow.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "default": "member",
+                    "description": "Workspace role granted when an invitation is accepted. Owner cannot be granted by invitation; add the user and transfer ownership instead."
+                  },
+                  "invitations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string",
+                          "format": "email",
+                          "description": "The invitee's email address, lowercased before use."
+                        },
+                        "sendEmail": {
+                          "type": "boolean",
+                          "default": false,
+                          "description": "Send the standard workspace invitation email to this address. The invitation is always created; leave this false to share the link manually."
+                        }
+                      },
+                      "required": [
+                        "email"
+                      ]
+                    },
+                    "minItems": 1,
+                    "maxItems": 100,
+                    "description": "Email addresses to invite. Up to 100 per request."
+                  }
+                },
+                "required": [
+                  "invitations"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invitation results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceInvitationList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body or unknown role",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing invitation:create permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Workspace not found",
             "content": {
               "text/plain": {
                 "schema": {
