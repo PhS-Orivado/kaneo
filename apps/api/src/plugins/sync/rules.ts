@@ -33,7 +33,7 @@ export const defaultSyncRules: SyncRules = {
   outgoing: { mode: "all" },
   incoming: { mode: "all" },
 };
-export const syncProviders = ["github", "gitea", "gitlab"] as const;
+export const syncProviders = ["github", "gitea", "gitlab", "jira"] as const;
 
 export function readSyncRules(
   config: string | Record<string, unknown>,
