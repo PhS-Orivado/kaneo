@@ -704,6 +704,8 @@
 			"giteaSectionSubtitle": "Synchroniseer taken met een zelf-gehoste Gitea-instantie (issues, PR's, webhooks).",
 			"telegramSectionTitle": "Telegram Integratie",
 			"telegramSectionSubtitle": "Verstuur updates van projecttaken naar een Telegram-chat of -topic met een bot.",
+			"matrixSectionTitle": "Element-integratie",
+			"matrixSectionSubtitle": "Stuurt projecttaakupdates naar Element (Matrix) via een botaccount; maakt een space per werkruimte en een subspace en kamer per project.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1494,6 +1496,52 @@
 				"taskCommentCreated": "Nieuwe reacties"
 			},
 			"connect": "Verbind Telegram",
+			"saveChanges": "Wijzigingen opslaan",
+			"disconnect": "Ontkoppelen"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Voer een geldige homeserver-URL, gebruikers-ID en toegangstoken in",
+				"homeserverInvalid": "Voer een geldige homeserver-URL in",
+				"userIdInvalid": "Voer een geldige Matrix-gebruikers-ID in"
+			},
+			"toast": {
+				"saved": "Element-integratie succesvol opgeslagen",
+				"saveError": "Opslaan Element-integratie mislukt",
+				"enabled": "Element-meldingen ingeschakeld",
+				"disabled": "Element-meldingen gepauzeerd",
+				"updateError": "Bijwerken Element-integratie mislukt",
+				"removed": "Element-integratie succesvol verwijderd",
+				"removeError": "Verwijderen Element-integratie mislukt"
+			},
+			"connectionTitle": "Element-botverbinding",
+			"connectionHint": "Gebruik een Matrix-botaccount en toegangstoken om projecttaakupdates naar een kamer te sturen.",
+			"connected": "Verbonden",
+			"paused": "Gepauzeerd",
+			"homeserverLabel": "Homeserver-URL",
+			"homeserverHint": "Basis-URL van je Matrix-homeserver, bijvoorbeeld https://matrix.example.com.",
+			"userLabel": "Bot-gebruikers-ID",
+			"userHint": "Volledige Matrix-ID van het botaccount, bijvoorbeeld @kaneo-bot:example.com.",
+			"tokenLabel": "Toegangstoken",
+			"tokenPlaceholder": "syt_voorbeeldToegangstoken123456789",
+			"tokenHint": "Toegangstoken van het botaccount. Laat leeg om de huidige token te behouden.",
+			"tokenMasked": "Er is al een token geconfigureerd",
+			"spacePrefixLabel": "Voorvoegsel voor spacenaam",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Optioneel voorvoegsel voor de spacenaam van de werkruimte. Spaces worden \"<voorvoegsel> · <naam werkruimte>\" genoemd.",
+			"inviteUsersLabel": "Gebruikers uitnodigen",
+			"inviteUsersHint": "Optionele, door komma's gescheiden Matrix-gebruikers-ID's om uit te nodigen voor elke gemaakte space en kamer.",
+			"eventsTitle": "Gebeurtenis-meldingen",
+			"eventsHint": "Kies welke projectwijzigingen naar Element gepost moeten worden.",
+			"events": {
+				"taskCreated": "Nieuwe taken",
+				"taskStatusChanged": "Statuswijzigingen",
+				"taskPriorityChanged": "Prioriteitswijzigingen",
+				"taskTitleChanged": "Titelwijzigingen",
+				"taskDescriptionChanged": "Beschrijvingswijzigingen",
+				"taskCommentCreated": "Nieuwe reacties"
+			},
+			"connect": "Verbind Element",
 			"saveChanges": "Wijzigingen opslaan",
 			"disconnect": "Ontkoppelen"
 		},

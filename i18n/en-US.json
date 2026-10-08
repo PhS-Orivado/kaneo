@@ -1275,6 +1275,8 @@
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"telegramSectionTitle": "Telegram Integration",
 			"telegramSectionSubtitle": "Send project task updates into a Telegram chat or topic with a bot.",
+			"matrixSectionTitle": "Element integration",
+			"matrixSectionSubtitle": "Sends project task updates to Element (Matrix) through a bot account; creates a space per workspace plus a subspace and room per project.",
 			"codeHostingTitle": "Code hosting",
 			"chatTitle": "Chat & webhooks",
 			"statusConnected": "Connected",
@@ -1797,6 +1799,52 @@
 				"taskCommentCreated": "New comments"
 			},
 			"connect": "Connect Telegram",
+			"saveChanges": "Save changes",
+			"disconnect": "Disconnect"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Enter a valid homeserver URL, user ID, and access token",
+				"homeserverInvalid": "Enter a valid homeserver URL",
+				"userIdInvalid": "Enter a valid Matrix user ID"
+			},
+			"toast": {
+				"saved": "Element integration saved successfully",
+				"saveError": "Failed to save Element integration",
+				"enabled": "Element notifications enabled",
+				"disabled": "Element notifications paused",
+				"updateError": "Failed to update Element integration",
+				"removed": "Element integration removed successfully",
+				"removeError": "Failed to remove Element integration"
+			},
+			"connectionTitle": "Element bot connection",
+			"connectionHint": "Use a Matrix bot account and access token to post project task updates to a room.",
+			"connected": "Connected",
+			"paused": "Paused",
+			"homeserverLabel": "Homeserver URL",
+			"homeserverHint": "Base URL of your Matrix homeserver, for example https://matrix.example.com.",
+			"userLabel": "Bot user ID",
+			"userHint": "Full Matrix ID of the bot account, for example @kaneo-bot:example.com.",
+			"tokenLabel": "Access token",
+			"tokenPlaceholder": "syt_exampleAccessToken123456789",
+			"tokenHint": "Access token for the bot account. Leave empty to keep the current token.",
+			"tokenMasked": "A token is already configured",
+			"spacePrefixLabel": "Space name prefix",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Optional prefix for the workspace space name. Spaces are named \"<prefix> · <workspace name>\".",
+			"inviteUsersLabel": "Invite users",
+			"inviteUsersHint": "Optional comma-separated Matrix user IDs to invite to every created space and room.",
+			"eventsTitle": "Event notifications",
+			"eventsHint": "Choose which project changes should post to Element.",
+			"events": {
+				"taskCreated": "New tasks",
+				"taskStatusChanged": "Status changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskTitleChanged": "Title changes",
+				"taskDescriptionChanged": "Description changes",
+				"taskCommentCreated": "New comments"
+			},
+			"connect": "Connect Element",
 			"saveChanges": "Save changes",
 			"disconnect": "Disconnect"
 		},
