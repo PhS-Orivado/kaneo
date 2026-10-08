@@ -1045,6 +1045,8 @@
 			"mattermostSectionSubtitle": "Layihənin tapşırıq yeniləmələrini daxil olan Webhook ilə Mattermost kanalına göndərin.",
 			"telegramSectionTitle": "Telegram inteqrasiyası",
 			"telegramSectionSubtitle": "Layihənin tapşırıq yeniləmələrini bot ilə Telegram söhbətinə və ya mövzusuna göndərin.",
+			"matrixSectionTitle": "Element inteqrasiyası",
+			"matrixSectionSubtitle": "Layihə tapşırıq yeniliklərini bot hesabı vasitəsilə Element-ə (Matrix) göndərir; hər iş sahəsi üçün sahə, hər layihə üçün isə altsahə və otaq yaradır.",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
 			"gitlabSectionTitle": "GitLab Integration",
 			"codeHostingTitle": "Kod hostinqi",
@@ -1454,6 +1456,52 @@
 				"taskCommentCreated": "Yeni şərhlər"
 			},
 			"connect": "Telegram-a qoşul",
+			"saveChanges": "Dəyişiklikləri yadda saxla",
+			"disconnect": "Ayır"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Etibarlı ana server URL-i, istifadəçi identifikatoru və giriş nişanı daxil edin",
+				"homeserverInvalid": "Etibarlı ana server URL-i daxil edin",
+				"userIdInvalid": "Etibarlı Matrix istifadəçi identifikatoru daxil edin"
+			},
+			"toast": {
+				"saved": "Element inteqrasiyası uğurla yadda saxlanıldı",
+				"saveError": "Element inteqrasiyasını yadda saxlamaq alınmadı",
+				"enabled": "Element bildirişləri aktivləşdirildi",
+				"disabled": "Element bildirişləri dayandırıldı",
+				"updateError": "Element inteqrasiyasını yeniləmək alınmadı",
+				"removed": "Element inteqrasiyası uğurla çıxarıldı",
+				"removeError": "Element inteqrasiyasını çıxarmaq alınmadı"
+			},
+			"connectionTitle": "Element bot bağlantısı",
+			"connectionHint": "Layihə tapşırıq yeniliklərini otağa göndərmək üçün Matrix bot hesabından və giriş nişanından istifadə edin.",
+			"connected": "Qoşulub",
+			"paused": "Dayandırılıb",
+			"homeserverLabel": "Ana server URL-i",
+			"homeserverHint": "Matrix ana serverinizin baza URL-i, məsələn https://matrix.example.com.",
+			"userLabel": "Bot istifadəçi identifikatoru",
+			"userHint": "Bot hesabının tam Matrix identifikatoru, məsələn @kaneo-bot:example.com.",
+			"tokenLabel": "Giriş nişanı",
+			"tokenPlaceholder": "syt_NümunəGirişNişanı123456789",
+			"tokenHint": "Bot hesabının giriş nişanı. Mövcud nişanı saxlamaq üçün boş buraxın.",
+			"tokenMasked": "Nişan artıq konfiqurasiya edilib",
+			"spacePrefixLabel": "Sahə adı prefiksi",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "İş sahəsinin sahə adı üçün istəyə bağlı prefiks. Sahələr \"<prefiks> · <iş sahəsinin adı>\" adlanır.",
+			"inviteUsersLabel": "İstifadəçiləri dəvət et",
+			"inviteUsersHint": "Yaradılan hər sahəyə və otağa dəvət ediləcək, vergüllə ayrılmış istəyə bağlı Matrix istifadəçi identifikatorları.",
+			"eventsTitle": "Hadisə bildirişləri",
+			"eventsHint": "Hansı layihə dəyişikliklərinin Element-ə göndəriləcəyini seçin.",
+			"events": {
+				"taskCreated": "Yeni tapşırıqlar",
+				"taskStatusChanged": "Vəziyyət dəyişiklikləri",
+				"taskPriorityChanged": "Prioritet dəyişiklikləri",
+				"taskTitleChanged": "Başlıq dəyişiklikləri",
+				"taskDescriptionChanged": "Təsvir dəyişiklikləri",
+				"taskCommentCreated": "Yeni şərhlər"
+			},
+			"connect": "Element-ə qoşul",
 			"saveChanges": "Dəyişiklikləri yadda saxla",
 			"disconnect": "Ayır"
 		},
