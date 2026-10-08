@@ -1,7 +1,7 @@
 import { Webhook } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { DiscordIcon } from "@/components/icons/discord-icon";
-import { ElementIcon } from "@/components/icons/element-icon";
+import { MatrixIcon } from "@/components/icons/matrix-icon";
 import { GiteaIcon } from "@/components/icons/gitea-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
@@ -98,10 +98,10 @@ export const INTEGRATIONS: IntegrationDefinition[] = [
   {
     id: "matrix",
     category: "chat",
-    name: "Element",
+    name: "Matrix",
     descriptionKey: "settings:projectIntegrations.matrixSectionSubtitle",
-    icon: ElementIcon,
-    iconClassName: "text-[#0DBD8B]",
+    icon: MatrixIcon,
+    iconClassName: "text-foreground",
     Settings: MatrixIntegrationSettings,
   },
   {

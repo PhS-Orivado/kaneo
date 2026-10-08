@@ -55,9 +55,9 @@ const getMatrixIntegrationRoute = createRoute({
   operationId: "getMatrixIntegration",
   path: "/project/{projectId}",
   tags: ["Matrix"],
-  summary: "Get Element (Matrix) integration",
+  summary: "Get Matrix integration",
   description:
-    "Get the Element (Matrix) integration for a project, or null when none is configured.",
+    "Get the Matrix integration for a project, or null when none is configured.",
   middleware: [workspaceAccess.fromProject("projectId")] as const,
   request: { params: projectIdParam },
   responses: {
@@ -77,9 +77,9 @@ const createMatrixIntegrationRoute = createRoute({
   operationId: "createMatrixIntegration",
   path: "/project/{projectId}",
   tags: ["Matrix"],
-  summary: "Create Element (Matrix) integration",
+  summary: "Create Matrix integration",
   description:
-    "Create or replace the Element (Matrix) integration for a project. The homeserver URL, user ID, and access token are checked for shape only, not against the homeserver.",
+    "Create or replace the Matrix integration for a project. The homeserver URL, user ID, and access token are checked for shape only, not against the homeserver.",
   middleware: manageAccess,
   request: {
     params: projectIdParam,
@@ -107,9 +107,9 @@ const updateMatrixIntegrationRoute = createRoute({
   operationId: "updateMatrixIntegration",
   path: "/project/{projectId}",
   tags: ["Matrix"],
-  summary: "Update Element (Matrix) integration",
+  summary: "Update Matrix integration",
   description:
-    "Update the Element (Matrix) integration. Omitted fields keep their current value; spaceNamePrefix and inviteUsers accept null to clear them.",
+    "Update the Matrix integration. Omitted fields keep their current value; spaceNamePrefix and inviteUsers accept null to clear them.",
   middleware: manageAccess,
   request: {
     params: projectIdParam,
@@ -136,8 +136,8 @@ const deleteMatrixIntegrationRoute = createRoute({
   operationId: "deleteMatrixIntegration",
   path: "/project/{projectId}",
   tags: ["Matrix"],
-  summary: "Delete Element (Matrix) integration",
-  description: "Remove the Element (Matrix) integration from a project.",
+  summary: "Delete Matrix integration",
+  description: "Remove the Matrix integration from a project.",
   middleware: manageAccess,
   request: { params: projectIdParam },
   responses: {

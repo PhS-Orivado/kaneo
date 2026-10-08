@@ -11,7 +11,7 @@ import {
 
 export const matrixPlugin: IntegrationPlugin = {
   type: "matrix",
-  name: "Element",
+  name: "Matrix",
   onTaskCreated: handleTaskCreated,
   onTaskStatusChanged: handleTaskStatusChanged,
   onTaskPriorityChanged: handleTaskPriorityChanged,
