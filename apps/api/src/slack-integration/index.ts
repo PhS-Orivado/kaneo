@@ -10,6 +10,7 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
+import { assertIntegrationLimit } from "../plan-limits/plan-quota";
 import {
   defaultSlackEvents,
   normalizeSlackConfig,
@@ -212,6 +213,12 @@ const slackIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       ),
     });
 
+    // Plan limits: creating or reactivating an integration must respect the
+    // workspace-wide integration quota.
+    if (!existing || !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
+
     if (existing) {
       await db
         .update(integrationTable)
@@ -272,14 +279,21 @@ const slackIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       });
     }
 
+    const nextIsActive =
+      body.isActive !== undefined
+        ? body.isActive
+        : (existing.isActive ?? true);
+
+    // Plan limits: reactivating an integration re-enters the workspace quota.
+    if (nextIsActive && !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
+
     await db
       .update(integrationTable)
       .set({
         config: JSON.stringify(nextConfig),
-        isActive:
-          body.isActive !== undefined
-            ? body.isActive
-            : (existing.isActive ?? true),
+        isActive: nextIsActive,
         updatedAt: new Date(),
       })
       .where(eq(integrationTable.id, existing.id));

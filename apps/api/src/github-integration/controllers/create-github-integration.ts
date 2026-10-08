@@ -5,6 +5,10 @@ import { integrationTable, projectTable } from "../../database/schema";
 import { mapIntegrationUniqueViolation } from "../../integrations/map-unique-violation";
 import { defaultGitHubConfig } from "../../plugins/github/config";
 import { assertRepositoryBindingQuota } from "../../plan-limits/repository-binding-quota";
+import {
+  assertIntegrationLimit,
+  assertWorkspaceRepositoryLimit,
+} from "../../plan-limits/plan-quota";
 import { verifyRepositoryOwner } from "./verify-repository-owner";
 
 // RFC 0001 WP2: one integration row per GitHub repository. The
@@ -47,6 +51,9 @@ async function createGithubIntegration({
   // WP10: enforce the per-project repository binding quota after repository
   // verification and before the insert. 402 propagates unchanged.
   await assertRepositoryBindingQuota(projectId, project.workspaceId);
+  // Plan limits: workspace-wide repository total and integration count.
+  await assertWorkspaceRepositoryLimit(project.workspaceId);
+  await assertIntegrationLimit(project.workspaceId);
 
   const config = { ...defaultGitHubConfig, ...binding };
 

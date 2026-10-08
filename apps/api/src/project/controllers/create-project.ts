@@ -2,6 +2,7 @@ import { eq, max, sql } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { columnTable, projectTable } from "../../database/schema";
+import { assertProjectLimit } from "../../plan-limits/plan-quota";
 import { grantProjectToRestrictedMember } from "../../project-access/grant-project-to-restricted-member";
 import { findProjectKeyConflict, projectKeyTakenMessage } from "../project-key";
 
@@ -19,6 +20,9 @@ async function createProject(
   slug: string,
   userId: string,
 ) {
+  // Plan limit (maxProjects): 402 propagates from the guard.
+  await assertProjectLimit(workspaceId);
+
   return db.transaction(async (tx) => {
     // Serialize ordering writes per workspace: without this, two concurrent
     // creates can read the same max(position) and land on the same slot, and a

@@ -11,6 +11,7 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
+import { assertIntegrationLimit } from "../plan-limits/plan-quota";
 import {
   defaultTelegramEvents,
   normalizeTelegramConfig,
@@ -180,8 +181,14 @@ const telegramIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
         eq(integrationTable.projectId, projectId),
         eq(integrationTable.type, "telegram"),
       ),
-      columns: { id: true },
+      columns: { id: true, isActive: true },
     });
+
+    // Plan limits: creating or reactivating an integration must respect the
+    // workspace-wide integration quota.
+    if (!priorIntegration || !priorIntegration.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
 
     await db
       .insert(integrationTable)
@@ -250,6 +257,11 @@ const telegramIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       resolvedIsActive === (existing.isActive ?? true)
     ) {
       return c.json(toResponse(existing), 200);
+    }
+
+    // Plan limits: reactivating an integration re-enters the workspace quota.
+    if (resolvedIsActive && !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
     }
 
     const validation = validateTelegramConfig(nextConfig);
