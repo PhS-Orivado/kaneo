@@ -1,0 +1,58 @@
+{
+	"name": "@kaneo/jira-import",
+	"version": "0.1.0",
+	"description": "Migrate Jira projects into Kaneo: issues, statuses, priorities, labels, comments, attachments and links, over the public APIs of both",
+	"license": "MIT",
+	"author": "Kaneo (https://kaneo.app)",
+	"homepage": "https://kaneo.app/docs/core/migrations/from-jira",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/usekaneo/kaneo/",
+		"directory": "packages/jira-import"
+	},
+	"type": "module",
+	"bin": {
+		"kaneo-jira-import": "dist/index.js"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"files": [
+		"dist",
+		"README.md",
+		"LICENSE",
+		"PLAN.md"
+	],
+	"keywords": [
+		"cli",
+		"import",
+		"jira",
+		"atlassian",
+		"kanban",
+		"kaneo",
+		"migration",
+		"project-management"
+	],
+	"engines": {
+		"node": ">=20"
+	},
+	"scripts": {
+		"build": "vp run compile",
+		"prepublishOnly": "pnpm run build",
+		"lint": "vp check .",
+		"start": "node dist/index.js",
+		"test": "vp run test:run",
+		"test:watch": "vp test --config vitest.config.ts"
+	},
+	"dependencies": {
+		"prompts": "^2.4.2"
+	},
+	"devDependencies": {
+		"@kaneo/typescript-config": "workspace:*",
+		"@types/node": "^26.6.2",
+		"@types/prompts": "^2.4.9",
+		"tsx": "^4.23.15",
+		"typescript": "^7.0.2",
+		"vite-plus": "catalog:"
+	}
+}
