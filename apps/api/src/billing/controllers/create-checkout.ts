@@ -9,7 +9,7 @@ import {
   type Plan,
   productIdFor,
 } from "../config";
-import { createCheckoutSession } from "../creem-client";
+import { resolvePaymentProvider } from "../providers/resolve";
 import { getOrCreateWorkspaceBilling } from "./get-workspace-billing";
 
 async function createCheckout({
@@ -39,23 +39,23 @@ async function createCheckout({
     });
   }
 
-  let units = 1;
+  let seats = 1;
   if (plan === "team") {
     const [members] = await db
       .select({ value: count() })
       .from(workspaceUserTable)
       .where(eq(workspaceUserTable.workspaceId, workspaceId));
-    units = Math.max(1, members?.value ?? 1);
+    seats = Math.max(1, members?.value ?? 1);
   }
 
   const clientUrl = process.env.KANEO_CLIENT_URL ?? "";
-  const { checkoutUrl } = await createCheckoutSession({
+  const { checkoutUrl } = await resolvePaymentProvider().createCheckoutSession({
     productId,
-    units,
+    seats,
     successUrl: `${clientUrl}/dashboard/settings/workspace/billing?checkout=success`,
     requestId: createId(),
     customerEmail: userEmail,
-    metadata: { workspaceId, plan, interval },
+    metadata: { workspaceId, plan, interval, priceId: productId },
   });
 
   return { checkoutUrl };

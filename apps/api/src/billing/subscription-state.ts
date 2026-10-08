@@ -1,14 +1,14 @@
 const BILLABLE_STATUSES = new Set(["active", "trialing", "past_due"]);
 
 export type SubscriptionState = {
-  creemSubscriptionId: string | null;
+  subscriptionId: string | null;
   status: string | null;
 };
 
 export function hasBillableSubscription(
   billing: SubscriptionState | null | undefined,
 ) {
-  if (!billing?.creemSubscriptionId) {
+  if (!billing?.subscriptionId) {
     return false;
   }
 

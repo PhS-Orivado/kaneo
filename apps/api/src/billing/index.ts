@@ -1,4 +1,3 @@
-import { constructWebhookEvent } from "creem/webhooks.js";
 import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
@@ -12,15 +11,14 @@ import {
 } from "../openapi";
 import { requireUserSession } from "../utils/require-user-session";
 import { validateWorkspaceAccess } from "../utils/validate-workspace-access";
-import { creemWebhookSecret, isBillingEnabled } from "./config";
+import { billingProvider, isBillingEnabled } from "./config";
 import createCheckout from "./controllers/create-checkout";
 import getWorkspaceBilling, {
   getOrCreateWorkspaceBilling,
 } from "./controllers/get-workspace-billing";
-import handleWebhook, {
-  type BillingWebhookEvent,
-} from "./controllers/handle-webhook";
-import { createCustomerPortalLink } from "./creem-client";
+import handleWebhook from "./controllers/handle-webhook";
+import { resolvePaymentProvider } from "./providers/resolve";
+import type { BillingProviderName } from "./config";
 import {
   checkoutSchema,
   portalSchema,
@@ -56,22 +54,36 @@ async function requireBillingManager(userId: string, workspaceId: string) {
 // self-hosted API reference does not advertise a paid tier that does not exist.
 const cloudOnly = { hide: true } as const;
 
-const webhookRoute = createRoute({
-  ...cloudOnly,
-  method: "post",
-  operationId: "handleBillingWebhook",
-  path: "/webhook",
-  tags: ["Billing"],
-  summary: "Billing webhook",
-  description:
-    "Receive a Creem subscription event. Authenticated by signature, not by session, and idempotent per event id.",
-  security: [],
-  responses: {
-    200: jsonResponse("The event was accepted", webhookResultSchema),
-    400: errorResponse("Signature verification failed"),
-    404: errorResponse("Billing is not enabled on this instance"),
-  },
-});
+function webhookRoute(path: string, operationId: string) {
+  return createRoute({
+    ...cloudOnly,
+    method: "post",
+    operationId,
+    path,
+    tags: ["Billing"],
+    summary: "Billing webhook",
+    description:
+      "Receive a payment-provider subscription event. Authenticated by the provider's webhook signature, not by a session, and idempotent per event id.",
+    security: [],
+    responses: {
+      200: jsonResponse("The event was accepted", webhookResultSchema),
+      400: errorResponse("Signature verification failed"),
+      404: errorResponse("Billing is not enabled on this instance"),
+    },
+  });
+}
+
+// `/webhook` is the legacy Creem endpoint, kept for delivery retries during
+// the transition to provider-specific paths.
+const webhookRouteCreem = webhookRoute("/webhook", "handleBillingWebhook");
+const webhookRouteCreemAlias = webhookRoute(
+  "/webhook/creem",
+  "handleBillingWebhookCreem",
+);
+const webhookRouteStripe = webhookRoute(
+  "/webhook/stripe",
+  "handleBillingWebhookStripe",
+);
 
 const getWorkspaceBillingRoute = createRoute({
   ...cloudOnly,
@@ -81,7 +93,7 @@ const getWorkspaceBillingRoute = createRoute({
   tags: ["Billing"],
   summary: "Get workspace billing",
   description:
-    "Get the billing state and entitlement for a workspace. When the instance has no billing configured this reports billingEnabled: false and an always-active entitlement.",
+    "Get the billing state, entitlement, and plan usage for a workspace. When the instance has no billing configured this reports billingEnabled: false and an always-active entitlement.",
   request: { params: workspaceIdParam },
   responses: {
     200: jsonResponse(
@@ -101,7 +113,7 @@ const createCheckoutRoute = createRoute({
   tags: ["Billing"],
   summary: "Create checkout",
   description:
-    "Create a Creem checkout session for a workspace plan and return the URL to redirect the browser to. Workspace owners and admins only.",
+    "Create a checkout session with the instance's payment provider for a workspace plan and return the URL to redirect the browser to. Workspace owners and admins only.",
   request: {
     params: workspaceIdParam,
     body: {
@@ -122,10 +134,9 @@ const createPortalRoute = createRoute({
   method: "post",
   operationId: "createBillingPortalSession",
   path: "/{workspaceId}/portal",
-  tags: ["Billing"],
   summary: "Create portal session",
   description:
-    "Generate a Creem customer portal link for the workspace subscription. Workspace owners and admins only, and only once a billing customer exists.",
+    "Generate a customer portal link with the instance's payment provider for the workspace subscription. Workspace owners and admins only, and only once a billing customer exists.",
   request: { params: workspaceIdParam },
   responses: {
     200: jsonResponse("The portal link", portalSchema),
@@ -134,31 +145,52 @@ const createPortalRoute = createRoute({
   },
 });
 
+async function handleProviderWebhook(
+  expectedProvider: BillingProviderName,
+  rawBody: string,
+  headers: Record<string, string | string[] | undefined>,
+) {
+  if (!isBillingEnabled() || billingProvider() !== expectedProvider) {
+    throw new HTTPException(404, { message: "Not found" });
+  }
+
+  try {
+    const event = await resolvePaymentProvider().verifyWebhookEvent(
+      rawBody,
+      headers,
+    );
+    return await handleWebhook(event);
+  } catch (error) {
+    // Verification failures must never touch state; rethrow as 400.
+    if (error instanceof HTTPException) {
+      throw error;
+    }
+    console.error("billing: webhook signature verification failed", error);
+    throw new HTTPException(400, { message: "Invalid signature" });
+  }
+}
+
 const billing = apiRouter<BaseVariables>()
-  .openapi(webhookRoute, async (c) => {
-    if (!isBillingEnabled()) {
-      throw new HTTPException(404, { message: "Not found" });
-    }
-
+  .openapi(webhookRouteCreem, async (c) => {
     const rawBody = await c.req.text();
-    let event: BillingWebhookEvent;
-    try {
-      const parsed = await constructWebhookEvent(
-        rawBody,
-        c.req.header(),
-        creemWebhookSecret(),
-      );
-      event = {
-        id: parsed.id,
-        type: parsed.type,
-        data: parsed.data as BillingWebhookEvent["data"],
-      };
-    } catch (error) {
-      console.error("billing: webhook signature verification failed", error);
-      throw new HTTPException(400, { message: "Invalid signature" });
-    }
-
-    return c.json(await handleWebhook(event), 200);
+    return c.json(
+      await handleProviderWebhook("creem", rawBody, c.req.header()),
+      200,
+    );
+  })
+  .openapi(webhookRouteCreemAlias, async (c) => {
+    const rawBody = await c.req.text();
+    return c.json(
+      await handleProviderWebhook("creem", rawBody, c.req.header()),
+      200,
+    );
+  })
+  .openapi(webhookRouteStripe, async (c) => {
+    const rawBody = await c.req.text();
+    return c.json(
+      await handleProviderWebhook("stripe", rawBody, c.req.header()),
+      200,
+    );
   })
   .openapi(getWorkspaceBillingRoute, async (c) => {
     const { workspaceId } = c.req.valid("param");
@@ -185,14 +217,16 @@ const billing = apiRouter<BaseVariables>()
     await requireBillingManager(c.get("userId"), workspaceId);
 
     const billingRow = await getOrCreateWorkspaceBilling(workspaceId);
-    if (!billingRow.creemCustomerId) {
+    if (!billingRow.customerId) {
       throw new HTTPException(400, {
         message: "No billing customer exists for this workspace yet",
       });
     }
 
     return c.json(
-      await createCustomerPortalLink(billingRow.creemCustomerId),
+      await resolvePaymentProvider().createCustomerPortalLink(
+        billingRow.customerId,
+      ),
       200,
     );
   });

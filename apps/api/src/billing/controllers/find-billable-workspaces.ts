@@ -13,7 +13,7 @@ export async function findBillableWorkspaces(workspaceIds: string[]) {
     .select({
       workspaceId: workspaceBillingTable.workspaceId,
       name: workspaceTable.name,
-      creemSubscriptionId: workspaceBillingTable.creemSubscriptionId,
+      subscriptionId: workspaceBillingTable.subscriptionId,
       status: workspaceBillingTable.status,
     })
     .from(workspaceBillingTable)

@@ -21,10 +21,40 @@ export const billingEntitlementSchema = z
   })
   .openapi("BillingEntitlement");
 
+export const dimensionUsageSchema = z
+  .object({
+    used: z
+      .number()
+      .nullable()
+      .openapi({
+        description:
+          "Current usage for the dimension; null when no single workspace-level number applies (the per-project repository quota).",
+      }),
+    limit: z
+      .number()
+      .nullable()
+      .openapi({ description: "Effective limit; null = unlimited." }),
+  })
+  .openapi("BillingDimensionUsage");
+
+export const billingUsageSchema = z
+  .object({
+    users: dimensionUsageSchema,
+    projects: dimensionUsageSchema,
+    repositoriesPerProject: dimensionUsageSchema,
+    repositories: dimensionUsageSchema,
+    storage: dimensionUsageSchema,
+    integrations: dimensionUsageSchema,
+  })
+  .openapi("BillingUsage");
+
 export const workspaceBillingSchema = z
   .object({
     billingEnabled: z.boolean().openapi({
       description: "False when the instance has no billing configured.",
+    }),
+    provider: z.string().openapi({
+      description: "The active payment provider: `creem` or `stripe`.",
     }),
     entitlement: billingEntitlementSchema,
     foundingFree: z.boolean(),
@@ -48,6 +78,7 @@ export const workspaceBillingSchema = z
       description:
         "Whether a billing customer exists yet. The portal link requires one.",
     }),
+    usage: billingUsageSchema,
   })
   .openapi("WorkspaceBilling");
 
