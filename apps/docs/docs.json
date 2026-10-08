@@ -148,6 +148,7 @@
 							"core/integrations/discord",
 							"core/integrations/mattermost",
 							"core/integrations/telegram",
+							"core/integrations/matrix",
 							"core/integrations/outgoing-webhooks"
 						]
 					},
