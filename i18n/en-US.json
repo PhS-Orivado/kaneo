@@ -1804,9 +1804,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Enter a valid homeserver URL, user ID, and access token",
+				"connectionInvalid": "Enter a valid homeserver URL and access token",
 				"homeserverInvalid": "Enter a valid homeserver URL",
-				"userIdInvalid": "Enter a valid Matrix user ID"
+				"roomIdInvalid": "Enter a valid room ID or alias"
 			},
 			"toast": {
 				"saved": "Matrix integration saved successfully",
@@ -1823,8 +1823,15 @@
 			"paused": "Paused",
 			"homeserverLabel": "Homeserver URL",
 			"homeserverHint": "Base URL of your Matrix homeserver, for example https://matrix.example.com.",
-			"userLabel": "Bot user ID",
-			"userHint": "Full Matrix ID of the bot account, for example @kaneo-bot:example.com.",
+			"modeLabel": "Connection mode",
+			"modeProvision": "Create Kaneo spaces and rooms",
+			"modeProvisionHint": "Kaneo creates a workspace space, a project subspace, and Updates and General rooms, and posts task updates to the Updates room.",
+			"modeExisting": "Use an existing room",
+			"modeExistingHint": "Kaneo joins a room you manage and posts task updates there.",
+			"roomIdLabel": "Room ID or alias",
+			"roomIdHint": "The room Kaneo joins and posts to, for example #kaneo-updates:example.com or !abc123:example.com.",
+			"parentSpaceLabel": "Parent space",
+			"parentSpaceHint": "Optional room ID or alias of a space the workspace space is nested under.",
 			"tokenLabel": "Access token",
 			"tokenPlaceholder": "syt_exampleAccessToken123456789",
 			"tokenHint": "Access token for the bot account. Leave empty to keep the current token.",
@@ -1834,6 +1841,8 @@
 			"spacePrefixHint": "Optional prefix for the workspace space name. Spaces are named \"<prefix> · <workspace name>\".",
 			"inviteUsersLabel": "Invite users",
 			"inviteUsersHint": "Optional comma-separated Matrix user IDs to invite to every created space and room.",
+			"botUserLabel": "Bot account",
+			"targetRoomLabel": "Target room",
 			"eventsTitle": "Event notifications",
 			"eventsHint": "Choose which project changes should post to Matrix.",
 			"events": {
@@ -1842,7 +1851,12 @@
 				"taskPriorityChanged": "Priority changes",
 				"taskTitleChanged": "Title changes",
 				"taskDescriptionChanged": "Description changes",
-				"taskCommentCreated": "New comments"
+				"taskCommentCreated": "New comments",
+				"taskDeleted": "Deleted tasks",
+				"taskMoved": "Moved tasks",
+				"taskDueDateChanged": "Due date changes",
+				"taskAssigneeChanged": "Assignee changes",
+				"taskUnassigned": "Unassignments"
 			},
 			"connect": "Connect Matrix",
 			"saveChanges": "Save changes",

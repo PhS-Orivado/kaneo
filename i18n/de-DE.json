@@ -1268,9 +1268,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Gib eine gültige Homeserver-URL, Benutzer-ID und einen Zugriffstoken ein",
+				"connectionInvalid": "Gib eine gültige Homeserver-URL und einen Zugriffstoken ein",
 				"homeserverInvalid": "Gib eine gültige Homeserver-URL ein",
-				"userIdInvalid": "Gib eine gültige Matrix-Benutzer-ID ein"
+				"roomIdInvalid": "Gib eine gültige Raum-ID oder einen Raum-Alias ein"
 			},
 			"toast": {
 				"saved": "Matrix-Integration erfolgreich gespeichert",
@@ -1287,8 +1287,15 @@
 			"paused": "Pausiert",
 			"homeserverLabel": "Homeserver-URL",
 			"homeserverHint": "Basis-URL deines Matrix-Homeservers, zum Beispiel https://matrix.example.com.",
-			"userLabel": "Bot-Benutzer-ID",
-			"userHint": "Vollständige Matrix-ID des Bot-Kontos, zum Beispiel @kaneo-bot:example.com.",
+			"modeLabel": "Verbindungsmodus",
+			"modeProvision": "Kaneo-Spaces und -Räume erstellen",
+			"modeProvisionHint": "Kaneo erstellt einen Workspace-Space, einen Projekt-Unterspace sowie einen Updates- und einen General-Raum und veröffentlicht Aufgaben-Updates im Updates-Raum.",
+			"modeExisting": "Vorhandenen Raum verwenden",
+			"modeExistingHint": "Kaneo tritt einem von dir verwalteten Raum bei und veröffentlicht dort Aufgaben-Updates.",
+			"roomIdLabel": "Raum-ID oder Alias",
+			"roomIdHint": "Der Raum, dem Kaneo beitritt und in dem veröffentlicht wird, zum Beispiel #kaneo-updates:example.com oder !abc123:example.com.",
+			"parentSpaceLabel": "Übergeordneter Space",
+			"parentSpaceHint": "Optionale Raum-ID oder Alias eines Spaces, unter dem der Workspace-Space eingeordnet wird.",
 			"tokenLabel": "Zugriffstoken",
 			"tokenPlaceholder": "syt_BeispielZugriffstoken123456789",
 			"tokenHint": "Zugriffstoken des Bot-Kontos. Leer lassen, um den aktuellen Token zu behalten.",
@@ -1298,6 +1305,8 @@
 			"spacePrefixHint": "Optionales Präfix für den Namen des Workspace-Spaces. Spaces werden als \"<Präfix> · <Workspace-Name>\" benannt.",
 			"inviteUsersLabel": "Benutzer einladen",
 			"inviteUsersHint": "Optionale, durch Kommas getrennte Matrix-Benutzer-IDs, die in jeden erstellten Space und Raum eingeladen werden.",
+			"botUserLabel": "Bot-Konto",
+			"targetRoomLabel": "Zielraum",
 			"eventsTitle": "Ereignisbenachrichtigungen",
 			"eventsHint": "Wähle aus, welche Projektänderungen an Matrix gesendet werden sollen.",
 			"events": {
@@ -1306,7 +1315,12 @@
 				"taskPriorityChanged": "Prioritätsänderungen",
 				"taskTitleChanged": "Titeländerungen",
 				"taskDescriptionChanged": "Beschreibungsänderungen",
-				"taskCommentCreated": "Neue Kommentare"
+				"taskCommentCreated": "Neue Kommentare",
+				"taskDeleted": "Gelöschte Aufgaben",
+				"taskMoved": "Verschobene Aufgaben",
+				"taskDueDateChanged": "Änderungen des Fälligkeitsdatums",
+				"taskAssigneeChanged": "Änderungen der Zuweisung",
+				"taskUnassigned": "Entfernte Zuweisungen"
 			},
 			"connect": "Matrix verbinden",
 			"saveChanges": "Änderungen speichern",

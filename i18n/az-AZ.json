@@ -1461,9 +1461,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Etibarlı ana server URL-i, istifadəçi identifikatoru və giriş nişanı daxil edin",
+				"connectionInvalid": "Etibarlı ana server URL-i və giriş nişanı daxil edin",
 				"homeserverInvalid": "Etibarlı ana server URL-i daxil edin",
-				"userIdInvalid": "Etibarlı Matrix istifadəçi identifikatoru daxil edin"
+				"roomIdInvalid": "Etibarlı otaq identifikatoru və ya ləqəbi daxil edin"
 			},
 			"toast": {
 				"saved": "Matrix inteqrasiyası uğurla yadda saxlanıldı",
@@ -1480,8 +1480,15 @@
 			"paused": "Dayandırılıb",
 			"homeserverLabel": "Ana server URL-i",
 			"homeserverHint": "Matrix ana serverinizin baza URL-i, məsələn https://matrix.example.com.",
-			"userLabel": "Bot istifadəçi identifikatoru",
-			"userHint": "Bot hesabının tam Matrix identifikatoru, məsələn @kaneo-bot:example.com.",
+			"modeLabel": "Bağlantı rejimi",
+			"modeProvision": "Kaneo sahələrini və otaqlarını yaradın",
+			"modeProvisionHint": "Kaneo iş sahəsinin sahəsini, layihə alt-sahəsini, həmçinin Updates və General otaqlarını yaradır və tapşırıq yeniliklərini Updates otağına göndərir.",
+			"modeExisting": "Mövcud otaqdan istifadə edin",
+			"modeExistingHint": "Kaneo sizin idarə etdiyiniz otağa qoşulur və tapşırıq yeniliklərini oraya göndərir.",
+			"roomIdLabel": "Otaq identifikatoru və ya ləqəbi",
+			"roomIdHint": "Kaneo-nun qoşulub göndərişlər etdiyi otaq, məsələn #kaneo-updates:example.com və ya !abc123:example.com.",
+			"parentSpaceLabel": "Valideyn sahə",
+			"parentSpaceHint": "İş sahəsinin sahəsinin yerləşdirildiyi sahənin istəyə bağlı otaq identifikatoru və ya ləqəbi.",
 			"tokenLabel": "Giriş nişanı",
 			"tokenPlaceholder": "syt_NümunəGirişNişanı123456789",
 			"tokenHint": "Bot hesabının giriş nişanı. Mövcud nişanı saxlamaq üçün boş buraxın.",
@@ -1491,6 +1498,8 @@
 			"spacePrefixHint": "İş sahəsinin sahə adı üçün istəyə bağlı prefiks. Sahələr \"<prefiks> · <iş sahəsinin adı>\" adlanır.",
 			"inviteUsersLabel": "İstifadəçiləri dəvət et",
 			"inviteUsersHint": "Yaradılan hər sahəyə və otağa dəvət ediləcək, vergüllə ayrılmış istəyə bağlı Matrix istifadəçi identifikatorları.",
+			"botUserLabel": "Bot hesabı",
+			"targetRoomLabel": "Hədəf otaq",
 			"eventsTitle": "Hadisə bildirişləri",
 			"eventsHint": "Hansı layihə dəyişikliklərinin Matrix-ə göndəriləcəyini seçin.",
 			"events": {
@@ -1499,7 +1508,12 @@
 				"taskPriorityChanged": "Prioritet dəyişiklikləri",
 				"taskTitleChanged": "Başlıq dəyişiklikləri",
 				"taskDescriptionChanged": "Təsvir dəyişiklikləri",
-				"taskCommentCreated": "Yeni şərhlər"
+				"taskCommentCreated": "Yeni şərhlər",
+				"taskDeleted": "Silinmiş tapşırıqlar",
+				"taskMoved": "Köçürülmüş tapşırıqlar",
+				"taskDueDateChanged": "Son tarix dəyişiklikləri",
+				"taskAssigneeChanged": "Təyinat dəyişiklikləri",
+				"taskUnassigned": "Təyinatın ləğvi"
 			},
 			"connect": "Matrix-ə qoşul",
 			"saveChanges": "Dəyişiklikləri yadda saxla",
