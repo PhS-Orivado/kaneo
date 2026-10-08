@@ -1457,9 +1457,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "請輸入有效的家伺服器 URL、使用者 ID 和存取權杖",
+				"connectionInvalid": "請輸入有效的家伺服器 URL 和存取權杖",
 				"homeserverInvalid": "請輸入有效的家伺服器 URL",
-				"userIdInvalid": "請輸入有效的 Matrix 使用者 ID"
+				"roomIdInvalid": "請輸入有效的房間 ID 或別名"
 			},
 			"toast": {
 				"saved": "Matrix 整合已儲存",
@@ -1476,8 +1476,15 @@
 			"paused": "已暫停",
 			"homeserverLabel": "家伺服器 URL",
 			"homeserverHint": "Matrix 家伺服器的基礎 URL，例如 https://matrix.example.com。",
-			"userLabel": "機器人使用者 ID",
-			"userHint": "機器人帳號的完整 Matrix ID，例如 @kaneo-bot:example.com。",
+			"modeLabel": "連線模式",
+			"modeProvision": "建立 Kaneo 空間和房間",
+			"modeProvisionHint": "Kaneo 會建立工作區空間、專案子空間以及 Updates 和 General 房間，並將任務更新發布到 Updates 房間。",
+			"modeExisting": "使用現有房間",
+			"modeExistingHint": "Kaneo 會加入您管理的房間，並在其中發布任務更新。",
+			"roomIdLabel": "房間 ID 或別名",
+			"roomIdHint": "Kaneo 加入並發布訊息的房間，例如 #kaneo-updates:example.com 或 !abc123:example.com。",
+			"parentSpaceLabel": "父空間",
+			"parentSpaceHint": "可選的空間房間 ID 或別名，工作區空間將嵌套在該空間下。",
 			"tokenLabel": "存取權杖",
 			"tokenPlaceholder": "syt_範例存取權杖123456789",
 			"tokenHint": "機器人帳號的存取權杖。保留空白以保留目前的權杖。",
@@ -1487,6 +1494,8 @@
 			"spacePrefixHint": "工作區空間名稱的選填前綴。空間名為「<前綴> · <工作區名稱>」。",
 			"inviteUsersLabel": "邀請使用者",
 			"inviteUsersHint": "選填的以逗號分隔的 Matrix 使用者 ID，將受邀加入每個建立的空間和聊天室。",
+			"botUserLabel": "機器人帳號",
+			"targetRoomLabel": "目標房間",
 			"eventsTitle": "事件通知",
 			"eventsHint": "選擇哪些專案變更要發佈到 Matrix。",
 			"events": {
@@ -1495,7 +1504,12 @@
 				"taskPriorityChanged": "優先順序變更",
 				"taskTitleChanged": "標題變更",
 				"taskDescriptionChanged": "說明變更",
-				"taskCommentCreated": "新留言"
+				"taskCommentCreated": "新留言",
+				"taskDeleted": "刪除的任務",
+				"taskMoved": "移動的任務",
+				"taskDueDateChanged": "截止日期變更",
+				"taskAssigneeChanged": "負責人變更",
+				"taskUnassigned": "取消指派"
 			},
 			"connect": "連線 Matrix",
 			"saveChanges": "儲存變更",

@@ -1420,9 +1420,9 @@
 		},
 		"matrixIntegration": {
 			"validation": {
-				"connectionInvalid": "Nhập URL máy chủ, ID người dùng và mã truy cập hợp lệ",
+				"connectionInvalid": "Nhập URL máy chủ và mã truy cập hợp lệ",
 				"homeserverInvalid": "Nhập URL máy chủ hợp lệ",
-				"userIdInvalid": "Nhập ID người dùng Matrix hợp lệ"
+				"roomIdInvalid": "Nhập ID hoặc bí danh phòng hợp lệ"
 			},
 			"toast": {
 				"saved": "Đã lưu tích hợp Matrix thành công",
@@ -1439,8 +1439,15 @@
 			"paused": "Đã tạm dừng",
 			"homeserverLabel": "URL máy chủ",
 			"homeserverHint": "URL cơ sở của máy chủ Matrix của bạn, ví dụ https://matrix.example.com.",
-			"userLabel": "ID người dùng bot",
-			"userHint": "ID Matrix đầy đủ của tài khoản bot, ví dụ @kaneo-bot:example.com.",
+			"modeLabel": "Chế độ kết nối",
+			"modeProvision": "Tạo không gian và phòng Kaneo",
+			"modeProvisionHint": "Kaneo tạo một không gian của không gian làm việc, một không gian con của dự án, cùng các phòng Updates và General, và đăng cập nhật công việc vào phòng Updates.",
+			"modeExisting": "Dùng phòng có sẵn",
+			"modeExistingHint": "Kaneo tham gia phòng mà bạn quản lý và đăng cập nhật công việc tại đó.",
+			"roomIdLabel": "ID hoặc bí danh phòng",
+			"roomIdHint": "Phòng Kaneo tham gia và đăng bài, ví dụ #kaneo-updates:example.com hoặc !abc123:example.com.",
+			"parentSpaceLabel": "Không gian cha",
+			"parentSpaceHint": "ID hoặc bí danh phòng (không bắt buộc) của một không gian mà không gian của không gian làm việc được lồng vào.",
 			"tokenLabel": "Mã truy cập",
 			"tokenPlaceholder": "syt_MaTruyCapViDu123456789",
 			"tokenHint": "Mã truy cập của tài khoản bot. Để trống để giữ mã hiện tại.",
@@ -1450,6 +1457,8 @@
 			"spacePrefixHint": "Tiền tố tùy chọn cho tên không gian của không gian làm việc. Các không gian được đặt tên \"<tiền tố> · <tên không gian làm việc>\".",
 			"inviteUsersLabel": "Mời người dùng",
 			"inviteUsersHint": "ID người dùng Matrix tùy chọn, phân tách bằng dấu phẩy, để mời vào mọi không gian và phòng được tạo.",
+			"botUserLabel": "Tài khoản bot",
+			"targetRoomLabel": "Phòng đích",
 			"eventsTitle": "Thông báo sự kiện",
 			"eventsHint": "Chọn thay đổi dự án nào sẽ đăng lên Matrix.",
 			"events": {
@@ -1458,7 +1467,12 @@
 				"taskPriorityChanged": "Thay đổi mức ưu tiên",
 				"taskTitleChanged": "Thay đổi tiêu đề",
 				"taskDescriptionChanged": "Thay đổi mô tả",
-				"taskCommentCreated": "Bình luận mới"
+				"taskCommentCreated": "Bình luận mới",
+				"taskDeleted": "Công việc đã xóa",
+				"taskMoved": "Công việc đã di chuyển",
+				"taskDueDateChanged": "Thay đổi hạn chót",
+				"taskAssigneeChanged": "Thay đổi người được giao",
+				"taskUnassigned": "Gỡ giao việc"
 			},
 			"connect": "Kết nối Matrix",
 			"saveChanges": "Lưu thay đổi",
