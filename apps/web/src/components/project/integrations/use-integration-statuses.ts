@@ -9,6 +9,7 @@ import useGetGenericWebhookIntegration from "@/hooks/queries/generic-webhook-int
 import useListGiteaIntegrations from "@/hooks/queries/gitea-integration/use-list-gitea-integrations";
 import useListGithubIntegrations from "@/hooks/queries/github-integration/use-list-github-integrations";
 import useListGitlabIntegrations from "@/hooks/queries/gitlab-integration/use-list-gitlab-integrations";
+import useGetMatrixIntegration from "@/hooks/queries/matrix-integration/use-get-matrix-integration";
 import useGetMattermostIntegration from "@/hooks/queries/mattermost-integration/use-get-mattermost-integration";
 import useGetSlackIntegration from "@/hooks/queries/slack-integration/use-get-slack-integration";
 import useGetTelegramIntegration from "@/hooks/queries/telegram-integration/use-get-telegram-integration";
@@ -25,6 +26,7 @@ export function useIntegrationStatuses(projectId: string) {
   const slack = useGetSlackIntegration(projectId);
   const discord = useGetDiscordIntegration(projectId);
   const mattermost = useGetMattermostIntegration(projectId);
+  const matrix = useGetMatrixIntegration(projectId);
   const telegram = useGetTelegramIntegration(projectId);
   const webhook = useGetGenericWebhookIntegration(projectId);
 
@@ -88,6 +90,13 @@ export function useIntegrationStatuses(projectId: string) {
       isActive: mattermost.data?.isActive,
       detail: formatChannel(mattermost.data?.channelName),
     }),
+    matrix: getIntegrationStatus({
+      queryStatus: matrix.status,
+      hasData: matrix.data !== undefined,
+      configured: Boolean(matrix.data?.tokenConfigured),
+      isActive: matrix.data?.isActive,
+      detail: matrix.data?.userId ?? undefined,
+    }),
     telegram: getIntegrationStatus({
       queryStatus: telegram.status,
       hasData: telegram.data !== undefined,
@@ -109,6 +118,7 @@ export function useIntegrationStatuses(projectId: string) {
     slack,
     discord,
     mattermost,
+    matrix,
     telegram,
     webhook,
   };

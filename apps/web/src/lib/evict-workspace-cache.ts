@@ -120,6 +120,7 @@ function evictPrivateQueries(
       "slack-integration",
       "discord-integration",
       "mattermost-integration",
+      "matrix-integration",
       "telegram-integration",
       "generic-webhook-integration",
       "calendar-feeds",
