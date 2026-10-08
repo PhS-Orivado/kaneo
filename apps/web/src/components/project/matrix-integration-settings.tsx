@@ -14,7 +14,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import type { MatrixConnectionMode } from "@/fetchers/matrix-integration/get-matrix-integration";
 import {
   useCreateMatrixIntegration,
   useDeleteMatrixIntegration,
@@ -23,19 +31,31 @@ import {
 import useGetMatrixIntegration from "@/hooks/queries/matrix-integration/use-get-matrix-integration";
 import { toast } from "@/lib/toast";
 
+const eventToggleNames = [
+  "taskCreated",
+  "taskStatusChanged",
+  "taskPriorityChanged",
+  "taskTitleChanged",
+  "taskDescriptionChanged",
+  "taskCommentCreated",
+  "taskDeleted",
+  "taskMoved",
+  "taskDueDateChanged",
+  "taskAssigneeChanged",
+  "taskUnassigned",
+] as const;
+
+type MatrixEventToggleName = (typeof eventToggleNames)[number];
+
 type MatrixIntegrationFormValues = {
   homeserverUrl: string;
-  userId: string;
   accessToken: string;
+  mode: MatrixConnectionMode;
   spaceNamePrefix: string;
+  parentSpaceId: string;
+  roomId: string;
   inviteUsers: string;
-  taskCreated: boolean;
-  taskStatusChanged: boolean;
-  taskPriorityChanged: boolean;
-  taskTitleChanged: boolean;
-  taskDescriptionChanged: boolean;
-  taskCommentCreated: boolean;
-};
+} & Record<MatrixEventToggleName, boolean>;
 
 function EventToggle({
   control,
@@ -43,15 +63,7 @@ function EventToggle({
   label,
 }: {
   control: ReturnType<typeof useForm<MatrixIntegrationFormValues>>["control"];
-  name: keyof Pick<
-    MatrixIntegrationFormValues,
-    | "taskCreated"
-    | "taskStatusChanged"
-    | "taskPriorityChanged"
-    | "taskTitleChanged"
-    | "taskDescriptionChanged"
-    | "taskCommentCreated"
-  >;
+  name: MatrixEventToggleName;
   label: string;
 }) {
   return (
@@ -77,8 +89,11 @@ function isValidHomeserverUrl(value: string): boolean {
   return /^https?:\/\/[^\s]+$/.test(value);
 }
 
-function isValidMatrixUserId(value: string): boolean {
-  return /^@[^:\s]+:\S+$/.test(value);
+// Room IDs start with !, aliases with #; both carry a homeserver part.
+function isValidMatrixRoomReference(value: string): boolean {
+  return (
+    /^![^:\s]+:[^:\s]+$/.test(value) || /^#[^:\s]+:[^:\s]+$/.test(value)
+  );
 }
 
 export function MatrixIntegrationSettings({
@@ -91,16 +106,15 @@ export function MatrixIntegrationSettings({
     () =>
       z.object({
         homeserverUrl: z.string(),
-        userId: z.string(),
         accessToken: z.string(),
+        mode: z.enum(["provision", "existing"]),
         spaceNamePrefix: z.string(),
+        parentSpaceId: z.string(),
+        roomId: z.string(),
         inviteUsers: z.string(),
-        taskCreated: z.boolean(),
-        taskStatusChanged: z.boolean(),
-        taskPriorityChanged: z.boolean(),
-        taskTitleChanged: z.boolean(),
-        taskDescriptionChanged: z.boolean(),
-        taskCommentCreated: z.boolean(),
+        ...Object.fromEntries(
+          eventToggleNames.map((name) => [name, z.boolean()]),
+        ),
       }),
     [],
   );
@@ -116,38 +130,54 @@ export function MatrixIntegrationSettings({
     useUpdateMatrixIntegration();
   const { mutateAsync: deleteIntegration, isPending: isDeleting } =
     useDeleteMatrixIntegration();
-  const normalizedValues = React.useMemo<MatrixIntegrationFormValues>(
-    () => ({
-      homeserverUrl: integration?.homeserverUrl ?? "",
-      userId: integration?.userId ?? "",
-      accessToken: "",
-      spaceNamePrefix: integration?.spaceNamePrefix ?? "",
-      inviteUsers: integration?.inviteUsers?.join(", ") ?? "",
-      taskCreated: integration?.events?.taskCreated ?? true,
-      taskStatusChanged: integration?.events?.taskStatusChanged ?? true,
-      taskPriorityChanged: integration?.events?.taskPriorityChanged ?? false,
-      taskTitleChanged: integration?.events?.taskTitleChanged ?? false,
-      taskDescriptionChanged:
-        integration?.events?.taskDescriptionChanged ?? false,
-      taskCommentCreated: integration?.events?.taskCommentCreated ?? true,
-    }),
-    [integration],
+
+  const defaultEventToggles = React.useMemo(
+    () =>
+      Object.fromEntries(
+        eventToggleNames.map((name) => [
+          name,
+          name === "taskCreated" ||
+            name === "taskStatusChanged" ||
+            name === "taskCommentCreated" ||
+            name === "taskDeleted" ||
+            name === "taskMoved" ||
+            name === "taskDueDateChanged" ||
+            name === "taskAssigneeChanged",
+        ]),
+      ) as Record<MatrixEventToggleName, boolean>,
+    [],
   );
+
+  const normalizedValues = React.useMemo<MatrixIntegrationFormValues>(() => {
+    const storedEvents = integration?.events;
+    return {
+      homeserverUrl: integration?.homeserverUrl ?? "",
+      accessToken: "",
+      mode: integration?.mode ?? "provision",
+      spaceNamePrefix: integration?.spaceNamePrefix ?? "",
+      parentSpaceId: integration?.parentSpaceId ?? "",
+      roomId: integration?.roomId ?? "",
+      inviteUsers: integration?.inviteUsers?.join(", ") ?? "",
+      ...Object.fromEntries(
+        eventToggleNames.map((name) => [
+          name,
+          storedEvents?.[name] ?? defaultEventToggles[name],
+        ]),
+      ),
+    };
+  }, [integration, defaultEventToggles]);
 
   const form = useForm<MatrixIntegrationFormValues>({
     resolver: standardSchemaResolver(schema),
     defaultValues: {
       homeserverUrl: "",
-      userId: "",
       accessToken: "",
+      mode: "provision",
       spaceNamePrefix: "",
+      parentSpaceId: "",
+      roomId: "",
       inviteUsers: "",
-      taskCreated: true,
-      taskStatusChanged: true,
-      taskPriorityChanged: false,
-      taskTitleChanged: false,
-      taskDescriptionChanged: false,
-      taskCommentCreated: true,
+      ...defaultEventToggles,
     },
   });
   const { reset } = form;
@@ -179,13 +209,19 @@ export function MatrixIntegrationSettings({
 
   const isConnected = Boolean(integration?.tokenConfigured);
   const isBusy = isCreating || isUpdating || isDeleting;
+  const selectedMode = form.watch("mode");
+  const targetRoom =
+    integration?.mode === "existing"
+      ? (integration?.roomId ?? null)
+      : (integration?.updatesRoomId ?? null);
 
   const onSubmit = async (values: MatrixIntegrationFormValues) => {
     try {
       const trimmedHomeserverUrl = values.homeserverUrl.trim();
-      const trimmedUserId = values.userId.trim();
       const trimmedAccessToken = values.accessToken.trim();
       const trimmedSpaceNamePrefix = values.spaceNamePrefix.trim();
+      const trimmedParentSpaceId = values.parentSpaceId.trim();
+      const trimmedRoomId = values.roomId.trim();
       const trimmedInviteUsers = values.inviteUsers.trim();
       const inviteUsers = trimmedInviteUsers
         ? trimmedInviteUsers
@@ -193,25 +229,13 @@ export function MatrixIntegrationSettings({
             .map((user) => user.trim())
             .filter(Boolean)
         : [];
-      const events = {
-        taskCreated: values.taskCreated,
-        taskStatusChanged: values.taskStatusChanged,
-        taskPriorityChanged: values.taskPriorityChanged,
-        taskTitleChanged: values.taskTitleChanged,
-        taskDescriptionChanged: values.taskDescriptionChanged,
-        taskCommentCreated: values.taskCommentCreated,
-      };
+      const events = Object.fromEntries(
+        eventToggleNames.map((name) => [name, values[name]]),
+      );
 
       if (!isValidHomeserverUrl(trimmedHomeserverUrl)) {
         form.setError("homeserverUrl", {
           message: t("settings:matrixIntegration.validation.homeserverInvalid"),
-        });
-        return;
-      }
-
-      if (!isValidMatrixUserId(trimmedUserId)) {
-        form.setError("userId", {
-          message: t("settings:matrixIntegration.validation.userIdInvalid"),
         });
         return;
       }
@@ -225,14 +249,34 @@ export function MatrixIntegrationSettings({
         return;
       }
 
+      if (!isConnected && values.mode === "existing") {
+        if (!trimmedRoomId) {
+          form.setError("roomId", {
+            message: t(
+              "settings:matrixIntegration.validation.connectionInvalid",
+            ),
+          });
+          return;
+        }
+
+        if (!isValidMatrixRoomReference(trimmedRoomId)) {
+          form.setError("roomId", {
+            message: t("settings:matrixIntegration.validation.roomIdInvalid"),
+          });
+          return;
+        }
+      }
+
       if (!isConnected) {
         await createIntegration({
           projectId,
           data: {
             homeserverUrl: trimmedHomeserverUrl,
-            userId: trimmedUserId,
             accessToken: trimmedAccessToken,
+            mode: values.mode,
             spaceNamePrefix: trimmedSpaceNamePrefix || undefined,
+            parentSpaceId: trimmedParentSpaceId || undefined,
+            roomId: trimmedRoomId || undefined,
             inviteUsers: inviteUsers.length > 0 ? inviteUsers : undefined,
             events,
           },
@@ -242,7 +286,6 @@ export function MatrixIntegrationSettings({
           projectId,
           json: {
             homeserverUrl: trimmedHomeserverUrl,
-            userId: trimmedUserId,
             accessToken: trimmedAccessToken || undefined,
             spaceNamePrefix: trimmedSpaceNamePrefix || null,
             inviteUsers,
@@ -254,9 +297,10 @@ export function MatrixIntegrationSettings({
       form.reset({
         ...values,
         homeserverUrl: trimmedHomeserverUrl,
-        userId: trimmedUserId,
         accessToken: "",
         spaceNamePrefix: trimmedSpaceNamePrefix,
+        parentSpaceId: trimmedParentSpaceId,
+        roomId: trimmedRoomId,
         inviteUsers: inviteUsers.join(", "),
       });
       toast.success(t("settings:matrixIntegration.toast.saved"));
@@ -294,16 +338,13 @@ export function MatrixIntegrationSettings({
       await deleteIntegration(projectId);
       form.reset({
         homeserverUrl: "",
-        userId: "",
         accessToken: "",
+        mode: "provision",
         spaceNamePrefix: "",
+        parentSpaceId: "",
+        roomId: "",
         inviteUsers: "",
-        taskCreated: true,
-        taskStatusChanged: true,
-        taskPriorityChanged: false,
-        taskTitleChanged: false,
-        taskDescriptionChanged: false,
-        taskCommentCreated: true,
+        ...defaultEventToggles,
       });
       toast.success(t("settings:matrixIntegration.toast.removed"));
     } catch (error) {
@@ -372,6 +413,75 @@ export function MatrixIntegrationSettings({
               </div>
             </div>
 
+            {!isConnected && (
+              <FormField
+                control={form.control}
+                name="mode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t("settings:matrixIntegration.modeLabel")}
+                    </FormLabel>
+                    <Select
+                      onValueChange={(value) =>
+                        field.onChange(value as MatrixConnectionMode)
+                      }
+                      value={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="provision">
+                          {t("settings:matrixIntegration.modeProvision")}
+                        </SelectItem>
+                        <SelectItem value="existing">
+                          {t("settings:matrixIntegration.modeExisting")}
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <p className="text-xs text-muted-foreground">
+                      {selectedMode === "existing"
+                        ? t("settings:matrixIntegration.modeExistingHint")
+                        : t("settings:matrixIntegration.modeProvisionHint")}
+                    </p>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
+            {isConnected && (
+              <div className="grid gap-2 text-sm text-muted-foreground">
+                <p>
+                  <span className="font-medium text-foreground">
+                    {t("settings:matrixIntegration.modeLabel")}:
+                  </span>{" "}
+                  {integration?.mode === "existing"
+                    ? t("settings:matrixIntegration.modeExisting")
+                    : t("settings:matrixIntegration.modeProvision")}
+                </p>
+                {integration?.botUserId && (
+                  <p>
+                    <span className="font-medium text-foreground">
+                      {t("settings:matrixIntegration.botUserLabel")}:
+                    </span>{" "}
+                    {integration.botUserId}
+                  </p>
+                )}
+                {targetRoom && (
+                  <p>
+                    <span className="font-medium text-foreground">
+                      {t("settings:matrixIntegration.targetRoomLabel")}:
+                    </span>{" "}
+                    {targetRoom}
+                  </p>
+                )}
+              </div>
+            )}
+
             <FormField
               control={form.control}
               name="homeserverUrl"
@@ -385,25 +495,6 @@ export function MatrixIntegrationSettings({
                   </FormControl>
                   <p className="text-xs text-muted-foreground">
                     {t("settings:matrixIntegration.homeserverHint")}
-                  </p>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="userId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {t("settings:matrixIntegration.userLabel")}
-                  </FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="@kaneo-bot:example.com" />
-                  </FormControl>
-                  <p className="text-xs text-muted-foreground">
-                    {t("settings:matrixIntegration.userHint")}
                   </p>
                   <FormMessage />
                 </FormItem>
@@ -440,29 +531,79 @@ export function MatrixIntegrationSettings({
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="spaceNamePrefix"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>
-                    {t("settings:matrixIntegration.spacePrefixLabel")}
-                  </FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder={t(
-                        "settings:matrixIntegration.spacePrefixPlaceholder",
-                      )}
-                    />
-                  </FormControl>
-                  <p className="text-xs text-muted-foreground">
-                    {t("settings:matrixIntegration.spacePrefixHint")}
-                  </p>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {!isConnected && selectedMode === "existing" && (
+              <FormField
+                control={form.control}
+                name="roomId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t("settings:matrixIntegration.roomIdLabel")}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="#kaneo-updates:example.com"
+                      />
+                    </FormControl>
+                    <p className="text-xs text-muted-foreground">
+                      {t("settings:matrixIntegration.roomIdHint")}
+                    </p>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
+            {selectedMode === "provision" && (
+              <FormField
+                control={form.control}
+                name="spaceNamePrefix"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t("settings:matrixIntegration.spacePrefixLabel")}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder={t(
+                          "settings:matrixIntegration.spacePrefixPlaceholder",
+                        )}
+                      />
+                    </FormControl>
+                    <p className="text-xs text-muted-foreground">
+                      {t("settings:matrixIntegration.spacePrefixHint")}
+                    </p>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
+
+            {selectedMode === "provision" && (
+              <FormField
+                control={form.control}
+                name="parentSpaceId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t("settings:matrixIntegration.parentSpaceLabel")}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="#kaneo:example.com"
+                      />
+                    </FormControl>
+                    <p className="text-xs text-muted-foreground">
+                      {t("settings:matrixIntegration.parentSpaceHint")}
+                    </p>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
 
             <FormField
               control={form.control}
@@ -497,42 +638,14 @@ export function MatrixIntegrationSettings({
               </p>
             </div>
 
-            <EventToggle
-              control={form.control}
-              label={t("settings:matrixIntegration.events.taskCreated")}
-              name="taskCreated"
-            />
-            <EventToggle
-              control={form.control}
-              label={t("settings:matrixIntegration.events.taskStatusChanged")}
-              name="taskStatusChanged"
-            />
-            <EventToggle
-              control={form.control}
-              label={t(
-                "settings:matrixIntegration.events.taskPriorityChanged",
-              )}
-              name="taskPriorityChanged"
-            />
-            <EventToggle
-              control={form.control}
-              label={t("settings:matrixIntegration.events.taskTitleChanged")}
-              name="taskTitleChanged"
-            />
-            <EventToggle
-              control={form.control}
-              label={t(
-                "settings:matrixIntegration.events.taskDescriptionChanged",
-              )}
-              name="taskDescriptionChanged"
-            />
-            <EventToggle
-              control={form.control}
-              label={t(
-                "settings:matrixIntegration.events.taskCommentCreated",
-              )}
-              name="taskCommentCreated"
-            />
+            {eventToggleNames.map((name) => (
+              <EventToggle
+                control={form.control}
+                key={name}
+                label={t(`settings:matrixIntegration.events.${name}`)}
+                name={name}
+              />
+            ))}
           </div>
 
           <div className="flex flex-wrap gap-2">

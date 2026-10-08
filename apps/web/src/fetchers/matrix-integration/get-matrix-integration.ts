@@ -1,23 +1,38 @@
 import { getApiUrl } from "@/fetchers/get-api-url";
 import { HttpError } from "@/lib/http-error";
 
+export type MatrixConnectionMode = "provision" | "existing";
+
+export type MatrixIntegrationEvents = {
+  taskCreated: boolean;
+  taskStatusChanged: boolean;
+  taskPriorityChanged: boolean;
+  taskTitleChanged: boolean;
+  taskDescriptionChanged: boolean;
+  taskCommentCreated: boolean;
+  taskDeleted: boolean;
+  taskMoved: boolean;
+  taskDueDateChanged: boolean;
+  taskAssigneeChanged: boolean;
+  taskUnassigned: boolean;
+};
+
 export type MatrixIntegration = {
   id: string;
   projectId: string;
+  mode: MatrixConnectionMode;
   homeserverUrl: string;
-  userId: string;
+  botUserId: string | null;
   spaceNamePrefix: string | null;
   inviteUsers: string[];
+  parentSpaceId: string | null;
+  spaceId: string | null;
+  updatesRoomId: string | null;
+  generalRoomId: string | null;
+  roomId: string | null;
   tokenConfigured: boolean;
   maskedAccessToken: string;
-  events: {
-    taskCreated: boolean;
-    taskStatusChanged: boolean;
-    taskPriorityChanged: boolean;
-    taskTitleChanged: boolean;
-    taskDescriptionChanged: boolean;
-    taskCommentCreated: boolean;
-  };
+  events: MatrixIntegrationEvents;
   isActive: boolean | null;
   createdAt: string;
   updatedAt: string;

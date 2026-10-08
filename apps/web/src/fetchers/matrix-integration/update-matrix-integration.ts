@@ -1,22 +1,17 @@
 import { getApiUrl } from "@/fetchers/get-api-url";
 import { HttpError } from "@/lib/http-error";
-import type { MatrixIntegration } from "./get-matrix-integration";
+import type {
+  MatrixIntegration,
+  MatrixIntegrationEvents,
+} from "./get-matrix-integration";
 
 export type UpdateMatrixIntegrationRequest = {
   homeserverUrl?: string;
-  userId?: string;
   accessToken?: string;
   spaceNamePrefix?: string | null;
   inviteUsers?: string[] | null;
   isActive?: boolean;
-  events?: {
-    taskCreated?: boolean;
-    taskStatusChanged?: boolean;
-    taskPriorityChanged?: boolean;
-    taskTitleChanged?: boolean;
-    taskDescriptionChanged?: boolean;
-    taskCommentCreated?: boolean;
-  };
+  events?: Partial<MatrixIntegrationEvents>;
 };
 
 async function updateMatrixIntegration(
