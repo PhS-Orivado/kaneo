@@ -43,6 +43,7 @@ import gitlabIntegration, {
 import getInstanceStatus from "./instance/controllers/get-instance-status";
 import invitation from "./invitation";
 import label from "./label";
+import matrixIntegration from "./matrix-integration";
 import mattermostIntegration from "./mattermost-integration";
 import mcpRoutes, { mcpWellKnownRoutes } from "./mcp";
 import { migrateColumns } from "./migrations/column-migration";
@@ -774,6 +775,10 @@ export function createApp() {
     "/mattermost-integration",
     mattermostIntegration,
   );
+  const matrixIntegrationApi = api.route(
+    "/matrix-integration",
+    matrixIntegration,
+  );
   const slackIntegrationApi = api.route("/slack-integration", slackIntegration);
   const telegramIntegrationApi = api.route(
     "/telegram-integration",
@@ -908,6 +913,7 @@ export function createApp() {
     calendarFeedApi,
     publicProjectApi,
     searchApi,
+    matrixIntegrationApi,
     mattermostIntegrationApi,
     slackIntegrationApi,
     taskApi,
@@ -1034,6 +1040,7 @@ const {
   invitationApi,
   invitationPublicApi,
   labelApi,
+  matrixIntegrationApi,
   mattermostIntegrationApi,
   notificationApi,
   notificationPreferencesApi,
@@ -1085,6 +1092,7 @@ export type AppType =
   | typeof genericWebhookIntegrationApi
   | typeof repositoryBindingsApi
   | typeof discordIntegrationApi
+  | typeof matrixIntegrationApi
   | typeof mattermostIntegrationApi
   | typeof slackIntegrationApi
   | typeof telegramIntegrationApi
