@@ -22,9 +22,21 @@ export const WORKFLOW_EVENT_TYPES = [
 
 type WorkflowEventType = (typeof WORKFLOW_EVENT_TYPES)[number];
 
+// Jira has no repositories, so only issue lifecycle events apply to it;
+// `jira_status:<name>` rules exist but are managed through the API.
+const PROVIDER_EVENT_TYPES: Record<
+  "github" | "gitea" | "gitlab" | "jira",
+  readonly WorkflowEventType[]
+> = {
+  github: WORKFLOW_EVENT_TYPES,
+  gitea: WORKFLOW_EVENT_TYPES,
+  gitlab: WORKFLOW_EVENT_TYPES,
+  jira: ["issue_opened", "issue_closed"],
+};
+
 type WorkflowRulesPanelProps = {
   projectId: string;
-  integrationType: "github" | "gitea" | "gitlab";
+  integrationType: "github" | "gitea" | "gitlab" | "jira";
   /**
    * RFC 0001 WP6/WP7: when set, rules are written for one repository binding;
    * without it they stay type-wide and apply to every repository of the
@@ -65,9 +77,11 @@ export function WorkflowRulesPanel({
     );
   }
 
+  const eventTypes = PROVIDER_EVENT_TYPES[integrationType];
+
   return (
     <div className="space-y-2">
-      {WORKFLOW_EVENT_TYPES.map((eventType: WorkflowEventType) => {
+      {eventTypes.map((eventType: WorkflowEventType) => {
         const bindingRule = rules?.find(
           (rule) =>
             rule.integrationType === integrationType &&

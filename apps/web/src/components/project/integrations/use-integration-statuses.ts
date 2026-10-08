@@ -9,6 +9,7 @@ import useGetGenericWebhookIntegration from "@/hooks/queries/generic-webhook-int
 import useListGiteaIntegrations from "@/hooks/queries/gitea-integration/use-list-gitea-integrations";
 import useListGithubIntegrations from "@/hooks/queries/github-integration/use-list-github-integrations";
 import useListGitlabIntegrations from "@/hooks/queries/gitlab-integration/use-list-gitlab-integrations";
+import useListJiraIntegrations from "@/hooks/queries/jira-integration/use-list-jira-integrations";
 import useGetMattermostIntegration from "@/hooks/queries/mattermost-integration/use-get-mattermost-integration";
 import useGetSlackIntegration from "@/hooks/queries/slack-integration/use-get-slack-integration";
 import useGetTelegramIntegration from "@/hooks/queries/telegram-integration/use-get-telegram-integration";
@@ -22,6 +23,7 @@ export function useIntegrationStatuses(projectId: string) {
   const github = useListGithubIntegrations(projectId);
   const gitea = useListGiteaIntegrations(projectId);
   const gitlab = useListGitlabIntegrations(projectId);
+  const jira = useListJiraIntegrations(projectId);
   const slack = useGetSlackIntegration(projectId);
   const discord = useGetDiscordIntegration(projectId);
   const mattermost = useGetMattermostIntegration(projectId);
@@ -31,6 +33,7 @@ export function useIntegrationStatuses(projectId: string) {
   const githubBindings = github.data?.integrations ?? [];
   const giteaBindings = gitea.data?.integrations ?? [];
   const gitlabBindings = gitlab.data?.integrations ?? [];
+  const jiraBindings = jira.data?.integrations ?? [];
 
   const statuses = {
     github: getIntegrationStatus({
@@ -66,6 +69,16 @@ export function useIntegrationStatuses(projectId: string) {
           ? gitlabBindings.some((binding) => binding.isActive !== false)
           : null,
       details: gitlabBindings.map((binding) => binding.projectPath),
+    }),
+    jira: getIntegrationStatus({
+      queryStatus: jira.status,
+      hasData: jira.data !== undefined,
+      configured: jiraBindings.length > 0,
+      isActive:
+        jiraBindings.length > 0
+          ? jiraBindings.some((binding) => binding.isActive !== false)
+          : null,
+      details: jiraBindings.map((binding) => binding.projectKey),
     }),
     slack: getIntegrationStatus({
       queryStatus: slack.status,
@@ -106,6 +119,7 @@ export function useIntegrationStatuses(projectId: string) {
     github,
     gitea,
     gitlab,
+    jira,
     slack,
     discord,
     mattermost,

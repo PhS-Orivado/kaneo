@@ -12,6 +12,7 @@ import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
+import { JiraIcon } from "@/components/icons/jira-icon";
 import { Button } from "@/components/ui/button";
 import {
   Collapsible,
@@ -53,6 +54,14 @@ function isGitlabResourceLink(link: ExternalLink) {
   }
   const from = link.metadata?.createdFrom;
   return from === "gitlab" || from === "gitlab-import";
+}
+
+function isJiraResourceLink(link: ExternalLink) {
+  if (link.integration?.type === "jira") {
+    return true;
+  }
+  const from = link.metadata?.createdFrom;
+  return from === "jira" || from === "jira-import";
 }
 
 export function ExternalLinksAccordion({
@@ -224,6 +233,8 @@ export function ExternalLinksAccordion({
                       <FolderGit className="size-4 flex-shrink-0 text-muted-foreground" />
                     ) : isGitlabResourceLink(link) ? (
                       <GitlabIcon className="size-4 flex-shrink-0 text-muted-foreground" />
+                    ) : isJiraResourceLink(link) ? (
+                      <JiraIcon className="size-4 flex-shrink-0 text-muted-foreground" />
                     ) : link.resourceType === "url" ? (
                       <Link className="size-4 flex-shrink-0 text-muted-foreground" />
                     ) : (

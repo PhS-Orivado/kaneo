@@ -11,10 +11,12 @@ import {
 import useListGiteaIntegrations from "@/hooks/queries/gitea-integration/use-list-gitea-integrations";
 import useListGithubIntegrations from "@/hooks/queries/github-integration/use-list-github-integrations";
 import useListGitlabIntegrations from "@/hooks/queries/gitlab-integration/use-list-gitlab-integrations";
+import useListJiraIntegrations from "@/hooks/queries/jira-integration/use-list-jira-integrations";
 import {
   toGiteaBindingRow,
   toGithubBindingRow,
   toGitlabBindingRow,
+  toJiraBindingRow,
   type RepositoryBindingRow,
 } from "@/types/repository-binding";
 import { useMemo, useState } from "react";
@@ -36,14 +38,16 @@ export default function WorkflowEditor({ projectId }: WorkflowEditorProps) {
   const { data: github } = useListGithubIntegrations(projectId);
   const { data: gitea } = useListGiteaIntegrations(projectId);
   const { data: gitlab } = useListGitlabIntegrations(projectId);
+  const { data: jira } = useListJiraIntegrations(projectId);
 
   const bindings = useMemo<RepositoryBindingRow[]>(
     () => [
       ...(github?.integrations ?? []).map(toGithubBindingRow),
       ...(gitea?.integrations ?? []).map(toGiteaBindingRow),
       ...(gitlab?.integrations ?? []).map(toGitlabBindingRow),
+      ...(jira?.integrations ?? []).map(toJiraBindingRow),
     ],
-    [github, gitea, gitlab],
+    [github, gitea, gitlab, jira],
   );
 
   const selectedBinding = bindings.find(
@@ -126,6 +130,12 @@ export default function WorkflowEditor({ projectId }: WorkflowEditorProps) {
             headingKey="gitlabHeading"
             hintKey="gitlabHint"
           />
+          <ProviderSection
+            projectId={projectId}
+            integrationType="jira"
+            headingKey="jiraHeading"
+            hintKey="jiraHint"
+          />
         </div>
       )}
     </div>
@@ -139,9 +149,13 @@ function ProviderSection({
   hintKey,
 }: {
   projectId: string;
-  integrationType: "github" | "gitea" | "gitlab";
-  headingKey: "githubHeading" | "giteaHeading" | "gitlabHeading";
-  hintKey: "githubHint" | "giteaHint" | "gitlabHint";
+  integrationType: "github" | "gitea" | "gitlab" | "jira";
+  headingKey:
+    | "githubHeading"
+    | "giteaHeading"
+    | "gitlabHeading"
+    | "jiraHeading";
+  hintKey: "githubHint" | "giteaHint" | "gitlabHint" | "jiraHint";
 }) {
   const { t } = useTranslation();
 

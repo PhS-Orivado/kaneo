@@ -15,6 +15,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { GiteaIcon } from "@/components/icons/gitea-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
+import { JiraIcon } from "@/components/icons/jira-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
 import TaskDescriptionEditor from "@/components/task/task-description-editor";
 import {
@@ -1264,6 +1265,8 @@ function CreateTaskModalContent({
                               <GithubIcon className="h-3.5 w-3.5 shrink-0" />
                             ) : binding.type === "gitea" ? (
                               <GiteaIcon className="h-3.5 w-3.5 shrink-0" />
+                            ) : binding.type === "jira" ? (
+                              <JiraIcon className="h-3.5 w-3.5 shrink-0" />
                             ) : (
                               <GitlabIcon className="h-3.5 w-3.5 shrink-0" />
                             )}

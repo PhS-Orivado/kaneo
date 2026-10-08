@@ -14,6 +14,7 @@ const fetchers = vi.hoisted(() => ({
   github: vi.fn(),
   gitea: vi.fn(),
   gitlab: vi.fn(),
+  jira: vi.fn(),
   slack: vi.fn(),
   discord: vi.fn(),
   mattermost: vi.fn(),
@@ -28,6 +29,9 @@ vi.mock("@/fetchers/gitea-integration/list-gitea-integrations", () => ({
 }));
 vi.mock("@/fetchers/gitlab-integration/list-gitlab-integrations", () => ({
   default: fetchers.gitlab,
+}));
+vi.mock("@/fetchers/jira-integration/list-jira-integrations", () => ({
+  default: fetchers.jira,
 }));
 vi.mock("@/fetchers/slack-integration/get-slack-integration", () => ({
   default: fetchers.slack,
@@ -74,6 +78,7 @@ beforeEach(() => {
   fetchers.github.mockResolvedValue(emptyList);
   fetchers.gitea.mockResolvedValue(emptyList);
   fetchers.gitlab.mockResolvedValue(emptyList);
+  fetchers.jira.mockResolvedValue(emptyList);
 });
 afterEach(() => {
   cleanup();
