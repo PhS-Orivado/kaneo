@@ -4,6 +4,7 @@ import { giteaPlugin } from "./gitea";
 import { githubPlugin, initializeGitHubPlugin } from "./github";
 import { gitlabPlugin } from "./gitlab";
 import { jiraPlugin } from "./jira";
+import { matrixPlugin } from "./matrix";
 import { mattermostPlugin } from "./mattermost";
 import { initializeEventSubscriptions, registerPlugin } from "./registry";
 import { slackPlugin } from "./slack";
@@ -21,6 +22,7 @@ export function initializePlugins() {
   registerPlugin(discordPlugin);
   registerPlugin(genericWebhookPlugin);
   registerPlugin(telegramPlugin);
+  registerPlugin(matrixPlugin);
   initializeGitHubPlugin();
   initializeEventSubscriptions();
 

@@ -1,6 +1,7 @@
 import { Webhook } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { DiscordIcon } from "@/components/icons/discord-icon";
+import { MatrixIcon } from "@/components/icons/matrix-icon";
 import { GiteaIcon } from "@/components/icons/gitea-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
@@ -14,6 +15,7 @@ import { GiteaIntegrationSettings } from "@/components/project/gitea-integration
 import { GitHubIntegrationSettings } from "@/components/project/github-integration-settings";
 import { GitlabIntegrationSettings } from "@/components/project/gitlab-integration-settings";
 import { JiraIntegrationSettings } from "@/components/project/jira-integration-settings";
+import { MatrixIntegrationSettings } from "@/components/project/matrix-integration-settings";
 import { MattermostIntegrationSettings } from "@/components/project/mattermost-integration-settings";
 import { SlackIntegrationSettings } from "@/components/project/slack-integration-settings";
 import { TelegramIntegrationSettings } from "@/components/project/telegram-integration-settings";
@@ -26,6 +28,7 @@ export type IntegrationId =
   | "slack"
   | "discord"
   | "mattermost"
+  | "matrix"
   | "telegram"
   | "webhook";
 
@@ -103,6 +106,15 @@ export const INTEGRATIONS: IntegrationDefinition[] = [
     icon: MattermostIcon,
     iconClassName: "text-[#0058CC] dark:text-[#5C9DFF]",
     Settings: MattermostIntegrationSettings,
+  },
+  {
+    id: "matrix",
+    category: "chat",
+    name: "Matrix",
+    descriptionKey: "settings:projectIntegrations.matrixSectionSubtitle",
+    icon: MatrixIcon,
+    iconClassName: "text-foreground",
+    Settings: MatrixIntegrationSettings,
   },
   {
     id: "telegram",

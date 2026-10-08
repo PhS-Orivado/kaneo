@@ -46,6 +46,7 @@ import jiraIntegration, {
 import getInstanceStatus from "./instance/controllers/get-instance-status";
 import invitation from "./invitation";
 import label from "./label";
+import matrixIntegration from "./matrix-integration";
 import mattermostIntegration from "./mattermost-integration";
 import mcpRoutes, { mcpWellKnownRoutes } from "./mcp";
 import { migrateColumns } from "./migrations/column-migration";
@@ -786,6 +787,10 @@ export function createApp() {
     "/mattermost-integration",
     mattermostIntegration,
   );
+  const matrixIntegrationApi = api.route(
+    "/matrix-integration",
+    matrixIntegration,
+  );
   const slackIntegrationApi = api.route("/slack-integration", slackIntegration);
   const telegramIntegrationApi = api.route(
     "/telegram-integration",
@@ -922,6 +927,7 @@ export function createApp() {
     publicProjectApi,
     searchApi,
     mattermostIntegrationApi,
+    matrixIntegrationApi,
     slackIntegrationApi,
     taskApi,
     taskRelationApi,
@@ -1049,6 +1055,7 @@ const {
   invitationPublicApi,
   labelApi,
   mattermostIntegrationApi,
+  matrixIntegrationApi,
   notificationApi,
   notificationPreferencesApi,
   projectApi,
@@ -1101,6 +1108,7 @@ export type AppType =
   | typeof repositoryBindingsApi
   | typeof discordIntegrationApi
   | typeof mattermostIntegrationApi
+  | typeof matrixIntegrationApi
   | typeof slackIntegrationApi
   | typeof telegramIntegrationApi
   | typeof taskRelationApi
