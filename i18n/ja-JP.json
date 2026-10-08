@@ -1040,8 +1040,8 @@
 			"slackSectionSubtitle": "Incoming Webhook を使用してプロジェクトのタスク更新を Slack チャンネルに送信します。",
 			"telegramSectionTitle": "Telegram 連携",
 			"telegramSectionSubtitle": "ボットを使用してプロジェクトのタスク更新を Telegram のチャットまたはトピックに送信します。",
-			"matrixSectionTitle": "Element 連携",
-			"matrixSectionSubtitle": "ボットアカウントを介してプロジェクトのタスク更新を Element (Matrix) に送信します。ワークスペースごとにスペースを、プロジェクトごとにサブスペースとルームを作成します。",
+			"matrixSectionTitle": "Matrix 連携",
+			"matrixSectionSubtitle": "ボットアカウントを介してプロジェクトのタスク更新を Matrix に送信します。ワークスペースごとにスペースを、プロジェクトごとにサブスペースとルームを作成します。",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1425,15 +1425,15 @@
 				"userIdInvalid": "有効な Matrix ユーザー ID を入力してください"
 			},
 			"toast": {
-				"saved": "Element 連携を保存しました",
-				"saveError": "Element 連携の保存に失敗しました",
-				"enabled": "Element 通知を有効にしました",
-				"disabled": "Element 通知を一時停止しました",
-				"updateError": "Element 連携の更新に失敗しました",
-				"removed": "Element 連携を解除しました",
-				"removeError": "Element 連携の解除に失敗しました"
+				"saved": "Matrix 連携を保存しました",
+				"saveError": "Matrix 連携の保存に失敗しました",
+				"enabled": "Matrix 通知を有効にしました",
+				"disabled": "Matrix 通知を一時停止しました",
+				"updateError": "Matrix 連携の更新に失敗しました",
+				"removed": "Matrix 連携を解除しました",
+				"removeError": "Matrix 連携の解除に失敗しました"
 			},
-			"connectionTitle": "Element ボット接続",
+			"connectionTitle": "Matrix ボット接続",
 			"connectionHint": "Matrix ボットアカウントとアクセストークンを使用して、プロジェクトのタスク更新をルームに送信します。",
 			"connected": "接続済み",
 			"paused": "一時停止中",
@@ -1451,7 +1451,7 @@
 			"inviteUsersLabel": "ユーザーを招待",
 			"inviteUsersHint": "作成された各スペースとルームに招待する、カンマ区切りのオプションの Matrix ユーザー ID。",
 			"eventsTitle": "イベント通知",
-			"eventsHint": "Element に投稿するプロジェクトの変更を選択します。",
+			"eventsHint": "Matrix に投稿するプロジェクトの変更を選択します。",
 			"events": {
 				"taskCreated": "タスクの新規作成",
 				"taskStatusChanged": "ステータスの変更",
@@ -1460,7 +1460,7 @@
 				"taskDescriptionChanged": "説明の変更",
 				"taskCommentCreated": "新しいコメント"
 			},
-			"connect": "Element に接続",
+			"connect": "Matrix に接続",
 			"saveChanges": "変更を保存",
 			"disconnect": "接続解除"
 		},

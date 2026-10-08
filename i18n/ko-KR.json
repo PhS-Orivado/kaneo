@@ -806,8 +806,8 @@
 			"slackSectionSubtitle": "수신 웹훅을 사용하여 프로젝트 작업 업데이트를 Slack 채널로 전송합니다.",
 			"telegramSectionTitle": "Telegram 연동",
 			"telegramSectionSubtitle": "봇을 사용하여 프로젝트 작업 업데이트를 Telegram 채팅 또는 토픽으로 전송합니다.",
-			"matrixSectionTitle": "Element 통합",
-			"matrixSectionSubtitle": "봇 계정을 통해 프로젝트 작업 업데이트를 Element (Matrix)로 보냅니다. 워크스페이스별로 스페이스를, 프로젝트별로 하위 스페이스와 방을 만듭니다.",
+			"matrixSectionTitle": "Matrix 통합",
+			"matrixSectionSubtitle": "봇 계정을 통해 프로젝트 작업 업데이트를 Matrix로 보냅니다. 워크스페이스별로 스페이스를, 프로젝트별로 하위 스페이스와 방을 만듭니다.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1191,15 +1191,15 @@
 				"userIdInvalid": "유효한 Matrix 사용자 ID를 입력하세요"
 			},
 			"toast": {
-				"saved": "Element 연동이 저장되었습니다",
-				"saveError": "Element 연동 저장에 실패했습니다",
-				"enabled": "Element 알림이 활성화되었습니다",
-				"disabled": "Element 알림이 일시 중지되었습니다",
-				"updateError": "Element 연동 업데이트에 실패했습니다",
-				"removed": "Element 연동이 제거되었습니다",
-				"removeError": "Element 연동 제거에 실패했습니다"
+				"saved": "Matrix 연동이 저장되었습니다",
+				"saveError": "Matrix 연동 저장에 실패했습니다",
+				"enabled": "Matrix 알림이 활성화되었습니다",
+				"disabled": "Matrix 알림이 일시 중지되었습니다",
+				"updateError": "Matrix 연동 업데이트에 실패했습니다",
+				"removed": "Matrix 연동이 제거되었습니다",
+				"removeError": "Matrix 연동 제거에 실패했습니다"
 			},
-			"connectionTitle": "Element 봇 연결",
+			"connectionTitle": "Matrix 봇 연결",
 			"connectionHint": "Matrix 봇 계정과 액세스 토큰을 사용하여 프로젝트 작업 업데이트를 방으로 보냅니다.",
 			"connected": "연결됨",
 			"paused": "일시 중지됨",
@@ -1217,7 +1217,7 @@
 			"inviteUsersLabel": "사용자 초대",
 			"inviteUsersHint": "생성된 모든 스페이스와 방에 초대할 쉼표로 구분된 선택적 Matrix 사용자 ID입니다.",
 			"eventsTitle": "이벤트 알림",
-			"eventsHint": "Element에 게시할 프로젝트 변경 사항을 선택합니다.",
+			"eventsHint": "Matrix에 게시할 프로젝트 변경 사항을 선택합니다.",
 			"events": {
 				"taskCreated": "새 작업",
 				"taskStatusChanged": "상태 변경",
@@ -1226,7 +1226,7 @@
 				"taskDescriptionChanged": "설명 변경",
 				"taskCommentCreated": "새 댓글"
 			},
-			"connect": "Element 연결",
+			"connect": "Matrix 연결",
 			"saveChanges": "변경사항 저장",
 			"disconnect": "연결 해제"
 		},
