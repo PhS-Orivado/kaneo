@@ -706,6 +706,8 @@
 			"giteaSectionSubtitle": "Sincroniza tareas con una instancia autoalojada de Gitea (issues, PRs, webhooks).",
 			"telegramSectionTitle": "Integración con Telegram",
 			"telegramSectionSubtitle": "Envía actualizaciones de las tareas del proyecto a un chat o tema de Telegram mediante un bot.",
+			"matrixSectionTitle": "Integración de Element",
+			"matrixSectionSubtitle": "Envía actualizaciones de tareas del proyecto a Element (Matrix) mediante una cuenta bot; crea un espacio por espacio de trabajo y un subespacio y sala por proyecto.",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
 			"mattermostSectionTitle": "Mattermost Integration",
 			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
@@ -1497,6 +1499,52 @@
 				"taskCommentCreated": "Nuevos comentarios"
 			},
 			"connect": "Conectar Telegram",
+			"saveChanges": "Guardar cambios",
+			"disconnect": "Desconectar"
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Introduce una URL de homeserver, un ID de usuario y un token de acceso válidos",
+				"homeserverInvalid": "Introduce una URL de homeserver válida",
+				"userIdInvalid": "Introduce un ID de usuario de Matrix válido"
+			},
+			"toast": {
+				"saved": "Integración con Element guardada correctamente",
+				"saveError": "Error al guardar la integración con Element",
+				"enabled": "Notificaciones de Element activadas",
+				"disabled": "Notificaciones de Element pausadas",
+				"updateError": "Error al actualizar la integración de Element",
+				"removed": "Integración con Element eliminada correctamente",
+				"removeError": "Error al eliminar la integración con Element"
+			},
+			"connectionTitle": "Conexión del bot de Element",
+			"connectionHint": "Usa una cuenta bot de Matrix y un token de acceso para enviar actualizaciones de tareas del proyecto a una sala.",
+			"connected": "Conectado",
+			"paused": "Pausado",
+			"homeserverLabel": "URL del homeserver",
+			"homeserverHint": "URL base de tu homeserver de Matrix, por ejemplo https://matrix.example.com.",
+			"userLabel": "ID de usuario del bot",
+			"userHint": "ID de Matrix completo de la cuenta bot, por ejemplo @kaneo-bot:example.com.",
+			"tokenLabel": "Token de acceso",
+			"tokenPlaceholder": "syt_TokenDeAccesoDeEjemplo123456789",
+			"tokenHint": "Token de acceso de la cuenta bot. Déjalo vacío para conservar el token actual.",
+			"tokenMasked": "Ya hay un token configurado",
+			"spacePrefixLabel": "Prefijo del nombre del espacio",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Prefijo opcional para el nombre del espacio del espacio de trabajo. Los espacios se llaman \"<prefijo> · <nombre del espacio de trabajo>\".",
+			"inviteUsersLabel": "Invitar usuarios",
+			"inviteUsersHint": "IDs de usuario de Matrix opcionales, separados por comas, para invitar a cada espacio y sala creados.",
+			"eventsTitle": "Notificaciones de eventos",
+			"eventsHint": "Elige qué cambios en el proyecto deben ser notificados en Element.",
+			"events": {
+				"taskCreated": "Nuevas tareas",
+				"taskStatusChanged": "Cambios en el estado",
+				"taskPriorityChanged": "Cambios de prioridad",
+				"taskTitleChanged": "Cambios en el título",
+				"taskDescriptionChanged": "Cambios en la descripción",
+				"taskCommentCreated": "Nuevos comentarios"
+			},
+			"connect": "Conectar con Element",
 			"saveChanges": "Guardar cambios",
 			"disconnect": "Desconectar"
 		},

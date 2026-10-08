@@ -1622,6 +1622,8 @@
 			"slackSectionTitle": "Integracja ze Slackiem",
 			"subtitle": "Połącz projekt z zewnętrznymi narzędziami i usługami, aby usprawnić obieg pracy.",
 			"telegramSectionSubtitle": "Wysyłaj aktualizacje zadań projektu do czatu lub wątku w Telegramie za pomocą bota.",
+			"matrixSectionTitle": "Integracja Element",
+			"matrixSectionSubtitle": "Wysyła aktualizacje zadań projektu do Element (Matrix) przez konto bota; tworzy przestrzeń dla każdego obszaru roboczego oraz podprzestrzeń i pokój dla każdego projektu.",
 			"telegramSectionTitle": "Integracja z Telegramem",
 			"title": "Integracje projektu",
 			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
@@ -1787,6 +1789,52 @@
 				"chatIdRequired": "ID czatu jest wymagane",
 				"threadIdInvalid": "Wpisz prawidłowe ID wątku tematu Telegram"
 			}
+		},
+		"matrixIntegration": {
+			"validation": {
+				"connectionInvalid": "Wpisz prawidłowy adres URL serwera domowego, identyfikator użytkownika i token dostępu",
+				"homeserverInvalid": "Wpisz prawidłowy adres URL serwera domowego",
+				"userIdInvalid": "Wpisz prawidłowy identyfikator użytkownika Matrix"
+			},
+			"toast": {
+				"saved": "Integrację ze Elementiem zapisano pomyślnie",
+				"saveError": "Nie udało się zapisać integracji ze Elementiem",
+				"enabled": "Powiadomienia Element włączone",
+				"disabled": "Powiadomienia Element wstrzymane",
+				"updateError": "Nie udało się zaktualizować integracji ze Elementiem",
+				"removed": "Integrację ze Elementiem usunięto pomyślnie",
+				"removeError": "Nie udało się usunąć integracji ze Elementiem"
+			},
+			"connectionTitle": "Połączenie bota Element",
+			"connectionHint": "Użyj konta bota Matrix i tokenu dostępu, aby wysyłać aktualizacje zadań projektu do pokoju.",
+			"connected": "Połączono",
+			"paused": "Wstrzymano",
+			"homeserverLabel": "Adres URL serwera domowego",
+			"homeserverHint": "Podstawowy adres URL Twojego serwera domowego Matrix, na przykład https://matrix.example.com.",
+			"userLabel": "Identyfikator użytkownika bota",
+			"userHint": "Pełny identyfikator Matrix konta bota, na przykład @kaneo-bot:example.com.",
+			"tokenLabel": "Token dostępu",
+			"tokenPlaceholder": "syt_PrzykladowyTokenDostepu123456789",
+			"tokenHint": "Token dostępu konta bota. Pozostaw puste, aby zachować bieżący token.",
+			"tokenMasked": "Token jest już skonfigurowany",
+			"spacePrefixLabel": "Prefiks nazwy przestrzeni",
+			"spacePrefixPlaceholder": "Kaneo",
+			"spacePrefixHint": "Opcjonalny prefiks dla nazwy przestrzeni obszaru roboczego. Przestrzenie mają nazwy \"<prefiks> · <nazwa obszaru roboczego>\".",
+			"inviteUsersLabel": "Zaproś użytkowników",
+			"inviteUsersHint": "Opcjonalne, oddzielone przecinkami identyfikatory użytkowników Matrix do zaproszenia do każdej utworzonej przestrzeni i pokoju.",
+			"eventsTitle": "Powiadomienia o zdarzeniach",
+			"eventsHint": "Wybierz, które zmiany w projekcie mają być publikowane na Elementu.",
+			"events": {
+				"taskCreated": "Nowe zadania",
+				"taskStatusChanged": "Zmiany statusu",
+				"taskPriorityChanged": "Zmiany priorytetu",
+				"taskTitleChanged": "Zmiany tytułu",
+				"taskDescriptionChanged": "Zmiany opisu",
+				"taskCommentCreated": "Nowe komentarze"
+			},
+			"connect": "Połącz Element",
+			"saveChanges": "Zapisz zmiany",
+			"disconnect": "Rozłącz"
 		},
 		"workflowEditor": {
 			"createColumnsFirst": "Najpierw utwórz kolumny, aby skonfigurować reguły automatyzacji.",
