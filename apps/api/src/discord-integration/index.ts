@@ -10,6 +10,7 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
+import { assertIntegrationLimit } from "../plan-limits/plan-quota";
 import {
   type DiscordConfig,
   defaultDiscordEvents,
@@ -207,6 +208,20 @@ const discordIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       });
     }
 
+    const existing = await db.query.integrationTable.findFirst({
+      where: and(
+        eq(integrationTable.projectId, projectId),
+        eq(integrationTable.type, "discord"),
+      ),
+      columns: { id: true, isActive: true },
+    });
+
+    // Plan limits: creating or reactivating an integration must respect the
+    // workspace-wide integration quota.
+    if (!existing || !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
+
     await db
       .insert(integrationTable)
       .values({
@@ -266,14 +281,21 @@ const discordIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       });
     }
 
+    const nextIsActive =
+      body.isActive !== undefined
+        ? body.isActive
+        : (existing.isActive ?? true);
+
+    // Plan limits: reactivating an integration re-enters the workspace quota.
+    if (nextIsActive && !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
+
     await db
       .update(integrationTable)
       .set({
         config: JSON.stringify(nextConfig),
-        isActive:
-          body.isActive !== undefined
-            ? body.isActive
-            : (existing.isActive ?? true),
+        isActive: nextIsActive,
         updatedAt: new Date(),
       })
       .where(eq(integrationTable.id, existing.id));

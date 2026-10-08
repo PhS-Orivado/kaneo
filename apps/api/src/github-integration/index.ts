@@ -11,6 +11,10 @@ import {
   assertRepositoryBindingQuota,
 } from "../plan-limits/repository-binding-quota";
 import {
+  assertIntegrationLimit,
+  assertWorkspaceRepositoryLimit,
+} from "../plan-limits/plan-quota";
+import {
   apiRouter,
   type BaseVariables,
   createRoute,
@@ -485,6 +489,9 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     // before the update writes isActive=true.
     if (body.isActive === true && !row.isActive) {
       await assertRepositoryBindingQuota(row.projectId, c.get("workspaceId"));
+      // Plan limits: reactivation re-enters the workspace-wide counts too.
+      await assertWorkspaceRepositoryLimit(c.get("workspaceId"));
+      await assertIntegrationLimit(c.get("workspaceId"));
     }
 
     let config: GitHubConfig;

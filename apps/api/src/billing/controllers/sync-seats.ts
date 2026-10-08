@@ -5,7 +5,7 @@ import {
   workspaceUserTable,
 } from "../../database/schema";
 import { isBillingEnabled } from "../config";
-import { updateSubscriptionSeats } from "../creem-client";
+import { resolvePaymentProvider } from "../providers/resolve";
 
 export async function syncWorkspaceSeats(workspaceId: string) {
   if (!isBillingEnabled()) {
@@ -18,8 +18,8 @@ export async function syncWorkspaceSeats(workspaceId: string) {
     .where(eq(workspaceBillingTable.workspaceId, workspaceId));
 
   if (
-    !billing?.creemSubscriptionId ||
-    !billing.creemProductId ||
+    !billing?.subscriptionId ||
+    !billing.productId ||
     billing.plan !== "team" ||
     (billing.status !== "active" && billing.status !== "trialing")
   ) {
@@ -36,10 +36,10 @@ export async function syncWorkspaceSeats(workspaceId: string) {
     return;
   }
 
-  await updateSubscriptionSeats({
-    subscriptionId: billing.creemSubscriptionId,
-    productId: billing.creemProductId,
-    units: seats,
+  await resolvePaymentProvider().updateSubscriptionSeats({
+    subscriptionId: billing.subscriptionId,
+    productId: billing.productId,
+    seats,
   });
 
   await db

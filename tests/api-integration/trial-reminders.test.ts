@@ -155,7 +155,7 @@ describe("trial reminder emails", () => {
   it("skips founding-free workspaces and paying subscribers", async () => {
     await seedTrial(null, { foundingFree: true });
     await seedTrial(new Date(Date.now() - DAY), {
-      creemSubscriptionId: `sub_${randomUUID()}`,
+      subscriptionId: `sub_${randomUUID()}`,
       status: "active",
     });
 

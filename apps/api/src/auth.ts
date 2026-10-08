@@ -44,6 +44,8 @@ import {
 import db, { schema } from "./database";
 import { authDatabaseAdapter } from "./database/auth-adapter";
 import { publishEvent } from "./events";
+import { LimitExceededError } from "./plan-limits/limit-error";
+import { assertUserLimit } from "./plan-limits/plan-quota";
 import { applyInvitationProjectAccess } from "./project-access/apply-invitation-project-access";
 import { resolveInvitationProjectAccess } from "./project-access/resolve-invitation-project-access";
 import { clearMemberProjectAccess } from "./project-access/clear-member-project-access";
@@ -562,10 +564,35 @@ export const auth = betterAuth({
           );
         },
         beforeCreateInvitation: async ({ invitation }) => {
+          // Plan limit (maxUsers): refuse the invite before it is created or
+          // emailed. Returning the error object lets better-auth abort with
+          // the 402 instead of surfacing an HTTPException from the hook.
+          try {
+            await assertUserLimit(invitation.organizationId);
+          } catch (error) {
+            if (error instanceof LimitExceededError) {
+              return {
+                error: { code: "limit_exceeded", message: error.message, status: 402 },
+              };
+            }
+            throw error;
+          }
           const access = await resolveInvitationProjectAccess(invitation);
           return { data: access };
         },
         beforeAcceptInvitation: async ({ invitation, user }) => {
+          // Plan limit (maxUsers): accepting the invitation creates the
+          // membership, so the seat must still be free at acceptance time.
+          try {
+            await assertUserLimit(invitation.organizationId);
+          } catch (error) {
+            if (error instanceof LimitExceededError) {
+              return {
+                error: { code: "limit_exceeded", message: error.message, status: 402 },
+              };
+            }
+            throw error;
+          }
           await applyInvitationProjectAccess(invitation, user.id);
         },
         afterAcceptInvitation: async ({ member }) => {

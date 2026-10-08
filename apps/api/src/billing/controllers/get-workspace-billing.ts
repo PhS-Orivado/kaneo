@@ -8,7 +8,9 @@ import {
   workspaceTable,
   workspaceUserTable,
 } from "../../database/schema";
-import { foundingCutoff, isBillingEnabled, trialDays } from "../config";
+import { foundingCutoff, isBillingEnabled, trialDays, billingProvider } from "../config";
+import { TRIAL_LIMITS, writeWorkspaceLimits } from "../plans";
+import { getWorkspaceUsage } from "../../plan-limits/usage";
 import { hashTrialEmail } from "../trial-identity";
 
 const ACTIVE_STATUSES = new Set([
@@ -120,6 +122,12 @@ export async function getOrCreateWorkspaceBilling(workspaceId: string) {
     .returning();
 
   if (created) {
+    // Trials and founding-free workspaces get an explicit, defined limit set
+    // (FR-3.5) instead of accidental unlimited access. Written at row creation
+    // so the very first guarded request already sees the trial limits.
+    if (isBillingEnabled()) {
+      await writeWorkspaceLimits(workspaceId, TRIAL_LIMITS);
+    }
     return created;
   }
 
@@ -168,6 +176,7 @@ async function getWorkspaceBilling(workspaceId: string) {
 
   return {
     billingEnabled: isBillingEnabled(),
+    provider: billingProvider(),
     entitlement,
     foundingFree: billing.foundingFree,
     trialEndsAt: billing.trialEndsAt,
@@ -177,7 +186,8 @@ async function getWorkspaceBilling(workspaceId: string) {
     seats: billing.seats,
     currentPeriodEnd: billing.currentPeriodEnd,
     canceledAt: billing.canceledAt,
-    hasCustomer: Boolean(billing.creemCustomerId),
+    hasCustomer: Boolean(billing.customerId),
+    usage: await getWorkspaceUsage(workspaceId),
   };
 }
 

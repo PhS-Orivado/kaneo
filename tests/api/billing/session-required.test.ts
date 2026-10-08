@@ -26,13 +26,13 @@ vi.mock(
   "../../../apps/api/src/billing/controllers/get-workspace-billing",
   () => ({
     default: vi.fn(),
-    getOrCreateWorkspaceBilling: async () => ({ creemCustomerId: "customer" }),
+    getOrCreateWorkspaceBilling: async () => ({ customerId: "customer" }),
   }),
 );
 vi.mock("../../../apps/api/src/billing/controllers/handle-webhook", () => ({
   default: vi.fn(),
 }));
-vi.mock("../../../apps/api/src/billing/creem-client", () => ({
+vi.mock("../../../apps/api/src/billing/providers/creem/client", () => ({
   createCustomerPortalLink: mocks.portal,
 }));
 vi.mock("../../../apps/api/src/oauth/controllers/get-id-token", () => ({

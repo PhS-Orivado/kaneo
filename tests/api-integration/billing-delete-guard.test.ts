@@ -61,8 +61,8 @@ describe("API integration: deleting paid workspaces", () => {
       workspaceName: "Paid Space",
     });
     await setBilling(owner.workspace.id, {
-      creemSubscriptionId: "sub_active",
-      creemProductId: "prod_1",
+      subscriptionId: "sub_active",
+      productId: "prod_1",
       plan: "team",
       status: "active",
     });
@@ -81,7 +81,7 @@ describe("API integration: deleting paid workspaces", () => {
   it("allows account deletion once the subscription is cancelled", async () => {
     const owner = await createWorkspaceMember({ role: "owner" });
     await setBilling(owner.workspace.id, {
-      creemSubscriptionId: "sub_gone",
+      subscriptionId: "sub_gone",
       status: "canceled",
     });
 
@@ -136,8 +136,8 @@ describe("API integration: deleting paid workspaces", () => {
     const workspace = (await created.json()) as { id: string };
 
     await setBilling(workspace.id, {
-      creemSubscriptionId: "sub_active",
-      creemProductId: "prod_1",
+      subscriptionId: "sub_active",
+      productId: "prod_1",
       plan: "team",
       status: "active",
     });

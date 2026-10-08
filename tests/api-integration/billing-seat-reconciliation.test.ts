@@ -12,7 +12,7 @@ import {
 const { updateSubscriptionSeats } = vi.hoisted(() => ({
   updateSubscriptionSeats: vi.fn(async () => ({ ok: true as const })),
 }));
-vi.mock("../../apps/api/src/billing/creem-client", () => ({
+vi.mock("../../apps/api/src/billing/providers/creem/client", () => ({
   updateSubscriptionSeats,
   createCheckoutSession: vi.fn(),
   createCustomerPortalLink: vi.fn(),
@@ -49,8 +49,8 @@ async function billing(
     plan: "team",
     status: "active",
     seats: 1,
-    creemSubscriptionId: `sub-${workspaceId}`,
-    creemProductId: "prod_team_monthly",
+    subscriptionId: `sub-${workspaceId}`,
+    productId: "prod_team_monthly",
     ...overrides,
   });
 }

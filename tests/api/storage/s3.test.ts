@@ -537,6 +537,9 @@ describe("S3 credential provider chain (IAM role)", () => {
 });
 
 vi.mock("../../../apps/api/src/database", () => ({ default: {} }));
+vi.mock("../../../apps/api/src/plan-limits/plan-quota", () => ({
+  assertStorageQuota: vi.fn(async () => {}),
+}));
 
 const { contentReferencesAsset, extractAssetIds } =
   await import("../../../apps/api/src/storage/cleanup-assets");

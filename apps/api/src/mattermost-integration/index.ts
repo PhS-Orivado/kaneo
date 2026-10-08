@@ -10,6 +10,7 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
+import { assertIntegrationLimit } from "../plan-limits/plan-quota";
 import {
   defaultMattermostEvents,
   type MattermostConfig,
@@ -214,6 +215,12 @@ const mattermostIntegration = apiRouter<
       ),
     });
 
+    // Plan limits: creating or reactivating an integration must respect the
+    // workspace-wide integration quota.
+    if (!existing || !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
+
     if (existing) {
       await db
         .update(integrationTable)
@@ -277,14 +284,21 @@ const mattermostIntegration = apiRouter<
       });
     }
 
+    const nextIsActive =
+      body.isActive !== undefined
+        ? body.isActive
+        : (existing.isActive ?? true);
+
+    // Plan limits: reactivating an integration re-enters the workspace quota.
+    if (nextIsActive && !existing.isActive) {
+      await assertIntegrationLimit(c.get("workspaceId"));
+    }
+
     await db
       .update(integrationTable)
       .set({
         config: JSON.stringify(nextConfig),
-        isActive:
-          body.isActive !== undefined
-            ? body.isActive
-            : (existing.isActive ?? true),
+        isActive: nextIsActive,
         updatedAt: new Date(),
       })
       .where(eq(integrationTable.id, existing.id));

@@ -1,6 +1,8 @@
 import { Creem } from "creem";
 import { HTTPException } from "hono/http-exception";
-import { creemApiKey } from "./config";
+import { creemApiKey } from "../../config";
+import type { PaymentProvider } from "../types";
+import { verifyCreemWebhookEvent } from "./webhook";
 
 function creemClient() {
   return new Creem({
@@ -82,3 +84,19 @@ export async function createCustomerPortalLink(customerId: string) {
     });
   }
 }
+
+export const creemProvider: PaymentProvider = {
+  name: "creem",
+  createCheckoutSession,
+  createCustomerPortalLink,
+  async updateSubscriptionSeats(input) {
+    await updateSubscriptionSeats({
+      subscriptionId: input.subscriptionId,
+      productId: input.productId,
+      units: input.seats,
+    });
+  },
+  verifyWebhookEvent(rawBody, headers) {
+    return verifyCreemWebhookEvent(rawBody, headers);
+  },
+};

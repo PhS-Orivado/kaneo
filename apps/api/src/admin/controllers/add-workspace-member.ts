@@ -2,6 +2,7 @@ import { eq } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { userTable, workspaceUserTable } from "../../database/schema";
+import { assertUserLimit } from "../../plan-limits/plan-quota";
 import { clearMemberProjectAccess } from "../../project-access/clear-member-project-access";
 import { handleMemberAdded } from "../../workspace-members/handle-member-added";
 import { isAssignableWorkspaceRole } from "../is-assignable-workspace-role";
@@ -14,6 +15,9 @@ async function addWorkspaceMember(request: {
   role: string;
 }) {
   const { workspaceId, userId, role } = request;
+
+  // Plan limit (maxUsers): 402 propagates from the guard.
+  await assertUserLimit(workspaceId);
 
   await db.transaction(async (tx) => {
     const members = await lockWorkspace(tx, workspaceId);

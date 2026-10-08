@@ -1,6 +1,7 @@
 import { createId } from "@paralleldrive/cuid2";
 import { relations, sql } from "drizzle-orm";
 import {
+  bigint,
   boolean,
   customType,
   foreignKey,
@@ -191,9 +192,13 @@ export const workspaceBillingTable = pgTable(
       }),
     foundingFree: boolean("founding_free").notNull().default(false),
     trialEndsAt: timestamp("trial_ends_at", { mode: "date" }),
-    creemCustomerId: text("creem_customer_id"),
-    creemSubscriptionId: text("creem_subscription_id").unique(),
-    creemProductId: text("creem_product_id"),
+    // Payment hub: provider-neutral identifiers. The provider column records
+    // which hub adapter owns the subscription (creem | stripe); product_id
+    // holds the Creem product id or the Stripe price id.
+    provider: text("provider").notNull().default("creem"),
+    customerId: text("customer_id"),
+    subscriptionId: text("subscription_id").unique(),
+    productId: text("product_id"),
     plan: text("plan"),
     billingInterval: text("billing_interval"),
     status: text("status"),
@@ -210,9 +215,10 @@ export const workspaceBillingTable = pgTable(
 );
 
 // RFC 0001 WP0 (for WP10): per-workspace plan limit overrides written by the
-// billing system. The API only reads this table; a NULL
-// max_repositories_per_project means "no workspace override; fall back to the
-// instance default (KANEO_MAX_REPOSITORIES_PER_PROJECT)".
+// billing system. The API only reads this table; a NULL column means
+// "no workspace override; fall back to the instance default" for that
+// dimension (users, projects, repositories per project and per workspace,
+// storage bytes, integrations).
 export const workspaceLimitTable = pgTable("workspace_limit", {
   workspaceId: text("workspace_id")
     .primaryKey()
@@ -220,7 +226,12 @@ export const workspaceLimitTable = pgTable("workspace_limit", {
       onDelete: "cascade",
       onUpdate: "cascade",
     }),
+  maxUsers: integer("max_users"),
+  maxProjects: integer("max_projects"),
   maxRepositoriesPerProject: integer("max_repositories_per_project"),
+  maxRepositories: integer("max_repositories"),
+  storageBytes: bigint("storage_bytes", { mode: "number" }),
+  maxIntegrations: integer("max_integrations"),
   updatedAt: timestamp("updated_at", { mode: "date" })
     .defaultNow()
     .$onUpdate(() => new Date())

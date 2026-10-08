@@ -12,6 +12,7 @@ import {
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { createId } from "@paralleldrive/cuid2";
 import { config } from "dotenv-mono";
+import { assertStorageQuota } from "../plan-limits/plan-quota";
 
 config();
 
@@ -360,6 +361,7 @@ export async function createTaskImageUploadUrl(
   context: TaskImageUploadContext & { size: number },
 ): Promise<TaskImageUploadUrl> {
   validateTaskAssetUploadInput(context.contentType, context.size);
+  await assertStorageQuota(context.workspaceId, context.size);
   const config = getStorageConfig();
   const client = getClient(config);
   const rawKey = buildObjectKey(context);
@@ -392,6 +394,7 @@ export async function createProjectBackgroundUploadUrl(
   context: ProjectBackgroundUploadContext,
 ): Promise<ProjectBackgroundUploadUrl> {
   validateProjectBackgroundUploadInput(context.contentType, context.size);
+  await assertStorageQuota(context.workspaceId, context.size);
   const config = getStorageConfig();
   const client = getClient(config);
   const { rawKey, version } = buildProjectBackgroundObjectKey(context);

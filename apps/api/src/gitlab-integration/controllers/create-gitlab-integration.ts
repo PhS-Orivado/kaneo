@@ -7,6 +7,10 @@ import { integrationTable, projectTable } from "../../database/schema";
 import { mapIntegrationUniqueViolation } from "../../integrations/map-unique-violation";
 import { assertRepositoryBindingQuota } from "../../plan-limits/repository-binding-quota";
 import {
+  assertIntegrationLimit,
+  assertWorkspaceRepositoryLimit,
+} from "../../plan-limits/plan-quota";
+import {
   type GitlabConfig,
   type GitlabTokenType,
   getDefaultGitlabConfig,
@@ -141,6 +145,9 @@ async function createGitlabIntegration({
   // WP10: enforce the per-project repository binding quota after project
   // verification and before the insert. 402 propagates unchanged.
   await assertRepositoryBindingQuota(projectId, project.workspaceId);
+  // Plan limits: workspace-wide repository total and integration count.
+  await assertWorkspaceRepositoryLimit(project.workspaceId);
+  await assertIntegrationLimit(project.workspaceId);
 
   // One secret per binding, never copied from an existing row: each row's
   // webhook route verifies with its own secret, so two bindings of the same
