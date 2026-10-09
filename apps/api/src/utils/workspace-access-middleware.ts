@@ -21,7 +21,8 @@ type WorkspaceIdSource =
         | "column"
         | "workflowRule"
         | "customField"
-        | "integration";
+        | "integration"
+        | "taskAttribute";
       idKey: string;
     }
   | {
@@ -152,7 +153,8 @@ async function lookupScope(
     | "column"
     | "workflowRule"
     | "customField"
-    | "integration",
+    | "integration"
+    | "taskAttribute",
   id: string,
 ): Promise<ResourceScope | null> {
   switch (resource) {
@@ -354,6 +356,20 @@ async function lookupScope(
       return integration;
     }
 
+    // RFC 0002: resolves task attribute -> workspace. Task attributes are
+    // workspace-scoped with no project of their own, so projectId stays
+    // null and only workspace membership is enforced downstream.
+    case "taskAttribute": {
+      const [attribute] = await db
+        .select({ workspaceId: schema.taskAttributeTable.workspaceId })
+        .from(schema.taskAttributeTable)
+        .where(eq(schema.taskAttributeTable.id, id))
+        .limit(1);
+      return attribute
+        ? { workspaceId: attribute.workspaceId, projectId: null }
+        : null;
+    }
+
     default:
       return null;
   }
@@ -399,6 +415,19 @@ export const workspaceAccess = {
     workspaceAccessMiddleware({
       sources: [
         { type: "lookup", resource: "label", idKey },
+        { type: "query", key: "workspaceId" },
+      ],
+    }),
+
+  // RFC 0002 WP3: authorize task-attribute-keyed routes. The id is read
+  // from the path param when the route declares it there and from the JSON
+  // body otherwise (never the query string), mirroring the other lookups.
+  // Compose with requireWorkspacePermission({ taskAttribute: [...] }) for
+  // mutations; read-only routes may use it alone.
+  fromTaskAttribute: (idKey = "id") =>
+    workspaceAccessMiddleware({
+      sources: [
+        { type: "lookup", resource: "taskAttribute", idKey },
         { type: "query", key: "workspaceId" },
       ],
     }),
