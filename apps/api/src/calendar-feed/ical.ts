@@ -6,6 +6,7 @@ export type CalendarTask = {
   dueDate: Date | null;
   createdAt: Date;
   updatedAt: Date;
+  attributeName: string | null;
 };
 
 function escapeText(value: string) {
@@ -91,6 +92,10 @@ function eventFormatter(timeZone: string) {
       `SUMMARY:${escapeText(task.title)}`,
       ...(task.description
         ? [`DESCRIPTION:${escapeText(task.description)}`]
+        : []),
+      // RFC 0002: expose the task attribute (type) name as a calendar category.
+      ...(task.attributeName
+        ? [`CATEGORIES:${escapeText(task.attributeName)}`]
         : []),
       "TRANSP:TRANSPARENT",
       "END:VEVENT",

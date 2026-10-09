@@ -19,6 +19,7 @@ import {
   calendarFeedTable,
   labelTable,
   projectTable,
+  taskAttributeTable,
   taskTable,
 } from "../database/schema";
 import { boundedTaskRead } from "../task/bounded-read";
@@ -192,8 +193,13 @@ export async function getCalendarFeed(token: string) {
             dueDate: taskTable.dueDate,
             createdAt: taskTable.createdAt,
             updatedAt: taskTable.updatedAt,
+            attributeName: taskAttributeTable.name,
           })
           .from(taskTable)
+          .leftJoin(
+            taskAttributeTable,
+            eq(taskTable.attributeId, taskAttributeTable.id),
+          )
           .where(
             and(
               eq(taskTable.projectId, project.id),

@@ -4,6 +4,7 @@ import {
   buildDescription,
   formatComment,
   planColumns,
+  resolveCardAttributeId,
   sortCards,
   toDueDate,
 } from "./mapping.js";
@@ -185,5 +186,63 @@ describe("boardProjectName", () => {
     expect(boardProjectName("Marketing", "Campaigns", 3)).toBe(
       "Marketing - Campaigns",
     );
+  });
+});
+
+describe("resolveCardAttributeId", () => {
+  const cardLabels = [
+    { cardId: "c1", labelId: "lab_other" },
+    { cardId: "c1", labelId: "lab_bug" },
+    { cardId: "c2", labelId: "lab_bug" },
+  ];
+
+  it("takes the list mapping in list mode", () => {
+    expect(
+      resolveCardAttributeId({
+        card: card({ id: "c1" }),
+        cardLabels,
+        attributeFrom: "list",
+        attributeIdByListId: new Map([["l1", "attr_1"]]),
+      }),
+    ).toBe("attr_1");
+  });
+
+  it("takes the first matching label in label mode", () => {
+    expect(
+      resolveCardAttributeId({
+        card: card({ id: "c1" }),
+        cardLabels,
+        attributeFrom: "label",
+        attributeIdByLabelId: new Map([
+          ["lab_bug", "attr_bug"],
+          ["lab_other", null],
+        ]),
+      }),
+    ).toBe("attr_bug");
+  });
+
+  it("skips labels that have no attribute and returns null when none match", () => {
+    expect(
+      resolveCardAttributeId({
+        card: card({ id: "c1" }),
+        cardLabels,
+        attributeFrom: "label",
+        attributeIdByLabelId: new Map([["lab_other", null]]),
+      }),
+    ).toBeNull();
+  });
+
+  it("returns null when no source is selected or the map misses", () => {
+    expect(
+      resolveCardAttributeId({ card: card({ id: "c1" }), cardLabels }),
+    ).toBeNull();
+    expect(
+      resolveCardAttributeId({
+        card: card({ id: "c1", listId: "l9" }),
+        cardLabels,
+        attributeFrom: "list",
+        attributeIdByListId: new Map([["l1", "attr_1"]]),
+      }),
+    ).toBeNull();
   });
 });

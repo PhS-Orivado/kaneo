@@ -61,6 +61,22 @@ describe("parseArgs", () => {
       "--workspace requires a value",
     );
   });
+
+  it("parses --attribute-from label and list, including inline form", () => {
+    expect(parseArgs(["--attribute-from", "label"]).attributeFrom).toBe(
+      "label",
+    );
+    expect(parseArgs(["--attribute-from=list"]).attributeFrom).toBe("list");
+  });
+
+  it("rejects an invalid --attribute-from source or a missing value", () => {
+    expect(() => parseArgs(["--attribute-from", "card"])).toThrow(
+      "--attribute-from must be either `label` or `list`",
+    );
+    expect(() => parseArgs(["--attribute-from"])).toThrow(
+      "--attribute-from requires a value",
+    );
+  });
 });
 
 describe("DEFAULT_KANEO_URL", () => {

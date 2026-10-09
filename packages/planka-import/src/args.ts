@@ -10,6 +10,7 @@ export type ParsedArgs = {
   projects: string[];
   icon?: string;
   report?: string;
+  attributeFrom?: "label" | "list";
   all: boolean;
   dryRun: boolean;
   skipComments: boolean;
@@ -79,12 +80,25 @@ export function parseArgs(argv: string[]): ParsedArgs {
       continue;
     }
 
+    if (flag === "--attribute-from") {
+      const value = inlineValue ?? argv[++index];
+      if (value === undefined) {
+        throw new Error("--attribute-from requires a value");
+      }
+      if (value !== "label" && value !== "list") {
+        throw new Error("--attribute-from must be either `label` or `list`");
+      }
+      parsed.attributeFrom = value;
+      continue;
+    }
+
     if (flag in STRING_FLAGS) {
       const value = inlineValue ?? argv[++index];
       if (value === undefined) throw new Error(`${flag} requires a value`);
       const key = STRING_FLAGS[flag] as Exclude<
         keyof ParsedArgs,
         | "projects"
+        | "attributeFrom"
         | "all"
         | "dryRun"
         | "skipComments"
@@ -131,6 +145,10 @@ Behaviour:
   --dry-run                 Report what would be migrated, write nothing
   --skip-comments           Do not migrate card comments
   --icon <name>             Lucide icon for created projects (default Layout)
+  --attribute-from <source> Map cards to workspace task attributes by name,
+                            from the first card label (label) or the list
+                            name (list); unmatched cards get the workspace
+                            default attribute
   --report <path>           Write a JSON report to this path
   -y, --yes                 Do not ask for confirmation before writing
   -h, --help                Show this help

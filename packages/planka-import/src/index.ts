@@ -152,6 +152,7 @@ async function main(): Promise<number> {
     dryRun: false,
     skipComments: args.skipComments,
     ...(args.icon ? { projectIcon: args.icon } : {}),
+    ...(args.attributeFrom ? { attributeFrom: args.attributeFrom } : {}),
     onProgress: progress,
   });
 

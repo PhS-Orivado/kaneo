@@ -14,6 +14,10 @@ import {
   coerceStatus,
   getValidTaskStatuses,
 } from "../validate-task-fields";
+import {
+  assertTaskAttributeInWorkspace,
+  getWorkspaceDefaultTaskAttribute,
+} from "../../task-attribute/resolve-task-attribute";
 import { claimTaskNumber } from "./claim-task-numbers";
 
 export type ImportTask = {
@@ -24,6 +28,7 @@ export type ImportTask = {
   startDate?: string | null;
   dueDate?: string | null;
   userId?: string | null;
+  attributeId?: string | null;
 };
 
 async function importTasks(
@@ -60,6 +65,25 @@ async function importTasks(
 
   const validStatuses = await getValidTaskStatuses(projectId);
 
+  // RFC 0002: attribute semantics match createTask — omitted applies the
+  // workspace default, null creates the task without an attribute, and an
+  // explicit id must belong to the project's workspace. Validate every
+  // explicit id up front so an invalid attribute fails the import with 400
+  // before any task is created.
+  const defaultTaskAttribute = await getWorkspaceDefaultTaskAttribute(
+    project.workspaceId,
+  );
+  const explicitAttributeIds = [
+    ...new Set(
+      tasksToImport
+        .map((task) => task.attributeId)
+        .filter((id): id is string => Boolean(id)),
+    ),
+  ];
+  for (const attributeId of explicitAttributeIds) {
+    await assertTaskAttributeInWorkspace(attributeId, project.workspaceId);
+  }
+
   const results = [];
 
   for (const taskData of tasksToImport) {
@@ -91,6 +115,11 @@ async function importTasks(
         ),
       });
 
+      const attributeId =
+        taskData.attributeId === undefined
+          ? (defaultTaskAttribute?.id ?? null)
+          : taskData.attributeId;
+
       const createdTask = await db.transaction(async (tx) => {
         const taskNumber = await claimTaskNumber(projectId, tx);
 
@@ -106,6 +135,7 @@ async function importTasks(
             dueDate: taskData.dueDate ? new Date(taskData.dueDate) : null,
             description: taskData.description || "",
             priority,
+            attributeId,
             number: taskNumber,
           })
           .returning();

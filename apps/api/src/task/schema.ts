@@ -159,6 +159,14 @@ export const importTasksBody = z.object({
       startDate: z.string().nullable().optional(),
       dueDate: z.string().nullable().optional(),
       userId: z.string().nullable().optional(),
+      attributeId: z
+        .string()
+        .nullable()
+        .optional()
+        .openapi({
+          description:
+            "Attribute (type) definition for the imported task. Omit to apply the workspace default; null for no attribute.",
+        }),
     }),
   ),
 });

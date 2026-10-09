@@ -8,6 +8,7 @@ import {
   displayName,
   formatComment,
   planColumns,
+  resolveCardAttributeId,
   sortCards,
   toDueDate,
 } from "./mapping.js";
@@ -53,6 +54,7 @@ export type MigrateOptions = {
   dryRun: boolean;
   skipComments: boolean;
   projectIcon?: string;
+  attributeFrom?: "label" | "list";
   onProgress?: (message: string) => void;
 };
 
@@ -65,11 +67,13 @@ export async function migrate(options: MigrateOptions): Promise<BoardReport[]> {
     dryRun,
     skipComments,
     projectIcon = "Layout",
+    attributeFrom,
     onProgress = () => {},
   } = options;
 
   const takenKeys = new Set<string>();
   const membersByEmail = new Map<string, string>();
+  const attributeIdByName = new Map<string, string>();
 
   if (!dryRun) {
     for (const project of await kaneo.listProjects(workspaceId)) {
@@ -78,6 +82,14 @@ export async function migrate(options: MigrateOptions): Promise<BoardReport[]> {
     for (const member of await kaneo.listMembers(workspaceId)) {
       if (member.email)
         membersByEmail.set(member.email.toLowerCase(), member.id);
+    }
+    if (attributeFrom) {
+      for (const attribute of await kaneo.listTaskAttributes(workspaceId)) {
+        attributeIdByName.set(
+          attribute.name.trim().toLowerCase(),
+          attribute.id,
+        );
+      }
     }
   }
 
@@ -119,6 +131,8 @@ export async function migrate(options: MigrateOptions): Promise<BoardReport[]> {
         projectIcon,
         dryRun,
         skipComments,
+        attributeFrom,
+        attributeIdByName,
         takenKeys,
         membersByEmail,
         report,
@@ -144,6 +158,8 @@ async function migrateBoard(context: {
   projectIcon: string;
   dryRun: boolean;
   skipComments: boolean;
+  attributeFrom?: "label" | "list";
+  attributeIdByName: Map<string, string>;
   takenKeys: Set<string>;
   membersByEmail: Map<string, string>;
   report: BoardReport;
@@ -158,6 +174,8 @@ async function migrateBoard(context: {
     projectIcon,
     dryRun,
     skipComments,
+    attributeFrom,
+    attributeIdByName,
     takenKeys,
     membersByEmail,
     report,
@@ -201,6 +219,30 @@ async function migrateBoard(context: {
   const usersById = new Map<string, PlankaUser>(
     (included.users ?? []).map((user) => [user.id, user]),
   );
+
+  // RFC 0002: pre-resolve attribute ids for the selected source so the card
+  // loop only does map lookups. Unmatched names resolve to null and the task
+  // is created without attributeId, applying the workspace default attribute.
+  const attributeIdByListId =
+    attributeFrom === "list"
+      ? new Map(
+          columns.map((column) => [
+            column.listId,
+            attributeIdByName.get(column.name.trim().toLowerCase()) ?? null,
+          ]),
+        )
+      : undefined;
+  const attributeIdByLabelId =
+    attributeFrom === "label"
+      ? new Map(
+          boardLabels.map((label) => [
+            label.id,
+            attributeIdByName.get(
+              (label.name?.trim() || label.color).toLowerCase(),
+            ) ?? null,
+          ]),
+        )
+      : undefined;
 
   report.columns = columns.length;
   report.tasks = cards.length;
@@ -292,6 +334,14 @@ async function migrateBoard(context: {
 
     const dueDate = toDueDate(card);
 
+    const attributeId = resolveCardAttributeId({
+      card,
+      cardLabels,
+      attributeFrom,
+      attributeIdByLabelId,
+      attributeIdByListId,
+    });
+
     const task = await kaneo.createTask(project.id, {
       title: card.name,
       description,
@@ -299,6 +349,7 @@ async function migrateBoard(context: {
       priority: DEFAULT_PRIORITY,
       ...(dueDate ? { dueDate } : {}),
       ...(assignee.userId ? { userId: assignee.userId } : {}),
+      ...(attributeId ? { attributeId } : {}),
     });
 
     taskIdByCardId.set(card.id, task.id);

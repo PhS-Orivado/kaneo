@@ -215,11 +215,22 @@ export function registerTools(
     status: optionalNonEmptyString,
     priority: prioritySchema.optional(),
     assigneeId: optionalNonEmptyString,
+    attributeId: nullableOptionalNonEmptyString.describe(
+      "Filter by task attribute (type) id; `none` matches tasks without an attribute.",
+    ),
     page: z.number().int().min(1).max(1_000_000).optional(),
     relatedPage: z.number().int().min(1).max(1_000_000).optional(),
     limit: z.number().int().min(1).max(100).optional(),
     sortBy: z
-      .enum(["createdAt", "priority", "dueDate", "position", "title", "number"])
+      .enum([
+        "createdAt",
+        "priority",
+        "dueDate",
+        "position",
+        "title",
+        "number",
+        "attribute",
+      ])
       .optional(),
     sortOrder: z.enum(["asc", "desc"]).optional(),
     dueBefore: optionalIsoDateTimeSchema,
@@ -300,10 +311,13 @@ export function registerTools(
         startDate: optionalIsoDateTimeSchema,
         dueDate: optionalIsoDateTimeSchema,
         userId: optionalNonEmptyString,
+        attributeId: nullableOptionalNonEmptyString.describe(
+          "Attribute (type) definition for the task. Omit to apply the workspace default; null for no attribute.",
+        ),
       }),
     },
     async (args) => {
-      const body: Record<string, string | undefined> = {
+      const body: Record<string, string | null | undefined> = {
         title: args.title,
         description: args.description,
         priority: args.priority,
@@ -317,6 +331,9 @@ export function registerTools(
       }
       if (args.userId !== undefined) {
         body.userId = args.userId;
+      }
+      if (args.attributeId !== undefined) {
+        body.attributeId = args.attributeId;
       }
       return run(() =>
         client.json(`/api/task/${encodeURIComponent(args.projectId)}`, {
@@ -362,6 +379,9 @@ export function registerTools(
     startDate: nullableOptionalIsoDateTimeSchema,
     dueDate: nullableOptionalIsoDateTimeSchema,
     userId: nullableOptionalNonEmptyString,
+    attributeId: nullableOptionalNonEmptyString.describe(
+      "Attribute (type) definition to set on the task. Omit to keep the current attribute; null clears it.",
+    ),
   });
 
   registerTool(
@@ -426,6 +446,43 @@ export function registerTools(
         client.json(`/api/task/status/${encodeURIComponent(args.taskId)}`, {
           method: "PUT",
           body: JSON.stringify({ status: args.status }),
+        }),
+      ),
+  );
+
+  registerTool(
+    "list_task_attributes",
+    {
+      description:
+        "List the task attribute (type) definitions of a workspace, including name, icon, colors, position and which one is the workspace default.",
+      inputSchema: z.object({
+        workspaceId: nonEmptyString,
+      }),
+    },
+    async (args) =>
+      run(() =>
+        client.json(
+          `/api/task-attribute/workspace/${encodeURIComponent(args.workspaceId)}`,
+          { method: "GET" },
+        ),
+      ),
+  );
+
+  registerTool(
+    "update_task_attribute",
+    {
+      description:
+        "Update only the attribute (type) of a task. Send null to clear the attribute. The attribute must belong to the task's workspace.",
+      inputSchema: z.object({
+        taskId: nonEmptyString,
+        attributeId: nullableOptionalNonEmptyString,
+      }),
+    },
+    async (args) =>
+      run(() =>
+        client.json(`/api/task/attribute/${encodeURIComponent(args.taskId)}`, {
+          method: "PUT",
+          body: JSON.stringify({ attributeId: args.attributeId ?? null }),
         }),
       ),
   );

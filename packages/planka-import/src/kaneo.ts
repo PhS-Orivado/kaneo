@@ -4,6 +4,16 @@ export type KaneoColumn = { id: string; name: string; slug: string };
 export type KaneoTask = { id: string; title: string; number: number };
 export type KaneoLabel = { id: string; name: string; color: string };
 export type KaneoMember = { id: string; name: string; email: string };
+export type KaneoTaskAttribute = {
+  id: string;
+  workspaceId: string;
+  name: string;
+  icon: string;
+  iconColor: string;
+  textColor: string;
+  position: number;
+  isDefault: boolean;
+};
 
 export function normalizeBaseUrl(raw: string): string {
   const trimmed = raw.trim().replace(/\/+$/, "");
@@ -41,6 +51,12 @@ export class KaneoClient {
   listMembers(workspaceId: string): Promise<KaneoMember[]> {
     return this.request<KaneoMember[]>(
       `/api/workspace/${encodeURIComponent(workspaceId)}/members`,
+    );
+  }
+
+  listTaskAttributes(workspaceId: string): Promise<KaneoTaskAttribute[]> {
+    return this.request<KaneoTaskAttribute[]>(
+      `/api/task-attribute/workspace/${encodeURIComponent(workspaceId)}`,
     );
   }
 
@@ -87,6 +103,7 @@ export class KaneoClient {
       priority: string;
       dueDate?: string;
       userId?: string;
+      attributeId?: string;
     },
   ): Promise<KaneoTask> {
     return this.request<KaneoTask>(

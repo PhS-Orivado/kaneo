@@ -20,6 +20,21 @@ function fakeKaneo(calls: Call[]) {
       record("listMembers");
       return [{ id: "ku_1", name: "Sam", email: "Sam@Example.com" }];
     },
+    async listTaskAttributes() {
+      record("listTaskAttributes");
+      return [
+        {
+          id: "attr_backlog",
+          workspaceId: "ws_1",
+          name: "Backlog",
+          icon: "SquareCheckBig",
+          iconColor: "slate",
+          textColor: "slate",
+          position: 0,
+          isDefault: true,
+        },
+      ];
+    },
     async createProject(input: unknown) {
       record("createProject", input);
       return { id: "p_new", name: "Board", slug: "B" };
@@ -242,6 +257,72 @@ describe("migrate (write)", () => {
       { name: "Urgent", color: "#e83855", workspaceId: "ws_1" },
       { name: "Urgent", color: "#e83855", workspaceId: "ws_1", taskId: "t_1" },
     ]);
+  });
+
+  it("maps the list name onto a task attribute with --attribute-from list", async () => {
+    const calls: Call[] = [];
+    await migrate({
+      planka: fakePlanka(bundleWith({})),
+      kaneo: fakeKaneo(calls),
+      workspaceId: "ws_1",
+      targets: [target],
+      dryRun: false,
+      skipComments: false,
+      attributeFrom: "list",
+    });
+
+    const task = calls.find((call) => call.method === "createTask")
+      ?.args[0] as { attributeId?: string };
+    expect(task.attributeId).toBe("attr_backlog");
+  });
+
+  it("maps the first matching label with --attribute-from label, case-insensitively", async () => {
+    const calls: Call[] = [];
+    await migrate({
+      planka: fakePlanka(
+        bundleWith({
+          labels: [
+            {
+              id: "lab1",
+              boardId: "b1",
+              name: "backlog",
+              color: "berry-red",
+              position: 1,
+            },
+          ],
+          cardLabels: [{ cardId: "card1", labelId: "lab1" }],
+        }),
+      ),
+      kaneo: fakeKaneo(calls),
+      workspaceId: "ws_1",
+      targets: [target],
+      dryRun: false,
+      skipComments: false,
+      attributeFrom: "label",
+    });
+
+    const task = calls.find((call) => call.method === "createTask")
+      ?.args[0] as { attributeId?: string };
+    expect(task.attributeId).toBe("attr_backlog");
+  });
+
+  it("omits attributeId when no attribute source is selected", async () => {
+    const calls: Call[] = [];
+    await migrate({
+      planka: fakePlanka(bundleWith({})),
+      kaneo: fakeKaneo(calls),
+      workspaceId: "ws_1",
+      targets: [target],
+      dryRun: false,
+      skipComments: false,
+    });
+
+    expect(
+      calls.find((call) => call.method === "listTaskAttributes"),
+    ).toBeUndefined();
+    const task = calls.find((call) => call.method === "createTask")
+      ?.args[0] as Record<string, unknown>;
+    expect("attributeId" in task).toBe(false);
   });
 
   it("resolves an assignee by email, case-insensitively", async () => {

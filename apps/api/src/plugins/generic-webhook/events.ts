@@ -4,6 +4,7 @@ import {
   columnTable,
   integrationTable,
   projectTable,
+  taskAttributeTable,
   taskTable,
   userTable,
   workspaceTable,
@@ -34,6 +35,8 @@ type GenericWebhookTaskData = {
   status: string | null;
   statusName: string | null;
   priority: string | null;
+  attributeId: string | null;
+  attributeName: string | null;
   projectId: string;
   projectName: string;
   workspaceId: string;
@@ -58,6 +61,8 @@ async function getTaskData(
       number: taskTable.number,
       status: taskTable.status,
       priority: taskTable.priority,
+      attributeId: taskTable.attributeId,
+      attributeName: taskAttributeTable.name,
       columnName: columnTable.name,
       projectId: projectTable.id,
       projectName: projectTable.name,
@@ -72,6 +77,10 @@ async function getTaskData(
         eq(taskTable.columnId, columnTable.id),
         eq(columnTable.projectId, projectTable.id),
       ),
+    )
+    .leftJoin(
+      taskAttributeTable,
+      eq(taskTable.attributeId, taskAttributeTable.id),
     )
     .where(and(eq(taskTable.id, taskId), eq(projectTable.id, projectId)))
     .limit(1);
@@ -231,6 +240,8 @@ async function sendEvent(
       status: task.status,
       statusName: task.statusName,
       priority: task.priority,
+      attributeId: task.attributeId,
+      attributeName: task.attributeName,
       url: task.taskUrl,
     },
     actor,

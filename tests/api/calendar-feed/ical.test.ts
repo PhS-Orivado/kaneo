@@ -12,6 +12,7 @@ const task: Parameters<typeof buildCalendar>[0]["tasks"][number] = {
   dueDate: new Date("2026-09-23T00:00:00Z"),
   createdAt: new Date("2026-09-01T12:00:00Z"),
   updatedAt: new Date("2026-09-22T10:30:00Z"),
+  attributeName: null,
 };
 const calendar = (tasks = [task], timeZone = "UTC") =>
   buildCalendar({ name: "Changes", timeZone, tasks });
@@ -85,6 +86,14 @@ describe("iCalendar serialization", () => {
     expect(result).toContain("SUMMARY:A\\\\B\\, C\\; D\\nEND:VEVENT\r\n");
     expect(result).toContain("DESCRIPTION:First\\nSecond\\nThird");
     expect(result.match(/\r\nEND:VEVENT/g)).toHaveLength(1);
+  });
+
+  it("emits the task attribute name as an escaped CATEGORIES property", () => {
+    const result = calendar([
+      { ...task, attributeName: "Bug, urgent; Ops" },
+    ]);
+    expect(result).toContain("CATEGORIES:Bug\\, urgent\\; Ops");
+    expect(calendar()).not.toContain("CATEGORIES:");
   });
 
   it("folds at 75 UTF-8 octets without splitting characters and uses CRLF", () => {

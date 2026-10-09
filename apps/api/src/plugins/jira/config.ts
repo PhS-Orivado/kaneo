@@ -15,6 +15,10 @@ export const jiraConfigSchema = v.object({
     v.custom<SyncRules>((value) => syncRulesSchema.safeParse(value).success),
   ),
   commentTaskLinkOnJiraIssue: v.optional(v.boolean()),
+  // RFC 0002: when enabled, Jira issue types without a matching workspace task
+  // attribute (case-insensitive name) are created as new attributes during an
+  // import; otherwise unmatched issue types fall back to the workspace default.
+  createMissingTaskAttributes: v.optional(v.boolean()),
   // Optional column slug -> Jira status name mapping used for outbound
   // transitions when the target status category is not enough.
   statusMap: v.optional(v.record(v.string(), v.string())),

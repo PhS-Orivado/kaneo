@@ -1,6 +1,7 @@
 import { RESERVED_COLUMN_SLUGS, toColumnSlug } from "./keys.js";
 import type {
   PlankaCard,
+  PlankaCardLabel,
   PlankaComment,
   PlankaList,
   PlankaTask,
@@ -119,4 +120,34 @@ export function boardProjectName(
 ): string {
   if (boardCountInProject <= 1) return projectName;
   return `${projectName} - ${boardName}`;
+}
+
+// RFC 0002: optional mapping of PLANKA cards onto workspace task attributes.
+// `label` takes the first card label whose name matches an attribute,
+// case-insensitively; `list` matches the card's list name. Unmatched cards
+// omit attributeId, so Kaneo applies the workspace default attribute.
+export function resolveCardAttributeId({
+  card,
+  cardLabels,
+  attributeFrom,
+  attributeIdByLabelId,
+  attributeIdByListId,
+}: {
+  card: PlankaCard;
+  cardLabels: PlankaCardLabel[];
+  attributeFrom?: "label" | "list";
+  attributeIdByLabelId?: Map<string, string | null>;
+  attributeIdByListId?: Map<string, string | null>;
+}): string | null {
+  if (attributeFrom === "list") {
+    return attributeIdByListId?.get(card.listId) ?? null;
+  }
+  if (attributeFrom === "label") {
+    for (const link of cardLabels) {
+      if (link.cardId !== card.id) continue;
+      const attributeId = attributeIdByLabelId?.get(link.labelId);
+      if (attributeId) return attributeId;
+    }
+  }
+  return null;
 }

@@ -10,6 +10,7 @@ import {
   externalLinkTable,
   integrationTable,
   projectTable,
+  taskAttributeTable,
   taskRelationTable,
   taskTable,
   userTable,
@@ -38,6 +39,11 @@ import {
 } from "../../plugins/github/services/link-manager";
 import { extractIssuePriority } from "../../plugins/github/utils/extract-priority";
 import { claimTaskNumber } from "../../task/controllers/claim-task-numbers";
+import {
+  TASK_ATTRIBUTE_COLORS,
+  TASK_ATTRIBUTE_DESCRIPTION_MAX_LENGTH,
+  TASK_ATTRIBUTE_NAME_MAX_LENGTH,
+} from "../../task-attribute/attribute-validation";
 
 import {
   type IntegrationDatabase,
@@ -183,6 +189,12 @@ export async function importJiraIssues({
   const users: CollectedUsers = { byEmail: new Map(), withoutEmail: new Map() };
   const taskIdsByKey = new Map<string, string>();
 
+  const attributeByIssueType = await resolveIssueTypeAttributes(
+    project.workspaceId,
+    allIssues.map((issue) => issue.fields.issuetype?.name),
+    config,
+  );
+
   for (const issue of allIssues) {
     collectIssueUsers(users, issue);
 
@@ -196,6 +208,7 @@ export async function importJiraIssues({
         client,
         users,
         membersByEmail,
+        attributeByIssueType,
       });
 
       if (result.taskId) taskIdsByKey.set(issue.key, result.taskId);
@@ -253,6 +266,7 @@ async function importSingleIssue({
   client,
   users,
   membersByEmail,
+  attributeByIssueType,
 }: {
   issue: JiraIssue;
   integrationId: string;
@@ -262,6 +276,7 @@ async function importSingleIssue({
   client: ReturnType<typeof createJiraClient>;
   users: CollectedUsers;
   membersByEmail: Map<string, string>;
+  attributeByIssueType: Map<string, string | null>;
 }): Promise<{ status: IssueImportStatus; taskId: string | null }> {
   const existingLink = await findExternalLink(
     integrationId,
@@ -406,6 +421,15 @@ async function importSingleIssue({
       const nextNumber = await claimTaskNumber(projectId, tx);
       const { startDate, dueDate } = toDateRange(issue.fields);
 
+      // RFC 0002: the issue type maps onto a workspace task attribute; the
+      // resolver already applied the create-missing and default fallbacks.
+      const issueTypeKey = (issue.fields.issuetype?.name ?? "")
+        .trim()
+        .toLowerCase();
+      const attributeId = issueTypeKey
+        ? (attributeByIssueType.get(issueTypeKey) ?? null)
+        : (attributeByIssueType.get("") ?? null);
+
       const taskValues: typeof taskTable.$inferInsert = {
         projectId,
         userId: resolveAssignee(issue.fields.assignee, membersByEmail),
@@ -417,6 +441,7 @@ async function importSingleIssue({
         status: closed ? (targetColumn?.slug ?? "done") : resolvedStatus,
         columnId: targetColumn?.id ?? null,
         priority: priority ?? "low",
+        attributeId,
         number: nextNumber,
         ...(startDate ? { startDate } : {}),
         ...(dueDate ? { dueDate } : {}),
@@ -729,6 +754,91 @@ function resolveAssignee(
   const email = assignee?.emailAddress?.trim().toLowerCase();
   if (!email) return null;
   return membersByEmail.get(email) ?? null;
+}
+
+// RFC 0002: Jira issue types map onto workspace task attributes by
+// case-insensitive name. With createMissingTaskAttributes enabled, unknown
+// issue types become new workspace attributes so imported tasks keep their
+// type; otherwise they fall back to the workspace default attribute. The
+// empty key carries that fallback for issues without an issue type name.
+async function resolveIssueTypeAttributes(
+  workspaceId: string,
+  issueTypeNames: (string | undefined)[],
+  config: JiraConfig,
+): Promise<Map<string, string | null>> {
+  const names = [
+    ...new Set(
+      issueTypeNames
+        .map((name) => name?.trim())
+        .filter((name): name is string => Boolean(name)),
+    ),
+  ];
+
+  const attributes = await db
+    .select({
+      id: taskAttributeTable.id,
+      name: taskAttributeTable.name,
+      position: taskAttributeTable.position,
+      isDefault: taskAttributeTable.isDefault,
+    })
+    .from(taskAttributeTable)
+    .where(eq(taskAttributeTable.workspaceId, workspaceId));
+
+  const idByName = new Map(
+    attributes.map((attribute) => [
+      attribute.name.trim().toLowerCase(),
+      attribute.id,
+    ]),
+  );
+  const defaultAttributeId =
+    attributes.find((attribute) => attribute.isDefault)?.id ?? null;
+
+  const missing = config.createMissingTaskAttributes
+    ? names.filter((name) => !idByName.has(name.toLowerCase()))
+    : [];
+  let nextPosition =
+    attributes.reduce(
+      (max, attribute) => Math.max(max, attribute.position),
+      -1,
+    ) + 1;
+
+  for (const name of missing) {
+    // The unique index is on lower(name), so a case-insensitive match was
+    // already checked; a bare conflict target still covers concurrent imports.
+    const color =
+      TASK_ATTRIBUTE_COLORS[nextPosition % TASK_ATTRIBUTE_COLORS.length];
+    const [created] = await db
+      .insert(taskAttributeTable)
+      .values({
+        workspaceId,
+        name: name.slice(0, TASK_ATTRIBUTE_NAME_MAX_LENGTH),
+        description: `Created by the Jira import for issue type ${name}`.slice(
+          0,
+          TASK_ATTRIBUTE_DESCRIPTION_MAX_LENGTH,
+        ),
+        icon: "SquareCheckBig",
+        iconColor: color,
+        textColor: color,
+        position: nextPosition,
+        isDefault: false,
+      })
+      .onConflictDoNothing()
+      .returning({ id: taskAttributeTable.id });
+    if (created) {
+      idByName.set(name.toLowerCase(), created.id);
+    }
+    nextPosition += 1;
+  }
+
+  const resolved = new Map<string, string | null>();
+  resolved.set("", defaultAttributeId);
+  for (const name of names) {
+    resolved.set(
+      name.toLowerCase(),
+      idByName.get(name.toLowerCase()) ?? defaultAttributeId,
+    );
+  }
+  return resolved;
 }
 
 // Kaneo validates startDate <= dueDate; Jira issues can be overdue, so the
