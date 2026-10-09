@@ -2817,7 +2817,8 @@
 				"priority": "우선순위",
 				"assignee": "담당자",
 				"dueDate": "마감일",
-				"labels": "라벨"
+				"labels": "라벨",
+				"sprint": "스프린트"
 			},
 			"operators": {
 				"isAnyOf": "다음 중 하나",
@@ -2826,7 +2827,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "모든 스프린트"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – 캘린더",
@@ -2953,7 +2955,9 @@
 			"actions": "작업",
 			"searchActions": "작업 검색...",
 			"noActionsFound": "작업을 찾을 수 없습니다.",
-			"changeStatus": "상태 변경"
+			"changeStatus": "상태 변경",
+			"moveToSprint": "스프린트로 이동",
+			"updateSprintError": "작업을 스프린트로 이동하지 못했습니다"
 		},
 		"editor": {
 			"table": {
@@ -3052,7 +3056,12 @@
 			"moveUp": "위로 이동",
 			"moveDown": "아래로 이동",
 			"closedLocked": "이 작업은 종료된 스프린트의 일부로 기록에 남습니다",
-			"error": "스프린트 작업이 실패했습니다"
+			"error": "스프린트 작업이 실패했습니다",
+			"daysRemaining": "{{remaining}}일 남음",
+			"endsToday": "오늘 종료",
+			"daysOverdue": "{{remaining}}일 지연",
+			"noTasks": "이 스프린트에는 아직 작업이 없습니다",
+			"toggleTasks": "스프린트 작업 표시"
 		},
 		"type": {
 			"task": "작업",

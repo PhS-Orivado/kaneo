@@ -2833,7 +2833,8 @@
 				"priority": "Приоритет",
 				"assignee": "Доделен",
 				"dueDate": "Краен рок",
-				"labels": "Етикети"
+				"labels": "Етикети",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "е било кој од",
@@ -2842,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Сите спринтови"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2957,7 +2959,9 @@
 			"actions": "Акции",
 			"searchActions": "Пребарај акции...",
 			"noActionsFound": "Не се пронајдени акции.",
-			"changeStatus": "Промени статус"
+			"changeStatus": "Промени статус",
+			"moveToSprint": "Премести во спринт",
+			"updateSprintError": "Не успеа преместувањето на задачите во спринтот"
 		},
 		"editor": {
 			"table": {
@@ -3070,7 +3074,12 @@
 			"moveUp": "Помести нагоре",
 			"moveDown": "Помести надолу",
 			"closedLocked": "Оваа задача припаѓа на затворен спринт и останува таму како историја",
-			"error": "Дејството за спринтот не успеа"
+			"error": "Дејството за спринтот не успеа",
+			"daysRemaining": "Остануваат {{remaining}} дена",
+			"endsToday": "Завршува денес",
+			"daysOverdue": "{{remaining}} дена доцни",
+			"noTasks": "Уште нема задачи во овој спринт",
+			"toggleTasks": "Прикажи задачи во спринтот"
 		},
 		"type": {
 			"task": "Задача",

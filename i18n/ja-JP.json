@@ -2817,7 +2817,8 @@
 				"priority": "優先度",
 				"assignee": "担当者",
 				"dueDate": "期限",
-				"labels": "ラベル"
+				"labels": "ラベル",
+				"sprint": "スプリント"
 			},
 			"operators": {
 				"isAnyOf": "次のいずれか",
@@ -2826,7 +2827,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "すべてのスプリント"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – カレンダー",
@@ -2948,7 +2950,9 @@
 			"actions": "操作",
 			"searchActions": "操作を検索...",
 			"noActionsFound": "操作が見つかりません。",
-			"changeStatus": "ステータスを変更"
+			"changeStatus": "ステータスを変更",
+			"moveToSprint": "スプリントに移動",
+			"updateSprintError": "スプリントへのタスクの移動に失敗しました"
 		},
 		"editor": {
 			"table": {
@@ -3052,7 +3056,12 @@
 			"moveUp": "上へ移動",
 			"moveDown": "下へ移動",
 			"closedLocked": "このタスクは完了したスプリントの一部であり、履歴として残ります",
-			"error": "スプリントの操作に失敗しました"
+			"error": "スプリントの操作に失敗しました",
+			"daysRemaining": "残り{{remaining}}日",
+			"endsToday": "本日終了",
+			"daysOverdue": "{{remaining}}日超過",
+			"noTasks": "このスプリントにはまだタスクがありません",
+			"toggleTasks": "スプリントのタスクを表示"
 		},
 		"type": {
 			"task": "タスク",
