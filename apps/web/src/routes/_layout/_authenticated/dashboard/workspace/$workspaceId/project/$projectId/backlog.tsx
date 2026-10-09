@@ -8,6 +8,7 @@ import BacklogListView from "@/components/backlog-list-view";
 import ProjectLayout from "@/components/common/project-layout";
 import SortControl from "@/components/common/sort-control";
 import PageTitle from "@/components/page-title";
+import SprintPlanningView from "@/components/sprint-planning/sprint-planning-view";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -889,23 +890,26 @@ function RouteComponent() {
           </div>
         </div>
 
-        <div className="flex-1 overflow-hidden bg-card h-full">
-          {sortedProject ? (
-            <BacklogListView
-              project={sortedProject}
-              disableDragDrop={sort.field !== "position"}
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-muted rounded-lg animate-pulse mx-auto" />
-                <div className="space-y-2">
-                  <div className="w-48 h-4 bg-muted rounded animate-pulse mx-auto" />
-                  <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
+        <div className="flex flex-1 flex-col overflow-hidden bg-card h-full">
+          <SprintPlanningView projectId={projectId} />
+          <div className="flex-1 min-h-0">
+            {sortedProject ? (
+              <BacklogListView
+                project={sortedProject}
+                disableDragDrop={sort.field !== "position"}
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 bg-muted rounded-lg animate-pulse mx-auto" />
+                  <div className="space-y-2">
+                    <div className="w-48 h-4 bg-muted rounded animate-pulse mx-auto" />
+                    <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <CreateTaskModal
