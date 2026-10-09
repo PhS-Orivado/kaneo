@@ -130,7 +130,9 @@ export async function importJiraIssues({
 
     if (issues.length === 0) break;
 
-    allIssues.push(...issues.filter((issue) => !issue.fields.issuetype?.subtask));
+    allIssues.push(
+      ...issues.filter((issue) => !issue.fields.issuetype?.subtask),
+    );
 
     startAt += issues.length;
     if (startAt >= total) break;
@@ -377,7 +379,11 @@ async function fetchIssueComments(
   let startAt = 0;
 
   while (true) {
-    const { comments, total } = await client.listComments(issueKey, startAt, 100);
+    const { comments, total } = await client.listComments(
+      issueKey,
+      startAt,
+      100,
+    );
 
     if (comments.length === 0) break;
 

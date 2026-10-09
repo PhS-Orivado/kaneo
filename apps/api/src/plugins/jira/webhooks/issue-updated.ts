@@ -254,12 +254,9 @@ export async function handleJiraIssueUpdated(
 
             const existingMetadata: Record<string, unknown> & {
               lastSync?: { state?: SyncStamp };
-            } = externalLink.metadata
-              ? JSON.parse(externalLink.metadata)
-              : {};
+            } = externalLink.metadata ? JSON.parse(externalLink.metadata) : {};
 
-            const closed =
-              issue.fields.status?.statusCategory?.key === "done";
+            const closed = issue.fields.status?.statusCategory?.key === "done";
             const incomingState = closed ? "closed" : "open";
 
             // Skip when this delivery echoes our own outbound transition.

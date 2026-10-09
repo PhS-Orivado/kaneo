@@ -16,12 +16,12 @@ async function createJiraIntegration(
   projectId: string,
   data: CreateJiraIntegrationRequest,
 ) {
-  const response = await client["jira-integration"].project[
-    ":projectId"
-  ].$post({
-    param: { projectId },
-    json: data,
-  });
+  const response = await client["jira-integration"].project[":projectId"].$post(
+    {
+      param: { projectId },
+      json: data,
+    },
+  );
 
   if (!response.ok) {
     const error = await response

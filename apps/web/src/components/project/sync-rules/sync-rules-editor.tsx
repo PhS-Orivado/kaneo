@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import type {
-  SyncPreview,
-  SyncScope,
-} from "@/fetchers/integration-sync/types";
+import type { SyncPreview, SyncScope } from "@/fetchers/integration-sync/types";
 import { useSaveSyncRules } from "@/hooks/mutations/integration-sync/use-save-sync-rules";
 import { useSyncPreview } from "@/hooks/queries/integration-sync/use-sync-preview";
 import { toast } from "@/lib/toast";

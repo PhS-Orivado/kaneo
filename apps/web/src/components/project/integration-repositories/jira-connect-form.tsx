@@ -174,8 +174,7 @@ export function JiraConnectForm({
           projectId,
           baseUrl: snapshot.baseUrl,
           authMode: snapshot.authMode,
-          email:
-            snapshot.authMode === "cloud" ? snapshot.email : undefined,
+          email: snapshot.authMode === "cloud" ? snapshot.email : undefined,
           apiToken: snapshot.apiToken,
           projectKey: snapshot.projectKey,
         });

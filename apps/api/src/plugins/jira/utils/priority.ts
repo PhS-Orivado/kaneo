@@ -20,9 +20,7 @@ const JIRA_TO_KANEO_PRIORITY: Record<string, string> = {
 
 export function priorityLabelName(priority: string): string | null {
   const normalized = priority.toLowerCase().trim();
-  return normalized in KANEO_PRIORITY_TO_JIRA
-    ? `priority:${normalized}`
-    : null;
+  return normalized in KANEO_PRIORITY_TO_JIRA ? `priority:${normalized}` : null;
 }
 
 export function jiraPriorityNameForTask(priority: string | null): string {

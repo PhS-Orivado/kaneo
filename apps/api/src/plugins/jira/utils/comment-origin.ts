@@ -11,7 +11,5 @@ export function isKaneoComment(body: string): boolean {
 }
 
 export function bodyFromKaneoComment(body: string): string {
-  return isKaneoComment(body)
-    ? body.slice(KANEO_COMMENT_PREFIX.length)
-    : body;
+  return isKaneoComment(body) ? body.slice(KANEO_COMMENT_PREFIX.length) : body;
 }

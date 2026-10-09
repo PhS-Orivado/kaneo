@@ -40,9 +40,7 @@ import githubIntegration, {
 import gitlabIntegration, {
   handleGitlabWebhookRoute,
 } from "./gitlab-integration";
-import jiraIntegration, {
-  handleJiraWebhookRoute,
-} from "./jira-integration";
+import jiraIntegration, { handleJiraWebhookRoute } from "./jira-integration";
 import getInstanceStatus from "./instance/controllers/get-instance-status";
 import invitation from "./invitation";
 import label from "./label";
@@ -395,10 +393,7 @@ export function createApp() {
     handleGitlabWebhookRoute,
   );
 
-  api.post(
-    "/jira-integration/webhook/:integrationId",
-    handleJiraWebhookRoute,
-  );
+  api.post("/jira-integration/webhook/:integrationId", handleJiraWebhookRoute);
 
   const invitationPublicApi = api.get("/invitation/public/:id", async (c) => {
     const { id } = c.req.param();
@@ -771,10 +766,7 @@ export function createApp() {
     "/gitlab-integration",
     gitlabIntegration,
   );
-  const jiraIntegrationApi = api.route(
-    "/jira-integration",
-    jiraIntegration,
-  );
+  const jiraIntegrationApi = api.route("/jira-integration", jiraIntegration);
   const genericWebhookIntegrationApi = api.route(
     "/generic-webhook-integration",
     genericWebhookIntegration,
