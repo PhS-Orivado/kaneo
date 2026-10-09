@@ -112,9 +112,7 @@ async function verifyJiraAccess({
 
     throw new HTTPException(500, {
       message:
-        error instanceof Error
-          ? error.message
-          : "Failed to verify Jira access",
+        error instanceof Error ? error.message : "Failed to verify Jira access",
     });
   }
 }

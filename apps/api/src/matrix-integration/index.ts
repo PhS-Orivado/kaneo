@@ -1,7 +1,11 @@
 import { and, eq } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
-import { integrationTable, projectTable, workspaceTable } from "../database/schema";
+import {
+  integrationTable,
+  projectTable,
+  workspaceTable,
+} from "../database/schema";
 import { publishEvent } from "../events";
 import { deletedSchema, projectIdParam } from "../integrations/schema";
 import {
@@ -183,10 +187,7 @@ async function requireProjectAndWorkspaceNames(projectId: string): Promise<{
       workspaceName: workspaceTable.name,
     })
     .from(projectTable)
-    .innerJoin(
-      workspaceTable,
-      eq(projectTable.workspaceId, workspaceTable.id),
-    )
+    .innerJoin(workspaceTable, eq(projectTable.workspaceId, workspaceTable.id))
     .where(eq(projectTable.id, projectId))
     .limit(1);
 
@@ -371,9 +372,7 @@ const matrixIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     );
 
     const resolvedIsActive =
-      body.isActive !== undefined
-        ? body.isActive
-        : (existing.isActive ?? true);
+      body.isActive !== undefined ? body.isActive : (existing.isActive ?? true);
 
     if (
       JSON.stringify(currentConfig) === JSON.stringify(nextConfig) &&

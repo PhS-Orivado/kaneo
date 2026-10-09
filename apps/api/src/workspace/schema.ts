@@ -35,8 +35,7 @@ export const createWorkspaceInvitationsBody = z.object({
     .array(
       z.object({
         email: z.email().openapi({
-          description:
-            "The invitee's email address, lowercased before use.",
+          description: "The invitee's email address, lowercased before use.",
         }),
         sendEmail: z.boolean().default(false).openapi({
           description:

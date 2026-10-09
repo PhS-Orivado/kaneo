@@ -91,9 +91,7 @@ function isValidHomeserverUrl(value: string): boolean {
 
 // Room IDs start with !, aliases with #; both carry a homeserver part.
 function isValidMatrixRoomReference(value: string): boolean {
-  return (
-    /^![^:\s]+:[^:\s]+$/.test(value) || /^#[^:\s]+:[^:\s]+$/.test(value)
-  );
+  return /^![^:\s]+:[^:\s]+$/.test(value) || /^#[^:\s]+:[^:\s]+$/.test(value);
 }
 
 export function MatrixIntegrationSettings({
@@ -242,9 +240,7 @@ export function MatrixIntegrationSettings({
 
       if (!isConnected && !trimmedAccessToken) {
         form.setError("accessToken", {
-          message: t(
-            "settings:matrixIntegration.validation.connectionInvalid",
-          ),
+          message: t("settings:matrixIntegration.validation.connectionInvalid"),
         });
         return;
       }
@@ -491,7 +487,10 @@ export function MatrixIntegrationSettings({
                     {t("settings:matrixIntegration.homeserverLabel")}
                   </FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="https://matrix.example.com" />
+                    <Input
+                      {...field}
+                      placeholder="https://matrix.example.com"
+                    />
                   </FormControl>
                   <p className="text-xs text-muted-foreground">
                     {t("settings:matrixIntegration.homeserverHint")}
@@ -591,10 +590,7 @@ export function MatrixIntegrationSettings({
                       {t("settings:matrixIntegration.parentSpaceLabel")}
                     </FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="#kaneo:example.com"
-                      />
+                      <Input {...field} placeholder="#kaneo:example.com" />
                     </FormControl>
                     <p className="text-xs text-muted-foreground">
                       {t("settings:matrixIntegration.parentSpaceHint")}

@@ -32,8 +32,7 @@ export function useDeleteJiraIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (integrationId: string) =>
-      deleteJiraIntegration(integrationId),
+    mutationFn: (integrationId: string) => deleteJiraIntegration(integrationId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["jira-integrations"] });
       queryClient.invalidateQueries({ queryKey: ["external-links"] });

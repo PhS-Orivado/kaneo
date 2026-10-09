@@ -27,14 +27,17 @@ vi.mock("../../../apps/api/src/database", () => ({
 vi.mock("../../../apps/api/src/plugins/matrix/client", () => ({
   MatrixRequestError: m.MatrixRequestError,
   safeMatrixError: (error: unknown) =>
-    error instanceof m.MatrixRequestError ? error.message : "Matrix request failed",
+    error instanceof m.MatrixRequestError
+      ? error.message
+      : "Matrix request failed",
   matrixRequest: vi.fn(),
   resolveRoomAlias: m.resolve,
   createMatrixRoom: m.create,
   linkSpaceChild: m.link,
   linkSpaceParent: m.linkParent,
   sendMatrixMessage: m.send,
-  isMatrixRoomInUseError: (error: unknown) => error instanceof m.MatrixRequestError,
+  isMatrixRoomInUseError: (error: unknown) =>
+    error instanceof m.MatrixRequestError,
   serverNameFromHomeserverUrl: (url: string) => new URL(url).host,
   getMatrixWhoami: vi.fn(),
   joinMatrixRoom: vi.fn(),
@@ -115,9 +118,12 @@ describe("Matrix logging", () => {
     m.link.mockResolvedValue(undefined);
     m.linkParent.mockResolvedValue(undefined);
     m.send.mockRejectedValue(
-      new Error(`Failed https://matrix.example.org/_matrix/client/...${token}`, {
-        cause: { token },
-      }),
+      new Error(
+        `Failed https://matrix.example.org/_matrix/client/...${token}`,
+        {
+          cause: { token },
+        },
+      ),
     );
     await handleTaskCreated(event, {
       integrationId: "integration",

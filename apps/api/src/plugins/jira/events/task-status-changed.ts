@@ -93,10 +93,10 @@ export async function handleTaskStatusChanged(
       (mappedStatus
         ? findTransitionByName(transitions, mappedStatus)
         : undefined) ??
-    (closing
-      ? findTransitionToStatusCategory(transitions, "done")
-      : (findTransitionToStatusCategory(transitions, "indeterminate") ??
-        findTransitionToStatusCategory(transitions, "new")));
+      (closing
+        ? findTransitionToStatusCategory(transitions, "done")
+        : (findTransitionToStatusCategory(transitions, "indeterminate") ??
+          findTransitionToStatusCategory(transitions, "new")));
 
     if (!transition) {
       console.warn("No Jira transition available for status sync", {

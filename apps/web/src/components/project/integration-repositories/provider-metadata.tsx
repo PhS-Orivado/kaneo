@@ -8,10 +8,11 @@ import type { RepositoryProvider } from "@/types/repository-binding";
 export type ProviderMetadata = {
   icon: ComponentType<SVGProps<SVGSVGElement>>;
   /** The provider's settings i18n namespace. */
-  | "githubIntegration"
-  | "giteaIntegration"
-  | "gitlabIntegration"
-  | "jiraIntegration";
+  namespace:
+    | "githubIntegration"
+    | "giteaIntegration"
+    | "gitlabIntegration"
+    | "jiraIntegration";
   /** The list query key of the provider (RFC 0001 WP7). */
   listQueryKey:
     | "github-integrations"

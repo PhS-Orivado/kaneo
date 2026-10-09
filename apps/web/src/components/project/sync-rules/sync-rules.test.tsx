@@ -183,8 +183,16 @@ describe("advanced sync settings", () => {
   });
 
   it.each([
-    { kind: "project", projectId: "another-project", provider: "gitea" } as const,
-    { kind: "project", projectId: param.projectId, provider: "github" } as const,
+    {
+      kind: "project",
+      projectId: "another-project",
+      provider: "gitea",
+    } as const,
+    {
+      kind: "project",
+      projectId: param.projectId,
+      provider: "github",
+    } as const,
   ])(
     "does not show a previous integration's data while changing scope to %j",
     async (nextParam) => {

@@ -19,8 +19,7 @@ export function findTransitionToStatusCategory(
   categoryKey: string,
 ): JiraTransition | undefined {
   return transitions.find(
-    (transition) =>
-      transition.to?.statusCategory?.key === categoryKey,
+    (transition) => transition.to?.statusCategory?.key === categoryKey,
   );
 }
 

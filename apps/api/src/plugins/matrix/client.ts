@@ -73,9 +73,7 @@ export async function matrixRequest(
             ? { "Content-Type": "application/json" }
             : {}),
         },
-        ...(init.body !== undefined
-          ? { body: JSON.stringify(init.body) }
-          : {}),
+        ...(init.body !== undefined ? { body: JSON.stringify(init.body) } : {}),
       }),
     );
 

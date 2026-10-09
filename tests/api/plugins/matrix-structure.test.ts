@@ -29,7 +29,9 @@ const m = vi.hoisted(() => {
 vi.mock("../../../apps/api/src/plugins/matrix/client", () => ({
   MatrixRequestError: m.MatrixRequestError,
   safeMatrixError: (error: unknown) =>
-    error instanceof m.MatrixRequestError ? error.message : "Matrix request failed",
+    error instanceof m.MatrixRequestError
+      ? error.message
+      : "Matrix request failed",
   matrixRequest: vi.fn(),
   resolveRoomAlias: m.resolve,
   createMatrixRoom: m.create,

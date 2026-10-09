@@ -60,12 +60,15 @@ export async function handleTaskTitleChanged(
       try {
         metadata = JSON.parse(issueLink.metadata) as LinkMetadata;
       } catch (error) {
-        console.warn("Failed to parse Jira issue link metadata for title sync", {
-          issueLinkId: issueLink.id,
-          taskId: issueLink.taskId,
-          metadata: issueLink.metadata,
-          error,
-        });
+        console.warn(
+          "Failed to parse Jira issue link metadata for title sync",
+          {
+            issueLinkId: issueLink.id,
+            taskId: issueLink.taskId,
+            metadata: issueLink.metadata,
+            error,
+          },
+        );
       }
     }
 

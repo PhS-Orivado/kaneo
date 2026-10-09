@@ -39,8 +39,7 @@ export async function resolveVerificationToken(input: {
     config = integration ? JSON.parse(integration.config) : null;
   } catch {
     throw new HTTPException(400, {
-      message:
-        "Invalid saved Jira configuration. Reconnect the integration.",
+      message: "Invalid saved Jira configuration. Reconnect the integration.",
     });
   }
   let savedBaseUrl: string | undefined;
@@ -49,8 +48,7 @@ export async function resolveVerificationToken(input: {
       savedBaseUrl = normalizeJiraBaseUrl(config.baseUrl);
     } catch {
       throw new HTTPException(400, {
-        message:
-          "Invalid saved Jira configuration. Reconnect the integration.",
+        message: "Invalid saved Jira configuration. Reconnect the integration.",
       });
     }
   }

@@ -61,10 +61,7 @@ describe("parseArgs", () => {
       "Alice@Example.com, bob@example.com",
       "--invite-emails=alice@example.com",
     ]);
-    expect(args.inviteEmails).toEqual([
-      "alice@example.com",
-      "bob@example.com",
-    ]);
+    expect(args.inviteEmails).toEqual(["alice@example.com", "bob@example.com"]);
   });
 
   it("rejects --invite-emails without a value", () => {

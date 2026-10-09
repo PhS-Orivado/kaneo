@@ -88,7 +88,9 @@ async function resolveOrCreateRoom(
         aliasLocalpart: options.aliasLocalpart,
         isSpace: options.isSpace,
         inviteUsers: config.inviteUsers,
-        ...(options.isRoom ? { powerLevelContentOverride: roomPowerLevels } : {}),
+        ...(options.isRoom
+          ? { powerLevelContentOverride: roomPowerLevels }
+          : {}),
       },
     );
     return room.roomId;
