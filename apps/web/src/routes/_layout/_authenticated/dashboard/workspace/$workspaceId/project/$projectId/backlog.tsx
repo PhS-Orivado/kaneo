@@ -316,7 +316,12 @@ function RouteComponent() {
 
     return {
       ...project,
-      plannedTasks: filterTasks(project.plannedTasks || []),
+      // Tasks scheduled into a sprint are planned in the sprint sections of
+      // the SprintPlanningView above, so the backlog list below only shows
+      // unscheduled tasks (the Jira model).
+      plannedTasks: filterTasks(project.plannedTasks || []).filter(
+        (task) => !task.sprintId,
+      ),
       archivedTasks: filterTasks(project.archivedTasks || []),
     };
   }, [project, filters, getTaskLabels, getValuesForTask]);
