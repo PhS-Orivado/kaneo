@@ -1028,7 +1028,14 @@
 			"toastMoved": "Projeto movido com sucesso",
 			"toastMovedWithUnassigned": "Projeto movido com sucesso. {{taskCount}} tarefa(s) ficaram sem responsável.",
 			"toastMoveError": "Falha ao mover o projeto",
-			"moveTargetsError": "Não foi possível verificar para quais workspaces você pode mover este projeto. Recarregue a página para tentar novamente."
+			"moveTargetsError": "Não foi possível verificar para quais workspaces você pode mover este projeto. Recarregue a página para tentar novamente.",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Planeje o trabalho futuro em iterações de duração fixa.",
+			"sprintLength": "Duração padrão do sprint",
+			"sprintLengthDescription": "Número de dias que um novo sprint cobre por padrão.",
+			"sprintLengthSave": "Salvar duração do sprint",
+			"sprintLengthSaved": "Duração do sprint salva",
+			"sprintLengthError": "Não foi possível salvar a duração do sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrações do projeto",
@@ -3048,6 +3055,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Criar sprint",
+			"createTitle": "Criar sprint",
+			"createDescription": "Planeje um sprint futuro com nome, objetivo e datas.",
+			"editTitle": "Editar sprint",
+			"editDescription": "Atualize o nome, o objetivo e as datas do sprint.",
+			"edit": "Editar sprint",
+			"name": "Nome do sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Objetivo do sprint",
+			"goalPlaceholder": "O que este sprint deve alcançar?",
+			"save": "Salvar alterações",
+			"start": "Iniciar sprint",
+			"startSuccess": "Sprint {{name}} iniciado",
+			"close": "Encerrar sprint",
+			"closeTitle": "Encerrar sprint",
+			"closeSummary": "{{name}} tem {{total}} tarefas, {{completed}} delas concluídas.",
+			"closeTarget": "Mover {{count}} tarefas não concluídas para",
+			"closeConfirm": "Encerrar sprint e mover tarefas não concluídas",
+			"closeSuccess": "Sprint encerrado, {{count}} tarefas não concluídas movidas",
+			"backlog": "Backlog",
+			"activeBadge": "Ativo",
+			"noActive": "Nenhum sprint está ativo. Inicie um sprint futuro para começar a iterar.",
+			"upcoming": "Sprint futuro",
+			"unscheduled": "Sem data",
+			"taskCounts": "{{completed}} de {{total}} concluídas",
+			"history": "Sprints encerrados ({{count}})",
+			"completedCount": "{{count}} concluídas",
+			"moveUp": "Mover para cima",
+			"moveDown": "Mover para baixo",
+			"closedLocked": "Esta tarefa pertence a um sprint encerrado e permanece nele como histórico",
+			"error": "A ação do sprint falhou"
+		},
+		"type": {
+			"task": "Tarefa",
+			"bug": "Bug"
 		}
 	},
 	"invitations": {

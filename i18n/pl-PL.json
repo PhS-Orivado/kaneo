@@ -1606,7 +1606,14 @@
 			"moveTargetsError": "Couldn't check which workspaces you can move this project to. Reload to try again.",
 			"toastMoved": "Project moved successfully",
 			"toastMovedWithUnassigned": "Project moved successfully. {{taskCount}} task(s) were unassigned.",
-			"toastMoveError": "Failed to move project"
+			"toastMoveError": "Failed to move project",
+			"sprints": "Sprinty",
+			"sprintsSubtitle": "Planuj nadchodzącą pracę w iteracjach o stałej długości.",
+			"sprintLength": "Domyślna długość sprintu",
+			"sprintLengthDescription": "Liczba dni, które domyślnie obejmuje nowy sprint.",
+			"sprintLengthSave": "Zapisz długość sprintu",
+			"sprintLengthSaved": "Długość sprintu zapisana",
+			"sprintLengthError": "Nie udało się zapisać długości sprintu"
 		},
 		"projectIntegrations": {
 			"discordSectionSubtitle": "Wysyłaj aktualizacje zadań projektu na kanał Discord za pomocą webhooka.",
@@ -3341,6 +3348,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprinty",
+			"create": "Utwórz sprint",
+			"createTitle": "Utwórz sprint",
+			"createDescription": "Zaplanuj nadchodzący sprint: nazwa, cel i daty.",
+			"editTitle": "Edytuj sprint",
+			"editDescription": "Zaktualizuj nazwę, cel i daty sprintu.",
+			"edit": "Edytuj sprint",
+			"name": "Nazwa sprintu",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Cel sprintu",
+			"goalPlaceholder": "Co ma osiągnąć ten sprint?",
+			"save": "Zapisz zmiany",
+			"start": "Rozpocznij sprint",
+			"startSuccess": "Sprint {{name}} rozpoczęty",
+			"close": "Zamknij sprint",
+			"closeTitle": "Zamknij sprint",
+			"closeSummary": "{{name}} ma {{total}} zadań, z czego {{completed}} ukończonych.",
+			"closeTarget": "Przenieś {{count}} nieukończonych zadań do",
+			"closeConfirm": "Zamknij sprint i przenieś nieukończone zadania",
+			"closeSuccess": "Sprint zamknięty, przeniesiono {{count}} nieukończonych zadań",
+			"backlog": "Backlog",
+			"activeBadge": "Aktywny",
+			"noActive": "Żaden sprint nie jest aktywny. Rozpocznij nadchodzący sprint, aby iterować.",
+			"upcoming": "Nadchodzący sprint",
+			"unscheduled": "Bez terminu",
+			"taskCounts": "{{completed}} z {{total}} ukończonych",
+			"history": "Zamknięte sprinty ({{count}})",
+			"completedCount": "{{count}} ukończonych",
+			"moveUp": "W górę",
+			"moveDown": "W dół",
+			"closedLocked": "To zadanie należy do zamkniętego sprintu i pozostaje w nim jako historia",
+			"error": "Akcja sprintu nie powiodła się"
+		},
+		"type": {
+			"task": "Zadanie",
+			"bug": "Błąd"
 		}
 	},
 	"press": {
