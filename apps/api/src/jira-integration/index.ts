@@ -278,7 +278,7 @@ const importIssuesRoute = createRoute({
   tags: ["Jira"],
   summary: "Import Jira issues",
   description:
-    "Import the linked Jira project's issues as tasks for one Jira binding (integrationId). Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
+    "Import the linked Jira project's issues as tasks for one Jira binding (integrationId), including subtasks, comments, labels, priority, dates and the hierarchy (epic, subtask, blocking and related relations). Jira users who are not workspace members yet receive a pending invitation without an email. The import is one-way: nothing is created in Jira or in any repository binding. Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
   middleware: [
     workspaceAccess.fromIntegration("integrationId"),
     requireWorkspacePermission({ task: ["create", "update"] }),
@@ -296,6 +296,7 @@ const importIssuesRoute = createRoute({
       "No workspace access, or missing task:create or task:update permission",
     ),
     404: errorResponse("Integration or project not found"),
+    502: errorResponse("Jira request failed while listing issues"),
   },
 });
 
@@ -457,7 +458,11 @@ const jiraIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   })
   .openapi(importIssuesRoute, async (c) => {
     const { integrationId, projectId } = c.req.valid("json");
-    const result = await importJiraIssues({ integrationId, projectId });
+    const result = await importJiraIssues({
+      integrationId,
+      projectId,
+      actorId: c.get("userId"),
+    });
     return c.json(result, 200);
   });
 

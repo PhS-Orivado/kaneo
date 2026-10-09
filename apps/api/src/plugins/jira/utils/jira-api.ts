@@ -2,6 +2,7 @@ import * as Sentry from "@sentry/node";
 import { assertPublicDestination } from "../../../utils/assert-public-destination";
 import type { JiraConfig } from "../config";
 import { normalizeJiraBaseUrl } from "../config";
+import { adfToMarkdown, type AdfDoc } from "./adf";
 
 export type JiraUser = {
   accountId?: string;
@@ -20,6 +21,13 @@ export type JiraComment = {
   created?: string;
   updated?: string;
   author?: JiraUser | null;
+};
+
+export type JiraIssueLink = {
+  id?: string;
+  type?: { name?: string; inward?: string; outward?: string } | null;
+  inwardIssue?: { key?: string } | null;
+  outwardIssue?: { key?: string } | null;
 };
 
 export type JiraChangelogItem = {
@@ -52,6 +60,10 @@ export type JiraIssue = {
     reporter?: JiraUser | null;
     assignee?: JiraUser | null;
     comment?: { comments?: JiraComment[]; total?: number } | null;
+    duedate?: string | null;
+    parent?: { key?: string } | null;
+    subtasks?: { key?: string }[] | null;
+    issuelinks?: JiraIssueLink[] | null;
   };
   changelog?: { histories?: unknown[]; items?: JiraChangelogItem[] } | null;
 };
@@ -60,6 +72,12 @@ export type JiraProject = {
   id: string;
   key: string;
   name: string;
+};
+
+export type JiraField = {
+  id: string;
+  name?: string;
+  custom?: boolean;
 };
 
 export type JiraTransition = {
@@ -110,13 +128,24 @@ function authHeaders(credentials: JiraCredentials): HeadersInit {
 
 const JIRA_FETCH_TIMEOUT_MS = 10_000;
 
+// The enhanced search pages are capped at 100 issues and big JQL pages take
+// a while on large projects, so the search waits longer than the interactive
+// endpoints (same page size and budget as the import CLI).
+const SEARCH_PAGE_SIZE = 100;
+const SEARCH_TIMEOUT_MS = 120_000;
+
 export async function jiraFetch<T>(
   credentials: JiraCredentials,
   path: string,
   init?: RequestInit,
+  timeoutMs = JIRA_FETCH_TIMEOUT_MS,
 ): Promise<T | undefined> {
   const root = normalizeJiraBaseUrl(credentials.baseUrl);
-  const url = `${root}/rest/api/2${path.startsWith("/") ? path : `/${path}`}`;
+  // The enhanced search endpoint only exists on API v3, so paths starting
+  // with /rest/ are used as they are; everything else stays on v2.
+  const url = path.startsWith("/rest/")
+    ? `${root}${path}`
+    : `${root}/rest/api/2${path.startsWith("/") ? path : `/${path}`}`;
 
   await assertPublicDestination(root, "Jira");
 
@@ -125,7 +154,7 @@ export async function jiraFetch<T>(
   const timeoutId = setTimeout(() => {
     timedOut = true;
     controller.abort();
-  }, JIRA_FETCH_TIMEOUT_MS);
+  }, timeoutMs);
   if (init?.signal) {
     if (init.signal.aborted) {
       controller.abort();
@@ -196,7 +225,7 @@ export async function jiraFetch<T>(
     if (error instanceof Error && error.name === "AbortError") {
       if (timedOut) {
         throw new JiraApiError(
-          `Jira request timed out after ${JIRA_FETCH_TIMEOUT_MS}ms`,
+          `Jira request timed out after ${timeoutMs}ms`,
           408,
           "TIMEOUT",
         );
@@ -278,29 +307,42 @@ export function createJiraClient(config: JiraCredentials) {
       return projects;
     },
 
-    async searchIssues(
-      projectKey: string,
-      startAt = 0,
-      maxResults = 50,
-    ): Promise<{ issues: JiraIssue[]; total: number; startAt: number }> {
-      const jql = `project = "${projectKey.replace(/"/g, "")}" ORDER BY created ASC`;
-      const result = await jiraFetch<{
-        issues: JiraIssue[];
-        total: number;
-        startAt: number;
-      }>(
-        credentials,
-        `/search?jql=${encodeURIComponent(jql)}&startAt=${startAt}&maxResults=${maxResults}` +
-          `&fields=${encodeURIComponent(`${ISSUE_FIELDS},comment,priority,creator,reporter`)}`,
-      );
-      if (!result) {
+    async listFields(): Promise<JiraField[]> {
+      const fields = await jiraFetch<JiraField[]>(credentials, "/field");
+      if (!fields) {
         throw new JiraApiError(
-          "Jira search response was empty",
+          "Jira fields response was empty",
           500,
           "EMPTY_RESPONSE",
         );
       }
-      return result;
+      return fields;
+    },
+
+    // Runs the search JQL and returns every matching issue. The enhanced
+    // /search/jql endpoint comes first because Jira Cloud removed the classic
+    // /search endpoint; Data Center and older builds answer 404/410 and fall
+    // back to the v2 search.
+    async searchIssues(
+      projectKey: string,
+      extraFields = "",
+    ): Promise<JiraIssue[]> {
+      const jql = `project = "${projectKey.replace(/"/g, "")}" ORDER BY created ASC`;
+      const fields = [
+        `${ISSUE_FIELDS},priority,creator,reporter,assignee,parent,subtasks,issuelinks,duedate`,
+        extraFields,
+      ]
+        .join(",")
+        .split(",")
+        .map((field) => field.trim())
+        .filter((field) => field.length > 0);
+
+      try {
+        return await searchEnhanced(credentials, jql, fields);
+      } catch (error) {
+        if (!isEnhancedUnavailable(error)) throw error;
+        return await searchLegacy(credentials, jql, fields);
+      }
     },
 
     async getIssue(
@@ -425,6 +467,113 @@ export function createJiraClient(config: JiraCredentials) {
           body: JSON.stringify({ transition: { id: transitionId } }),
         },
       );
+    },
+  };
+}
+
+async function searchEnhanced(
+  credentials: JiraCredentials,
+  jql: string,
+  fields: string[],
+): Promise<JiraIssue[]> {
+  const issues: JiraIssue[] = [];
+  let nextPageToken: string | undefined;
+
+  do {
+    const page = await jiraFetch<{
+      issues?: JiraIssue[];
+      nextPageToken?: string;
+    }>(
+      credentials,
+      "/rest/api/3/search/jql",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          jql,
+          maxResults: SEARCH_PAGE_SIZE,
+          fields,
+          ...(nextPageToken ? { nextPageToken } : {}),
+        }),
+      },
+      SEARCH_TIMEOUT_MS,
+    );
+    if (!page) {
+      throw new JiraApiError(
+        "Jira search response was empty",
+        500,
+        "EMPTY_RESPONSE",
+      );
+    }
+
+    issues.push(...(page.issues ?? []).map(normalizeSearchIssue));
+    nextPageToken = page.nextPageToken;
+  } while (nextPageToken);
+
+  return issues;
+}
+
+async function searchLegacy(
+  credentials: JiraCredentials,
+  jql: string,
+  fields: string[],
+): Promise<JiraIssue[]> {
+  const issues: JiraIssue[] = [];
+  let startAt = 0;
+
+  while (true) {
+    const page = await jiraFetch<{
+      issues: JiraIssue[];
+      total: number;
+      startAt: number;
+    }>(
+      credentials,
+      `/search?jql=${encodeURIComponent(jql)}&startAt=${startAt}` +
+        `&maxResults=${SEARCH_PAGE_SIZE}` +
+        `&fields=${encodeURIComponent(fields.join(","))}`,
+      undefined,
+      SEARCH_TIMEOUT_MS,
+    );
+    if (!page) {
+      throw new JiraApiError(
+        "Jira search response was empty",
+        500,
+        "EMPTY_RESPONSE",
+      );
+    }
+
+    if (page.issues.length === 0) break;
+
+    issues.push(...page.issues);
+
+    startAt += page.issues.length;
+    if (startAt >= page.total) break;
+  }
+
+  return issues;
+}
+
+// Jira Cloud answers 410 (endpoint removed) or 404 (never existed) when the
+// enhanced endpoint is unavailable; both mean the legacy search is next.
+function isEnhancedUnavailable(error: unknown): boolean {
+  return (
+    error instanceof JiraApiError &&
+    (error.status === 404 || error.status === 410)
+  );
+}
+
+// The enhanced search is a v3 endpoint: descriptions come back as ADF
+// documents instead of wiki markup. They are flattened to markdown here so
+// every consumer keeps dealing with plain text; legacy pages skip this
+// because v2 already returns wiki markup.
+function normalizeSearchIssue(issue: JiraIssue): JiraIssue {
+  return {
+    ...issue,
+    fields: {
+      ...issue.fields,
+      description:
+        adfToMarkdown(
+          issue.fields.description as AdfDoc | string | null | undefined,
+        ).markdown || null,
     },
   };
 }

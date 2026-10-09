@@ -3831,6 +3831,36 @@
           "skipped": {
             "type": "number"
           },
+          "relations": {
+            "type": "number",
+            "description": "Task relations created between imported tasks (subtask, blocks, related)."
+          },
+          "users": {
+            "type": "object",
+            "properties": {
+              "invited": {
+                "type": "number",
+                "description": "Jira users who now have a pending workspace invitation; no email was sent."
+              },
+              "members": {
+                "type": "number",
+                "description": "Jira users who were already workspace members."
+              },
+              "withoutEmail": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Jira users without a public email address, who cannot be invited automatically."
+              }
+            },
+            "required": [
+              "invited",
+              "members",
+              "withoutEmail"
+            ],
+            "description": "Jira users seen during the import and their invite state."
+          },
           "errors": {
             "type": "array",
             "items": {
@@ -3841,7 +3871,9 @@
         "required": [
           "imported",
           "updated",
-          "skipped"
+          "skipped",
+          "relations",
+          "users"
         ]
       },
       "GenericWebhookIntegration": {
@@ -18814,7 +18846,7 @@
           "Jira"
         ],
         "summary": "Import Jira issues",
-        "description": "Import the linked Jira project's issues as tasks for one Jira binding (integrationId). Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
+        "description": "Import the linked Jira project's issues as tasks for one Jira binding (integrationId), including subtasks, comments, labels, priority, dates and the hierarchy (epic, subtask, blocking and related relations). Jira users who are not workspace members yet receive a pending invitation without an email. The import is one-way: nothing is created in Jira or in any repository binding. Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
         "requestBody": {
           "required": true,
           "content": {
@@ -18873,6 +18905,16 @@
           },
           "404": {
             "description": "Integration or project not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "Jira request failed while listing issues",
             "content": {
               "text/plain": {
                 "schema": {
