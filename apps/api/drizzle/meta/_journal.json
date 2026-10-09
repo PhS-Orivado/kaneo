@@ -442,6 +442,13 @@
       "when": 1791391300000,
       "tag": "0062_repository_binding_identity",
       "breakpoints": true
+    },
+    {
+      "idx": 63,
+      "version": "7",
+      "when": 1791504000000,
+      "tag": "0063_add_task_attributes",
+      "breakpoints": true
     }
   ]
 }
