@@ -11,6 +11,7 @@ function build(
     workspaceName: "Acme",
     billingEnabled: false,
     hasAdminAccess: false,
+    hasTaskAttributeAccess: false,
     projects: [],
     ...overrides,
   });
@@ -31,6 +32,24 @@ describe("buildSettingsNav", () => {
     expect(linkIds(build())).not.toContain("workspace-billing");
     expect(linkIds(build({ billingEnabled: true }))).toContain(
       "workspace-billing",
+    );
+  });
+
+  it("only offers task attributes with the management permission", () => {
+    const linkIds = (nav: ReturnType<typeof build>) =>
+      nav.workspace.links.map((link) => link.id);
+
+    expect(linkIds(build())).not.toContain("workspace-task-attributes");
+    const nav = build({ hasTaskAttributeAccess: true });
+    expect(linkIds(nav)).toContain("workspace-task-attributes");
+    expect(linkIds(nav)).toEqual([
+      "workspace-general",
+      "workspace-roles",
+      "workspace-labels",
+      "workspace-task-attributes",
+    ]);
+    expect(nav.workspace.links[3]?.to).toBe(
+      "/dashboard/settings/workspace/task-attributes",
     );
   });
 

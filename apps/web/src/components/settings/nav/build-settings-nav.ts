@@ -6,6 +6,7 @@ import {
   KeyRound,
   Server,
   Settings,
+  Shapes,
   Shield,
   SlidersHorizontal,
   Tag,
@@ -24,6 +25,7 @@ type BuildSettingsNavInput = {
   workspaceName?: string;
   billingEnabled: boolean;
   hasAdminAccess: boolean;
+  hasTaskAttributeAccess: boolean;
   projects: { id: string; name: string; icon?: string | null }[];
 };
 
@@ -60,6 +62,7 @@ export function buildSettingsNav({
   workspaceName,
   billingEnabled,
   hasAdminAccess,
+  hasTaskAttributeAccess,
   projects,
 }: BuildSettingsNavInput): SettingsNav {
   return {
@@ -121,6 +124,16 @@ export function buildSettingsNav({
           to: "/dashboard/settings/workspace/labels",
           icon: Tag,
         },
+        ...(hasTaskAttributeAccess
+          ? [
+              {
+                id: "workspace-task-attributes",
+                label: t("settings:workspaceTaskAttributes.title"),
+                to: "/dashboard/settings/workspace/task-attributes",
+                icon: Shapes,
+              },
+            ]
+          : []),
         ...(billingEnabled
           ? [
               {

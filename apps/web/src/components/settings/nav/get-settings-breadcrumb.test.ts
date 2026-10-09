@@ -7,6 +7,7 @@ const nav = buildSettingsNav({
   workspaceName: "Acme",
   billingEnabled: false,
   hasAdminAccess: true,
+  hasTaskAttributeAccess: true,
   projects: [{ id: "p1", name: "Kaneo Web" }],
 });
 
@@ -21,6 +22,15 @@ describe("getSettingsBreadcrumb", () => {
     expect(
       getSettingsBreadcrumb(nav, "/dashboard/settings/workspace/labels/"),
     ).toEqual({ section: "Acme", page: "settings:workspaceLabels.title" });
+    expect(
+      getSettingsBreadcrumb(
+        nav,
+        "/dashboard/settings/workspace/task-attributes",
+      ),
+    ).toEqual({
+      section: "Acme",
+      page: "settings:workspaceTaskAttributes.title",
+    });
   });
 
   it("uses the project name for project pages", () => {
