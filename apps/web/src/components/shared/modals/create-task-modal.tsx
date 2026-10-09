@@ -1,10 +1,12 @@
 import { useLocation, useParams } from "@tanstack/react-router";
 import { produce } from "immer";
 import {
+  Bug,
   CalendarIcon,
   Check,
   FolderGit,
   FolderKanban,
+  ListTodo,
   Plus,
   Search,
   Tag,
@@ -256,6 +258,7 @@ function CreateTaskModalContent({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Priority>("no-priority");
+  const [taskType, setTaskType] = useState<"task" | "bug">("task");
   const [assigneeId, setAssigneeId] = useState("");
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [dueDate, setDueDate] = useState<Date | undefined>(undefined);
@@ -431,6 +434,7 @@ function CreateTaskModalContent({
     title.trim() ||
     description.trim() ||
     priority !== "no-priority" ||
+    taskType !== "task" ||
     assigneeId ||
     startDate ||
     dueDate ||
@@ -584,6 +588,7 @@ function CreateTaskModalContent({
           description: description.trim() || "",
           userId: selectedUser?.id ?? "",
           priority,
+          type: taskType,
           projectId: resolvedProjectId,
           startDate: startDate ? startDate.toISOString() : undefined,
           dueDate: dueDate ? dueDate.toISOString() : undefined,
@@ -625,6 +630,7 @@ function CreateTaskModalContent({
         setTitle("");
         setDescription("");
         setPriority("no-priority");
+        setTaskType("task");
         setAssigneeId("");
         setStartDate(undefined);
         setDueDate(undefined);
@@ -1365,6 +1371,46 @@ function CreateTaskModalContent({
                         {getPriorityIcon(option.value)}
                         <span className="text-sm">{option.label}</span>
                         {priority === option.value && (
+                          <Check className="ml-auto h-4 w-4" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </PopoverContent>
+              </Popover>
+
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    type="button"
+                    className={cn(
+                      "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors border border-border hover:bg-accent/50",
+                      taskType !== "task"
+                        ? "bg-accent/30 text-foreground"
+                        : "text-muted-foreground",
+                    )}
+                  >
+                    {taskType === "bug" ? (
+                      <Bug className="h-3.5 w-3.5" />
+                    ) : (
+                      <ListTodo className="h-3.5 w-3.5" />
+                    )}
+                    <span>{t(`tasks:type.${taskType}`)}</span>
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-40 p-1" align="start">
+                  <div className="space-y-1">
+                    {(["task", "bug"] as const).map((option) => (
+                      <button
+                        key={option}
+                        type="button"
+                        className="w-full flex items-center gap-2 px-2 py-1.5 text-sm hover:bg-accent/50 text-left transition-colors h-8"
+                        onClick={() => setTaskType(option)}
+                      >
+                        <span className="text-sm">
+                          {t(`tasks:type.${option}`)}
+                        </span>
+                        {taskType === option && (
                           <Check className="ml-auto h-4 w-4" />
                         )}
                       </button>
