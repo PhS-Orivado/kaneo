@@ -58,6 +58,7 @@ import useMoveProject from "@/hooks/mutations/project/use-move-project";
 import useRemoveProjectBackground from "@/hooks/mutations/project/use-remove-project-background";
 import useUpdateProject from "@/hooks/mutations/project/use-update-project";
 import useUploadProjectBackground from "@/hooks/mutations/project/use-upload-project-background";
+import useGetProject from "@/hooks/queries/project/use-get-project";
 import { useGetTasks } from "@/hooks/queries/task/use-get-tasks";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import useGetWorkspaces from "@/hooks/queries/workspace/use-get-workspaces";
@@ -147,11 +148,20 @@ function RouteComponent() {
   // and the target workspace must only be applied from the confirm dialog.
   const [targetWorkspaceId, setTargetWorkspaceId] = useState("");
   const [isMoveModalOpen, setIsMoveModalOpen] = useState(false);
+  // Outside `projectForm`: the sprint length is an explicit save, not part of
+  // the auto-saving project form.
+  const [sprintLengthDays, setSprintLengthDays] = useState<number>(14);
 
   const { data: workspace } = useActiveWorkspace();
   const { projectId: rawProjectId } = useParams({ strict: false });
   const projectId = rawProjectId ?? "";
   const { data: fetchedProject } = useGetTasks(projectId);
+  // The board payload that feeds the project store does not carry sprint
+  // settings, so read them through the project detail query.
+  const { data: projectDetails } = useGetProject({
+    id: projectId,
+    workspaceId: workspace?.id ?? "",
+  });
   const { project, setProject } = useProjectStore();
   // The store is populated asynchronously from `useGetTasks`, so during a route
   // transition it can still hold the previously viewed project.
@@ -164,6 +174,58 @@ function RouteComponent() {
   }, [fetchedProject, setProject]);
 
   const { mutateAsync: updateProject } = useUpdateProject();
+
+  useEffect(() => {
+    if (projectDetails?.defaultSprintLengthDays) {
+      setSprintLengthDays(projectDetails.defaultSprintLengthDays);
+    }
+  }, [projectDetails?.defaultSprintLengthDays]);
+
+  const handleSaveSprintLength = useCallback(async () => {
+    if (!project?.id) return;
+
+    const days = Math.max(1, Math.trunc(sprintLengthDays || 14));
+
+    try {
+      await updateProject({
+        id: project.id,
+        name: project.name,
+        icon: project.icon ?? "Layout",
+        slug: project.slug,
+        description: project.description ?? "",
+        isPublic: !!project.isPublic,
+        defaultSprintLengthDays: days,
+      });
+      await Promise.all([
+        queryClient.invalidateQueries({ queryKey: ["projects"] }),
+        queryClient.invalidateQueries({
+          queryKey: ["projects", workspace?.id],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ["projects", workspace?.id, project.id],
+        }),
+      ]);
+      toast.success(t("settings:projectGeneral.sprintLengthSaved"));
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : t("settings:projectGeneral.sprintLengthError"),
+      );
+    }
+  }, [
+    project?.id,
+    project?.name,
+    project?.slug,
+    project?.description,
+    project?.icon,
+    project?.isPublic,
+    sprintLengthDays,
+    updateProject,
+    queryClient,
+    workspace?.id,
+    t,
+  ]);
   const { mutateAsync: deleteProject, isPending: isDeleting } =
     useDeleteProject();
   const { mutate: uploadProjectBackground, isPending: isUploadingBackground } =
@@ -852,6 +914,54 @@ function RouteComponent() {
                 </div>
               </>
             )}
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <SettingsSectionHeader
+            title={t("settings:projectGeneral.sprints")}
+            description={t("settings:projectGeneral.sprintsSubtitle")}
+          />
+
+          <div className="space-y-4 rounded-xl border border-border bg-card p-4">
+            <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <div className="space-y-0.5">
+                <p className="text-sm font-medium">
+                  {t("settings:projectGeneral.sprintLength")}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {t("settings:projectGeneral.sprintLengthDescription")}
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Input
+                  type="number"
+                  min={1}
+                  className="w-24"
+                  value={sprintLengthDays}
+                  onChange={(event) =>
+                    setSprintLengthDays(Number(event.target.value))
+                  }
+                  disabled={!canEdit}
+                />
+                <Button
+                  variant="outline"
+                  size="sm"
+                  type="button"
+                  disabled={
+                    !canEdit ||
+                    !project ||
+                    !Number.isFinite(sprintLengthDays) ||
+                    sprintLengthDays < 1 ||
+                    Math.max(1, Math.trunc(sprintLengthDays || 14)) ===
+                      projectDetails?.defaultSprintLengthDays
+                  }
+                  onClick={() => void handleSaveSprintLength()}
+                >
+                  {t("settings:projectGeneral.sprintLengthSave")}
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 
