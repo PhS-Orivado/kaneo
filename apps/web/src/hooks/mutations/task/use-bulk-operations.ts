@@ -109,6 +109,23 @@ export function useBulkOperations() {
     onSuccess: invalidateCommon,
   });
 
+  const bulkAttribute = useMutation({
+    mutationFn: async ({
+      taskIds,
+      attributeId,
+    }: {
+      taskIds: string[];
+      attributeId: string | null;
+    }) => {
+      await bulkOperation({
+        taskIds,
+        operation: "updateAttribute",
+        value: attributeId,
+      });
+    },
+    onSuccess: invalidateCommon,
+  });
+
   const bulkAddLabel = useMutation({
     mutationFn: async ({
       taskIds,
@@ -154,6 +171,7 @@ export function useBulkOperations() {
     bulkMoveToBacklog: bulkMoveToBacklog.mutateAsync,
     bulkMoveToBoard: bulkMoveToBoard.mutateAsync,
     bulkPriority: bulkPriority.mutateAsync,
+    bulkAttribute: bulkAttribute.mutateAsync,
     bulkAddLabel: bulkAddLabel.mutateAsync,
     bulkDueDate: bulkDueDate.mutateAsync,
   };

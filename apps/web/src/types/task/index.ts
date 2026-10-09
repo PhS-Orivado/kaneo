@@ -1,3 +1,5 @@
+import type { TaskAttributeRef } from "@/types/task-attribute";
+
 type TaskLabel = {
   id: string;
   name: string;
@@ -39,6 +41,7 @@ type Task = {
   assigneeImage?: string | null;
   projectId: string;
   columnId?: string | null;
+  attribute?: TaskAttributeRef | null;
   subtaskCounts?: { completed: number; total: number };
   labels?: TaskLabel[];
   externalLinks?: TaskExternalLink[];
