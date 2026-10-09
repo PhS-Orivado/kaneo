@@ -11,6 +11,11 @@ export const statement = {
   project: ["create", "read", "update", "delete", "share"],
   task: ["create", "read", "update", "delete", "assign"],
   label: ["create", "read", "update", "delete"],
+  // RFC 0002 (task attributes): workspace-scoped task type definitions
+  // (task, bug, doc, ...). Managing them is administrative, so members stay
+  // read-only; assigning an attribute to a task is covered by the ordinary
+  // task:update statement instead.
+  taskAttribute: ["create", "read", "update", "delete"],
   workspace: ["read", "update", "delete", "manage_settings"],
 } as const;
 
@@ -21,6 +26,7 @@ export const viewer = ac.newRole({
   project: ["read"],
   task: ["read"],
   label: ["read"],
+  taskAttribute: ["read"],
   workspace: ["read"],
 });
 
@@ -29,6 +35,7 @@ export const member = ac.newRole({
   project: ["create", "read"],
   task: ["create", "read", "update"],
   label: ["create", "read", "update", "delete"],
+  taskAttribute: ["read"],
   workspace: ["read"],
 });
 
@@ -37,6 +44,7 @@ export const admin = ac.newRole({
   project: ["create", "read", "update", "delete", "share"],
   task: ["create", "read", "update", "delete", "assign"],
   label: ["create", "read", "update", "delete"],
+  taskAttribute: ["create", "read", "update", "delete"],
   workspace: ["read", "update", "manage_settings"],
 });
 
@@ -45,6 +53,7 @@ export const owner = ac.newRole({
   project: ["create", "read", "update", "delete", "share"],
   task: ["create", "read", "update", "delete", "assign"],
   label: ["create", "read", "update", "delete"],
+  taskAttribute: ["create", "read", "update", "delete"],
   workspace: ["read", "update", "delete", "manage_settings"],
 });
 

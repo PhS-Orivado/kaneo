@@ -28,6 +28,12 @@ describe("@kaneo/permissions statement surface", () => {
       "assign",
     ]);
     expect(statement.label).toEqual(["create", "read", "update", "delete"]);
+    expect(statement.taskAttribute).toEqual([
+      "create",
+      "read",
+      "update",
+      "delete",
+    ]);
     expect(statement.workspace).toEqual([
       "read",
       "update",
@@ -52,6 +58,7 @@ describe("built-in role privileges", () => {
     expect(viewer.statements.project).toEqual(["read"]);
     expect(viewer.statements.task).toEqual(["read"]);
     expect(viewer.statements.label).toEqual(["read"]);
+    expect(viewer.statements.taskAttribute).toEqual(["read"]);
     expect(viewer.statements.workspace).toEqual(["read"]);
   });
 
@@ -62,6 +69,8 @@ describe("built-in role privileges", () => {
     expect(member.statements.project).toContain("create");
     expect(member.statements.project).not.toContain("delete");
     expect(member.statements.workspace).toEqual(["read"]);
+    // RFC 0002: managing task attributes is administrative; members read only.
+    expect(member.statements.taskAttribute).toEqual(["read"]);
   });
 
   it("admin can delete tasks and manage workspace settings but cannot delete the workspace", () => {
@@ -71,6 +80,12 @@ describe("built-in role privileges", () => {
     expect(admin.statements.project).toContain("share");
     expect(admin.statements.workspace).toContain("manage_settings");
     expect(admin.statements.workspace).not.toContain("delete");
+    expect(admin.statements.taskAttribute).toEqual([
+      "create",
+      "read",
+      "update",
+      "delete",
+    ]);
   });
 
   it("owner has every Kaneo resource action including workspace:delete", () => {
@@ -82,6 +97,9 @@ describe("built-in role privileges", () => {
     );
     expect(owner.statements.workspace).toEqual(
       expect.arrayContaining(["read", "update", "delete", "manage_settings"]),
+    );
+    expect(owner.statements.taskAttribute).toEqual(
+      expect.arrayContaining(["create", "read", "update", "delete"]),
     );
   });
 
