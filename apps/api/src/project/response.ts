@@ -27,6 +27,12 @@ export const projectSchema = z
       description:
         "Highest task number issued in this project; the next task gets this plus one.",
     }),
+    defaultSprintLengthDays: z
+      .number()
+      .openapi({
+        description:
+          "Default sprint length in days; used to prefill a sprint's end date when it starts.",
+      }),
   })
   .openapi("Project");
 
