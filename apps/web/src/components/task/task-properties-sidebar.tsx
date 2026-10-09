@@ -5,8 +5,10 @@ import {
   CalendarDays,
   CalendarX,
   Plus,
+  SquareCheckBig,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -37,6 +39,7 @@ import { getTaskPath } from "@/lib/task-link";
 import { toast } from "@/lib/toast";
 import TaskActions from "./task-actions";
 import TaskAssigneePopover from "./task-assignee-popover";
+import TaskAttributePopover from "./task-attribute-popover";
 import TaskDueDatePopover from "./task-due-date-popover";
 import TaskLabelsPopover from "./task-labels-popover";
 import TaskPriorityPopover from "./task-priority-popover";
@@ -205,6 +208,30 @@ export default function TaskPropertiesSidebar({
                 </TaskStatusPopover>
               )}
               {task && (
+                <TaskAttributePopover task={task} workspaceId={workspaceId}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="justify-start h-7 px-1.5 gap-1.5"
+                  >
+                    <TaskAttributeBadge
+                      attribute={task.attribute}
+                      className="bg-transparent px-0 py-0"
+                    />
+                    {!task.attribute && (
+                      <>
+                        <SquareCheckBig className="size-3.5 text-muted-foreground" />
+                        <span className="text-xs font-semibold truncate text-muted-foreground">
+                          {t("tasks:properties.attribute", {
+                            defaultValue: "Type",
+                          })}
+                        </span>
+                      </>
+                    )}
+                  </Button>
+                </TaskAttributePopover>
+              )}
+              {task && (
                 <TaskPriorityPopover task={task}>
                   <Button
                     variant="ghost"
@@ -354,6 +381,30 @@ export default function TaskPropertiesSidebar({
                   </TaskStatusPopover>
                 )}
                 {task && (
+                  <TaskAttributePopover task={task} workspaceId={workspaceId}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="justify-start h-7 px-1.5 gap-1.5"
+                    >
+                      <TaskAttributeBadge
+                        attribute={task.attribute}
+                        className="bg-transparent px-0 py-0"
+                      />
+                      {!task.attribute && (
+                        <>
+                          <SquareCheckBig className="size-3.5 text-muted-foreground" />
+                          <span className="text-xs font-semibold truncate text-muted-foreground">
+                            {t("tasks:properties.attribute", {
+                              defaultValue: "Type",
+                            })}
+                          </span>
+                        </>
+                      )}
+                    </Button>
+                  </TaskAttributePopover>
+                )}
+                {task && (
                   <TaskPriorityPopover task={task}>
                     <Button
                       variant="ghost"
@@ -501,6 +552,30 @@ export default function TaskPropertiesSidebar({
                       </span>
                     </Button>
                   </TaskStatusPopover>
+                )}
+                {task && (
+                  <TaskAttributePopover task={task} workspaceId={workspaceId}>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="justify-start h-7 px-1.5 gap-1.5 w-full"
+                    >
+                      <TaskAttributeBadge
+                        attribute={task.attribute}
+                        className="bg-transparent px-0 py-0"
+                      />
+                      {!task.attribute && (
+                        <>
+                          <SquareCheckBig className="size-3.5 text-muted-foreground" />
+                          <span className="text-xs font-semibold truncate text-muted-foreground">
+                            {t("tasks:properties.attribute", {
+                              defaultValue: "Type",
+                            })}
+                          </span>
+                        </>
+                      )}
+                    </Button>
+                  </TaskAttributePopover>
                 )}
                 {task && (
                   <TaskPriorityPopover task={task}>

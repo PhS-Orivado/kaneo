@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import {
   Command,
   CommandCollection,
@@ -41,6 +42,13 @@ type SearchResultItem = {
   projectSlug?: string;
   priority?: string;
   status?: string;
+  attribute?: {
+    id: string;
+    name: string;
+    icon: string;
+    iconColor: string;
+    textColor: string;
+  } | null;
 };
 
 type SearchGroup = {
@@ -231,8 +239,15 @@ function SearchCommandMenu({ open, setOpen }: SearchCommandMenuProps) {
                               aria-hidden="true"
                             />
                             <div className="flex-1 min-w-0">
-                              <div className="font-medium text-sm truncate">
-                                {item.title}
+                              <div className="flex items-center gap-1.5">
+                                <div className="min-w-0 flex-1 font-medium text-sm truncate">
+                                  {item.title}
+                                </div>
+                                {item.type === "task" && item.attribute && (
+                                  <TaskAttributeBadge
+                                    attribute={item.attribute}
+                                  />
+                                )}
                               </div>
                               {item.description && (
                                 <div className="text-xs text-muted-foreground truncate mt-1">

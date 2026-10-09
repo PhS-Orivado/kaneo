@@ -9,6 +9,27 @@ import type { TaskAttributeRef } from "@/types/task-attribute";
 // RFC 0002: the shared rendering contract for task attributes across every
 // surface. The symbol renders in the symbol color, the name in the font
 // color; both are resolved through theme-aware palette tokens.
+
+export function TaskAttributeIcon({
+  attribute,
+  className,
+}: {
+  attribute: TaskAttributeRef;
+  className?: string;
+}) {
+  const Icon =
+    taskAttributeIcons[attribute.icon as TaskAttributeIconName] ??
+    SquareCheckBig;
+
+  return (
+    <Icon
+      aria-hidden
+      className={cn("size-3 shrink-0", className)}
+      style={{ color: resolveTaskAttributeColor(attribute.iconColor) }}
+    />
+  );
+}
+
 export function TaskAttributeBadge({
   attribute,
   className,

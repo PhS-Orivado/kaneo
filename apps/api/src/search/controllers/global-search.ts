@@ -3,6 +3,7 @@ import db from "../../database";
 import {
   activityTable,
   projectTable,
+  taskAttributeTable,
   taskTable,
   userTable,
   workspaceTable,
@@ -47,6 +48,13 @@ type SearchResult = {
   projectSlug?: string;
   priority?: string;
   status?: string;
+  attribute?: {
+    id: string;
+    name: string;
+    icon: string;
+    iconColor: string;
+    textColor: string;
+  } | null;
 };
 
 function toDisplayCase(value: string) {
@@ -192,6 +200,11 @@ async function globalSearch(params: SearchParams): Promise<{
           taskNumber: taskTable.number,
           priority: taskTable.priority,
           status: taskTable.status,
+          attributeId: taskTable.attributeId,
+          attributeName: taskAttributeTable.name,
+          attributeIcon: taskAttributeTable.icon,
+          attributeIconColor: taskAttributeTable.iconColor,
+          attributeTextColor: taskAttributeTable.textColor,
         })
         .from(taskTable)
         .leftJoin(projectTable, eq(taskTable.projectId, projectTable.id))
@@ -200,6 +213,10 @@ async function globalSearch(params: SearchParams): Promise<{
           eq(projectTable.workspaceId, workspaceTable.id),
         )
         .leftJoin(userTable, eq(taskTable.userId, userTable.id))
+        .leftJoin(
+          taskAttributeTable,
+          eq(taskTable.attributeId, taskAttributeTable.id),
+        )
         .where(
           and(
             workspaceFilter,
@@ -233,6 +250,16 @@ async function globalSearch(params: SearchParams): Promise<{
           taskNumber: task.taskNumber || undefined,
           priority: task.priority || undefined,
           status: task.status,
+          attribute:
+            task.attributeId && task.attributeName
+              ? {
+                  id: task.attributeId,
+                  name: task.attributeName,
+                  icon: task.attributeIcon ?? "",
+                  iconColor: task.attributeIconColor ?? "",
+                  textColor: task.attributeTextColor ?? "",
+                }
+              : null,
         });
       }
     }
@@ -262,12 +289,21 @@ async function globalSearch(params: SearchParams): Promise<{
         taskNumber: taskTable.number,
         priority: taskTable.priority,
         status: taskTable.status,
+        attributeId: taskTable.attributeId,
+        attributeName: taskAttributeTable.name,
+        attributeIcon: taskAttributeTable.icon,
+        attributeIconColor: taskAttributeTable.iconColor,
+        attributeTextColor: taskAttributeTable.textColor,
         relevanceScore: taskRelevanceScore.as("relevanceScore"),
       })
       .from(taskTable)
       .leftJoin(projectTable, eq(taskTable.projectId, projectTable.id))
       .leftJoin(workspaceTable, eq(projectTable.workspaceId, workspaceTable.id))
       .leftJoin(userTable, eq(taskTable.userId, userTable.id))
+      .leftJoin(
+        taskAttributeTable,
+        eq(taskTable.attributeId, taskAttributeTable.id),
+      )
       .where(
         and(
           workspaceFilter,
@@ -302,6 +338,16 @@ async function globalSearch(params: SearchParams): Promise<{
         taskNumber: task.taskNumber || undefined,
         priority: task.priority || undefined,
         status: task.status,
+        attribute:
+          task.attributeId && task.attributeName
+            ? {
+                id: task.attributeId,
+                name: task.attributeName,
+                icon: task.attributeIcon ?? "",
+                iconColor: task.attributeIconColor ?? "",
+                textColor: task.attributeTextColor ?? "",
+              }
+            : null,
       });
     }
   }

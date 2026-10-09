@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import type { AssignedTask } from "@/fetchers/task/get-assigned-tasks";
 import { getColumnIcon } from "@/lib/column";
 import { getStatusDisplayLabel } from "@/lib/i18n/domain";
@@ -40,6 +41,7 @@ export function AssignedTaskRow({
       <span className="min-w-0 flex-1 truncate text-foreground text-sm">
         {task.title}
       </span>
+      <TaskAttributeBadge attribute={task.attribute} />
       {showLabels && task.labels.length > 0 && (
         <span className="hidden w-44 shrink-0 items-center gap-2.5 overflow-hidden lg:flex">
           {task.labels.slice(0, 2).map((label) => (

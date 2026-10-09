@@ -1,4 +1,5 @@
 import { responseTimestamp, z } from "../openapi";
+import { taskAttributeRefSchema } from "../task/response";
 
 export const searchResultSchema = z
   .object({
@@ -25,6 +26,13 @@ export const searchResultSchema = z
     taskNumber: z.number().optional(),
     priority: z.string().optional(),
     status: z.string().optional(),
+    attribute: taskAttributeRefSchema
+      .nullable()
+      .optional()
+      .openapi({
+        description:
+          "The task's attribute (type), such as task, bug or doc. Present on task results; null when none is set.",
+      }),
   })
   .openapi("SearchResult");
 

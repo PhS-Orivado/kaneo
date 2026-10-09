@@ -17,6 +17,7 @@ import { GiteaIcon } from "@/components/icons/gitea-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { JiraIcon } from "@/components/icons/jira-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
 import TaskDescriptionEditor from "@/components/task/task-description-editor";
 import {
   Accordion,
@@ -88,6 +89,7 @@ import useCreateTask from "@/hooks/mutations/task/use-create-task";
 import useGetCustomFieldsByProject from "@/hooks/queries/custom-field/use-get-custom-fields-by-project";
 import useGetLabelsByWorkspace from "@/hooks/queries/label/use-get-labels-by-workspace";
 import useGetProjects from "@/hooks/queries/project/use-get-projects";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import useListProjectRepositoryBindings from "@/hooks/queries/repository-bindings/use-list-project-repository-bindings";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import { useGetActiveWorkspaceUsers } from "@/hooks/queries/workspace-users/use-get-active-workspace-users";
@@ -99,6 +101,7 @@ import { formatDateMedium } from "@/lib/format";
 import { getInitials } from "@/lib/get-initials";
 import { resolveLabelColor } from "@/lib/label-color";
 import { getPriorityIcon } from "@/lib/priority";
+import { resolveTaskAttributeColor } from "@/lib/task-attribute-color";
 import { toast } from "@/lib/toast";
 import useProjectStore from "@/store/project";
 import type Task from "@/types/task";
@@ -252,6 +255,28 @@ function CreateTaskModalContent({
   const { canCreateTasks, canCreateLabels } = useWorkspacePermission();
   const canCreateTaskCapability = canCreateTasks();
   const canCreateLabelCapability = canCreateLabels();
+
+  const [attributeId, setAttributeId] = useState<string | null>(null);
+  const [attributeTouched, setAttributeTouched] = useState(false);
+
+  const { data: taskAttributes = [] } = useGetTaskAttributes(
+    workspace?.id || "",
+  );
+  const defaultAttributeId = useMemo(
+    () => taskAttributes.find((attribute) => attribute.isDefault)?.id ?? null,
+    [taskAttributes],
+  );
+  const selectedAttribute = useMemo(
+    () => taskAttributes.find((attribute) => attribute.id === attributeId),
+    [taskAttributes, attributeId],
+  );
+
+  // RFC 0002: new tasks open with the workspace default attribute preselected.
+  // An explicit user choice, including clearing to None, is preserved.
+  useEffect(() => {
+    if (attributeTouched) return;
+    setAttributeId((current) => current ?? defaultAttributeId);
+  }, [attributeTouched, defaultAttributeId]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -431,6 +456,7 @@ function CreateTaskModalContent({
     title.trim() ||
     description.trim() ||
     priority !== "no-priority" ||
+    (attributeTouched && attributeId !== defaultAttributeId) ||
     assigneeId ||
     startDate ||
     dueDate ||
@@ -584,6 +610,7 @@ function CreateTaskModalContent({
           description: description.trim() || "",
           userId: selectedUser?.id ?? "",
           priority,
+          attributeId,
           projectId: resolvedProjectId,
           startDate: startDate ? startDate.toISOString() : undefined,
           dueDate: dueDate ? dueDate.toISOString() : undefined,
@@ -625,6 +652,8 @@ function CreateTaskModalContent({
         setTitle("");
         setDescription("");
         setPriority("no-priority");
+        setAttributeId(defaultAttributeId);
+        setAttributeTouched(false);
         setAssigneeId("");
         setStartDate(undefined);
         setDueDate(undefined);
@@ -1291,6 +1320,96 @@ function CreateTaskModalContent({
                 )}
                 {statusLabel}
               </div>
+
+              {taskAttributes.length > 0 && (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <button
+                      type="button"
+                      className={cn(
+                        "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors border border-border hover:bg-accent/50",
+                        attributeId
+                          ? "bg-accent/30 text-foreground"
+                          : "text-muted-foreground",
+                      )}
+                    >
+                      {selectedAttribute ? (
+                        <>
+                          <TaskAttributeIcon
+                            attribute={selectedAttribute}
+                            className="size-3.5"
+                          />
+                          <span
+                            style={{
+                              color: resolveTaskAttributeColor(
+                                selectedAttribute.textColor,
+                              ),
+                            }}
+                          >
+                            {selectedAttribute.name}
+                          </span>
+                        </>
+                      ) : (
+                        <span>
+                          {t("common:modals.createTask.attribute", {
+                            defaultValue: "Type",
+                          })}
+                        </span>
+                      )}
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-48 p-1" align="start">
+                    <div className="space-y-1">
+                      <button
+                        type="button"
+                        className="w-full flex items-center gap-2 px-2 py-1.5 text-sm hover:bg-accent/50 text-left transition-colors h-8"
+                        onClick={() => {
+                          setAttributeId(null);
+                          setAttributeTouched(true);
+                        }}
+                      >
+                        <span className="text-sm">
+                          {t("common:modals.createTask.attributeNone", {
+                            defaultValue: "None",
+                          })}
+                        </span>
+                        {attributeId === null && (
+                          <Check className="ml-auto h-4 w-4" />
+                        )}
+                      </button>
+                      {taskAttributes.map((attribute) => (
+                        <button
+                          key={attribute.id}
+                          type="button"
+                          className="w-full flex items-center gap-2 px-2 py-1.5 text-sm hover:bg-accent/50 text-left transition-colors h-8"
+                          onClick={() => {
+                            setAttributeId(attribute.id);
+                            setAttributeTouched(true);
+                          }}
+                        >
+                          <TaskAttributeIcon
+                            attribute={attribute}
+                            className="size-3.5"
+                          />
+                          <span
+                            className="text-sm"
+                            style={{
+                              color: resolveTaskAttributeColor(
+                                attribute.textColor,
+                              ),
+                            }}
+                          >
+                            {attribute.name}
+                          </span>
+                          {attributeId === attribute.id && (
+                            <Check className="ml-auto h-4 w-4" />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              )}
 
               <Popover>
                 <PopoverTrigger asChild>

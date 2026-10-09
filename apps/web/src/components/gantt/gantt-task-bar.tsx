@@ -1,6 +1,7 @@
 import { addDays, differenceInCalendarDays, startOfDay } from "date-fns";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
 import { useUpdateTask } from "@/hooks/mutations/task/use-update-task";
 import { cn } from "@/lib/cn";
 import { toast } from "@/lib/toast";
@@ -325,7 +326,12 @@ export function GanttTaskBar({
           }}
         >
           <div className="absolute inset-0 z-0 bg-primary/12 transition-colors group-hover:bg-primary/18" />
-          <span className="relative z-10 block truncate">{task.title}</span>
+          <span className="relative z-10 flex min-w-0 items-center gap-1">
+            {task.attribute && (
+              <TaskAttributeIcon attribute={task.attribute} />
+            )}
+            <span className="truncate">{task.title}</span>
+          </span>
         </button>
         <button
           type="button"

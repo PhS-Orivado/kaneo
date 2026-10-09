@@ -1,5 +1,6 @@
 import { type JSX, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
 import {
   Popover,
   PopoverContent,
@@ -64,8 +65,11 @@ export default function DayOverflowPopover({
                     {projectSlug}-{task.number}
                   </span>
                 ) : null}
-                <span className="w-full truncate text-xs font-medium text-foreground">
-                  {task.title}
+                <span className="flex w-full items-center gap-1 text-xs font-medium text-foreground">
+                  {task.attribute && (
+                    <TaskAttributeIcon attribute={task.attribute} />
+                  )}
+                  <span className="min-w-0 flex-1 truncate">{task.title}</span>
                 </span>
                 <span className="w-full truncate text-[11px] text-muted-foreground">
                   {formatDateShort(task.scheduleStart)} –{" "}

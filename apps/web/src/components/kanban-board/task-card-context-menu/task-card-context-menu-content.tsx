@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { X } from "lucide-react";
+import { Minus, X } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,8 +21,10 @@ import { useUpdateTaskDueDate } from "@/hooks/mutations/task/use-update-task-due
 import { useUpdateTaskStatus } from "@/hooks/mutations/task/use-update-task-status";
 import { useUpdateTaskPriority } from "@/hooks/mutations/task/use-update-task-status-priority";
 import { useUpdateTaskTitle } from "@/hooks/mutations/task/use-update-task-title";
+import { useSetTaskAttribute } from "@/hooks/mutations/task-attribute/use-set-task-attribute";
 import type getProjects from "@/fetchers/project/get-projects";
 import { useGetColumns } from "@/hooks/queries/column/use-get-columns";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import useGetProjectMembers from "@/hooks/queries/workspace-users/use-get-project-members";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
 import { getColumnIcon } from "@/lib/column";
@@ -30,10 +32,14 @@ import { generateLink } from "@/lib/generate-link";
 import { getInitials } from "@/lib/get-initials";
 import { getPriorityLabel } from "@/lib/i18n/domain";
 import { getPriorityIcon } from "@/lib/priority";
+import { resolveTaskAttributeColor } from "@/lib/task-attribute-color";
 import { getTaskPath } from "@/lib/task-link";
 import { toast } from "@/lib/toast";
 import useProjectStore from "@/store/project";
 import type Task from "@/types/task";
+import taskAttributeIcons, {
+  type TaskAttributeIconName,
+} from "@/constants/task-attribute-icons";
 
 type TaskCardContext = {
   worskpaceId: string;
@@ -81,7 +87,11 @@ export default function TaskCardContextMenuContent({
   const { mutateAsync: updateTaskTitle } = useUpdateTaskTitle();
   const { mutateAsync: updateTaskDescription } = useUpdateTaskDescription();
   const { mutateAsync: updateTaskDueDate } = useUpdateTaskDueDate();
+  const { mutateAsync: setTaskAttribute } = useSetTaskAttribute();
   const { mutate: duplicateTask } = useDuplicateTask();
+  const { data: taskAttributes = [] } = useGetTaskAttributes(
+    taskCardContext.worskpaceId,
+  );
   const { canCreateTasks, canUpdateTasks, canDeleteTasks, canAssignTasks } =
     useWorkspacePermission();
   const canCreate = canCreateTasks();
@@ -124,6 +134,21 @@ export default function TaskCardContextMenuContent({
       taskId: task.id,
       title: t("tasks:duplicate.titleSuffix", { title: task.title }),
     });
+  };
+
+  const handleAttributeChange = async (attributeId: string | null) => {
+    try {
+      await setTaskAttribute({
+        taskId: task.id,
+        attributeId,
+        projectId: taskCardContext.projectId,
+      });
+      toast.success(t("tasks:update.success"));
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : t("tasks:update.error"),
+      );
+    }
   };
 
   const handleChange = async (field: keyof Task, value: string | Date) => {
@@ -198,6 +223,55 @@ export default function TaskCardContextMenuContent({
                 <span className="capitalize">{getPriorityLabel(priority)}</span>
               </ContextMenuCheckboxItem>
             ))}
+          </ContextMenuSubContent>
+        </ContextMenuSub>
+      )}
+
+      {canEdit && taskAttributes.length > 0 && (
+        <ContextMenuSub>
+          <ContextMenuSubTrigger className="gap-2">
+            <span>{t("tasks:attribute.label", { defaultValue: "Type" })}</span>
+          </ContextMenuSubTrigger>
+          <ContextMenuSubContent className="w-48">
+            {taskAttributes.map((attribute) => {
+              const AttributeIcon =
+                taskAttributeIcons[
+                  attribute.icon as TaskAttributeIconName
+                ] ?? taskAttributeIcons.SquareCheckBig;
+              return (
+                <ContextMenuCheckboxItem
+                  key={attribute.id}
+                  checked={task.attribute?.id === attribute.id}
+                  onCheckedChange={() => handleAttributeChange(attribute.id)}
+                  closeOnClick
+                >
+                  <AttributeIcon
+                    aria-hidden
+                    style={{
+                      color: resolveTaskAttributeColor(attribute.iconColor),
+                    }}
+                  />
+                  <span
+                    style={{
+                      color: resolveTaskAttributeColor(attribute.textColor),
+                    }}
+                  >
+                    {attribute.name}
+                  </span>
+                </ContextMenuCheckboxItem>
+              );
+            })}
+            <ContextMenuCheckboxItem
+              checked={!task.attribute}
+              onCheckedChange={() => handleAttributeChange(null)}
+              closeOnClick
+              className="[&_svg]:text-muted-foreground"
+            >
+              <Minus />
+              <span>
+                {t("tasks:popover.attribute.none", { defaultValue: "None" })}
+              </span>
+            </ContextMenuCheckboxItem>
           </ContextMenuSubContent>
         </ContextMenuSub>
       )}

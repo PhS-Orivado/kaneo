@@ -5,6 +5,7 @@ import Activity from "@/components/activity";
 import CommentInput from "@/components/activity/comment-input";
 import { isCommentActivity } from "@/components/activity/utils";
 import { DueDateText } from "@/components/my-work/due-date-text";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { Button } from "@/components/ui/button";
 import { HttpError } from "@/lib/http-error";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -135,6 +136,16 @@ export function InboxTask({ taskId, workspaceId }: InboxTaskProps) {
               {getPriorityLabel(task.priority ?? "no-priority")}
             </dd>
           </div>
+          {task.attribute && (
+            <div className="flex items-center gap-1.5">
+              <dt className="sr-only">
+                {t("tasks:attribute.label", { defaultValue: "Type" })}
+              </dt>
+              <dd>
+                <TaskAttributeBadge attribute={task.attribute} />
+              </dd>
+            </div>
+          )}
           {task.dueDate && (
             <div className="flex items-center gap-1.5">
               <dt className="sr-only">{t("tasks:dueDate.label")}</dt>

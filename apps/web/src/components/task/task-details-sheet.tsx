@@ -2,6 +2,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { Maximize2, X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { AlertDialogCreateHandle } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
@@ -14,6 +15,7 @@ import {
 import useGetProject from "@/hooks/queries/project/use-get-project";
 import useGetTask from "@/hooks/queries/task/use-get-task";
 import TaskDeleteDialog from "./task-delete-dialog";
+import TaskAttributePopover from "./task-attribute-popover";
 import TaskDetailsContent from "./task-details-content";
 import TaskPropertiesSidebar from "./task-properties-sidebar";
 
@@ -76,6 +78,19 @@ export default function TaskDetailsSheet({
             <span className="text-sm font-medium text-muted-foreground">
               {project?.slug}-{task?.number}
             </span>
+            {task && (
+              <TaskAttributePopover task={task} workspaceId={workspaceId}>
+                <button
+                  type="button"
+                  className="rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label={t("tasks:properties.attribute", {
+                    defaultValue: "Type",
+                  })}
+                >
+                  <TaskAttributeBadge attribute={task.attribute} />
+                </button>
+              </TaskAttributePopover>
+            )}
           </div>
           <div className="flex items-center gap-1">
             <TooltipProvider>

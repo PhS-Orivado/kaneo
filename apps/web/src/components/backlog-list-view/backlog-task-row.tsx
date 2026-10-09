@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { type CSSProperties, memo, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { TaskProgressBadges } from "@/components/task/task-progress-badges";
 import {
   AlertDialog,
@@ -224,6 +225,7 @@ const BacklogTaskRow = memo(function BacklogTaskRow({
                   {task.title}
                 </span>
                 <div className="flex items-center gap-1">
+                  <TaskAttributeBadge attribute={task.attribute} />
                   <TaskProgressBadges task={task} />
                   {showLabels && <TaskLabels labels={task.labels ?? []} />}
                 </div>

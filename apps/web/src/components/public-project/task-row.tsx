@@ -1,5 +1,6 @@
 import { Calendar, CalendarClock, CalendarX } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { TaskProgressBadges } from "@/components/task/task-progress-badges";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -96,6 +97,8 @@ export function PublicTaskRow({
             <span>{formatDateShort(task.dueDate)}</span>
           </div>
         )}
+
+        <TaskAttributeBadge attribute={task.attribute} />
 
         {task.priority && (
           <div className="inline-flex items-center gap-1.5 px-2 py-1 rounded border border-border bg-sidebar text-[10px] font-medium text-muted-foreground">

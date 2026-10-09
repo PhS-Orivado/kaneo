@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { memo, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { TaskProgressBadges } from "@/components/task/task-progress-badges";
 import { TaskPullRequests } from "@/components/task/task-pull-requests";
 import {
@@ -242,6 +243,10 @@ function TaskCardContent({
                 taskIsCompleted && "hidden",
               )}
             >
+              {!taskIsCompleted && task.attribute && (
+                <TaskAttributeBadge attribute={task.attribute} />
+              )}
+
               {showPriority && hasPriority && (
                 <span
                   className="inline-flex h-5.5 items-center"

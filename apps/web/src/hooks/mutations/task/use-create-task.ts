@@ -21,6 +21,7 @@ function useCreateTask() {
       customFields,
       draftAssetIds,
       syncIntegrationIds,
+      attributeId,
     }: CreateTaskRequest) =>
       createTask(
         title,
@@ -34,6 +35,7 @@ function useCreateTask() {
         customFields,
         draftAssetIds,
         syncIntegrationIds,
+        attributeId,
       ),
     onSuccess: (_data, variables) => {
       invalidateMyWork(queryClient);

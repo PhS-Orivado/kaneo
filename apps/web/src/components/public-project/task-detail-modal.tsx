@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeBadge } from "@/components/task-attribute-badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogClose, DialogPopup } from "@/components/ui/dialog";
 import { usePublicTaskDescription } from "@/hooks/queries/task/use-public-task-description";
@@ -131,6 +132,7 @@ export function PublicTaskDetailModal({
               </h2>
 
               <div className="flex flex-wrap gap-2">
+                <TaskAttributeBadge attribute={task.attribute} />
                 {task.priority && priorityLabel && (
                   <div className="flex items-center gap-1.5 px-2.5 py-1 text-xs bg-muted text-muted-foreground rounded-md">
                     {getPriorityIcon(task.priority)}

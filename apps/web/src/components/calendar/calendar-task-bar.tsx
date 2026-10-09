@@ -1,13 +1,16 @@
 import type { JSX } from "react";
 import { useTranslation } from "react-i18next";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
 import { cn } from "@/lib/cn";
 import { formatDateShort } from "@/lib/format";
+import type { TaskAttributeRef } from "@/types/task-attribute";
 import type { PackableTask, WeekSegment } from "./month-grid-model";
 
 export type CalendarTask = PackableTask & {
   title: string;
   number: number | null;
   status: string;
+  attribute?: TaskAttributeRef | null;
 };
 
 const STATUS_CLASSES: Record<string, string> = {
@@ -66,9 +69,13 @@ export default function CalendarTaskBar({
         gridRow: lane + 2,
       }}
       title={
-        taskKey
-          ? `${taskKey} · ${task.title} · ${range}`
-          : `${task.title} · ${range}`
+        task.attribute
+          ? taskKey
+            ? `${taskKey} · ${task.attribute.name} · ${task.title} · ${range}`
+            : `${task.attribute.name} · ${task.title} · ${range}`
+          : taskKey
+            ? `${taskKey} · ${task.title} · ${range}`
+            : `${task.title} · ${range}`
       }
       aria-label={t("tasks:calendar.taskAriaLabel", {
         title: task.title,
@@ -85,6 +92,9 @@ export default function CalendarTaskBar({
         continuesAfter ? "rounded-r-none border-r-0" : "mr-1 rounded-r-md",
       )}
     >
+      {task.attribute && (
+        <TaskAttributeIcon attribute={task.attribute} className="mr-1" />
+      )}
       <span className="truncate">{task.title}</span>
     </button>
   );
