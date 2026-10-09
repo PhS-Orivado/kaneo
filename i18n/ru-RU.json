@@ -2880,7 +2880,8 @@
 				"priority": "Приоритет",
 				"assignee": "Исполнитель",
 				"dueDate": "Срок выполнения",
-				"labels": "Метки"
+				"labels": "Метки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "любой из",
@@ -2890,7 +2891,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Все спринты"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Гант",
@@ -3047,7 +3049,9 @@
 			"archiveSuccess": "{{count}} задач архивировано",
 			"updateSuccess": "{{count}} задач обновлено",
 			"assignSuccess": "{{count}} задач назначено",
-			"addLabelSuccess": "Метка добавлена к {{count}} задачам"
+			"addLabelSuccess": "Метка добавлена к {{count}} задачам",
+			"moveToSprint": "Переместить в спринт",
+			"updateSprintError": "Не удалось переместить задачи в спринт"
 		},
 		"editor": {
 			"table": {
@@ -3162,7 +3166,12 @@
 			"moveUp": "Выше",
 			"moveDown": "Ниже",
 			"closedLocked": "Задача относится к закрытому спринту и остаётся в нём как история",
-			"error": "Не удалось выполнить действие со спринтом"
+			"error": "Не удалось выполнить действие со спринтом",
+			"daysRemaining": "Осталось дней: {{remaining}}",
+			"endsToday": "Заканчивается сегодня",
+			"daysOverdue": "Просрочено на {{remaining}} дн.",
+			"noTasks": "В этом спринте пока нет задач",
+			"toggleTasks": "Показать задачи спринта"
 		},
 		"type": {
 			"task": "Задача",

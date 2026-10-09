@@ -2865,7 +2865,8 @@
 				"priority": "Пріоритет",
 				"assignee": "Виконавець",
 				"dueDate": "Дата завершення",
-				"labels": "Мітки"
+				"labels": "Мітки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "є будь-яким з",
@@ -2874,7 +2875,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Усі спринти"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Ґант",
@@ -2991,7 +2993,9 @@
 			"actions": "Дії",
 			"searchActions": "Пошук дій...",
 			"noActionsFound": "Дій не знайдено.",
-			"changeStatus": "Змінити статус"
+			"changeStatus": "Змінити статус",
+			"moveToSprint": "Перемістити в спринт",
+			"updateSprintError": "Не вдалося перемістити завдання в спринт"
 		},
 		"editor": {
 			"table": {
@@ -3106,7 +3110,12 @@
 			"moveUp": "Вгору",
 			"moveDown": "Вниз",
 			"closedLocked": "Це завдання належить закритому спринту й залишається в ньому як історія",
-			"error": "Не вдалося виконати дію зі спринтом"
+			"error": "Не вдалося виконати дію зі спринтом",
+			"daysRemaining": "Залишилося днів: {{remaining}}",
+			"endsToday": "Завершується сьогодні",
+			"daysOverdue": "Прострочено на {{remaining}} дн.",
+			"noTasks": "У цьому спринті ще немає завдань",
+			"toggleTasks": "Показати завдання спринту"
 		},
 		"type": {
 			"task": "Завдання",

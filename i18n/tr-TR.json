@@ -2833,7 +2833,8 @@
 				"priority": "Öncelik",
 				"assignee": "Atanan",
 				"dueDate": "Bitiş tarihi",
-				"labels": "Etiketler"
+				"labels": "Etiketler",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "herhangi biri",
@@ -2842,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Tüm sprintler"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2957,7 +2959,9 @@
 			"actions": "İşlemler",
 			"searchActions": "İşlem ara...",
 			"noActionsFound": "İşlem bulunamadı.",
-			"changeStatus": "Durumu Değiştir"
+			"changeStatus": "Durumu Değiştir",
+			"moveToSprint": "Sprinte taşı",
+			"updateSprintError": "Görevler sprinte taşınamadı"
 		},
 		"editor": {
 			"table": {
@@ -3070,7 +3074,12 @@
 			"moveUp": "Yukarı taşı",
 			"moveDown": "Aşağı taşı",
 			"closedLocked": "Bu görev kapatılmış bir sprinte ait ve geçmiş olarak orada kalır",
-			"error": "Sprint işlemi başarısız oldu"
+			"error": "Sprint işlemi başarısız oldu",
+			"daysRemaining": "{{remaining}} gün kaldı",
+			"endsToday": "Bugün bitiyor",
+			"daysOverdue": "{{remaining}} gün gecikmiş",
+			"noTasks": "Bu sprintte henüz görev yok",
+			"toggleTasks": "Sprint görevlerini göster"
 		},
 		"type": {
 			"task": "Görev",
