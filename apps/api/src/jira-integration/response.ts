@@ -93,6 +93,27 @@ export const jiraImportResultSchema = z
       description: "Existing tasks that were refreshed from their issue.",
     }),
     skipped: z.number(),
+    relations: z.number().openapi({
+      description:
+        "Task relations created between imported tasks (subtask, blocks, related).",
+    }),
+    users: z
+      .object({
+        invited: z.number().openapi({
+          description:
+            "Jira users who now have a pending workspace invitation; no email was sent.",
+        }),
+        members: z.number().openapi({
+          description: "Jira users who were already workspace members.",
+        }),
+        withoutEmail: z.array(z.string()).openapi({
+          description:
+            "Jira users without a public email address, who cannot be invited automatically.",
+        }),
+      })
+      .openapi({
+        description: "Jira users seen during the import and their invite state.",
+      }),
     errors: z.array(z.string()).optional(),
   })
   .openapi("JiraImportResult");
