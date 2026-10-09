@@ -131,6 +131,20 @@
             "type": "string",
             "description": "One of: no-priority, low, medium, high, urgent."
           },
+          "sprintId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The sprint this task belongs to; null means the task sits in the backlog."
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Task type, e.g. task or bug."
+          },
           "startDate": {
             "type": [
               "string",
@@ -220,6 +234,8 @@
           "description",
           "status",
           "priority",
+          "sprintId",
+          "type",
           "startDate",
           "dueDate",
           "position",
@@ -715,6 +731,10 @@
           "lastTaskNumber": {
             "type": "number",
             "description": "Highest task number issued in this project; the next task gets this plus one."
+          },
+          "defaultSprintLengthDays": {
+            "type": "number",
+            "description": "Default sprint length in days; used to prefill a sprint's end date when it starts."
           }
         },
         "required": [
@@ -729,7 +749,8 @@
           "isPublic",
           "archivedAt",
           "position",
-          "lastTaskNumber"
+          "lastTaskNumber",
+          "defaultSprintLengthDays"
         ]
       },
       "ProjectListItem": {
@@ -1113,6 +1134,20 @@
             "type": "string",
             "description": "One of: no-priority, low, medium, high, urgent."
           },
+          "sprintId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The sprint this task belongs to; null means the task sits in the backlog."
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Task type, e.g. task or bug."
+          },
           "startDate": {
             "type": [
               "string",
@@ -1160,6 +1195,8 @@
           "description",
           "status",
           "priority",
+          "sprintId",
+          "type",
           "startDate",
           "dueDate",
           "createdAt"
@@ -1486,6 +1523,133 @@
           "isFinal",
           "createdAt",
           "updatedAt"
+        ]
+      },
+      "Sprint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "goal": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "future",
+              "active",
+              "closed"
+            ],
+            "description": "Future sprints can be edited, reordered and started. Exactly one sprint per project may be active. Closed sprints are immutable and keep their completed tasks as history."
+          },
+          "startDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "endDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "position": {
+            "type": "number",
+            "description": "Backlog order, ascending. Sprints are always returned sorted by it."
+          },
+          "taskCount": {
+            "type": "number",
+            "description": "Tasks currently assigned to this sprint."
+          },
+          "completedTaskCount": {
+            "type": "number",
+            "description": "Tasks assigned to this sprint that sit in a final column. After a sprint closes, these remain as its history."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "name",
+          "goal",
+          "status",
+          "startDate",
+          "endDate",
+          "position",
+          "taskCount",
+          "completedTaskCount",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CloseSprintResult": {
+        "type": "object",
+        "properties": {
+          "sprint": {
+            "$ref": "#/components/schemas/Sprint"
+          },
+          "movedTaskIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Unfinished tasks that were moved to the target."
+          },
+          "targetSprintId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The sprint that received the unfinished tasks; null means backlog."
+          }
+        },
+        "required": [
+          "sprint",
+          "movedTaskIds",
+          "targetSprintId"
+        ]
+      },
+      "TaskSprint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "sprintId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Null means the task sits in the backlog."
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "sprintId"
         ]
       },
       "WorkspaceActivity": {
@@ -3101,6 +3265,82 @@
           "message"
         ]
       },
+      "GitHubBranchList": {
+        "type": "object",
+        "properties": {
+          "branches": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GitHubBranch"
+            }
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "The repository holds more branches than the bounded page returned."
+          }
+        },
+        "required": [
+          "branches",
+          "hasMore"
+        ]
+      },
+      "GitHubBranch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "commitSha": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Head commit of the branch, when exposed."
+          }
+        },
+        "required": [
+          "name",
+          "commitSha"
+        ]
+      },
+      "GitHubBranchResult": {
+        "type": "object",
+        "properties": {
+          "integrationId": {
+            "type": "string"
+          },
+          "repositoryOwner": {
+            "type": "string"
+          },
+          "repositoryName": {
+            "type": "string"
+          },
+          "branchName": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Web URL of the branch on GitHub."
+          },
+          "branchCreated": {
+            "type": "boolean",
+            "description": "Whether the ref had to be created on GitHub."
+          },
+          "linkCreated": {
+            "type": "boolean",
+            "description": "Whether a new branch link was added to the task."
+          }
+        },
+        "required": [
+          "integrationId",
+          "repositoryOwner",
+          "repositoryName",
+          "branchName",
+          "url",
+          "branchCreated",
+          "linkCreated"
+        ]
+      },
       "GiteaRepositoryList": {
         "type": "object",
         "properties": {
@@ -4122,6 +4362,131 @@
           "updatedAt"
         ]
       },
+      "MatrixIntegration": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "provision",
+              "existing"
+            ],
+            "description": "provision means Kaneo created the space structure on the homeserver; existing posts to a room you manage."
+          },
+          "homeserverUrl": {
+            "type": "string",
+            "description": "Base URL of the Matrix homeserver messages are sent to."
+          },
+          "botUserId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Matrix user ID of the bot account, discovered from the homeserver at connect time."
+          },
+          "spaceNamePrefix": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional prefix for the workspace space name."
+          },
+          "inviteUsers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Matrix user IDs invited to every created space and room."
+          },
+          "parentSpaceId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Room ID or alias of the space the workspace space is nested under."
+          },
+          "spaceId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Room ID of the provisioned workspace space."
+          },
+          "updatesRoomId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Room ID task notifications are posted to."
+          },
+          "generalRoomId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Room ID of the provisioned General discussion room."
+          },
+          "roomId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Target room in existing mode, after alias resolution at connect time."
+          },
+          "tokenConfigured": {
+            "type": "boolean"
+          },
+          "maskedAccessToken": {
+            "type": "string"
+          },
+          "events": {
+            "$ref": "#/components/schemas/IntegrationEvents"
+          },
+          "isActive": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "mode",
+          "homeserverUrl",
+          "botUserId",
+          "spaceNamePrefix",
+          "inviteUsers",
+          "parentSpaceId",
+          "spaceId",
+          "updatesRoomId",
+          "generalRoomId",
+          "roomId",
+          "tokenConfigured",
+          "maskedAccessToken",
+          "events",
+          "isActive",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
       "SlackIntegration": {
         "type": [
           "object",
@@ -4498,6 +4863,75 @@
         "required": [
           "id",
           "type"
+        ]
+      },
+      "RepositoryBindingList": {
+        "type": "object",
+        "properties": {
+          "bindings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RepositoryBindingSummary"
+            },
+            "description": "Every repository binding of the project."
+          }
+        },
+        "required": [
+          "bindings"
+        ]
+      },
+      "RepositoryBindingSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The integration id. Pass it as syncIntegrationIds when creating a task."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "github",
+              "gitea",
+              "gitlab"
+            ],
+            "description": "The git provider of the binding."
+          },
+          "identity": {
+            "type": "string",
+            "description": "owner/name for GitHub and Gitea, the full project path for GitLab."
+          },
+          "host": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Instance host for self-hosted Gitea and GitLab; null for github.com."
+          },
+          "externalUrl": {
+            "type": "string",
+            "description": "Web URL of the repository."
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "requiresVerification": {
+            "type": "boolean",
+            "description": "Legacy GitHub bindings without a verified numeric repository id cannot create issues."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "identity",
+          "host",
+          "externalUrl",
+          "isActive",
+          "requiresVerification",
+          "createdAt"
         ]
       },
       "WorkflowRule": {
@@ -8535,7 +8969,7 @@
           "Projects"
         ],
         "summary": "Update project",
-        "description": "Replace a project's name, icon, slug, description, and visibility.",
+        "description": "Replace a project's name, icon, slug, description, and visibility. Optionally set the default sprint length in days.",
         "parameters": [
           {
             "schema": {
@@ -8567,6 +9001,11 @@
                   },
                   "isPublic": {
                     "type": "boolean"
+                  },
+                  "defaultSprintLengthDays": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "description": "Default sprint length in days. Used to prefill a new sprint's end date when starting it. Omit to keep the current value."
                   }
                 },
                 "required": [
@@ -9901,7 +10340,8 @@
                       "delete",
                       "addLabel",
                       "removeLabel",
-                      "updateDueDate"
+                      "updateDueDate",
+                      "updateSprint"
                     ]
                   },
                   "value": {
@@ -9909,7 +10349,7 @@
                       "string",
                       "null"
                     ],
-                    "description": "The new value for the chosen operation. Unused by `delete`; null clears an assignee or due date."
+                    "description": "The new value for the chosen operation. Unused by `delete`; null clears an assignee or due date, or moves tasks to the backlog for `updateSprint`."
                   }
                 },
                 "required": [
@@ -10413,6 +10853,18 @@
                     "type": "string",
                     "description": "The target column's slug."
                   },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "task",
+                      "bug"
+                    ],
+                    "description": "Bugs default to the project's active sprint; every other type defaults to the backlog."
+                  },
+                  "sprintId": {
+                    "type": "string",
+                    "description": "Active or future sprint of the project. Omit to apply the type-based default: bugs go to the active sprint, everything else to the backlog."
+                  },
                   "userId": {
                     "type": "string",
                     "description": "Assignee, if any."
@@ -10441,6 +10893,16 @@
                         "value"
                       ]
                     }
+                  },
+                  "syncIntegrationIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 128
+                    },
+                    "maxItems": 20,
+                    "description": "Repository bindings that should create an issue for this task. Omit to keep the previous behavior of every active binding creating an issue; send an empty array to create the task without any issue."
                   }
                 },
                 "required": [
@@ -12250,6 +12712,650 @@
           },
           "409": {
             "description": "The column still contains tasks",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprint/{projectId}": {
+      "get": {
+        "operationId": "getSprints",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Get sprints",
+        "description": "Get a project's sprints ordered by position, with task and completed-task counts.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of sprints ordered by position",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Sprint"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No access to the project's workspace",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createSprint",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Create sprint",
+        "description": "Add a future sprint to the end of a project's sprint backlog. Omit the name to generate the next free 'Sprint N' name.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Sprint name, unique per project. Omitted to generate the next free 'Sprint N' name."
+                  },
+                  "goal": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "What the team wants to achieve in this sprint."
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "description": "ISO date string, e.g. \"2025-01-15\". Optional until the sprint starts."
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "ISO date string, e.g. \"2025-01-29\". Optional until the sprint starts."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created sprint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, unknown project, or invalid dates",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing project:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "A sprint with this name already exists in the project",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprint/reorder/{projectId}": {
+      "post": {
+        "operationId": "reorderSprints",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Reorder sprints",
+        "description": "Set new positions for a project's future sprints and return the whole sprint list in its new order. Active and closed sprints keep their positions.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sprints": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "position": {
+                          "type": "integer",
+                          "minimum": 0
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "position"
+                      ]
+                    },
+                    "description": "Every sprint keeps its new position. Only future sprints may be reordered; active and closed sprints are rejected."
+                  }
+                },
+                "required": [
+                  "sprints"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The reordered sprint list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Sprint"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A sprint is not a future sprint of this project",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing project:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprint/{id}": {
+      "put": {
+        "operationId": "updateSprint",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Update sprint",
+        "description": "Rename a sprint, edit its goal or dates. Closed sprints are immutable; the active sprint cannot change its start date.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "goal": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Null clears the sprint goal."
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "description": "Only accepted for future sprints; the active sprint is already running and closed sprints are immutable."
+                  },
+                  "endDate": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Accepted for future and active sprints. Null clears it."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated sprint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, unknown sprint, invalid dates, or an immutable field",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing project:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sprint not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The sprint is closed, or the name is already taken",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprint/start/{id}": {
+      "post": {
+        "operationId": "startSprint",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Start sprint",
+        "description": "Make a future sprint the single active sprint of its project. Dates default to now plus the project's default sprint length. Fails while another sprint is active.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "startDate": {
+                    "type": "string",
+                    "description": "ISO date string. Defaults to now, or the stored start date."
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "description": "ISO date string. Defaults to the stored end date, or the start date plus the project's default sprint length."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The started sprint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, unknown sprint, or invalid dates",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing project:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sprint not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Another sprint is already active, or the sprint is not a future sprint",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprint/close/{id}": {
+      "post": {
+        "operationId": "closeSprint",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Close sprint",
+        "description": "Close the active sprint. Unfinished tasks move to the chosen future sprint, or to the backlog for a null target. Completed tasks remain in the closed sprint as its history.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "targetSprintId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Future sprint of the same project that receives every unfinished task. Null moves them to the backlog. Completed tasks stay in the closed sprint as history."
+                  }
+                },
+                "required": [
+                  "targetSprintId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The closed sprint and the moved tasks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CloseSprintResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The target is not a future sprint of this project",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing project:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Sprint or target sprint not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The sprint is not active, or is already closed",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sprint/task/{taskId}": {
+      "put": {
+        "operationId": "updateTaskSprint",
+        "tags": [
+          "Sprints"
+        ],
+        "summary": "Assign a task to a sprint",
+        "description": "Move a task to an active or future sprint of its project, or to the backlog with null. Closed sprints are immutable in both directions.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "taskId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "sprintId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Active or future sprint of the task's project. Null moves the task to the backlog. Closed sprints are rejected in both directions."
+                  }
+                },
+                "required": [
+                  "sprintId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The task with its new sprint",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskSprint"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, or unknown task",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing task:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task or target sprint not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The task or the target belongs to a closed sprint",
             "content": {
               "text/plain": {
                 "schema": {
@@ -16759,6 +17865,202 @@
         }
       }
     },
+    "/github-integration/integration/{integrationId}/branches": {
+      "get": {
+        "operationId": "listGitHubRepositoryBranches",
+        "tags": [
+          "GitHub"
+        ],
+        "summary": "Search branches of a linked repository",
+        "description": "List the branches of the repository behind one binding, optionally filtered by a case-insensitive substring such as the task ticket key. At most 500 branches per call are examined.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "maxLength": 200,
+              "description": "Case-insensitive substring filter applied to branch names server-side."
+            },
+            "required": false,
+            "description": "Case-insensitive substring filter applied to branch names server-side.",
+            "name": "query",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching branches of the linked repository",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubBranchList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing task:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Integration not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Integration requires verification",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createGitHubRepositoryBranch",
+        "tags": [
+          "GitHub"
+        ],
+        "summary": "Create or link a task branch",
+        "description": "Create a branch for a task in the bound repository, based on the default branch head, and link it to the task. When the branch already exists it is only linked. With create=false the branch must already exist.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "taskId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "description": "The task the branch is created for."
+                  },
+                  "branchName": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 255,
+                    "description": "The branch to create, e.g. fix/EC-123. Must satisfy git ref name rules."
+                  },
+                  "create": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Create the ref on GitHub from the default branch head when it does not exist yet. Set to false to only link an existing branch."
+                  }
+                },
+                "required": [
+                  "taskId",
+                  "branchName"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The created or linked branch",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubBranchResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid branch name, or the task belongs to another project",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing task:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Integration or task not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Integration requires verification",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/gitea-integration/repositories": {
       "post": {
         "operationId": "listGiteaRepositories",
@@ -18255,6 +19557,9 @@
               }
             }
           },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
           "403": {
             "description": "No workspace access, or missing workspace:manage_settings",
             "content": {
@@ -18416,6 +19721,9 @@
               }
             }
           },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
           "403": {
             "description": "No workspace access, or missing workspace:manage_settings",
             "content": {
@@ -18469,6 +19777,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
           },
           "403": {
             "description": "No access to the integration's workspace",
@@ -18560,6 +19871,9 @@
               }
             }
           },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
           "402": {
             "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
             "content": {
@@ -18632,6 +19946,9 @@
               }
             }
           },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
           "403": {
             "description": "No workspace access, or missing workspace:manage_settings",
             "content": {
@@ -18703,6 +20020,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
           },
           "403": {
             "description": "No access to the project's workspace",
@@ -18806,6 +20126,9 @@
               }
             }
           },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
           "402": {
             "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
             "content": {
@@ -18892,6 +20215,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
           },
           "403": {
             "description": "No workspace access, or missing task:create or task:update permission",
@@ -19967,6 +21293,384 @@
           },
           "404": {
             "description": "Mattermost integration not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/matrix-integration/project/{projectId}": {
+      "get": {
+        "operationId": "getMatrixIntegration",
+        "tags": [
+          "Matrix"
+        ],
+        "summary": "Get Matrix integration",
+        "description": "Get the Matrix integration for a project, or null when none is configured.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matrix integration details, or null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatrixIntegration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No access to the project's workspace",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createMatrixIntegration",
+        "tags": [
+          "Matrix"
+        ],
+        "summary": "Create Matrix integration",
+        "description": "Connect a Matrix bot account for a project. In provision mode Kaneo creates a workspace space with a project subspace and Updates and General rooms (optionally nested under a parent space); in existing mode it joins and posts to a room you manage. The homeserver must pass destination validation and the bot credentials are verified during the request.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "homeserverUrl": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
+                  },
+                  "accessToken": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
+                  },
+                  "mode": {
+                    "type": "string",
+                    "enum": [
+                      "provision",
+                      "existing"
+                    ],
+                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
+                  },
+                  "spaceNamePrefix": {
+                    "type": "string",
+                    "description": "Optional prefix for the workspace space name in provision mode."
+                  },
+                  "parentSpaceId": {
+                    "type": "string",
+                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
+                  },
+                  "roomId": {
+                    "type": "string",
+                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
+                  },
+                  "inviteUsers": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
+                  },
+                  "events": {
+                    "type": "object",
+                    "properties": {
+                      "taskCreated": {
+                        "type": "boolean"
+                      },
+                      "taskStatusChanged": {
+                        "type": "boolean"
+                      },
+                      "taskPriorityChanged": {
+                        "type": "boolean"
+                      },
+                      "taskTitleChanged": {
+                        "type": "boolean"
+                      },
+                      "taskDescriptionChanged": {
+                        "type": "boolean"
+                      },
+                      "taskCommentCreated": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "homeserverUrl",
+                  "accessToken",
+                  "mode"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The stored integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatrixIntegration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The homeserver rejected the connection, or the config failed validation",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing workspace:manage_settings",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateMatrixIntegration",
+        "tags": [
+          "Matrix"
+        ],
+        "summary": "Update Matrix integration",
+        "description": "Update credentials, event toggles, or the active flag. The connected space or room cannot change; disconnect and reconnect to move the project.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "homeserverUrl": {
+                    "type": "string"
+                  },
+                  "accessToken": {
+                    "type": "string"
+                  },
+                  "spaceNamePrefix": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "inviteUsers": {
+                    "type": [
+                      "array",
+                      "null"
+                    ],
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "isActive": {
+                    "type": "boolean"
+                  },
+                  "events": {
+                    "type": "object",
+                    "properties": {
+                      "taskCreated": {
+                        "type": "boolean"
+                      },
+                      "taskStatusChanged": {
+                        "type": "boolean"
+                      },
+                      "taskPriorityChanged": {
+                        "type": "boolean"
+                      },
+                      "taskTitleChanged": {
+                        "type": "boolean"
+                      },
+                      "taskDescriptionChanged": {
+                        "type": "boolean"
+                      },
+                      "taskCommentCreated": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatrixIntegration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The resulting config failed validation, or the homeserver rejected the new credentials",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing workspace:manage_settings",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Matrix integration not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteMatrixIntegration",
+        "tags": [
+          "Matrix"
+        ],
+        "summary": "Delete Matrix integration",
+        "description": "Remove the Matrix integration from a project. Created spaces and rooms are kept on the homeserver.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The integration was removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing workspace:manage_settings",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Matrix integration not found",
             "content": {
               "text/plain": {
                 "schema": {
@@ -21084,6 +22788,61 @@
           },
           "404": {
             "description": "Manual resource link not found on this task",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/repository-bindings/project/{projectId}": {
+      "get": {
+        "operationId": "listProjectRepositoryBindings",
+        "tags": [
+          "Repository Bindings"
+        ],
+        "summary": "List the project's linked repositories",
+        "description": "List every GitHub, Gitea and GitLab repository bound to the project, without configuration secrets. Readable by any workspace member so task dialogs can offer repository choices.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The project's repository bindings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepositoryBindingList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No access to the project's workspace",
             "content": {
               "text/plain": {
                 "schema": {
