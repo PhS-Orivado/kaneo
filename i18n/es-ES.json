@@ -2838,7 +2838,8 @@
 				"priority": "Prioridad",
 				"assignee": "Asignado",
 				"dueDate": "Fecha de vencimiento",
-				"labels": "Etiquetas"
+				"labels": "Etiquetas",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "es alguno de",
@@ -2847,7 +2848,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Todos los sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2963,7 +2965,9 @@
 			"actions": "Actiones",
 			"searchActions": "Buscar acciones...",
 			"noActionsFound": "No se han encontrado acciones.",
-			"changeStatus": "Cambiar estado"
+			"changeStatus": "Cambiar estado",
+			"moveToSprint": "Mover a sprint",
+			"updateSprintError": "No se pudieron mover las tareas al sprint"
 		},
 		"move": {
 			"title": "Mover tarea",
@@ -3088,7 +3092,12 @@
 			"moveUp": "Subir",
 			"moveDown": "Bajar",
 			"closedLocked": "Esta tarea pertenece a un sprint cerrado y permanece allí como historial",
-			"error": "La acción del sprint falló"
+			"error": "La acción del sprint falló",
+			"daysRemaining": "Quedan {{remaining}} días",
+			"endsToday": "Termina hoy",
+			"daysOverdue": "{{remaining}} días de retraso",
+			"noTasks": "Aún no hay tareas en este sprint",
+			"toggleTasks": "Mostrar tareas del sprint"
 		},
 		"type": {
 			"task": "Tarea",

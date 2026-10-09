@@ -2833,7 +2833,8 @@
 				"priority": "Προτεραιότητα",
 				"assignee": "Ανατεθειμένος",
 				"dueDate": "Ημερομηνία λήξης",
-				"labels": "Ετικέτες"
+				"labels": "Ετικέτες",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "είναι ένα από",
@@ -2842,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Όλα τα sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2957,7 +2959,9 @@
 			"actions": "Ενέργειες",
 			"searchActions": "Αναζήτηση ενεργειών...",
 			"noActionsFound": "Δεν βρέθηκαν ενέργειες.",
-			"changeStatus": "Αλλαγή κατάστασης"
+			"changeStatus": "Αλλαγή κατάστασης",
+			"moveToSprint": "Μετακίνηση σε sprint",
+			"updateSprintError": "Απέτυχε η μετακίνηση των εργασιών στο sprint"
 		},
 		"editor": {
 			"table": {
@@ -3070,7 +3074,12 @@
 			"moveUp": "Μετακίνηση πάνω",
 			"moveDown": "Μετακίνηση κάτω",
 			"closedLocked": "Αυτή η εργασία ανήκει σε κλειστό sprint και παραμένει εκεί ως ιστορικό",
-			"error": "Η ενέργεια sprint απέτυχε"
+			"error": "Η ενέργεια sprint απέτυχε",
+			"daysRemaining": "Απομένουν {{remaining}} ημέρες",
+			"endsToday": "Τελειώνει σήμερα",
+			"daysOverdue": "{{remaining}} ημέρες καθυστέρηση",
+			"noTasks": "Δεν υπάρχουν ακόμα εργασίες σε αυτό το sprint",
+			"toggleTasks": "Εμφάνιση εργασιών sprint"
 		},
 		"type": {
 			"task": "Εργασία",
