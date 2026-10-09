@@ -2833,7 +2833,8 @@
 				"priority": "प्राथमिकता",
 				"assignee": "सौंपा गया",
 				"dueDate": "नियत तारीख",
-				"labels": "लेबल"
+				"labels": "लेबल",
+				"sprint": "स्प्रिंट"
 			},
 			"operators": {
 				"isAnyOf": "में से कोई है",
@@ -2842,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "सभी स्प्रिंट"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – गैंट",
@@ -2957,7 +2959,9 @@
 			"actions": "कार्रवाइयाँ",
 			"searchActions": "कार्रवाइयाँ खोजें...",
 			"noActionsFound": "कोई कार्रवाई नहीं मिली।",
-			"changeStatus": "स्थिति बदलें"
+			"changeStatus": "स्थिति बदलें",
+			"moveToSprint": "स्प्रिंट में ले जाएँ",
+			"updateSprintError": "कार्यों को स्प्रिंट में ले जाना विफल"
 		},
 		"editor": {
 			"table": {
@@ -3070,7 +3074,12 @@
 			"moveUp": "ऊपर ले जाएँ",
 			"moveDown": "नीचे ले जाएँ",
 			"closedLocked": "यह कार्य बंद स्प्रिंट का हिस्सा है और इतिहास के रूप में वहीं रहेगा",
-			"error": "स्प्रिंट कार्रवाई विफल"
+			"error": "स्प्रिंट कार्रवाई विफल",
+			"daysRemaining": "{{remaining}} दिन शेष",
+			"endsToday": "आज समाप्त",
+			"daysOverdue": "{{remaining}} दिन से अतिदेय",
+			"noTasks": "इस स्प्रिंट में अभी कोई कार्य नहीं है",
+			"toggleTasks": "स्प्रिंट कार्य दिखाएँ"
 		},
 		"type": {
 			"task": "कार्य",

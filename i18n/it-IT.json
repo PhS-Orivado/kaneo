@@ -2849,7 +2849,8 @@
 				"priority": "Priorità",
 				"assignee": "Assegnatario",
 				"dueDate": "Data scadenza",
-				"labels": "Etichette"
+				"labels": "Etichette",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "è uno di",
@@ -2858,7 +2859,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Tutti gli sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2974,7 +2976,9 @@
 			"actions": "Azioni",
 			"searchActions": "Cerca azioni...",
 			"noActionsFound": "Nessuna azione trovata.",
-			"changeStatus": "Cambia Stato"
+			"changeStatus": "Cambia Stato",
+			"moveToSprint": "Sposta in sprint",
+			"updateSprintError": "Impossibile spostare le attività nello sprint"
 		},
 		"editor": {
 			"table": {
@@ -3088,7 +3092,12 @@
 			"moveUp": "Sposta su",
 			"moveDown": "Sposta giù",
 			"closedLocked": "Questa attività appartiene a uno sprint chiuso e vi resta come cronologia",
-			"error": "Azione sul sprint non riuscita"
+			"error": "Azione sul sprint non riuscita",
+			"daysRemaining": "{{remaining}} giorni rimanenti",
+			"endsToday": "Termina oggi",
+			"daysOverdue": "{{remaining}} giorni di ritardo",
+			"noTasks": "Ancora nessuna attività in questo sprint",
+			"toggleTasks": "Mostra le attività dello sprint"
 		},
 		"type": {
 			"task": "Attività",

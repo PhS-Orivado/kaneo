@@ -2817,7 +2817,8 @@
 				"priority": "Prioritas",
 				"assignee": "Penanggung jawab",
 				"dueDate": "Tenggat",
-				"labels": "Label"
+				"labels": "Label",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "adalah salah satu dari",
@@ -2826,7 +2827,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Semua sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2940,7 +2942,9 @@
 			"actions": "Aksi",
 			"searchActions": "Cari aksi...",
 			"noActionsFound": "Tidak ada aksi ditemukan.",
-			"changeStatus": "Ubah Status"
+			"changeStatus": "Ubah Status",
+			"moveToSprint": "Pindahkan ke sprint",
+			"updateSprintError": "Gagal memindahkan tugas ke sprint"
 		},
 		"editor": {
 			"table": {
@@ -3052,7 +3056,12 @@
 			"moveUp": "Naikkan",
 			"moveDown": "Turunkan",
 			"closedLocked": "Tugas ini bagian dari sprint yang ditutup dan tetap di sana sebagai riwayat",
-			"error": "Tindakan sprint gagal"
+			"error": "Tindakan sprint gagal",
+			"daysRemaining": "{{remaining}} hari tersisa",
+			"endsToday": "Berakhir hari ini",
+			"daysOverdue": "Terlambat {{remaining}} hari",
+			"noTasks": "Belum ada tugas dalam sprint ini",
+			"toggleTasks": "Tampilkan tugas sprint"
 		},
 		"type": {
 			"task": "Tugas",
