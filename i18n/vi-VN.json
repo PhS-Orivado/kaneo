@@ -1022,7 +1022,14 @@
 			"toastMoved": "Đã chuyển dự án thành công",
 			"toastMovedWithUnassigned": "Đã chuyển dự án thành công. {{taskCount}} công việc đã bị hủy phân công.",
 			"toastMoveError": "Không thể chuyển dự án",
-			"moveTargetsError": "Không thể kiểm tra những không gian làm việc mà bạn có thể chuyển dự án này đến. Hãy tải lại trang để thử lại."
+			"moveTargetsError": "Không thể kiểm tra những không gian làm việc mà bạn có thể chuyển dự án này đến. Hãy tải lại trang để thử lại.",
+			"sprints": "Sprint",
+			"sprintsSubtitle": "Lập kế hoạch công việc sắp tới theo các vòng lặp có độ dài cố định.",
+			"sprintLength": "Độ dài sprint mặc định",
+			"sprintLengthDescription": "Số ngày một sprint mới bao phủ theo mặc định.",
+			"sprintLengthSave": "Lưu độ dài sprint",
+			"sprintLengthSaved": "Đã lưu độ dài sprint",
+			"sprintLengthError": "Không thể lưu độ dài sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Tích hợp dự án",
@@ -3012,6 +3019,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprint",
+			"create": "Tạo sprint",
+			"createTitle": "Tạo sprint",
+			"createDescription": "Lập kế hoạch sprint sắp tới với tên, mục tiêu và ngày.",
+			"editTitle": "Sửa sprint",
+			"editDescription": "Cập nhật tên, mục tiêu và ngày của sprint.",
+			"edit": "Sửa sprint",
+			"name": "Tên sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Mục tiêu sprint",
+			"goalPlaceholder": "Sprint này cần đạt được điều gì?",
+			"save": "Lưu thay đổi",
+			"start": "Bắt đầu sprint",
+			"startSuccess": "Sprint {{name}} đã bắt đầu",
+			"close": "Đóng sprint",
+			"closeTitle": "Đóng sprint",
+			"closeSummary": "{{name}} có {{total}} công việc, trong đó {{completed}} đã hoàn thành.",
+			"closeTarget": "Chuyển {{count}} công việc chưa hoàn thành sang",
+			"closeConfirm": "Đóng sprint và chuyển công việc chưa hoàn thành",
+			"closeSuccess": "Sprint đã đóng, {{count}} công việc chưa hoàn thành đã được chuyển",
+			"backlog": "Backlog",
+			"activeBadge": "Đang chạy",
+			"noActive": "Không có sprint nào đang chạy. Hãy bắt đầu một sprint sắp tới.",
+			"upcoming": "Sprint sắp tới",
+			"unscheduled": "Chưa lên lịch",
+			"taskCounts": "{{completed}} trên {{total}} hoàn thành",
+			"history": "Sprint đã đóng ({{count}})",
+			"completedCount": "{{count}} hoàn thành",
+			"moveUp": "Chuyển lên",
+			"moveDown": "Chuyển xuống",
+			"closedLocked": "Công việc này thuộc một sprint đã đóng và ở lại đó như lịch sử",
+			"error": "Thao tác sprint thất bại"
+		},
+		"type": {
+			"task": "Công việc",
+			"bug": "Lỗi"
 		}
 	},
 	"invitations": {

@@ -790,7 +790,14 @@
 			"toastMoved": "Proje başarıyla taşındı",
 			"toastMovedWithUnassigned": "Proje başarıyla taşındı. {{taskCount}} görevin ataması kaldırıldı.",
 			"toastMoveError": "Proje taşınamadı",
-			"moveTargetsError": "Bu projeyi hangi çalışma alanlarına taşıyabileceğiniz kontrol edilemedi. Yeniden denemek için sayfayı yenileyin."
+			"moveTargetsError": "Bu projeyi hangi çalışma alanlarına taşıyabileceğiniz kontrol edilemedi. Yeniden denemek için sayfayı yenileyin.",
+			"sprints": "Sprintler",
+			"sprintsSubtitle": "Yaklaşan işi sabit uzunluklu yinelemelerle planlayın.",
+			"sprintLength": "Varsayılan sprint uzunluğu",
+			"sprintLengthDescription": "Yeni bir sprintin varsayılan olarak kapsadığı gün sayısı.",
+			"sprintLengthSave": "Sprint uzunluğunu kaydet",
+			"sprintLengthSaved": "Sprint uzunluğu kaydedildi",
+			"sprintLengthError": "Sprint uzunluğu kaydedilemedi"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Proje Entegrasyonları",
@@ -3030,6 +3037,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprintler",
+			"create": "Sprint oluştur",
+			"createTitle": "Sprint oluştur",
+			"createDescription": "Yaklaşan bir sprinti ad, hedef ve tarihlerle planlayın.",
+			"editTitle": "Sprinti düzenle",
+			"editDescription": "Sprintin adını, hedefini ve tarihlerini güncelleyin.",
+			"edit": "Sprinti düzenle",
+			"name": "Sprint adı",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint hedefi",
+			"goalPlaceholder": "Bu sprint neyi başarmalı?",
+			"save": "Değişiklikleri kaydet",
+			"start": "Sprinti başlat",
+			"startSuccess": "Sprint {{name}} başlatıldı",
+			"close": "Sprinti kapat",
+			"closeTitle": "Sprinti kapat",
+			"closeSummary": "{{name}} sprintinde {{total}} görev var, {{completed}} tanesi tamamlandı.",
+			"closeTarget": "{{count}} bitmemiş görevi şu yöne taşı:",
+			"closeConfirm": "Sprinti kapat ve bitmemiş görevleri taşı",
+			"closeSuccess": "Sprint kapatıldı, {{count}} bitmemiş görev taşındı",
+			"backlog": "Backlog",
+			"activeBadge": "Aktif",
+			"noActive": "Aktif bir sprint yok. Yineleme yapmak için yaklaşan bir sprinti başlatın.",
+			"upcoming": "Yaklaşan sprint",
+			"unscheduled": "Planlanmadı",
+			"taskCounts": "{{total}} görevden {{completed}} tamamlandı",
+			"history": "Kapatılan sprintler ({{count}})",
+			"completedCount": "{{count}} tamamlandı",
+			"moveUp": "Yukarı taşı",
+			"moveDown": "Aşağı taşı",
+			"closedLocked": "Bu görev kapatılmış bir sprinte ait ve geçmiş olarak orada kalır",
+			"error": "Sprint işlemi başarısız oldu"
+		},
+		"type": {
+			"task": "Görev",
+			"bug": "Hata"
 		}
 	},
 	"invitations": {
