@@ -1022,7 +1022,14 @@
 			"toastMoved": "项目移动成功",
 			"toastMovedWithUnassigned": "项目移动成功。已取消分配 {{taskCount}} 个任务。",
 			"toastMoveError": "移动项目失败",
-			"moveTargetsError": "无法检查你可以将此项目移动到哪些工作区。请重新加载页面后重试。"
+			"moveTargetsError": "无法检查你可以将此项目移动到哪些工作区。请重新加载页面后重试。",
+			"sprints": "冲刺",
+			"sprintsSubtitle": "以固定长度的迭代来规划接下来的工作。",
+			"sprintLength": "默认冲刺长度",
+			"sprintLengthDescription": "新冲刺默认涵盖的天数。",
+			"sprintLengthSave": "保存冲刺长度",
+			"sprintLengthSaved": "冲刺长度已保存",
+			"sprintLengthError": "无法保存冲刺长度"
 		},
 		"projectIntegrations": {
 			"pageTitle": "项目集成",
@@ -3012,6 +3019,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "冲刺",
+			"create": "创建冲刺",
+			"createTitle": "创建冲刺",
+			"createDescription": "为即将开始的冲刺设置名称、目标和日期。",
+			"editTitle": "编辑冲刺",
+			"editDescription": "更新冲刺的名称、目标和日期。",
+			"edit": "编辑冲刺",
+			"name": "冲刺名称",
+			"namePlaceholder": "冲刺 1",
+			"goal": "冲刺目标",
+			"goalPlaceholder": "这个冲刺要达成什么？",
+			"save": "保存更改",
+			"start": "开始冲刺",
+			"startSuccess": "冲刺 {{name}} 已开始",
+			"close": "关闭冲刺",
+			"closeTitle": "关闭冲刺",
+			"closeSummary": "{{name}} 共有 {{total}} 个任务，其中 {{completed}} 个已完成。",
+			"closeTarget": "将 {{count}} 个未完成的任务移动到",
+			"closeConfirm": "关闭冲刺并移动未完成的任务",
+			"closeSuccess": "冲刺已关闭，已移动 {{count}} 个未完成的任务",
+			"backlog": "待办列表",
+			"activeBadge": "进行中",
+			"noActive": "当前没有进行中的冲刺。请开始一个即将进行的冲刺以进入迭代。",
+			"upcoming": "即将开始的冲刺",
+			"unscheduled": "未安排",
+			"taskCounts": "已完成 {{completed}} / {{total}}",
+			"history": "已关闭的冲刺（{{count}}）",
+			"completedCount": "{{count}} 个已完成",
+			"moveUp": "上移",
+			"moveDown": "下移",
+			"closedLocked": "此任务属于已关闭的冲刺，将作为历史保留在其中",
+			"error": "冲刺操作失败"
+		},
+		"type": {
+			"task": "任务",
+			"bug": "缺陷"
 		}
 	},
 	"invitations": {
