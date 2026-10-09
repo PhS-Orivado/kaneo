@@ -13,6 +13,7 @@ import {
   defaultRolePayloads,
   owner,
 } from "@kaneo/permissions";
+import { SEED_TASK_ATTRIBUTES } from "./task-attribute/attribute-validation";
 import bcrypt from "bcryptjs";
 import { betterAuth } from "better-auth";
 import {
@@ -500,6 +501,34 @@ export const auth = betterAuth({
           } catch (error) {
             console.error(
               "Failed to seed default workspace roles for workspace",
+              organization.id,
+              error,
+            );
+          }
+
+          // RFC 0002 (task attributes): seed the default attributes
+          // (Task, Bug, Doc) for the new workspace. Best-effort and
+          // idempotent; the boot-time runtime migration backfills any
+          // workspace this hook misses.
+          try {
+            const existingAttributes = await db
+              .select({ id: schema.taskAttributeTable.id })
+              .from(schema.taskAttributeTable)
+              .where(
+                eq(schema.taskAttributeTable.workspaceId, organization.id),
+              )
+              .limit(1);
+            if (existingAttributes.length === 0) {
+              await db.insert(schema.taskAttributeTable).values(
+                SEED_TASK_ATTRIBUTES.map((attribute) => ({
+                  ...attribute,
+                  workspaceId: organization.id,
+                })),
+              );
+            }
+          } catch (error) {
+            console.error(
+              "Failed to seed default task attributes for workspace",
               organization.id,
               error,
             );

@@ -48,6 +48,7 @@ import matrixIntegration from "./matrix-integration";
 import mattermostIntegration from "./mattermost-integration";
 import mcpRoutes, { mcpWellKnownRoutes } from "./mcp";
 import { migrateColumns } from "./migrations/column-migration";
+import { migrateTaskAttributes } from "./migrations/task-attribute-migration";
 import notification from "./notification";
 import notificationPreferences from "./notification-preferences";
 import oauth from "./oauth";
@@ -63,6 +64,7 @@ import search from "./search";
 import slackIntegration from "./slack-integration";
 import { getPrivateObject } from "./storage/s3";
 import task from "./task";
+import taskAttribute from "./task-attribute";
 import {
   getDescriptionPage,
   getPublicProjectDescriptionPage,
@@ -745,6 +747,7 @@ export function createApp() {
   const projectApi = api.route("/project", project);
   const calendarFeedApi = api.route("/calendar-feed", calendarFeed);
   const taskApi = api.route("/task", task);
+  const taskAttributeApi = api.route("/task-attribute", taskAttribute);
   const columnApi = api.route("/column", column);
   const activityApi = api.route("/activity", activity);
   const commentApi = api.route("/comment", comment);
@@ -922,6 +925,7 @@ export function createApp() {
     matrixIntegrationApi,
     slackIntegrationApi,
     taskApi,
+    taskAttributeApi,
     taskRelationApi,
     telegramIntegrationApi,
     timeEntryApi,
@@ -965,6 +969,7 @@ export async function runStartupTasks() {
   await migrateGitHubIntegration();
   await migrateColumns();
   await seedDefaultWorkspaceRoles();
+  await migrateTaskAttributes();
 
   initializePlugins();
   initializeScheduler();
@@ -1056,6 +1061,7 @@ const {
   searchApi,
   slackIntegrationApi,
   taskApi,
+  taskAttributeApi,
   taskRelationApi,
   telegramIntegrationApi,
   timeEntryApi,
@@ -1083,6 +1089,7 @@ export type AppType =
   | typeof projectApi
   | typeof calendarFeedApi
   | typeof taskApi
+  | typeof taskAttributeApi
   | typeof columnApi
   | typeof activityApi
   | typeof commentApi
