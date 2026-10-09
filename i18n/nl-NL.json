@@ -2822,7 +2822,8 @@
 				"priority": "Prioriteit",
 				"assignee": "Toegewezen persoon",
 				"dueDate": "Einddatum",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "is een van",
@@ -2831,7 +2832,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Alle sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2946,7 +2948,9 @@
 			"actions": "Acties",
 			"searchActions": "Acties zoeken...",
 			"noActionsFound": "Geen acties gevonden.",
-			"changeStatus": "Status wijzigen"
+			"changeStatus": "Status wijzigen",
+			"moveToSprint": "Naar sprint verplaatsen",
+			"updateSprintError": "Kan de taken niet naar de sprint verplaatsen"
 		},
 		"move": {
 			"title": "Taak verplaatsen",
@@ -3070,7 +3074,12 @@
 			"moveUp": "Omhoog",
 			"moveDown": "Omlaag",
 			"closedLocked": "Deze taak hoort bij een afgesloten sprint en blijft daar als geschiedenis",
-			"error": "Sprintactie mislukt"
+			"error": "Sprintactie mislukt",
+			"daysRemaining": "{{remaining}} dagen resterend",
+			"endsToday": "Eindigt vandaag",
+			"daysOverdue": "{{remaining}} dagen te laat",
+			"noTasks": "Nog geen taken in deze sprint",
+			"toggleTasks": "Sprinttaken weergeven"
 		},
 		"type": {
 			"task": "Taak",

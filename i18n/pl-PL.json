@@ -2889,12 +2889,14 @@
 				"dueDate": "Termin",
 				"labels": "Etykiety",
 				"priority": "Priorytet",
-				"status": "Status"
+				"status": "Status",
+				"sprint": "Sprint"
 			},
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Wszystkie sprinty"
 		},
 		"boardSearchPlaceholder": "Szukaj zadań...",
 		"bulk": {
@@ -2927,7 +2929,9 @@
 			"updateDueDateError": "Nie udało się zaktualizować terminu",
 			"updateError": "Nie udało się zaktualizować zadań",
 			"updatePriorityError": "Nie udało się zaktualizować priorytetu",
-			"updateSuccess": "Zaktualizowano zadań: {{count}}"
+			"updateSuccess": "Zaktualizowano zadań: {{count}}",
+			"moveToSprint": "Przenieś do sprintu",
+			"updateSprintError": "Nie udało się przenieść zadań do sprintu"
 		},
 		"common": {
 			"loadingTask": "Ładowanie zadania...",
@@ -3381,7 +3385,12 @@
 			"moveUp": "W górę",
 			"moveDown": "W dół",
 			"closedLocked": "To zadanie należy do zamkniętego sprintu i pozostaje w nim jako historia",
-			"error": "Akcja sprintu nie powiodła się"
+			"error": "Akcja sprintu nie powiodła się",
+			"daysRemaining": "Pozostało {{remaining}} dni",
+			"endsToday": "Kończy się dziś",
+			"daysOverdue": "{{remaining}} dni po terminie",
+			"noTasks": "Brak zadań w tym sprincie",
+			"toggleTasks": "Pokaż zadania sprintu"
 		},
 		"type": {
 			"task": "Zadanie",
