@@ -16,9 +16,11 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/menu";
+import { useGetSprints } from "@/hooks/queries/sprint/use-get-sprints";
 import {
   type BoardFilters,
   DUE_DATE_FILTER_VALUES,
+  SPRINT_FILTER_VALUES,
 } from "@/hooks/use-task-filters";
 import { cn } from "@/lib/cn";
 import { getColumnIcon } from "@/lib/column";
@@ -168,6 +170,8 @@ export default function BoardToolbar({
   const selectedPriorityIds = filters.priority ?? [];
   const selectedAssigneeIds = filters.assignee ?? [];
   const selectedDueDateFilters = filters.dueDate ?? [];
+  const selectedSprintFilters = filters.sprint ?? [];
+  const { data: sprints = [] } = useGetSprints(project?.id ?? "");
   const { background } = useBackgroundStore();
 
   const filterableCustomFields = customFieldDefinitions;
@@ -257,6 +261,21 @@ export default function BoardToolbar({
       ? selectedDueDateFilters.filter((id) => id !== dueDate)
       : [...selectedDueDateFilters, dueDate];
     updateFilter("dueDate", next.length > 0 ? next : null);
+  };
+
+  const getSprintDisplayName = (sprintFilter: string) => {
+    if (sprintFilter === SPRINT_FILTER_VALUES.backlog) {
+      return t("tasks:sprints.backlog");
+    }
+    return sprints.find((sprint) => sprint.id === sprintFilter)?.name ?? "";
+  };
+
+  const toggleSprintFilter = (sprintFilter: string) => {
+    const exists = selectedSprintFilters.includes(sprintFilter);
+    const next = exists
+      ? selectedSprintFilters.filter((id) => id !== sprintFilter)
+      : [...selectedSprintFilters, sprintFilter];
+    updateFilter("sprint", next.length > 0 ? next : null);
   };
 
   const toggleLabelGroup = (label: { name: string; color: string }) => {
@@ -511,6 +530,71 @@ export default function BoardToolbar({
                           )}
                         </button>
                       ))}
+                    </div>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger className="h-8 rounded-md text-sm">
+                    {t("tasks:boardFilters.subjects.sprint")}
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent className="w-64">
+                    <div className="grid grid-cols-1 gap-1 p-1">
+                      <button
+                        className={`inline-flex h-7 items-center gap-1.5 rounded-md px-2 text-left text-xs ${
+                          selectedSprintFilters.length === 0
+                            ? "bg-accent text-accent-foreground"
+                            : "text-foreground/90 hover:bg-accent/60 hover:text-foreground"
+                        }`}
+                        onClick={() => updateFilter("sprint", null)}
+                        type="button"
+                      >
+                        <CheckSlot
+                          checked={selectedSprintFilters.length === 0}
+                        />
+                        {t("tasks:boardFilters.allSprints")}
+                      </button>
+                      {[...sprints]
+                        .sort((a, b) => a.position - b.position)
+                        .map((sprint) => (
+                          <button
+                            key={sprint.id}
+                            className={`inline-flex h-7 items-center gap-1.5 rounded-md px-2 text-left text-xs ${
+                              selectedSprintFilters.includes(sprint.id)
+                                ? "bg-accent text-accent-foreground"
+                                : "text-foreground/90 hover:bg-accent/60 hover:text-foreground"
+                            }`}
+                            onClick={() => toggleSprintFilter(sprint.id)}
+                            type="button"
+                          >
+                            <CheckSlot
+                              checked={selectedSprintFilters.includes(
+                                sprint.id,
+                              )}
+                            />
+                            <span className="truncate">{sprint.name}</span>
+                          </button>
+                        ))}
+                      <button
+                        className={`inline-flex h-7 items-center gap-1.5 rounded-md px-2 text-left text-xs ${
+                          selectedSprintFilters.includes(
+                            SPRINT_FILTER_VALUES.backlog,
+                          )
+                            ? "bg-accent text-accent-foreground"
+                            : "text-foreground/90 hover:bg-accent/60 hover:text-foreground"
+                        }`}
+                        onClick={() =>
+                          toggleSprintFilter(SPRINT_FILTER_VALUES.backlog)
+                        }
+                        type="button"
+                      >
+                        <CheckSlot
+                          checked={selectedSprintFilters.includes(
+                            SPRINT_FILTER_VALUES.backlog,
+                          )}
+                        />
+                        {t("tasks:sprints.backlog")}
+                      </button>
                     </div>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
@@ -796,6 +880,21 @@ export default function BoardToolbar({
                       })
                 }
                 onClear={() => updateFilter("dueDate", null)}
+              />
+            )}
+
+            {selectedSprintFilters.length > 0 && (
+              <ActiveFilterChip
+                subject={t("tasks:boardFilters.subjects.sprint")}
+                operator={t("tasks:boardFilters.operators.isAnyOf")}
+                value={
+                  selectedSprintFilters.length === 1
+                    ? getSprintDisplayName(selectedSprintFilters[0])
+                    : t("tasks:boardFilters.selectedCount", {
+                        count: selectedSprintFilters.length,
+                      })
+                }
+                onClear={() => updateFilter("sprint", null)}
               />
             )}
 

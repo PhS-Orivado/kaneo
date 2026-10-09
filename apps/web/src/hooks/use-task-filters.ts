@@ -10,6 +10,7 @@ export type BoardFilters = {
   assignee: string[] | null;
   dueDate: string[] | null;
   labels: string[] | null;
+  sprint: string[] | null;
   customFields: Record<string, string[]> | null;
 };
 
@@ -19,12 +20,19 @@ export const DUE_DATE_FILTER_VALUES = {
   noDueDate: "noDueDate",
 } as const;
 
+// The backlog token matches tasks without a sprint; every other value is a
+// sprint id.
+export const SPRINT_FILTER_VALUES = {
+  backlog: "backlog",
+} as const;
+
 const DEFAULT_FILTERS: BoardFilters = {
   status: null,
   priority: null,
   assignee: null,
   dueDate: null,
   labels: null,
+  sprint: null,
   customFields: null,
 };
 
@@ -34,6 +42,7 @@ const FILTER_KEYS: Array<keyof BoardFilters> = [
   "assignee",
   "dueDate",
   "labels",
+  "sprint",
   "customFields",
 ];
 
@@ -121,6 +130,18 @@ export function useTaskFilters(
         !filters.assignee.includes(task.userId ?? "")
       ) {
         return false;
+      }
+
+      if (filters.sprint && filters.sprint.length > 0) {
+        const matchesSprint = filters.sprint.some((sprintFilter) =>
+          sprintFilter === SPRINT_FILTER_VALUES.backlog
+            ? task.sprintId == null
+            : task.sprintId === sprintFilter,
+        );
+
+        if (!matchesSprint) {
+          return false;
+        }
       }
 
       if (filters.dueDate && filters.dueDate.length > 0) {

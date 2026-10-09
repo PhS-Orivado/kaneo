@@ -4,7 +4,11 @@ import { useUserPreferencesStore } from "@/store/user-preferences";
 import type { ProjectWithTasks } from "@/types/project";
 import type Task from "@/types/task";
 import useGetCachedCustomFieldValues from "./queries/custom-field/use-get-all-custom-field-values-by-project";
-import { type BoardFilters, DUE_DATE_FILTER_VALUES } from "./use-task-filters";
+import {
+  type BoardFilters,
+  DUE_DATE_FILTER_VALUES,
+  SPRINT_FILTER_VALUES,
+} from "./use-task-filters";
 
 const DEFAULT_FILTERS: BoardFilters = {
   status: null,
@@ -12,6 +16,7 @@ const DEFAULT_FILTERS: BoardFilters = {
   assignee: null,
   dueDate: null,
   labels: null,
+  sprint: null,
   customFields: null,
 };
 
@@ -21,6 +26,7 @@ const FILTER_KEYS: Array<keyof BoardFilters> = [
   "assignee",
   "dueDate",
   "labels",
+  "sprint",
   "customFields",
 ];
 
@@ -147,6 +153,18 @@ export function useTaskFiltersWithLabelsSupport(
           !filters.assignee.includes(task.userId ?? "")
         ) {
           return false;
+        }
+
+        if (filters.sprint && filters.sprint.length > 0) {
+          const matchesSprint = filters.sprint.some((sprintFilter) =>
+            sprintFilter === SPRINT_FILTER_VALUES.backlog
+              ? task.sprintId == null
+              : task.sprintId === sprintFilter,
+          );
+
+          if (!matchesSprint) {
+            return false;
+          }
         }
 
         if (filters.dueDate && filters.dueDate.length > 0) {

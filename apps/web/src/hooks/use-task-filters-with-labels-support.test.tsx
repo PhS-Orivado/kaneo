@@ -208,4 +208,117 @@ describe("useTaskFiltersWithLabelsSupport", () => {
       ]);
     },
   );
+
+  const sprintProject = {
+    id: "project-1",
+    name: "Project",
+    slug: "PROJ",
+    icon: null,
+    description: null,
+    isPublic: false,
+    createdAt: "2026-04-16T00:00:00.000Z",
+    updatedAt: "2026-04-16T00:00:00.000Z",
+    workspaceId: "workspace-1",
+    columns: [
+      {
+        id: "todo",
+        slug: "todo",
+        name: "Todo",
+        icon: null,
+        isFinal: false,
+        tasks: [
+          {
+            id: "task-sprint",
+            title: "Sprint task",
+            number: 1,
+            description: null,
+            status: "todo",
+            priority: null,
+            sprintId: "sprint-1",
+            type: null,
+            startDate: null,
+            dueDate: null,
+            position: 0,
+            createdAt: "2026-04-16T00:00:00.000Z",
+            updatedAt: "2026-04-16T00:00:00.000Z",
+            userId: null,
+            assigneeId: null,
+            assigneeName: null,
+            assigneeImage: null,
+            projectId: "project-1",
+            labels: [],
+            externalLinks: [],
+          },
+          {
+            id: "task-backlog",
+            title: "Backlog task",
+            number: 2,
+            description: null,
+            status: "todo",
+            priority: null,
+            sprintId: null,
+            type: null,
+            startDate: null,
+            dueDate: null,
+            position: 1,
+            createdAt: "2026-04-16T00:00:00.000Z",
+            updatedAt: "2026-04-16T00:00:00.000Z",
+            userId: null,
+            assigneeId: null,
+            assigneeName: null,
+            assigneeImage: null,
+            projectId: "project-1",
+            labels: [],
+            externalLinks: [],
+          },
+        ],
+      },
+    ],
+    plannedTasks: [],
+    archivedTasks: [],
+  };
+
+  it("restores a persisted sprint filter and keeps only tasks of that sprint", async () => {
+    window.localStorage.setItem(
+      storageKey,
+      JSON.stringify({ sprint: ["sprint-1"] }),
+    );
+
+    const { result } = renderHook(
+      () => useTaskFiltersWithLabelsSupport(sprintProject, "project-1"),
+      {
+        wrapper: createWrapper(),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.filters.sprint).toEqual(["sprint-1"]);
+    });
+
+    expect(
+      result.current.filteredProject?.columns[0]?.tasks.map((task) => task.id),
+    ).toEqual(["task-sprint"]);
+  });
+
+  it("matches tasks without a sprint when the backlog token is filtered", async () => {
+    window.localStorage.setItem(
+      storageKey,
+      JSON.stringify({ sprint: ["backlog"] }),
+    );
+
+    const { result } = renderHook(
+      () => useTaskFiltersWithLabelsSupport(sprintProject, "project-1"),
+      {
+        wrapper: createWrapper(),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.filters.sprint).toEqual(["backlog"]);
+    });
+
+    expect(
+      result.current.filteredProject?.columns[0]?.tasks.map((task) => task.id),
+    ).toEqual(["task-backlog"]);
+  });
 });
