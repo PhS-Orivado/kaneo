@@ -2817,7 +2817,8 @@
 				"priority": "Mức ưu tiên",
 				"assignee": "Người được giao",
 				"dueDate": "Ngày đến hạn",
-				"labels": "Nhãn"
+				"labels": "Nhãn",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "là một trong",
@@ -2826,7 +2827,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Tất cả sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2940,7 +2942,9 @@
 			"actions": "Hành động",
 			"searchActions": "Tìm hành động...",
 			"noActionsFound": "Không tìm thấy hành động nào.",
-			"changeStatus": "Đổi trạng thái"
+			"changeStatus": "Đổi trạng thái",
+			"moveToSprint": "Chuyển sang sprint",
+			"updateSprintError": "Không thể chuyển công việc sang sprint"
 		},
 		"editor": {
 			"table": {
@@ -3052,7 +3056,12 @@
 			"moveUp": "Chuyển lên",
 			"moveDown": "Chuyển xuống",
 			"closedLocked": "Công việc này thuộc một sprint đã đóng và ở lại đó như lịch sử",
-			"error": "Thao tác sprint thất bại"
+			"error": "Thao tác sprint thất bại",
+			"daysRemaining": "Còn {{remaining}} ngày",
+			"endsToday": "Kết thúc hôm nay",
+			"daysOverdue": "Trễ {{remaining}} ngày",
+			"noTasks": "Chưa có công việc nào trong sprint này",
+			"toggleTasks": "Hiển thị công việc của sprint"
 		},
 		"type": {
 			"task": "Công việc",

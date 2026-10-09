@@ -2817,7 +2817,8 @@
 				"priority": "優先順序",
 				"assignee": "負責人",
 				"dueDate": "截止日期",
-				"labels": "標籤"
+				"labels": "標籤",
+				"sprint": "衝刺"
 			},
 			"operators": {
 				"isAnyOf": "為以下任一",
@@ -2826,7 +2827,8 @@
 			"all": "全部",
 			"allCustomFieldValues": "所有值",
 			"noCustomFieldValues": "沒有自訂欄位值",
-			"noValuesUsedYet": "尚未使用任何值"
+			"noValuesUsedYet": "尚未使用任何值",
+			"allSprints": "所有衝刺"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} - 行事曆",
@@ -2953,7 +2955,9 @@
 			"actions": "操作",
 			"searchActions": "搜尋操作…",
 			"noActionsFound": "找不到操作。",
-			"changeStatus": "變更狀態"
+			"changeStatus": "變更狀態",
+			"moveToSprint": "移至衝刺",
+			"updateSprintError": "無法將任務移至衝刺"
 		},
 		"editor": {
 			"table": {
@@ -3052,7 +3056,12 @@
 			"moveUp": "上移",
 			"moveDown": "下移",
 			"closedLocked": "此任務屬於已關閉的衝刺，將作為歷史保留在其中",
-			"error": "衝刺操作失敗"
+			"error": "衝刺操作失敗",
+			"daysRemaining": "剩餘 {{remaining}} 天",
+			"endsToday": "今天結束",
+			"daysOverdue": "已逾期 {{remaining}} 天",
+			"noTasks": "此衝刺中尚無任務",
+			"toggleTasks": "顯示衝刺任務"
 		},
 		"type": {
 			"task": "任務",

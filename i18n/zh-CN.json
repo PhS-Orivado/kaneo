@@ -2817,7 +2817,8 @@
 				"priority": "优先级",
 				"assignee": "负责人",
 				"dueDate": "截止日期",
-				"labels": "标签"
+				"labels": "标签",
+				"sprint": "冲刺"
 			},
 			"operators": {
 				"isAnyOf": "为以下任一",
@@ -2826,7 +2827,8 @@
 			"all": "全部",
 			"allCustomFieldValues": "所有值",
 			"noCustomFieldValues": "没有自定义字段的值",
-			"noValuesUsedYet": "还没有使用过任何值"
+			"noValuesUsedYet": "还没有使用过任何值",
+			"allSprints": "所有冲刺"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – 日历",
@@ -2953,7 +2955,9 @@
 			"actions": "操作",
 			"searchActions": "搜索操作…",
 			"noActionsFound": "未找到操作。",
-			"changeStatus": "更改状态"
+			"changeStatus": "更改状态",
+			"moveToSprint": "移至冲刺",
+			"updateSprintError": "无法将任务移至冲刺"
 		},
 		"editor": {
 			"table": {
@@ -3052,7 +3056,12 @@
 			"moveUp": "上移",
 			"moveDown": "下移",
 			"closedLocked": "此任务属于已关闭的冲刺，将作为历史保留在其中",
-			"error": "冲刺操作失败"
+			"error": "冲刺操作失败",
+			"daysRemaining": "剩余 {{remaining}} 天",
+			"endsToday": "今天结束",
+			"daysOverdue": "已逾期 {{remaining}} 天",
+			"noTasks": "此冲刺中尚无任务",
+			"toggleTasks": "显示冲刺任务"
 		},
 		"type": {
 			"task": "任务",
