@@ -2838,12 +2838,14 @@
 				"priority": "Priority",
 				"assignee": "Assignee",
 				"dueDate": "Due date",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "is any of",
 				"includeAnyOf": "include any of"
-			}
+			},
+			"allSprints": "All sprints"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – Calendar",
@@ -2971,7 +2973,9 @@
 			"actions": "Actions",
 			"searchActions": "Search actions...",
 			"noActionsFound": "No actions found.",
-			"changeStatus": "Change Status"
+			"changeStatus": "Change Status",
+			"moveToSprint": "Move to sprint",
+			"updateSprintError": "Failed to move tasks to the sprint"
 		},
 		"editor": {
 			"table": {
@@ -3070,7 +3074,12 @@
 			"moveUp": "Move up",
 			"moveDown": "Move down",
 			"closedLocked": "This task is part of a closed sprint and stays there as its history",
-			"error": "Sprint action failed"
+			"error": "Sprint action failed",
+			"daysRemaining": "{{remaining}} days remaining",
+			"endsToday": "Ends today",
+			"daysOverdue": "{{remaining}} days overdue",
+			"noTasks": "No tasks in this sprint yet",
+			"toggleTasks": "Show sprint tasks"
 		},
 		"type": {
 			"task": "Task",

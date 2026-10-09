@@ -2833,7 +2833,8 @@
 				"priority": "Priorität",
 				"assignee": "Zugewiesen",
 				"dueDate": "Fälligkeitsdatum",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "ist einer von",
@@ -2842,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Alle Sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2957,7 +2959,9 @@
 			"actions": "Aktionen",
 			"searchActions": "Aktionen suchen...",
 			"noActionsFound": "Keine Aktionen gefunden.",
-			"changeStatus": "Status ändern"
+			"changeStatus": "Status ändern",
+			"moveToSprint": "In Sprint verschieben",
+			"updateSprintError": "Aufgaben konnten nicht in den Sprint verschoben werden"
 		},
 		"editor": {
 			"table": {
@@ -3070,7 +3074,12 @@
 			"moveUp": "Nach oben",
 			"moveDown": "Nach unten",
 			"closedLocked": "Diese Aufgabe gehört zu einem abgeschlossenen Sprint und bleibt dort als Verlauf",
-			"error": "Sprint-Aktion fehlgeschlagen"
+			"error": "Sprint-Aktion fehlgeschlagen",
+			"daysRemaining": "{{remaining}} Tage verbleibend",
+			"endsToday": "Endet heute",
+			"daysOverdue": "{{remaining}} Tage überfällig",
+			"noTasks": "Noch keine Aufgaben in diesem Sprint",
+			"toggleTasks": "Sprint-Aufgaben anzeigen"
 		},
 		"type": {
 			"task": "Aufgabe",
