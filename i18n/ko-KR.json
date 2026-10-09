@@ -788,7 +788,14 @@
 			"toastMoved": "프로젝트를 이동했습니다",
 			"toastMovedWithUnassigned": "프로젝트를 이동했습니다. {{taskCount}}개 작업의 할당이 해제되었습니다.",
 			"toastMoveError": "프로젝트를 이동하지 못했습니다",
-			"moveTargetsError": "이 프로젝트를 옮길 수 있는 워크스페이스를 확인하지 못했습니다. 페이지를 새로고침해 다시 시도하세요."
+			"moveTargetsError": "이 프로젝트를 옮길 수 있는 워크스페이스를 확인하지 못했습니다. 페이지를 새로고침해 다시 시도하세요.",
+			"sprints": "스프린트",
+			"sprintsSubtitle": "다가오는 작업을 고정 길이 반복 주기로 계획합니다.",
+			"sprintLength": "기본 스프린트 기간",
+			"sprintLengthDescription": "새 스프린트가 기본적으로 포함하는 일수입니다.",
+			"sprintLengthSave": "스프린트 기간 저장",
+			"sprintLengthSaved": "스프린트 기간이 저장되었습니다",
+			"sprintLengthError": "스프린트 기간을 저장할 수 없습니다"
 		},
 		"projectIntegrations": {
 			"pageTitle": "프로젝트 연동",
@@ -3012,6 +3019,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "스프린트",
+			"create": "스프린트 만들기",
+			"createTitle": "스프린트 만들기",
+			"createDescription": "이름, 목표, 날짜로 다가오는 스프린트를 계획합니다.",
+			"editTitle": "스프린트 편집",
+			"editDescription": "스프린트의 이름, 목표, 날짜를 업데이트합니다.",
+			"edit": "스프린트 편집",
+			"name": "스프린트 이름",
+			"namePlaceholder": "스프린트 1",
+			"goal": "스프린트 목표",
+			"goalPlaceholder": "이 스프린트에서 무엇을 달성해야 하나요?",
+			"save": "변경 사항 저장",
+			"start": "스프린트 시작",
+			"startSuccess": "스프린트 {{name}} 시작됨",
+			"close": "스프린트 종료",
+			"closeTitle": "스프린트 종료",
+			"closeSummary": "{{name}}에 {{total}}개의 작업이 있으며 {{completed}}개가 완료되었습니다.",
+			"closeTarget": "완료되지 않은 작업 {{count}}개를 이동할 위치",
+			"closeConfirm": "스프린트를 종료하고 완료되지 않은 작업 이동",
+			"closeSuccess": "스프린트가 종료되었으며 완료되지 않은 작업 {{count}}개가 이동했습니다",
+			"backlog": "백로그",
+			"activeBadge": "진행 중",
+			"noActive": "진행 중인 스프린트가 없습니다. 다가오는 스프린트를 시작하세요.",
+			"upcoming": "다가오는 스프린트",
+			"unscheduled": "일정 없음",
+			"taskCounts": "{{total}}개 중 {{completed}}개 완료",
+			"history": "종료된 스프린트 ({{count}})",
+			"completedCount": "{{count}}개 완료",
+			"moveUp": "위로 이동",
+			"moveDown": "아래로 이동",
+			"closedLocked": "이 작업은 종료된 스프린트의 일부로 기록에 남습니다",
+			"error": "스프린트 작업이 실패했습니다"
+		},
+		"type": {
+			"task": "작업",
+			"bug": "버그"
 		}
 	},
 	"invitations": {
