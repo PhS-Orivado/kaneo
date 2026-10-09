@@ -2,6 +2,19 @@ import { nullableResponseTimestamp, responseTimestamp, z } from "../openapi";
 
 const priorityDescription = "One of: no-priority, low, medium, high, urgent.";
 
+// RFC 0002: compact attribute (type) reference embedded in task payloads.
+// The full definitions come from the task-attribute endpoints; this carries
+// only the fields the views need to render a badge.
+export const taskAttributeRefSchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    icon: z.string(),
+    iconColor: z.string(),
+    textColor: z.string(),
+  })
+  .openapi("TaskAttributeRef");
+
 export const taskSchema = z
   .object({
     id: z.string(),
@@ -26,6 +39,13 @@ export const taskSchema = z
       description: "The slug of the column the task sits in.",
     }),
     priority: z.string().openapi({ description: priorityDescription }),
+    attribute: taskAttributeRefSchema
+      .nullable()
+      .optional()
+      .openapi({
+        description:
+          "The task's attribute (type), such as task, bug or doc. Null when none is set; omitted where attributes are not loaded.",
+      }),
     startDate: nullableResponseTimestamp,
     dueDate: nullableResponseTimestamp,
     createdAt: responseTimestamp,
@@ -104,6 +124,13 @@ export const boardTaskSchema = z
     }),
     status: z.string(),
     priority: z.string().openapi({ description: priorityDescription }),
+    attribute: taskAttributeRefSchema
+      .nullable()
+      .optional()
+      .openapi({
+        description:
+          "The task's attribute (type), such as task, bug or doc. Null when none is set.",
+      }),
     startDate: nullableResponseTimestamp,
     dueDate: nullableResponseTimestamp,
     position: z.number().nullable(),
@@ -301,6 +328,13 @@ export const assignedTasksSchema = z
           }),
           statusIcon: z.string().nullable(),
           priority: z.string().openapi({ description: priorityDescription }),
+          attribute: taskAttributeRefSchema
+            .nullable()
+            .optional()
+            .openapi({
+              description:
+                "The task's attribute (type), such as task, bug or doc. Null when none is set.",
+            }),
           dueDate: nullableResponseTimestamp,
           projectName: z.string(),
           projectSlug: z.string(),

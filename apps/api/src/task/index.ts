@@ -58,6 +58,7 @@ import {
 } from "./controllers/require-task-permission";
 import updateTask from "./controllers/update-task";
 import updateTaskAssignee from "./controllers/update-task-assignee";
+import updateTaskAttribute from "./controllers/update-task-attribute";
 import updateTaskDescription from "./controllers/update-task-description";
 import updateTaskDueDate from "./controllers/update-task-due-date";
 import updateTaskPriority from "./controllers/update-task-priority";
@@ -102,6 +103,7 @@ import {
   ticketIdParam,
   ticketIdQuery,
   updateAssigneeBody,
+  updateAttributeBody,
   updateDescriptionBody,
   updateDueDateBody,
   updatePriorityBody,
@@ -283,7 +285,7 @@ const createTaskRoute = createRoute({
   tags: ["Tasks"],
   summary: "Create task",
   description:
-    "Add a task to a project. It is placed in the column named by `status`.",
+    "Add a task to a project. It is placed in the column named by `status`. Omit `attributeId` to apply the workspace default attribute; send null for no attribute.",
   middleware: [
     workspaceAccess.fromProject("projectId"),
     requireWorkspacePermission({ task: ["create"] }),
@@ -418,7 +420,7 @@ const updateTaskRoute = createRoute({
   tags: ["Tasks"],
   summary: "Update task",
   description:
-    "Replace every field of a task. Use the single-field routes for narrower edits.",
+    "Replace every field of a task. Use the single-field routes for narrower edits. Omit `attributeId` to keep the current attribute; send null to clear it.",
   middleware: [
     workspaceAccess.fromTask(),
     requireWorkspacePermission({ task: ["update"] }),
@@ -564,6 +566,37 @@ const updateTaskPriorityRoute = createRoute({
   responses: {
     200: jsonResponse("The updated task", taskSchema),
     400: errorResponse("Invalid priority, or unknown task"),
+    403: errorResponse(
+      "No workspace access, or missing task:update permission",
+    ),
+  },
+});
+
+const updateTaskAttributeRoute = createRoute({
+  method: "put",
+  operationId: "updateTaskAttribute",
+  path: "/attribute/{id}",
+  tags: ["Tasks"],
+  summary: "Update task attribute",
+  description:
+    "Set a task's attribute (type), or send null to clear it. The attribute must belong to the task's workspace.",
+  middleware: [
+    workspaceAccess.fromTask(),
+    requireWorkspacePermission({ task: ["update"] }),
+    requireEntitlement,
+  ] as const,
+  request: {
+    params: taskParam,
+    body: {
+      required: true,
+      content: { "application/json": { schema: updateAttributeBody } },
+    },
+  },
+  responses: {
+    200: jsonResponse("The updated task", taskSchema),
+    400: errorResponse(
+      "Invalid attribute, or the attribute does not belong to the task's workspace",
+    ),
     403: errorResponse(
       "No workspace access, or missing task:update permission",
     ),
@@ -881,6 +914,7 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       startDate,
       dueDate,
       priority,
+      attributeId,
       status,
       userId,
       customFields,
@@ -908,6 +942,7 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       startDate: parsedStartDate,
       dueDate: parsedDueDate,
       priority,
+      attributeId,
       status,
       customFields,
       draftAssetIds,
@@ -969,6 +1004,7 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       startDate,
       dueDate,
       priority,
+      attributeId,
       status,
       projectId,
       position,
@@ -998,6 +1034,7 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       description,
       priority,
       position,
+      attributeId,
       userId,
       currentUserId,
     );
@@ -1043,6 +1080,19 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
     const currentUserId = c.get("userId");
 
     const task = await updateTaskPriority({ id, priority, currentUserId });
+
+    return c.json(task, 200);
+  })
+  .openapi(updateTaskAttributeRoute, async (c) => {
+    const { id } = c.req.valid("param");
+    const { attributeId } = c.req.valid("json");
+    const currentUserId = c.get("userId");
+
+    const task = await updateTaskAttribute({
+      id,
+      attributeId,
+      currentUserId,
+    });
 
     return c.json(task, 200);
   })

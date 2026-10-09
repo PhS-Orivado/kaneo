@@ -44,12 +44,27 @@ export const listTasksQuery = z.object({
   status: z.string().optional(),
   priority: z.string().optional(),
   assigneeId: z.string().optional(),
+  attributeId: z
+    .string()
+    .optional()
+    .openapi({
+      description:
+        "Filter by task attribute (type) id; the literal `none` matches tasks without an attribute.",
+    }),
   // Number("abc") is NaN, which used to reach the limit/offset clause unchecked.
   page: pagingNumber(1, 1_000_000).optional(),
   relatedPage: pagingNumber(1, 1_000_000).optional(),
   limit: pagingNumber(1, 100).optional(),
   sortBy: z
-    .enum(["createdAt", "priority", "dueDate", "position", "title", "number"])
+    .enum([
+      "createdAt",
+      "priority",
+      "dueDate",
+      "position",
+      "title",
+      "number",
+      "attribute",
+    ])
     .optional(),
   sortOrder: z.enum(["asc", "desc"]).optional(),
   dueBefore: z.string().optional(),
@@ -61,6 +76,7 @@ export const bulkUpdateBody = z.object({
   operation: z.enum([
     "updateStatus",
     "updatePriority",
+    "updateAttribute",
     "updateAssignee",
     "delete",
     "addLabel",
@@ -79,6 +95,13 @@ export const createTaskBody = z.object({
   startDate: z.string().optional(),
   dueDate: z.string().optional(),
   priority,
+  attributeId: z
+    .string()
+    .nullish()
+    .openapi({
+      description:
+        "Attribute (type) definition for the task. Omit to apply the workspace default; null for no attribute.",
+    }),
   status: z.string().openapi({ description: "The target column's slug." }),
   userId: z.string().optional().openapi({ description: "Assignee, if any." }),
   draftAssetIds: z.array(z.string()).max(100).optional(),
@@ -106,6 +129,13 @@ export const updateTaskBody = z.object({
   startDate: z.string().optional(),
   dueDate: z.string().optional(),
   priority,
+  attributeId: z
+    .string()
+    .nullish()
+    .openapi({
+      description:
+        "Attribute (type) definition for the task. Omit to keep the current attribute; null clears it.",
+    }),
   status: z.string(),
   projectId: z.string(),
   position: z.number().int().min(0).max(MAX_TASK_POSITION),
@@ -135,6 +165,15 @@ export const importTasksBody = z.object({
 
 export const updateStatusBody = z.object({ status: z.string() });
 export const updatePriorityBody = z.object({ priority });
+export const updateAttributeBody = z.object({
+  attributeId: z
+    .string()
+    .nullable()
+    .openapi({
+      description:
+        "The attribute (type) definition to set on the task. Null clears it.",
+    }),
+});
 export const updateAssigneeBody = z.object({
   userId: z.string().nullable().openapi({ description: "Null unassigns." }),
 });

@@ -14,6 +14,7 @@ import {
   columnTable,
   labelTable,
   projectTable,
+  taskAttributeTable,
   taskTable,
 } from "../../database/schema";
 import { projectAccessCondition } from "../../project-access/project-access-condition";
@@ -94,9 +95,18 @@ async function getAssignedTasks(
         projectName: projectTable.name,
         projectSlug: projectTable.slug,
         projectIcon: projectTable.icon,
+        attributeId: taskTable.attributeId,
+        attributeName: taskAttributeTable.name,
+        attributeIcon: taskAttributeTable.icon,
+        attributeIconColor: taskAttributeTable.iconColor,
+        attributeTextColor: taskAttributeTable.textColor,
       })
       .from(taskTable)
       .innerJoin(projectTable, eq(taskTable.projectId, projectTable.id))
+      .leftJoin(
+        taskAttributeTable,
+        eq(taskTable.attributeId, taskAttributeTable.id),
+      )
       .leftJoinLateral(statusColumn, sql`true`)
       .where(openAndMine)
       .orderBy(
@@ -139,10 +149,29 @@ async function getAssignedTasks(
   }
 
   return {
-    tasks: tasks.map((task) => ({
-      ...task,
-      labels: labelsByTask.get(task.id) ?? [],
-    })),
+    tasks: tasks.map(
+      ({
+        attributeId,
+        attributeName,
+        attributeIcon,
+        attributeIconColor,
+        attributeTextColor,
+        ...task
+      }) => ({
+        ...task,
+        attribute:
+          attributeId && attributeName
+            ? {
+                id: attributeId,
+                name: attributeName,
+                icon: attributeIcon,
+                iconColor: attributeIconColor,
+                textColor: attributeTextColor,
+              }
+            : null,
+        labels: labelsByTask.get(task.id) ?? [],
+      }),
+    ),
     total: Number(totals?.total ?? 0),
   };
 }

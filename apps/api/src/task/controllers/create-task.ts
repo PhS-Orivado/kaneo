@@ -23,6 +23,11 @@ import {
 } from "../validate-task-fields";
 import { claimTaskNumber } from "./claim-task-numbers";
 import { nextTaskPosition } from "./next-task-position";
+import {
+  assertTaskAttributeInWorkspace,
+  getWorkspaceDefaultTaskAttribute,
+  type TaskAttributeRef,
+} from "../../task-attribute/resolve-task-attribute";
 
 type CustomFieldInput = {
   fieldId: string;
@@ -55,6 +60,7 @@ async function createTask({
   dueDate,
   description,
   priority,
+  attributeId,
   customFields,
   draftAssetIds,
   syncIntegrationIds,
@@ -68,12 +74,32 @@ async function createTask({
   dueDate?: Date;
   description?: string;
   priority?: string;
+  attributeId?: string | null;
   customFields?: CustomFieldInput[];
   draftAssetIds?: string[];
   syncIntegrationIds?: string[];
 }) {
   const resolvedStatus = status || "to-do";
   const resolvedPriority = priority || "no-priority";
+
+  // RFC 0002: an explicit id validates against the workspace; an omitted id
+  // applies the workspace default; an explicit null keeps no attribute.
+  const attributeWorkspaceId = await getProjectWorkspaceId(projectId);
+  let attributeRef: TaskAttributeRef | undefined;
+  let resolvedAttributeId: string | null = null;
+  if (attributeId) {
+    attributeRef = await assertTaskAttributeInWorkspace(
+      attributeId,
+      attributeWorkspaceId,
+    );
+    resolvedAttributeId = attributeId;
+  } else if (attributeId === undefined) {
+    const defaultAttribute = await getWorkspaceDefaultTaskAttribute(
+      attributeWorkspaceId,
+    );
+    attributeRef = defaultAttribute;
+    resolvedAttributeId = defaultAttribute?.id ?? null;
+  }
   const normalizedCustomFields = deduplicateCustomFields(customFields);
 
   const normalizedUserId = userId?.trim() || undefined;
@@ -155,6 +181,7 @@ async function createTask({
         dueDate: dueDate || null,
         description: description || "",
         priority: resolvedPriority,
+        attributeId: resolvedAttributeId,
         number: taskNumber,
         position: nextPosition,
       })
@@ -232,6 +259,7 @@ async function createTask({
   return {
     ...createdTask,
     assigneeName: assignee?.name,
+    attribute: attributeRef ?? null,
   };
 }
 

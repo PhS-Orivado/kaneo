@@ -6,6 +6,7 @@ import {
   getTableColumns,
   gte,
   inArray,
+  isNull,
   lte,
   type SQL,
   type SQLWrapper,
@@ -18,6 +19,7 @@ import {
   externalLinkTable,
   labelTable,
   projectTable,
+  taskAttributeTable,
   taskTable,
   taskRelationTable,
   userTable,
@@ -35,6 +37,7 @@ import { getSubtaskCounts } from "../get-subtask-counts";
 export type GetTasksOptions = {
   publicOnly?: boolean;
   assigneeId?: string;
+  attributeId?: string;
   dueAfter?: string;
   dueBefore?: string;
   limit?: number;
@@ -47,7 +50,8 @@ export type GetTasksOptions = {
     | "dueDate"
     | "position"
     | "title"
-    | "number";
+    | "number"
+    | "attribute";
   sortOrder?: "asc" | "desc";
   status?: string;
 };
@@ -66,6 +70,8 @@ function sortValue(sortBy: GetTasksOptions["sortBy"]): SQLWrapper {
       return taskTable.createdAt;
     case "priority":
       return priorityCaseExpr;
+    case "attribute":
+      return taskAttributeTable.position;
     case "dueDate":
       return taskTable.dueDate;
     case "title":
@@ -131,6 +137,14 @@ async function getTasksPage(
     conditions.push(eq(taskTable.userId, options.assigneeId));
   }
 
+  if (options.attributeId) {
+    conditions.push(
+      options.attributeId === "none"
+        ? isNull(taskTable.attributeId)
+        : eq(taskTable.attributeId, options.attributeId),
+    );
+  }
+
   if (options.dueBefore) {
     conditions.push(lte(taskTable.dueDate, new Date(options.dueBefore)));
   }
@@ -170,8 +184,16 @@ async function getTasksPage(
     .$dynamic();
   const [taskCount] = await (
     options.publicOnly
-      ? taskCountQuery.leftJoin(userTable, eq(taskTable.userId, userTable.id))
-      : taskCountQuery
+      ? taskCountQuery
+          .leftJoin(userTable, eq(taskTable.userId, userTable.id))
+          .leftJoin(
+            taskAttributeTable,
+            eq(taskTable.attributeId, taskAttributeTable.id),
+          )
+      : taskCountQuery.leftJoin(
+          taskAttributeTable,
+          eq(taskTable.attributeId, taskAttributeTable.id),
+        )
   ).where(whereClause);
 
   const total = Number(taskCount?.count ?? 0);
@@ -193,12 +215,21 @@ async function getTasksPage(
     assigneeId: userTable.id,
     assigneeImage: userTable.image,
     projectId: taskTable.projectId,
+    attributeId: taskTable.attributeId,
+    attributeName: taskAttributeTable.name,
+    attributeIcon: taskAttributeTable.icon,
+    attributeIconColor: taskAttributeTable.iconColor,
+    attributeTextColor: taskAttributeTable.textColor,
   };
 
   const query = db
     .select(taskSelection)
     .from(taskTable)
     .leftJoin(userTable, eq(taskTable.userId, userTable.id))
+    .leftJoin(
+      taskAttributeTable,
+      eq(taskTable.attributeId, taskAttributeTable.id),
+    )
     .leftJoin(projectTable, eq(taskTable.projectId, projectTable.id))
     .where(whereClause)
     .orderBy(orderByClause, asc(taskTable.id));
@@ -417,6 +448,35 @@ async function getTasksPage(
     publicRelatedRevision = `${labels?.revision}:${links?.revision}:${children?.revision}`;
   }
 
+  // RFC 0002: fold the joined attribute columns into the compact reference
+  // shape used by all board payloads.
+  const toBoardTask = (task: (typeof paginatedTasks)[number]) => {
+    const {
+      attributeId,
+      attributeName,
+      attributeIcon,
+      attributeIconColor,
+      attributeTextColor,
+      ...taskFields
+    } = task;
+    return {
+      ...taskFields,
+      attribute:
+        attributeId && attributeName
+          ? {
+              id: attributeId,
+              name: attributeName,
+              icon: attributeIcon,
+              iconColor: attributeIconColor,
+              textColor: attributeTextColor,
+            }
+          : null,
+      subtaskCounts: subtaskCounts.get(task.id) ?? { completed: 0, total: 0 },
+      labels: taskLabelsMap.get(task.id) || [],
+      externalLinks: taskExternalLinksMap.get(task.id) || [],
+    };
+  };
+
   const columns = projectColumns.map((column) => ({
     id: column.slug,
     slug: column.slug,
@@ -426,31 +486,16 @@ async function getTasksPage(
     isFinal: column.isFinal,
     tasks: paginatedTasks
       .filter((task) => task.status === column.slug)
-      .map((task) => ({
-        ...task,
-        subtaskCounts: subtaskCounts.get(task.id) ?? { completed: 0, total: 0 },
-        labels: taskLabelsMap.get(task.id) || [],
-        externalLinks: taskExternalLinksMap.get(task.id) || [],
-      })),
+      .map(toBoardTask),
   }));
 
   const archivedTasks = paginatedTasks
     .filter((task) => task.status === "archived")
-    .map((task) => ({
-      ...task,
-      subtaskCounts: subtaskCounts.get(task.id) ?? { completed: 0, total: 0 },
-      labels: taskLabelsMap.get(task.id) || [],
-      externalLinks: taskExternalLinksMap.get(task.id) || [],
-    }));
+    .map(toBoardTask);
 
   const plannedTasks = paginatedTasks
     .filter((task) => task.status === "planned")
-    .map((task) => ({
-      ...task,
-      subtaskCounts: subtaskCounts.get(task.id) ?? { completed: 0, total: 0 },
-      labels: taskLabelsMap.get(task.id) || [],
-      externalLinks: taskExternalLinksMap.get(task.id) || [],
-    }));
+    .map(toBoardTask);
 
   return {
     data: {

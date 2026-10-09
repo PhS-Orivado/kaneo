@@ -1,12 +1,22 @@
 import { and, eq, getTableColumns, sql } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
-import { columnTable, projectTable, taskTable } from "../../database/schema";
+import {
+  activityTable,
+  columnTable,
+  projectTable,
+  taskTable,
+} from "../../database/schema";
 import { publishEvent } from "../../events";
 import {
   publishTaskMutation,
   recordTaskMutation,
 } from "./task-mutation-effects";
+import {
+  assertTaskAttributeInWorkspace,
+  findTaskAttributeRef,
+  type TaskAttributeRef,
+} from "../../task-attribute/resolve-task-attribute";
 import {
   assertAssignableUser,
   getProjectWorkspaceId,
@@ -25,6 +35,7 @@ async function updateTask(
   description: string | undefined,
   priority: string,
   position: number,
+  attributeId?: string | null,
   userId?: string,
   currentUserId?: string,
 ) {
@@ -42,6 +53,7 @@ async function updateTask(
       status: taskTable.status,
       position: taskTable.position,
       projectId: taskTable.projectId,
+      attributeId: taskTable.attributeId,
     })
     .from(taskTable)
     .where(eq(taskTable.id, id))
@@ -62,6 +74,20 @@ async function updateTask(
   await assertValidTaskStatus(status, projectId);
 
   const normalizedUserId = userId?.trim() || undefined;
+
+  // RFC 0002: an omitted attributeId keeps the current attribute; an explicit
+  // null clears it; an id must belong to the task's workspace.
+  let resolvedAttributeId: string | null | undefined;
+  let newAttributeRef: TaskAttributeRef | undefined;
+  if (attributeId !== undefined) {
+    if (attributeId) {
+      newAttributeRef = await assertTaskAttributeInWorkspace(
+        attributeId,
+        await getProjectWorkspaceId(projectId),
+      );
+    }
+    resolvedAttributeId = attributeId;
+  }
 
   if (normalizedUserId && normalizedUserId !== existingTask.userId) {
     await assertAssignableUser(
@@ -101,6 +127,7 @@ async function updateTask(
         columnId: taskTable.columnId,
         position: taskTable.position,
         projectId: taskTable.projectId,
+        attributeId: taskTable.attributeId,
       })
       .from(taskTable)
       .where(and(eq(taskTable.id, id), eq(taskTable.projectId, projectId)))
@@ -128,6 +155,9 @@ async function updateTask(
         priority,
         position,
         userId: normalizedUserId ?? null,
+        ...(resolvedAttributeId !== undefined
+          ? { attributeId: resolvedAttributeId }
+          : {}),
       })
       .where(and(eq(taskTable.id, id), eq(taskTable.projectId, projectId)))
       .returning({
@@ -142,6 +172,26 @@ async function updateTask(
         { title, dueDate: dueDate ?? null },
         currentUserId,
       );
+    const attributeChanged =
+      resolvedAttributeId !== undefined &&
+      locked.attributeId !== resolvedAttributeId;
+    if (task && attributeChanged) {
+      const oldAttribute = locked.attributeId
+        ? await findTaskAttributeRef(locked.attributeId)
+        : undefined;
+      await tx.insert(activityTable).values({
+        taskId: id,
+        type: "attribute_changed",
+        userId: currentUserId ?? null,
+        content: null,
+        eventData: {
+          oldAttributeId: locked.attributeId,
+          oldAttributeName: oldAttribute?.name ?? null,
+          newAttributeId: resolvedAttributeId,
+          newAttributeName: newAttributeRef?.name ?? null,
+        },
+      });
+    }
     return task;
   });
 
@@ -169,7 +219,32 @@ async function updateTask(
     userId: currentUserId,
   });
 
-  return updatedTask;
+  if (
+    resolvedAttributeId !== undefined &&
+    existingTask.attributeId !== resolvedAttributeId
+  ) {
+    const oldAttribute = existingTask.attributeId
+      ? await findTaskAttributeRef(existingTask.attributeId)
+      : undefined;
+    await publishEvent("task.attribute_changed", {
+      taskId: updatedTask.id,
+      projectId: updatedTask.projectId,
+      title: updatedTask.title,
+      userId: currentUserId,
+      oldAttributeId: existingTask.attributeId,
+      oldAttributeName: oldAttribute?.name ?? null,
+      newAttributeId: resolvedAttributeId,
+      newAttributeName: newAttributeRef?.name ?? null,
+      type: "attribute_changed",
+    });
+  }
+
+  return {
+    ...updatedTask,
+    ...(resolvedAttributeId !== undefined
+      ? { attribute: newAttributeRef ?? null }
+      : {}),
+  };
 }
 
 export default updateTask;

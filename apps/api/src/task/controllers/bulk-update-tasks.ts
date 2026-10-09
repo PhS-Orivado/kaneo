@@ -3,6 +3,7 @@ import { and, asc, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import {
+  activityTable,
   assetTable,
   columnTable,
   labelTable,
@@ -23,10 +24,16 @@ import {
   assertValidPriority,
   assertValidTaskStatus,
 } from "../validate-task-fields";
+import {
+  assertTaskAttributeInWorkspace,
+  findTaskAttributeRef,
+  type TaskAttributeRef,
+} from "../../task-attribute/resolve-task-attribute";
 
 type BulkOperation =
   | "updateStatus"
   | "updatePriority"
+  | "updateAttribute"
   | "updateAssignee"
   | "delete"
   | "addLabel"
@@ -53,6 +60,7 @@ async function bulkUpdateTasks({
       projectId: taskTable.projectId,
       userId: taskTable.userId,
       dueDate: taskTable.dueDate,
+      attributeId: taskTable.attributeId,
       workspaceId: projectTable.workspaceId,
     })
     .from(taskTable)
@@ -239,6 +247,96 @@ async function bulkUpdateTasks({
           userId,
           { fields: ["priority"] },
         );
+      break;
+    }
+
+    case "updateAttribute": {
+      // RFC 0002: a null value clears the attribute on every task; an id
+      // must resolve within the shared workspace of the selected tasks.
+      const attributeId = value?.trim() || null;
+
+      let newAttributeRef: TaskAttributeRef | undefined;
+      if (attributeId) {
+        newAttributeRef = await assertTaskAttributeInWorkspace(
+          attributeId,
+          workspaceId,
+        );
+      }
+
+      const beforeAttributes = new Map<string, TaskAttributeRef>();
+      for (const task of tasks) {
+        if (task.attributeId && !beforeAttributes.has(task.attributeId)) {
+          const ref = await findTaskAttributeRef(task.attributeId);
+          if (ref) beforeAttributes.set(task.attributeId, ref);
+        }
+      }
+
+      const before = await db.transaction(async (tx) => {
+        const locked = await tx
+          .select({
+            id: taskTable.id,
+            projectId: taskTable.projectId,
+            title: taskTable.title,
+            attributeId: taskTable.attributeId,
+          })
+          .from(taskTable)
+          .where(inArray(taskTable.id, foundIds))
+          .orderBy(asc(taskTable.id))
+          .for("update");
+        const originalProjects = new Map(
+          tasks.map((task) => [task.id, task.projectId]),
+        );
+        if (
+          locked.length !== foundIds.length ||
+          locked.some(
+            (task) => task.projectId !== originalProjects.get(task.id),
+          )
+        )
+          throw new HTTPException(409, {
+            message: "Tasks changed projects; retry the operation",
+          });
+        const changed = locked.filter(
+          (task) => task.attributeId !== attributeId,
+        );
+        if (changed.length) {
+          await tx.insert(activityTable).values(
+            changed.map((task) => ({
+              taskId: task.id,
+              type: "attribute_changed",
+              userId,
+              content: null,
+              eventData: {
+                oldAttributeId: task.attributeId,
+                oldAttributeName:
+                  beforeAttributes.get(task.attributeId ?? "")?.name ?? null,
+                newAttributeId: attributeId,
+                newAttributeName: newAttributeRef?.name ?? null,
+              },
+            })),
+          );
+        }
+        await tx
+          .update(taskTable)
+          .set({ attributeId })
+          .where(inArray(taskTable.id, foundIds));
+        return locked;
+      });
+      updatedCount = before.length;
+      for (const task of before) {
+        if (task.attributeId === attributeId) continue;
+        await publishEvent("task.attribute_changed", {
+          taskId: task.id,
+          projectId: task.projectId,
+          title: task.title,
+          userId,
+          oldAttributeId: task.attributeId,
+          oldAttributeName:
+            beforeAttributes.get(task.attributeId ?? "")?.name ?? null,
+          newAttributeId: attributeId,
+          newAttributeName: newAttributeRef?.name ?? null,
+          type: "attribute_changed",
+        });
+      }
       break;
     }
 

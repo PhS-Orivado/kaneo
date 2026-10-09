@@ -10,6 +10,7 @@ import {
   userTable,
   projectTable,
   taskRelationTable,
+  taskAttributeTable,
 } from "../../database/schema";
 
 async function getTask(taskId: string, board = false, userId?: string) {
@@ -35,10 +36,19 @@ async function getTask(taskId: string, board = false, userId?: string) {
       assigneeName: userTable.name,
       assigneeId: userTable.id,
       projectId: taskTable.projectId,
+      attributeId: taskTable.attributeId,
+      attributeName: taskAttributeTable.name,
+      attributeIcon: taskAttributeTable.icon,
+      attributeIconColor: taskAttributeTable.iconColor,
+      attributeTextColor: taskAttributeTable.textColor,
       workspaceId: sql<string>`(select ${projectTable.workspaceId} from ${projectTable} where ${projectTable.id} = ${taskTable.projectId})`,
     })
     .from(taskTable)
     .leftJoin(userTable, eq(taskTable.userId, userTable.id))
+    .leftJoin(
+      taskAttributeTable,
+      eq(taskTable.attributeId, taskAttributeTable.id),
+    )
     .where(eq(taskTable.id, taskId))
     .limit(1);
 
@@ -48,8 +58,28 @@ async function getTask(taskId: string, board = false, userId?: string) {
     });
   }
 
-  if (!board) return task[0];
-  const { workspaceId, ...result } = task[0];
+  const {
+    workspaceId,
+    attributeId,
+    attributeName,
+    attributeIcon,
+    attributeIconColor,
+    attributeTextColor,
+    ...taskFields
+  } = task[0];
+  const attribute =
+    attributeId && attributeName
+      ? {
+          id: attributeId,
+          name: attributeName,
+          icon: attributeIcon,
+          iconColor: attributeIconColor,
+          textColor: attributeTextColor,
+        }
+      : null;
+
+  if (!board) return { ...taskFields, workspaceId, attribute };
+  const result = { ...taskFields, attribute };
   if (!workspaceId) return result;
   const parent = alias(taskTable, "parent");
   const parents = await db
