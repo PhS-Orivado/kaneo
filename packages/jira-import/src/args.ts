@@ -21,6 +21,8 @@ export type ParsedArgs = {
   dryRun: boolean;
   skipComments: boolean;
   skipAttachments: boolean;
+  inviteUsers: boolean;
+  inviteEmails: string[];
   yes: boolean;
   help: boolean;
   version: boolean;
@@ -72,6 +74,8 @@ export function parseArgs(argv: string[]): ParsedArgs {
     dryRun: false,
     skipComments: false,
     skipAttachments: false,
+    inviteUsers: true,
+    inviteEmails: [],
     yes: false,
     help: false,
     version: false,
@@ -114,6 +118,25 @@ export function parseArgs(argv: string[]): ParsedArgs {
       continue;
     }
 
+    if (flag === "--no-invite-users") {
+      parsed.inviteUsers = false;
+      continue;
+    }
+
+    if (flag === "--invite-emails") {
+      const value = inlineValue ?? argv[++index];
+      if (value === undefined) {
+        throw new Error("--invite-emails requires a value");
+      }
+      for (const address of value.split(",")) {
+        const trimmed = address.trim().toLowerCase();
+        if (trimmed && !parsed.inviteEmails.includes(trimmed)) {
+          parsed.inviteEmails.push(trimmed);
+        }
+      }
+      continue;
+    }
+
     if (flag in STRING_FLAGS) {
       const value = inlineValue ?? argv[++index];
       if (value === undefined) throw new Error(`${flag} requires a value`);
@@ -127,6 +150,8 @@ export function parseArgs(argv: string[]): ParsedArgs {
         | "dryRun"
         | "skipComments"
         | "skipAttachments"
+        | "inviteUsers"
+        | "inviteEmails"
         | "yes"
         | "help"
         | "version"
@@ -221,6 +246,10 @@ Behaviour:
   --report <path>           Write a JSON report to this path. When the report
                             already exists, issues it recorded are skipped and
                             the import continues where it stopped
+  --no-invite-users         Do not invite Jira users to the workspace
+  --invite-emails <list>    Comma-separated addresses to send the invitation
+                            email to (non-interactive selection); everyone
+                            else is invited without an email
   -y, --yes                 Do not ask for confirmation before writing
   -h, --help                Show this help
   -v, --version             Show the version

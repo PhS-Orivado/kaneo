@@ -17,13 +17,16 @@ Connect the tools your team already uses. Repository connections and shared noti
   <Card title="GitLab" icon="gitlab" href="/core/integrations/gitlab/setup">
     Connect GitLab.com or your own instance to sync issues and track merge requests.
   </Card>
+  <Card title="Jira" icon="square-kanban" href="/core/integrations/jira/setup">
+    Sync tasks with Jira issues on Atlassian cloud or Data Center.
+  </Card>
 </CardGroup>
 
-GitHub, Gitea, and GitLab have connection forms under **Settings → Projects → your project → Integrations**. Follow the provider guide to connect a repository and configure its webhook. A project can hold several repository bindings across providers at the same time, subject to the per-project [repository limits](/core/integrations/repository-limits).
+GitHub, Gitea, GitLab, and Jira have connection forms under **Settings → Projects → your project → Integrations**. Follow the provider guide to connect a repository and configure its webhook. A project can hold several repository bindings across providers at the same time, subject to the per-project [repository limits](/core/integrations/repository-limits).
 
 ## Limit repository sync by label
 
-Enable **Advanced settings** in **Account → Preferences** or **Workspace → General**, then open a connected GitHub, Gitea, or GitLab integration. Workspace settings managers can edit its **Sync scope**. The saved rules apply to everyone in the project; turning advanced mode off only hides the editor.
+Enable **Advanced settings** in **Account → Preferences** or **Workspace → General**, then open a connected GitHub, Gitea, GitLab, or Jira integration. Workspace settings managers can edit its **Sync scope**. The saved rules apply to everyone in the project; turning advanced mode off only hides the editor.
 
 - **Kaneo → repository** selects workspace labels by stable ID. Match any selected label or require all of them. The preview shows matching tasks, new exports, and affected links before you apply the rule.
 - **Repository → Kaneo** selects exact repository label names for new tasks and imports. Existing linked tasks follow the Kaneo rule. Adding a qualifying repository label can admit an issue that was previously excluded.

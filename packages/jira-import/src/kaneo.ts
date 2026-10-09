@@ -9,6 +9,14 @@ export type KaneoCustomField = {
   name: string;
   type: "text" | "number" | "date" | "dropdown" | "boolean" | "multiselect";
 };
+export type KaneoInvitationResult = {
+  email: string;
+  status: "created" | "already_member" | "already_invited" | "error";
+  id?: string;
+  expiresAt?: string;
+  emailed: boolean;
+  error?: string;
+};
 
 export type UploadSurface = "description" | "comment";
 
@@ -48,6 +56,28 @@ export class KaneoClient {
   listMembers(workspaceId: string): Promise<KaneoMember[]> {
     return this.request<KaneoMember[]>(
       `/api/workspace/${encodeURIComponent(workspaceId)}/members`,
+    );
+  }
+
+  /**
+   * Creates pending workspace invitations in bulk. No email is sent unless
+   * an address is marked sendEmail, so the caller decides who is notified;
+   * every result carries the invitation id so the accept link can be shared
+   * manually.
+   */
+  createInvitations(
+    workspaceId: string,
+    input: {
+      role?: string;
+      invitations: { email: string; sendEmail: boolean }[];
+    },
+  ): Promise<{ invitations: KaneoInvitationResult[] }> {
+    return this.request(
+      `/api/workspace/${encodeURIComponent(workspaceId)}/invitations`,
+      {
+        method: "POST",
+        body: JSON.stringify(input),
+      },
     );
   }
 

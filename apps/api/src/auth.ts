@@ -6,7 +6,6 @@ import {
   sendMagicLinkEmail,
   sendOtpEmail,
   sendPasswordResetEmail,
-  sendWorkspaceInvitationEmail,
 } from "@kaneo/email";
 import {
   ac,
@@ -67,8 +66,6 @@ import { mapCustomOAuthProfileToUser } from "./utils/custom-oauth-profile";
 import { resolveFileSecret } from "./utils/file-secret";
 import { generateDemoName } from "./utils/generate-demo-name";
 import { getDefaultCookieAttributes } from "./utils/get-default-cookie-attributes";
-import { getInvitationEmailSubject } from "./utils/get-invitation-email-subject";
-import { getWorkspaceInvitationEmailCopy } from "./utils/get-workspace-invitation-email-copy";
 import { getGithubSsoOAuthCredentials } from "./utils/github-sso-env";
 import {
   hasInstanceAdminRole,
@@ -87,6 +84,10 @@ import {
   assertUserRegistrationAllowed,
   normalizeInvitationId,
 } from "./utils/registration-policy";
+import {
+  getUserLocale,
+  sendInvitationEmailToInvitation,
+} from "./utils/send-invitation-email";
 import { queueSignInEmail } from "./utils/sign-in-email-tasks";
 import { authCaptchaPaths, verifyTurnstile } from "./utils/verify-turnstile";
 
@@ -132,16 +133,6 @@ const authSecret = (() => {
     process.exit(1);
   }
 })();
-
-async function getUserLocale(email: string) {
-  const [user] = await db
-    .select({ locale: schema.userTable.locale })
-    .from(schema.userTable)
-    .where(eq(schema.userTable.email, email))
-    .limit(1);
-
-  return user?.locale ?? null;
-}
 
 function getLocaleKey(locale?: string | null) {
   const normalized = locale?.toLowerCase();
@@ -597,26 +588,15 @@ export const auth = betterAuth({
         },
       },
       async sendInvitationEmail(data) {
-        const inviteLink = `${process.env.KANEO_CLIENT_URL}/invitation/accept/${data.id}`;
-        const locale = await getUserLocale(data.email);
-        const copy = getWorkspaceInvitationEmailCopy(locale);
-
-        const result = await sendWorkspaceInvitationEmail(
-          data.email,
-          getInvitationEmailSubject(
-            locale,
-            data.inviter.user.name,
-            data.organization.name,
-          ),
-          {
-            inviterEmail: data.inviter.user.email,
-            inviterName: data.inviter.user.name,
-            workspaceName: data.organization.name,
-            invitationLink: inviteLink,
-            to: data.email,
-            copy,
+        const result = await sendInvitationEmailToInvitation({
+          id: data.id,
+          email: data.email,
+          inviter: {
+            name: data.inviter.user.name,
+            email: data.inviter.user.email,
           },
-        );
+          workspace: { name: data.organization.name },
+        });
 
         if (
           result?.success === false &&

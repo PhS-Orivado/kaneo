@@ -17,6 +17,7 @@ import type {
   JiraComment,
   JiraFieldMetadata,
   JiraIssue,
+  JiraUser,
   JiraWorklog,
 } from "./jira.js";
 import { toProjectKey, uniqueKey } from "./keys.js";
@@ -85,6 +86,9 @@ export type MigrateOptions = {
   skipAttachments: boolean;
   projectIcon?: string;
   importedTasks?: Record<string, string>;
+  // Filled with every Jira user seen during the run, so the CLI can offer
+  // workspace invitations. Populated in dry runs too.
+  jiraUsers?: Map<string, JiraUser>;
   onProgress?: (message: string) => void;
 };
 
@@ -102,6 +106,7 @@ export async function migrate(
     skipAttachments,
     projectIcon = "Layout",
     importedTasks = {},
+    jiraUsers = new Map<string, JiraUser>(),
     onProgress = () => {},
   } = options;
 
@@ -163,6 +168,7 @@ export async function migrate(
         membersByEmail,
         fieldMetadata,
         importedTasks,
+        jiraUsers,
         report,
         onProgress,
       });
@@ -191,6 +197,7 @@ async function migrateProject(context: {
   membersByEmail: Map<string, string>;
   fieldMetadata: JiraFieldMetadata[];
   importedTasks: Record<string, string>;
+  jiraUsers: Map<string, JiraUser>;
   report: ProjectReport;
   onProgress: (message: string) => void;
 }): Promise<void> {
@@ -208,6 +215,7 @@ async function migrateProject(context: {
     membersByEmail,
     fieldMetadata,
     importedTasks,
+    jiraUsers,
     report,
     onProgress,
   } = context;
@@ -245,6 +253,24 @@ async function migrateProject(context: {
   }
 
   const plan = planStatusColumns(issues);
+
+  // Everyone the migration could invite: assignees, reporters, creators and
+  // the authors of attachments, comments and worklogs. Collected before the
+  // dry-run return so the plan preview can offer invitations too.
+  for (const issue of issues) {
+    collectJiraUser(jiraUsers, issue.fields.assignee);
+    collectJiraUser(jiraUsers, issue.fields.reporter);
+    collectJiraUser(jiraUsers, issue.fields.creator);
+    for (const attachment of issue.fields.attachment ?? []) {
+      collectJiraUser(jiraUsers, attachment.author);
+    }
+    for (const comment of commentsByKey.get(issue.key) ?? []) {
+      collectJiraUser(jiraUsers, comment.author);
+    }
+    for (const worklog of worklogsByKey.get(issue.key) ?? []) {
+      collectJiraUser(jiraUsers, worklog.author);
+    }
+  }
 
   report.sourceCounts = {
     issues: issues.length,
@@ -898,4 +924,32 @@ async function importRelations(context: {
 
 function dedupeWarnings(warnings: string[]): string[] {
   return [...new Set(warnings)];
+}
+
+/**
+ * Records a Jira user by their Jira-side identity. The same person can appear
+ * with and without an email depending on the payload; the entry keeps the
+ * email as soon as one is seen.
+ */
+function collectJiraUser(
+  users: Map<string, JiraUser>,
+  user: JiraUser | null | undefined,
+): void {
+  if (!user) return;
+
+  const identity =
+    user.accountId ??
+    user.key ??
+    user.emailAddress?.trim().toLowerCase() ??
+    user.displayName;
+  if (!identity) return;
+
+  const existing = users.get(identity);
+  if (!existing) {
+    users.set(identity, user);
+    return;
+  }
+  if (!existing.emailAddress && user.emailAddress) {
+    users.set(identity, { ...existing, emailAddress: user.emailAddress });
+  }
 }

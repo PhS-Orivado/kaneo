@@ -5,7 +5,7 @@ import { z } from "zod/v4";
 // list fetchers, the hooks and the settings components, so the list and the
 // detail shapes cannot drift apart.
 
-export type RepositoryProvider = "github" | "gitea" | "gitlab";
+export type RepositoryProvider = "github" | "gitea" | "gitlab" | "jira";
 
 /** RFC 0001 WP10: usage summary returned with every binding list. */
 export const repositoryBindingUsageSchema = z.object({
@@ -99,10 +99,34 @@ export const gitlabBindingListSchema = z.object({
   usage: repositoryBindingUsageSchema,
 });
 
+export const jiraBindingSchema = z.object({
+  id: z.string(),
+  projectId: z.string(),
+  baseUrl: z.string(),
+  authMode: z.enum(["cloud", "dc"]),
+  email: z.string().optional(),
+  projectKey: z.string(),
+  maskedApiToken: z.string(),
+  webhookUrl: z.string().optional(),
+  webhookSecret: z.string().optional(),
+  issueType: z.string().optional(),
+  statusMap: z.record(z.string(), z.string()).optional(),
+  commentTaskLinkOnJiraIssue: z.boolean().optional(),
+  isActive: z.boolean().nullable(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+});
+export type JiraBinding = z.infer<typeof jiraBindingSchema>;
+
+export const jiraBindingListSchema = z.object({
+  integrations: z.array(jiraBindingSchema),
+  usage: repositoryBindingUsageSchema,
+});
+
 /** Minimal binding summary every workspace member may read. */
 export const projectRepositoryBindingSchema = z.object({
   id: z.string(),
-  type: z.enum(["github", "gitea", "gitlab"]),
+  type: z.enum(["github", "gitea", "gitlab", "jira"]),
   identity: z.string(),
   host: z.string().nullable(),
   externalUrl: z.string(),
@@ -193,5 +217,21 @@ export function toGitlabBindingRow(
     webhookUrl: binding.webhookUrl,
     webhookSecret: binding.webhookSecret,
     maskedAccessToken: binding.maskedAccessToken,
+  };
+}
+
+export function toJiraBindingRow(binding: JiraBinding): RepositoryBindingRow {
+  return {
+    provider: "jira",
+    integrationId: binding.id,
+    identity: binding.projectKey,
+    host: trimTrailingSlash(binding.baseUrl),
+    externalUrl: `${trimTrailingSlash(binding.baseUrl)}/browse/${binding.projectKey}`,
+    isActive: binding.isActive !== false,
+    requiresVerification: false,
+    commentTaskLink: binding.commentTaskLinkOnJiraIssue !== false,
+    webhookUrl: binding.webhookUrl,
+    webhookSecret: binding.webhookSecret,
+    maskedAccessToken: binding.maskedApiToken,
   };
 }

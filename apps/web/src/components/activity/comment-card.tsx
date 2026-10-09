@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import CommentEditor from "@/components/activity/comment-editor";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
+import { JiraIcon } from "@/components/icons/jira-icon";
 import { useAuth } from "@/components/providers/auth-provider/hooks/use-auth";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -29,6 +30,7 @@ const forges = {
   github: { name: "GitHub", Icon: GithubIcon },
   gitea: { name: "Gitea", Icon: FolderGit },
   gitlab: { name: "GitLab", Icon: GitlabIcon },
+  jira: { name: "Jira", Icon: JiraIcon },
 } as const;
 
 function forgeOf(externalSource: string | null | undefined) {

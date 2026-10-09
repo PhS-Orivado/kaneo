@@ -48,6 +48,7 @@ For Jira Cloud, pass your email with `--jira-email` and an API token created at
 | Sub-issues, Epic Link | Task relations (subtask) |
 | Issue links (Blocks, relates to, …) | Task relations (blocks, related) |
 | Sprint | Label and appendix entry |
+| Jira users | Pending workspace invitations, created without sending an email; you choose who receives the invitation email |
 
 Everything Kaneo has no native field for — reporter, environment, security level,
 watchers, votes, resolution dates and unmapped custom fields — is preserved in an
@@ -61,7 +62,9 @@ dropped silently, and the import report tells you exactly what was migrated.
 - **Comment authorship.** The comment is created by the API key's owner, but the original Jira author is recorded and displayed alongside it.
 - **Cross-project links.** Relations only connect issues migrated in the same run; links to issues in other projects are reported as warnings.
 
-**Invite your team first.** Assignees only match when the person already exists in the target Kaneo workspace with the same email address.
+**Invite your team during the import.** After you confirm the import, the CLI offers to invite the Jira users it saw — assignees, reporters, creators and the authors of attachments, comments and worklogs — to the workspace. Invitations are created without sending an email; you select who receives the invitation email, and everyone else gets an accept link you can share manually. Pass `--no-invite-users` to skip the step, or `--invite-emails a@example.com,b@example.com` to pick the recipients non-interactively.
+
+**Assignees still need to be members.** Assignee matching happens through email addresses against existing workspace members, so users must have accepted their invitation before they can be assigned; until then the assignment is preserved in the task appendix.
 
 ## Options
 
@@ -87,6 +90,8 @@ dropped silently, and the import report tells you exactly what was migrated.
 | `--skip-attachments` | Don't migrate attachments |
 | `--icon <name>` | Lucide icon for created projects (default `Layout`) |
 | `--report <path>` | Write a JSON report |
+| `--no-invite-users` | Do not invite Jira users to the workspace |
+| `--invite-emails <list>` | Comma-separated addresses that receive the invitation email (non-interactive selection); everyone else is invited without an email |
 | `-y, --yes` | Skip the confirmation prompt |
 
 Status presets map to Jira's status categories: `open` is To Do, `in-progress` is

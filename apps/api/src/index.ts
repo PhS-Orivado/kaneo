@@ -40,6 +40,9 @@ import githubIntegration, {
 import gitlabIntegration, {
   handleGitlabWebhookRoute,
 } from "./gitlab-integration";
+import jiraIntegration, {
+  handleJiraWebhookRoute,
+} from "./jira-integration";
 import getInstanceStatus from "./instance/controllers/get-instance-status";
 import invitation from "./invitation";
 import label from "./label";
@@ -390,6 +393,11 @@ export function createApp() {
   api.post(
     "/gitlab-integration/webhook/:integrationId",
     handleGitlabWebhookRoute,
+  );
+
+  api.post(
+    "/jira-integration/webhook/:integrationId",
+    handleJiraWebhookRoute,
   );
 
   const invitationPublicApi = api.get("/invitation/public/:id", async (c) => {
@@ -763,6 +771,10 @@ export function createApp() {
     "/gitlab-integration",
     gitlabIntegration,
   );
+  const jiraIntegrationApi = api.route(
+    "/jira-integration",
+    jiraIntegration,
+  );
   const genericWebhookIntegrationApi = api.route(
     "/generic-webhook-integration",
     genericWebhookIntegration,
@@ -904,6 +916,7 @@ export function createApp() {
     githubIntegrationApi,
     giteaIntegrationApi,
     gitlabIntegrationApi,
+    jiraIntegrationApi,
     invitationApi,
     invitationPublicApi,
     labelApi,
@@ -1037,6 +1050,7 @@ const {
   githubIntegrationApi,
   giteaIntegrationApi,
   gitlabIntegrationApi,
+  jiraIntegrationApi,
   invitationApi,
   invitationPublicApi,
   labelApi,
@@ -1089,6 +1103,7 @@ export type AppType =
   | typeof githubIntegrationApi
   | typeof giteaIntegrationApi
   | typeof gitlabIntegrationApi
+  | typeof jiraIntegrationApi
   | typeof genericWebhookIntegrationApi
   | typeof repositoryBindingsApi
   | typeof discordIntegrationApi

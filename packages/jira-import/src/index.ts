@@ -9,16 +9,26 @@ import {
   parseArgs,
   HELP_TEXT,
 } from "./args.js";
-import { KaneoClient } from "./kaneo.js";
+import {
+  invitationLink,
+  planInvitations,
+  selectEmailedEmails,
+} from "./invitations.js";
+import {
+  KaneoClient,
+  type KaneoInvitationResult,
+  type KaneoMember,
+} from "./kaneo.js";
 import type { JiraProjectTarget } from "./migrate.js";
 import { migrate, type ProjectReport } from "./migrate.js";
-import { JiraClient, type JiraProject } from "./jira.js";
+import { JiraClient, type JiraProject, type JiraUser } from "./jira.js";
 
 const require = createRequire(import.meta.url);
 const { version } = require("../package.json") as { version: string };
 
 type PreviousReport = {
   reports?: ProjectReport[];
+  invitations?: KaneoInvitationResult[];
 };
 
 async function main(): Promise<number> {
@@ -159,6 +169,7 @@ async function runInteractive(
 
   const filterJql = buildJql(args);
   const importedTasks = await loadImportedTasks(args.report);
+  const jiraUsers = new Map<string, JiraUser>();
 
   const preview = await migrate({
     jira,
@@ -170,10 +181,15 @@ async function runInteractive(
     skipComments: args.skipComments,
     skipAttachments: args.skipAttachments,
     importedTasks,
+    jiraUsers,
     onProgress: () => {},
   });
 
   printPlan(preview, args);
+
+  if (jiraUsers.size > 0) {
+    log(`Seen ${jiraUsers.size} Jira user(s) across the selected projects.`);
+  }
 
   if (args.dryRun) {
     await writeReport(args.report, preview);
@@ -192,6 +208,19 @@ async function runInteractive(
     }
   }
 
+  // Invitations happen before the import so the long migration runs
+  // unattended afterwards; a failure here never fails the migration.
+  let invitationResults: KaneoInvitationResult[] | null = null;
+  if (args.inviteUsers) {
+    invitationResults = await inviteJiraUsers({
+      kaneo,
+      workspaceId,
+      jiraUsers,
+      inviteEmails: args.inviteEmails,
+      interactive,
+    });
+  }
+
   const reports = await migrate({
     jira,
     kaneo,
@@ -203,12 +232,18 @@ async function runInteractive(
     skipAttachments: args.skipAttachments,
     ...(args.icon ? { projectIcon: args.icon } : {}),
     importedTasks,
+    jiraUsers,
     onProgress: progress,
   });
 
   clearProgress();
   printResults(reports);
-  await writeReport(args.report, reports);
+
+  if (invitationResults) {
+    printInvitationResults(invitationResults, kaneo.baseUrl);
+  }
+
+  await writeReport(args.report, reports, invitationResults ?? undefined);
 
   const failed = reports.filter((report) => report.failed).length;
   const incomplete = reports.filter(
@@ -316,6 +351,133 @@ async function selectWorkspace(
   const chosen = answer.value as string | undefined;
   if (!chosen) throw new Error("No workspace selected.");
   return chosen;
+}
+
+/**
+ * Invites the Jira users seen during the migration to the workspace. Every
+ * candidate receives a pending invitation without an email; the admin (or
+ * --invite-emails) decides who is actually notified, and everyone else gets
+ * an accept link to share manually.
+ */
+async function inviteJiraUsers({
+  kaneo,
+  workspaceId,
+  jiraUsers,
+  inviteEmails,
+  interactive,
+}: {
+  kaneo: KaneoClient;
+  workspaceId: string;
+  jiraUsers: Map<string, JiraUser>;
+  inviteEmails: string[];
+  interactive: boolean;
+}): Promise<KaneoInvitationResult[] | null> {
+  const members: KaneoMember[] = await kaneo.listMembers(workspaceId);
+  const plan = planInvitations(
+    jiraUsers.values(),
+    members.map((member) => member.email),
+  );
+
+  if (plan.withoutEmail.length > 0) {
+    log(
+      `  ! ${plan.withoutEmail.length} Jira user(s) have no email address and cannot be invited: ${plan.withoutEmail.join(", ")}`,
+    );
+  }
+  if (plan.alreadyMembers.length > 0) {
+    log(
+      `  ${plan.alreadyMembers.length} Jira user(s) are already workspace members and are not invited again.`,
+    );
+  }
+
+  if (plan.candidates.length === 0) {
+    return null;
+  }
+
+  const proceed = await confirm(
+    interactive,
+    `Invite ${plan.candidates.length} Jira user(s) to the workspace? Invitations are created without sending an email; you choose the recipients next.`,
+  );
+  if (!proceed) return null;
+
+  let selected: string[];
+  if (interactive) {
+    const answer = await prompts({
+      type: "multiselect",
+      name: "value",
+      message:
+        "Which users should receive the invitation email? (Unselected users are still invited; their links are printed below.)",
+      instructions: false,
+      choices: plan.candidates.map((candidate) => ({
+        title: `${candidate.name} <${candidate.email}>`,
+        value: candidate.email,
+        selected: false,
+      })),
+    });
+    selected = ((answer.value as string[] | undefined) ?? []).map((email) =>
+      email.toLowerCase(),
+    );
+  } else {
+    const selection = selectEmailedEmails(plan.candidates, inviteEmails);
+    for (const unknown of selection.unknown) {
+      log(
+        `  ! --invite-emails contains an address not seen in Jira: ${unknown}`,
+      );
+    }
+    if (selection.selected.length === 0) {
+      log(
+        `  Creating invitations for ${plan.candidates.length} Jira user(s) without sending emails; pass --invite-emails to notify specific addresses.`,
+      );
+    }
+    selected = selection.selected;
+  }
+
+  const emailed = new Set(selected);
+  try {
+    const { invitations } = await kaneo.createInvitations(workspaceId, {
+      invitations: plan.candidates.map((candidate) => ({
+        email: candidate.email,
+        sendEmail: emailed.has(candidate.email),
+      })),
+    });
+    return invitations;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    if (/\b404\b/.test(message)) {
+      log(
+        "  ! This Kaneo instance does not support workspace invitations yet; no users were invited.",
+      );
+    } else {
+      log(`  ! Workspace invitations failed: ${message}`);
+    }
+    return null;
+  }
+}
+
+function printInvitationResults(
+  results: KaneoInvitationResult[],
+  baseUrl: string,
+): void {
+  log("");
+  log("Workspace invitations:");
+  for (const result of results) {
+    if (result.status === "already_member") {
+      log(`  • ${result.email} is already a workspace member.`);
+      continue;
+    }
+    if (result.status === "error" || !result.id) {
+      log(`  ✖ ${result.email}: ${result.error ?? "invitation failed"}`);
+      continue;
+    }
+
+    const status =
+      result.status === "already_invited" ? "already invited" : "created";
+    const delivery = result.emailed
+      ? "invitation email sent"
+      : "share this link manually";
+    log(`  • ${result.email} (${status}) — ${delivery}`);
+    log(`      ${invitationLink(baseUrl, result.id)}`);
+  }
+  log("");
 }
 
 /**
@@ -447,9 +609,16 @@ function coverageComplete(report: ProjectReport): boolean {
 async function writeReport(
   path: string | undefined,
   reports: ProjectReport[],
+  invitations?: KaneoInvitationResult[],
 ): Promise<void> {
   if (!path) return;
-  await writeFile(path, `${JSON.stringify({ reports }, null, 2)}\n`, "utf8");
+  // invitations is omitted by JSON.stringify when undefined, keeping older
+  // reports and dry runs identical to what they were.
+  await writeFile(
+    path,
+    `${JSON.stringify({ reports, invitations }, null, 2)}\n`,
+    "utf8",
+  );
   log(`Report written to ${path}`);
 }
 

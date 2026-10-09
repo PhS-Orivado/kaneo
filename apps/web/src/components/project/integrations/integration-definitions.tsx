@@ -5,6 +5,7 @@ import { MatrixIcon } from "@/components/icons/matrix-icon";
 import { GiteaIcon } from "@/components/icons/gitea-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
+import { JiraIcon } from "@/components/icons/jira-icon";
 import { MattermostIcon } from "@/components/icons/mattermost-icon";
 import { SlackIcon } from "@/components/icons/slack-icon";
 import { TelegramIcon } from "@/components/icons/telegram-icon";
@@ -13,6 +14,7 @@ import { GenericWebhookIntegrationSettings } from "@/components/project/generic-
 import { GiteaIntegrationSettings } from "@/components/project/gitea-integration-settings";
 import { GitHubIntegrationSettings } from "@/components/project/github-integration-settings";
 import { GitlabIntegrationSettings } from "@/components/project/gitlab-integration-settings";
+import { JiraIntegrationSettings } from "@/components/project/jira-integration-settings";
 import { MatrixIntegrationSettings } from "@/components/project/matrix-integration-settings";
 import { MattermostIntegrationSettings } from "@/components/project/mattermost-integration-settings";
 import { SlackIntegrationSettings } from "@/components/project/slack-integration-settings";
@@ -22,6 +24,7 @@ export type IntegrationId =
   | "github"
   | "gitea"
   | "gitlab"
+  | "jira"
   | "slack"
   | "discord"
   | "mattermost"
@@ -67,6 +70,15 @@ export const INTEGRATIONS: IntegrationDefinition[] = [
     icon: GitlabIcon,
     iconClassName: "text-[#FC6D26]",
     Settings: GitlabIntegrationSettings,
+  },
+  {
+    id: "jira",
+    category: "code",
+    name: "Jira",
+    descriptionKey: "settings:projectIntegrations.jiraSectionSubtitle",
+    icon: JiraIcon,
+    iconClassName: "text-[#0052CC] dark:text-[#2684FF]",
+    Settings: JiraIntegrationSettings,
   },
   {
     id: "slack",
