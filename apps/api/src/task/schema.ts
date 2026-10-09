@@ -71,10 +71,11 @@ export const bulkUpdateBody = z.object({
     "addLabel",
     "removeLabel",
     "updateDueDate",
+    "updateSprint",
   ]),
   value: z.string().nullable().optional().openapi({
     description:
-      "The new value for the chosen operation. Unused by `delete`; null clears an assignee or due date.",
+      "The new value for the chosen operation. Unused by `delete`; null clears an assignee or due date, or moves tasks to the backlog for `updateSprint`.",
   }),
 });
 
