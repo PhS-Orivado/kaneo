@@ -1025,7 +1025,14 @@
 			"moveTargetsError": "Couldn't check which workspaces you can move this project to. Reload to try again.",
 			"toastMoved": "Project moved successfully",
 			"toastMovedWithUnassigned": "Project moved successfully. {{taskCount}} task(s) were unassigned.",
-			"toastMoveError": "Failed to move project"
+			"toastMoveError": "Failed to move project",
+			"sprints": "Sprintlər",
+			"sprintsSubtitle": "Gələcək işi sabit uzunluqlu iterasiyalarla planlaşdırın.",
+			"sprintLength": "Sprintin standart müddəti",
+			"sprintLengthDescription": "Yeni sprintin standart olaraq əhatə etdiyi gün sayı.",
+			"sprintLengthSave": "Sprint müddətini saxla",
+			"sprintLengthSaved": "Sprint müddəti saxlanıldı",
+			"sprintLengthError": "Sprint müddəti saxlanıla bilmədi"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Layihə inteqrasiyaları",
@@ -3030,6 +3037,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprintlər",
+			"create": "Sprint yarat",
+			"createTitle": "Sprint yarat",
+			"createDescription": "Gələcək sprinti ad, məqsəd və tarixlərlə planlaşdırın.",
+			"editTitle": "Sprinti redaktə et",
+			"editDescription": "Sprintin adını, məqsədini və tarixlərini yeniləyin.",
+			"edit": "Sprinti redaktə et",
+			"name": "Sprint adı",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint məqsədi",
+			"goalPlaceholder": "Bu sprint nəyə nail olmalıdır?",
+			"save": "Dəyişiklikləri saxla",
+			"start": "Sprinti başlat",
+			"startSuccess": "Sprint {{name}} başladı",
+			"close": "Sprinti bağla",
+			"closeTitle": "Sprinti bağla",
+			"closeSummary": "{{name}} sprintində {{total}} tapşırıq var, onlardan {{completed}} tamamlandı.",
+			"closeTarget": "{{count}} yarımçıq tapşırığı buraya köçür:",
+			"closeConfirm": "Sprinti bağla və yarımçıq tapşırıqları köçür",
+			"closeSuccess": "Sprint bağlandı, {{count}} yarımçıq tapşırıq köçürüldü",
+			"backlog": "Backlog",
+			"activeBadge": "Aktiv",
+			"noActive": "Aktiv sprint yoxdur. İterasiya üçün gələcək sprintlərdən birini başladın.",
+			"upcoming": "Gələcək sprint",
+			"unscheduled": "Planlaşdırılmayıb",
+			"taskCounts": "{{total}} tapşırıqdan {{completed}} tamamlandı",
+			"history": "Bağlanmış sprintlər ({{count}})",
+			"completedCount": "{{count}} tamamlandı",
+			"moveUp": "Yuxarı",
+			"moveDown": "Aşağı",
+			"closedLocked": "Bu tapşırıq bağlanmış sprintə aiddir və tarix kimi orada qalır",
+			"error": "Sprint əməliyyatı alınmadı"
+		},
+		"type": {
+			"task": "Tapşırıq",
+			"bug": "Xəta"
 		}
 	},
 	"invitations": {

@@ -870,7 +870,14 @@
 			"toastMoved": "Projekt erfolgreich verschoben",
 			"toastMovedWithUnassigned": "Projekt erfolgreich verschoben. Bei {{taskCount}} Aufgabe(n) wurde die Zuweisung aufgehoben.",
 			"toastMoveError": "Projekt konnte nicht verschoben werden",
-			"moveTargetsError": "Es konnte nicht geprüft werden, in welche Workspaces du dieses Projekt verschieben kannst. Lade die Seite neu, um es erneut zu versuchen."
+			"moveTargetsError": "Es konnte nicht geprüft werden, in welche Workspaces du dieses Projekt verschieben kannst. Lade die Seite neu, um es erneut zu versuchen.",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Plane anstehende Arbeit in Iterationen fester Länge.",
+			"sprintLength": "Standard-Sprint-Länge",
+			"sprintLengthDescription": "Anzahl der Tage, die ein neuer Sprint standardmäßig umfasst.",
+			"sprintLengthSave": "Sprint-Länge speichern",
+			"sprintLengthSaved": "Sprint-Länge gespeichert",
+			"sprintLengthError": "Sprint-Länge konnte nicht gespeichert werden"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Projektintegrationen",
@@ -3030,6 +3037,44 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Sprint erstellen",
+			"createTitle": "Sprint erstellen",
+			"createDescription": "Plane einen kommenden Sprint mit Name, Ziel und Terminen.",
+			"editTitle": "Sprint bearbeiten",
+			"editDescription": "Aktualisiere Name, Ziel und Termine des Sprints.",
+			"edit": "Sprint bearbeiten",
+			"name": "Sprint-Name",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint-Ziel",
+			"goalPlaceholder": "Was soll dieser Sprint erreichen?",
+			"save": "Änderungen speichern",
+			"start": "Sprint starten",
+			"startSuccess": "Sprint {{name}} gestartet",
+			"close": "Sprint abschließen",
+			"closeTitle": "Sprint abschließen",
+			"closeSummary": "{{name}} hat {{total}} Aufgaben, davon {{completed}} abgeschlossen.",
+			"closeTarget": "{{count}} offene Aufgaben verschieben nach",
+			"closeConfirm": "Sprint abschließen und offene Aufgaben verschieben",
+			"closeSuccess": "Sprint abgeschlossen, {{count}} offene Aufgaben verschoben",
+			"backlog": "Backlog",
+			"activeBadge": "Aktiv",
+			"noActive": "Kein Sprint ist aktiv. Starte einen kommenden Sprint, um zu iterieren.",
+			"upcoming": "Kommender Sprint",
+			"unscheduled": "Nicht terminiert",
+			"taskCounts": "{{completed}} von {{total}} abgeschlossen",
+			"history": "Abgeschlossene Sprints ({{count}})",
+			"completedCount": "{{count}} abgeschlossen",
+			"moveUp": "Nach oben",
+			"moveDown": "Nach unten",
+			"closedLocked": "Diese Aufgabe gehört zu einem abgeschlossenen Sprint und bleibt dort als Verlauf",
+			"error": "Sprint-Aktion fehlgeschlagen"
+		},
+		"type": {
+			"task": "Aufgabe",
+			"bug": "Fehler"
 		}
 	},
 	"invitations": {
