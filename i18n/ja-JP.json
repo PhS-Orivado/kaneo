@@ -1022,7 +1022,14 @@
 			"moveTargetsError": "Couldn't check which workspaces you can move this project to. Reload to try again.",
 			"toastMoved": "Project moved successfully",
 			"toastMovedWithUnassigned": "Project moved successfully. {{taskCount}} task(s) were unassigned.",
-			"toastMoveError": "Failed to move project"
+			"toastMoveError": "Failed to move project",
+			"sprints": "スプリント",
+			"sprintsSubtitle": "今後の作業を固定長のイテレーションで計画します。",
+			"sprintLength": "既定のスプリント期間",
+			"sprintLengthDescription": "新しいスプリントが既定でカバーする日数。",
+			"sprintLengthSave": "スプリント期間を保存",
+			"sprintLengthSaved": "スプリント期間を保存しました",
+			"sprintLengthError": "スプリント期間を保存できませんでした"
 		},
 		"projectIntegrations": {
 			"pageTitle": "プロジェクト連携",
@@ -2810,7 +2817,8 @@
 				"priority": "優先度",
 				"assignee": "担当者",
 				"dueDate": "期限",
-				"labels": "ラベル"
+				"labels": "ラベル",
+				"sprint": "スプリント"
 			},
 			"operators": {
 				"isAnyOf": "次のいずれか",
@@ -2819,7 +2827,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "すべてのスプリント"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – カレンダー",
@@ -2941,7 +2950,9 @@
 			"actions": "操作",
 			"searchActions": "操作を検索...",
 			"noActionsFound": "操作が見つかりません。",
-			"changeStatus": "ステータスを変更"
+			"changeStatus": "ステータスを変更",
+			"moveToSprint": "スプリントに移動",
+			"updateSprintError": "スプリントへのタスクの移動に失敗しました"
 		},
 		"editor": {
 			"table": {
@@ -3012,6 +3023,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "スプリント",
+			"create": "スプリントを作成",
+			"createTitle": "スプリントを作成",
+			"createDescription": "名前・目標・日付を指定して今後のスプリントを計画します。",
+			"editTitle": "スプリントを編集",
+			"editDescription": "スプリントの名前・目標・日付を更新します。",
+			"edit": "スプリントを編集",
+			"name": "スプリント名",
+			"namePlaceholder": "スプリント 1",
+			"goal": "スプリントの目標",
+			"goalPlaceholder": "このスプリントで何を達成しますか？",
+			"save": "変更を保存",
+			"start": "スプリントを開始",
+			"startSuccess": "スプリント {{name}} を開始しました",
+			"close": "スプリントを完了",
+			"closeTitle": "スプリントを完了",
+			"closeSummary": "{{name}} には {{total}} 件のタスクがあり、うち {{completed}} 件が完了しました。",
+			"closeTarget": "未完了のタスク {{count}} 件の移動先",
+			"closeConfirm": "スプリントを完了して未完了タスクを移動",
+			"closeSuccess": "スプリントを完了し、未完了タスク {{count}} 件を移動しました",
+			"backlog": "バックログ",
+			"activeBadge": "進行中",
+			"noActive": "進行中のスプリントはありません。今後のスプリントを開始してください。",
+			"upcoming": "今後のスプリント",
+			"unscheduled": "未設定",
+			"taskCounts": "{{total}} 件中 {{completed}} 件完了",
+			"history": "完了したスプリント ({{count}})",
+			"completedCount": "{{count}} 件完了",
+			"moveUp": "上へ移動",
+			"moveDown": "下へ移動",
+			"closedLocked": "このタスクは完了したスプリントの一部であり、履歴として残ります",
+			"error": "スプリントの操作に失敗しました",
+			"daysRemaining": "残り{{remaining}}日",
+			"endsToday": "本日終了",
+			"daysOverdue": "{{remaining}}日超過",
+			"noTasks": "このスプリントにはまだタスクがありません",
+			"toggleTasks": "スプリントのタスクを表示"
+		},
+		"type": {
+			"task": "タスク",
+			"bug": "バグ"
 		}
 	},
 	"invitations": {

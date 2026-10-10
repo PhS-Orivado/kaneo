@@ -792,7 +792,14 @@
 			"toastMoved": "Projet déplacé avec succès",
 			"toastMovedWithUnassigned": "Projet déplacé avec succès. {{taskCount}} tâche(s) ont été désassignées.",
 			"toastMoveError": "Échec du déplacement du projet",
-			"moveTargetsError": "Impossible de vérifier vers quels espaces de travail vous pouvez déplacer ce projet. Rechargez la page pour réessayer."
+			"moveTargetsError": "Impossible de vérifier vers quels espaces de travail vous pouvez déplacer ce projet. Rechargez la page pour réessayer.",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Planifiez le travail à venir par itérations de longueur fixe.",
+			"sprintLength": "Durée de sprint par défaut",
+			"sprintLengthDescription": "Nombre de jours couverts par défaut par un nouveau sprint.",
+			"sprintLengthSave": "Enregistrer la durée de sprint",
+			"sprintLengthSaved": "Durée de sprint enregistrée",
+			"sprintLengthError": "Impossible d'enregistrer la durée de sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Intégrations du projet",
@@ -2842,7 +2849,8 @@
 				"priority": "Priorité",
 				"assignee": "Assigné",
 				"dueDate": "Date d'échéance",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "est l'un des",
@@ -2851,7 +2859,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Tous les sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2967,7 +2976,9 @@
 			"actions": "Actions",
 			"searchActions": "Rechercher des actions...",
 			"noActionsFound": "Aucune action trouvée.",
-			"changeStatus": "Changer le statut"
+			"changeStatus": "Changer le statut",
+			"moveToSprint": "Déplacer vers le sprint",
+			"updateSprintError": "Échec du déplacement des tâches vers le sprint"
 		},
 		"editor": {
 			"table": {
@@ -3048,6 +3059,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Créer un sprint",
+			"createTitle": "Créer un sprint",
+			"createDescription": "Planifier un sprint à venir avec un nom, un objectif et des dates.",
+			"editTitle": "Modifier le sprint",
+			"editDescription": "Mettre à jour le nom, l'objectif et les dates du sprint.",
+			"edit": "Modifier le sprint",
+			"name": "Nom du sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Objectif du sprint",
+			"goalPlaceholder": "Que doit accomplir ce sprint ?",
+			"save": "Enregistrer les modifications",
+			"start": "Démarrer le sprint",
+			"startSuccess": "Sprint {{name}} démarré",
+			"close": "Clôturer le sprint",
+			"closeTitle": "Clôturer le sprint",
+			"closeSummary": "{{name}} contient {{total}} tâches, dont {{completed}} terminées.",
+			"closeTarget": "Déplacer {{count}} tâches inachevées vers",
+			"closeConfirm": "Clôturer le sprint et déplacer les tâches inachevées",
+			"closeSuccess": "Sprint clôturé, {{count}} tâches inachevées déplacées",
+			"backlog": "Backlog",
+			"activeBadge": "Actif",
+			"noActive": "Aucun sprint n'est actif. Démarrez un sprint à venir pour itérer.",
+			"upcoming": "Sprint à venir",
+			"unscheduled": "Non planifié",
+			"taskCounts": "{{completed}} sur {{total}} terminées",
+			"history": "Sprints clôturés ({{count}})",
+			"completedCount": "{{count}} terminées",
+			"moveUp": "Monter",
+			"moveDown": "Descendre",
+			"closedLocked": "Cette tâche appartient à un sprint clôturé et y reste comme historique",
+			"error": "L'action sur le sprint a échoué",
+			"daysRemaining": "{{remaining}} jours restants",
+			"endsToday": "Se termine aujourd'hui",
+			"daysOverdue": "{{remaining}} jours de retard",
+			"noTasks": "Aucune tâche dans ce sprint pour le moment",
+			"toggleTasks": "Afficher les tâches du sprint"
+		},
+		"type": {
+			"task": "Tâche",
+			"bug": "Anomalie"
 		}
 	},
 	"invitations": {

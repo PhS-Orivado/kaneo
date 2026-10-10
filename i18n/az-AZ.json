@@ -1025,7 +1025,14 @@
 			"moveTargetsError": "Couldn't check which workspaces you can move this project to. Reload to try again.",
 			"toastMoved": "Project moved successfully",
 			"toastMovedWithUnassigned": "Project moved successfully. {{taskCount}} task(s) were unassigned.",
-			"toastMoveError": "Failed to move project"
+			"toastMoveError": "Failed to move project",
+			"sprints": "Sprintlər",
+			"sprintsSubtitle": "Gələcək işi sabit uzunluqlu iterasiyalarla planlaşdırın.",
+			"sprintLength": "Sprintin standart müddəti",
+			"sprintLengthDescription": "Yeni sprintin standart olaraq əhatə etdiyi gün sayı.",
+			"sprintLengthSave": "Sprint müddətini saxla",
+			"sprintLengthSaved": "Sprint müddəti saxlanıldı",
+			"sprintLengthError": "Sprint müddəti saxlanıla bilmədi"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Layihə inteqrasiyaları",
@@ -2826,7 +2833,8 @@
 				"priority": "Prioritet",
 				"assignee": "İcraçı",
 				"dueDate": "Son tarix",
-				"labels": "Etiketlər"
+				"labels": "Etiketlər",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "Bunlardan biridir",
@@ -2835,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Bütün sprintlər"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – Təqvim",
@@ -2958,7 +2967,9 @@
 			"actions": "Əməliyyatlar",
 			"searchActions": "Əməliyyatları axtar...",
 			"noActionsFound": "Əməliyyat tapılmadı.",
-			"changeStatus": "Vəziyyəti dəyiş"
+			"changeStatus": "Vəziyyəti dəyiş",
+			"moveToSprint": "Sprintə köçür",
+			"updateSprintError": "Tapşırıqları sprintə köçürmək alınmadı"
 		},
 		"editor": {
 			"table": {
@@ -3030,6 +3041,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprintlər",
+			"create": "Sprint yarat",
+			"createTitle": "Sprint yarat",
+			"createDescription": "Gələcək sprinti ad, məqsəd və tarixlərlə planlaşdırın.",
+			"editTitle": "Sprinti redaktə et",
+			"editDescription": "Sprintin adını, məqsədini və tarixlərini yeniləyin.",
+			"edit": "Sprinti redaktə et",
+			"name": "Sprint adı",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint məqsədi",
+			"goalPlaceholder": "Bu sprint nəyə nail olmalıdır?",
+			"save": "Dəyişiklikləri saxla",
+			"start": "Sprinti başlat",
+			"startSuccess": "Sprint {{name}} başladı",
+			"close": "Sprinti bağla",
+			"closeTitle": "Sprinti bağla",
+			"closeSummary": "{{name}} sprintində {{total}} tapşırıq var, onlardan {{completed}} tamamlandı.",
+			"closeTarget": "{{count}} yarımçıq tapşırığı buraya köçür:",
+			"closeConfirm": "Sprinti bağla və yarımçıq tapşırıqları köçür",
+			"closeSuccess": "Sprint bağlandı, {{count}} yarımçıq tapşırıq köçürüldü",
+			"backlog": "Backlog",
+			"activeBadge": "Aktiv",
+			"noActive": "Aktiv sprint yoxdur. İterasiya üçün gələcək sprintlərdən birini başladın.",
+			"upcoming": "Gələcək sprint",
+			"unscheduled": "Planlaşdırılmayıb",
+			"taskCounts": "{{total}} tapşırıqdan {{completed}} tamamlandı",
+			"history": "Bağlanmış sprintlər ({{count}})",
+			"completedCount": "{{count}} tamamlandı",
+			"moveUp": "Yuxarı",
+			"moveDown": "Aşağı",
+			"closedLocked": "Bu tapşırıq bağlanmış sprintə aiddir və tarix kimi orada qalır",
+			"error": "Sprint əməliyyatı alınmadı",
+			"daysRemaining": "{{remaining}} gün qalıb",
+			"endsToday": "Bu gün bitir",
+			"daysOverdue": "{{remaining}} gün gecikib",
+			"noTasks": "Bu sprintdə hələ tapşırıq yoxdur",
+			"toggleTasks": "Sprint tapşırıqlarını göstər"
+		},
+		"type": {
+			"task": "Tapşırıq",
+			"bug": "Xəta"
 		}
 	},
 	"invitations": {

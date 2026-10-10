@@ -1253,7 +1253,14 @@
 			"moveModalConfirm": "Move Project",
 			"toastMoved": "Project moved successfully",
 			"toastMovedWithUnassigned": "Project moved successfully. {{taskCount}} task(s) were unassigned.",
-			"toastMoveError": "Failed to move project"
+			"toastMoveError": "Failed to move project",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Plan upcoming work in fixed-length iterations.",
+			"sprintLength": "Default sprint length",
+			"sprintLengthDescription": "Number of days a new sprint covers by default.",
+			"sprintLengthSave": "Save sprint length",
+			"sprintLengthSaved": "Sprint length saved",
+			"sprintLengthError": "Could not save the sprint length"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Project Integrations",
@@ -2831,12 +2838,14 @@
 				"priority": "Priority",
 				"assignee": "Assignee",
 				"dueDate": "Due date",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "is any of",
 				"includeAnyOf": "include any of"
-			}
+			},
+			"allSprints": "All sprints"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – Calendar",
@@ -2964,7 +2973,9 @@
 			"actions": "Actions",
 			"searchActions": "Search actions...",
 			"noActionsFound": "No actions found.",
-			"changeStatus": "Change Status"
+			"changeStatus": "Change Status",
+			"moveToSprint": "Move to sprint",
+			"updateSprintError": "Failed to move tasks to the sprint"
 		},
 		"editor": {
 			"table": {
@@ -3030,6 +3041,49 @@
 			"refactor": "Refactor",
 			"test": "Test",
 			"release": "Release"
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Create sprint",
+			"createTitle": "Create sprint",
+			"createDescription": "Plan an upcoming sprint with a name, goal, and dates.",
+			"editTitle": "Edit sprint",
+			"editDescription": "Update the sprint's name, goal, and dates.",
+			"edit": "Edit sprint",
+			"name": "Sprint name",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint goal",
+			"goalPlaceholder": "What should this sprint achieve?",
+			"save": "Save changes",
+			"start": "Start sprint",
+			"startSuccess": "Sprint {{name}} started",
+			"close": "Close sprint",
+			"closeTitle": "Close sprint",
+			"closeSummary": "{{name}} has {{total}} tasks, {{completed}} of them completed.",
+			"closeTarget": "Move {{count}} unfinished tasks to",
+			"closeConfirm": "Close sprint and move unfinished tasks",
+			"closeSuccess": "Sprint closed, {{count}} unfinished tasks moved",
+			"backlog": "Backlog",
+			"activeBadge": "Active",
+			"noActive": "No sprint is active. Start an upcoming sprint to begin iterating.",
+			"upcoming": "Upcoming sprint",
+			"unscheduled": "Not scheduled",
+			"taskCounts": "{{completed}} of {{total}} completed",
+			"history": "Closed sprints ({{count}})",
+			"completedCount": "{{count}} completed",
+			"moveUp": "Move up",
+			"moveDown": "Move down",
+			"closedLocked": "This task is part of a closed sprint and stays there as its history",
+			"error": "Sprint action failed",
+			"daysRemaining": "{{remaining}} days remaining",
+			"endsToday": "Ends today",
+			"daysOverdue": "{{remaining}} days overdue",
+			"noTasks": "No tasks in this sprint yet",
+			"toggleTasks": "Show sprint tasks"
+		},
+		"type": {
+			"task": "Task",
+			"bug": "Bug"
 		}
 	},
 	"invitations": {

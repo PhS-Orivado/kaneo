@@ -1025,7 +1025,14 @@
 			"toastMoved": "प्रोजेक्ट सफलतापूर्वक ले जाया गया",
 			"toastMovedWithUnassigned": "प्रोजेक्ट सफलतापूर्वक ले जाया गया। {{taskCount}} कार्य का असाइनमेंट हटा दिया गया।",
 			"toastMoveError": "प्रोजेक्ट ले जाने में विफल",
-			"moveTargetsError": "यह जाँचा नहीं जा सका कि आप इस प्रोजेक्ट को किन वर्कस्पेस में ले जा सकते हैं। पुनः प्रयास करने के लिए पेज रीलोड करें।"
+			"moveTargetsError": "यह जाँचा नहीं जा सका कि आप इस प्रोजेक्ट को किन वर्कस्पेस में ले जा सकते हैं। पुनः प्रयास करने के लिए पेज रीलोड करें।",
+			"sprints": "स्प्रिंट",
+			"sprintsSubtitle": "आगामी कार्य को निश्चित अवधि के चरणों में योजनाबद्ध करें।",
+			"sprintLength": "डिफ़ॉल्ट स्प्रिंट अवधि",
+			"sprintLengthDescription": "नए स्प्रिंट की डिफ़ॉल्ट अवधि दिनों में।",
+			"sprintLengthSave": "स्प्रिंट अवधि सहेजें",
+			"sprintLengthSaved": "स्प्रिंट अवधि सहेजी गई",
+			"sprintLengthError": "स्प्रिंट अवधि सहेजी नहीं जा सकी"
 		},
 		"projectIntegrations": {
 			"pageTitle": "प्रोजेक्ट एकीकरण",
@@ -2826,7 +2833,8 @@
 				"priority": "प्राथमिकता",
 				"assignee": "सौंपा गया",
 				"dueDate": "नियत तारीख",
-				"labels": "लेबल"
+				"labels": "लेबल",
+				"sprint": "स्प्रिंट"
 			},
 			"operators": {
 				"isAnyOf": "में से कोई है",
@@ -2835,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "सभी स्प्रिंट"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – गैंट",
@@ -2950,7 +2959,9 @@
 			"actions": "कार्रवाइयाँ",
 			"searchActions": "कार्रवाइयाँ खोजें...",
 			"noActionsFound": "कोई कार्रवाई नहीं मिली।",
-			"changeStatus": "स्थिति बदलें"
+			"changeStatus": "स्थिति बदलें",
+			"moveToSprint": "स्प्रिंट में ले जाएँ",
+			"updateSprintError": "कार्यों को स्प्रिंट में ले जाना विफल"
 		},
 		"editor": {
 			"table": {
@@ -3030,6 +3041,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "स्प्रिंट",
+			"create": "स्प्रिंट बनाएँ",
+			"createTitle": "स्प्रिंट बनाएँ",
+			"createDescription": "नाम, लक्ष्य और तारीखों के साथ आगामी स्प्रिंट की योजना बनाएँ।",
+			"editTitle": "स्प्रिंट संपादित करें",
+			"editDescription": "स्प्रिंट का नाम, लक्ष्य और तारीखें अपडेट करें।",
+			"edit": "स्प्रिंट संपादित करें",
+			"name": "स्प्रिंट का नाम",
+			"namePlaceholder": "स्प्रिंट 1",
+			"goal": "स्प्रिंट का लक्ष्य",
+			"goalPlaceholder": "इस स्प्रिंट में क्या हासिल करना है?",
+			"save": "परिवर्तन सहेजें",
+			"start": "स्प्रिंट शुरू करें",
+			"startSuccess": "स्प्रिंट {{name}} शुरू हुआ",
+			"close": "स्प्रिंट बंद करें",
+			"closeTitle": "स्प्रिंट बंद करें",
+			"closeSummary": "{{name}} में {{total}} कार्य हैं, जिनमें से {{completed}} पूरे हुए।",
+			"closeTarget": "{{count}} अधूरे कार्य यहाँ ले जाएँ",
+			"closeConfirm": "स्प्रिंट बंद करें और अधूरे कार्य ले जाएँ",
+			"closeSuccess": "स्प्रिंट बंद हुआ, {{count}} अधूरे कार्य ले जाए गए",
+			"backlog": "बैकलॉग",
+			"activeBadge": "सक्रिय",
+			"noActive": "कोई स्प्रिंट सक्रिय नहीं है। पुनरावृत्ति शुरू करने के लिए आगामी स्प्रिंट शुरू करें।",
+			"upcoming": "आगामी स्प्रिंट",
+			"unscheduled": "अनिर्धारित",
+			"taskCounts": "{{total}} में से {{completed}} पूरे",
+			"history": "बंद स्प्रिंट ({{count}})",
+			"completedCount": "{{count}} पूरे",
+			"moveUp": "ऊपर ले जाएँ",
+			"moveDown": "नीचे ले जाएँ",
+			"closedLocked": "यह कार्य बंद स्प्रिंट का हिस्सा है और इतिहास के रूप में वहीं रहेगा",
+			"error": "स्प्रिंट कार्रवाई विफल",
+			"daysRemaining": "{{remaining}} दिन शेष",
+			"endsToday": "आज समाप्त",
+			"daysOverdue": "{{remaining}} दिन से अतिदेय",
+			"noTasks": "इस स्प्रिंट में अभी कोई कार्य नहीं है",
+			"toggleTasks": "स्प्रिंट कार्य दिखाएँ"
+		},
+		"type": {
+			"task": "कार्य",
+			"bug": "बग"
 		}
 	},
 	"invitations": {

@@ -794,7 +794,14 @@
 			"toastMoved": "Проєкт успішно переміщено",
 			"toastMovedWithUnassigned": "Проєкт успішно переміщено. Із {{taskCount}} завдань знято призначення.",
 			"toastMoveError": "Не вдалося перемістити проєкт",
-			"moveTargetsError": "Не вдалося перевірити, до яких робочих просторів можна перемістити цей проєкт. Перезавантажте сторінку, щоб спробувати ще раз."
+			"moveTargetsError": "Не вдалося перевірити, до яких робочих просторів можна перемістити цей проєкт. Перезавантажте сторінку, щоб спробувати ще раз.",
+			"sprints": "Спринти",
+			"sprintsSubtitle": "Плануйте майбутню роботу ітераціями фіксованої тривалості.",
+			"sprintLength": "Тривалість спринта за замовчуванням",
+			"sprintLengthDescription": "Кількість днів, яку за замовчуванням охоплює новий спринт.",
+			"sprintLengthSave": "Зберегти тривалість спринта",
+			"sprintLengthSaved": "Тривалість спринта збережена",
+			"sprintLengthError": "Не вдалося зберегти тривалість спринта"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Інтеґрації проєкту",
@@ -2858,7 +2865,8 @@
 				"priority": "Пріоритет",
 				"assignee": "Виконавець",
 				"dueDate": "Дата завершення",
-				"labels": "Мітки"
+				"labels": "Мітки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "є будь-яким з",
@@ -2867,7 +2875,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Усі спринти"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Ґант",
@@ -2984,7 +2993,9 @@
 			"actions": "Дії",
 			"searchActions": "Пошук дій...",
 			"noActionsFound": "Дій не знайдено.",
-			"changeStatus": "Змінити статус"
+			"changeStatus": "Змінити статус",
+			"moveToSprint": "Перемістити в спринт",
+			"updateSprintError": "Не вдалося перемістити завдання в спринт"
 		},
 		"editor": {
 			"table": {
@@ -3066,6 +3077,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Спринти",
+			"create": "Створити спринт",
+			"createTitle": "Створити спринт",
+			"createDescription": "Заплануйте наступний спринт: назва, мета та дати.",
+			"editTitle": "Змінити спринт",
+			"editDescription": "Оновіть назву, мету та дати спринта.",
+			"edit": "Змінити спринт",
+			"name": "Назва спринта",
+			"namePlaceholder": "Спринт 1",
+			"goal": "Мета спринта",
+			"goalPlaceholder": "Чого має досягти цей спринт?",
+			"save": "Зберегти зміни",
+			"start": "Почати спринт",
+			"startSuccess": "Спринт {{name}} розпочато",
+			"close": "Закрити спринт",
+			"closeTitle": "Закрити спринт",
+			"closeSummary": "У спринті {{name}} {{total}} завдань, із них завершено {{completed}}.",
+			"closeTarget": "Перенести {{count}} незавершених завдань до",
+			"closeConfirm": "Закрити спринт і перенести незавершені завдання",
+			"closeSuccess": "Спринт закрито, перенесено {{count}} незавершених завдань",
+			"backlog": "Беклог",
+			"activeBadge": "Активний",
+			"noActive": "Немає активного спринта. Почніть наступний спринт, щоб працювати ітераціями.",
+			"upcoming": "Наступний спринт",
+			"unscheduled": "Без дат",
+			"taskCounts": "Завершено {{completed}} із {{total}}",
+			"history": "Закриті спринти ({{count}})",
+			"completedCount": "Завершено: {{count}}",
+			"moveUp": "Вгору",
+			"moveDown": "Вниз",
+			"closedLocked": "Це завдання належить закритому спринту й залишається в ньому як історія",
+			"error": "Не вдалося виконати дію зі спринтом",
+			"daysRemaining": "Залишилося днів: {{remaining}}",
+			"endsToday": "Завершується сьогодні",
+			"daysOverdue": "Прострочено на {{remaining}} дн.",
+			"noTasks": "У цьому спринті ще немає завдань",
+			"toggleTasks": "Показати завдання спринту"
+		},
+		"type": {
+			"task": "Завдання",
+			"bug": "Помилка"
 		}
 	},
 	"invitations": {

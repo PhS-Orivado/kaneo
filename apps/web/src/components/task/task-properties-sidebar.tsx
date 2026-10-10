@@ -41,6 +41,7 @@ import TaskDueDatePopover from "./task-due-date-popover";
 import TaskLabelsPopover from "./task-labels-popover";
 import TaskPriorityPopover from "./task-priority-popover";
 import TaskStartDatePopover from "./task-start-date-popover";
+import TaskSprintPopover from "./task-sprint-popover";
 import TaskStatusPopover from "./task-status-popover";
 
 function slugify(text: string | undefined): string {
@@ -218,6 +219,7 @@ export default function TaskPropertiesSidebar({
                   </Button>
                 </TaskPriorityPopover>
               )}
+              {task && <TaskSprintPopover task={task} />}
               {task && (
                 <TaskAssigneePopover task={task} workspaceId={workspaceId}>
                   <Button
@@ -367,6 +369,7 @@ export default function TaskPropertiesSidebar({
                     </Button>
                   </TaskPriorityPopover>
                 )}
+                {task && <TaskSprintPopover task={task} />}
                 {task && (
                   <TaskAssigneePopover task={task} workspaceId={workspaceId}>
                     <Button
@@ -516,6 +519,7 @@ export default function TaskPropertiesSidebar({
                     </Button>
                   </TaskPriorityPopover>
                 )}
+                {task && <TaskSprintPopover task={task} className="w-full" />}
                 {task && (
                   <TaskAssigneePopover task={task} workspaceId={workspaceId}>
                     <Button

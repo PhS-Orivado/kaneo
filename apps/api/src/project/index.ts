@@ -190,7 +190,7 @@ const updateProjectRoute = createRoute({
   tags: ["Projects"],
   summary: "Update project",
   description:
-    "Replace a project's name, icon, slug, description, and visibility.",
+    "Replace a project's name, icon, slug, description, and visibility. Optionally set the default sprint length in days.",
   middleware: [
     workspaceAccess.fromProject(),
     requireWorkspacePermission({ project: ["update"] }),
@@ -536,7 +536,8 @@ const project = apiRouter<BaseVariables & { workspaceId: string }>()
   })
   .openapi(updateProjectRoute, async (c) => {
     const { id } = c.req.valid("param");
-    const { name, icon, slug, description, isPublic } = c.req.valid("json");
+    const { name, icon, slug, description, isPublic, defaultSprintLengthDays } =
+      c.req.valid("json");
     const workspaceId = c.get("workspaceId");
     const updatedProject = await updateProjectCtrl(
       id,
@@ -547,6 +548,7 @@ const project = apiRouter<BaseVariables & { workspaceId: string }>()
       isPublic,
       workspaceId,
       await hasWorkspacePermission(c, { project: ["share"] }),
+      defaultSprintLengthDays,
     );
     return c.json(toPublicProject(updatedProject), 200);
   })

@@ -788,7 +788,14 @@
 			"toastMoved": "Proyek berhasil dipindahkan",
 			"toastMovedWithUnassigned": "Proyek berhasil dipindahkan. {{taskCount}} tugas dilepas penugasannya.",
 			"toastMoveError": "Gagal memindahkan proyek",
-			"moveTargetsError": "Tidak dapat memeriksa ruang kerja mana saja yang dapat menjadi tujuan pemindahan proyek ini. Muat ulang halaman untuk mencoba lagi."
+			"moveTargetsError": "Tidak dapat memeriksa ruang kerja mana saja yang dapat menjadi tujuan pemindahan proyek ini. Muat ulang halaman untuk mencoba lagi.",
+			"sprints": "Sprint",
+			"sprintsSubtitle": "Rencanakan pekerjaan mendatang dalam iterasi dengan durasi tetap.",
+			"sprintLength": "Durasi sprint bawaan",
+			"sprintLengthDescription": "Jumlah hari yang dicakup sprint baru secara bawaan.",
+			"sprintLengthSave": "Simpan durasi sprint",
+			"sprintLengthSaved": "Durasi sprint disimpan",
+			"sprintLengthError": "Tidak dapat menyimpan durasi sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrasi Proyek",
@@ -2810,7 +2817,8 @@
 				"priority": "Prioritas",
 				"assignee": "Penanggung jawab",
 				"dueDate": "Tenggat",
-				"labels": "Label"
+				"labels": "Label",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "adalah salah satu dari",
@@ -2819,7 +2827,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Semua sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2933,7 +2942,9 @@
 			"actions": "Aksi",
 			"searchActions": "Cari aksi...",
 			"noActionsFound": "Tidak ada aksi ditemukan.",
-			"changeStatus": "Ubah Status"
+			"changeStatus": "Ubah Status",
+			"moveToSprint": "Pindahkan ke sprint",
+			"updateSprintError": "Gagal memindahkan tugas ke sprint"
 		},
 		"editor": {
 			"table": {
@@ -3012,6 +3023,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprint",
+			"create": "Buat sprint",
+			"createTitle": "Buat sprint",
+			"createDescription": "Rencanakan sprint mendatang dengan nama, tujuan, dan tanggal.",
+			"editTitle": "Edit sprint",
+			"editDescription": "Perbarui nama, tujuan, dan tanggal sprint.",
+			"edit": "Edit sprint",
+			"name": "Nama sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Tujuan sprint",
+			"goalPlaceholder": "Apa yang ingin dicapai sprint ini?",
+			"save": "Simpan perubahan",
+			"start": "Mulai sprint",
+			"startSuccess": "Sprint {{name}} dimulai",
+			"close": "Tutup sprint",
+			"closeTitle": "Tutup sprint",
+			"closeSummary": "{{name}} memiliki {{total}} tugas, {{completed}} di antaranya selesai.",
+			"closeTarget": "Pindahkan {{count}} tugas yang belum selesai ke",
+			"closeConfirm": "Tutup sprint dan pindahkan tugas yang belum selesai",
+			"closeSuccess": "Sprint ditutup, {{count}} tugas yang belum selesai dipindahkan",
+			"backlog": "Backlog",
+			"activeBadge": "Aktif",
+			"noActive": "Tidak ada sprint yang aktif. Mulai sprint mendatang untuk beriterasi.",
+			"upcoming": "Sprint mendatang",
+			"unscheduled": "Belum dijadwalkan",
+			"taskCounts": "{{completed}} dari {{total}} selesai",
+			"history": "Sprint yang ditutup ({{count}})",
+			"completedCount": "{{count}} selesai",
+			"moveUp": "Naikkan",
+			"moveDown": "Turunkan",
+			"closedLocked": "Tugas ini bagian dari sprint yang ditutup dan tetap di sana sebagai riwayat",
+			"error": "Tindakan sprint gagal",
+			"daysRemaining": "{{remaining}} hari tersisa",
+			"endsToday": "Berakhir hari ini",
+			"daysOverdue": "Terlambat {{remaining}} hari",
+			"noTasks": "Belum ada tugas dalam sprint ini",
+			"toggleTasks": "Tampilkan tugas sprint"
+		},
+		"type": {
+			"task": "Tugas",
+			"bug": "Bug"
 		}
 	},
 	"invitations": {

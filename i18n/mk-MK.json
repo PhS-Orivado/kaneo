@@ -790,7 +790,14 @@
 			"toastMoved": "Проектот е успешно преместен",
 			"toastMovedWithUnassigned": "Проектот е успешно преместен. {{taskCount}} задачи останаа недоделени.",
 			"toastMoveError": "Неуспешно преместување на проектот",
-			"moveTargetsError": "Не можеше да се провери во кои работни простори може да го преместите овој проект. Освежете ја страницата за да се обидете повторно."
+			"moveTargetsError": "Не можеше да се провери во кои работни простори може да го преместите овој проект. Освежете ја страницата за да се обидете повторно.",
+			"sprints": "Спринтови",
+			"sprintsSubtitle": "Планирајте ја претстојната работа во итерации со фиксна должина.",
+			"sprintLength": "Стандардна должина на спринтот",
+			"sprintLengthDescription": "Број на денови што ги покрива новиот спринт по стандард.",
+			"sprintLengthSave": "Зачувај должина на спринт",
+			"sprintLengthSaved": "Должината на спринтот е зачувана",
+			"sprintLengthError": "Не успеа зачувувањето на должината на спринтот"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции на проект",
@@ -2826,7 +2833,8 @@
 				"priority": "Приоритет",
 				"assignee": "Доделен",
 				"dueDate": "Краен рок",
-				"labels": "Етикети"
+				"labels": "Етикети",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "е било кој од",
@@ -2835,7 +2843,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Сите спринтови"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2950,7 +2959,9 @@
 			"actions": "Акции",
 			"searchActions": "Пребарај акции...",
 			"noActionsFound": "Не се пронајдени акции.",
-			"changeStatus": "Промени статус"
+			"changeStatus": "Промени статус",
+			"moveToSprint": "Премести во спринт",
+			"updateSprintError": "Не успеа преместувањето на задачите во спринтот"
 		},
 		"editor": {
 			"table": {
@@ -3030,6 +3041,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Спринтови",
+			"create": "Создај спринт",
+			"createTitle": "Создај спринт",
+			"createDescription": "Планирајте претстоен спринт со име, цел и датуми.",
+			"editTitle": "Уреди спринт",
+			"editDescription": "Ажурирајте име, цел и датуми на спринтот.",
+			"edit": "Уреди спринт",
+			"name": "Име на спринтот",
+			"namePlaceholder": "Спринт 1",
+			"goal": "Цел на спринтот",
+			"goalPlaceholder": "Што треба да постигне овој спринт?",
+			"save": "Зачувај промени",
+			"start": "Започни спринт",
+			"startSuccess": "Спринтот {{name}} започна",
+			"close": "Затвори спринт",
+			"closeTitle": "Затвори спринт",
+			"closeSummary": "{{name}} има {{total}} задачи, од кои {{completed}} се завршени.",
+			"closeTarget": "Премести {{count}} незавршени задачи во",
+			"closeConfirm": "Затвори спринт и премести незавршени задачи",
+			"closeSuccess": "Спринтот е затворен, преместени се {{count}} незавршени задачи",
+			"backlog": "Backlog",
+			"activeBadge": "Активен",
+			"noActive": "Нема активен спринт. Започнете претстоен спринт за да итерирате.",
+			"upcoming": "Претстоен спринт",
+			"unscheduled": "Без рок",
+			"taskCounts": "{{completed}} од {{total}} завршени",
+			"history": "Затворени спринтови ({{count}})",
+			"completedCount": "{{count}} завршени",
+			"moveUp": "Помести нагоре",
+			"moveDown": "Помести надолу",
+			"closedLocked": "Оваа задача припаѓа на затворен спринт и останува таму како историја",
+			"error": "Дејството за спринтот не успеа",
+			"daysRemaining": "Остануваат {{remaining}} дена",
+			"endsToday": "Завршува денес",
+			"daysOverdue": "{{remaining}} дена доцни",
+			"noTasks": "Уште нема задачи во овој спринт",
+			"toggleTasks": "Прикажи задачи во спринтот"
+		},
+		"type": {
+			"task": "Задача",
+			"bug": "Грешка"
 		}
 	},
 	"invitations": {

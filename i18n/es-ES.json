@@ -688,7 +688,14 @@
 			"toastMoved": "Proyecto movido correctamente",
 			"toastMovedWithUnassigned": "Proyecto movido correctamente. {{taskCount}} tarea(s) quedaron sin asignar.",
 			"toastMoveError": "No se pudo mover el proyecto",
-			"moveTargetsError": "No se pudo comprobar a qué espacios de trabajo puedes mover este proyecto. Vuelve a cargar la página para intentarlo de nuevo."
+			"moveTargetsError": "No se pudo comprobar a qué espacios de trabajo puedes mover este proyecto. Vuelve a cargar la página para intentarlo de nuevo.",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Planifica el trabajo próximo en iteraciones de duración fija.",
+			"sprintLength": "Duración de sprint predeterminada",
+			"sprintLengthDescription": "Número de días que cubre por defecto un sprint nuevo.",
+			"sprintLengthSave": "Guardar duración de sprint",
+			"sprintLengthSaved": "Duración de sprint guardada",
+			"sprintLengthError": "No se pudo guardar la duración de sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integraciones del Proyecto",
@@ -2831,7 +2838,8 @@
 				"priority": "Prioridad",
 				"assignee": "Asignado",
 				"dueDate": "Fecha de vencimiento",
-				"labels": "Etiquetas"
+				"labels": "Etiquetas",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "es alguno de",
@@ -2840,7 +2848,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Todos los sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2956,7 +2965,9 @@
 			"actions": "Actiones",
 			"searchActions": "Buscar acciones...",
 			"noActionsFound": "No se han encontrado acciones.",
-			"changeStatus": "Cambiar estado"
+			"changeStatus": "Cambiar estado",
+			"moveToSprint": "Mover a sprint",
+			"updateSprintError": "No se pudieron mover las tareas al sprint"
 		},
 		"move": {
 			"title": "Mover tarea",
@@ -3048,6 +3059,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Crear sprint",
+			"createTitle": "Crear sprint",
+			"createDescription": "Planifica un sprint próximo con nombre, objetivo y fechas.",
+			"editTitle": "Editar sprint",
+			"editDescription": "Actualiza el nombre, el objetivo y las fechas del sprint.",
+			"edit": "Editar sprint",
+			"name": "Nombre del sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Objetivo del sprint",
+			"goalPlaceholder": "¿Qué debe lograr este sprint?",
+			"save": "Guardar cambios",
+			"start": "Iniciar sprint",
+			"startSuccess": "Sprint {{name}} iniciado",
+			"close": "Cerrar sprint",
+			"closeTitle": "Cerrar sprint",
+			"closeSummary": "{{name}} tiene {{total}} tareas, {{completed}} de ellas completadas.",
+			"closeTarget": "Mover {{count}} tareas sin terminar a",
+			"closeConfirm": "Cerrar sprint y mover las tareas sin terminar",
+			"closeSuccess": "Sprint cerrado, {{count}} tareas sin terminar movidas",
+			"backlog": "Backlog",
+			"activeBadge": "Activo",
+			"noActive": "Ningún sprint está activo. Inicia un sprint próximo para empezar a iterar.",
+			"upcoming": "Sprint próximo",
+			"unscheduled": "Sin fechar",
+			"taskCounts": "{{completed}} de {{total}} completadas",
+			"history": "Sprints cerrados ({{count}})",
+			"completedCount": "{{count}} completadas",
+			"moveUp": "Subir",
+			"moveDown": "Bajar",
+			"closedLocked": "Esta tarea pertenece a un sprint cerrado y permanece allí como historial",
+			"error": "La acción del sprint falló",
+			"daysRemaining": "Quedan {{remaining}} días",
+			"endsToday": "Termina hoy",
+			"daysOverdue": "{{remaining}} días de retraso",
+			"noTasks": "Aún no hay tareas en este sprint",
+			"toggleTasks": "Mostrar tareas del sprint"
+		},
+		"type": {
+			"task": "Tarea",
+			"bug": "Error"
 		}
 	},
 	"invitations": {

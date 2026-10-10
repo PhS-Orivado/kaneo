@@ -19,6 +19,8 @@ async function createTask(
   customFields?: { fieldId: string; value: string }[],
   draftAssetIds?: string[],
   syncIntegrationIds?: string[],
+  type?: CreateTaskRequest["type"],
+  sprintId?: string,
 ) {
   if (!projectId) {
     throw new Error("No project selected for task creation");
@@ -36,6 +38,8 @@ async function createTask(
       customFields,
       draftAssetIds,
       syncIntegrationIds,
+      ...(type ? { type } : {}),
+      ...(sprintId ? { sprintId } : {}),
     },
     param: { projectId },
   });

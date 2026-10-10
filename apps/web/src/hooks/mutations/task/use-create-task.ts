@@ -21,6 +21,8 @@ function useCreateTask() {
       customFields,
       draftAssetIds,
       syncIntegrationIds,
+      type,
+      sprintId,
     }: CreateTaskRequest) =>
       createTask(
         title,
@@ -34,6 +36,8 @@ function useCreateTask() {
         customFields,
         draftAssetIds,
         syncIntegrationIds,
+        type,
+        sprintId,
       ),
     onSuccess: (_data, variables) => {
       invalidateMyWork(queryClient);
@@ -44,6 +48,10 @@ function useCreateTask() {
       });
       void queryClient.invalidateQueries({
         queryKey: ["custom-field-values", variables.projectId],
+      });
+      // A new bug lands in the active sprint, so sprint counters move too.
+      void queryClient.invalidateQueries({
+        queryKey: ["sprints", variables.projectId],
       });
     },
   });

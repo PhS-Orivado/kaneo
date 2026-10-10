@@ -1021,7 +1021,14 @@
 			"toastMoved": "專案已移動",
 			"toastMovedWithUnassigned": "專案已移動。有 {{taskCount}} 個任務已變為未指派。",
 			"toastMoveError": "移動專案失敗",
-			"moveTargetsError": "無法確認你可以將此專案移動到哪些工作區。請重新載入後再試一次。"
+			"moveTargetsError": "無法確認你可以將此專案移動到哪些工作區。請重新載入後再試一次。",
+			"sprints": "衝刺",
+			"sprintsSubtitle": "以固定長度的迭代來規劃接下來的工作。",
+			"sprintLength": "預設衝刺長度",
+			"sprintLengthDescription": "新衝刺預設涵蓋的天數。",
+			"sprintLengthSave": "儲存衝刺長度",
+			"sprintLengthSaved": "衝刺長度已儲存",
+			"sprintLengthError": "無法儲存衝刺長度"
 		},
 		"projectIntegrations": {
 			"pageTitle": "專案整合",
@@ -2810,7 +2817,8 @@
 				"priority": "優先順序",
 				"assignee": "負責人",
 				"dueDate": "截止日期",
-				"labels": "標籤"
+				"labels": "標籤",
+				"sprint": "衝刺"
 			},
 			"operators": {
 				"isAnyOf": "為以下任一",
@@ -2819,7 +2827,8 @@
 			"all": "全部",
 			"allCustomFieldValues": "所有值",
 			"noCustomFieldValues": "沒有自訂欄位值",
-			"noValuesUsedYet": "尚未使用任何值"
+			"noValuesUsedYet": "尚未使用任何值",
+			"allSprints": "所有衝刺"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} - 行事曆",
@@ -2946,7 +2955,9 @@
 			"actions": "操作",
 			"searchActions": "搜尋操作…",
 			"noActionsFound": "找不到操作。",
-			"changeStatus": "變更狀態"
+			"changeStatus": "變更狀態",
+			"moveToSprint": "移至衝刺",
+			"updateSprintError": "無法將任務移至衝刺"
 		},
 		"editor": {
 			"table": {
@@ -3012,6 +3023,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "衝刺",
+			"create": "建立衝刺",
+			"createTitle": "建立衝刺",
+			"createDescription": "為即將開始的衝刺設定名稱、目標和日期。",
+			"editTitle": "編輯衝刺",
+			"editDescription": "更新衝刺的名稱、目標和日期。",
+			"edit": "編輯衝刺",
+			"name": "衝刺名稱",
+			"namePlaceholder": "衝刺 1",
+			"goal": "衝刺目標",
+			"goalPlaceholder": "這個衝刺要達成什麼？",
+			"save": "儲存變更",
+			"start": "開始衝刺",
+			"startSuccess": "衝刺 {{name}} 已開始",
+			"close": "關閉衝刺",
+			"closeTitle": "關閉衝刺",
+			"closeSummary": "{{name}} 共有 {{total}} 個任務，其中 {{completed}} 個已完成。",
+			"closeTarget": "將 {{count}} 個未完成的任務移動到",
+			"closeConfirm": "關閉衝刺並移動未完成的任務",
+			"closeSuccess": "衝刺已關閉，已移動 {{count}} 個未完成的任務",
+			"backlog": "待辦清單",
+			"activeBadge": "進行中",
+			"noActive": "目前沒有進行中的衝刺。請開始一個即將進行的衝刺以進入迭代。",
+			"upcoming": "即將開始的衝刺",
+			"unscheduled": "未安排",
+			"taskCounts": "已完成 {{completed}} / {{total}}",
+			"history": "已關閉的衝刺（{{count}}）",
+			"completedCount": "{{count}} 個已完成",
+			"moveUp": "上移",
+			"moveDown": "下移",
+			"closedLocked": "此任務屬於已關閉的衝刺，將作為歷史保留在其中",
+			"error": "衝刺操作失敗",
+			"daysRemaining": "剩餘 {{remaining}} 天",
+			"endsToday": "今天結束",
+			"daysOverdue": "已逾期 {{remaining}} 天",
+			"noTasks": "此衝刺中尚無任務",
+			"toggleTasks": "顯示衝刺任務"
+		},
+		"type": {
+			"task": "任務",
+			"bug": "缺陷"
 		}
 	},
 	"invitations": {

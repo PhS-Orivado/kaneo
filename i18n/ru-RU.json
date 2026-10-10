@@ -794,7 +794,14 @@
 			"toastMoved": "Проект успешно перемещён",
 			"toastMovedWithUnassigned": "Проект успешно перемещён. С {{taskCount}} задач(и) снято назначение.",
 			"toastMoveError": "Не удалось переместить проект",
-			"moveTargetsError": "Не удалось проверить, в какие рабочие пространства можно переместить этот проект. Обновите страницу, чтобы повторить попытку."
+			"moveTargetsError": "Не удалось проверить, в какие рабочие пространства можно переместить этот проект. Обновите страницу, чтобы повторить попытку.",
+			"sprints": "Спринты",
+			"sprintsSubtitle": "Планируйте предстоящую работу итерациями фиксированной длины.",
+			"sprintLength": "Длина спринта по умолчанию",
+			"sprintLengthDescription": "Количество дней, которое по умолчанию занимает новый спринт.",
+			"sprintLengthSave": "Сохранить длину спринта",
+			"sprintLengthSaved": "Длина спринта сохранена",
+			"sprintLengthError": "Не удалось сохранить длину спринта"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции проекта",
@@ -2873,7 +2880,8 @@
 				"priority": "Приоритет",
 				"assignee": "Исполнитель",
 				"dueDate": "Срок выполнения",
-				"labels": "Метки"
+				"labels": "Метки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "любой из",
@@ -2883,7 +2891,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Все спринты"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Гант",
@@ -3040,7 +3049,9 @@
 			"archiveSuccess": "{{count}} задач архивировано",
 			"updateSuccess": "{{count}} задач обновлено",
 			"assignSuccess": "{{count}} задач назначено",
-			"addLabelSuccess": "Метка добавлена к {{count}} задачам"
+			"addLabelSuccess": "Метка добавлена к {{count}} задачам",
+			"moveToSprint": "Переместить в спринт",
+			"updateSprintError": "Не удалось переместить задачи в спринт"
 		},
 		"editor": {
 			"table": {
@@ -3122,6 +3133,49 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"sprints": {
+			"title": "Спринты",
+			"create": "Создать спринт",
+			"createTitle": "Создать спринт",
+			"createDescription": "Запланируйте предстоящий спринт: название, цель и даты.",
+			"editTitle": "Изменить спринт",
+			"editDescription": "Обновите название, цель и даты спринта.",
+			"edit": "Изменить спринт",
+			"name": "Название спринта",
+			"namePlaceholder": "Спринт 1",
+			"goal": "Цель спринта",
+			"goalPlaceholder": "Чего должна достичь команда в этом спринте?",
+			"save": "Сохранить изменения",
+			"start": "Запустить спринт",
+			"startSuccess": "Спринт {{name}} запущен",
+			"close": "Закрыть спринт",
+			"closeTitle": "Закрыть спринт",
+			"closeSummary": "В спринте {{name}} {{total}} задач, из них завершено: {{completed}}.",
+			"closeTarget": "Перенести {{count}} незавершённых задач в",
+			"closeConfirm": "Закрыть спринт и перенести незавершённые задачи",
+			"closeSuccess": "Спринт закрыт, перенесено {{count}} незавершённых задач",
+			"backlog": "Бэклог",
+			"activeBadge": "Активен",
+			"noActive": "Нет активного спринта. Запустите предстоящий спринт, чтобы начать работу итерациями.",
+			"upcoming": "Предстоящий спринт",
+			"unscheduled": "Без сроков",
+			"taskCounts": "Завершено {{completed}} из {{total}}",
+			"history": "Закрытые спринты ({{count}})",
+			"completedCount": "Завершено: {{count}}",
+			"moveUp": "Выше",
+			"moveDown": "Ниже",
+			"closedLocked": "Задача относится к закрытому спринту и остаётся в нём как история",
+			"error": "Не удалось выполнить действие со спринтом",
+			"daysRemaining": "Осталось дней: {{remaining}}",
+			"endsToday": "Заканчивается сегодня",
+			"daysOverdue": "Просрочено на {{remaining}} дн.",
+			"noTasks": "В этом спринте пока нет задач",
+			"toggleTasks": "Показать задачи спринта"
+		},
+		"type": {
+			"task": "Задача",
+			"bug": "Ошибка"
 		}
 	},
 	"invitations": {
