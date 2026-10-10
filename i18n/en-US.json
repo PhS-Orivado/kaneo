@@ -11,7 +11,8 @@
 			"remove": "Remove",
 			"reset": "Reset",
 			"filter": "Filter",
-			"clearAllFilters": "Clear all filters"
+			"clearAllFilters": "Clear all filters",
+			"save": "Save"
 		},
 		"a11y": {
 			"toggleSidebar": "Toggle sidebar"
@@ -166,7 +167,9 @@
 				"issuesIn_other": "Issues in {{count}} repos",
 				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
 				"repositoriesAll": "Select all",
-				"repositoriesNone": "Clear"
+				"repositoriesNone": "Clear",
+				"attribute": "Type",
+				"attributeNone": "None"
 			}
 		}
 	},
@@ -2209,6 +2212,47 @@
 			"linkedInProject": "Linked in this project",
 			"linkedInOtherProject": "Linked in {{project}}",
 			"linkedInUnknownProject": "Linked in another project"
+		},
+		"workspaceTaskAttributes": {
+			"pageTitle": "Task Attributes",
+			"title": "Task Attributes",
+			"subtitle": "Create, edit, and delete the task types available in this workspace.",
+			"cardDescription": "Manage the task attributes (types) that can be assigned to tasks in this workspace.",
+			"empty": "No task attributes yet. Create your first task attribute to get started.",
+			"createTitle": "Create Task Attribute",
+			"createDescription": "Define a new task attribute (type) for this workspace.",
+			"createSuccess": "Task attribute created",
+			"createError": "Failed to create task attribute",
+			"editTitle": "Edit Task Attribute",
+			"editDescription": "Update this task attribute.",
+			"editAttribute": "Edit Task Attribute",
+			"nameLabel": "Attribute name",
+			"namePlaceholder": "Enter attribute name",
+			"nameRequired": "Attribute name is required",
+			"nameTooLong": "Name must be at most {{max}} characters",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Optional description",
+			"descriptionTooLong": "Description must be at most {{max}} characters",
+			"iconLabel": "Symbol",
+			"iconSearchPlaceholder": "Search symbols...",
+			"iconColorLabel": "Symbol color",
+			"textColorLabel": "Font color",
+			"previewLabel": "Preview",
+			"defaultLabel": "Workspace default",
+			"defaultHint": "New tasks without an attribute use the default.",
+			"defaultBadge": "Default",
+			"defaultDeleteHint": "The default attribute cannot be deleted; set another attribute as the default first",
+			"reorderHandle": "Reorder {{name}}",
+			"reorderError": "Failed to reorder task attributes",
+			"deleteAttribute": "Delete",
+			"deleteConfirmTitle": "Delete this task attribute?",
+			"deleteConfirmDescription": "This action cannot be undone. If tasks still use this attribute, you will be offered to reassign them.",
+			"deleteBlocked": "{{count}} task(s) still use this attribute. You can reassign them to the workspace default and delete it.",
+			"deleteForce": "Reassign and delete",
+			"deleteSuccess": "Task attribute deleted",
+			"deleteError": "Failed to delete task attribute",
+			"updateSuccess": "Task attribute updated",
+			"updateError": "Failed to update task attribute"
 		}
 	},
 	"navigation": {
@@ -2716,7 +2760,8 @@
 			"taskBranchCopied": "Copied branch name",
 			"start": "Start",
 			"startDate": "Start date",
-			"noDate": "No date"
+			"noDate": "No date",
+			"attribute": "Type"
 		},
 		"move": {
 			"title": "Move task",
@@ -2771,6 +2816,12 @@
 					"rose": "Rose",
 					"crimson": "Crimson"
 				}
+			},
+			"attribute": {
+				"none": "None",
+				"empty": "No attributes defined",
+				"searchPlaceholder": "Search attributes",
+				"updateError": "Could not update the task attribute"
 			}
 		},
 		"backlog": {
@@ -2796,7 +2847,8 @@
 				"label": "Label: {{name}}",
 				"dueThisWeek": "Due this week",
 				"dueNextWeek": "Due next week",
-				"noDueDate": "No due date"
+				"noDueDate": "No due date",
+				"attribute": "Type: {{name}}"
 			}
 		},
 		"sort": {
@@ -2831,12 +2883,15 @@
 				"priority": "Priority",
 				"assignee": "Assignee",
 				"dueDate": "Due date",
-				"labels": "Labels"
+				"labels": "Labels",
+				"attribute": "Type"
 			},
 			"operators": {
 				"isAnyOf": "is any of",
 				"includeAnyOf": "include any of"
-			}
+			},
+			"allAttributes": "All types",
+			"noType": "No type"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – Calendar",
@@ -2964,7 +3019,9 @@
 			"actions": "Actions",
 			"searchActions": "Search actions...",
 			"noActionsFound": "No actions found.",
-			"changeStatus": "Change Status"
+			"changeStatus": "Change Status",
+			"setAttribute": "Set type",
+			"updateAttributeError": "Could not update the task attribute"
 		},
 		"editor": {
 			"table": {
@@ -3030,6 +3087,9 @@
 			"refactor": "Refactor",
 			"test": "Test",
 			"release": "Release"
+		},
+		"attribute": {
+			"label": "Type"
 		}
 	},
 	"invitations": {
