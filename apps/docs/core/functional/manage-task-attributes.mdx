@@ -1,0 +1,69 @@
+---
+title: "Task Attributes"
+description: "Define task types such as Task, Bug, or Doc and use them across the workspace."
+---
+
+Task attributes describe what kind of work a task represents, such as **Task**, **Bug**, or **Doc**. Attributes are defined once per workspace and appear as colored badges on board cards, list rows, backlog rows, and search results, so the type of every task is visible at a glance.
+
+Every workspace starts with three attributes: **Task**, **Bug**, and **Doc**. **Task** is the workspace default, so newly created tasks always have a meaningful type.
+
+## Open workspace task attributes
+
+1. Go to **Settings**.
+2. Open **Workspace -> Task Attributes**.
+
+You will see the workspace's attributes with their icon, colors, name, and position. The default attribute carries a **Default** badge.
+
+## Create an attribute
+
+1. Click **Create Attribute**.
+2. Enter a name (up to 64 characters) and an optional description.
+3. Pick an icon from the curated list and choose an icon color and a text color.
+4. Click **Create Attribute**.
+
+The new attribute is immediately available on every task surface in the workspace.
+
+## Set the default attribute
+
+Each workspace has exactly one default attribute. New tasks without an explicitly chosen attribute receive it, and imports fall back to it as well.
+
+To move the default, edit another attribute and enable **Set as default**. The default cannot be unset directly and cannot be deleted; move the default to another attribute first.
+
+## Reorder attributes
+
+Drag an attribute by its handle to change its position. The order controls the sequence in pickers and menus everywhere in the workspace.
+
+## Edit an attribute
+
+1. Click the pencil icon next to the attribute.
+2. Update the name, description, icon, or colors.
+3. Click **Save**.
+
+Changes apply everywhere the attribute is used, including badges on existing tasks.
+
+## Delete an attribute
+
+1. Click the trash icon next to the attribute.
+2. Confirm deletion in the dialog.
+
+When tasks still use the attribute, Kaneo reports how many and offers to reassign those tasks to the workspace default before deleting. Confirm to proceed with the reassignment. The workspace default cannot be deleted.
+
+## Assign attributes to tasks
+
+Open a task and use the type picker in the task header, or the **Type** field in the task properties, to assign an attribute. Choose **None** for tasks without a type. The quick-create composer preselects the workspace default.
+
+When a workspace defines more than eight attributes, the picker adds a search field to find the right one quickly.
+
+## Filter by attribute
+
+Board, list, backlog, and My Tasks views offer a **Type** filter with multi-select, including **No type** for tasks without an attribute. Global search matches attribute names and accepts an attribute filter, so `none` finds untyped tasks. The bulk-selection bar can set the attribute of many tasks at once.
+
+## Permissions
+
+Creating, editing, reordering, and deleting attributes require the corresponding **Task Attributes** permissions. Assigning an attribute to a task requires the task update permission. If you do not see the controls, ask a workspace admin to update your role.
+
+## Related
+
+- [Labels](/core/functional/manage-workspace-labels)
+- [Plan and execute tasks](/core/functional/plan-and-execute-tasks)
+- [Create a workspace and project](/core/functional/create-workspace-and-project)

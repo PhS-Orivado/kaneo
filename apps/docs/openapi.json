@@ -131,6 +131,37 @@
             "type": "string",
             "description": "One of: no-priority, low, medium, high, urgent."
           },
+          "attribute": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "iconColor": {
+                "type": "string"
+              },
+              "textColor": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "icon",
+              "iconColor",
+              "textColor"
+            ],
+            "description": "The task's attribute (type), such as task, bug or doc. Null when none is set."
+          },
           "startDate": {
             "type": [
               "string",
@@ -949,6 +980,37 @@
             "type": "string",
             "description": "One of: no-priority, low, medium, high, urgent."
           },
+          "attribute": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "iconColor": {
+                "type": "string"
+              },
+              "textColor": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "icon",
+              "iconColor",
+              "textColor"
+            ],
+            "description": "The task's attribute (type), such as task, bug or doc. Null when none is set."
+          },
           "dueDate": {
             "type": [
               "string",
@@ -1112,6 +1174,37 @@
           "priority": {
             "type": "string",
             "description": "One of: no-priority, low, medium, high, urgent."
+          },
+          "attribute": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "iconColor": {
+                "type": "string"
+              },
+              "textColor": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "icon",
+              "iconColor",
+              "textColor"
+            ],
+            "description": "The task's attribute (type), such as task, bug or doc. Null when none is set; omitted where attributes are not loaded."
           },
           "startDate": {
             "type": [
@@ -1430,6 +1523,77 @@
           "tasks"
         ]
       },
+      "TaskAttribute": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "icon": {
+            "type": "string"
+          },
+          "iconColor": {
+            "type": "string"
+          },
+          "textColor": {
+            "type": "string"
+          },
+          "position": {
+            "type": "integer"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "workspaceId",
+          "name",
+          "description",
+          "icon",
+          "iconColor",
+          "textColor",
+          "position",
+          "isDefault",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "TaskAttributeDeleteBlocked": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "referenceCount": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "message",
+          "referenceCount"
+        ]
+      },
       "Column": {
         "type": "object",
         "properties": {
@@ -1496,7 +1660,7 @@
           },
           "type": {
             "type": "string",
-            "description": "One of: comment, task, create, status_changed, priority_changed, assignee_changed, unassigned, due_date_changed, title_changed, description_changed."
+            "description": "One of: comment, task, create, status_changed, priority_changed, attribute_changed, assignee_changed, unassigned, due_date_changed, title_changed, description_changed."
           },
           "createdAt": {
             "type": "string",
@@ -1589,7 +1753,7 @@
           },
           "type": {
             "type": "string",
-            "description": "One of: comment, task, create, status_changed, priority_changed, assignee_changed, unassigned, due_date_changed, title_changed, description_changed."
+            "description": "One of: comment, task, create, status_changed, priority_changed, attribute_changed, assignee_changed, unassigned, due_date_changed, title_changed, description_changed."
           },
           "createdAt": {
             "type": "string",
@@ -2244,6 +2408,37 @@
           },
           "status": {
             "type": "string"
+          },
+          "attribute": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "icon": {
+                "type": "string"
+              },
+              "iconColor": {
+                "type": "string"
+              },
+              "textColor": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "icon",
+              "iconColor",
+              "textColor"
+            ],
+            "description": "The task's attribute (type), such as task, bug or doc. Present on task results; null when none is set."
           }
         },
         "required": [
@@ -9750,6 +9945,16 @@
           },
           {
             "schema": {
+              "type": "string",
+              "description": "Filter by task attribute (type) id; the literal `none` matches tasks without an attribute."
+            },
+            "required": false,
+            "description": "Filter by task attribute (type) id; the literal `none` matches tasks without an attribute.",
+            "name": "attributeId",
+            "in": "query"
+          },
+          {
+            "schema": {
               "type": "integer",
               "minimum": 1,
               "maximum": 1000000
@@ -9787,7 +9992,8 @@
                 "dueDate",
                 "position",
                 "title",
-                "number"
+                "number",
+                "attribute"
               ]
             },
             "required": false,
@@ -9897,6 +10103,7 @@
                     "enum": [
                       "updateStatus",
                       "updatePriority",
+                      "updateAttribute",
                       "updateAssignee",
                       "delete",
                       "addLabel",
@@ -10369,7 +10576,7 @@
           "Tasks"
         ],
         "summary": "Create task",
-        "description": "Add a task to a project. It is placed in the column named by `status`.",
+        "description": "Add a task to a project. It is placed in the column named by `status`. Omit `attributeId` to apply the workspace default attribute; send null for no attribute.",
         "parameters": [
           {
             "schema": {
@@ -10408,6 +10615,13 @@
                       "high",
                       "urgent"
                     ]
+                  },
+                  "attributeId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Attribute (type) definition for the task. Omit to apply the workspace default; null for no attribute."
                   },
                   "status": {
                     "type": "string",
@@ -10771,7 +10985,7 @@
           "Tasks"
         ],
         "summary": "Update task",
-        "description": "Replace every field of a task. Use the single-field routes for narrower edits.",
+        "description": "Replace every field of a task. Use the single-field routes for narrower edits. Omit `attributeId` to keep the current attribute; send null to clear it.",
         "parameters": [
           {
             "schema": {
@@ -10811,6 +11025,13 @@
                       "high",
                       "urgent"
                     ]
+                  },
+                  "attributeId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Attribute (type) definition for the task. Omit to keep the current attribute; null clears it."
                   },
                   "status": {
                     "type": "string"
@@ -11149,6 +11370,13 @@
                             "string",
                             "null"
                           ]
+                        },
+                        "attributeId": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "Attribute (type) definition for the imported task. Omit to apply the workspace default; null for no attribute."
                         }
                       },
                       "required": [
@@ -11331,6 +11559,83 @@
           },
           "400": {
             "description": "Invalid priority, or unknown task",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing task:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task/attribute/{id}": {
+      "put": {
+        "operationId": "updateTaskAttribute",
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update task attribute",
+        "description": "Set a task's attribute (type), or send null to clear it. The attribute must belong to the task's workspace.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attributeId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The attribute (type) definition to set on the task. Null clears it."
+                  }
+                },
+                "required": [
+                  "attributeId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The updated task",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid attribute, or the attribute does not belong to the task's workspace",
             "content": {
               "text/plain": {
                 "schema": {
@@ -11862,6 +12167,534 @@
           },
           "403": {
             "description": "No workspace access, or missing task:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task-attribute/workspace/{workspaceId}": {
+      "get": {
+        "operationId": "getWorkspaceTaskAttributes",
+        "tags": [
+          "Task Attributes"
+        ],
+        "summary": "Get workspace task attributes",
+        "description": "Get all task attributes (task types such as task, bug, doc) defined in a workspace, ordered by position then name",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "workspaceId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of task attributes in the workspace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskAttribute"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Workspace ID could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No access to the workspace",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task-attribute": {
+      "post": {
+        "operationId": "createTaskAttribute",
+        "tags": [
+          "Task Attributes"
+        ],
+        "summary": "Create task attribute",
+        "description": "Define a new task attribute (task type) in a workspace",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "workspaceId": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 256
+                  },
+                  "icon": {
+                    "type": "string",
+                    "enum": [
+                      "SquareCheckBig",
+                      "Bug",
+                      "FileText",
+                      "CircleDot",
+                      "Lightbulb",
+                      "Wrench",
+                      "BookOpen",
+                      "Rocket",
+                      "Shield",
+                      "Star",
+                      "Zap",
+                      "Beaker",
+                      "Flag",
+                      "Heart",
+                      "Sparkles",
+                      "Layers",
+                      "Package",
+                      "Search",
+                      "PenLine",
+                      "GraduationCap"
+                    ]
+                  },
+                  "iconColor": {
+                    "type": "string",
+                    "enum": [
+                      "stone",
+                      "slate",
+                      "violet",
+                      "emerald",
+                      "green",
+                      "amber",
+                      "orange",
+                      "rose",
+                      "red"
+                    ]
+                  },
+                  "textColor": {
+                    "type": "string",
+                    "enum": [
+                      "stone",
+                      "slate",
+                      "violet",
+                      "emerald",
+                      "green",
+                      "amber",
+                      "orange",
+                      "rose",
+                      "red"
+                    ]
+                  },
+                  "isDefault": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "workspaceId",
+                  "name",
+                  "icon",
+                  "iconColor",
+                  "textColor"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task attribute created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAttribute"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, or workspace ID could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing taskAttribute:create permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "A task attribute with this name already exists in the workspace",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task-attribute/{id}": {
+      "put": {
+        "operationId": "updateTaskAttribute",
+        "tags": [
+          "Task Attributes"
+        ],
+        "summary": "Update task attribute",
+        "description": "Update an existing task attribute. Setting isDefault to true moves the workspace default to this attribute; the default cannot be unset directly.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 64
+                  },
+                  "description": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "maxLength": 256
+                  },
+                  "icon": {
+                    "type": "string",
+                    "enum": [
+                      "SquareCheckBig",
+                      "Bug",
+                      "FileText",
+                      "CircleDot",
+                      "Lightbulb",
+                      "Wrench",
+                      "BookOpen",
+                      "Rocket",
+                      "Shield",
+                      "Star",
+                      "Zap",
+                      "Beaker",
+                      "Flag",
+                      "Heart",
+                      "Sparkles",
+                      "Layers",
+                      "Package",
+                      "Search",
+                      "PenLine",
+                      "GraduationCap"
+                    ]
+                  },
+                  "iconColor": {
+                    "type": "string",
+                    "enum": [
+                      "stone",
+                      "slate",
+                      "violet",
+                      "emerald",
+                      "green",
+                      "amber",
+                      "orange",
+                      "rose",
+                      "red"
+                    ]
+                  },
+                  "textColor": {
+                    "type": "string",
+                    "enum": [
+                      "stone",
+                      "slate",
+                      "violet",
+                      "emerald",
+                      "green",
+                      "amber",
+                      "orange",
+                      "rose",
+                      "red"
+                    ]
+                  },
+                  "isDefault": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task attribute updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAttribute"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, or the default task attribute cannot be unset",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing taskAttribute:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task attribute not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "A task attribute with this name already exists in the workspace",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteTaskAttribute",
+        "tags": [
+          "Task Attributes"
+        ],
+        "summary": "Delete task attribute",
+        "description": "Delete a task attribute. The workspace default cannot be deleted. When tasks still reference the attribute the request is rejected with HTTP 409 and a reference count, unless force=true reassigns those tasks to the workspace default (or clears the attribute) before deleting.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ]
+            },
+            "required": false,
+            "name": "force",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task attribute deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAttribute"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown task attribute, or its workspace could not be determined",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing taskAttribute:delete permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task attribute not found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Task attribute is still referenced by tasks; pass force=true to reassign and delete",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAttributeDeleteBlocked"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/task-attribute/{id}/reorder": {
+      "post": {
+        "operationId": "reorderTaskAttribute",
+        "tags": [
+          "Task Attributes"
+        ],
+        "summary": "Reorder task attribute",
+        "description": "Set the position of a task attribute within its workspace",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "position": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  }
+                },
+                "required": [
+                  "position"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Task attribute reordered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskAttribute"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials"
+          },
+          "403": {
+            "description": "No workspace access, or missing taskAttribute:update permission",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task attribute not found",
             "content": {
               "text/plain": {
                 "schema": {
@@ -14457,6 +15290,16 @@
             },
             "required": false,
             "name": "projectId",
+            "in": "query"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "description": "Filter task results by one attribute definition, or `none` for tasks without an attribute."
+            },
+            "required": false,
+            "description": "Filter task results by one attribute definition, or `none` for tasks without an attribute.",
+            "name": "attributeId",
             "in": "query"
           },
           {
