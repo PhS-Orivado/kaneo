@@ -15,5 +15,7 @@ This folder contains the planning documents for adding Jira-style sprint plannin
 - Closing a sprint moves unfinished tasks to a selected target sprint or the backlog, while completed tasks remain in the closed sprint as the history of implementation.
 - Project settings define the default sprint length in days.
 - Sprints can be created, renamed, edited while future, and reordered, following Jira's sprint management as the behavioural reference.
+- The sprint planning panel lists the tasks of every sprint section, and sprint-scheduled tasks leave the plain backlog list below.
+- The board offers a sprint filter, and the backlog bulk toolbar moves the selected tasks between sprints and the backlog.
 
 The gap analysis was written from public sources before implementation; the assumptions listed there were verified against this repository when the feature was implemented on the `feat/sprint-planning` branch.

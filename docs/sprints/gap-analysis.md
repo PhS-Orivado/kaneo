@@ -67,7 +67,7 @@ Directly relevant observations:
 |--------|---------------|--------------|
 | Default target | New tasks are created in a named column or the planned virtual status, without routing logic. | Bugs default to the active sprint when one exists; all other types default to the backlog. An explicit sprint in the create request overrides the default. |
 | Editable targets | Not applicable today. | Tasks may be reassigned only among the active sprint, future sprints, and the backlog; tasks inside a closed sprint keep their assignment, so the history stays intact. |
-| Bulk operations | A bulk task endpoint exists for status, priority, assignee, labels, due date, and delete; it has no sprint operation. | A bulk sprint operation can follow the same pattern later; the first release moves unfinished work server-side during sprint close. |
+| Bulk operations | A bulk task endpoint exists for status, priority, assignee, labels, due date, and delete; it has no sprint operation. | A bulk sprint operation follows the same pattern: the selection moves to the active sprint, a future sprint, or the backlog in one action, guarded by the same assignment rules as single-task moves. |
 
 ### G4. Type-Based Default Routing — High
 
