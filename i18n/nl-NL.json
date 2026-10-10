@@ -11,7 +11,8 @@
 			"remove": "Verwijderen",
 			"reset": "Herstellen",
 			"filter": "Filteren",
-			"clearAllFilters": "Alle filters wissen"
+			"clearAllFilters": "Alle filters wissen",
+			"save": "Save"
 		},
 		"a11y": {
 			"toggleSidebar": "Zijbalk in-/uitschakelen"
@@ -160,7 +161,9 @@
 				"repositories": "Issues",
 				"repositoriesAll": "Select all",
 				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
-				"repositoriesNone": "Clear"
+				"repositoriesNone": "Clear",
+				"attribute": "Type",
+				"attributeNone": "None"
 			}
 		},
 		"boolean": {
@@ -2209,6 +2212,47 @@
 			"webhookTitle": "Webhook",
 			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
 			"workflowRulesTitle": "Workflow rules"
+		},
+		"workspaceTaskAttributes": {
+			"cardDescription": "Manage the task attributes (types) that can be assigned to tasks in this workspace.",
+			"createDescription": "Define a new task attribute (type) for this workspace.",
+			"createError": "Failed to create task attribute",
+			"createSuccess": "Task attribute created",
+			"createTitle": "Create Task Attribute",
+			"defaultBadge": "Default",
+			"defaultDeleteHint": "The default attribute cannot be deleted; set another attribute as the default first",
+			"defaultHint": "New tasks without an attribute use the default.",
+			"defaultLabel": "Workspace default",
+			"deleteAttribute": "Delete",
+			"deleteBlocked": "{{count}} task(s) still use this attribute. You can reassign them to the workspace default and delete it.",
+			"deleteConfirmDescription": "This action cannot be undone. If tasks still use this attribute, you will be offered to reassign them.",
+			"deleteConfirmTitle": "Delete this task attribute?",
+			"deleteError": "Failed to delete task attribute",
+			"deleteForce": "Reassign and delete",
+			"deleteSuccess": "Task attribute deleted",
+			"descriptionLabel": "Description",
+			"descriptionPlaceholder": "Optional description",
+			"descriptionTooLong": "Description must be at most {{max}} characters",
+			"editAttribute": "Edit Task Attribute",
+			"editDescription": "Update this task attribute.",
+			"editTitle": "Edit Task Attribute",
+			"empty": "No task attributes yet. Create your first task attribute to get started.",
+			"iconColorLabel": "Symbol color",
+			"iconLabel": "Symbol",
+			"iconSearchPlaceholder": "Search symbols...",
+			"nameLabel": "Attribute name",
+			"namePlaceholder": "Enter attribute name",
+			"nameRequired": "Attribute name is required",
+			"nameTooLong": "Name must be at most {{max}} characters",
+			"pageTitle": "Task Attributes",
+			"previewLabel": "Preview",
+			"reorderError": "Failed to reorder task attributes",
+			"reorderHandle": "Reorder {{name}}",
+			"subtitle": "Create, edit, and delete the task types available in this workspace.",
+			"textColorLabel": "Font color",
+			"title": "Task Attributes",
+			"updateError": "Failed to update task attribute",
+			"updateSuccess": "Task attribute updated"
 		}
 	},
 	"navigation": {
@@ -2715,7 +2759,8 @@
 			"taskBranchCopied": "Branchnaam gekopieerd",
 			"start": "Start",
 			"startDate": "Startdatum",
-			"noDate": "Geen datum"
+			"noDate": "Geen datum",
+			"attribute": "Type"
 		},
 		"popover": {
 			"assignee": {
@@ -2759,6 +2804,12 @@
 					"rose": "Roos",
 					"crimson": "Karmozijn"
 				}
+			},
+			"attribute": {
+				"empty": "No attributes defined",
+				"none": "None",
+				"searchPlaceholder": "Search attributes",
+				"updateError": "Could not update the task attribute"
 			}
 		},
 		"backlog": {
@@ -2784,7 +2835,8 @@
 				"label": "Label: {{name}}",
 				"dueThisWeek": "Deze week vervallen",
 				"dueNextWeek": "Volgende week vervallen",
-				"noDueDate": "Geen einddatum"
+				"noDueDate": "Geen einddatum",
+				"attribute": "Type: {{name}}"
 			}
 		},
 		"sort": {
@@ -2815,7 +2867,8 @@
 				"priority": "Prioriteit",
 				"assignee": "Toegewezen persoon",
 				"dueDate": "Einddatum",
-				"labels": "Labels"
+				"labels": "Labels",
+				"attribute": "Type"
 			},
 			"operators": {
 				"isAnyOf": "is een van",
@@ -2824,7 +2877,9 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allAttributes": "All types",
+			"noType": "No type"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -2939,7 +2994,9 @@
 			"actions": "Acties",
 			"searchActions": "Acties zoeken...",
 			"noActionsFound": "Geen acties gevonden.",
-			"changeStatus": "Status wijzigen"
+			"changeStatus": "Status wijzigen",
+			"setAttribute": "Set type",
+			"updateAttributeError": "Could not update the task attribute"
 		},
 		"move": {
 			"title": "Taak verplaatsen",
@@ -3030,6 +3087,9 @@
 			"refactor": "Refactor",
 			"release": "Release",
 			"test": "Test"
+		},
+		"attribute": {
+			"label": "Type"
 		}
 	},
 	"invitations": {
