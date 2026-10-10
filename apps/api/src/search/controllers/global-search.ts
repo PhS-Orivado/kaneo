@@ -128,6 +128,7 @@ async function globalSearch(params: SearchParams): Promise<{
     type = "all",
     workspaceId,
     projectId,
+    attributeId,
     limit = 20,
   } = params;
 
