@@ -119,7 +119,8 @@ function AttributeRow({
             type="button"
             className="flex h-8 w-6 cursor-grab touch-none items-center justify-center text-muted-foreground hover:text-foreground"
             aria-label={t("settings:workspaceTaskAttributes.reorderHandle", {
-              defaultValue: `Reorder ${attribute.name}`,
+              defaultValue: "Reorder {{name}}",
+              name: attribute.name,
             })}
             disabled={isReorderPending}
             {...dragAttributes}

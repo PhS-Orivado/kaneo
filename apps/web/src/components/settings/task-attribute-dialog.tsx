@@ -143,14 +143,16 @@ export function TaskAttributeDialog({
         })
       : errors.name === "tooLong"
         ? t("settings:workspaceTaskAttributes.nameTooLong", {
-            defaultValue: `Name must be at most ${TASK_ATTRIBUTE_NAME_MAX_LENGTH} characters`,
+            defaultValue: "Name must be at most {{max}} characters",
+            max: TASK_ATTRIBUTE_NAME_MAX_LENGTH,
           })
         : undefined;
 
   const descriptionError =
     errors.description === "tooLong"
       ? t("settings:workspaceTaskAttributes.descriptionTooLong", {
-          defaultValue: `Description must be at most ${TASK_ATTRIBUTE_DESCRIPTION_MAX_LENGTH} characters`,
+          defaultValue: "Description must be at most {{max}} characters",
+          max: TASK_ATTRIBUTE_DESCRIPTION_MAX_LENGTH,
         })
       : undefined;
 
