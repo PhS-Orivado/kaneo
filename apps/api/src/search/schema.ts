@@ -11,6 +11,13 @@ export const searchQuery = z.object({
     .default("all"),
   workspaceId: z.string().min(1),
   projectId: z.string().optional(),
+  attributeId: z
+    .string()
+    .optional()
+    .openapi({
+      description:
+        "Filter task results by one attribute definition, or `none` for tasks without an attribute.",
+    }),
   limit: z
     .string()
     .optional()

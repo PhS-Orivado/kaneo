@@ -1,7 +1,11 @@
-import { Filter, PanelsTopLeft, Rows3, X } from "lucide-react";
+import { Filter, Minus, PanelsTopLeft, Rows3, X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import SortControl from "@/components/common/sort-control";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
+import TaskAttributeFilterList, {
+  TASK_ATTRIBUTE_FILTER_NONE,
+} from "@/components/task/task-attribute-filter-list";
 import type { CustomFieldDefinition } from "@/components/project/custom-field-editor";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -28,6 +32,7 @@ import { resolveLabelColor } from "@/lib/label-color";
 import { getPriorityIcon } from "@/lib/priority";
 import type { SortConfig } from "@/lib/sort-tasks";
 import { useBackgroundStore } from "@/store/background";
+import type TaskAttribute from "@/types/task-attribute";
 import type { ProjectWithTasks } from "@/types/project";
 
 type WorkspaceLabel = {
@@ -65,6 +70,7 @@ type BoardToolbarProps = {
   onSortChange: (sort: SortConfig) => void;
   customFieldDefinitions?: CustomFieldDefinition[];
   usedCustomFieldValues?: Record<string, string[]>;
+  taskAttributes?: TaskAttribute[];
 };
 
 function CheckSlot({ checked }: { checked: boolean }) {
@@ -162,12 +168,14 @@ export default function BoardToolbar({
   onSortChange,
   customFieldDefinitions = [],
   usedCustomFieldValues = {},
+  taskAttributes = [],
 }: BoardToolbarProps) {
   const { t } = useTranslation();
   const selectedStatusIds = filters.status ?? [];
   const selectedPriorityIds = filters.priority ?? [];
   const selectedAssigneeIds = filters.assignee ?? [];
   const selectedDueDateFilters = filters.dueDate ?? [];
+  const selectedAttributeIds = filters.attribute ?? [];
   const { background } = useBackgroundStore();
 
   const filterableCustomFields = customFieldDefinitions;
@@ -241,6 +249,24 @@ export default function BoardToolbar({
       ? selectedPriorityIds.filter((id) => id !== priority)
       : [...selectedPriorityIds, priority];
     updateFilter("priority", next.length > 0 ? next : null);
+  };
+
+  const toggleAttributeFilter = (attributeId: string) => {
+    const exists = selectedAttributeIds.includes(attributeId);
+    const next = exists
+      ? selectedAttributeIds.filter((id) => id !== attributeId)
+      : [...selectedAttributeIds, attributeId];
+    updateFilter("attribute", next.length > 0 ? next : null);
+  };
+
+  const getAttributeDisplayName = (attributeId: string) => {
+    if (attributeId === TASK_ATTRIBUTE_FILTER_NONE) {
+      return t("tasks:boardFilters.noType", { defaultValue: "No type" });
+    }
+    return (
+      taskAttributes.find((attribute) => attribute.id === attributeId)
+        ?.name ?? attributeId
+    );
   };
 
   const toggleAssigneeFilter = (userId: string) => {
@@ -409,6 +435,41 @@ export default function BoardToolbar({
                     </div>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
+
+                {taskAttributes.length > 0 && (
+                  <DropdownMenuSub>
+                    <DropdownMenuSubTrigger className="h-8 rounded-md text-sm">
+                      {t("tasks:boardFilters.subjects.attribute", {
+                        defaultValue: "Type",
+                      })}
+                    </DropdownMenuSubTrigger>
+                    <DropdownMenuSubContent className="w-64">
+                      <div className="grid grid-cols-1 gap-1 p-1">
+                        <button
+                          className={`inline-flex h-7 items-center gap-1.5 rounded-md px-2 text-left text-xs ${
+                            selectedAttributeIds.length === 0
+                              ? "bg-accent text-accent-foreground"
+                              : "text-foreground/90 hover:bg-accent/60 hover:text-foreground"
+                          }`}
+                          onClick={() => updateFilter("attribute", null)}
+                          type="button"
+                        >
+                          <CheckSlot
+                            checked={selectedAttributeIds.length === 0}
+                          />
+                          {t("tasks:boardFilters.allAttributes", {
+                            defaultValue: "All types",
+                          })}
+                        </button>
+                      </div>
+                      <TaskAttributeFilterList
+                        attributes={taskAttributes}
+                        selectedIds={selectedAttributeIds}
+                        onToggle={toggleAttributeFilter}
+                      />
+                    </DropdownMenuSubContent>
+                  </DropdownMenuSub>
+                )}
 
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger className="h-8 rounded-md text-sm">
@@ -746,6 +807,45 @@ export default function BoardToolbar({
                   </span>
                 }
                 onClear={() => updateFilter("priority", null)}
+              />
+            )}
+
+            {selectedAttributeIds.length > 0 && (
+              <ActiveFilterChip
+                subject={t("tasks:boardFilters.subjects.attribute", {
+                  defaultValue: "Type",
+                })}
+                operator={t("tasks:boardFilters.operators.isAnyOf")}
+                value={
+                  <span className="inline-flex items-center gap-1.5">
+                    <StackedIcons
+                      items={selectedAttributeIds.map((attributeId) => ({
+                        id: attributeId,
+                        node:
+                          attributeId === TASK_ATTRIBUTE_FILTER_NONE ? (
+                            <Minus className="h-3.5 w-3.5 text-muted-foreground" />
+                          ) : (
+                            (() => {
+                              const attribute = taskAttributes.find(
+                                (item) => item.id === attributeId,
+                              );
+                              return attribute ? (
+                                <TaskAttributeIcon attribute={attribute} />
+                              ) : null;
+                            })()
+                          ),
+                      }))}
+                    />
+                    <span>
+                      {selectedAttributeIds.length === 1
+                        ? getAttributeDisplayName(selectedAttributeIds[0])
+                        : t("tasks:boardFilters.selectedCount", {
+                            count: selectedAttributeIds.length,
+                          })}
+                    </span>
+                  </span>
+                }
+                onClear={() => updateFilter("attribute", null)}
               />
             )}
 

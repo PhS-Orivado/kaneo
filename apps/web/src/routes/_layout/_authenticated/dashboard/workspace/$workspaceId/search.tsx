@@ -1,12 +1,26 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { ArrowLeft, Loader2, Search } from "lucide-react";
+import { ArrowLeft, Filter, Loader2, Search } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import WorkspaceLayout from "@/components/common/workspace-layout";
 import PageTitle from "@/components/page-title";
+import {
+  TaskAttributeBadge,
+  TaskAttributeIcon,
+} from "@/components/task-attribute-badge";
+import TaskAttributeFilterList, {
+  TASK_ATTRIBUTE_FILTER_NONE,
+} from "@/components/task/task-attribute-filter-list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/menu";
 import useGlobalSearch from "@/hooks/queries/search/use-global-search";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import { getPriorityIcon } from "@/lib/priority";
 
 export const Route = createFileRoute(
@@ -21,12 +35,15 @@ function SearchComponent() {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState("");
   const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [attributeFilter, setAttributeFilter] = useState<string | null>(null);
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { data: taskAttributes = [] } = useGetTaskAttributes(workspaceId);
 
   const { data, isLoading, isFetching } = useGlobalSearch({
     q: debouncedQuery,
     workspaceId,
     type: "tasks",
+    attributeId: attributeFilter ?? undefined,
   });
 
   const handleInputChange = useCallback((value: string) => {
@@ -51,6 +68,15 @@ function SearchComponent() {
 
   const results = data?.results ?? [];
   const hasQuery = debouncedQuery.length > 0;
+  const selectedAttribute = attributeFilter
+    ? taskAttributes.find((attribute) => attribute.id === attributeFilter)
+    : undefined;
+
+  const attributeFilterName = attributeFilter
+    ? attributeFilter === TASK_ATTRIBUTE_FILTER_NONE
+      ? t("tasks:boardFilters.noType", { defaultValue: "No type" })
+      : selectedAttribute?.name ?? attributeFilter
+    : null;
   const showLoading = hasQuery && (isLoading || isFetching);
 
   const quickSearchSuggestions = useMemo(
@@ -80,17 +106,71 @@ function SearchComponent() {
       >
         <div className="space-y-6">
           <div>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
-              <Input
-                placeholder={t("workspace:search.placeholder")}
-                value={searchInput}
-                onChange={(e) => handleInputChange(e.target.value)}
-                className="pl-10 h-12 text-lg"
-                autoFocus
-              />
-              {showLoading && (
-                <Loader2 className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 animate-spin text-muted-foreground" />
+            <div className="flex items-center gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+                <Input
+                  placeholder={t("workspace:search.placeholder")}
+                  value={searchInput}
+                  onChange={(e) => handleInputChange(e.target.value)}
+                  className="pl-10 h-12 text-lg"
+                  autoFocus
+                />
+                {showLoading && (
+                  <Loader2 className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 animate-spin text-muted-foreground" />
+                )}
+              </div>
+              {taskAttributes.length > 0 && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-11 gap-1.5"
+                      />
+                    }
+                  >
+                    <Filter className="h-4 w-4" />
+                    {attributeFilter ? (
+                      attributeFilter === TASK_ATTRIBUTE_FILTER_NONE ? (
+                        <span>{attributeFilterName}</span>
+                      ) : (
+                        <>
+                          {selectedAttribute && (
+                            <TaskAttributeIcon attribute={selectedAttribute} />
+                          )}
+                          <span>{attributeFilterName}</span>
+                        </>
+                      )
+                    ) : (
+                      <span>
+                        {t("tasks:boardFilters.subjects.attribute", {
+                          defaultValue: "Type",
+                        })}
+                      </span>
+                    )}
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="end">
+                    <DropdownMenuItem
+                      closeOnClick
+                      onClick={() => setAttributeFilter(null)}
+                    >
+                      {t("tasks:boardFilters.allAttributes", {
+                        defaultValue: "All types",
+                      })}
+                    </DropdownMenuItem>
+                    <TaskAttributeFilterList
+                      attributes={taskAttributes}
+                      selectedIds={attributeFilter ? [attributeFilter] : []}
+                      onToggle={(attributeId) =>
+                        setAttributeFilter((current) =>
+                          current === attributeId ? null : attributeId,
+                        )
+                      }
+                    />
+                  </DropdownMenuContent>
+                </DropdownMenu>
               )}
             </div>
             <p className="text-sm text-muted-foreground mt-2">
@@ -144,10 +224,13 @@ function SearchComponent() {
                         </span>
                       )}
 
-                      <div className="flex-1 min-w-0">
+                      <div className="flex flex-1 min-w-0 items-center gap-1.5">
                         <span className="text-sm text-foreground truncate block">
                           {result.title}
                         </span>
+                        {result.attribute && (
+                          <TaskAttributeBadge attribute={result.attribute} />
+                        )}
                       </div>
 
                       {result.projectName && (

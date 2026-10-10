@@ -9,6 +9,7 @@ import { type BoardFilters, DUE_DATE_FILTER_VALUES } from "./use-task-filters";
 const DEFAULT_FILTERS: BoardFilters = {
   status: null,
   priority: null,
+  attribute: null,
   assignee: null,
   dueDate: null,
   labels: null,
@@ -18,6 +19,7 @@ const DEFAULT_FILTERS: BoardFilters = {
 const FILTER_KEYS: Array<keyof BoardFilters> = [
   "status",
   "priority",
+  "attribute",
   "assignee",
   "dueDate",
   "labels",
@@ -137,6 +139,14 @@ export function useTaskFiltersWithLabelsSupport(
           filters.priority &&
           filters.priority.length > 0 &&
           !filters.priority.includes(task.priority ?? "")
+        ) {
+          return false;
+        }
+
+        if (
+          filters.attribute &&
+          filters.attribute.length > 0 &&
+          !filters.attribute.includes(task.attribute?.id ?? "none")
         ) {
           return false;
         }

@@ -17,6 +17,7 @@ import useGetCustomFieldsByProject from "@/hooks/queries/custom-field/use-get-cu
 import useGetLabelsByWorkspace from "@/hooks/queries/label/use-get-labels-by-workspace";
 import { useDescriptionMatches } from "@/hooks/queries/task/use-description-matches";
 import { useGetTasks } from "@/hooks/queries/task/use-get-tasks";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import { useGetActiveWorkspaceUsers } from "@/hooks/queries/workspace-users/use-get-active-workspace-users";
 import { useBoardSort } from "@/hooks/use-board-sort";
 import { useRegisterShortcuts } from "@/hooks/use-keyboard-shortcuts";
@@ -104,6 +105,7 @@ function RouteComponent() {
 
   const { data: users } = useGetActiveWorkspaceUsers(workspaceId);
   const { data: workspaceLabels = [] } = useGetLabelsByWorkspace(workspaceId);
+  const { data: taskAttributes = [] } = useGetTaskAttributes(workspaceId);
 
   const { data: rawCustomFields = [] } = useGetCustomFieldsByProject(projectId);
 
@@ -285,6 +287,7 @@ function RouteComponent() {
           onSortChange={setSort}
           customFieldDefinitions={customFieldDefinitions}
           usedCustomFieldValues={usedCustomFieldValues}
+          taskAttributes={taskAttributes}
         />
 
         {descriptionSearch.isLoading && (

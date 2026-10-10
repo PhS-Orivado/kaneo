@@ -1,7 +1,15 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { produce } from "immer";
-import { ArrowRight, Calendar, Filter, Plus, User, X } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  Filter,
+  Plus,
+  SquareCheckBig,
+  User,
+  X,
+} from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import BacklogListView from "@/components/backlog-list-view";
@@ -10,6 +18,10 @@ import SortControl from "@/components/common/sort-control";
 import PageTitle from "@/components/page-title";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
+import TaskAttributeFilterList, {
+  TASK_ATTRIBUTE_FILTER_NONE,
+} from "@/components/task/task-attribute-filter-list";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,6 +44,7 @@ import useGetCustomFieldFilterValues from "@/hooks/queries/custom-field/use-get-
 import useGetCustomFieldsByProject from "@/hooks/queries/custom-field/use-get-custom-fields-by-project";
 import useGetLabelsByWorkspace from "@/hooks/queries/label/use-get-labels-by-workspace";
 import { useGetTasks } from "@/hooks/queries/task/use-get-tasks";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import { useGetActiveWorkspaceUsers } from "@/hooks/queries/workspace-users/use-get-active-workspace-users";
 import { useRegisterShortcuts } from "@/hooks/use-keyboard-shortcuts";
 import { DUE_DATE_FILTER_VALUES } from "@/hooks/use-task-filters";
@@ -75,6 +88,7 @@ function RouteComponent() {
 
   const { data: users } = useGetActiveWorkspaceUsers(workspaceId);
   const { data: workspaceLabels = [] } = useGetLabelsByWorkspace(workspaceId);
+  const { data: taskAttributes = [] } = useGetTaskAttributes(workspaceId);
   const queryClient = useQueryClient();
 
   const { data: rawCustomFields = [] } = useGetCustomFieldsByProject(projectId);
@@ -134,6 +148,7 @@ function RouteComponent() {
 
   const [filters, setFilters] = useState({
     priority: null as string | null,
+    attribute: null as string | null,
     assignee: null as string | null,
     dueDate: null as string | null,
     labels: [] as string[],
@@ -180,6 +195,7 @@ function RouteComponent() {
   const clearFilters = () => {
     setFilters({
       priority: null,
+      attribute: null,
       assignee: null,
       dueDate: null,
       labels: [],
@@ -210,6 +226,16 @@ function RouteComponent() {
     return member?.user?.name || t("common:people.unknown");
   };
 
+  const getAttributeDisplayName = (attributeId: string) => {
+    if (attributeId === TASK_ATTRIBUTE_FILTER_NONE) {
+      return t("tasks:boardFilters.noType", { defaultValue: "No type" });
+    }
+    return (
+      taskAttributes.find((item) => item.id === attributeId)?.name ??
+      attributeId
+    );
+  };
+
   const getTaskLabels = useCallback(
     (taskId: string) => {
       const queryKey = ["labels", taskId];
@@ -227,6 +253,14 @@ function RouteComponent() {
     const filterTasks = (tasks: Task[]) => {
       return tasks.filter((task) => {
         if (filters.priority && task.priority !== filters.priority) {
+          return false;
+        }
+
+        if (
+          filters.attribute &&
+          (task.attribute?.id ?? TASK_ATTRIBUTE_FILTER_NONE) !==
+            filters.attribute
+        ) {
           return false;
         }
 
@@ -486,6 +520,43 @@ function RouteComponent() {
                   </Button>
                 )}
 
+                {filters.attribute && (
+                  <Button
+                    variant="secondary"
+                    size="xs"
+                    className="h-7 rounded-md px-2 text-xs font-medium gap-1.5"
+                  >
+                    {filters.attribute === TASK_ATTRIBUTE_FILTER_NONE ? (
+                      <SquareCheckBig className="h-3 w-3 text-muted-foreground" />
+                    ) : (
+                      (() => {
+                        const attribute = taskAttributes.find(
+                          (item) => item.id === filters.attribute,
+                        );
+                        return attribute ? (
+                          <TaskAttributeIcon attribute={attribute} />
+                        ) : null;
+                      })()
+                    )}
+                    <span>
+                      {t("tasks:backlog.filters.attribute", {
+                        name: getAttributeDisplayName(filters.attribute),
+                      })}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-4 w-4 p-0 ml-1 hover:bg-destructive hover:text-destructive-foreground"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        updateFilter("attribute", null);
+                      }}
+                    >
+                      <X className="h-2.5 w-2.5" />
+                    </Button>
+                  </Button>
+                )}
+
                 {filters.assignee && (
                   <Button
                     variant="secondary"
@@ -688,6 +759,33 @@ function RouteComponent() {
                         </div>
                       </DropdownMenuCheckboxItem>
                     ))}
+
+                    {taskAttributes.length > 0 && (
+                      <>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuGroup>
+                          <DropdownMenuLabel className="text-[11px] uppercase tracking-wide">
+                            {t("tasks:boardFilters.subjects.attribute", {
+                              defaultValue: "Type",
+                            })}
+                          </DropdownMenuLabel>
+                        </DropdownMenuGroup>
+                        <TaskAttributeFilterList
+                          attributes={taskAttributes}
+                          selectedIds={
+                            filters.attribute ? [filters.attribute] : []
+                          }
+                          onToggle={(attributeId) =>
+                            updateFilter(
+                              "attribute",
+                              filters.attribute === attributeId
+                                ? null
+                                : attributeId,
+                            )
+                          }
+                        />
+                      </>
+                    )}
 
                     <DropdownMenuSeparator />
                     <DropdownMenuGroup>

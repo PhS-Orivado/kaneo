@@ -1,4 +1,4 @@
-import { and, desc, eq, ilike, inArray, or, sql } from "drizzle-orm";
+import { and, desc, eq, ilike, inArray, isNull, or, sql } from "drizzle-orm";
 import db from "../../database";
 import {
   activityTable,
@@ -27,8 +27,18 @@ type SearchParams = {
     | "activities";
   workspaceId?: string;
   projectId?: string;
+  attributeId?: string;
   limit?: number;
 };
+
+// FR-20: the attribute filter accepts `none` to match tasks without an
+// attribute; any other value is an attribute definition id.
+function taskAttributeFilterCondition(attributeId: string | undefined) {
+  if (!attributeId) return undefined;
+  return attributeId === "none"
+    ? isNull(taskTable.attributeId)
+    : eq(taskTable.attributeId, attributeId);
+}
 
 type SearchResult = {
   id: string;
@@ -227,6 +237,7 @@ async function globalSearch(params: SearchParams): Promise<{
             // keeps the case-insensitive comparison and drops the wildcards.
             ilike(projectTable.slug, escapeLikePattern(slug)),
             eq(taskTable.number, taskNumber),
+            taskAttributeFilterCondition(attributeId),
           ),
         )
         .limit(1);
@@ -308,9 +319,11 @@ async function globalSearch(params: SearchParams): Promise<{
         and(
           workspaceFilter,
           projectId ? eq(taskTable.projectId, projectId) : undefined,
+          taskAttributeFilterCondition(attributeId),
           or(
             ilike(taskTable.title, searchPattern),
             ilike(taskTable.description, searchPattern),
+            ilike(taskAttributeTable.name, searchPattern),
           ),
         ),
       )

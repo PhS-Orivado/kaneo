@@ -3,6 +3,7 @@ import {
   ArrowDownToLine,
   CalendarIcon,
   Menu,
+  Minus,
   Trash2,
   X,
 } from "lucide-react";
@@ -38,9 +39,11 @@ import {
 } from "@/components/ui/popover";
 import { useBulkOperations } from "@/hooks/mutations/task/use-bulk-operations";
 import useGetLabelsByWorkspace from "@/hooks/queries/label/use-get-labels-by-workspace";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import useGetProjectMembers from "@/hooks/queries/workspace-users/use-get-project-members";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
 import { getColumnIcon } from "@/lib/column";
 import { getInitials } from "@/lib/get-initials";
 import { getPriorityLabel } from "@/lib/i18n/domain";
@@ -88,6 +91,7 @@ function BulkToolbar() {
     bulkChangeStatus,
     bulkAssign,
     bulkPriority,
+    bulkAttribute,
     bulkAddLabel,
     bulkDueDate,
   } = useBulkOperations();
@@ -97,6 +101,9 @@ function BulkToolbar() {
     projectId: project?.id ?? "",
   });
   const { data: workspaceLabels = [] } = useGetLabelsByWorkspace(
+    workspace?.id ?? "",
+  );
+  const { data: taskAttributes = [] } = useGetTaskAttributes(
     workspace?.id ?? "",
   );
   const { canUpdateTasks, canDeleteTasks, canAssignTasks, canUpdateLabels } =
@@ -232,6 +239,27 @@ function BulkToolbar() {
     [bulkPriority, selectedTaskIds, selectedCount, clearSelection, t],
   );
 
+  const handleBulkAttribute = useCallback(
+    async (attributeId: string | null) => {
+      try {
+        await bulkAttribute({
+          taskIds: Array.from(selectedTaskIds),
+          attributeId,
+        });
+        toast.success(t("tasks:bulk.updateSuccess", { count: selectedCount }));
+        clearSelection();
+        setIsActionsOpen(false);
+      } catch (_error) {
+        toast.error(
+          t("tasks:bulk.updateAttributeError", {
+            defaultValue: "Could not update the task attribute",
+          }),
+        );
+      }
+    },
+    [bulkAttribute, selectedTaskIds, selectedCount, clearSelection, t],
+  );
+
   const handleBulkAddLabel = useCallback(
     async (labelId: string) => {
       try {
@@ -351,6 +379,36 @@ function BulkToolbar() {
         })),
       });
     }
+    if (canEdit && taskAttributes.length > 0) {
+      groups.push({
+        value: "attribute",
+        label: t("tasks:bulk.setAttribute", {
+          defaultValue: "Set type",
+        }),
+        items: [
+          ...taskAttributes.map((attribute) => ({
+            value: `attribute-${attribute.id}`,
+            label: attribute.name,
+            icon: (
+              <TaskAttributeIcon attribute={attribute} className="h-4 w-4" />
+            ),
+            onRun: () => {
+              void handleBulkAttribute(attribute.id);
+            },
+          })),
+          {
+            value: "attribute-none",
+            label: t("tasks:popover.attribute.none", {
+              defaultValue: "None",
+            }),
+            icon: <Minus className="h-4 w-4 text-muted-foreground" />,
+            onRun: () => {
+              void handleBulkAttribute(null);
+            },
+          },
+        ],
+      });
+    }
     if (canEditLabels) {
       groups.push({
         value: "label",
@@ -386,7 +444,9 @@ function BulkToolbar() {
     handleBulkChangeStatus,
     handleBulkAssign,
     handleBulkPriority,
+    handleBulkAttribute,
     handleBulkAddLabel,
+    taskAttributes,
     priorityOptions,
     t,
   ]);

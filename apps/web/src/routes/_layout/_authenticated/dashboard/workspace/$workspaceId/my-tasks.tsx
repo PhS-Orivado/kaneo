@@ -1,8 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CircleCheck } from "lucide-react";
-import { useState } from "react";
+import { CircleCheck, Filter } from "lucide-react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import WorkspaceLayout from "@/components/common/workspace-layout";
+import { TaskAttributeIcon } from "@/components/task-attribute-badge";
+import TaskAttributeFilterList, {
+  TASK_ATTRIBUTE_FILTER_NONE,
+} from "@/components/task/task-attribute-filter-list";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/menu";
 import {
   type MyTasksGroupBy,
   MyTasksGroupByToggle,
@@ -18,6 +29,7 @@ import {
 } from "@/components/ui/empty";
 import { Skeleton } from "@/components/ui/skeleton";
 import useGetAssignedTasks from "@/hooks/queries/task/use-get-assigned-tasks";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 
 export const Route = createFileRoute(
   "/_layout/_authenticated/dashboard/workspace/$workspaceId/my-tasks",
@@ -34,6 +46,31 @@ function RouteComponent() {
     isError,
   } = useGetAssignedTasks(workspaceId);
   const [groupBy, setGroupBy] = useState<MyTasksGroupBy>("dueDate");
+  const [attributeFilter, setAttributeFilter] = useState<string | null>(null);
+  const { data: taskAttributes = [] } = useGetTaskAttributes(workspaceId);
+
+  const selectedAttribute = attributeFilter
+    ? taskAttributes.find((attribute) => attribute.id === attributeFilter)
+    : undefined;
+
+  const attributeFilterName = useMemo(() => {
+    if (!attributeFilter) return null;
+    if (attributeFilter === TASK_ATTRIBUTE_FILTER_NONE) {
+      return t("tasks:boardFilters.noType", { defaultValue: "No type" });
+    }
+    return selectedAttribute?.name ?? attributeFilter;
+  }, [attributeFilter, selectedAttribute, t]);
+
+  const visibleTasks = useMemo(() => {
+    if (!attributeFilter) return assigned?.tasks ?? [];
+    return (
+      assigned?.tasks.filter(
+        (task) =>
+          (task.attribute?.id ?? TASK_ATTRIBUTE_FILTER_NONE) ===
+          attributeFilter,
+      ) ?? []
+    );
+  }, [assigned, attributeFilter]);
 
   return (
     <>
@@ -42,7 +79,61 @@ function RouteComponent() {
         title={t("workspace:myTasks.pageTitle")}
         headerActions={
           assigned?.tasks.length ? (
-            <MyTasksGroupByToggle value={groupBy} onChange={setGroupBy} />
+            <div className="flex items-center gap-2">
+              {taskAttributes.length > 0 && (
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-7 gap-1.5 px-2 text-xs font-medium"
+                      />
+                    }
+                  >
+                    <Filter className="h-3 w-3" />
+                    {attributeFilter ? (
+                      attributeFilter === TASK_ATTRIBUTE_FILTER_NONE ? (
+                        <span>{attributeFilterName}</span>
+                      ) : (
+                        <>
+                          {selectedAttribute && (
+                            <TaskAttributeIcon attribute={selectedAttribute} />
+                          )}
+                          <span>{attributeFilterName}</span>
+                        </>
+                      )
+                    ) : (
+                      <span>
+                        {t("tasks:boardFilters.subjects.attribute", {
+                          defaultValue: "Type",
+                        })}
+                      </span>
+                    )}
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-56" align="end">
+                    <DropdownMenuItem
+                      closeOnClick
+                      onClick={() => setAttributeFilter(null)}
+                    >
+                      {t("tasks:boardFilters.allAttributes", {
+                        defaultValue: "All types",
+                      })}
+                    </DropdownMenuItem>
+                    <TaskAttributeFilterList
+                      attributes={taskAttributes}
+                      selectedIds={attributeFilter ? [attributeFilter] : []}
+                      onToggle={(attributeId) =>
+                        setAttributeFilter((current) =>
+                          current === attributeId ? null : attributeId,
+                        )
+                      }
+                    />
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
+              <MyTasksGroupByToggle value={groupBy} onChange={setGroupBy} />
+            </div>
           ) : null
         }
       >
@@ -79,7 +170,7 @@ function RouteComponent() {
             </Empty>
           ) : (
             <MyTasksList
-              tasks={assigned.tasks}
+              tasks={visibleTasks}
               total={assigned.total}
               groupBy={groupBy}
               workspaceId={workspaceId}

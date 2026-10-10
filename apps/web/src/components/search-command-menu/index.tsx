@@ -10,7 +10,10 @@ import {
 } from "lucide-react";
 import { Fragment, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { TaskAttributeBadge } from "@/components/task-attribute-badge";
+import {
+  TaskAttributeBadge,
+  TaskAttributeIcon,
+} from "@/components/task-attribute-badge";
 import {
   Command,
   CommandCollection,
@@ -27,7 +30,9 @@ import {
 } from "@/components/ui/command";
 import { shortcuts } from "@/constants/shortcuts";
 import useGlobalSearch from "@/hooks/queries/search/use-global-search";
+import useGetTaskAttributes from "@/hooks/queries/task-attribute/use-get-task-attributes";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
+import { cn } from "@/lib/cn";
 import { useRegisterShortcuts } from "@/hooks/use-keyboard-shortcuts";
 
 type SearchResultItem = {
@@ -65,7 +70,13 @@ type SearchCommandMenuProps = {
 function SearchCommandMenu({ open, setOpen }: SearchCommandMenuProps) {
   const { t } = useTranslation();
   const [query, setQuery] = useState("");
+  const [attributeFilterId, setAttributeFilterId] = useState<string | null>(
+    null,
+  );
   const { data: workspace } = useActiveWorkspace();
+  const { data: taskAttributes = [] } = useGetTaskAttributes(
+    workspace?.id ?? "",
+  );
   const navigate = useNavigate();
 
   const searchEnabled = query.trim().length >= 3;
@@ -74,6 +85,7 @@ function SearchCommandMenu({ open, setOpen }: SearchCommandMenuProps) {
     q: query,
     type: "all",
     workspaceId: workspace?.id,
+    attributeId: attributeFilterId ?? undefined,
     limit: 20,
   });
 
@@ -88,6 +100,7 @@ function SearchCommandMenu({ open, setOpen }: SearchCommandMenuProps) {
   useEffect(() => {
     if (!open) {
       setQuery("");
+      setAttributeFilterId(null);
     }
   }, [open]);
 
@@ -207,6 +220,43 @@ function SearchCommandMenu({ open, setOpen }: SearchCommandMenuProps) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
+          {searchEnabled && taskAttributes.length > 0 && (
+            <div
+              className="flex flex-wrap gap-1 border-b border-border px-3 py-1.5"
+              role="group"
+              aria-label={t("tasks:boardFilters.subjects.attribute", {
+                defaultValue: "Type",
+              })}
+            >
+              {taskAttributes.map((attribute) => {
+                const active = attributeFilterId === attribute.id;
+                return (
+                  <button
+                    key={attribute.id}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() =>
+                      setAttributeFilterId((current) =>
+                        current === attribute.id ? null : attribute.id,
+                      )
+                    }
+                    className={cn(
+                      "inline-flex h-6 items-center gap-1 rounded-full border px-2 text-[11px] font-medium transition-colors",
+                      active
+                        ? "border-primary/50 bg-accent text-foreground"
+                        : "border-border text-muted-foreground hover:bg-accent/50 hover:text-foreground",
+                    )}
+                  >
+                    <TaskAttributeIcon
+                      attribute={attribute}
+                      className="size-3"
+                    />
+                    {attribute.name}
+                  </button>
+                );
+              })}
+            </div>
+          )}
           <CommandPanel>
             <CommandEmpty>
               <div className="text-center py-6">
