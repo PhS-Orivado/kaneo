@@ -30,21 +30,14 @@ jobs:
         run: |
           {
             set -x
-            git remote -v
-            git config --get-all remote.origin.fetch || true
-            git ls-remote origin | grep -E 'backup|pull/29|pull/15' || true
-            git fetch --no-tags origin backup/fork-main-before-upstream-reset 2>&1 || true
-            git log --oneline -1 FETCH_HEAD 2>&1 || true
+            ls -la .git/shallow 2>&1 || true
+            git fetch --unshallow --no-tags origin 2>&1 || true
             git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
-            git fetch --no-tags origin 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
-            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
-            git fetch --no-tags origin '+refs/heads/backup/*:refs/remotes/backup/*' 2>&1 || true
-            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
-            git fetch --no-tags origin '+refs/pull/29/merge:refs/remotes/pull29' 2>&1 || true
-            git fetch --no-tags origin '+refs/pull/15/merge:refs/remotes/pull15' 2>&1 || true
+            git fetch --no-tags --depth=100000000 origin backup/fork-main-before-upstream-reset 2>&1 || true
             git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
           } > fetch-all.log 2>&1
           cat fetch-all.log
+          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >/dev/null 2>&1 || echo "MERGE_SOURCE_MISSING" >> fetch-all.log
           exit 0
       - name: Attempt the multi-repository merge
         id: attempt
