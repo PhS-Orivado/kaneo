@@ -10,6 +10,7 @@ import {
   externalLinkTable,
   integrationTable,
   projectTable,
+  sprintTable,
   taskRelationTable,
   taskTable,
   userTable,
@@ -46,6 +47,11 @@ import {
 } from "../../plugins/github/services/integration-task-scope";
 import { syncJiraLabelsToTask } from "../../plugins/jira/services/labels";
 import createWorkspaceInvitations from "../../workspace/controllers/create-workspace-invitations";
+import {
+  type ImportedSprint,
+  sprintStatusFromJiraState,
+  sprintsForIssue,
+} from "../sprint-mapping";
 
 type IssueImportStatus = "imported" | "updated" | "skipped";
 
@@ -54,6 +60,11 @@ type ImportResult = {
   updated: number;
   skipped: number;
   relations: number;
+  sprints: {
+    created: number;
+    updated: number;
+    tasksAssigned: number;
+  };
   users: {
     invited: number;
     members: number;
@@ -163,6 +174,7 @@ export async function importJiraIssues({
   }
 
   const epicLinkFieldId = await findEpicLinkFieldId(client);
+  const sprintFieldIds = await findSprintFieldIds(client);
 
   const allIssues: JiraIssue[] = [];
 
@@ -170,8 +182,13 @@ export async function importJiraIssues({
   // used to escape as a bare 500. It becomes a 502 carrying the upstream
   // message, so the caller can see what Jira actually said.
   try {
+    // The sprint fields ride along in the same search: sprints are only
+    // worth importing together with the issues that sit in them.
+    const extraFields = [epicLinkFieldId, ...sprintFieldIds]
+      .filter(Boolean)
+      .join(",");
     allIssues.push(
-      ...(await client.searchIssues(config.projectKey, epicLinkFieldId ?? "")),
+      ...(await client.searchIssues(config.projectKey, extraFields)),
     );
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
@@ -223,6 +240,23 @@ export async function importJiraIssues({
     errors,
   });
 
+  const sprintImport = await importSprintsForIssues({
+    allIssues,
+    sprintFieldIds,
+    projectId,
+    errors,
+  });
+
+  const sprintTasksAssigned = await assignTasksToSprints({
+    allIssues,
+    sprintFieldIds,
+    taskIdsByKey,
+    sprintIdByKey: sprintImport.sprintIdByKey,
+    projectId,
+    actorId,
+    errors,
+  });
+
   const { invited, members } = await inviteJiraUsers({
     workspaceId: project.workspaceId,
     actorId,
@@ -235,6 +269,11 @@ export async function importJiraIssues({
     updated,
     skipped,
     relations,
+    sprints: {
+      created: sprintImport.created,
+      updated: sprintImport.updated,
+      tasksAssigned: sprintTasksAssigned,
+    },
     users: {
       invited,
       members,
@@ -653,6 +692,250 @@ function relationForLink(
   return { relationType: "related", sourceKey: issue.key, targetKey: otherKey };
 }
 
+// Sprints are matched by name: names are unique per project, so a re-run
+// refreshes the imported sprints instead of duplicating them. Closed sprints
+// are history in Kaneo and stay untouched.
+async function importSprintsForIssues({
+  allIssues,
+  sprintFieldIds,
+  projectId,
+  errors,
+}: {
+  allIssues: JiraIssue[];
+  sprintFieldIds: string[];
+  projectId: string;
+  errors: string[];
+}): Promise<{
+  created: number;
+  updated: number;
+  sprintIdByKey: Map<string, string>;
+}> {
+  const sprintsByKey = new Map<string, ImportedSprint>();
+  for (const issue of allIssues) {
+    for (const sprint of sprintsForIssue(issue, sprintFieldIds)) {
+      sprintsByKey.set(sprint.key, sprint);
+    }
+  }
+
+  const sprintIdByKey = new Map<string, string>();
+  if (sprintsByKey.size === 0)
+    return { created: 0, updated: 0, sprintIdByKey };
+
+  // Jira sprint ids grow monotonically, so numeric order is board order.
+  const ordered = [...sprintsByKey.values()].sort(
+    (a, b) => jiraSprintOrder(a) - jiraSprintOrder(b),
+  );
+
+  const existing = await db
+    .select({
+      id: sprintTable.id,
+      name: sprintTable.name,
+      status: sprintTable.status,
+      goal: sprintTable.goal,
+      startDate: sprintTable.startDate,
+      endDate: sprintTable.endDate,
+      position: sprintTable.position,
+    })
+    .from(sprintTable)
+    .where(eq(sprintTable.projectId, projectId));
+
+  const existingByName = new Map(
+    existing.map((sprint) => [sprint.name, sprint]),
+  );
+  let activeSprintId =
+    existing.find((sprint) => sprint.status === "active")?.id ?? null;
+  let nextPosition =
+    existing.reduce((max, sprint) => Math.max(max, sprint.position), -1) + 1;
+
+  let created = 0;
+  let updated = 0;
+
+  for (const sprint of ordered) {
+    try {
+      // An end date before its start date would fail Kaneo's range
+      // validation, so a stray end is dropped rather than the sprint.
+      const endDate =
+        sprint.endDate && sprint.startDate && sprint.endDate < sprint.startDate
+          ? null
+          : (sprint.endDate ?? null);
+
+      const existingSprint = existingByName.get(sprint.name);
+
+      if (existingSprint) {
+        sprintIdByKey.set(sprint.key, existingSprint.id);
+        // A closed sprint is immutable history in Kaneo.
+        if (existingSprint.status === "closed") continue;
+
+        const jiraStatus = sprintStatusFromJiraState(sprint.state);
+        // A project runs one sprint at a time; another board's active
+        // sprint stays upcoming until the running one closes.
+        const status =
+          jiraStatus === "active" &&
+          activeSprintId &&
+          activeSprintId !== existingSprint.id
+            ? "future"
+            : jiraStatus;
+
+        const updateData: Record<string, unknown> = {};
+        if (existingSprint.status !== status) updateData.status = status;
+        if ((existingSprint.goal ?? null) !== (sprint.goal ?? null))
+          updateData.goal = sprint.goal ?? null;
+        if (!sameDate(existingSprint.startDate, sprint.startDate))
+          updateData.startDate = sprint.startDate ?? null;
+        if (!sameDate(existingSprint.endDate, endDate))
+          updateData.endDate = endDate;
+
+        if (Object.keys(updateData).length === 0) continue;
+
+        await db
+          .update(sprintTable)
+          .set(updateData)
+          .where(eq(sprintTable.id, existingSprint.id));
+        updated++;
+
+        if (status === "active") activeSprintId = existingSprint.id;
+
+        await publishEvent("sprint.updated", {
+          projectId,
+          sprintId: existingSprint.id,
+        });
+        continue;
+      }
+
+      const jiraStatus = sprintStatusFromJiraState(sprint.state);
+      const status =
+        jiraStatus === "active" && activeSprintId ? "future" : jiraStatus;
+
+      const [inserted] = await db
+        .insert(sprintTable)
+        .values({
+          projectId,
+          name: sprint.name,
+          goal: sprint.goal ?? null,
+          status,
+          startDate: sprint.startDate ?? null,
+          endDate,
+          position: nextPosition,
+        })
+        .returning({ id: sprintTable.id });
+
+      if (!inserted) throw new Error("Failed to create sprint");
+
+      created++;
+      sprintIdByKey.set(sprint.key, inserted.id);
+      nextPosition++;
+      if (status === "active") activeSprintId = inserted.id;
+
+      await publishEvent("sprint.updated", {
+        projectId,
+        sprintId: inserted.id,
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push(`Sprint ${sprint.name}: ${message}`);
+    }
+  }
+
+  return { created, updated, sprintIdByKey };
+}
+
+// The current sprint is the last one Jira still lists for the issue: an
+// issue can have passed through several sprints, and the most recent is
+// where the work actually sits. Tasks in a closed sprint stay there as
+// history, and a Jira issue without a sprint never clears an assignment
+// made by hand in Kaneo.
+async function assignTasksToSprints({
+  allIssues,
+  sprintFieldIds,
+  taskIdsByKey,
+  sprintIdByKey,
+  projectId,
+  actorId,
+  errors,
+}: {
+  allIssues: JiraIssue[];
+  sprintFieldIds: string[];
+  taskIdsByKey: Map<string, string>;
+  sprintIdByKey: Map<string, string>;
+  projectId: string;
+  actorId: string;
+  errors: string[];
+}): Promise<number> {
+  let assigned = 0;
+
+  for (const issue of allIssues) {
+    const taskId = taskIdsByKey.get(issue.key);
+    if (!taskId) continue;
+
+    const sprints = sprintsForIssue(issue, sprintFieldIds);
+    const currentSprint = sprints[sprints.length - 1];
+    if (!currentSprint) continue;
+
+    const sprintId = sprintIdByKey.get(currentSprint.key);
+    if (!sprintId) continue;
+
+    try {
+      const [task] = await db
+        .select({ id: taskTable.id, sprintId: taskTable.sprintId })
+        .from(taskTable)
+        .where(eq(taskTable.id, taskId))
+        .limit(1);
+
+      if (!task || task.sprintId === sprintId) continue;
+
+      if (task.sprintId) {
+        const [currentSprintRow] = await db
+          .select({ status: sprintTable.status })
+          .from(sprintTable)
+          .where(eq(sprintTable.id, task.sprintId))
+          .limit(1);
+        // History stays put: only the sprint's own close flow moves tasks
+        // out of a closed sprint.
+        if (currentSprintRow?.status === "closed") continue;
+      }
+
+      await db
+        .update(taskTable)
+        .set({ sprintId })
+        .where(eq(taskTable.id, taskId));
+      assigned++;
+
+      await publishEvent("task.sprint_changed", {
+        taskId,
+        projectId,
+        userId: actorId,
+      });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      errors.push(`Sprint for issue ${issue.key}: ${message}`);
+    }
+  }
+
+  // The sprint lists carry task counts, so they refresh once after the
+  // assignments instead of per task.
+  if (assigned > 0) {
+    await publishEvent("sprint.updated", { projectId });
+  }
+
+  return assigned;
+}
+
+// Sprints without a Jira id keep their first-seen order behind the numbered
+// ones (Array.prototype.sort is stable, so ties survive).
+function jiraSprintOrder(sprint: ImportedSprint): number {
+  const id = sprint.jiraId ? Number(sprint.jiraId) : Number.NaN;
+  return Number.isFinite(id) ? id : Number.MAX_SAFE_INTEGER;
+}
+
+function sameDate(
+  a: Date | null | undefined,
+  b: Date | null | undefined,
+): boolean {
+  if (!a && !b) return true;
+  if (!a || !b) return false;
+  return a.getTime() === b.getTime();
+}
+
 // Jira users who are not workspace members yet receive a pending invitation
 // without an email; the admin picks who receives the link from the workspace
 // settings. Failures never fail the import: the tasks are already created.
@@ -717,6 +1000,26 @@ async function findEpicLinkFieldId(
   } catch (error) {
     console.warn("Could not resolve the Jira Epic Link field", error);
     return null;
+  }
+}
+
+// Sprints live in a dynamically numbered custom field on company-managed
+// boards and in the system "sprint" field on team-managed ones; /field
+// exposes both by name. Any failure (restricted endpoint, Data Center
+// without the field) just drops sprint import; the issues themselves are
+// unaffected.
+async function findSprintFieldIds(
+  client: ReturnType<typeof createJiraClient>,
+): Promise<string[]> {
+  try {
+    const fields = await client.listFields();
+    return fields
+      .filter((field) => (field.name ?? "").trim().toLowerCase() === "sprint")
+      .map((field) => field.id)
+      .filter((id) => id.length > 0);
+  } catch (error) {
+    console.warn("Could not resolve the Jira Sprint field", error);
+    return [];
   }
 }
 

@@ -12,6 +12,9 @@ export default function useImportJiraIssues() {
     mutationFn: (data: ImportJiraIssuesRequest) => importJiraIssues(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      // The import places tasks into sprints and creates the sprints
+      // themselves, so the sprint board refreshes with the tasks.
+      queryClient.invalidateQueries({ queryKey: ["sprints"] });
       queryClient.invalidateQueries({ queryKey: ["jira-integrations"] });
     },
   });

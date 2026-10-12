@@ -278,7 +278,7 @@ const importIssuesRoute = createRoute({
   tags: ["Jira"],
   summary: "Import Jira issues",
   description:
-    "Import the linked Jira project's issues as tasks for one Jira binding (integrationId), including subtasks, comments, labels, priority, dates and the hierarchy (epic, subtask, blocking and related relations). Jira users who are not workspace members yet receive a pending invitation without an email. The import is one-way: nothing is created in Jira or in any repository binding. Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
+    "Import the linked Jira project's issues as tasks for one Jira binding (integrationId), including subtasks, comments, labels, priority, dates, sprints and the hierarchy (epic, subtask, blocking and related relations). Board sprints become project sprints matched by name on re-runs, and imported tasks are placed into their current Jira sprint; tasks already in a closed sprint stay there as history. Jira users who are not workspace members yet receive a pending invitation without an email. The import is one-way: nothing is created in Jira or in any repository binding. Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
   middleware: [
     workspaceAccess.fromIntegration("integrationId"),
     requireWorkspacePermission({ task: ["create", "update"] }),

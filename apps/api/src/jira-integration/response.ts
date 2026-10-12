@@ -97,6 +97,23 @@ export const jiraImportResultSchema = z
       description:
         "Task relations created between imported tasks (subtask, blocks, related).",
     }),
+    sprints: z
+      .object({
+        created: z.number().openapi({
+          description: "Sprints created from the Jira board.",
+        }),
+        updated: z.number().openapi({
+          description: "Existing sprints refreshed from the Jira board.",
+        }),
+        tasksAssigned: z.number().openapi({
+          description:
+            "Tasks placed into their Jira sprint; tasks already in a closed sprint stay there as history.",
+        }),
+      })
+      .openapi({
+        description:
+          "Sprints imported from the Jira board and the task assignments made.",
+      }),
     users: z
       .object({
         invited: z.number().openapi({
