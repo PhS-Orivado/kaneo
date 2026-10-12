@@ -9,6 +9,7 @@ import ListView from "@/components/list-view";
 import PageTitle from "@/components/page-title";
 import type { CustomFieldDefinition } from "@/components/project/custom-fields/types";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
+import BoardSprintBanner from "@/components/sprint-planning/board-sprint-banner";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { Input } from "@/components/ui/input";
 import { shortcuts } from "@/constants/shortcuts";
@@ -269,6 +270,10 @@ function RouteComponent() {
         hideAppName
       />
       <div className="relative flex flex-col h-full min-h-0 overflow-hidden">
+        <BoardSprintBanner
+          projectId={projectId}
+          workspaceId={workspaceId}
+        />
         <BoardToolbar
           project={project}
           filters={filters}
