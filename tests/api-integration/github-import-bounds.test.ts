@@ -532,7 +532,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("resumes after provider failure without replaying committed pages or leaking provider errors", async () => {
-    const { request, integration } = await setup();
+    const { request, project, integration } = await setup();
     serveIssues(7);
     const original = mocks.graphql.getMockImplementation();
     if (!original) throw new Error("Expected provider mock");
@@ -560,7 +560,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("processes all label and comment pages, applies late system labels and deduplicates comments on reimport", async () => {
-    const { integration, columns } = await setup();
+    const { project, integration, columns } = await setup();
     const labels = Array.from({ length: 27 }, (_, n) => label(n));
     labels[25] = { name: "status:in-progress", color: "ffffff" };
     labels[26] = { name: "priority:urgent", color: "ffffff" };
@@ -674,7 +674,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("does not chase comments added after the initial count or issues after the import boundary", async () => {
-    const { integration } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockImplementation(async (query: string) => {
       if (query.includes("query ImportIssues("))
         return issuePage([
@@ -730,7 +730,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("rolls back task, link, comments, number allocation and cursor together when saving progress fails", async () => {
-    const { integration } = await setup();
+    const { project, integration } = await setup();
     serveIssues(1);
     await db.execute(
       sql.raw(
@@ -778,11 +778,11 @@ describe("bounded resumable GitHub import", () => {
     const calls = mocks.graphql.mock.calls.length;
     const other = await createWorkspaceMember({ role: "admin" });
     mockAuthenticatedSession(other.user);
-    expect((await request(first.runId)).status).toBe(403);
+    expect((await request(first.runId)).status).toBe(404);
     expect(
       (await app.request(`/api/github-integration/project/${project.id}`))
         .status,
-    ).toBe(403);
+    ).toBe(404);
     expect(mocks.graphql).toHaveBeenCalledTimes(calls);
   });
 
@@ -825,7 +825,7 @@ describe("bounded resumable GitHub import", () => {
   it.each(["identity", "cursor", "oversized"])(
     "rejects invalid provider %s without advancing saved progress",
     async (kind) => {
-      const { integration } = await setup();
+      const { project, integration } = await setup();
       mocks.graphql.mockResolvedValue(
         kind === "identity"
           ? {
@@ -850,7 +850,7 @@ describe("bounded resumable GitHub import", () => {
   );
 
   it("pauses on an empty unfinished page instead of silently dropping remaining issues", async () => {
-    const { integration } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockResolvedValue(issuePage([], true, "next", 10));
     await expect(
       importIssues({ integrationId: integration.id }),
@@ -864,7 +864,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("does not loop on a repeated cursor and retains earlier pages", async () => {
-    const { integration } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockResolvedValue(issuePage([issue(1)], true, "same", 100));
     await expect(
       importIssues({ integrationId: integration.id }),
@@ -880,7 +880,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("finishes a disappeared source without losing other issues or modifying another project's task", async () => {
-    const { integration } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockImplementation(
       async (query: string, vars: { cursor: string | null }) => {
         if (query.includes("query ImportIssues("))
@@ -946,7 +946,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("rejects overlapping steps for one project and permits later continuation", async () => {
-    const { integration, request } = await setup();
+    const { project, integration, request } = await setup();
     serveIssues(1);
     const gate = deferred();
     const started = deferred();
@@ -970,7 +970,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("coordinates webhook creation with imports so both paths create only one task and link", async () => {
-    const { integration } = await setup();
+    const { project, integration } = await setup();
     serveIssues(1);
     const payload = {
       action: "opened",

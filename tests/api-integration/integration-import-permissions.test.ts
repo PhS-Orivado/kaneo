@@ -49,8 +49,8 @@ describe("github, gitea and gitlab import permissions", () => {
       const { project } = await createProjectFixture({
         workspaceId: member.workspace.id,
       });
-      // The github, gitea and gitlab import routes are keyed by integration
-      // id (RFC 0001 WP2/WP3/WP4).
+      // The github import route is keyed by integration id (RFC 0001 WP2);
+      // gitea keeps the project-keyed body until WP3.
       const [integration] = await db
         .insert(schema.integrationTable)
         .values({
@@ -67,18 +67,12 @@ describe("github, gitea and gitlab import permissions", () => {
                   verifiedGithubAccountId: "3",
                   verifiedByUserId: member.user.id,
                 }
-              : type === "gitlab"
-                ? {
-                    baseUrl: "https://gitlab.example",
-                    accessToken: "fake-test-token",
-                    projectPath: "owner/repo",
-                  }
-                : {
-                    baseUrl: "https://gitea.example",
-                    accessToken: "fake-test-token",
-                    repositoryOwner: "owner",
-                    repositoryName: "repo",
-                  },
+              : {
+                  baseUrl: "https://gitea.example",
+                  accessToken: "fake-test-token",
+                  repositoryOwner: "owner",
+                  repositoryName: "repo",
+                },
           ),
         })
         .returning();
@@ -89,7 +83,11 @@ describe("github, gitea and gitlab import permissions", () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ integrationId: integration!.id }),
+          body: JSON.stringify(
+            type === "github"
+              ? { integrationId: integration!.id }
+              : { projectId: project.id },
+          ),
         },
       );
       expect(response.status).toBe(403);
