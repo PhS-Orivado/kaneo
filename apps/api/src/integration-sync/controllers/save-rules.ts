@@ -6,7 +6,7 @@ import { publishEvent } from "../../events";
 import { pauseIssueLinks } from "../../plugins/sync/pause-issue-links";
 import { outgoingPredicate } from "../../plugins/sync/task-predicate";
 import { readSyncRules, type SyncRules } from "../../plugins/sync/rules";
-import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
+import { getSyncIntegration } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 import { previewSyncRules } from "./preview-rules";
 
@@ -24,7 +24,7 @@ export async function saveSyncRules(
   const savedPreview = await db.transaction(async (tx) => {
     // Keep the workspace authorized by middleware stable through the save.
     const project = await getAuthorizedSyncProject(
-      integration.projectId,
+      projectId,
       authorizedWorkspaceId,
       tx,
       true,
@@ -64,7 +64,7 @@ export async function saveSyncRules(
       tx,
     );
     await pauseIssueLinks(
-      integration.projectId,
+      projectId,
       integration.id,
       or(not(oldScope.predicate), not(nextScope.predicate))!,
       tx,
@@ -86,12 +86,9 @@ export async function saveSyncRules(
     );
   });
   await publishEvent("integration.sync_rules_changed", {
-    projectId: integration.projectId,
+    projectId,
     integrationId: integration.id,
   });
-  await publishEvent("project.updated", {
-    projectId: integration.projectId,
-    linksChanged: true,
-  });
+  await publishEvent("project.updated", { projectId, linksChanged: true });
   return savedPreview;
 }

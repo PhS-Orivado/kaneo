@@ -10,40 +10,22 @@ import { readSyncRules } from "../plugins/sync/rules";
 import db from "../database";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
-import {
-  getSyncIntegration,
-  getSyncIntegrationByProject,
-} from "./controllers/get-integration";
+import { getSyncIntegration } from "./controllers/get-integration";
 import { getAuthorizedSyncProject } from "./controllers/authorized-project";
 import { previewSyncRules } from "./controllers/preview-rules";
-import { resumeSync, resumeSyncById } from "./controllers/resume-sync";
-import {
-  reviewSyncResume,
-  reviewSyncResumeById,
-} from "./controllers/review-resume";
-import { saveSyncRules, saveSyncRulesById } from "./controllers/save-rules";
+import { resumeSync } from "./controllers/resume-sync";
+import { reviewSyncResume } from "./controllers/review-resume";
+import { saveSyncRules } from "./controllers/save-rules";
 import {
   bindingResumeParams,
   bindingSyncParams,
   resumeBody,
-  resumeBindingParams,
-  resumeParams,
   resumePreviewSchema,
   rulesBody,
   saveRulesBody,
-  syncBindingParams,
-  syncParams,
   syncPreviewSchema,
 } from "./schema";
 
-const access = [
-  workspaceAccess.fromProject("projectId"),
-  requireWorkspacePermission({ project: ["read"], task: ["read"] }),
-];
-const manage = [
-  ...access,
-  requireWorkspacePermission({ workspace: ["manage_settings"] }),
-];
 // RFC 0001 WP5: integration-id-keyed routes authorize through the binding
 // (WP1 fromIntegration) instead of the project.
 const bindingAccess = [
@@ -69,7 +51,7 @@ const body = <T extends z.ZodType>(schema: T) => ({
   content: { "application/json": { schema } },
 });
 
-// --- id-keyed handlers shared by the new and compat routes -----------------
+// --- id-keyed handlers ------------------------------------------------------
 
 async function handleGetSync(integrationId: string, after?: string) {
   return db.transaction(async (tx) => {
@@ -194,102 +176,6 @@ const resumeBindingRoute = createRoute({
   },
 });
 
-// --- compat routes (project-keyed; removed in the cleanup PR) ---------------
-
-const compatPath = "/project/{projectId}/{provider}";
-
-const getRoute = createRoute({
-  method: "get",
-  path: compatPath,
-  operationId: "getIntegrationSyncRules",
-  tags: ["Integration sync"],
-  summary: "Get sync rules and current task scope",
-  description:
-    "Compatibility shim: resolves the project's first binding for the provider (lowest createdAt). Use GET /integration/{integrationId}; this route is removed in the cleanup PR.",
-  middleware: access,
-  request: {
-    params: syncParams,
-    query: z.object({ after: z.string().optional() }),
-  },
-  responses: {
-    200: jsonResponse("Saved rules and scope", syncPreviewSchema),
-    ...errors,
-  },
-});
-const previewRoute = createRoute({
-  method: "post",
-  path: `${compatPath}/preview`,
-  operationId: "previewIntegrationSyncRules",
-  tags: ["Integration sync"],
-  summary: "Preview a sync rule change",
-  description:
-    "Compatibility shim: previews against the project's first binding for the provider. Use POST /integration/{integrationId}/preview; this route is removed in the cleanup PR.",
-  middleware: manage,
-  request: { params: syncParams, body: body(rulesBody) },
-  responses: {
-    200: jsonResponse("Proposed rule impact", syncPreviewSchema),
-    ...errors,
-  },
-});
-const saveRoute = createRoute({
-  method: "patch",
-  path: compatPath,
-  operationId: "saveIntegrationSyncRules",
-  tags: ["Integration sync"],
-  summary: "Apply a previewed sync rule",
-  description:
-    "Compatibility shim: saves the project's first binding for the provider. Use PATCH /integration/{integrationId}; this route is removed in the cleanup PR.",
-  middleware: manage,
-  request: { params: syncParams, body: body(saveRulesBody) },
-  responses: {
-    200: jsonResponse("Saved rules and current scope", syncPreviewSchema),
-    ...errors,
-  },
-});
-const reviewRoute = createRoute({
-  method: "get",
-  path: `${compatPath}/links/{linkId}/review`,
-  operationId: "reviewIntegrationSyncResume",
-  tags: ["Integration sync"],
-  summary: "Compare a paused task with its external issue",
-  description:
-    "Compatibility shim: reviews a link of the project's first binding for the provider. Use GET /integration/{integrationId}/links/{linkId}/review; this route is removed in the cleanup PR.",
-  middleware: manage,
-  request: { params: resumeParams },
-  responses: {
-    200: jsonResponse(
-      "Current values and comparison token",
-      resumePreviewSchema,
-    ),
-    ...errors,
-    502: errorResponse("External issue unavailable; sync remains paused"),
-  },
-});
-const resumeRoute = createRoute({
-  method: "post",
-  path: `${compatPath}/links/{linkId}/resume`,
-  operationId: "resumeIntegrationSync",
-  tags: ["Integration sync"],
-  summary: "Resume a reviewed issue link",
-  description:
-    "Compatibility shim: resumes a link of the project's first binding for the provider. Use POST /integration/{integrationId}/links/{linkId}/resume; this route is removed in the cleanup PR.",
-  middleware: [...manage, requireWorkspacePermission({ task: ["update"] })],
-  request: { params: resumeParams, body: body(resumeBody) },
-  responses: {
-    200: jsonResponse("Sync resumed", z.object({ success: z.boolean() })),
-    ...errors,
-    409: errorResponse(
-      "Comparison changed or synchronization is busy; review or retry",
-    ),
-    502: errorResponse("External issue unavailable; sync remains paused"),
-  },
-});
-
-async function compatIntegrationId(projectId: string, provider: string) {
-  const integration = await getSyncIntegrationByProject(projectId, provider);
-  return integration.id;
-}
-
 function reviewResponse(review: Awaited<ReturnType<typeof reviewSyncResume>>) {
   return {
     task: {
@@ -344,63 +230,6 @@ export default apiRouter<BaseVariables & { workspaceId: string }>()
     return c.json(
       await resumeSync(
         integrationId,
-        linkId,
-        token,
-        source,
-        c.get("workspaceId"),
-      ),
-      200,
-    );
-  })
-  .openapi(getRoute, async (c) => {
-    const { projectId, provider } = c.req.valid("param");
-    return c.json(
-      await handleGetSync(
-        await compatIntegrationId(projectId, provider),
-        c.req.valid("query").after,
-      ),
-      200,
-    );
-  })
-  .openapi(previewRoute, async (c) => {
-    const { projectId, provider } = c.req.valid("param");
-    const { rules } = c.req.valid("json");
-    return c.json(
-      await handlePreviewSync(
-        await compatIntegrationId(projectId, provider),
-        rules,
-      ),
-      200,
-    );
-  })
-  .openapi(saveRoute, async (c) => {
-    const { projectId, provider } = c.req.valid("param");
-    const { rules, previewToken } = c.req.valid("json");
-    return c.json(
-      await saveSyncRules(
-        await compatIntegrationId(projectId, provider),
-        rules,
-        previewToken,
-        c.get("workspaceId"),
-      ),
-      200,
-    );
-  })
-  .openapi(reviewRoute, async (c) => {
-    const { projectId, provider, linkId } = c.req.valid("param");
-    const review = await reviewSyncResume(
-      await compatIntegrationId(projectId, provider),
-      linkId,
-      c.get("workspaceId"),
-    );
-    return c.json(reviewResponse(review), 200);
-  })
-  .openapi(resumeRoute, async (c) => {
-    const { projectId, provider, linkId } = c.req.valid("param");
-    const { source, token } = c.req.valid("json");
-    return c.json(
-      await resumeSync(
-        await compatIntegrationId(projectId, provider),
         linkId,
         token,
         source,

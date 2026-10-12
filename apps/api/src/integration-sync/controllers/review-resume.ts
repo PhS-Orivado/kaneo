@@ -7,7 +7,7 @@ import { isTaskInFinalState } from "../../plugins/github/services/task-service";
 import { taskMatchesRule } from "../../plugins/sync/eligibility";
 import { providerIssue } from "../../plugins/sync/provider-issue";
 import { isSyncPaused, readSyncRules } from "../../plugins/sync/rules";
-import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
+import { getSyncIntegration } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 import type { IntegrationDatabase } from "../../plugins/github/services/integration-task-scope";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";
@@ -28,7 +28,6 @@ export async function reviewSyncResume(
     throw new HTTPException(403, {
       message: "Project no longer belongs to the authorized workspace",
     });
-  const projectId = integration.projectId;
   const link = await database.query.externalLinkTable.findFirst({
     where: and(
       eq(externalLinkTable.id, linkId),
