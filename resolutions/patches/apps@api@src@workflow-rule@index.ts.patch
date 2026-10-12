@@ -1,0 +1,46 @@
+--- /tmp/fork-src/apps/api/src/workflow-rule/index.ts	2026-10-07 22:59:32.000000000 +0000
++++ tree/apps/api/src/workflow-rule/index.ts	2026-10-12 10:40:41.063338284 +0000
+@@ -43,10 +43,8 @@
+  request: { params: projectIdParam },
+  responses: {
+    200: jsonResponse("List of workflow rules", workflowRuleListSchema),
+-    400: errorResponse(
+-      "Unknown project, or its workspace could not be determined",
+-    ),
+-    403: errorResponse("No access to the project's workspace"),
++    403: errorResponse("No access to the project"),
++    404: errorResponse("Project not found"),
+  },
+});
+
+@@ -72,12 +70,12 @@
+  responses: {
+    200: jsonResponse("The created or updated rule", workflowRuleRowSchema),
+    400: errorResponse(
+-      "Invalid body, unknown project, or the integration does not belong to the project or its type does not match",
++      "Invalid body, or the integration does not belong to the project or its type does not match",
+    ),
+    403: errorResponse(
+-      "No workspace access, or missing project:update permission",
++      "No access to the project, or missing project:update permission",
+    ),
+-    404: errorResponse("Integration not found"),
++    404: errorResponse("Integration or project not found"),
+  },
+});
+
+@@ -95,12 +93,10 @@
+  request: { params: workflowRuleParam },
+  responses: {
+    200: jsonResponse("The deleted rule", workflowRuleRowSchema),
+-    400: errorResponse(
+-      "Unknown rule, or its workspace could not be determined",
+-    ),
+    403: errorResponse(
+-      "No workspace access, or missing project:update permission",
++      "No access to the project, or missing project:update permission",
+    ),
++    404: errorResponse("Workflow rule not found"),
+  },
+});
+

@@ -18,6 +18,8 @@ concurrency:
 jobs:
   probe:
     runs-on: ubuntu-latest
+    outputs:
+      landed: ${{ steps.skip.outputs.landed }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -26,79 +28,110 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Resolve the merge source
+        run: |
+          sha="0d3149e38b9ca5b66b6f032dce0422cc354a3250"
+          if [ -f resolutions/merge-source.txt ]; then
+            sha="$(tr -d '[:space:]' < resolutions/merge-source.txt)"
+          fi
+          message="Merge the completed multi-repository state (RFC 0001, PRs #15-#20) onto upstream v2.41.1"
+          if [ -f resolutions/merge-message.txt ]; then
+            message="$(head -n 1 resolutions/merge-message.txt)"
+          fi
+          echo "MERGE_SHA=$sha" >> "$GITHUB_ENV"
+          echo "MERGE_MESSAGE=$message" >> "$GITHUB_ENV"
       - name: Fetch the pre-reset fork state
         run: |
           set -e
           git fetch --no-tags origin backup/fork-main-before-upstream-reset
-          git cat-file -t 0d3149e38b9ca5b66b6f032dce0422cc354a3250
-          git log --oneline -1 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          git cat-file -t "$MERGE_SHA"
+          git log --oneline -1 "$MERGE_SHA"
+      - name: Already merged?
+        id: skip
+        run: |
+          if git merge-base --is-ancestor "$MERGE_SHA" HEAD; then
+            echo "landed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "landed=false" >> "$GITHUB_OUTPUT"
+          fi
       - name: Attempt the multi-repository merge
+        if: steps.skip.outputs.landed != 'true'
         id: attempt
         run: |
           set +e
-          git merge --no-ff --no-commit 0d3149e38b9ca5b66b6f032dce0422cc354a3250 > merge.log 2>&1
+          git merge --no-ff --no-commit "$MERGE_SHA" > merge.log 2>&1
           code=$?
           echo "code=$code" >> "$GITHUB_OUTPUT"
           cat merge.log
           exit 0
       - name: Apply resolutions
-        if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
+        if: steps.skip.outputs.landed != 'true' && steps.attempt.outputs.code != '0'
         run: |
           if [ -d resolutions/tree ]; then
             cp -a resolutions/tree/. ./
           fi
           if [ -f resolutions/resolve.sh ]; then
-            bash resolutions/resolve.sh || true
+            bash resolutions/resolve.sh
           fi
-      - name: Record the conflict report
-        if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
+      - name: Verify every conflict is resolved
+        if: steps.skip.outputs.landed != 'true' && steps.attempt.outputs.code != '0'
         run: |
-          mkdir -p conflict-report
-          cp merge.log conflict-report/MERGE.LOG || true
-          git rev-parse HEAD > conflict-report/HEAD.txt
-          git merge-base HEAD 0d3149e38b9ca5b66b6f032dce0422cc354a3250 > conflict-report/MERGE-BASE.txt || true
-          git diff --name-only --diff-filter=U > conflict-report/UNMERGED.txt || true
-          mb=$(cat conflict-report/MERGE-BASE.txt)
-          git diff --stat "$mb" 0d3149e38b9ca5b66b6f032dce0422cc354a3250 > conflict-report/FORK-DELTA-STAT.txt || true
-          git diff --stat "$mb" HEAD > conflict-report/UPSTREAM-DELTA-STAT.txt || true
-          : > conflict-report/SIZES.txt
-          while IFS= read -r f; do
-            [ -n "$f" ] || continue
-            if [ -e "$f" ]; then
-              printf '%s %s\n' "$(wc -c < "$f")" "$f" >> conflict-report/SIZES.txt
-            fi
-          done < conflict-report/UNMERGED.txt
-          while IFS= read -r f; do
-            [ -n "$f" ] || continue
-            safe=$(printf '%s' "$f" | tr '/' '@')
-            git diff -- "$f" > "conflict-report/$safe.diff" 2>/dev/null || true
-            if [ -e "$f" ]; then
-              size=$(wc -c < "$f")
-              if [ "$size" -gt 28000 ]; then
-                mkdir -p "chunks/$safe"
-                split -b 28000 -d -e "$f" "chunks/$safe/part."
-              fi
-            fi
-          done < conflict-report/UNMERGED.txt
-          cd conflict-report
-          for f in *.diff; do
-            [ -f "$f" ] || continue
-            if [ "$(wc -c < "$f")" -gt 28000 ]; then
-              split -b 28000 -d "$f" "$f.part."
-              rm "$f"
-            fi
-          done
-      - name: Push the conflicted probe state
-        if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
+          remaining=$(git diff --name-only --diff-filter=U | wc -l)
+          if [ "$remaining" -ne 0 ]; then
+            git diff --name-only --diff-filter=U
+            echo "Unresolved conflicts remain." >&2
+            exit 1
+          fi
+      - name: Complete the merge
+        if: steps.skip.outputs.landed != 'true'
+        run: |
+          rm -rf resolutions merge.log
+          git add -A
+          git commit -m "$MERGE_MESSAGE"
+          git push origin HEAD:refs/heads/feat/reland-multi-repo
+
+  finish:
+    needs: probe
+    if: always() && needs.probe.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: feat/reland-multi-repo
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.32.1
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install dependencies
+        run: |
+          if ! pnpm install --frozen-lockfile; then
+            echo "The merged lockfile does not match; refreshing it."
+            pnpm install --no-frozen-lockfile
+          fi
+      - name: Validate the merged locales
+        run: pnpm i18n:check
+      - name: Generate the Drizzle migration
+        working-directory: apps/api
+        run: pnpm db:generate
+      - name: Regenerate the OpenAPI export
+        run: pnpm openapi:check:fix
+      - name: Commit the regenerated artifacts
         run: |
           git add -A
-          git commit -m "probe: conflicted merge state of the multi-repository re-land"
-          git push --force origin HEAD:refs/heads/probe/reland-multi-repo
-      - name: Complete the merge
-        if: steps.attempt.outputs.code == '0'
-        run: |
-          rm -rf resolutions
-          git rm -r --cached resolutions >/dev/null 2>&1 || true
-          git rm .github/workflows/reland-probe.yml >/dev/null 2>&1 || true
-          git commit -m "Merge the completed multi-repository state (RFC 0001, PRs #15-#20) onto upstream v2.41.1"
-          git push origin HEAD:refs/heads/feat/reland-multi-repo
+          if git diff --cached --quiet; then
+            echo "Nothing to regenerate."
+          else
+            git commit -m "chore: regenerate the Drizzle migration and OpenAPI export for the re-land"
+            git push origin HEAD:refs/heads/feat/reland-multi-repo
+          fi

@@ -1,0 +1,22 @@
+--- /tmp/fork-src/apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts	2026-10-07 22:59:32.000000000 +0000
++++ tree/apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts	2026-10-12 10:40:41.061338284 +0000
+@@ -1,7 +1,7 @@
+ import { and, eq, inArray } from "drizzle-orm";
+-import { HTTPException } from "hono/http-exception";
+ import db from "../../database";
+ import { integrationTable } from "../../database/schema";
++import { ApiError } from "../../errors/api-error";
+ import { repositoryLinkedToSchema } from "../../integrations/response";
+ import { type z } from "../../openapi";
+ import type { GitlabTokenType } from "../../plugins/gitlab/config";
+@@ -82,8 +82,9 @@
+  try {
+    await verifyGitlabToken(normalized, accessToken, tokenType);
+  } catch {
+-    throw new HTTPException(401, {
++    throw new ApiError(401, {
+      message: "Invalid GitLab token or could not reach instance.",
++      code: "INTEGRATION_AUTH_FAILED",
+    });
+  }
+
