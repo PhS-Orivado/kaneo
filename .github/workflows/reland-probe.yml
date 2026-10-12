@@ -28,22 +28,15 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Fetch the pre-reset fork state
         run: |
-          {
-            set -x
-            ls -la .git/shallow 2>&1 || true
-            git fetch --unshallow --no-tags origin 2>&1 || true
-            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
-            git fetch --no-tags --depth=100000000 origin backup/fork-main-before-upstream-reset 2>&1 || true
-            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
-          } > fetch-all.log 2>&1
-          cat fetch-all.log
-          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >/dev/null 2>&1 || echo "MERGE_SOURCE_MISSING" >> fetch-all.log
-          exit 0
+          set -e
+          git fetch --no-tags origin backup/fork-main-before-upstream-reset
+          git cat-file -t 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          git log --oneline -1 0d3149e38b9ca5b66b6f032dce0422cc354a3250
       - name: Attempt the multi-repository merge
         id: attempt
         run: |
           set +e
-          git merge --no-ff --no-commit 0d3149e3face90b246951adb6f580ed1580cbe4 > merge.log 2>&1
+          git merge --no-ff --no-commit 0d3149e38b9ca5b66b6f032dce0422cc354a3250 > merge.log 2>&1
           code=$?
           echo "code=$code" >> "$GITHUB_OUTPUT"
           cat merge.log
@@ -62,12 +55,11 @@ jobs:
         run: |
           mkdir -p conflict-report
           cp merge.log conflict-report/MERGE.LOG || true
-          cp fetch-all.log conflict-report/FETCH-ALL.LOG || true
           git rev-parse HEAD > conflict-report/HEAD.txt
-          git merge-base HEAD 0d3149e3face90b246951adb6f580ed1580cbe4 > conflict-report/MERGE-BASE.txt || true
+          git merge-base HEAD 0d3149e38b9ca5b66b6f032dce0422cc354a3250 > conflict-report/MERGE-BASE.txt || true
           git diff --name-only --diff-filter=U > conflict-report/UNMERGED.txt || true
           mb=$(cat conflict-report/MERGE-BASE.txt)
-          git diff --stat "$mb" 0d3149e3face90b246951adb6f580ed1580cbe4 > conflict-report/FORK-DELTA-STAT.txt || true
+          git diff --stat "$mb" 0d3149e38b9ca5b66b6f032dce0422cc354a3250 > conflict-report/FORK-DELTA-STAT.txt || true
           git diff --stat "$mb" HEAD > conflict-report/UPSTREAM-DELTA-STAT.txt || true
           : > conflict-report/SIZES.txt
           while IFS= read -r f; do
