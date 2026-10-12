@@ -62,7 +62,6 @@ export async function importGiteaIssues({
 }: {
   integrationId: string;
   projectId?: string;
-
 }): Promise<ImportResult> {
   const errors: string[] = [];
   let imported = 0;
@@ -142,7 +141,6 @@ export async function importGiteaIssues({
   }
 
   for (const issue of allIssues) {
-
     try {
       const result = await importSingleIssue(
         issue,
@@ -233,8 +231,7 @@ async function importSingleIssue(
 
   const labels = issue.labels ?? [];
   const adaptedLabels = toPriorityLabels(labels);
-  const priority = extractIssuePriority(adapt
-edLabels);
+  const priority = extractIssuePriority(adaptedLabels);
   const status = extractIssueStatus(adaptedLabels);
 
   const comments = await fetchIssueComments(issue.number, config, client);
@@ -301,8 +298,7 @@ edLabels);
     return result ?? "skipped";
   }
 
- 
- const createdTask = await withIntegrationTask(
+  const createdTask = await withIntegrationTask(
     null,
     { id: integrationId, projectId, project: { workspaceId } },
     async (tx) => {
@@ -373,8 +369,7 @@ edLabels);
     ...createdTask,
     taskId: createdTask.id,
     userId: createdTask.userId ?? "",
-    type: "t
-ask",
+    type: "task",
     content: null,
     source: "gitea-import",
     integrationId,
@@ -451,7 +446,6 @@ async function importLabelsForTask(
     });
 
     const colorToUse = existingWorkspaceLabel?.color || labelData.color;
-
 
     await database
       .insert(labelTable)
@@ -538,8 +532,7 @@ async function linkPullRequestToTask(
     html_url: string;
     state: string;
     head: { ref: string };
-    user?: { login?: string; username?: string; avatar_url?: string } | null
-;
+    user?: { login?: string; username?: string; avatar_url?: string } | null;
   },
   integrationId: string,
   projectId: string,
