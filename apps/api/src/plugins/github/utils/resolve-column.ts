@@ -2,10 +2,6 @@ import { and, asc, eq, isNull } from "drizzle-orm";
 import db from "../../../database";
 import { columnTable, workflowRuleTable } from "../../../database/schema";
 
-// RFC 0001 WP6: resolution prefers the repository-specific rule of the
-// addressed binding and falls back to the type-wide rule
-// (integration_id NULL). Callers without binding context keep today's
-// type-wide-only behavior.
 export async function resolveTargetStatus(
   projectId: string,
   eventType: string,
