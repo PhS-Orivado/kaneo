@@ -28,19 +28,24 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Fetch the pre-reset fork state
         run: |
-          set -x
-          git remote -v
-          git config --get-all remote.origin.fetch || true
-          git fetch --no-tags origin backup/fork-main-before-upstream-reset > fetch1.log 2>&1
-          cat fetch1.log
-          git log --oneline -1 FETCH_HEAD >> fetch1.log 2>&1 || true
-          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >> fetch1.log 2>&1 || true
-          git fetch --no-tags origin 0d3149e3face90b246951adb6f580ed1580cbe4 > fetch2.log 2>&1
-          cat fetch2.log || true
-          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >> fetch2.log 2>&1 || true
-          git fetch --no-tags origin +refs/pull/29/merge:refs/remotes/pull29 > fetch3.log 2>&1
-          cat fetch3.log || true
-          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >> fetch3.log 2>&1 || true
+          {
+            set -x
+            git remote -v
+            git config --get-all remote.origin.fetch || true
+            git ls-remote origin | grep -E 'backup|pull/29|pull/15' || true
+            git fetch --no-tags origin backup/fork-main-before-upstream-reset 2>&1 || true
+            git log --oneline -1 FETCH_HEAD 2>&1 || true
+            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
+            git fetch --no-tags origin 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
+            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
+            git fetch --no-tags origin '+refs/heads/backup/*:refs/remotes/backup/*' 2>&1 || true
+            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
+            git fetch --no-tags origin '+refs/pull/29/merge:refs/remotes/pull29' 2>&1 || true
+            git fetch --no-tags origin '+refs/pull/15/merge:refs/remotes/pull15' 2>&1 || true
+            git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 2>&1 || true
+          } > fetch-all.log 2>&1
+          cat fetch-all.log
+          exit 0
       - name: Attempt the multi-repository merge
         id: attempt
         run: |
@@ -53,17 +58,18 @@ jobs:
       - name: Apply resolutions
         if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
         run: |
-          if [ -d resolutions ]; then
-            cp -a resolutions/. ./
+          if [ -d resolutions/tree ]; then
+            cp -a resolutions/tree/. ./
+          fi
+          if [ -f resolutions/resolve.sh ]; then
+            bash resolutions/resolve.sh || true
           fi
       - name: Record the conflict report
         if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
         run: |
           mkdir -p conflict-report
           cp merge.log conflict-report/MERGE.LOG || true
-          cp fetch1.log conflict-report/FETCH1.LOG || true
-          cp fetch2.log conflict-report/FETCH2.LOG || true
-          cp fetch3.log conflict-report/FETCH3.LOG || true
+          cp fetch-all.log conflict-report/FETCH-ALL.LOG || true
           git rev-parse HEAD > conflict-report/HEAD.txt
           git merge-base HEAD 0d3149e3face90b246951adb6f580ed1580cbe4 > conflict-report/MERGE-BASE.txt || true
           git diff --name-only --diff-filter=U > conflict-report/UNMERGED.txt || true
