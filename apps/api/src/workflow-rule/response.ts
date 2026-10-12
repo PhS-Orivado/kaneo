@@ -9,7 +9,7 @@ export const workflowRuleSchema = z
     }),
     integrationId: z.string().nullable().openapi({
       description:
-        "The repository binding this rule targets, or null for a type-wide rule that applies to every repository of the integration type in the project (RFC 0001 WP6).",
+        "The repository binding this rule is scoped to, or `null` for a type-wide rule that applies to every repository of that type in the project (RFC 0001).",
     }),
     eventType: z.string().openapi({
       description:
@@ -32,7 +32,10 @@ export const workflowRuleRowSchema = z
     id: z.string(),
     projectId: z.string(),
     integrationType: z.string(),
-    integrationId: z.string().nullable(),
+    integrationId: z.string().nullable().openapi({
+      description:
+        "The repository binding this rule is scoped to, or `null` for a type-wide rule (RFC 0001).",
+    }),
     eventType: z.string(),
     columnId: z.string(),
     createdAt: responseTimestamp,

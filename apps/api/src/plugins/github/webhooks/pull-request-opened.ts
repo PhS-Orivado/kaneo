@@ -121,7 +121,7 @@ export async function handlePullRequestOpened(payload: PROpenedPayload) {
         "pr_opened",
         config.statusTransitions?.onPROpen || "in-review",
         database,
-        integration.id,
+        integration,
       );
 
       if (currentTask.status !== targetStatus) {

@@ -18,6 +18,8 @@ async function upsertWorkflowRule({
   integrationType: string;
   eventType: string;
   columnId: string;
+  // RFC 0001 WP6: optional repository binding. Absent (or null) keeps the
+  // legacy type-wide semantics: one rule per (project, type, event).
   integrationId?: string | null;
 }) {
   const targetColumn = await db.query.columnTable.findFirst({
@@ -33,36 +35,46 @@ async function upsertWorkflowRule({
     });
   }
 
-  // RFC 0001 WP6: a repository-specific rule targets one binding, which must
-  // exist (404), belong to the same project (400) and match the rule's
-  // integration type (400). An absent integrationId keeps the type-wide
-  // semantics and the unchanged public API shape.
+  // A repository-specific rule must reference an integration of the same
+  // type in the same project. The route middleware (fromIntegration) already
+  // verified workspace access for the integration row.
+  let scopedIntegrationId: string | null = null;
   if (integrationId) {
-    const binding = await db.query.integrationTable.findFirst({
+    const integration = await db.query.integrationTable.findFirst({
       where: eq(integrationTable.id, integrationId),
     });
-    if (!binding)
-      throw new HTTPException(404, { message: "Integration not found" });
-    if (binding.projectId !== projectId)
+
+    if (!integration) {
+      throw new HTTPException(404, {
+        message: "Integration not found",
+      });
+    }
+
+    if (integration.projectId !== projectId) {
       throw new HTTPException(400, {
         message: "Integration does not belong to the provided project",
       });
-    if (binding.type !== integrationType)
+    }
+
+    if (integration.type !== integrationType) {
       throw new HTTPException(400, {
         message: "Integration type does not match the rule's integration type",
       });
+    }
+
+    scopedIntegrationId = integration.id;
   }
 
-  // SQL integration_id = NULL never matches with eq(); the lookup must be
-  // NULL-aware so a type-wide rule and a repository-specific rule can
-  // coexist for the same (project, integration type, event).
+  // NULL never matches with SQL equality, so the lookup key must be
+  // NULL-aware: an explicit isNull for type-wide rules, an exact match for
+  // repository-specific ones.
   const existing = await db.query.workflowRuleTable.findFirst({
-    where: integrationId
+    where: scopedIntegrationId
       ? and(
           eq(workflowRuleTable.projectId, projectId),
           eq(workflowRuleTable.integrationType, integrationType),
           eq(workflowRuleTable.eventType, eventType),
-          eq(workflowRuleTable.integrationId, integrationId),
+          eq(workflowRuleTable.integrationId, scopedIntegrationId),
         )
       : and(
           eq(workflowRuleTable.projectId, projectId),
@@ -96,6 +108,7 @@ async function upsertWorkflowRule({
       integrationId: integrationId ?? null,
       eventType,
       columnId,
+      integrationId: scopedIntegrationId,
     })
     .returning();
 

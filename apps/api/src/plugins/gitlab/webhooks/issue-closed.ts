@@ -115,7 +115,7 @@ export async function handleGitlabIssueClosed(
           "issue_closed",
           "done",
           db,
-          integration.id,
+          integration,
         );
 
         const statusResult = await updateTaskStatus(task.id, targetStatus, db);

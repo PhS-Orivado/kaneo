@@ -38,15 +38,13 @@ const getWorkflowRulesRoute = createRoute({
   tags: ["Workflow Rules"],
   summary: "Get workflow rules",
   description:
-    "Get every workflow rule for a project, including each rule's scope: a rule with an integrationId targets one repository binding, a rule without one applies to every repository of that integration type (RFC 0001 WP6).",
+    "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires. Rules with a null integrationId are type-wide; rules with an integrationId are scoped to that repository binding (RFC 0001).",
   middleware: [workspaceAccess.fromProject("projectId")] as const,
   request: { params: projectIdParam },
   responses: {
     200: jsonResponse("List of workflow rules", workflowRuleListSchema),
-    400: errorResponse(
-      "Unknown project, or its workspace could not be determined",
-    ),
-    403: errorResponse("No access to the project's workspace"),
+    403: errorResponse("No access to the project"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -57,9 +55,19 @@ const upsertWorkflowRuleRoute = createRoute({
   tags: ["Workflow Rules"],
   summary: "Upsert workflow rule",
   description:
-    "Create a workflow rule, or update the target column of the existing rule for the same integration and event. An optional integrationId scopes the rule to one repository binding; without it the rule stays type-wide and applies to every repository of that integration type in the project. A repository-specific rule and a type-wide rule for the same event coexist; resolution prefers the repository-specific one.",
+    "Create a workflow rule, or update the target column of the existing rule for the same integration and event. Provide an optional integrationId to scope the rule to a single repository binding; omit it for a type-wide rule (RFC 0001).",
   middleware: [
-    ruleAccess,
+    // RFC 0001 WP6: authorize the project, and the integration too when the
+    // rule targets one. The integration source is only consulted when the
+    // body carries an integrationId, so type-wide requests keep working; the
+    // controller additionally rejects an integration from a foreign project
+    // or of a mismatched type.
+    workspaceAccessMiddleware({
+      sources: [
+        { type: "lookup", resource: "project", idKey: "projectId" },
+        { type: "lookup", resource: "integration", idKey: "integrationId" },
+      ],
+    }),
     requireWorkspacePermission({ project: ["update"] }),
   ] as const,
   request: {
@@ -71,13 +79,11 @@ const upsertWorkflowRuleRoute = createRoute({
   },
   responses: {
     200: jsonResponse("The created or updated rule", workflowRuleRowSchema),
-    400: errorResponse(
-      "Invalid body, unknown project, or the integration does not belong to the project or its type does not match",
-    ),
+    400: errorResponse("Invalid body"),
     403: errorResponse(
-      "No workspace access, or missing project:update permission",
+      "No access to the project, or missing project:update permission",
     ),
-    404: errorResponse("Integration not found"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -95,12 +101,10 @@ const deleteWorkflowRuleRoute = createRoute({
   request: { params: workflowRuleParam },
   responses: {
     200: jsonResponse("The deleted rule", workflowRuleRowSchema),
-    400: errorResponse(
-      "Unknown rule, or its workspace could not be determined",
-    ),
     403: errorResponse(
-      "No workspace access, or missing project:update permission",
+      "No access to the project, or missing project:update permission",
     ),
+    404: errorResponse("Workflow rule not found"),
   },
 });
 
@@ -110,7 +114,7 @@ const workflowRule = apiRouter()
   )
   .openapi(upsertWorkflowRuleRoute, async (c) => {
     const { projectId } = c.req.valid("param");
-    const { integrationType, integrationId, eventType, columnId } =
+    const { integrationType, eventType, columnId, integrationId } =
       c.req.valid("json");
     return c.json(
       await upsertWorkflowRule({
@@ -119,6 +123,7 @@ const workflowRule = apiRouter()
         integrationId: integrationId ?? null,
         eventType,
         columnId,
+        integrationId: integrationId ?? null,
       }),
       200,
     );

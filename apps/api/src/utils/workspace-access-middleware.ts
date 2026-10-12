@@ -5,24 +5,25 @@ import db, { schema } from "../database";
 import { assertProjectAccess } from "../project-access/assert-project-access";
 import { validateWorkspaceAccess } from "./validate-workspace-access";
 
+type LookupResource =
+  | "project"
+  | "task"
+  | "label"
+  | "timeEntry"
+  | "activity"
+  | "comment"
+  | "column"
+  | "sprint"
+  | "workflowRule"
+  | "customField";
+
 type WorkspaceIdSource =
   | { type: "query"; key: string }
   | { type: "body"; key: string }
   | { type: "param"; key: string }
   | {
       type: "lookup";
-      resource:
-        | "project"
-        | "task"
-        | "label"
-        | "timeEntry"
-        | "activity"
-        | "comment"
-        | "column"
-        | "sprint"
-        | "workflowRule"
-        | "customField"
-        | "integration";
+      resource: LookupResource;
       idKey: string;
     }
   | {
@@ -30,6 +31,22 @@ type WorkspaceIdSource =
       resource: "task";
       idKey: string;
     };
+
+const WORKSPACE_NOT_FOUND = "Workspace not found";
+const TASKS_NOT_FOUND = "No tasks found";
+
+const RESOURCE_NOT_FOUND: Record<LookupResource, string> = {
+  project: "Project not found",
+  task: "Task not found",
+  label: "Label not found",
+  timeEntry: "Time entry not found",
+  activity: "Activity not found",
+  comment: "Comment not found",
+  column: "Column not found",
+  sprint: "Sprint not found",
+  workflowRule: "Workflow rule not found",
+  customField: "Custom field not found",
+};
 
 type WorkspaceAccessMiddlewareConfig = {
   sources: WorkspaceIdSource[];
@@ -59,6 +76,7 @@ export function workspaceAccessMiddleware(
 
     let workspaceId: string | null = null;
     let projectIds: string[] = [];
+    let notFoundMessage = WORKSPACE_NOT_FOUND;
 
     for (const source of config.sources) {
       if (source.type === "query") {
@@ -79,9 +97,13 @@ export function workspaceAccessMiddleware(
         // handler acted on another (`{"taskId": "<someone else's>"}`).
         const id = c.req.param(source.idKey) || idFromBody;
         if (id) {
+          notFoundMessage = RESOURCE_NOT_FOUND[source.resource];
           const scope = await lookupScope(source.resource, id);
-          workspaceId = scope?.workspaceId ?? null;
-          projectIds = scope?.projectId ? [scope.projectId] : [];
+          if (!scope) {
+            throw new HTTPException(404, { message: notFoundMessage });
+          }
+          workspaceId = scope.workspaceId;
+          projectIds = scope.projectId ? [scope.projectId] : [];
         }
       } else if (source.type === "lookupMany") {
         const body = await readJsonObjectBody(c);
@@ -91,6 +113,7 @@ export function workspaceAccessMiddleware(
             (id): id is string => typeof id === "string",
           );
           if (taskIds.length > 0) {
+            notFoundMessage = TASKS_NOT_FOUND;
             const tasks = await db
               .select({
                 workspaceId: schema.projectTable.workspaceId,
@@ -106,7 +129,7 @@ export function workspaceAccessMiddleware(
               ...new Set(tasks.map((task) => task.workspaceId)),
             ];
             if (workspaceIds.length === 0) {
-              throw new HTTPException(404, { message: "No tasks found" });
+              throw new HTTPException(404, { message: notFoundMessage });
             }
             if (workspaceIds.length > 1) {
               throw new HTTPException(400, {
@@ -133,7 +156,9 @@ export function workspaceAccessMiddleware(
     const apiKey = c.get("apiKey");
     const apiKeyId = apiKey?.id;
 
-    await validateWorkspaceAccess(userId, workspaceId, apiKeyId);
+    await validateWorkspaceAccess(userId, workspaceId, apiKeyId, {
+      notFoundMessage,
+    });
     await assertProjectAccess(userId, projectIds);
 
     c.set("workspaceId", workspaceId);
@@ -143,18 +168,7 @@ export function workspaceAccessMiddleware(
 }
 
 async function lookupScope(
-  resource:
-    | "project"
-    | "task"
-    | "label"
-    | "timeEntry"
-    | "activity"
-    | "comment"
-    | "column"
-    | "sprint"
-    | "workflowRule"
-    | "customField"
-    | "integration",
+  resource: LookupResource,
   id: string,
 ): Promise<ResourceScope | null> {
   switch (resource) {
