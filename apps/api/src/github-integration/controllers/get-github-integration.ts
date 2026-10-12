@@ -82,28 +82,4 @@ async function getGithubIntegrationById(integrationId: string) {
   return withImportProgress(integration);
 }
 
-/**
- * Compat shim (RFC section 8): the old project-keyed GET returns the first
- * binding (lowest createdAt) until the new web client ships; removed in the
- * cleanup PR.
- */
-async function getGithubIntegration(projectId: string) {
-  const integration = await db.query.integrationTable.findFirst({
-    where: and(
-      eq(integrationTable.projectId, projectId),
-      eq(integrationTable.type, "github"),
-    ),
-    orderBy: (table, { asc }) => [asc(table.createdAt)],
-  });
-  if (!integration) {
-    return null;
-  }
-  return withImportProgress(integration);
-}
-
-export default getGithubIntegration;
-export {
-  getGithubIntegration,
-  getGithubIntegrationById,
-  listGithubIntegrations,
-};
+export { getGithubIntegrationById, listGithubIntegrations };
