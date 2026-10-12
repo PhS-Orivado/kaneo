@@ -534,50 +534,6 @@ export const sprintTable = pgTable(
   ],
 );
 
-// Sprints iterate a project. Exactly one sprint per project may be active;
-// closed sprints are immutable and keep their finished tasks as history.
-export const sprintTable = pgTable(
-  "sprint",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    projectId: text("project_id")
-      .notNull()
-      .references(() => projectTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    name: text("name").notNull(),
-    goal: text("goal"),
-    status: text("status").notNull().default("future"),
-    startDate: timestamp("start_date", { mode: "date" }),
-    endDate: timestamp("end_date", { mode: "date" }),
-    // Snapshot of the unfinished tasks moved out when the sprint was closed;
-    // kept as a report so the carried-over work stays traceable.
-    carryOverTasks: jsonb("carry_over_tasks").$type<
-      { id: string; title: string }[]
-    >(),
-    position: integer("position").notNull().default(0),
-    createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .defaultNow()
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("sprint_projectId_idx").on(table.projectId),
-    unique("sprint_project_name_unique").on(table.projectId, table.name),
-    index("sprint_projectId_position_idx").on(
-      table.projectId,
-      table.position,
-    ),
-    uniqueIndex("sprint_project_active_unique")
-      .on(table.projectId)
-      .where(sql`status = 'active'`),
-  ],
-);
-
 export const workflowRuleTable = pgTable(
   "workflow_rule",
   {
