@@ -60,9 +60,9 @@ export function GitHubIntegrationSettings({
   const hasImportPermission = canCreateTasks() && canUpdateTasks();
   const { data: session } = authClient.useSession();
   const { data: appInfo } = useQuery({
-    queryKey: ["github-app-info", session?.user.id],
+    queryKey: ["github-app-info", session?.user?.id],
     queryFn: getGitHubAppInfo,
-    enabled: Boolean(session?.user.id),
+    enabled: Boolean(session?.user?.id),
   });
   const [isLinkingAccount, setIsLinkingAccount] = React.useState(false);
   const linkAccount = async () => {

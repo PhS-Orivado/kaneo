@@ -6,10 +6,10 @@ export const Route = createFileRoute(
   "/_layout/_authenticated/dashboard/settings/admin",
 )({
   beforeLoad: async ({ context }) => {
-    let userId = context.session?.user.id;
+    let userId = context.session?.user?.id;
     if (!userId && context.sessionError) {
       const { data } = await authClient.getSession();
-      userId = data?.user.id;
+      userId = data?.user?.id;
       if (!userId) {
         throw redirect({ to: "/auth/sign-in" });
       }

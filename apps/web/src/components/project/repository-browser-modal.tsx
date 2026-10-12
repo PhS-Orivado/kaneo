@@ -60,13 +60,13 @@ export function RepositoryBrowserModal({
   };
 
   const { data, isLoading, error, refetch } = useQuery({
-    queryKey: ["github-repositories", projectId, session?.user.id, page],
+    queryKey: ["github-repositories", projectId, session?.user?.id, page],
     queryFn: () => listRepositories(projectId, page),
-    enabled: open && Boolean(session?.user.id),
+    enabled: open && Boolean(session?.user?.id),
   });
 
   const { data: appInfo } = useQuery({
-    queryKey: ["github-app-info", session?.user.id],
+    queryKey: ["github-app-info", session?.user?.id],
     queryFn: getGitHubAppInfo,
     enabled: open,
   });

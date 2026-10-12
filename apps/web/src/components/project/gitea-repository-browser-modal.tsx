@@ -49,14 +49,14 @@ export function GiteaRepositoryBrowserModal({
 
   const canFetch =
     open &&
-    Boolean(session?.user.id) &&
+    Boolean(session?.user?.id) &&
     baseUrl.trim().length > 0 &&
     accessToken.trim().length > 0;
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: [
       "gitea-repositories",
-      session?.user.id,
+      session?.user?.id,
       projectId,
       baseUrl,
       credentials.cacheId,
