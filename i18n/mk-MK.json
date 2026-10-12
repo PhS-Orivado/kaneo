@@ -2720,6 +2720,11 @@
 			"high": "Висок",
 			"urgent": "Итен"
 		},
+		"type": {
+			"label": "Тип",
+			"task": "Задача",
+			"bug": "Грешка"
+		},
 		"boardSearchPlaceholder": "Пребарај тикети...",
 		"view": {
 			"board": "Табла",
