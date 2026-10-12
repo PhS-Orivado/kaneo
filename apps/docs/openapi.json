@@ -1,4 +1,4 @@
-{
+successfully downloaded text file (SHA: 9b34d84fb4ebf69761aaed3c83263f3f2ef55f25){
   "openapi": "3.1.0",
   "info": {
     "title": "Kaneo API",
@@ -931,8 +931,7 @@
           "isPublic",
           "archivedAt",
           "position",
-          "lastTaskNumber",
-          "defaultSprintLengthDays"
+          "lastTaskNumber"
         ]
       },
       "ProjectListItem": {
@@ -1705,156 +1704,6 @@
           "isFinal",
           "createdAt",
           "updatedAt"
-        ]
-      },
-      "Sprint": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "goal": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "future",
-              "active",
-              "closed"
-            ],
-            "description": "Future sprints can be edited, reordered and started. Exactly one sprint per project may be active. Closed sprints are immutable and keep their completed tasks as history."
-          },
-          "startDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "endDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "carryOverTasks": {
-            "type": [
-              "array",
-              "null"
-            ],
-            "items": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "title": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "title"
-              ]
-            },
-            "description": "Unfinished tasks moved out when the sprint was closed, frozen as a snapshot at close time. Null while the sprint is open."
-          },
-          "position": {
-            "type": "number",
-            "description": "Backlog order, ascending. Sprints are always returned sorted by it."
-          },
-          "taskCount": {
-            "type": "number",
-            "description": "Tasks currently assigned to this sprint."
-          },
-          "completedTaskCount": {
-            "type": "number",
-            "description": "Tasks assigned to this sprint that sit in a final column. After a sprint closes, these remain as its history."
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "projectId",
-          "name",
-          "goal",
-          "status",
-          "startDate",
-          "endDate",
-          "carryOverTasks",
-          "position",
-          "taskCount",
-          "completedTaskCount",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "CloseSprintResult": {
-        "type": "object",
-        "properties": {
-          "sprint": {
-            "$ref": "#/components/schemas/Sprint"
-          },
-          "movedTaskIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Unfinished tasks that were moved to the target."
-          },
-          "targetSprintId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "The sprint that received the unfinished tasks; null means backlog."
-          }
-        },
-        "required": [
-          "sprint",
-          "movedTaskIds",
-          "targetSprintId"
-        ]
-      },
-      "TaskSprint": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string"
-          },
-          "sprintId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Null means the task sits in the backlog."
-          }
-        },
-        "required": [
-          "id",
-          "projectId",
-          "sprintId"
         ]
       },
       "Sprint": {
@@ -3215,9 +3064,6 @@
           "installation_id": {
             "type": "number",
             "description": "Which App installation this repository came through."
-          },
-          "linkedTo": {
-            "$ref": "#/components/schemas/RepositoryLinkedTo"
           }
         },
         "required": [
@@ -3229,8 +3075,7 @@
           "description",
           "html_url",
           "updated_at",
-          "installation_id",
-          "linkedTo"
+          "installation_id"
         ]
       },
       "GitHubRepositoryOwner": {
@@ -3270,32 +3115,6 @@
           "push",
           "pull"
         ]
-      },
-      "RepositoryLinkedTo": {
-        "type": [
-          "object",
-          "null"
-        ],
-        "properties": {
-          "integrationId": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string"
-          },
-          "projectName": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "integrationId",
-          "projectId",
-          "projectName"
-        ],
-        "description": "The binding that already links this repository, or null. Same-project links block selection in the picker; cross-project links (decision D1) are informational only."
       },
       "GitHubInstallation": {
         "type": "object",
@@ -3500,43 +3319,6 @@
           "skipped"
         ]
       },
-      "GitHubIntegrationList": {
-        "type": "object",
-        "properties": {
-          "integrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GitHubIntegration"
-            },
-            "description": "Every GitHub binding of the project, oldest first."
-          },
-          "usage": {
-            "$ref": "#/components/schemas/RepositoryBindingUsage"
-          }
-        },
-        "required": [
-          "integrations",
-          "usage"
-        ]
-      },
-      "RepositoryBindingUsage": {
-        "type": "object",
-        "properties": {
-          "used": {
-            "type": "number"
-          },
-          "limit": {
-            "type": [
-              "number",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "used",
-          "limit"
-        ]
-      },
       "CreatedGitHubIntegration": {
         "type": "object",
         "properties": {
@@ -3610,82 +3392,6 @@
           "message"
         ]
       },
-      "GitHubBranchList": {
-        "type": "object",
-        "properties": {
-          "branches": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GitHubBranch"
-            }
-          },
-          "hasMore": {
-            "type": "boolean",
-            "description": "The repository holds more branches than the bounded page returned."
-          }
-        },
-        "required": [
-          "branches",
-          "hasMore"
-        ]
-      },
-      "GitHubBranch": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "commitSha": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Head commit of the branch, when exposed."
-          }
-        },
-        "required": [
-          "name",
-          "commitSha"
-        ]
-      },
-      "GitHubBranchResult": {
-        "type": "object",
-        "properties": {
-          "integrationId": {
-            "type": "string"
-          },
-          "repositoryOwner": {
-            "type": "string"
-          },
-          "repositoryName": {
-            "type": "string"
-          },
-          "branchName": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "description": "Web URL of the branch on GitHub."
-          },
-          "branchCreated": {
-            "type": "boolean",
-            "description": "Whether the ref had to be created on GitHub."
-          },
-          "linkCreated": {
-            "type": "boolean",
-            "description": "Whether a new branch link was added to the task."
-          }
-        },
-        "required": [
-          "integrationId",
-          "repositoryOwner",
-          "repositoryName",
-          "branchName",
-          "url",
-          "branchCreated",
-          "linkCreated"
-        ]
-      },
       "GiteaRepositoryList": {
         "type": "object",
         "properties": {
@@ -3720,16 +3426,6 @@
           },
           "html_url": {
             "type": "string"
-          },
-          "linkedTo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RepositoryLinkedTo"
-              },
-              {
-                "description": "The binding this repository is already linked to, if any."
-              }
-            ]
           }
         },
         "required": [
@@ -3738,8 +3434,7 @@
           "full_name",
           "owner",
           "private",
-          "html_url",
-          "linkedTo"
+          "html_url"
         ]
       },
       "GiteaRepositoryOwner": {
@@ -3805,27 +3500,11 @@
           "failureReason"
         ]
       },
-      "GiteaIntegrationList": {
-        "type": "object",
-        "properties": {
-          "integrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GiteaIntegration"
-            },
-            "description": "Every Gitea binding of the project, oldest first."
-          },
-          "usage": {
-            "$ref": "#/components/schemas/RepositoryBindingUsage"
-          }
-        },
-        "required": [
-          "integrations",
-          "usage"
-        ]
-      },
       "GiteaIntegration": {
-        "type": "object",
+        "type": [
+          "object",
+          "null"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -3963,16 +3642,6 @@
           },
           "web_url": {
             "type": "string"
-          },
-          "linkedTo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RepositoryLinkedTo"
-              },
-              {
-                "description": "The binding this project is already linked to, if any."
-              }
-            ]
           }
         },
         "required": [
@@ -3981,8 +3650,7 @@
           "path_with_namespace",
           "name_with_namespace",
           "visibility",
-          "web_url",
-          "linkedTo"
+          "web_url"
         ]
       },
       "GitlabVerificationResult": {
@@ -4038,27 +3706,11 @@
           "failureReason"
         ]
       },
-      "GitlabIntegrationList": {
-        "type": "object",
-        "properties": {
-          "integrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GitlabIntegration"
-            },
-            "description": "Every GitLab binding of the project, oldest first."
-          },
-          "usage": {
-            "$ref": "#/components/schemas/RepositoryBindingUsage"
-          }
-        },
-        "required": [
-          "integrations",
-          "usage"
-        ]
-      },
       "GitlabIntegration": {
-        "type": "object",
+        "type": [
+          "object",
+          "null"
+        ],
         "properties": {
           "id": {
             "type": "string"
@@ -4166,301 +3818,6 @@
           "imported",
           "updated",
           "skipped"
-        ]
-      },
-      "JiraProjectList": {
-        "type": "object",
-        "properties": {
-          "projects": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JiraProject"
-            }
-          }
-        },
-        "required": [
-          "projects"
-        ]
-      },
-      "JiraProject": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "key": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "linkedTo": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/RepositoryLinkedTo"
-              },
-              {
-                "description": "The binding this project is already linked to, if any."
-              }
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "key",
-          "name",
-          "linkedTo"
-        ]
-      },
-      "JiraVerificationResult": {
-        "type": "object",
-        "properties": {
-          "isInstalled": {
-            "type": "boolean"
-          },
-          "hasRequiredPermissions": {
-            "type": "boolean"
-          },
-          "projectExists": {
-            "type": "boolean"
-          },
-          "missingPermissions": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "message": {
-            "type": "string",
-            "description": "A human-readable summary to show the user."
-          },
-          "failureReason": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "enum": [
-              "not_a_jira_instance",
-              "redirected",
-              "project_not_found",
-              null
-            ],
-            "description": "Why verification failed, when it did. `redirected` usually means the base URL is behind a proxy that rewrites it."
-          }
-        },
-        "required": [
-          "isInstalled",
-          "hasRequiredPermissions",
-          "projectExists",
-          "missingPermissions",
-          "message",
-          "failureReason"
-        ]
-      },
-      "JiraIntegrationList": {
-        "type": "object",
-        "properties": {
-          "integrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JiraIntegration"
-            },
-            "description": "Every Jira binding of the project, oldest first."
-          },
-          "usage": {
-            "$ref": "#/components/schemas/RepositoryBindingUsage"
-          }
-        },
-        "required": [
-          "integrations",
-          "usage"
-        ]
-      },
-      "JiraIntegration": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string"
-          },
-          "baseUrl": {
-            "type": "string",
-            "description": "Root URL of the Jira instance."
-          },
-          "authMode": {
-            "type": "string",
-            "enum": [
-              "cloud",
-              "dc"
-            ]
-          },
-          "email": {
-            "type": "string"
-          },
-          "projectKey": {
-            "type": "string"
-          },
-          "maskedApiToken": {
-            "type": "string"
-          },
-          "webhookUrl": {
-            "type": "string",
-            "description": "Where Jira should POST events for this project."
-          },
-          "webhookSecret": {
-            "type": "string",
-            "description": "Only returned to callers with workspace:manage_settings, so the value can be pasted into Jira."
-          },
-          "issueType": {
-            "type": "string",
-            "description": "Issue type used for tasks created in Kaneo."
-          },
-          "statusMap": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            },
-            "description": "Kaneo column slug to Jira status name mapping for outbound transitions."
-          },
-          "commentTaskLinkOnJiraIssue": {
-            "type": "boolean",
-            "description": "When on, Kaneo comments a link back to the task on the linked Jira issue."
-          },
-          "isActive": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "projectId",
-          "baseUrl",
-          "authMode",
-          "projectKey",
-          "maskedApiToken",
-          "isActive",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "JiraIntegrationNotFound": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "error"
-        ]
-      },
-      "JiraDeleteResult": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "success",
-          "message"
-        ]
-      },
-      "JiraImportResult": {
-        "type": "object",
-        "properties": {
-          "imported": {
-            "type": "number"
-          },
-          "updated": {
-            "type": "number",
-            "description": "Existing tasks that were refreshed from their issue."
-          },
-          "skipped": {
-            "type": "number"
-          },
-          "relations": {
-            "type": "number",
-            "description": "Task relations created between imported tasks (subtask, blocks, related)."
-          },
-          "sprints": {
-            "type": "object",
-            "properties": {
-              "created": {
-                "type": "number",
-                "description": "Sprints created from the Jira board."
-              },
-              "updated": {
-                "type": "number",
-                "description": "Existing sprints refreshed from the Jira board."
-              },
-              "tasksAssigned": {
-                "type": "number",
-                "description": "Tasks placed into their Jira sprint; tasks already in a closed sprint stay there as history."
-              }
-            },
-            "required": [
-              "created",
-              "updated",
-              "tasksAssigned"
-            ],
-            "description": "Sprints imported from the Jira board and the task assignments made."
-          },
-          "users": {
-            "type": "object",
-            "properties": {
-              "invited": {
-                "type": "number",
-                "description": "Jira users who now have a pending workspace invitation; no email was sent."
-              },
-              "members": {
-                "type": "number",
-                "description": "Jira users who were already workspace members."
-              },
-              "withoutEmail": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                },
-                "description": "Jira users without a public email address, who cannot be invited automatically."
-              }
-            },
-            "required": [
-              "invited",
-              "members",
-              "withoutEmail"
-            ],
-            "description": "Jira users seen during the import and their invite state."
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "required": [
-          "imported",
-          "updated",
-          "skipped",
-          "relations",
-          "sprints",
-          "users"
         ]
       },
       "GenericWebhookIntegration": {
@@ -4703,131 +4060,6 @@
           "channelName",
           "webhookConfigured",
           "maskedWebhookUrl",
-          "events",
-          "isActive",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "MatrixIntegration": {
-        "type": [
-          "object",
-          "null"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string"
-          },
-          "mode": {
-            "type": "string",
-            "enum": [
-              "provision",
-              "existing"
-            ],
-            "description": "provision means Kaneo created the space structure on the homeserver; existing posts to a room you manage."
-          },
-          "homeserverUrl": {
-            "type": "string",
-            "description": "Base URL of the Matrix homeserver messages are sent to."
-          },
-          "botUserId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Matrix user ID of the bot account, discovered from the homeserver at connect time."
-          },
-          "spaceNamePrefix": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Optional prefix for the workspace space name."
-          },
-          "inviteUsers": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "Matrix user IDs invited to every created space and room."
-          },
-          "parentSpaceId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Room ID or alias of the space the workspace space is nested under."
-          },
-          "spaceId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Room ID of the provisioned workspace space."
-          },
-          "updatesRoomId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Room ID task notifications are posted to."
-          },
-          "generalRoomId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Room ID of the provisioned General discussion room."
-          },
-          "roomId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Target room in existing mode, after alias resolution at connect time."
-          },
-          "tokenConfigured": {
-            "type": "boolean"
-          },
-          "maskedAccessToken": {
-            "type": "string"
-          },
-          "events": {
-            "$ref": "#/components/schemas/IntegrationEvents"
-          },
-          "isActive": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "projectId",
-          "mode",
-          "homeserverUrl",
-          "botUserId",
-          "spaceNamePrefix",
-          "inviteUsers",
-          "parentSpaceId",
-          "spaceId",
-          "updatesRoomId",
-          "generalRoomId",
-          "roomId",
-          "tokenConfigured",
-          "maskedAccessToken",
           "events",
           "isActive",
           "createdAt",
@@ -5212,75 +4444,6 @@
           "type"
         ]
       },
-      "RepositoryBindingList": {
-        "type": "object",
-        "properties": {
-          "bindings": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RepositoryBindingSummary"
-            },
-            "description": "Every repository binding of the project."
-          }
-        },
-        "required": [
-          "bindings"
-        ]
-      },
-      "RepositoryBindingSummary": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "description": "The integration id. Pass it as syncIntegrationIds when creating a task."
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "github",
-              "gitea",
-              "gitlab"
-            ],
-            "description": "The git provider of the binding."
-          },
-          "identity": {
-            "type": "string",
-            "description": "owner/name for GitHub and Gitea, the full project path for GitLab."
-          },
-          "host": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Instance host for self-hosted Gitea and GitLab; null for github.com."
-          },
-          "externalUrl": {
-            "type": "string",
-            "description": "Web URL of the repository."
-          },
-          "isActive": {
-            "type": "boolean"
-          },
-          "requiresVerification": {
-            "type": "boolean",
-            "description": "Legacy GitHub bindings without a verified numeric repository id cannot create issues."
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "type",
-          "identity",
-          "host",
-          "externalUrl",
-          "isActive",
-          "requiresVerification",
-          "createdAt"
-        ]
-      },
       "WorkflowRule": {
         "type": "object",
         "properties": {
@@ -5293,13 +4456,6 @@
           "integrationType": {
             "type": "string",
             "description": "The integration that emits the event, e.g. `github`."
-          },
-          "integrationId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "The repository binding this rule targets, or null for a type-wide rule that applies to every repository of the integration type in the project (RFC 0001 WP6)."
           },
           "eventType": {
             "type": "string",
@@ -5334,7 +4490,6 @@
           "id",
           "projectId",
           "integrationType",
-          "integrationId",
           "eventType",
           "columnId",
           "columnName",
@@ -5355,12 +4510,6 @@
           "integrationType": {
             "type": "string"
           },
-          "integrationId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
           "eventType": {
             "type": "string"
           },
@@ -5380,7 +4529,6 @@
           "id",
           "projectId",
           "integrationType",
-          "integrationId",
           "eventType",
           "columnId",
           "createdAt",
@@ -5583,59 +4731,6 @@
           "userId",
           "projectAccess",
           "projectIds"
-        ]
-      },
-      "WorkspaceInvitationList": {
-        "type": "object",
-        "properties": {
-          "invitations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WorkspaceInvitationResult"
-            }
-          }
-        },
-        "required": [
-          "invitations"
-        ]
-      },
-      "WorkspaceInvitationResult": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "created",
-              "already_member",
-              "already_invited",
-              "error"
-            ],
-            "description": "\"created\": a new pending invitation. \"already_member\": the email belongs to a current member, nothing was created. \"already_invited\": an unexpired pending invitation already exists and was reused; its expiry is refreshed when it was re-sent. \"error\": no invitation was created, see error."
-          },
-          "id": {
-            "type": "string",
-            "description": "Invitation id, present whenever an invitation exists for this email."
-          },
-          "expiresAt": {
-            "type": "string",
-            "description": "When the invitation expires. Like invitations sent from the app, it stays valid for 48 hours."
-          },
-          "emailed": {
-            "type": "boolean",
-            "description": "Whether the standard workspace invitation email was sent for this invitation."
-          },
-          "error": {
-            "type": "string",
-            "description": "Failure reason when status is \"error\", or why the invitation email could not be sent."
-          }
-        },
-        "required": [
-          "email",
-          "status",
-          "emailed"
         ]
       },
       "WorkspaceCapabilities": {
@@ -6587,115 +5682,6 @@
     "parameters": {}
   },
   "paths": {
-    "/jira-integration/verify": {
-      "post": {
-        "operationId": "verifyJiraAccess",
-        "tags": [
-          "Jira"
-        ],
-        "summary": "Verify Jira access",
-        "description": "Check that the base URL is a Jira instance and that the credentials can reach the project Kaneo needs. Project lookup failures are reported in the body; invalid credentials and upstream errors return an error status. Omit apiToken to use the saved token for the unchanged base URL.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "projectId": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "baseUrl": {
-                    "type": "string",
-                    "format": "uri"
-                  },
-                  "authMode": {
-                    "type": "string",
-                    "enum": [
-                      "cloud",
-                      "dc"
-                    ],
-                    "description": "cloud = Atlassian cloud with email + API token (Basic); dc = Jira Data Center with a personal access token (Bearer)."
-                  },
-                  "email": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "apiToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Omit to verify with this project's saved token. The base URL and auth mode must match the saved integration."
-                  },
-                  "projectKey": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "required": [
-                  "projectId",
-                  "baseUrl",
-                  "authMode",
-                  "projectKey"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Verification result",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JiraVerificationResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body, unknown project, or invalid Jira credentials",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Kaneo authentication required",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Jira verification failed",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/instance/status": {
       "get": {
         "operationId": "getInstanceStatus",
@@ -12604,16 +11590,6 @@
                         "value"
                       ]
                     }
-                  },
-                  "syncIntegrationIds": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 128
-                    },
-                    "maxItems": 20,
-                    "description": "Repository bindings that should create an issue for this task. Omit to keep the previous behavior of every active binding creating an issue; send an empty array to create the task without any issue."
                   }
                 },
                 "required": [
@@ -14744,655 +13720,6 @@
           "409": {
             "description": "The column still contains tasks",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sprint/{projectId}": {
-      "get": {
-        "operationId": "getSprints",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Get sprints",
-        "description": "Get a project's sprints ordered by position, with task and completed-task counts.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of sprints ordered by position",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Sprint"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the project's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createSprint",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Create sprint",
-        "description": "Add a future sprint to the end of a project's sprint backlog. Omit the name to generate the next free 'Sprint N' name.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Sprint name, unique per project. Omitted to generate the next free 'Sprint N' name."
-                  },
-                  "goal": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "What the team wants to achieve in this sprint."
-                  },
-                  "startDate": {
-                    "type": "string",
-                    "description": "ISO date string, e.g. \"2025-01-15\". Optional until the sprint starts."
-                  },
-                  "endDate": {
-                    "type": "string",
-                    "description": "ISO date string, e.g. \"2025-01-29\". Optional until the sprint starts."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created sprint",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Sprint"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body, unknown project, or invalid dates",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing project:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "A sprint with this name already exists in the project",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sprint/reorder/{projectId}": {
-      "post": {
-        "operationId": "reorderSprints",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Reorder sprints",
-        "description": "Set new positions for a project's future sprints and return the whole sprint list in its new order. Active and closed sprints keep their positions.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "sprints": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "string"
-                        },
-                        "position": {
-                          "type": "integer",
-                          "minimum": 0
-                        }
-                      },
-                      "required": [
-                        "id",
-                        "position"
-                      ]
-                    },
-                    "description": "Every sprint keeps its new position. Only future sprints may be reordered; active and closed sprints are rejected."
-                  }
-                },
-                "required": [
-                  "sprints"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The reordered sprint list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Sprint"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "A sprint is not a future sprint of this project",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing project:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sprint/{id}": {
-      "put": {
-        "operationId": "updateSprint",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Update sprint",
-        "description": "Rename a sprint, edit its goal or dates. Closed sprints are immutable; the active sprint cannot change its start date.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "goal": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "Null clears the sprint goal."
-                  },
-                  "startDate": {
-                    "type": "string",
-                    "description": "Only accepted for future sprints; the active sprint is already running and closed sprints are immutable."
-                  },
-                  "endDate": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "Accepted for future and active sprints. Null clears it."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The updated sprint",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Sprint"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body, unknown sprint, invalid dates, or an immutable field",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing project:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Sprint not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "The sprint is closed, or the name is already taken",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sprint/start/{id}": {
-      "post": {
-        "operationId": "startSprint",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Start sprint",
-        "description": "Make a future sprint the single active sprint of its project. Dates default to now plus the project's default sprint length. Fails while another sprint is active.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "startDate": {
-                    "type": "string",
-                    "description": "ISO date string. Defaults to now, or the stored start date."
-                  },
-                  "endDate": {
-                    "type": "string",
-                    "description": "ISO date string. Defaults to the stored end date, or the start date plus the project's default sprint length."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The started sprint",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Sprint"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body, unknown sprint, or invalid dates",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing project:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Sprint not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Another sprint is already active, or the sprint is not a future sprint",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sprint/close/{id}": {
-      "post": {
-        "operationId": "closeSprint",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Close sprint",
-        "description": "Close the active sprint. Unfinished tasks move to the chosen future sprint, or to the backlog for a null target. Completed tasks remain in the closed sprint as its history.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "id",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "targetSprintId": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "Future sprint of the same project that receives every unfinished task. Null moves them to the backlog. Completed tasks stay in the closed sprint as history."
-                  }
-                },
-                "required": [
-                  "targetSprintId"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The closed sprint and the moved tasks",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CloseSprintResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The target is not a future sprint of this project",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing project:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Sprint or target sprint not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "The sprint is not active, or is already closed",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/sprint/task/{taskId}": {
-      "put": {
-        "operationId": "updateTaskSprint",
-        "tags": [
-          "Sprints"
-        ],
-        "summary": "Assign a task to a sprint",
-        "description": "Move a task to an active or future sprint of its project, or to the backlog with null. Closed sprints are immutable in both directions.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "taskId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "sprintId": {
-                    "type": [
-                      "string",
-                      "null"
-                    ],
-                    "description": "Active or future sprint of the task's project. Null moves the task to the backlog. Closed sprints are rejected in both directions."
-                  }
-                },
-                "required": [
-                  "sprintId"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The task with its new sprint",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TaskSprint"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body, or unknown task",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing task:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Task or target sprint not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "The task or the target belongs to a closed sprint",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -18711,733 +17038,6 @@
         }
       }
     },
-    "/integration-sync/integration/{integrationId}": {
-      "get": {
-        "operationId": "getIntegrationSyncRulesById",
-        "tags": [
-          "Integration sync"
-        ],
-        "summary": "Get one binding's sync rules and current task scope",
-        "description": "Read the saved rules and scope of one repository binding (integrationId). Rules remain active when advanced mode is hidden. Each binding keeps its own rules, preview tokens, paused links and resume flow; a sibling binding of the same project is never affected.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": false,
-            "name": "after",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Saved rules and scope",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IntegrationSyncPreview"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid rule or workspace label",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access or required permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or linked task not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Configuration, impact or comparison changed; review again",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "operationId": "saveIntegrationSyncRulesById",
-        "tags": [
-          "Integration sync"
-        ],
-        "summary": "Apply a previewed sync rule to one binding",
-        "description": "Save the rules of one repository binding (integrationId) only if the preview is still current. Excluded links are paused, never deleted; a sibling binding's rules are never touched. Newly matching unlinked tasks are exported through the integration event path. Paused links require explicit review to resume.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "rules": {
-                    "type": "object",
-                    "properties": {
-                      "outgoing": {
-                        "oneOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "all"
-                                ]
-                              }
-                            },
-                            "required": [
-                              "mode"
-                            ]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "labels"
-                                ]
-                              },
-                              "match": {
-                                "type": "string",
-                                "enum": [
-                                  "any",
-                                  "all"
-                                ]
-                              },
-                              "labels": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string",
-                                  "minLength": 1,
-                                  "maxLength": 128
-                                },
-                                "minItems": 1,
-                                "maxItems": 50
-                              }
-                            },
-                            "required": [
-                              "mode",
-                              "match",
-                              "labels"
-                            ]
-                          }
-                        ],
-                        "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
-                      },
-                      "incoming": {
-                        "oneOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "all"
-                                ]
-                              }
-                            },
-                            "required": [
-                              "mode"
-                            ]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "labels"
-                                ]
-                              },
-                              "match": {
-                                "type": "string",
-                                "enum": [
-                                  "any",
-                                  "all"
-                                ]
-                              },
-                              "labels": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string",
-                                  "minLength": 1,
-                                  "maxLength": 128
-                                },
-                                "minItems": 1,
-                                "maxItems": 50
-                              }
-                            },
-                            "required": [
-                              "mode",
-                              "match",
-                              "labels"
-                            ]
-                          }
-                        ],
-                        "description": "Exact repository label names controlling which issues can be imported."
-                      }
-                    },
-                    "required": [
-                      "outgoing",
-                      "incoming"
-                    ]
-                  },
-                  "previewToken": {
-                    "type": "string",
-                    "minLength": 64,
-                    "maxLength": 64
-                  }
-                },
-                "required": [
-                  "rules",
-                  "previewToken"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Saved rules and current scope",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IntegrationSyncPreview"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid rule or workspace label",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access or required permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or linked task not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Configuration, impact or comparison changed; review again",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/integration-sync/integration/{integrationId}/preview": {
-      "post": {
-        "operationId": "previewIntegrationSyncRulesById",
-        "tags": [
-          "Integration sync"
-        ],
-        "summary": "Preview a sync rule change for one binding",
-        "description": "Returns matching tasks, new exports, paused links and a token bound to the addressed binding and impact. Preview tokens are scoped per binding and cannot be replayed against a sibling binding. Outgoing labels are workspace label IDs; incoming labels are exact repository label names.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "rules": {
-                    "type": "object",
-                    "properties": {
-                      "outgoing": {
-                        "oneOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "all"
-                                ]
-                              }
-                            },
-                            "required": [
-                              "mode"
-                            ]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "labels"
-                                ]
-                              },
-                              "match": {
-                                "type": "string",
-                                "enum": [
-                                  "any",
-                                  "all"
-                                ]
-                              },
-                              "labels": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string",
-                                  "minLength": 1,
-                                  "maxLength": 128
-                                },
-                                "minItems": 1,
-                                "maxItems": 50
-                              }
-                            },
-                            "required": [
-                              "mode",
-                              "match",
-                              "labels"
-                            ]
-                          }
-                        ],
-                        "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
-                      },
-                      "incoming": {
-                        "oneOf": [
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "all"
-                                ]
-                              }
-                            },
-                            "required": [
-                              "mode"
-                            ]
-                          },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "mode": {
-                                "type": "string",
-                                "enum": [
-                                  "labels"
-                                ]
-                              },
-                              "match": {
-                                "type": "string",
-                                "enum": [
-                                  "any",
-                                  "all"
-                                ]
-                              },
-                              "labels": {
-                                "type": "array",
-                                "items": {
-                                  "type": "string",
-                                  "minLength": 1,
-                                  "maxLength": 128
-                                },
-                                "minItems": 1,
-                                "maxItems": 50
-                              }
-                            },
-                            "required": [
-                              "mode",
-                              "match",
-                              "labels"
-                            ]
-                          }
-                        ],
-                        "description": "Exact repository label names controlling which issues can be imported."
-                      }
-                    },
-                    "required": [
-                      "outgoing",
-                      "incoming"
-                    ]
-                  }
-                },
-                "required": [
-                  "rules"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Proposed rule impact",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IntegrationSyncPreview"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid rule or workspace label",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access or required permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or linked task not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Configuration, impact or comparison changed; review again",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/integration-sync/integration/{integrationId}/links/{linkId}/review": {
-      "get": {
-        "operationId": "reviewIntegrationSyncResumeById",
-        "tags": [
-          "Integration sync"
-        ],
-        "summary": "Compare a paused task with its external issue (one binding)",
-        "description": "The paused link must belong to the addressed binding; a sibling binding's link is not found. The comparison token is bound to the addressed binding's config.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            },
-            "required": true,
-            "name": "linkId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Current values and comparison token",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/IntegrationSyncResumePreview"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid rule or workspace label",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access or required permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or linked task not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Configuration, impact or comparison changed; review again",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "502": {
-            "description": "External issue unavailable; sync remains paused",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/integration-sync/integration/{integrationId}/links/{linkId}/resume": {
-      "post": {
-        "operationId": "resumeIntegrationSyncById",
-        "tags": [
-          "Integration sync"
-        ],
-        "summary": "Resume a reviewed issue link on one binding",
-        "description": "Explicitly choose the current Kaneo or repository title, description and open/closed state. Existing links are reused; historical comments are not replayed. The task must still match its outgoing rule. A changed comparison requires another review. The resume lease and scope locks are held per link and per binding.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1
-            },
-            "required": true,
-            "name": "linkId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "token": {
-                    "type": "string",
-                    "minLength": 64,
-                    "maxLength": 64
-                  },
-                  "source": {
-                    "type": "string",
-                    "enum": [
-                      "kaneo",
-                      "provider"
-                    ]
-                  }
-                },
-                "required": [
-                  "token",
-                  "source"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Sync resumed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    }
-                  },
-                  "required": [
-                    "success"
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid rule or workspace label",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access or required permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or linked task not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Comparison changed or synchronization is busy; review or retry",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "502": {
-            "description": "External issue unavailable; sync remains paused",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/integration-sync/project/{projectId}/{provider}": {
       "get": {
         "operationId": "getIntegrationSyncRules",
@@ -19445,7 +17045,7 @@
           "Integration sync"
         ],
         "summary": "Get sync rules and current task scope",
-        "description": "Compatibility shim (RFC 0001 WP5): resolves the project's first binding of the provider (lowest createdAt) until the new web client ships. Use GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+        "description": "Workspace members with project and task read permissions can inspect saved rules. Rules remain active when advanced mode is hidden. Paused issue links are preserved; eligible paused tasks require review before resuming.",
         "parameters": [
           {
             "schema": {
@@ -19462,8 +17062,7 @@
               "enum": [
                 "github",
                 "gitea",
-                "gitlab",
-                "jira"
+                "gitlab"
               ]
             },
             "required": true,
@@ -19551,7 +17150,7 @@
           "Integration sync"
         ],
         "summary": "Apply a previewed sync rule",
-        "description": "Compatibility shim (RFC 0001 WP5): saves to the project's first binding of the provider until the new web client ships. Use PATCH /integration/{integrationId}; this route is removed in the cleanup PR.",
+        "description": "Save shared integration rules only if the preview is still current. Excluded links are paused, never deleted. Newly matching unlinked tasks are exported through the integration event path. Paused links require explicit review to resume.",
         "parameters": [
           {
             "schema": {
@@ -19568,8 +17167,7 @@
               "enum": [
                 "github",
                 "gitea",
-                "gitlab",
-                "jira"
+                "gitlab"
               ]
             },
             "required": true,
@@ -19785,7 +17383,7 @@
           "Integration sync"
         ],
         "summary": "Preview a sync rule change",
-        "description": "Compatibility shim (RFC 0001 WP5): previews the project's first binding of the provider until the new web client ships. Use POST /integration/{integrationId}/preview; this route is removed in the cleanup PR.",
+        "description": "Returns matching tasks, new exports, paused links and a token bound to the current integration and impact. Outgoing labels are workspace label IDs; incoming labels are exact repository label names.",
         "parameters": [
           {
             "schema": {
@@ -19802,8 +17400,7 @@
               "enum": [
                 "github",
                 "gitea",
-                "gitlab",
-                "jira"
+                "gitlab"
               ]
             },
             "required": true,
@@ -20013,7 +17610,6 @@
           "Integration sync"
         ],
         "summary": "Compare a paused task with its external issue",
-        "description": "Compatibility shim (RFC 0001 WP5): reviews a link of the project's first binding of the provider until the new web client ships. Use GET /integration/{integrationId}/links/{linkId}/review; this route is removed in the cleanup PR.",
         "parameters": [
           {
             "schema": {
@@ -20030,8 +17626,7 @@
               "enum": [
                 "github",
                 "gitea",
-                "gitlab",
-                "jira"
+                "gitlab"
               ]
             },
             "required": true,
@@ -20132,7 +17727,7 @@
           "Integration sync"
         ],
         "summary": "Resume a reviewed issue link",
-        "description": "Compatibility shim (RFC 0001 WP5): resumes a link of the project's first binding of the provider until the new web client ships. Use POST /integration/{integrationId}/links/{linkId}/resume; this route is removed in the cleanup PR.",
+        "description": "Explicitly choose the current Kaneo or repository title, description and open/closed state. Existing links are reused; historical comments are not replayed. The task must still match its outgoing rule. A changed comparison requires another review.",
         "parameters": [
           {
             "schema": {
@@ -20149,8 +17744,7 @@
               "enum": [
                 "github",
                 "gitea",
-                "gitlab",
-                "jira"
+                "gitlab"
               ]
             },
             "required": true,
@@ -20514,7 +18108,7 @@
           "GitHub"
         ],
         "summary": "Get GitHub integration",
-        "description": "Compatibility shim: returns the project's first GitHub binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+        "description": "Get the GitHub integration for a project, or null when none is configured.",
         "parameters": [
           {
             "schema": {
@@ -20577,7 +18171,7 @@
           "GitHub"
         ],
         "summary": "Create GitHub integration",
-        "description": "Link a project to one GitHub repository. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Existing issue and pull request links are kept per binding.",
+        "description": "Link a project to a GitHub repository. Disconnect first to switch repositories; existing issue and pull request links cannot be reused for another repository.",
         "parameters": [
           {
             "schema": {
@@ -20645,16 +18239,6 @@
               }
             }
           },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
@@ -20676,125 +18260,8 @@
             }
           },
           "409": {
-            "description": "The repository is already linked to this project (repository_already_linked)",
+            "description": "Integration changed or another repository is already linked",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/github-integration/project/{projectId}/integrations": {
-      "get": {
-        "operationId": "listGitHubIntegrations",
-        "tags": [
-          "GitHub"
-        ],
-        "summary": "List GitHub integrations",
-        "description": "List every GitHub repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The project's GitHub bindings and the repository binding usage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitHubIntegrationList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/github-integration/integration/{integrationId}": {
-      "get": {
-        "operationId": "getGitHubIntegrationById",
-        "tags": [
-          "GitHub"
-        ],
-        "summary": "Get a GitHub integration by id",
-        "description": "Get one GitHub repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "GitHub integration details, or null",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitHubIntegration"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the integration's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -20813,16 +18280,14 @@
           "GitHub"
         ],
         "summary": "Update GitHub integration",
-        "description": "Update one GitHub repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
+        "description": "Update the GitHub integration. Omitted fields keep their current value.",
         "parameters": [
           {
             "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
+              "type": "string"
             },
             "required": true,
-            "name": "integrationId",
+            "name": "projectId",
             "in": "path"
           }
         ],
@@ -20858,11 +18323,6 @@
           "400": {
             "description": "The resulting config failed validation",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -20880,24 +18340,9 @@
               }
             }
           },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -20916,13 +18361,8 @@
             }
           },
           "409": {
-            "description": "Integration changed; refresh before updating",
+            "description": "Integration changed or another repository is already linked",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -20941,16 +18381,14 @@
           "GitHub"
         ],
         "summary": "Delete GitHub integration",
-        "description": "Unlink one GitHub repository binding. Its issue and pull request links and import state are removed with it; tasks created from its issues remain in the project.",
+        "description": "Unlink a project from its GitHub repository.",
         "parameters": [
           {
             "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
+              "type": "string"
             },
             "required": true,
-            "name": "integrationId",
+            "name": "projectId",
             "in": "path"
           }
         ],
@@ -20978,11 +18416,6 @@
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -20993,11 +18426,6 @@
           "404": {
             "description": "Project or GitHub integration not found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -21018,7 +18446,7 @@
           "GitHub"
         ],
         "summary": "Import GitHub issues",
-        "description": "Import open issues and link open pull requests for one repository binding (integrationId) in bounded steps. Existing tasks are updated. Continue 202 responses with the returned runId until 200; the same runId safely retries completion. Progress is saved after each page and is per binding. A projectId in the body is accepted for compat and must match the binding's project.",
+        "description": "Import open issues and link open pull requests in bounded steps. Existing tasks are updated. Continue 202 responses with the returned runId until 200; the same runId safely retries completion. Progress is saved after each page. New calls without runId resume an unfinished import or start a new one after completion.",
         "requestBody": {
           "required": true,
           "content": {
@@ -21026,11 +18454,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "integrationId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                  },
                   "projectId": {
                     "type": "string",
                     "minLength": 1,
@@ -21043,7 +18466,7 @@
                   }
                 },
                 "required": [
-                  "integrationId"
+                  "projectId"
                 ]
               }
             }
@@ -21071,7 +18494,7 @@
             }
           },
           "400": {
-            "description": "integrationId is required",
+            "description": "projectId is required",
             "content": {
               "application/json": {
                 "schema": {
@@ -21101,7 +18524,7 @@
             }
           },
           "404": {
-            "description": "Integration not found",
+            "description": "Project not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -21143,202 +18566,6 @@
         }
       }
     },
-    "/github-integration/integration/{integrationId}/branches": {
-      "get": {
-        "operationId": "listGitHubRepositoryBranches",
-        "tags": [
-          "GitHub"
-        ],
-        "summary": "Search branches of a linked repository",
-        "description": "List the branches of the repository behind one binding, optionally filtered by a case-insensitive substring such as the task ticket key. At most 500 branches per call are examined.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          },
-          {
-            "schema": {
-              "type": "string",
-              "maxLength": 200,
-              "description": "Case-insensitive substring filter applied to branch names server-side."
-            },
-            "required": false,
-            "description": "Case-insensitive substring filter applied to branch names server-side.",
-            "name": "query",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Matching branches of the linked repository",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitHubBranchList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid query",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing task:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Integration requires verification",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createGitHubRepositoryBranch",
-        "tags": [
-          "GitHub"
-        ],
-        "summary": "Create or link a task branch",
-        "description": "Create a branch for a task in the bound repository, based on the default branch head, and link it to the task. When the branch already exists it is only linked. With create=false the branch must already exist.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "taskId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128,
-                    "description": "The task the branch is created for."
-                  },
-                  "branchName": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 255,
-                    "description": "The branch to create, e.g. fix/EC-123. Must satisfy git ref name rules."
-                  },
-                  "create": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Create the ref on GitHub from the default branch head when it does not exist yet. Set to false to only link an existing branch."
-                  }
-                },
-                "required": [
-                  "taskId",
-                  "branchName"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The created or linked branch",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitHubBranchResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid branch name, or the task belongs to another project",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing task:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or task not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Integration requires verification",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/gitea-integration/repositories": {
       "post": {
         "operationId": "listGiteaRepositories",
@@ -21346,7 +18573,7 @@
           "Gitea"
         ],
         "summary": "List Gitea repositories",
-        "description": "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each repository is annotated with its linked state (RFC 0001 WP3): same-project links block selection, cross-project links are informational only (decision D1).",
+        "description": "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL.",
         "requestBody": {
           "required": true,
           "content": {
@@ -21547,286 +18774,6 @@
         }
       }
     },
-    "/gitea-integration/project/{projectId}/integrations": {
-      "get": {
-        "operationId": "listGiteaIntegrations",
-        "tags": [
-          "Gitea"
-        ],
-        "summary": "List Gitea integrations",
-        "description": "List every Gitea repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10). Requires workspace:manage_settings, so each row includes its own webhook secret.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The project's Gitea bindings and the repository binding usage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GiteaIntegrationList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/gitea-integration/integration/{integrationId}": {
-      "get": {
-        "operationId": "getGiteaIntegrationById",
-        "tags": [
-          "Gitea"
-        ],
-        "summary": "Get a Gitea integration by id",
-        "description": "Get one Gitea repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1); the webhook secret is per row, so a caller never sees another binding's secret.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Gitea integration details, or null",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/GiteaIntegration"
-                    },
-                    {
-                      "type": [
-                        "object",
-                        "null"
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the integration's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "operationId": "updateGiteaIntegration",
-        "tags": [
-          "Gitea"
-        ],
-        "summary": "Update Gitea integration",
-        "description": "Update one Gitea repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "isActive": {
-                    "type": "boolean"
-                  },
-                  "commentTaskLinkOnGiteaIssue": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The updated integration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GiteaIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The resulting config failed validation",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GiteaIntegrationNotFound"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Integration changed; refresh before updating settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteGiteaIntegration",
-        "tags": [
-          "Gitea"
-        ],
-        "summary": "Delete Gitea integration",
-        "description": "Unlink one Gitea repository binding. Its issue and pull request links are removed with it; tasks created from its issues remain in the project. Other bindings of the same repository keep working, including their webhook routes.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The integration was removed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GiteaDeleteResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Gitea integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/gitea-integration/project/{projectId}": {
       "get": {
         "operationId": "getGiteaIntegration",
@@ -21834,7 +18781,7 @@
           "Gitea"
         ],
         "summary": "Get Gitea integration",
-        "description": "Compatibility shim: returns the project's first Gitea binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+        "description": "Get the Gitea integration for a project, or null when none is configured. The webhook secret is included only for callers with workspace:manage_settings.",
         "parameters": [
           {
             "schema": {
@@ -21851,17 +18798,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/GiteaIntegration"
-                    },
-                    {
-                      "type": [
-                        "object",
-                        "null"
-                      ]
-                    }
-                  ]
+                  "$ref": "#/components/schemas/GiteaIntegration"
                 }
               }
             }
@@ -21907,7 +18844,7 @@
           "Gitea"
         ],
         "summary": "Create Gitea integration",
-        "description": "Link a project to one Gitea repository, generating the per-binding webhook secret for the webhook Gitea will post events to. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Use the verify route first to confirm the token really reaches the repository.",
+        "description": "Link a project to a Gitea repository, creating the webhook Gitea will post events to. Use the verify route first to confirm the token really reaches the repository.",
         "parameters": [
           {
             "schema": {
@@ -21952,32 +18889,12 @@
           }
         },
         "responses": {
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "200": {
             "description": "The stored integration",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GiteaIntegration"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "The repository is already linked to this project (repository_already_linked)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
                 }
               }
             }
@@ -22199,7 +19116,7 @@
           "Gitea"
         ],
         "summary": "Import Gitea issues",
-        "description": "Import the linked repository's issues as tasks for one repository binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
+        "description": "Import the linked repository's issues as tasks. Issues that already have a task are refreshed rather than duplicated.",
         "requestBody": {
           "required": true,
           "content": {
@@ -22207,19 +19124,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "integrationId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                  },
                   "projectId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
+                    "type": "string"
                   }
                 },
                 "required": [
-                  "integrationId"
+                  "projectId"
                 ]
               }
             }
@@ -22237,7 +19147,7 @@
             }
           },
           "400": {
-            "description": "integrationId is required",
+            "description": "projectId is required",
             "content": {
               "application/json": {
                 "schema": {
@@ -22267,7 +19177,7 @@
             }
           },
           "404": {
-            "description": "Integration or project not found",
+            "description": "Project not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -22289,7 +19199,7 @@
           "GitLab"
         ],
         "summary": "List GitLab projects",
-        "description": "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each project is annotated with its linked state (RFC 0001 WP4): same-project links block selection, cross-project links are informational only (decision D1).",
+        "description": "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL.",
         "requestBody": {
           "required": true,
           "content": {
@@ -22492,286 +19402,6 @@
         }
       }
     },
-    "/gitlab-integration/project/{projectId}/integrations": {
-      "get": {
-        "operationId": "listGitlabIntegrations",
-        "tags": [
-          "GitLab"
-        ],
-        "summary": "List GitLab integrations",
-        "description": "List every GitLab project bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10). Requires workspace:manage_settings, so each row includes its own webhook secret.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The project's GitLab bindings and the repository binding usage",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitlabIntegrationList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/gitlab-integration/integration/{integrationId}": {
-      "get": {
-        "operationId": "getGitlabIntegrationById",
-        "tags": [
-          "GitLab"
-        ],
-        "summary": "Get a GitLab integration by id",
-        "description": "Get one GitLab project binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1); the webhook secret is per row, so a caller never sees another binding's secret.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "GitLab integration details, or null",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/GitlabIntegration"
-                    },
-                    {
-                      "type": [
-                        "object",
-                        "null"
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the integration's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "operationId": "updateGitlabIntegration",
-        "tags": [
-          "GitLab"
-        ],
-        "summary": "Update GitLab integration",
-        "description": "Update one GitLab project binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "isActive": {
-                    "type": "boolean"
-                  },
-                  "commentTaskLinkOnGitlabIssue": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The updated integration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitlabIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The resulting config failed validation",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitlabIntegrationNotFound"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Integration changed; refresh before updating settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteGitlabIntegration",
-        "tags": [
-          "GitLab"
-        ],
-        "summary": "Delete GitLab integration",
-        "description": "Unlink one GitLab project binding. Its issue and merge request links are removed with it; tasks created from its issues remain in the project. Other bindings of the same GitLab project keep working, including their webhook routes.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The integration was removed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitlabDeleteResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "GitLab integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/gitlab-integration/project/{projectId}": {
       "get": {
         "operationId": "getGitlabIntegration",
@@ -22779,7 +19409,7 @@
           "GitLab"
         ],
         "summary": "Get GitLab integration",
-        "description": "Compatibility shim: returns the project's first GitLab binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+        "description": "Get the GitLab integration for a project, or null when none is configured. The masked access token and the webhook secret are included only for callers with workspace:manage_settings.",
         "parameters": [
           {
             "schema": {
@@ -22796,17 +19426,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/GitlabIntegration"
-                    },
-                    {
-                      "type": [
-                        "object",
-                        "null"
-                      ]
-                    }
-                  ]
+                  "$ref": "#/components/schemas/GitlabIntegration"
                 }
               }
             }
@@ -22852,7 +19472,7 @@
           "GitLab"
         ],
         "summary": "Create GitLab integration",
-        "description": "Link a project to one GitLab project, generating the per-binding webhook secret for the webhook GitLab will post events to. A project can hold multiple GitLab bindings, and the same GitLab project may be linked in other projects (decision D1); only same-project duplicates are rejected. Use the verify route first to confirm the token really reaches the project.",
+        "description": "Link a project to a GitLab project. Kaneo generates the secret GitLab must send with each webhook; add the webhook in GitLab afterwards. Use the verify route first to confirm the token really reaches the project.",
         "parameters": [
           {
             "schema": {
@@ -22930,16 +19550,6 @@
               }
             }
           },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
@@ -22961,7 +19571,7 @@
             }
           },
           "409": {
-            "description": "The GitLab project is already linked to this project (repository_already_linked)",
+            "description": "That GitLab project is already linked to another Kaneo project",
             "content": {
               "application/json": {
                 "schema": {
@@ -22974,96 +19584,24 @@
             "$ref": "#/components/responses/ApiKeyRateLimited"
           }
         }
-      }
-    },
-    "/gitlab-integration/import-issues": {
-      "post": {
-        "operationId": "importGitlabIssues",
+      },
+      "patch": {
+        "operationId": "updateGitlabIntegration",
         "tags": [
           "GitLab"
         ],
-        "summary": "Import GitLab issues",
-        "description": "Import the linked project's open issues as tasks for one GitLab project binding (integrationId). Issues that already have a task are refreshed rather than duplicated. Requires task:create and task:update permissions. A projectId in the body is accepted for compat and must match the binding's project.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "integrationId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                  },
-                  "projectId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                  }
-                },
-                "required": [
-                  "integrationId"
-                ]
-              }
-            }
+        "summary": "Update GitLab integration",
+        "description": "Update the GitLab integration. Omitted fields keep their current value.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
           }
-        },
-        "responses": {
-          "200": {
-            "description": "Import summary",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GitlabImportResult"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "integrationId is required",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing task:create or task:update permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration or project not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/jira-integration/projects": {
-      "post": {
-        "operationId": "listJiraProjects",
-        "tags": [
-          "Jira"
         ],
-        "summary": "List Jira projects",
-        "description": "List the Jira projects the credentials can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each project is annotated with its linked state: same-project links block selection, cross-project links are informational only.",
         "requestBody": {
           "required": true,
           "content": {
@@ -23071,55 +19609,30 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "projectId": {
-                    "type": "string",
-                    "minLength": 1
+                  "isActive": {
+                    "type": "boolean"
                   },
-                  "baseUrl": {
-                    "type": "string",
-                    "format": "uri"
-                  },
-                  "authMode": {
-                    "type": "string",
-                    "enum": [
-                      "cloud",
-                      "dc"
-                    ],
-                    "description": "cloud = Atlassian cloud with email + API token (Basic); dc = Jira Data Center with a personal access token (Bearer)."
-                  },
-                  "email": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Atlassian account email; required for cloud authentication."
-                  },
-                  "apiToken": {
-                    "type": "string",
-                    "minLength": 1
+                  "commentTaskLinkOnGitlabIssue": {
+                    "type": "boolean"
                   }
-                },
-                "required": [
-                  "projectId",
-                  "baseUrl",
-                  "authMode",
-                  "apiToken"
-                ]
+                }
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Accessible Jira projects",
+            "description": "The updated integration",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JiraProjectList"
+                  "$ref": "#/components/schemas/GitlabIntegration"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid body, unknown project, or invalid Jira credentials",
+            "description": "The resulting config failed validation",
             "content": {
               "application/json": {
                 "schema": {
@@ -23158,38 +19671,8 @@
               }
             }
           },
-          "400": {
-            "description": "Invalid body, unknown project, or invalid Jira credentials",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Kaneo authentication required",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Jira verification failed",
+          "409": {
+            "description": "Integration changed; refresh before updating settings",
             "content": {
               "application/json": {
                 "schema": {
@@ -23202,16 +19685,14 @@
             "$ref": "#/components/responses/ApiKeyRateLimited"
           }
         }
-      }
-    },
-    "/jira-integration/project/{projectId}/integrations": {
-      "get": {
-        "operationId": "listJiraIntegrations",
+      },
+      "delete": {
+        "operationId": "deleteGitlabIntegration",
         "tags": [
-          "Jira"
+          "GitLab"
         ],
-        "summary": "List Jira integrations",
-        "description": "List every Jira project bound to the project, oldest first, together with the workspace's repository binding usage summary. Requires workspace:manage_settings, so each row includes its own webhook secret.",
+        "summary": "Delete GitLab integration",
+        "description": "Unlink a project from its GitLab project.",
         "parameters": [
           {
             "schema": {
@@ -23223,22 +19704,12 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "200": {
-            "description": "The project's Jira bindings and the repository binding usage",
+            "description": "The integration was removed",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JiraIntegrationList"
+                  "$ref": "#/components/schemas/GitlabDeleteResult"
                 }
               }
             }
@@ -23256,239 +19727,9 @@
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/jira-integration/integration/{integrationId}": {
-      "patch": {
-        "operationId": "updateJiraIntegration",
-        "tags": [
-          "Jira"
-        ],
-        "summary": "Update Jira integration",
-        "description": "Update one Jira project binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "isActive": {
-                    "type": "boolean"
-                  },
-                  "commentTaskLinkOnJiraIssue": {
-                    "type": "boolean"
-                  },
-                  "issueType": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "statusMap": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The updated integration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JiraIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The resulting config failed validation",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JiraIntegrationNotFound"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Integration changed; refresh before updating settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteJiraIntegration",
-        "tags": [
-          "Jira"
-        ],
-        "summary": "Delete Jira integration",
-        "description": "Unlink one Jira project binding. Its issue links are removed with it; tasks created from its issues remain in the project. Other bindings of the same Jira project keep working, including their webhook routes.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The integration was removed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JiraDeleteResult"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Jira integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "operationId": "getJiraIntegrationById",
-        "tags": [
-          "Jira"
-        ],
-        "summary": "Get a Jira integration by id",
-        "description": "Get one Jira project binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace; the webhook secret is per row, so a caller never sees another binding's secret.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 128
-            },
-            "required": true,
-            "name": "integrationId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Jira integration details, or null",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/JiraIntegration"
-                    },
-                    {
-                      "type": [
-                        "object",
-                        "null"
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the integration's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
                 }
               }
             }
@@ -23496,11 +19737,6 @@
           "404": {
             "description": "Project or GitLab integration not found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -23514,87 +19750,14 @@
         }
       }
     },
-    "/jira-integration/project/{projectId}": {
-      "get": {
-        "operationId": "getJiraIntegration",
-        "tags": [
-          "Jira"
-        ],
-        "summary": "Get Jira integration",
-        "description": "Compatibility shim: returns the project's first Jira binding (lowest createdAt). Use GET /project/{projectId}/integrations and GET /integration/{integrationId}.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Jira integration details, or null",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/JiraIntegration"
-                    },
-                    {
-                      "type": [
-                        "object",
-                        "null"
-                      ]
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the project's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/gitlab-integration/import-issues": {
       "post": {
-        "operationId": "createJiraIntegration",
+        "operationId": "importGitlabIssues",
         "tags": [
-          "Jira"
+          "GitLab"
         ],
-        "summary": "Create Jira integration",
-        "description": "Link a project to one Jira project, generating the per-binding webhook secret for the webhook Jira will post events to. A project can hold multiple Jira bindings, and the same Jira project may be linked in other projects; only same-project duplicates are rejected. Use the verify route first to confirm the credentials really reach the project.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
+        "summary": "Import GitLab issues",
+        "description": "Import the linked project's open issues as tasks. Issues that already have a task are refreshed rather than duplicated. Requires task:create and task:update permissions.",
         "requestBody": {
           "required": true,
           "content": {
@@ -23602,136 +19765,12 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "baseUrl": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "authMode": {
-                    "type": "string",
-                    "enum": [
-                      "cloud",
-                      "dc"
-                    ]
-                  },
-                  "email": {
-                    "type": "string",
-                    "description": "Atlassian account email; required for cloud authentication."
-                  },
-                  "apiToken": {
-                    "type": "string",
-                    "description": "Omit to keep the token already stored for this project."
-                  },
-                  "projectKey": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "issueType": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Jira issue type created for new Kaneo tasks. Defaults to Task."
-                  },
-                  "statusMap": {
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "string"
-                    },
-                    "description": "Optional Kaneo column slug to Jira status name mapping for outbound transitions."
-                  }
-                },
-                "required": [
-                  "baseUrl",
-                  "authMode",
-                  "projectKey"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The stored integration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JiraIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body, or unknown project",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "402": {
-            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "The Jira project is already linked to this project (repository_already_linked)",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/jira-integration/import-issues": {
-      "post": {
-        "operationId": "importJiraIssues",
-        "tags": [
-          "Jira"
-        ],
-        "summary": "Import Jira issues",
-        "description": "Import the linked Jira project's issues as tasks for one Jira binding (integrationId), including subtasks, comments, labels, priority, dates, sprints and the hierarchy (epic, subtask, blocking and related relations). Board sprints become project sprints matched by name on re-runs, and imported tasks are placed into their current Jira sprint; tasks already in a closed sprint stay there as history. Jira users who are not workspace members yet receive a pending invitation without an email. The import is one-way: nothing is created in Jira or in any repository binding. Issues that already have a task are refreshed rather than duplicated; a refresh never changes task status, statuses flow inbound through webhook transitions. A projectId in the body is accepted for compat and must match the binding's project.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "integrationId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
-                  },
                   "projectId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
+                    "type": "string"
                   }
                 },
                 "required": [
-                  "integrationId"
+                  "projectId"
                 ]
               }
             }
@@ -23743,19 +19782,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/JiraImportResult"
+                  "$ref": "#/components/schemas/GitlabImportResult"
                 }
               }
             }
           },
           "400": {
-            "description": "integrationId is required",
+            "description": "projectId is required",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -23776,11 +19810,6 @@
           "403": {
             "description": "No access to the project, or missing task:create or task:update permission",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -23789,23 +19818,8 @@
             }
           },
           "404": {
-            "description": "Integration or project not found",
+            "description": "Project not found",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "502": {
-            "description": "Jira request failed while listing issues",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
@@ -25011,904 +21025,8 @@
         ],
         "responses": {
           "200": {
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/matrix-integration/project/{projectId}": {
-      "get": {
-        "operationId": "getMatrixIntegration",
-        "tags": [
-          "Matrix"
-        ],
-        "summary": "Get Matrix integration",
-        "description": "Get the Matrix integration for a project, or null when none is configured.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Matrix integration details, or null",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatrixIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the project's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "createMatrixIntegration",
-        "tags": [
-          "Matrix"
-        ],
-        "summary": "Create Matrix integration",
-        "description": "Connect a Matrix bot account for a project. In provision mode Kaneo creates a workspace space with a project subspace and Updates and General rooms (optionally nested under a parent space); in existing mode it joins and posts to a room you manage. The homeserver must pass destination validation and the bot credentials are verified during the request.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "homeserverUrl": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Base URL of the Matrix homeserver, for example https://matrix.example.com."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "Access token for the bot account. The bot user ID is discovered from the homeserver during the request."
-                  },
-                  "mode": {
-                    "type": "string",
-                    "enum": [
-                      "provision",
-                      "existing"
-                    ],
-                    "description": "provision creates a space structure on the homeserver; existing joins and posts to a room you manage."
-                  },
-                  "spaceNamePrefix": {
-                    "type": "string",
-                    "description": "Optional prefix for the workspace space name in provision mode."
-                  },
-                  "parentSpaceId": {
-                    "type": "string",
-                    "description": "Optional room ID or alias of a space the workspace space is nested under (provision mode)."
-                  },
-                  "roomId": {
-                    "type": "string",
-                    "description": "Room ID (!...) or alias (#...) Kaneo joins and posts to; required in existing mode."
-                  },
-                  "inviteUsers": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    },
-                    "description": "Matrix user IDs invited to every created space and room (provision mode)."
-                  },
-                  "events": {
-                    "type": "object",
-                    "properties": {
-                      "taskCreated": {
-                        "type": "boolean"
-                      },
-                      "taskStatusChanged": {
-                        "type": "boolean"
-                      },
-                      "taskPriorityChanged": {
-                        "type": "boolean"
-                      },
-                      "taskTitleChanged": {
-                        "type": "boolean"
-                      },
-                      "taskDescriptionChanged": {
-                        "type": "boolean"
-                      },
-                      "taskCommentCreated": {
-                        "type": "boolean"
-                      }
-                    }
-                  }
-                },
-                "required": [
-                  "homeserverUrl",
-                  "accessToken",
-                  "mode"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The stored integration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatrixIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The homeserver rejected the connection, or the config failed validation",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "operationId": "updateMatrixIntegration",
-        "tags": [
-          "Matrix"
-        ],
-        "summary": "Update Matrix integration",
-        "description": "Update credentials, event toggles, or the active flag. The connected space or room cannot change; disconnect and reconnect to move the project.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "homeserverUrl": {
-                    "type": "string"
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "accessToken": {
-                    "type": "string"
-                  },
-                  "spaceNamePrefix": {
-                    "type": [
-                      "string",
-                      "null"
-                    ]
-                  },
-                  "inviteUsers": {
-                    "type": [
-                      "array",
-                      "null"
-                    ],
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "isActive": {
-                    "type": "boolean"
-                  },
-                  "events": {
-                    "type": "object",
-                    "properties": {
-                      "taskCreated": {
-                        "type": "boolean"
-                      },
-                      "taskStatusChanged": {
-                        "type": "boolean"
-                      },
-                      "taskPriorityChanged": {
-                        "type": "boolean"
-                      },
-                      "taskTitleChanged": {
-                        "type": "boolean"
-                      },
-                      "taskDescriptionChanged": {
-                        "type": "boolean"
-                      },
-                      "taskCommentCreated": {
-                        "type": "boolean"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "The updated integration",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MatrixIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "The resulting config failed validation, or the homeserver rejected the new credentials",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Matrix integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteMatrixIntegration",
-        "tags": [
-          "Matrix"
-        ],
-        "summary": "Delete Matrix integration",
-        "description": "Remove the Matrix integration from a project. Created spaces and rooms are kept on the homeserver.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "The integration was removed",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean"
-                    }
-                  },
-                  "required": [
-                    "success"
-                  ]
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing workspace:manage_settings",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Matrix integration not found",
             "description": "Slack integration details, or null",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SlackIntegration"
@@ -27140,61 +22258,6 @@
         }
       }
     },
-    "/repository-bindings/project/{projectId}": {
-      "get": {
-        "operationId": "listProjectRepositoryBindings",
-        "tags": [
-          "Repository Bindings"
-        ],
-        "summary": "List the project's linked repositories",
-        "description": "List every GitHub, Gitea and GitLab repository bound to the project, without configuration secrets. Readable by any workspace member so task dialogs can offer repository choices.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "projectId",
-            "in": "path"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The project's repository bindings",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RepositoryBindingList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unknown project, or its workspace could not be determined",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No access to the project's workspace",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/workflow-rule/{projectId}": {
       "get": {
         "operationId": "getWorkflowRules",
@@ -27202,7 +22265,7 @@
           "Workflow Rules"
         ],
         "summary": "Get workflow rules",
-        "description": "Get every workflow rule for a project, including each rule's scope: a rule with an integrationId targets one repository binding, a rule without one applies to every repository of that integration type (RFC 0001 WP6).",
+        "description": "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires.",
         "parameters": [
           {
             "schema": {
@@ -27268,7 +22331,7 @@
           "Workflow Rules"
         ],
         "summary": "Upsert workflow rule",
-        "description": "Create a workflow rule, or update the target column of the existing rule for the same integration and event. An optional integrationId scopes the rule to one repository binding; without it the rule stays type-wide and applies to every repository of that integration type in the project. A repository-specific rule and a type-wide rule for the same event coexist; resolution prefers the repository-specific one.",
+        "description": "Create a workflow rule, or update the target column of the existing rule for the same integration and event.",
         "parameters": [
           {
             "schema": {
@@ -27288,11 +22351,6 @@
                 "properties": {
                   "integrationType": {
                     "type": "string"
-                  },
-                  "integrationId": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 128
                   },
                   "eventType": {
                     "type": "string"
@@ -27314,21 +22372,6 @@
           "200": {
             "description": "The created or updated rule",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Integration not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/WorkflowRuleRow"
@@ -27991,135 +23034,6 @@
           "403": {
             "description": "Missing member:update permission, changing your own access, or granting a project you can't access",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/workspace/{workspaceId}/invitations": {
-      "post": {
-        "operationId": "createWorkspaceInvitations",
-        "tags": [
-          "Workspaces"
-        ],
-        "summary": "Invite users without sending emails",
-        "description": "Create pending workspace invitations in bulk, for example when migrating from another tool. No email is sent unless an address is marked sendEmail, so the caller decides who is notified; every result includes the invitation id so the link can be shared manually. Members and existing unexpired invitations are not duplicated, matching the app's invite flow.",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "name": "workspaceId",
-            "in": "path"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "role": {
-                    "type": "string",
-                    "default": "member",
-                    "description": "Workspace role granted when an invitation is accepted. Owner cannot be granted by invitation; add the user and transfer ownership instead."
-                  },
-                  "invitations": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "email": {
-                          "type": "string",
-                          "format": "email",
-                          "description": "The invitee's email address, lowercased before use."
-                        },
-                        "sendEmail": {
-                          "type": "boolean",
-                          "default": false,
-                          "description": "Send the standard workspace invitation email to this address. The invitation is always created; leave this false to share the link manually."
-                        }
-                      },
-                      "required": [
-                        "email"
-                      ]
-                    },
-                    "minItems": 1,
-                    "maxItems": 100,
-                    "description": "Email addresses to invite. Up to 100 per request."
-                  }
-                },
-                "required": [
-                  "invitations"
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Invitation results",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WorkspaceInvitationList"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body or unknown role",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Missing or invalid credentials"
-          },
-          "403": {
-            "description": "No workspace access, or missing invitation:create permission",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Workspace not found",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ApiError"
