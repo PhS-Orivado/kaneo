@@ -2674,6 +2674,11 @@
 			"high": "Tinggi",
 			"urgent": "Mendesak"
 		},
+		"type": {
+			"label": "Tipe",
+			"task": "Tugas",
+			"bug": "Bug"
+		},
 		"boardSearchPlaceholder": "Cari tiket...",
 		"view": {
 			"board": "Papan",
