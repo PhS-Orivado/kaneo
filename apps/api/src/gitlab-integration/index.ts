@@ -6,8 +6,8 @@ import { publishEvent } from "../events";
 import { integrationTable } from "../database/schema";
 import { integrationIdParam, projectIdParam } from "../integrations/schema";
 import {
-  assertRepositoryBindingQuota,
   getRepositoryBindingUsage,
+  assertRepositoryBindingQuota,
 } from "../plan-limits/repository-binding-quota";
 import {
   apiRouter,
@@ -43,11 +43,10 @@ import {
   gitlabIntegrationSchema,
   gitlabProjectListSchema,
   gitlabVerificationResultSchema,
-  integrationNotFoundSchema,
 } from "./response";
 import {
   createGitlabBody,
-  importGitlabBody,
+  importGitlabIssuesBody,
   listGitlabProjectsBody,
   updateGitlabBody,
   verifyGitlabBody,
@@ -66,6 +65,11 @@ const manageAccess = [
   requireWorkspacePermission({ workspace: ["manage_settings"] }),
 ];
 
+const manageBindingAccess = [
+  workspaceAccess.fromIntegration("integrationId"),
+  requireWorkspacePermission({ workspace: ["manage_settings"] }),
+];
+
 const listProjectsRoute = createRoute({
   method: "post",
   operationId: "listGitlabProjects",
@@ -73,7 +77,7 @@ const listProjectsRoute = createRoute({
   tags: ["GitLab"],
   summary: "List GitLab projects",
   description:
-    "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each project is annotated with its linked state (RFC 0001 WP4): same-project links block selection, cross-project links are informational only (decision D1).",
+    "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each project is annotated with its linked state (linkedTo); same-project links block selection, cross-project links are informational only (RFC decision D1).",
   middleware: manageAccess,
   request: {
     body: {
@@ -83,13 +87,14 @@ const listProjectsRoute = createRoute({
   },
   responses: {
     200: jsonResponse("Accessible projects", gitlabProjectListSchema),
-    400: errorResponse("Invalid body, or unknown project"),
+    400: errorResponse("Invalid body"),
     401: errorResponse(
       "GitLab rejected the token, or the instance is unreachable",
     ),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -110,11 +115,58 @@ const verifyRoute = createRoute({
   },
   responses: {
     200: jsonResponse("Verification result", gitlabVerificationResultSchema),
-    400: errorResponse("Invalid body, or unknown project"),
+    400: errorResponse("Invalid body"),
     401: errorResponse("GitLab rejected the token"),
+    403: errorResponse(
+      "No access to the project, or missing workspace:manage_settings",
+    ),
+    404: errorResponse("Project not found"),
+  },
+});
+
+// RFC 0001 WP4: list every GitLab binding of the project, oldest first,
+// together with the WP10 repository binding usage summary.
+const listIntegrationsRoute = createRoute({
+  method: "get",
+  operationId: "listGitlabIntegrations",
+  path: "/project/{projectId}/integrations",
+  tags: ["GitLab"],
+  summary: "List GitLab integrations",
+  description:
+    "List every GitLab project bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
+  middleware: manageAccess,
+  request: { params: projectIdParam },
+  responses: {
+    200: jsonResponse(
+      "The project's GitLab bindings and the repository binding usage",
+      gitlabIntegrationListSchema,
+    ),
+    400: errorResponse(
+      "Unknown project, or its workspace could not be determined",
+    ),
     403: errorResponse(
       "No workspace access, or missing workspace:manage_settings",
     ),
+  },
+});
+
+const getIntegrationByIdRoute = createRoute({
+  method: "get",
+  operationId: "getGitlabIntegrationById",
+  path: "/integration/{integrationId}",
+  tags: ["GitLab"],
+  summary: "Get a GitLab integration by id",
+  description:
+    "Get one GitLab project binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
+  middleware: manageBindingAccess,
+  request: { params: integrationIdParam },
+  responses: {
+    200: jsonResponse(
+      "GitLab integration details, or null",
+      gitlabIntegrationSchema.nullable(),
+    ),
+    403: errorResponse("No access to the integration's workspace"),
+    404: errorResponse("Integration not found"),
   },
 });
 
@@ -180,10 +232,8 @@ const getIntegrationRoute = createRoute({
       "GitLab integration details, or null",
       gitlabIntegrationSchema.nullable(),
     ),
-    400: errorResponse(
-      "Unknown project, or its workspace could not be determined",
-    ),
-    403: errorResponse("No access to the project's workspace"),
+    403: errorResponse("No access to the project"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -194,7 +244,7 @@ const createIntegrationRoute = createRoute({
   tags: ["GitLab"],
   summary: "Create GitLab integration",
   description:
-    "Link a project to one GitLab project, generating the per-binding webhook secret for the webhook GitLab will post events to. A project can hold multiple GitLab bindings, and the same GitLab project may be linked in other projects (decision D1); only same-project duplicates are rejected. Use the verify route first to confirm the token really reaches the project.",
+    "Link a project to one GitLab project. A project can hold multiple repository bindings, and the same GitLab project may be linked in other projects (decision D1); only same-project duplicates are rejected. Kaneo generates the per-binding secret GitLab must send with each webhook; add the webhook in GitLab afterwards.",
   middleware: manageAccess,
   request: {
     params: projectIdParam,
@@ -213,8 +263,12 @@ const createIntegrationRoute = createRoute({
     ),
     400: errorResponse("Invalid body, or unknown project"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
+    409: errorResponse(
+      "That GitLab project is already linked to another Kaneo project",
+    ),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -226,10 +280,7 @@ const updateIntegrationRoute = createRoute({
   summary: "Update GitLab integration",
   description:
     "Update one GitLab project binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ workspace: ["manage_settings"] }),
-  ] as const,
+  middleware: manageBindingAccess,
   request: {
     params: integrationIdParam,
     body: {
@@ -245,9 +296,10 @@ const updateIntegrationRoute = createRoute({
     ),
     400: errorResponse("The resulting config failed validation"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
-    404: jsonResponse("Integration not found", integrationNotFoundSchema),
+    404: errorResponse("Project or integration not found"),
+    409: errorResponse("Integration changed; refresh before updating settings"),
   },
 });
 
@@ -258,18 +310,15 @@ const deleteIntegrationRoute = createRoute({
   tags: ["GitLab"],
   summary: "Delete GitLab integration",
   description:
-    "Unlink one GitLab project binding. Its issue and merge request links are removed with it; tasks created from its issues remain in the project. Other bindings of the same GitLab project keep working, including their webhook routes.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ workspace: ["manage_settings"] }),
-  ] as const,
+    "Unlink one GitLab project binding. Its external links are removed with it; tasks created from its issues remain in the project. Other bindings of the project stay fully functional.",
+  middleware: manageBindingAccess,
   request: { params: integrationIdParam },
   responses: {
     200: jsonResponse("The integration was removed", gitlabDeleteResultSchema),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
-    404: errorResponse("GitLab integration not found"),
+    404: errorResponse("Project or GitLab integration not found"),
   },
 });
 
@@ -280,7 +329,7 @@ const importIssuesRoute = createRoute({
   tags: ["GitLab"],
   summary: "Import GitLab issues",
   description:
-    "Import the linked project's open issues as tasks for one GitLab project binding (integrationId). Issues that already have a task are refreshed rather than duplicated. Requires task:create and task:update permissions. A projectId in the body is accepted for compat and must match the binding's project.",
+    "Import the linked project's open issues as tasks for one binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
   middleware: [
     workspaceAccess.fromIntegration("integrationId"),
     requireWorkspacePermission({ task: ["create", "update"] }),
@@ -288,14 +337,14 @@ const importIssuesRoute = createRoute({
   request: {
     body: {
       required: true,
-      content: { "application/json": { schema: importGitlabBody } },
+      content: { "application/json": { schema: importGitlabIssuesBody } },
     },
   },
   responses: {
     200: jsonResponse("Import summary", gitlabImportResultSchema),
-    400: errorResponse("integrationId is required"),
+    400: errorResponse("integrationId is required, or binding mismatch"),
     403: errorResponse(
-      "No workspace access, or missing task:create or task:update permission",
+      "No access to the project, or missing task:create or task:update permission",
     ),
     404: errorResponse("Integration or project not found"),
   },
@@ -303,11 +352,12 @@ const importIssuesRoute = createRoute({
 
 const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(listProjectsRoute, async (c) => {
-    const { baseUrl, accessToken, tokenType } = c.req.valid("json");
+    const { baseUrl, accessToken, tokenType, projectId } = c.req.valid("json");
     const result = await listGitlabProjects({
       baseUrl,
       accessToken,
       tokenType: tokenTypeOf({ tokenType }),
+      projectId,
     });
     return c.json(result, 200);
   })
@@ -321,7 +371,7 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   })
   .openapi(listIntegrationsRoute, async (c) => {
     const { projectId } = c.req.valid("param");
-    const integrations = await listGitlabIntegrations(projectId, true);
+    const integrations = await listGitlabIntegrations(projectId);
     const usage = await getRepositoryBindingUsage(
       projectId,
       c.get("workspaceId"),
@@ -338,16 +388,12 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     const includeWebhookSecret = await hasWorkspacePermission(c, {
       workspace: ["manage_settings"],
     });
-    const integration = await getGitlabIntegration(
-      projectId,
-      includeWebhookSecret,
-    );
+    const integration = await getGitlabIntegration(projectId, includeSecrets);
     return c.json(integration, 200);
   })
   .openapi(createIntegrationRoute, async (c) => {
     const { projectId } = c.req.valid("param");
     const body = c.req.valid("json");
-
     const created = await createGitlabIntegration({
       projectId,
       baseUrl: body.baseUrl,
@@ -355,15 +401,13 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       tokenType: tokenTypeOf(body),
       projectPath: body.projectPath,
     });
-
     const integration = await getGitlabIntegrationById(created.id, true);
     if (!integration) {
       throw new HTTPException(500, { message: "Failed to load integration" });
     }
-
     await publishEvent("integration.sync_rules_changed", {
       projectId,
-      integrationId: created.id,
+      integrationId: integration.id,
     });
     return c.json(integration, 200);
   })
@@ -376,11 +420,11 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     });
 
     if (!row) {
-      return c.json({ error: "Integration not found" }, 404);
+      throw new HTTPException(404, { message: "Integration not found" });
     }
 
-    // WP10: reactivation re-enters the binding count, so the quota guard runs
-    // before the update writes isActive=true.
+    // WP10: reactivation re-enters the binding count, so the quota guard
+    // runs before the update writes isActive=true.
     if (body.isActive === true && !row.isActive) {
       await assertRepositoryBindingQuota(row.projectId, c.get("workspaceId"));
     }

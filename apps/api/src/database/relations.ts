@@ -109,6 +109,7 @@ export const projectTableRelations = relations(
     workflowRules: many(workflowRuleTable),
     githubIntegration: many(githubIntegrationTable),
     integrations: many(integrationTable),
+    sprints: many(sprintTable),
     notificationWorkspaceProjects: many(userNotificationWorkspaceProjectTable),
     sprints: many(sprintTable),
   }),

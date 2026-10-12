@@ -12,18 +12,18 @@ import { getAuthorizedSyncProject } from "./authorized-project";
 import type { IntegrationDatabase } from "../../plugins/github/services/integration-task-scope";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";
 
-// RFC 0001 WP5: review operates on one repository binding. The paused link
-// and its task must belong to the addressed binding; a sibling binding's
-// links are never visible here, and the comparison token stays bound to the
-// addressed row.
-export async function reviewSyncResumeById(
+// RFC 0001 WP5: keyed by integration id. The comparison token binds the
+// addressed binding's id and config, so a token cannot be replayed against a
+// sibling binding. Paused links are looked up per binding only.
+export async function reviewSyncResume(
   integrationId: string,
   linkId: string,
   authorizedWorkspaceId: string,
   database: IntegrationDatabase = db,
   providerSnapshot?: ResumeProviderSnapshot,
 ) {
-  const integration = await getSyncIntegrationById(integrationId, database);
+  const integration = await getSyncIntegration(integrationId, database);
+  const projectId = integration.projectId;
   if (integration.project.workspaceId !== authorizedWorkspaceId)
     throw new HTTPException(403, {
       message: "Project no longer belongs to the authorized workspace",
@@ -75,7 +75,6 @@ export async function reviewSyncResumeById(
     } catch {
       console.error("Sync resume provider read failed", {
         projectId,
-        provider: integration.type,
         integrationId,
         linkId,
       });
@@ -114,25 +113,4 @@ export async function reviewSyncResumeById(
     remoteIssueUpdatedAt: remoteIssue.updatedAt,
     token,
   };
-}
-
-// Compat shim (RFC 0001 WP5, section 5): the project-keyed route reviews the
-// project's first binding of the provider until the new web client ships;
-// removed with the cleanup PR.
-export async function reviewSyncResume(
-  projectId: string,
-  provider: string,
-  linkId: string,
-  authorizedWorkspaceId: string,
-  database: IntegrationDatabase = db,
-  providerSnapshot?: ResumeProviderSnapshot,
-) {
-  const integration = await getSyncIntegration(projectId, provider, database);
-  return reviewSyncResumeById(
-    integration.id,
-    linkId,
-    authorizedWorkspaceId,
-    database,
-    providerSnapshot,
-  );
 }

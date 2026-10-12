@@ -13,7 +13,11 @@ export async function resolveTargetStatus(
   database:
     | typeof db
     | Parameters<Parameters<typeof db.transaction>[0]>[0] = db,
-  integrationId?: string | null,
+  // RFC 0001 WP6: the integration row of the event's binding. When present,
+  // a repository-specific rule (integration_id = the binding) wins over the
+  // type-wide fallback (integration_id IS NULL). Callers without binding
+  // context may omit it and get today's type-wide behavior.
+  integration?: { id: string } | null,
 ): Promise<string> {
   const projectColumns = await database
     .select({
@@ -28,18 +32,19 @@ export async function resolveTargetStatus(
     return fallbackStatus;
   }
 
-  const specific = integrationId
+  const specificRule = integration
     ? await database.query.workflowRuleTable.findFirst({
         where: and(
           eq(workflowRuleTable.projectId, projectId),
           eq(workflowRuleTable.integrationType, "github"),
           eq(workflowRuleTable.eventType, eventType),
-          eq(workflowRuleTable.integrationId, integrationId),
+          eq(workflowRuleTable.integrationId, integration.id),
         ),
       })
-    : undefined;
+    : null;
+
   const rule =
-    specific ??
+    specificRule ??
     (await database.query.workflowRuleTable.findFirst({
       where: and(
         eq(workflowRuleTable.projectId, projectId),

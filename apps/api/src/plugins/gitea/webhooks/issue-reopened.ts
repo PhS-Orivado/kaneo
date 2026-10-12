@@ -152,7 +152,7 @@ export async function handleGiteaIssueReopened(
                 "issue_reopened",
                 "to-do",
                 db,
-                integration.id,
+                integration,
               );
 
               const statusResult = await updateTaskStatus(

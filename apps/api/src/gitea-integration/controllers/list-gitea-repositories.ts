@@ -1,15 +1,19 @@
 import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
-import { integrationTable } from "../../database/schema";
-import { repositoryLinkedToSchema } from "../../integrations/response";
-import { type z } from "../../openapi";
+import { integrationTable, projectTable } from "../../database/schema";
 import { normalizeGiteaBaseUrl } from "../../plugins/gitea/config";
 import {
   createGiteaClient,
   verifyGiteaToken,
 } from "../../plugins/gitea/utils/gitea-api";
 import { giteaRepositoryKey } from "./create-gitea-integration";
+
+type LinkedTo = {
+  integrationId: string;
+  projectId: string;
+  projectName: string | null;
+};
 
 type RepoRow = {
   id: number;
@@ -18,59 +22,22 @@ type RepoRow = {
   private: boolean;
   owner: { login: string };
   html_url: string;
+  linkedTo: LinkedTo | null;
 };
 
-// RFC 0001 WP3: annotate each listed repository with its linked state using a
-// single query on repository_key. Per decision D1 the annotation is
-// informational for cross-project links; the picker blocks only same-project
-// duplicates. When the picker shows a repository already linked to the
-// addressed project, selection is blocked with an inline reason;
-// cross-project links remain selectable.
-async function annotateLinkedState(
-  normalizedBase: string,
-  repositories: RepoRow[],
-) {
-  if (repositories.length === 0) return [];
-  const keys = repositories.map((repo) =>
-    giteaRepositoryKey(normalizedBase, repo.owner.login, repo.name),
-  );
-  const links = await db.query.integrationTable.findMany({
-    where: and(
-      eq(integrationTable.type, "gitea"),
-      inArray(integrationTable.repositoryKey, keys),
-    ),
-    columns: { id: true, projectId: true, repositoryKey: true },
-    with: { project: { columns: { name: true } } },
-  });
-  const linksByKey = new Map(
-    links.map((link) => [
-      link.repositoryKey,
-      {
-        integrationId: link.id,
-        projectId: link.projectId,
-        projectName: link.project?.name ?? null,
-      },
-    ]),
-  );
-  return repositories.map((repo, index) => ({
-    ...repo,
-    linkedTo: linksByKey.get(keys[index] as string) ?? null,
-  }));
-}
-
+// RFC 0001 WP3: annotate each listed repository with its linked state,
+// resolved by a server-side Map keyed by repository_key rather than repeated
+// in-memory filtering. Same-project links block selection in the picker;
+// cross-project links (allowed per decision D1) are informational only.
 async function listGiteaRepositories({
   baseUrl,
   accessToken,
+  projectId,
 }: {
   baseUrl: string;
   accessToken: string;
-}): Promise<{
-  repositories: Array<
-    RepoRow & {
-      linkedTo: z.infer<typeof repositoryLinkedToSchema> | null;
-    }
-  >;
-}> {
+  projectId?: string;
+}): Promise<{ repositories: RepoRow[] }> {
   const normalized = normalizeGiteaBaseUrl(baseUrl);
 
   try {
@@ -102,6 +69,7 @@ async function listGiteaRepositories({
         private: repo.private,
         owner: { login: ownerLogin },
         html_url: repo.html_url,
+        linkedTo: null,
       });
     }
 
@@ -110,7 +78,58 @@ async function listGiteaRepositories({
     if (page > 50) break;
   }
 
-  return { repositories: await annotateLinkedState(normalized, all) };
+  // Linked-state annotation: one indexed query over the candidate keys,
+  // cross-referenced through a Map (RFC section 7, js-set-map-lookups).
+  if (all.length > 0) {
+    const keyByRepo = new Map<number, string>();
+    for (const repo of all) {
+      keyByRepo.set(
+        repo.id,
+        giteaRepositoryKey(normalized, repo.owner.login, repo.name),
+      );
+    }
+    const keys = [...new Set(keyByRepo.values())];
+
+    const bindings = await db
+      .select({
+        integrationId: integrationTable.id,
+        repositoryKey: integrationTable.repositoryKey,
+        projectId: integrationTable.projectId,
+        projectName: projectTable.name,
+      })
+      .from(integrationTable)
+      .innerJoin(projectTable, eq(integrationTable.projectId, projectTable.id))
+      .where(
+        and(
+          eq(integrationTable.type, "gitea"),
+          inArray(integrationTable.repositoryKey, keys),
+        ),
+      );
+
+    const bindingByKey = new Map<string, (typeof bindings)[number]>();
+    for (const binding of bindings) {
+      // Same-project annotation wins; cross-project is informational only.
+      if (!bindingByKey.has(binding.repositoryKey)) {
+        bindingByKey.set(binding.repositoryKey, binding);
+      } else if (projectId !== undefined && binding.projectId === projectId) {
+        bindingByKey.set(binding.repositoryKey, binding);
+      }
+    }
+
+    for (const repo of all) {
+      const key = keyByRepo.get(repo.id);
+      const binding = key ? bindingByKey.get(key) : undefined;
+      if (binding) {
+        repo.linkedTo = {
+          integrationId: binding.integrationId,
+          projectId: binding.projectId,
+          projectName: binding.projectName,
+        };
+      }
+    }
+  }
+
+  return { repositories: all };
 }
 
 export default listGiteaRepositories;

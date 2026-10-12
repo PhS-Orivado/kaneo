@@ -1,16 +1,24 @@
 import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
-import { integrationTable } from "../../database/schema";
-import { repositoryLinkedToSchema } from "../../integrations/response";
-import { type z } from "../../openapi";
+import { integrationTable, projectTable } from "../../database/schema";
+import { ApiError } from "../../errors/api-error";
 import type { GitlabTokenType } from "../../plugins/gitlab/config";
 import {
   createGitlabClient,
   verifyGitlabToken,
 } from "../../plugins/gitlab/utils/gitlab-api";
-import { parseGitlabBaseUrl } from "../utils/normalize-input";
 import { gitlabRepositoryKey } from "./create-gitlab-integration";
+import {
+  parseGitlabBaseUrl,
+  parseGitlabProjectPath,
+} from "../utils/normalize-input";
+
+type LinkedTo = {
+  integrationId: string;
+  projectId: string;
+  projectName: string | null;
+};
 
 type ProjectRow = {
   id: number;
@@ -19,71 +27,35 @@ type ProjectRow = {
   name_with_namespace: string;
   visibility: string;
   web_url: string;
+  linkedTo: LinkedTo | null;
 };
 
 const PER_PAGE = 50;
 const MAX_PAGES = 50;
 
-// RFC 0001 WP4: annotate each listed project with its linked state using a
-// single query on repository_key. Per decision D1 the annotation is
-// informational for cross-project links; the picker blocks only same-project
-// duplicates. When the picker shows a project already linked to the
-// addressed project, selection is blocked with an inline reason;
-// cross-project links remain selectable.
-async function annotateLinkedState(
-  normalizedBase: string,
-  projects: ProjectRow[],
-) {
-  if (projects.length === 0) return [];
-  const keys = projects.map((project) =>
-    gitlabRepositoryKey(normalizedBase, project.path_with_namespace),
-  );
-  const links = await db.query.integrationTable.findMany({
-    where: and(
-      eq(integrationTable.type, "gitlab"),
-      inArray(integrationTable.repositoryKey, keys),
-    ),
-    columns: { id: true, projectId: true, repositoryKey: true },
-    with: { project: { columns: { name: true } } },
-  });
-  const linksByKey = new Map(
-    links.map((link) => [
-      link.repositoryKey,
-      {
-        integrationId: link.id,
-        projectId: link.projectId,
-        projectName: link.project?.name ?? null,
-      },
-    ]),
-  );
-  return projects.map((project, index) => ({
-    ...project,
-    linkedTo: linksByKey.get(keys[index] as string) ?? null,
-  }));
-}
-
+// RFC 0001 WP4: annotate each listed project with its linked state, resolved
+// by a server-side Map keyed by repository_key rather than repeated
+// in-memory filtering. Same-project links block selection in the picker;
+// cross-project links (allowed per decision D1) are informational only.
 async function listGitlabProjects({
   baseUrl,
   accessToken,
   tokenType,
+  projectId,
 }: {
   baseUrl: string;
   accessToken: string;
   tokenType: GitlabTokenType;
-}): Promise<{
-  projects: Array<
-    ProjectRow & {
-      linkedTo: z.infer<typeof repositoryLinkedToSchema> | null;
-    }
-  >;
-}> {
+  projectId?: string;
+}): Promise<{ projects: ProjectRow[] }> {
   const normalized = parseGitlabBaseUrl(baseUrl);
 
   try {
     await verifyGitlabToken(normalized, accessToken, tokenType);
   } catch {
-    throw new HTTPException(401, {
+    throw new ApiError(401, {
       message: "Invalid GitLab token or could not reach instance.",
+      code: "INTEGRATION_AUTH_FAILED",
     });
   }
 
@@ -107,13 +79,68 @@ async function listGitlabProjects({
         name_with_namespace: project.name_with_namespace,
         visibility: project.visibility,
         web_url: project.web_url,
+        linkedTo: null,
       });
     }
 
     if (batch.length < PER_PAGE) break;
   }
 
-  return { projects: await annotateLinkedState(normalized, projects) };
+  // Linked-state annotation: one indexed query over the candidate keys,
+  // cross-referenced through a Map (RFC section 7, js-set-map-lookups).
+  if (projects.length > 0) {
+    const keyByProject = new Map<number, string>();
+    for (const project of projects) {
+      keyByProject.set(
+        project.id,
+        gitlabRepositoryKey(
+          normalized,
+          parseGitlabProjectPath(project.path_with_namespace),
+        ),
+      );
+    }
+    const keys = [...new Set(keyByProject.values())];
+
+    const bindings = await db
+      .select({
+        integrationId: integrationTable.id,
+        repositoryKey: integrationTable.repositoryKey,
+        projectId: integrationTable.projectId,
+        projectName: projectTable.name,
+      })
+      .from(integrationTable)
+      .innerJoin(projectTable, eq(integrationTable.projectId, projectTable.id))
+      .where(
+        and(
+          eq(integrationTable.type, "gitlab"),
+          inArray(integrationTable.repositoryKey, keys),
+        ),
+      );
+
+    const bindingByKey = new Map<string, (typeof bindings)[number]>();
+    for (const binding of bindings) {
+      // Same-project annotation wins; cross-project is informational only.
+      if (!bindingByKey.has(binding.repositoryKey)) {
+        bindingByKey.set(binding.repositoryKey, binding);
+      } else if (projectId !== undefined && binding.projectId === projectId) {
+        bindingByKey.set(binding.repositoryKey, binding);
+      }
+    }
+
+    for (const project of projects) {
+      const key = keyByProject.get(project.id);
+      const binding = key ? bindingByKey.get(key) : undefined;
+      if (binding) {
+        project.linkedTo = {
+          integrationId: binding.integrationId,
+          projectId: binding.projectId,
+          projectName: binding.projectName,
+        };
+      }
+    }
+  }
+
+  return { projects };
 }
 
 export default listGitlabProjects;

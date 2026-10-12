@@ -23,34 +23,26 @@ import {
   parseGitlabProjectPath,
 } from "../utils/normalize-input";
 
-// RFC 0001 WP4: one integration row per GitLab project. The old
-// update-in-place branch (which reused the stored webhook secret and carried
-// settings over) and the O(n) cross-project JSON scan are both deleted. Per
-// governing decision D1 cross-project duplicates are valid rows; per WP0
-// same-project duplicates are rejected by integration_project_type_repo_unique.
-// GitLab addresses repositories by namespaced project path, so the identity
-// key is the normalized base URL plus the lowercased full path; the derived
-// owner/name columns are display convenience only.
+// RFC 0001 WP4: one integration row per GitLab project. The update-in-place
+// branch (reusing the single row) and the O(n) cross-project `allGitlab` JSON
+// scan are deleted with nothing replacing them: per governing decision D1
+// cross-project links are valid rows, and same-project duplicates are decided
+// by the per-project unique constraint (integration_project_type_repo_unique),
+// which also closes the concurrency race the in-memory scan left open. Each
+// binding gets its own fresh webhookSecret; the per-integration webhook
+// route carries it.
 
-/** Repository identity key: `gitlab:<normalizedBase>/<projectPath>` lowercased. */
+/**
+ * Repository identity key: `gitlab:<normalized baseUrl>/<projectPath>`, full
+ * path lowercased (RFC 0001 section 4.1). Byte-identical to the WP0 SQL
+ * backfill, which lowercases the full project path and concatenates the
+ * stored (already normalized) base URL.
+ */
 export function gitlabRepositoryKey(
-  normalizedBase: string,
+  baseUrl: string,
   projectPath: string,
 ): string {
-  return `gitlab:${normalizedBase}/${projectPath.toLowerCase()}`;
-}
-
-function repositoryIdentity(projectPath: string): {
-  repositoryOwner: string;
-  repositoryName: string;
-} {
-  const segments = projectPath.split("/");
-  return {
-    // Top-level group, display convenience only.
-    repositoryOwner: segments[0] ?? "",
-    // Final path segment, display convenience only.
-    repositoryName: segments[segments.length - 1] ?? "",
-  };
+  return `gitlab:${baseUrl}/${projectPath.toLowerCase()}`;
 }
 
 async function createGitlabIntegration({
@@ -77,9 +69,10 @@ async function createGitlabIntegration({
   const normalizedBase = parseGitlabBaseUrl(baseUrl);
   const normalizedPath = parseGitlabProjectPath(projectPath);
 
-  // A saved credential is only authorized for its original server. The first
-  // binding row holds the stored token for the unchanged base URL.
-  const existingIntegration = await db.query.integrationTable.findFirst({
+  // A saved credential is only authorized for its original server. With
+  // multiple bindings, reuse the token of any existing binding of this project
+  // on the same instance; the unchanged-destination guard below still applies.
+  const existingIntegrations = await db.query.integrationTable.findMany({
     where: and(
       eq(integrationTable.projectId, projectId),
       eq(integrationTable.type, "gitlab"),
@@ -87,30 +80,29 @@ async function createGitlabIntegration({
   });
 
   let previousConfig: Partial<GitlabConfig> = {};
-  if (existingIntegration) {
+  for (const existing of existingIntegrations) {
     try {
-      previousConfig = JSON.parse(existingIntegration.config) as GitlabConfig;
-    } catch (error) {
-      console.warn("Failed to parse existing GitLab integration config", {
-        integrationId: existingIntegration.id,
-        error,
-      });
+      const config = JSON.parse(existing.config) as GitlabConfig;
+      let savedBase: string | undefined;
+      try {
+        savedBase = normalizeGitlabBaseUrl(config.baseUrl ?? "");
+      } catch {
+        // Invalid legacy destinations cannot authorize credential reuse.
+      }
+      if (savedBase === normalizedBase && config.accessToken) {
+        previousConfig = config;
+        break;
+      }
+    } catch {
+      // Skip bindings with invalid config; they cannot authorize reuse.
     }
   }
 
   const suppliedToken = accessToken?.trim();
   if (!suppliedToken && previousConfig.accessToken) {
-    let savedBase: string | undefined;
-    try {
-      savedBase = normalizeGitlabBaseUrl(previousConfig.baseUrl ?? "");
-    } catch {
-      // Invalid legacy destinations cannot authorize credential reuse.
-    }
-    if (savedBase !== normalizedBase) {
-      throw new HTTPException(400, {
-        message: "Enter a new access token when changing the GitLab URL",
-      });
-    }
+    // previousConfig was only selected for a matching base URL, so the
+    // saved credential is already known to target the requested instance.
+    // A changed URL never reaches here and requires a new token below.
   }
   const resolvedToken = suppliedToken || previousConfig.accessToken || "";
 
@@ -142,18 +134,17 @@ async function createGitlabIntegration({
   // verification and before the insert. 402 propagates unchanged.
   await assertRepositoryBindingQuota(projectId, project.workspaceId);
 
-  // One secret per binding, never copied from an existing row: each row's
-  // webhook route verifies with its own secret, so two bindings of the same
-  // GitLab project never interfere.
   const webhookSecret = randomBytes(24).toString("hex");
 
-  const config: GitlabConfig = getDefaultGitlabConfig(
-    normalizedBase,
-    resolvedToken,
-    tokenType,
-    normalizedPath,
-    webhookSecret,
-  );
+  const config: GitlabConfig = {
+    ...getDefaultGitlabConfig(
+      normalizedBase,
+      resolvedToken,
+      tokenType,
+      normalizedPath,
+      webhookSecret,
+    ),
+  };
 
   const validation = await validateGitlabConfig(config);
   if (!validation.valid) {
@@ -162,7 +153,12 @@ async function createGitlabIntegration({
     });
   }
 
-  const identity = repositoryIdentity(normalizedPath);
+  // Display-convenience identity columns (RFC WP4 section 2): the final path
+  // segment as name, the top-level group as owner; repositoryId stays NULL.
+  const pathSegments = normalizedPath.split("/");
+  const repositoryName =
+    pathSegments[pathSegments.length - 1] ?? normalizedPath;
+  const repositoryOwner = pathSegments[0] ?? "";
 
   try {
     const [newIntegration] = await db
@@ -172,8 +168,8 @@ async function createGitlabIntegration({
         type: "gitlab",
         config: JSON.stringify(config),
         repositoryKey: gitlabRepositoryKey(normalizedBase, normalizedPath),
-        repositoryOwner: identity.repositoryOwner,
-        repositoryName: identity.repositoryName,
+        repositoryOwner,
+        repositoryName,
         baseUrl: normalizedBase,
         isActive: true,
       })

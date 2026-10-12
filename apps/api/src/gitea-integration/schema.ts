@@ -21,7 +21,8 @@ export const verifyGiteaBody = z.object({
 export const createGiteaBody = z.object({
   baseUrl: z.string().min(1),
   accessToken: z.string().optional().openapi({
-    description: "Omit to keep the token already stored for this project.",
+    description:
+      "Omit to reuse a token already stored for this project and instance.",
   }),
   repositoryOwner: z.string().min(1),
   repositoryName: z.string().min(1),
@@ -32,10 +33,12 @@ export const updateGiteaBody = z.object({
   commentTaskLinkOnGiteaIssue: z.boolean().optional(),
 });
 
-// RFC 0001 WP3: imports are keyed by the integration id of the binding.
-export const importGiteaBody = z.object({
-  integrationId: z.string().min(1).max(128),
-  // Compat: the old project-keyed body sent projectId; when present it must
-  // match the binding's project (404 otherwise).
-  projectId: z.string().min(1).max(128).optional(),
+// RFC 0001 WP3: import is keyed by integration id; a projectId in the body is
+// accepted for compat and must match the binding's project.
+export const importGiteaIssuesBody = z.object({
+  integrationId: z.string().min(1),
+  projectId: z.string().min(1).optional().openapi({
+    description:
+      "Compat only; when present it must match the binding's project.",
+  }),
 });

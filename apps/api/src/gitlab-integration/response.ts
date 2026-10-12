@@ -4,7 +4,8 @@ import {
   repositoryLinkedToSchema,
 } from "../integrations/response";
 
-// Tokens are masked; the webhook secret needs manage_settings.
+// Tokens are masked; the webhook secret needs manage_settings. The secret is
+// per binding now, so each project owner sees only their own binding's secret.
 export const gitlabIntegrationSchema = z
   .object({
     id: z.string(),
@@ -21,11 +22,11 @@ export const gitlabIntegrationSchema = z
         "First and last characters of the stored token, only returned to callers with workspace:manage_settings.",
     }),
     webhookUrl: z.string().optional().openapi({
-      description: "Where GitLab should POST events for this project.",
+      description: "Where GitLab should POST events for this binding.",
     }),
     webhookSecret: z.string().optional().openapi({
       description:
-        "Only returned to callers with workspace:manage_settings, so the value can be pasted into GitLab.",
+        "Only returned to callers with workspace:manage_settings, so the value can be pasted into GitLab. Per binding.",
     }),
     branchPattern: z.string().optional(),
     commentTaskLinkOnGitlabIssue: z.boolean().optional().openapi({
@@ -38,13 +39,10 @@ export const gitlabIntegrationSchema = z
   })
   .openapi("GitlabIntegration");
 
-// RFC 0001 WP4: list response of the project's GitLab bindings with the
-// workspace's repository binding usage summary (WP10).
+// RFC 0001 WP4: array shape for the list route plus the WP10 usage summary.
 export const gitlabIntegrationListSchema = z
   .object({
-    integrations: z.array(gitlabIntegrationSchema).openapi({
-      description: "Every GitLab binding of the project, oldest first.",
-    }),
+    integrations: z.array(gitlabIntegrationSchema),
     usage: repositoryBindingUsageSchema,
   })
   .openapi("GitlabIntegrationList");
@@ -57,11 +55,9 @@ export const gitlabProjectSchema = z
     name_with_namespace: z.string(),
     visibility: z.string(),
     web_url: z.string(),
-    // RFC 0001 WP4: linked-state annotation. Same-project links block
-    // selection in the picker; cross-project links (allowed per decision D1)
-    // are informational only.
-    linkedTo: repositoryLinkedToSchema.nullable().openapi({
-      description: "The binding this project is already linked to, if any.",
+    linkedTo: repositoryLinkedToSchema.nullable().optional().openapi({
+      description:
+        "The binding this GitLab project is already linked to, when any. Same-project links block selection; cross-project links (allowed per RFC decision D1) are informational only.",
     }),
   })
   .openapi("GitlabProject");
@@ -106,7 +102,3 @@ export const gitlabImportResultSchema = z
 export const gitlabDeleteResultSchema = z
   .object({ success: z.boolean(), message: z.string() })
   .openapi("GitlabDeleteResult");
-
-export const integrationNotFoundSchema = z
-  .object({ error: z.string() })
-  .openapi("GitlabIntegrationNotFound");

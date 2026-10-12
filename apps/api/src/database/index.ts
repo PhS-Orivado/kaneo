@@ -18,6 +18,7 @@ import {
   notificationTableRelations,
   projectTableRelations,
   sessionTableRelations,
+  sprintTableRelations,
   taskRelationTableRelations,
   taskReminderSentTableRelations,
   taskTableRelations,
@@ -53,6 +54,7 @@ import {
   externalLinkTable,
   githubImportTable,
   githubIntegrationTable,
+  importRunTable,
   integrationTable,
   invitationTable,
   jobLeaseTable,
@@ -61,6 +63,7 @@ import {
   notificationTable,
   projectTable,
   sessionTable,
+  sprintTable,
   taskRelationTable,
   taskReminderSentTable,
   taskTable,
@@ -104,6 +107,7 @@ export const schema = {
   externalLinkTable,
   githubIntegrationTable,
   githubImportTable,
+  importRunTable,
   integrationTable,
   invitationTable,
   jobLeaseTable,
@@ -164,6 +168,10 @@ export const schema = {
   customFieldValueTable,
   customFieldDefinitionTableRelations,
   customFieldValueTableRelations,
+  // Sprint planning: the table and relations must be registered here or
+  // db.query.sprintTable stays undefined and the sprint controllers fail.
+  sprintTable,
+  sprintTableRelations,
 };
 
 type DatabaseInstance = ReturnType<typeof drizzle<typeof schema>>;

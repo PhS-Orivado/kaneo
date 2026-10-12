@@ -34,7 +34,7 @@ import getGithubIntegration, {
   listGithubIntegrations,
 } from "./controllers/get-github-integration";
 import { importIssues } from "./controllers/import-issues";
-import { listRepositoryBranches } from "./controllers/list-repository-branches";
+import { annotateLinkedState } from "./controllers/annotate-linked-state";
 import listUserRepositories from "./controllers/list-user-repositories";
 import verifyGithubInstallation from "./controllers/verify-github-installation";
 import { verifyRepositoryOwner } from "./controllers/verify-repository-owner";
@@ -42,13 +42,10 @@ import {
   createdGithubIntegrationSchema,
   deleteResultSchema,
   githubAppInfoSchema,
-  githubBranchListSchema,
-  githubBranchResultSchema,
   githubIntegrationListSchema,
   githubIntegrationSchema,
   githubRepositoryListSchema,
   importResultSchema,
-  integrationNotFoundSchema,
   verificationResultSchema,
 } from "./response";
 import {
@@ -86,7 +83,7 @@ const listRepositoriesRoute = createRoute({
   tags: ["GitHub"],
   summary: "List GitHub repositories",
   description:
-    "List the repositories reachable through the installed GitHub App, for picking one to link.",
+    "List the repositories reachable through the installed GitHub App that the caller administers, for picking one to link. Without `search`, each request reads one page of one installation. With `search`, the server filters by name and description before checking access and keeps scanning later pages and installations within a fixed budget. Follow `nextPage` until it is null to see every repository.",
   middleware: [requireUserSession, ...manageAccess],
   request: { params: projectIdParam, query: repositoryPageQuery },
   responses: {
@@ -94,12 +91,10 @@ const listRepositoriesRoute = createRoute({
       "Repositories reachable through the installed App",
       githubRepositoryListSchema,
     ),
-    400: errorResponse(
-      "Unknown project, or its workspace could not be determined",
-    ),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -124,10 +119,58 @@ const verifyRoute = createRoute({
   },
   responses: {
     200: jsonResponse("Verification result", verificationResultSchema),
-    400: errorResponse("Invalid body, or unknown project"),
+    400: errorResponse("Invalid body"),
+    403: errorResponse(
+      "No access to the project, or missing workspace:manage_settings",
+    ),
+    404: errorResponse("Project not found"),
+  },
+});
+
+const listIntegrationsRoute = createRoute({
+  method: "get",
+  operationId: "listGitHubIntegrations",
+  path: "/project/{projectId}/integrations",
+  tags: ["GitHub"],
+  summary: "List GitHub integrations",
+  description:
+    "List every GitHub repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
+  middleware: [requireUserSession, ...manageAccess],
+  request: { params: projectIdParam },
+  responses: {
+    200: jsonResponse(
+      "The project's GitHub bindings and the repository binding usage",
+      githubIntegrationListSchema,
+    ),
+    400: errorResponse(
+      "Unknown project, or its workspace could not be determined",
+    ),
     403: errorResponse(
       "No workspace access, or missing workspace:manage_settings",
     ),
+  },
+});
+
+const getIntegrationByIdRoute = createRoute({
+  method: "get",
+  operationId: "getGitHubIntegrationById",
+  path: "/integration/{integrationId}",
+  tags: ["GitHub"],
+  summary: "Get a GitHub integration by id",
+  description:
+    "Get one GitHub repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
+  middleware: [
+    workspaceAccess.fromIntegration("integrationId"),
+    requireWorkspacePermission({ workspace: ["manage_settings"] }),
+  ] as const,
+  request: { params: integrationIdParam },
+  responses: {
+    200: jsonResponse(
+      "GitHub integration details, or null",
+      githubIntegrationSchema.nullable(),
+    ),
+    403: errorResponse("No access to the integration's workspace"),
+    404: errorResponse("Integration not found"),
   },
 });
 
@@ -193,10 +236,8 @@ const getIntegrationRoute = createRoute({
       "GitHub integration details, or null",
       githubIntegrationSchema.nullable(),
     ),
-    400: errorResponse(
-      "Unknown project, or its workspace could not be determined",
-    ),
-    403: errorResponse("No access to the project's workspace"),
+    403: errorResponse("No access to the project"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -224,10 +265,11 @@ const createIntegrationRoute = createRoute({
     402: errorResponse(
       "The plan's repository binding limit is reached (binding_limit_exceeded)",
     ),
-    400: errorResponse("Invalid body, or unknown project"),
+    400: errorResponse("Invalid body"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -255,15 +297,17 @@ const updateIntegrationRoute = createRoute({
       "The updated integration",
       githubIntegrationSchema.nullable(),
     ),
-    409: errorResponse("Integration changed; refresh before updating"),
+    409: errorResponse(
+      "Integration changed; refresh before updating",
+    ),
     402: errorResponse(
       "The plan's repository binding limit is reached (binding_limit_exceeded)",
     ),
     400: errorResponse("The resulting config failed validation"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
-    404: jsonResponse("Integration not found", integrationNotFoundSchema),
+    404: errorResponse("Project or integration not found"),
   },
 });
 
@@ -283,9 +327,9 @@ const deleteIntegrationRoute = createRoute({
   responses: {
     200: jsonResponse("The integration was removed", deleteResultSchema),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
-    404: errorResponse("GitHub integration not found"),
+    404: errorResponse("Project or GitHub integration not found"),
   },
 });
 
@@ -322,73 +366,9 @@ const importIssuesRoute = createRoute({
     ),
     400: errorResponse("integrationId is required"),
     403: errorResponse(
-      "No workspace access, or missing task:create or task:update permission",
+      "No access to the project, or missing task:create or task:update permission",
     ),
     404: errorResponse("Integration not found"),
-  },
-});
-
-const listRepositoryBranchesRoute = createRoute({
-  method: "get",
-  operationId: "listGitHubRepositoryBranches",
-  path: "/integration/{integrationId}/branches",
-  tags: ["GitHub"],
-  summary: "Search branches of a linked repository",
-  description:
-    "List the branches of the repository behind one binding, optionally filtered by a case-insensitive substring such as the task ticket key. At most 500 branches per call are examined.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ task: ["update"] }),
-  ] as const,
-  request: {
-    params: integrationIdParam,
-    query: repositoryBranchesQuery,
-  },
-  responses: {
-    200: jsonResponse(
-      "Matching branches of the linked repository",
-      githubBranchListSchema,
-    ),
-    400: errorResponse("Invalid query"),
-    403: errorResponse(
-      "No workspace access, or missing task:update permission",
-    ),
-    404: errorResponse("Integration not found"),
-    409: errorResponse("Integration requires verification"),
-  },
-});
-
-const createRepositoryBranchRoute = createRoute({
-  method: "post",
-  operationId: "createGitHubRepositoryBranch",
-  path: "/integration/{integrationId}/branches",
-  tags: ["GitHub"],
-  summary: "Create or link a task branch",
-  description:
-    "Create a branch for a task in the bound repository, based on the default branch head, and link it to the task. When the branch already exists it is only linked. With create=false the branch must already exist.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ task: ["update"] }),
-  ] as const,
-  request: {
-    params: integrationIdParam,
-    body: {
-      required: true,
-      content: {
-        "application/json": { schema: createRepositoryBranchBody },
-      },
-    },
-  },
-  responses: {
-    200: jsonResponse("The created or linked branch", githubBranchResultSchema),
-    400: errorResponse(
-      "Invalid branch name, or the task belongs to another project",
-    ),
-    403: errorResponse(
-      "No workspace access, or missing task:update permission",
-    ),
-    404: errorResponse("Integration or task not found"),
-    409: errorResponse("Integration requires verification"),
   },
 });
 
@@ -411,11 +391,14 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     );
   })
   .openapi(listRepositoriesRoute, async (c) => {
+    const { search, ...page } = c.req.valid("query");
     const repositories = await listUserRepositories(
       c.get("userId"),
-      c.req.valid("query"),
+      page,
+      search || undefined,
     );
-    return c.json(repositories, 200);
+    const annotated = await annotateLinkedState(repositories);
+    return c.json(annotated, 200);
   })
   .openapi(verifyRoute, async (c) => {
     const { repositoryOwner, repositoryName } = c.req.valid("json");
@@ -478,7 +461,7 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     });
 
     if (!row) {
-      return c.json({ error: "Integration not found" }, 404);
+      throw new HTTPException(404, { message: "Integration not found" });
     }
 
     // WP10: reactivation re-enters the binding count, so the quota guard runs

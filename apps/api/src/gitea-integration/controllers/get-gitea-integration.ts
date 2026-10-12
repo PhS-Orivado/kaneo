@@ -16,43 +16,36 @@ function maskToken(token: string): string {
   return `${token.slice(0, 4)}••••••${token.slice(-4)}`;
 }
 
-function giteaWebhookUrl(integrationId: string): string {
-  const apiBase = normalizeApiServerUrl(
-    process.env.KANEO_API_URL || "http://localhost:1337",
-  );
-  return `${apiBase.replace(/\/$/, "")}/gitea-integration/webhook/${integrationId}`;
-}
-
-// RFC 0001 WP3: the Gitea surface is keyed by integration id; the identity
-// columns written at create time are authoritative, with the config JSON as
-// a fallback for legacy rows. The webhook secret goes only to callers with
-// workspace:manage_settings, and it is per row, so each project owner sees
-// only their own binding's secret.
+// RFC 0001 WP3: the Gitea surface is keyed by integration id. Every row is
+// enriched with its detail shape; there is no verification equivalent to the
+// GitHub numeric repository id, so the row's isActive drives the status chip.
+// The webhook secret is only included for callers with
+// workspace:manage_settings, exactly as before -- per row now, so each
+// project owner sees only their own binding's secret.
 function enrichGiteaIntegration(
   integration: IntegrationRow,
-  includeWebhookSecret: boolean,
+  includeWebhookSecret = false,
 ) {
   let config: GiteaConfig;
   try {
     config = JSON.parse(integration.config) as GiteaConfig;
   } catch {
-    config = {
-      baseUrl: "",
-      accessToken: "",
-      repositoryOwner: "",
-      repositoryName: "",
-    } as GiteaConfig;
+    config = {} as GiteaConfig;
   }
+
+  const apiBase = normalizeApiServerUrl(
+    process.env.KANEO_API_URL || "http://localhost:1337",
+  );
 
   return {
     id: integration.id,
     projectId: integration.projectId,
-    baseUrl: config.baseUrl,
+    baseUrl: config.baseUrl ?? integration.baseUrl ?? "",
     repositoryOwner:
       integration.repositoryOwner ?? config.repositoryOwner ?? "",
     repositoryName: integration.repositoryName ?? config.repositoryName ?? "",
-    maskedAccessToken: maskToken(config.accessToken),
-    webhookUrl: giteaWebhookUrl(integration.id),
+    maskedAccessToken: config.accessToken ? maskToken(config.accessToken) : "",
+    webhookUrl: `${apiBase.replace(/\/$/, "")}/gitea-integration/webhook/${integration.id}`,
     webhookSecret: includeWebhookSecret ? (config.webhookSecret ?? "") : "",
     branchPattern: config.branchPattern || defaultGiteaConfig.branchPattern,
     commentTaskLinkOnGiteaIssue: config.commentTaskLinkOnGiteaIssue !== false,

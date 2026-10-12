@@ -14,31 +14,14 @@ type PostgresUniqueViolation = Error & {
   constraint?: string;
 };
 
-/**
- * Drizzle >= 0.45 wraps failed queries in `DrizzleQueryError` and keeps the
- * driver's error on `cause`, so the `23505` code and constraint are not on
- * the top-level error. Walk the cause chain and return the first node that
- * carries a unique-violation code; both wrapped and unwrapped shapes work.
- */
-function uniqueViolationOf(error: unknown): PostgresUniqueViolation | null {
-  let current: unknown = error;
-  for (
-    let depth = 0;
-    depth < 5 && typeof current === "object" && current !== null;
-    depth += 1
-  ) {
-    if ((current as PostgresUniqueViolation).code === "23505") {
-      return current as PostgresUniqueViolation;
-    }
-    current = (current as { cause?: unknown }).cause;
-  }
-  return null;
-}
-
 export function isDatabaseUniqueViolation(
   error: unknown,
 ): error is PostgresUniqueViolation {
-  return uniqueViolationOf(error) !== null;
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    (error as PostgresUniqueViolation).code === "23505"
+  );
 }
 
 /**
@@ -49,11 +32,10 @@ export function mapIntegrationUniqueViolation(
   error: unknown,
   context?: { projectId?: string; type?: string },
 ): never {
-  const violation = uniqueViolationOf(error);
-  if (
-    !violation ||
-    violation.constraint !== INTEGRATION_PROJECT_TYPE_REPO_UNIQUE
-  ) {
+  if (!isDatabaseUniqueViolation(error)) {
+    throw error;
+  }
+  if (error.constraint !== INTEGRATION_PROJECT_TYPE_REPO_UNIQUE) {
     throw error;
   }
   throw new HTTPException(409, {

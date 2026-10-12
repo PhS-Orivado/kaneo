@@ -11,22 +11,18 @@ import { readSyncRules } from "../../plugins/sync/rules";
 import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 
-// RFC 0001 WP5: scope locks are taken on the addressed binding's rows only.
-// The lock derives from the integration id (never from project + provider),
-// so sibling bindings of the same project never serialize each other.
-export async function lockResumeScopeById(
+// RFC 0001 WP5: keyed by integration id; the lock scope derives from the
+// addressed binding, so concurrent resumes of two different bindings never
+// contend on one lock.
+export async function lockResumeScope(
   integrationId: string,
   linkId: string,
   authorizedWorkspaceId: string,
   tx: IntegrationDatabase,
 ) {
-  const integration = await getSyncIntegrationById(integrationId, tx);
-  await getAuthorizedSyncProject(
-    integration.projectId,
-    authorizedWorkspaceId,
-    tx,
-    true,
-  );
+  const integration = await getSyncIntegration(integrationId, tx);
+  const projectId = integration.projectId;
+  await getAuthorizedSyncProject(projectId, authorizedWorkspaceId, tx, true);
   const [binding] = await tx
     .select()
     .from(integrationTable)
@@ -78,18 +74,4 @@ export async function lockResumeScopeById(
     .from(externalLinkTable)
     .where(eq(externalLinkTable.id, linkId))
     .for("update");
-}
-
-// Compat shim (RFC 0001 WP5, section 5): the project-keyed flow locks the
-// scope of the project's first binding of the provider until the new web
-// client ships; removed with the cleanup PR.
-export async function lockResumeScope(
-  projectId: string,
-  provider: string,
-  linkId: string,
-  authorizedWorkspaceId: string,
-  tx: IntegrationDatabase,
-) {
-  const integration = await getSyncIntegration(projectId, provider, tx);
-  return lockResumeScopeById(integration.id, linkId, authorizedWorkspaceId, tx);
 }

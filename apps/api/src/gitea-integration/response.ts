@@ -5,7 +5,8 @@ import {
 } from "../integrations/response";
 
 // Credentials are only ever returned masked; the webhook secret goes only to
-// callers holding workspace:manage_settings.
+// callers holding workspace:manage_settings. The secret is per binding now,
+// so each project owner sees only their own binding's secret.
 export const giteaIntegrationSchema = z
   .object({
     id: z.string(),
@@ -17,11 +18,11 @@ export const giteaIntegrationSchema = z
     repositoryName: z.string(),
     maskedAccessToken: z.string(),
     webhookUrl: z.string().optional().openapi({
-      description: "Where Gitea should POST events for this project.",
+      description: "Where Gitea should POST events for this binding.",
     }),
     webhookSecret: z.string().optional().openapi({
       description:
-        "Only returned to callers with workspace:manage_settings, so the value can be pasted into Gitea.",
+        "Only returned to callers with workspace:manage_settings, so the value can be pasted into Gitea. Per binding.",
     }),
     branchPattern: z.string().optional(),
     commentTaskLinkOnGiteaIssue: z.boolean().optional().openapi({
@@ -34,13 +35,10 @@ export const giteaIntegrationSchema = z
   })
   .openapi("GiteaIntegration");
 
-// RFC 0001 WP3: list response of the project's Gitea bindings with the
-// workspace's repository binding usage summary (WP10).
+// RFC 0001 WP3: array shape for the list route plus the WP10 usage summary.
 export const giteaIntegrationListSchema = z
   .object({
-    integrations: z.array(giteaIntegrationSchema).openapi({
-      description: "Every Gitea binding of the project, oldest first.",
-    }),
+    integrations: z.array(giteaIntegrationSchema),
     usage: repositoryBindingUsageSchema,
   })
   .openapi("GiteaIntegrationList");
@@ -53,11 +51,9 @@ export const giteaRepositorySchema = z
     owner: z.object({ login: z.string() }).openapi("GiteaRepositoryOwner"),
     private: z.boolean(),
     html_url: z.string(),
-    // RFC 0001 WP3: linked-state annotation. Same-project links block
-    // selection in the picker; cross-project links (allowed per decision D1)
-    // are informational only.
-    linkedTo: repositoryLinkedToSchema.nullable().openapi({
-      description: "The binding this repository is already linked to, if any.",
+    linkedTo: repositoryLinkedToSchema.nullable().optional().openapi({
+      description:
+        "The binding this repository is already linked to, when any. Same-project links block selection; cross-project links (allowed per RFC decision D1) are informational only.",
     }),
   })
   .openapi("GiteaRepository");
@@ -100,7 +96,3 @@ export const giteaImportResultSchema = z
 export const giteaDeleteResultSchema = z
   .object({ success: z.boolean(), message: z.string() })
   .openapi("GiteaDeleteResult");
-
-export const integrationNotFoundSchema = z
-  .object({ error: z.string() })
-  .openapi("GiteaIntegrationNotFound");

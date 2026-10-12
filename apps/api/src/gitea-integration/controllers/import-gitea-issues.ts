@@ -53,14 +53,12 @@ function toPriorityLabels(labels: GiteaLabel[]): LabelLike[] {
   return labels.map((label) => ({ name: label.name }));
 }
 
-// RFC 0001 WP3: imports are keyed by integration id, so every binding keeps
-// its own issue and pull request links. When a projectId is also provided
-// (compat with the old project-keyed body), it must match the binding's
-// project; a mismatch is a 404, never a 403, so the endpoint does not
-// confirm the existence of a foreign binding.
+// RFC 0001 WP3: import is keyed by integration id; the binding decides the
+// repository, and a projectId in the request is accepted for compat and must
+// match the binding's project.
 export async function importGiteaIssues({
   integrationId,
-  projectId: expectedProjectId,
+  projectId,
 }: {
   integrationId: string;
   projectId?: string;
@@ -86,8 +84,24 @@ export async function importGiteaIssues({
     throw new HTTPException(404, { message: "Gitea integration not found" });
   }
 
+  const integration = await db.query.integrationTable.findFirst({
+    where: eq(integrationTable.id, integrationId),
+  });
+
+  if (!integration || integration.type !== "gitea") {
+    throw new HTTPException(404, { message: "Gitea integration not found" });
+  }
+
+  if (projectId && projectId !== integration.projectId) {
+    throw new HTTPException(400, {
+      message: "Integration does not belong to this project",
+    });
+  }
+
+  const projectIdResolved = integration.projectId;
+
   const project = await db.query.projectTable.findFirst({
-    where: eq(projectTable.id, projectId),
+    where: eq(projectTable.id, projectIdResolved),
   });
 
   if (!project) {
@@ -147,7 +161,7 @@ export async function importGiteaIssues({
       const result = await importSingleIssue(
         issue,
         integration.id,
-        projectId,
+        projectIdResolved,
         project.workspaceId,
         config,
         client,
@@ -196,7 +210,7 @@ export async function importGiteaIssues({
           head: { ref: pr.head.ref },
         },
         integration.id,
-        projectId,
+        projectIdResolved,
         project.slug,
         config,
       );

@@ -12,11 +12,11 @@ import { reviewSyncResumeById } from "./review-resume";
 import { verifyResumeProvider } from "./verify-resume-provider";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";
 
-// RFC 0001 WP5: the resume flow is keyed by integration id. The lease is
-// held per link and the scope locks are taken on the addressed binding's
-// rows only, so concurrent resumes of two different bindings never contend
-// on one lock.
-export async function resumeSyncById(
+// RFC 0001 WP5: keyed by integration id. The sync lease is already per link,
+// and links are looked up within the addressed binding only, so sibling
+// bindings never contend. The provider for the status resolution is the
+// binding's integration type.
+export async function resumeSync(
   integrationId: string,
   linkId: string,
   token: string,
@@ -48,12 +48,13 @@ async function resumeWithLease(
   authorizedWorkspaceId: string,
 ) {
   // Provider latency must not retain a pooled connection or block local edits.
-  const initial = await reviewSyncResumeById(
+  const initial = await reviewSyncResume(
     integrationId,
     linkId,
     authorizedWorkspaceId,
   );
   const projectId = initial.integration.projectId;
+  const provider = initial.integration.type;
   const { snapshot } = initial;
   let request:
     | Promise<
@@ -68,9 +69,9 @@ async function resumeWithLease(
   let providerWritten = false;
   let updatedAt: string | null = null;
   let adoption: Awaited<ReturnType<typeof applySyncResume>>;
-  const validate = async (tx: Parameters<typeof lockResumeScopeById>[3]) => {
-    await lockResumeScopeById(integrationId, linkId, authorizedWorkspaceId, tx);
-    const review = await reviewSyncResumeById(
+  const validate = async (tx: Parameters<typeof lockResumeScope>[3]) => {
+    await lockResumeScope(integrationId, linkId, authorizedWorkspaceId, tx);
+    const review = await reviewSyncResume(
       integrationId,
       linkId,
       authorizedWorkspaceId,
@@ -98,7 +99,6 @@ async function resumeWithLease(
       if ("error" in result) {
         console.error("Sync resume provider write failed", {
           projectId,
-          provider: initial.integration.type,
           integrationId,
           linkId,
         });
@@ -164,25 +164,4 @@ async function resumeWithLease(
   await publishEvent("project.updated", { projectId });
   if (verificationError) throw verificationError;
   return { success: true };
-}
-
-// Compat shim (RFC 0001 WP5, section 5): the project-keyed route resumes on
-// the project's first binding of the provider until the new web client
-// ships; removed with the cleanup PR.
-export async function resumeSync(
-  projectId: string,
-  provider: string,
-  linkId: string,
-  token: string,
-  source: "kaneo" | "provider",
-  authorizedWorkspaceId: string,
-) {
-  const integration = await getSyncIntegration(projectId, provider);
-  return resumeSyncById(
-    integration.id,
-    linkId,
-    token,
-    source,
-    authorizedWorkspaceId,
-  );
 }

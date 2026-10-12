@@ -6,8 +6,8 @@ import { publishEvent } from "../events";
 import { integrationTable } from "../database/schema";
 import { integrationIdParam, projectIdParam } from "../integrations/schema";
 import {
-  assertRepositoryBindingQuota,
   getRepositoryBindingUsage,
+  assertRepositoryBindingQuota,
 } from "../plan-limits/repository-binding-quota";
 import {
   apiRouter,
@@ -40,11 +40,10 @@ import {
   giteaIntegrationSchema,
   giteaRepositoryListSchema,
   giteaVerificationResultSchema,
-  integrationNotFoundSchema,
 } from "./response";
 import {
   createGiteaBody,
-  importGiteaBody,
+  importGiteaIssuesBody,
   listGiteaRepositoriesBody,
   updateGiteaBody,
   verifyGiteaBody,
@@ -63,6 +62,11 @@ const manageAccess = [
   requireWorkspacePermission({ workspace: ["manage_settings"] }),
 ];
 
+const manageBindingAccess = [
+  workspaceAccess.fromIntegration("integrationId"),
+  requireWorkspacePermission({ workspace: ["manage_settings"] }),
+];
+
 const listRepositoriesRoute = createRoute({
   method: "post",
   operationId: "listGiteaRepositories",
@@ -70,7 +74,7 @@ const listRepositoriesRoute = createRoute({
   tags: ["Gitea"],
   summary: "List Gitea repositories",
   description:
-    "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each repository is annotated with its linked state (RFC 0001 WP3): same-project links block selection, cross-project links are informational only (decision D1).",
+    "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each repository is annotated with its linked state (linkedTo); same-project links block selection, cross-project links are informational only (RFC decision D1).",
   middleware: manageAccess,
   request: {
     body: {
@@ -80,12 +84,11 @@ const listRepositoriesRoute = createRoute({
   },
   responses: {
     200: jsonResponse("Accessible repositories", giteaRepositoryListSchema),
-    400: errorResponse(
-      "Invalid body, unknown project, or invalid Gitea credentials",
-    ),
+    400: errorResponse("Invalid body, or invalid Gitea credentials"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -108,12 +111,57 @@ const verifyRoute = createRoute({
     200: jsonResponse("Verification result", giteaVerificationResultSchema),
     401: errorResponse("Kaneo authentication required"),
     500: errorResponse("Gitea verification failed"),
+    400: errorResponse("Invalid body, or invalid Gitea credentials"),
+    403: errorResponse(
+      "No access to the project, or missing workspace:manage_settings",
+    ),
+    404: errorResponse("Project not found"),
+  },
+});
+
+// RFC 0001 WP3: list every Gitea binding of the project, oldest first,
+// together with the WP10 repository binding usage summary.
+const listIntegrationsRoute = createRoute({
+  method: "get",
+  operationId: "listGiteaIntegrations",
+  path: "/project/{projectId}/integrations",
+  tags: ["Gitea"],
+  summary: "List Gitea integrations",
+  description:
+    "List every Gitea repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
+  middleware: manageAccess,
+  request: { params: projectIdParam },
+  responses: {
+    200: jsonResponse(
+      "The project's Gitea bindings and the repository binding usage",
+      giteaIntegrationListSchema,
+    ),
     400: errorResponse(
-      "Invalid body, unknown project, or invalid Gitea credentials",
+      "Unknown project, or its workspace could not be determined",
     ),
     403: errorResponse(
       "No workspace access, or missing workspace:manage_settings",
     ),
+  },
+});
+
+const getIntegrationByIdRoute = createRoute({
+  method: "get",
+  operationId: "getGiteaIntegrationById",
+  path: "/integration/{integrationId}",
+  tags: ["Gitea"],
+  summary: "Get a Gitea integration by id",
+  description:
+    "Get one Gitea repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
+  middleware: manageBindingAccess,
+  request: { params: integrationIdParam },
+  responses: {
+    200: jsonResponse(
+      "Gitea integration details, or null",
+      giteaIntegrationSchema.nullable(),
+    ),
+    403: errorResponse("No access to the integration's workspace"),
+    404: errorResponse("Integration not found"),
   },
 });
 
@@ -179,10 +227,8 @@ const getIntegrationRoute = createRoute({
       "Gitea integration details, or null",
       giteaIntegrationSchema.nullable(),
     ),
-    400: errorResponse(
-      "Unknown project, or its workspace could not be determined",
-    ),
-    403: errorResponse("No access to the project's workspace"),
+    403: errorResponse("No access to the project"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -193,7 +239,7 @@ const createIntegrationRoute = createRoute({
   tags: ["Gitea"],
   summary: "Create Gitea integration",
   description:
-    "Link a project to one Gitea repository, generating the per-binding webhook secret for the webhook Gitea will post events to. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Use the verify route first to confirm the token really reaches the repository.",
+    "Link a project to one Gitea repository. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Each binding gets its own webhook secret and webhook route.",
   middleware: manageAccess,
   request: {
     params: projectIdParam,
@@ -212,8 +258,9 @@ const createIntegrationRoute = createRoute({
     ),
     400: errorResponse("Invalid body, or unknown project"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -225,10 +272,7 @@ const updateIntegrationRoute = createRoute({
   summary: "Update Gitea integration",
   description:
     "Update one Gitea repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ workspace: ["manage_settings"] }),
-  ] as const,
+  middleware: manageBindingAccess,
   request: {
     params: integrationIdParam,
     body: {
@@ -244,9 +288,9 @@ const updateIntegrationRoute = createRoute({
     ),
     400: errorResponse("The resulting config failed validation"),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
-    404: jsonResponse("Integration not found", integrationNotFoundSchema),
+    404: errorResponse("Integration not found"),
   },
 });
 
@@ -257,18 +301,15 @@ const deleteIntegrationRoute = createRoute({
   tags: ["Gitea"],
   summary: "Delete Gitea integration",
   description:
-    "Unlink one Gitea repository binding. Its issue and pull request links are removed with it; tasks created from its issues remain in the project. Other bindings of the same repository keep working, including their webhook routes.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ workspace: ["manage_settings"] }),
-  ] as const,
+    "Unlink one Gitea repository binding. Its external links are removed with it; tasks created from its issues remain in the project. Other bindings of the project stay fully functional.",
+  middleware: manageBindingAccess,
   request: { params: integrationIdParam },
   responses: {
     200: jsonResponse("The integration was removed", giteaDeleteResultSchema),
     403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
+      "No access to the project, or missing workspace:manage_settings",
     ),
-    404: errorResponse("Gitea integration not found"),
+    404: errorResponse("Project or Gitea integration not found"),
   },
 });
 
@@ -279,7 +320,7 @@ const importIssuesRoute = createRoute({
   tags: ["Gitea"],
   summary: "Import Gitea issues",
   description:
-    "Import the linked repository's issues as tasks for one repository binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
+    "Import the linked repository's issues as tasks for one binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
   middleware: [
     workspaceAccess.fromIntegration("integrationId"),
     requireWorkspacePermission({ task: ["create", "update"] }),
@@ -287,14 +328,14 @@ const importIssuesRoute = createRoute({
   request: {
     body: {
       required: true,
-      content: { "application/json": { schema: importGiteaBody } },
+      content: { "application/json": { schema: importGiteaIssuesBody } },
     },
   },
   responses: {
     200: jsonResponse("Import summary", giteaImportResultSchema),
-    400: errorResponse("integrationId is required"),
+    400: errorResponse("integrationId is required, or binding mismatch"),
     403: errorResponse(
-      "No workspace access, or missing task:create or task:update permission",
+      "No access to the project, or missing task:create or task:update permission",
     ),
     404: errorResponse("Integration or project not found"),
   },
@@ -302,8 +343,12 @@ const importIssuesRoute = createRoute({
 
 const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(listRepositoriesRoute, async (c) => {
-    const { baseUrl, accessToken } = c.req.valid("json");
-    const result = await listGiteaRepositories({ baseUrl, accessToken });
+    const { baseUrl, accessToken, projectId } = c.req.valid("json");
+    const result = await listGiteaRepositories({
+      baseUrl,
+      accessToken,
+      projectId,
+    });
     return c.json(result, 200);
   })
   .openapi(verifyRoute, async (c) => {
@@ -311,6 +356,20 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     const accessToken = await resolveVerificationToken(body);
     const result = await verifyGiteaAccess({ ...body, accessToken });
     return c.json(result, 200);
+  })
+  .openapi(listIntegrationsRoute, async (c) => {
+    const { projectId } = c.req.valid("param");
+    const integrations = await listGiteaIntegrations(projectId);
+    const usage = await getRepositoryBindingUsage(
+      projectId,
+      c.get("workspaceId"),
+    );
+    return c.json({ integrations, usage }, 200);
+  })
+  .openapi(getIntegrationByIdRoute, async (c) => {
+    const { integrationId } = c.req.valid("param");
+    const integration = await getGiteaIntegrationById(integrationId, true);
+    return c.json(integration, 200);
   })
   .openapi(listIntegrationsRoute, async (c) => {
     const { projectId } = c.req.valid("param");
@@ -340,7 +399,6 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(createIntegrationRoute, async (c) => {
     const { projectId } = c.req.valid("param");
     const body = c.req.valid("json");
-
     const created = await createGiteaIntegration({
       projectId,
       baseUrl: body.baseUrl,
@@ -348,15 +406,13 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       repositoryOwner: body.repositoryOwner,
       repositoryName: body.repositoryName,
     });
-
     const integration = await getGiteaIntegrationById(created.id, true);
     if (!integration) {
       throw new HTTPException(500, { message: "Failed to load integration" });
     }
-
     await publishEvent("integration.sync_rules_changed", {
       projectId,
-      integrationId: created.id,
+      integrationId: integration.id,
     });
     return c.json(integration, 200);
   })
@@ -369,11 +425,11 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     });
 
     if (!row) {
-      return c.json({ error: "Integration not found" }, 404);
+      throw new HTTPException(404, { message: "Integration not found" });
     }
 
-    // WP10: reactivation re-enters the binding count, so the quota guard runs
-    // before the update writes isActive=true.
+    // WP10: reactivation re-enters the binding count, so the quota guard
+    // runs before the update writes isActive=true.
     if (body.isActive === true && !row.isActive) {
       await assertRepositoryBindingQuota(row.projectId, c.get("workspaceId"));
     }

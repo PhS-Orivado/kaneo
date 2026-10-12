@@ -20,20 +20,25 @@ import {
 
 import { resolveVerificationToken } from "./resolve-verification-token";
 
-// RFC 0001 WP3: one integration row per Gitea repository. The old
-// update-in-place branch (which reused the stored webhook secret) and the
-// O(n) cross-project JSON scan are both deleted. Per governing decision D1
-// cross-project duplicates are valid rows; per WP0 same-project duplicates
-// are rejected by integration_project_type_repo_unique, which also closes
-// the concurrency race the in-memory scan left open.
+// RFC 0001 WP3: one integration row per Gitea repository. The update-in-place
+// branch (reusing the single row and its webhook secret) and the O(n)
+// cross-project `allGitea` JSON scan are deleted with nothing replacing
+// them: per governing decision D1 cross-project links are valid rows, and
+// same-project duplicates are decided by the per-project unique constraint
+// (integration_project_type_repo_unique), which also closes the concurrency
+// race the in-memory scan left open. Each binding gets its own fresh
+// webhookSecret; the per-integration webhook route carries it.
 
-/** Repository identity key: `gitea:<normalizedBase>/<owner>/<name>` lowercased. */
+/**
+ * Repository identity key: `gitea:<normalized baseUrl>/<owner>/<name>`,
+ * lowercased owner and name (RFC 0001 section 4.1).
+ */
 export function giteaRepositoryKey(
-  normalizedBase: string,
+  baseUrl: string,
   repositoryOwner: string,
   repositoryName: string,
 ): string {
-  return `gitea:${normalizedBase}/${repositoryOwner.toLowerCase()}/${repositoryName.toLowerCase()}`;
+  return `gitea:${baseUrl}/${repositoryOwner.toLowerCase()}/${repositoryName.toLowerCase()}`;
 }
 
 async function createGiteaIntegration({
@@ -86,8 +91,6 @@ async function createGiteaIntegration({
   // verification and before the insert. 402 propagates unchanged.
   await assertRepositoryBindingQuota(projectId, project.workspaceId);
 
-  // One secret per binding, never copied from an existing row: each row's
-  // webhook route verifies with its own secret.
   const webhookSecret = randomBytes(24).toString("hex");
 
   const config: GiteaConfig = getDefaultGiteaConfig(
@@ -119,6 +122,7 @@ async function createGiteaIntegration({
         ),
         repositoryOwner,
         repositoryName,
+        baseUrl: normalizedBase,
         isActive: true,
       })
       .returning();
