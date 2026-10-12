@@ -45,7 +45,6 @@ import { Route as LayoutAuthenticatedDashboardSettingsAccountInformationRouteImp
 import { Route as LayoutAuthenticatedDashboardSettingsAccountNotificationsRouteImport } from './routes/_layout/_authenticated/dashboard/settings/account/notifications'
 import { Route as LayoutAuthenticatedDashboardSettingsAccountPreferencesRouteImport } from './routes/_layout/_authenticated/dashboard/settings/account/preferences'
 import { Route as LayoutAuthenticatedDashboardSettingsAccountSecurityRouteImport } from './routes/_layout/_authenticated/dashboard/settings/account/security'
-import { Route as LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/branding'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminUsersRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/users'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminWorkspacesRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/workspaces'
 import { Route as LayoutAuthenticatedDashboardSettingsWorkspaceBillingRouteImport } from './routes/_layout/_authenticated/dashboard/settings/workspace/billing'
@@ -272,12 +271,6 @@ const LayoutAuthenticatedDashboardSettingsAccountSecurityRoute =
     path: '/security',
     getParentRoute: () => LayoutAuthenticatedDashboardSettingsAccountRoute,
   } as any)
-const LayoutAuthenticatedDashboardSettingsAdminBrandingRoute =
-  LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport.update({
-    id: '/branding',
-    path: '/branding',
-    getParentRoute: () => LayoutAuthenticatedDashboardSettingsAdminRoute,
-  } as any)
 const LayoutAuthenticatedDashboardSettingsAdminUsersRoute =
   LayoutAuthenticatedDashboardSettingsAdminUsersRouteImport.update({
     id: '/users',
@@ -494,7 +487,6 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings/account/notifications': typeof LayoutAuthenticatedDashboardSettingsAccountNotificationsRoute
   '/dashboard/settings/account/preferences': typeof LayoutAuthenticatedDashboardSettingsAccountPreferencesRoute
   '/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
-  '/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
   '/dashboard/settings/admin/users': typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   '/dashboard/settings/admin/workspaces': typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
   '/dashboard/settings/workspace/billing': typeof LayoutAuthenticatedDashboardSettingsWorkspaceBillingRoute
@@ -553,7 +545,6 @@ export interface FileRoutesByTo {
   '/dashboard/settings/account/notifications': typeof LayoutAuthenticatedDashboardSettingsAccountNotificationsRoute
   '/dashboard/settings/account/preferences': typeof LayoutAuthenticatedDashboardSettingsAccountPreferencesRoute
   '/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
-  '/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
   '/dashboard/settings/admin/users': typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   '/dashboard/settings/admin/workspaces': typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
   '/dashboard/settings/workspace/billing': typeof LayoutAuthenticatedDashboardSettingsWorkspaceBillingRoute
@@ -618,7 +609,6 @@ export interface FileRoutesById {
   '/_layout/_authenticated/dashboard/settings/account/notifications': typeof LayoutAuthenticatedDashboardSettingsAccountNotificationsRoute
   '/_layout/_authenticated/dashboard/settings/account/preferences': typeof LayoutAuthenticatedDashboardSettingsAccountPreferencesRoute
   '/_layout/_authenticated/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
-  '/_layout/_authenticated/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
   '/_layout/_authenticated/dashboard/settings/admin/users': typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   '/_layout/_authenticated/dashboard/settings/admin/workspaces': typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
   '/_layout/_authenticated/dashboard/settings/workspace/billing': typeof LayoutAuthenticatedDashboardSettingsWorkspaceBillingRoute
@@ -1095,13 +1085,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRouteImport
       parentRoute: typeof LayoutAuthenticatedDashboardSettingsAccountRoute
     }
-    '/_layout/_authenticated/dashboard/settings/admin/branding': {
-      id: '/_layout/_authenticated/dashboard/settings/admin/branding'
-      path: '/branding'
-      fullPath: '/dashboard/settings/admin/branding'
-      preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport
-      parentRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRoute
-    }
     '/_layout/_authenticated/dashboard/settings/admin/users': {
       id: '/_layout/_authenticated/dashboard/settings/admin/users'
       path: '/users'
@@ -1308,15 +1291,12 @@ const LayoutAuthenticatedDashboardSettingsAccountRouteWithChildren =
   )
 
 interface LayoutAuthenticatedDashboardSettingsAdminRouteChildren {
-  LayoutAuthenticatedDashboardSettingsAdminBrandingRoute: typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
   LayoutAuthenticatedDashboardSettingsAdminUsersRoute: typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute: typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
 }
 
 const LayoutAuthenticatedDashboardSettingsAdminRouteChildren: LayoutAuthenticatedDashboardSettingsAdminRouteChildren =
   {
-    LayoutAuthenticatedDashboardSettingsAdminBrandingRoute:
-      LayoutAuthenticatedDashboardSettingsAdminBrandingRoute,
     LayoutAuthenticatedDashboardSettingsAdminUsersRoute:
       LayoutAuthenticatedDashboardSettingsAdminUsersRoute,
     LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute:

@@ -3201,129 +3201,6 @@
 						"toast"
 					]
 				},
-				"adminBranding": {
-					"type": "object",
-					"additionalProperties": false,
-					"properties": {
-						"title": {
-							"type": "string"
-						},
-						"subtitle": {
-							"type": "string"
-						},
-						"instanceBadge": {
-							"type": "string"
-						},
-						"loadError": {
-							"type": "string"
-						},
-						"retry": {
-							"type": "string"
-						},
-						"form": {
-							"type": "object",
-							"additionalProperties": false,
-							"properties": {
-								"appName": {
-									"type": "string"
-								},
-								"appNameDescription": {
-									"type": "string"
-								},
-								"logoLightUrl": {
-									"type": "string"
-								},
-								"logoDarkUrl": {
-									"type": "string"
-								},
-								"logoDescription": {
-									"type": "string"
-								},
-								"accentColor": {
-									"type": "string"
-								},
-								"accentColorDescription": {
-									"type": "string"
-								},
-								"footerText": {
-									"type": "string"
-								},
-								"footerDescription": {
-									"type": "string"
-								},
-								"footerUrl": {
-									"type": "string"
-								},
-								"termsUrl": {
-									"type": "string"
-								},
-								"privacyUrl": {
-									"type": "string"
-								},
-								"legalDescription": {
-									"type": "string"
-								},
-								"showPoweredBy": {
-									"type": "string"
-								},
-								"showPoweredByDescription": {
-									"type": "string"
-								},
-								"reset": {
-									"type": "string"
-								},
-								"save": {
-									"type": "string"
-								},
-								"saving": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"appName",
-								"appNameDescription",
-								"logoLightUrl",
-								"logoDarkUrl",
-								"logoDescription",
-								"accentColor",
-								"accentColorDescription",
-								"footerText",
-								"footerDescription",
-								"footerUrl",
-								"termsUrl",
-								"privacyUrl",
-								"legalDescription",
-								"showPoweredBy",
-								"showPoweredByDescription",
-								"reset",
-								"save",
-								"saving"
-							]
-						},
-						"toast": {
-							"type": "object",
-							"additionalProperties": false,
-							"properties": {
-								"saved": {
-									"type": "string"
-								},
-								"saveError": {
-									"type": "string"
-								}
-							},
-							"required": ["saved", "saveError"]
-						}
-					},
-					"required": [
-						"title",
-						"subtitle",
-						"instanceBadge",
-						"loadError",
-						"retry",
-						"form",
-						"toast"
-					]
-				},
 				"informationPage": {
 					"type": "object",
 					"additionalProperties": false,
@@ -10143,7 +10020,6 @@
 				"apiKeys",
 				"adminUsers",
 				"adminWorkspaces",
-				"adminBranding",
 				"informationPage",
 				"notificationsPage",
 				"preferencesPage",

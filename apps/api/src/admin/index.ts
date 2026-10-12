@@ -1,6 +1,3 @@
-import { getBranding } from "../branding/get-branding";
-import { updateBranding } from "../branding/update-branding";
-import { brandingSchema } from "../config/response";
 import {
   apiRouter,
   createRoute,
@@ -31,7 +28,6 @@ import {
   listAdminWorkspacesQuery,
   transferAdminWorkspaceOwnershipBody,
   updateAdminWorkspaceMemberRoleBody,
-  updateBrandingBody,
 } from "./schema";
 
 const forbidden = errorResponse(
@@ -217,43 +213,6 @@ const transferWorkspaceOwnershipRoute = createRoute({
   },
 });
 
-const getBrandingRoute = createRoute({
-  method: "get",
-  operationId: "getAdminBranding",
-  path: "/branding",
-  tags: ["Admin"],
-  summary: "Get instance branding",
-  description:
-    "Read the white-label branding applied to this instance: application name, logos, accent color, footer, and legal links. Requires an instance administrator session; API keys are rejected.",
-  middleware: [requireUserSession, requireInstanceAdmin] as const,
-  responses: {
-    200: jsonResponse("Instance branding", brandingSchema),
-    403: forbidden,
-  },
-});
-
-const updateBrandingRoute = createRoute({
-  method: "put",
-  operationId: "updateAdminBranding",
-  path: "/branding",
-  tags: ["Admin"],
-  summary: "Update instance branding",
-  description:
-    "Replace the white-label branding for this instance. Null values restore the default Kaneo branding. Requires an instance administrator session; API keys are rejected.",
-  middleware: [requireUserSession, requireInstanceAdmin] as const,
-  request: {
-    body: {
-      required: true,
-      content: { "application/json": { schema: updateBrandingBody } },
-    },
-  },
-  responses: {
-    200: jsonResponse("Updated instance branding", brandingSchema),
-    400: errorResponse("Invalid branding values"),
-    403: forbidden,
-  },
-});
-
 const admin = apiRouter()
   .openapi(listUsersRoute, async (c) =>
     c.json(await listUsers(c.req.valid("query")), 200),
@@ -296,11 +255,6 @@ const admin = apiRouter()
       }),
       200,
     ),
-  
-  )
-  .openapi(getBrandingRoute, async (c) => c.json(await getBranding(), 200))
-  .openapi(updateBrandingRoute, async (c) =>
-    c.json(await updateBranding(c.req.valid("json")), 200),
   );
 
 export default admin;
