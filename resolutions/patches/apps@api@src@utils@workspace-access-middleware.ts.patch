@@ -12,16 +12,16 @@
 +  | "activity"
 +  | "comment"
 +  | "column"
-+  | "workflowRule"
++  | "workflowRuleB
 +  | "customField"
 +  | "integration";
 +
  type WorkspaceIdSource =
-  | { type: "query"; key: string }
-  | { type: "body"; key: string }
-  | { type: "param"; key: string }
-  | {
-      type: "lookup";
+   | { type: "query"; key: string }
+   | { type: "body"; key: string }
+   | { type: "param"; key: string }
+   | {
+       type: "lookup";
 -      resource:
 -        | "project"
 -        | "task"
@@ -34,12 +34,12 @@
 -        | "customField"
 -        | "integration";
 +      resource: LookupResource;
-      idKey: string;
-    }
-  | {
+       idKey: string;
+     }
+   | {
 @@ -30,6 +32,22 @@
-      idKey: string;
-    };
+       idKey: string;
+     };
  
 +const WORKSPACE_NOT_FOUND = "Workspace not found";
 +const TASKS_NOT_FOUND = "No tasks found";
@@ -61,19 +61,19 @@
    sources: WorkspaceIdSource[];
  };
 @@ -58,6 +76,7 @@
-
-    let workspaceId: string | null = null;
-    let projectIds: string[] = [];
+ 
+     let workspaceId: string | null = null;
+     let projectIds: string[] = [];
 +    let notFoundMessage = WORKSPACE_NOT_FOUND;
-
-    for (const source of config.sources) {
-      if (source.type === "query") {
+ 
+     for (const source of config.sources) {
+       if (source.type === "query") {
 @@ -78,9 +97,13 @@
-        // handler acted on another (`{"taskId": "<someone else's>"}`).
-        const id = c.req.param(source.idKey) || idFromBody;
-        if (id) {
+         // handler acted on another (`{"taskId": "<someone else's>"}`).
+         const id = c.req.param(source.idKey) || idFromBody;
+         if (id) {
 +          notFoundMessage = RESOURCE_NOT_FOUND[source.resource];
-          const scope = await lookupScope(source.resource, id);
+           const scope = await lookupScope(source.resource, id);
 -          workspaceId = scope?.workspaceId ?? null;
 -          projectIds = scope?.projectId ? [scope.projectId] : [];
 +          if (!scope) {
@@ -81,41 +81,41 @@
 +          }
 +          workspaceId = scope.workspaceId;
 +          projectIds = scope.projectId ? [scope.projectId] : [];
-        }
-      } else if (source.type === "lookupMany") {
-        const body = await readJsonObjectBody(c);
+         }
+       } else if (source.type === "lookupMany") {
+         const body = await readJsonObjectBody(c);
 @@ -90,6 +113,7 @@
-           (id): id is string => typeof id === "string",
-         );
-         if (taskIds.length > 0) {
+             (id): id is string => typeof id === "string",
+           );
+           if (taskIds.length > 0) {
 +            notFoundMessage = TASKS_NOT_FOUND;
-           const tasks = await db
-             .select({
-               workspaceId: schema.projectTable.workspaceId,
+             const tasks = await db
+               .select({
+                 workspaceId: schema.projectTable.workspaceId,
 @@ -105,7 +129,7 @@
-             ...new Set(tasks.map((task) => task.workspaceId)),
-           ];
-           if (workspaceIds.length === 0) {
+               ...new Set(tasks.map((task) => task.workspaceId)),
+             ];
+             if (workspaceIds.length === 0) {
 -              throw new HTTPException(404, { message: "No tasks found" });
 +              throw new HTTPException(404, { message: notFoundMessage });
-           }
-           if (workspaceIds.length > 1) {
-             throw new HTTPException(400, {
+             }
+             if (workspaceIds.length > 1) {
+               throw new HTTPException(400, {
 @@ -132,7 +156,9 @@
-    const apiKey = c.get("apiKey");
-    const apiKeyId = apiKey?.id;
-
+     const apiKey = c.get("apiKey");
+     const apiKeyId = apiKey?.id;
+ 
 -    await validateWorkspaceAccess(userId, workspaceId, apiKeyId);
 +    await validateWorkspaceAccess(userId, workspaceId, apiKeyId, {
 +      notFoundMessage,
 +    });
-    await assertProjectAccess(userId, projectIds);
-
-    c.set("workspaceId", workspaceId);
+     await assertProjectAccess(userId, projectIds);
+ 
+     c.set("workspaceId", workspaceId);
 @@ -142,17 +168,7 @@
-}
-
-async function lookupScope(
+ }
+ 
+ async function lookupScope(
 -  resource:
 -    | "project"
 -    | "task"
@@ -128,6 +128,6 @@ async function lookupScope(
 -    | "customField"
 -    | "integration",
 +  resource: LookupResource,
-  id: string,
-): Promise<ResourceScope | null> {
-  switch (resource) {
+   id: string,
+ ): Promise<ResourceScope | null> {
+   switch (resource) {

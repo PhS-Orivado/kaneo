@@ -10,7 +10,7 @@ resolutions; nothing here ships with the merge itself.
   the fork side where the fork rewrote the surface, the upstream side for
   generated artifacts and the workspace manifest, and the patches in
   "patches/" that fold the upstream conventions of v2.41.1 (the ApiError
-class, HttpError.fromResponse, the extracted LookupResource type, the
+  class, HttpError.fromResponse, the extracted LookupResource type, the
   simplified route error descriptions) into the fork's structure.
 - "patches/" holds one unified diff per patched file, generated from the
   merge source, so no file content is authored by hand.

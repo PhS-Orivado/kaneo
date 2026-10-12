@@ -1,17 +1,17 @@
 --- /tmp/upstream-main/pnpm-workspace.yaml	2026-10-11 22:41:33.000000000 +0000
 +++ tree/pnpm-workspace.yaml	2026-10-12 10:40:41.071338284 +0000
 @@ -41,9 +41,14 @@
-  vite@*: "catalog:"
-  vitest@*: "catalog:"
+   vite@*: "catalog:"
+   vitest@*: "catalog:"
  onlyBuiltDependencies:
 +  - '@prisma/engines'
 +  - '@sentry/cli'
 +  - '@sentry/node-cpu-profiler'
-  - bcrypt
-  - better-sqlite3
-  - esbuild
+   - bcrypt
+   - better-sqlite3
+   - esbuild
 +  - msw
 +  - prisma
  catalog:
-  vite: npm:@voidzero-dev/vite-plus-core@1.0.0
-  vitest: 5.0.3
+   vite: npm:@voidzero-dev/vite-plus-core@1.0.0
+   vitest: 5.0.3

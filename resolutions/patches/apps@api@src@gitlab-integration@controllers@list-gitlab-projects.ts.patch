@@ -10,13 +10,13 @@
  import { type z } from "../../openapi";
  import type { GitlabTokenType } from "../../plugins/gitlab/config";
 @@ -82,8 +82,9 @@
-  try {
-    await verifyGitlabToken(normalized, accessToken, tokenType);
-  } catch {
+   try {
+     await verifyGitlabToken(normalized, accessToken, tokenType);
+   } catch {
 -    throw new HTTPException(401, {
 +    throw new ApiError(401, {
-      message: "Invalid GitLab token or could not reach instance.",
+       message: "Invalid GitLab token or could not reach instance.",
 +      code: "INTEGRATION_AUTH_FAILED",
-    });
-  }
-
+     });
+   }
+ 
