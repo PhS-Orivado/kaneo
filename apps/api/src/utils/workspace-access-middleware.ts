@@ -342,6 +342,32 @@ async function lookupScope(
       return field ?? null;
     }
 
+    // RFC 0001 WP1: resolves integration -> project -> workspace. A missing
+    // integration is a 404, not the generic 400: the caller addressed a
+    // concrete resource. A foreign-workspace integration resolves here to a
+    // workspace the caller then fails validation for (403), never confirming
+    // existence across workspaces. The resolved projectId flows into
+    // assertProjectAccess below, so integration-keyed routes enforce project
+    // membership as well.
+    case "integration": {
+      const [integration] = await db
+        .select({
+          workspaceId: schema.projectTable.workspaceId,
+          projectId: schema.projectTable.id,
+        })
+        .from(schema.integrationTable)
+        .innerJoin(
+          schema.projectTable,
+          eq(schema.integrationTable.projectId, schema.projectTable.id),
+        )
+        .where(eq(schema.integrationTable.id, id))
+        .limit(1);
+      if (!integration) {
+        throw new HTTPException(404, { message: "Integration not found" });
+      }
+      return integration;
+    }
+
     default:
       return null;
   }
@@ -434,6 +460,16 @@ export const workspaceAccess = {
   fromCustomField: (idKey = "id") =>
     workspaceAccessMiddleware({
       sources: [{ type: "lookup", resource: "customField", idKey }],
+    }),
+
+  // RFC 0001 WP1: authorize integrationId-keyed routes. The id is read from
+  // the path param when the route declares it there and from the JSON body
+  // otherwise (never the query string), mirroring the other lookups. Compose
+  // with requireWorkspacePermission({ workspace: ["manage_settings"] }) for
+  // mutations; read-only routes may use it alone.
+  fromIntegration: (idKey = "integrationId") =>
+    workspaceAccessMiddleware({
+      sources: [{ type: "lookup", resource: "integration", idKey }],
     }),
 
   fromProjectId: (idKey = "projectId") =>

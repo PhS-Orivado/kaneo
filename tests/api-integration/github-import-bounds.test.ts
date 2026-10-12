@@ -138,6 +138,10 @@ async function setup() {
       type: "github",
       isActive: true,
       config: JSON.stringify(config),
+      repositoryKey: `github:${config.repositoryId}`,
+      repositoryOwner: config.repositoryOwner,
+      repositoryName: config.repositoryName,
+      repositoryId: config.repositoryId,
     })
     .returning();
   mockAuthenticatedSession(member.user);
@@ -147,7 +151,7 @@ async function setup() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        projectId: project.id,
+        integrationId: integration.id,
         ...(runId ? { runId } : {}),
       }),
     });
@@ -385,7 +389,7 @@ describe("bounded resumable GitHub import", () => {
           return emptyPulls();
         },
       );
-      let result = await importIssues(project.id);
+      let result = await importIssues({ integrationId: integration.id });
       expect(result).toMatchObject({
         pending: true,
         imported: existing ? 0 : 1,
@@ -418,7 +422,7 @@ describe("bounded resumable GitHub import", () => {
             }),
           })
           .where(eq(schema.integrationTable.id, integration.id));
-      result = await importIssues(project.id, result.runId);
+      result = await importIssues({ integrationId: integration.id, runId: result.runId });
       expect(result).toMatchObject({
         pending: false,
         imported: existing ? 0 : 1,
@@ -431,7 +435,7 @@ describe("bounded resumable GitHub import", () => {
       expect(
         JSON.parse((await db.query.externalLinkTable.findFirst())!.metadata!),
       ).toMatchObject({ syncFilterPaused: true });
-      expect(await importIssues(project.id)).toMatchObject({
+      expect(await importIssues({ integrationId: integration.id })).toMatchObject({
         pending: false,
         imported: 0,
         skipped: 1,
@@ -523,7 +527,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("resumes after provider failure without replaying committed pages or leaking provider errors", async () => {
-    const { request, project } = await setup();
+    const { request, project, integration } = await setup();
     serveIssues(7);
     const original = mocks.graphql.getMockImplementation();
     if (!original) throw new Error("Expected provider mock");
@@ -540,15 +544,15 @@ describe("bounded resumable GitHub import", () => {
       issueCursor: "2",
     });
     mocks.graphql.mockImplementation(original);
-    let result = await importIssues(project.id);
+    let result = await importIssues({ integrationId: integration.id });
     while (result.pending)
-      result = await importIssues(project.id, result.runId);
+      result = await importIssues({ integrationId: integration.id, runId: result.runId });
     expect(result).toMatchObject({ imported: 7, updated: 0 });
     expect(await db.query.taskTable.findMany()).toHaveLength(7);
   });
 
   it("processes all label and comment pages, applies late system labels and deduplicates comments on reimport", async () => {
-    const { project, columns } = await setup();
+    const { project, integration, columns } = await setup();
     const labels = Array.from({ length: 27 }, (_, n) => label(n));
     labels[25] = { name: "status:in-progress", color: "ffffff" };
     labels[26] = { name: "priority:urgent", color: "ffffff" };
@@ -622,13 +626,13 @@ describe("bounded resumable GitHub import", () => {
         comments: (await db.query.activityTable.findMany()).length,
       });
     });
-    let result = await importIssues(project.id);
+    let result = await importIssues({ integrationId: integration.id });
     expect(result.pending).toBe(true);
     expect((await saved())?.state).toMatchObject({
       phase: "comments",
       currentIssue: { commentCursor: "60", labelsRemaining: 0 },
     });
-    result = await importIssues(project.id, result.runId);
+    result = await importIssues({ integrationId: integration.id, runId: result.runId });
     expect(result.pending).toBe(false);
     expect(await db.query.labelTable.findMany()).toHaveLength(25);
     expect(await db.query.activityTable.findMany()).toHaveLength(82);
@@ -647,16 +651,16 @@ describe("bounded resumable GitHub import", () => {
       status: "in-progress",
       columnId: columns.inProgress.id,
     });
-    result = await importIssues(project.id);
+    result = await importIssues({ integrationId: integration.id });
     while (result.pending)
-      result = await importIssues(project.id, result.runId);
+      result = await importIssues({ integrationId: integration.id, runId: result.runId });
     expect(result).toMatchObject({ imported: 0, updated: 1 });
     expect(await db.query.activityTable.findMany()).toHaveLength(82);
     expect(await db.query.labelTable.findMany()).toHaveLength(25);
   });
 
   it("does not chase comments added after the initial count or issues after the import boundary", async () => {
-    const { project } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockImplementation(async (query: string) => {
       if (query.includes("query ImportIssues("))
         return issuePage([
@@ -685,7 +689,7 @@ describe("bounded resumable GitHub import", () => {
         };
       return emptyPulls();
     });
-    expect(await importIssues(project.id)).toMatchObject({
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
       pending: false,
       imported: 1,
     });
@@ -700,7 +704,7 @@ describe("bounded resumable GitHub import", () => {
           )
         : emptyPulls(),
     );
-    expect(await importIssues(project.id)).toMatchObject({
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
       pending: false,
       imported: 0,
     });
@@ -708,7 +712,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("rolls back task, link, comments, number allocation and cursor together when saving progress fails", async () => {
-    const { project } = await setup();
+    const { project, integration } = await setup();
     serveIssues(1);
     await db.execute(
       sql.raw(
@@ -721,7 +725,7 @@ describe("bounded resumable GitHub import", () => {
       ),
     );
     try {
-      await expect(importIssues(project.id)).rejects.toThrow();
+      await expect(importIssues({ integrationId: integration.id })).rejects.toThrow();
       expect(await db.query.taskTable.findMany()).toHaveLength(0);
       expect(await db.query.externalLinkTable.findMany()).toHaveLength(0);
       expect((await saved())?.state).toMatchObject({
@@ -738,7 +742,7 @@ describe("bounded resumable GitHub import", () => {
       );
       await db.execute(sql.raw("DROP FUNCTION fail_import_progress()"));
     }
-    expect(await importIssues(project.id)).toMatchObject({
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
       imported: 1,
       pending: false,
     });
@@ -763,15 +767,15 @@ describe("bounded resumable GitHub import", () => {
   it("rejects wrong run IDs and changed repository identities without consuming old cursors", async () => {
     const { project, integration, config } = await setup();
     serveIssues(7);
-    const first = await importIssues(project.id);
+    const first = await importIssues({ integrationId: integration.id });
     await expect(
-      importIssues(project.id, "not-this-run"),
+      importIssues({ integrationId: integration.id, runId: "not-this-run" }),
     ).rejects.toMatchObject({ status: 409 });
     await db
       .update(schema.integrationTable)
       .set({ config: JSON.stringify({ ...config, repositoryId: 22 }) })
       .where(eq(schema.integrationTable.id, integration.id));
-    await expect(importIssues(project.id, first.runId)).rejects.toMatchObject({
+    await expect(importIssues({ integrationId: integration.id, runId: first.runId })).rejects.toMatchObject({
       status: 409,
     });
     expect(mocks.graphql).toHaveBeenCalledTimes(4);
@@ -786,7 +790,7 @@ describe("bounded resumable GitHub import", () => {
         .where(eq(schema.integrationTable.id, integration.id));
       return issuePage([issue(1)]);
     });
-    await expect(importIssues(project.id)).rejects.toMatchObject({
+    await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
       status: 409,
     });
     expect(await db.query.taskTable.findMany()).toHaveLength(0);
@@ -795,7 +799,7 @@ describe("bounded resumable GitHub import", () => {
   it.each(["identity", "cursor", "oversized"])(
     "rejects invalid provider %s without advancing saved progress",
     async (kind) => {
-      const { project } = await setup();
+      const { project, integration } = await setup();
       mocks.graphql.mockResolvedValue(
         kind === "identity"
           ? {
@@ -809,7 +813,7 @@ describe("bounded resumable GitHub import", () => {
             ? issuePage([issue(1)], true, null)
             : issuePage([issue(1), issue(2)]),
       );
-      await expect(importIssues(project.id)).rejects.toMatchObject({
+      await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
         status: kind === "identity" ? 409 : 502,
       });
       expect((await saved())?.state.imported).toBe(0);
@@ -818,9 +822,9 @@ describe("bounded resumable GitHub import", () => {
   );
 
   it("pauses on an empty unfinished page instead of silently dropping remaining issues", async () => {
-    const { project } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockResolvedValue(issuePage([], true, "next", 10));
-    await expect(importIssues(project.id)).rejects.toMatchObject({
+    await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
       status: 502,
     });
     expect((await saved())?.state).toMatchObject({
@@ -830,9 +834,9 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("does not loop on a repeated cursor and retains earlier pages", async () => {
-    const { project } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockResolvedValue(issuePage([issue(1)], true, "same", 100));
-    await expect(importIssues(project.id)).rejects.toMatchObject({
+    await expect(importIssues({ integrationId: integration.id })).rejects.toMatchObject({
       status: 502,
     });
     expect(mocks.graphql).toHaveBeenCalledTimes(2);
@@ -844,7 +848,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("finishes a disappeared source without losing other issues or modifying another project's task", async () => {
-    const { project } = await setup();
+    const { project, integration } = await setup();
     mocks.graphql.mockImplementation(
       async (query: string, vars: { cursor: string | null }) => {
         if (query.includes("query ImportIssues("))
@@ -865,7 +869,7 @@ describe("bounded resumable GitHub import", () => {
         return emptyPulls();
       },
     );
-    expect(await importIssues(project.id)).toMatchObject({
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
       pending: false,
       imported: 2,
       skipped: 1,
@@ -876,7 +880,7 @@ describe("bounded resumable GitHub import", () => {
   it("deleting an integration removes its saved progress but preserves imported tasks", async () => {
     const { project, integration } = await setup();
     serveIssues(8);
-    await importIssues(project.id);
+    await importIssues({ integrationId: integration.id });
     await db
       .delete(schema.integrationTable)
       .where(eq(schema.integrationTable.id, integration.id));
@@ -908,7 +912,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("rejects overlapping steps for one project and permits later continuation", async () => {
-    const { project, request } = await setup();
+    const { project, integration, request } = await setup();
     serveIssues(1);
     const gate = deferred();
     const started = deferred();
@@ -919,7 +923,7 @@ describe("bounded resumable GitHub import", () => {
       await gate.promise;
       return original(query, vars);
     });
-    const first = importIssues(project.id);
+    const first = importIssues({ integrationId: integration.id });
     await started.promise;
     try {
       const busy = await request();
@@ -932,7 +936,7 @@ describe("bounded resumable GitHub import", () => {
   });
 
   it("coordinates webhook creation with imports so both paths create only one task and link", async () => {
-    const { project } = await setup();
+    const { project, integration } = await setup();
     serveIssues(1);
     const payload = {
       action: "opened",
@@ -952,7 +956,7 @@ describe("bounded resumable GitHub import", () => {
       },
     };
     await Promise.all([
-      importIssues(project.id),
+      importIssues({ integrationId: integration.id }),
       handleIssueOpened(payload),
       handleIssueOpened(payload),
     ]);
@@ -1061,7 +1065,7 @@ describe("bounded resumable GitHub import", () => {
           },
         };
       });
-      expect((await importIssues(project.id)).pending).toBe(false);
+      expect((await importIssues({ integrationId: integration.id })).pending).toBe(false);
       expect(
         await db.query.externalLinkTable.findFirst({
           where: eq(schema.externalLinkTable.resourceType, "pull_request"),
@@ -1099,7 +1103,7 @@ describe("bounded resumable GitHub import", () => {
         };
       },
     );
-    const result = await importIssues(project.id);
+    const result = await importIssues({ integrationId: integration.id });
     expect(result.pending).toBe(false);
     expect(
       await db
@@ -1118,7 +1122,7 @@ describe("bounded resumable GitHub import", () => {
 it.each(["labels", "comments"])(
   "skips unlinked GitHub %s continuation data after a task moves away and back",
   async (phase) => {
-    const { project, member } = await setup();
+    const { project, integration, member } = await setup();
     const { project: destination } = await createProjectFixture({
       workspaceId: project.workspaceId,
     });
@@ -1171,7 +1175,7 @@ it.each(["labels", "comments"])(
       }
       return emptyPulls();
     });
-    expect(await importIssues(project.id)).toMatchObject({
+    expect(await importIssues({ integrationId: integration.id })).toMatchObject({
       pending: false,
       skipped: 1,
     });
