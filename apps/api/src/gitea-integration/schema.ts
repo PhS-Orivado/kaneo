@@ -31,3 +31,11 @@ export const updateGiteaBody = z.object({
   isActive: z.boolean().optional(),
   commentTaskLinkOnGiteaIssue: z.boolean().optional(),
 });
+
+// RFC 0001 WP3: imports are keyed by the integration id of the binding.
+export const importGiteaBody = z.object({
+  integrationId: z.string().min(1).max(128),
+  // Compat: the old project-keyed body sent projectId; when present it must
+  // match the binding's project (404 otherwise).
+  projectId: z.string().min(1).max(128).optional(),
+});

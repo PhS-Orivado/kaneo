@@ -1,0 +1,16 @@
+diff --cc apps/web/src/fetchers/gitlab-integration/update-gitlab-integration.ts
+index 9a00c83f,755f6815..00000000
+--- a/apps/web/src/fetchers/gitlab-integration/update-gitlab-integration.ts
++++ b/apps/web/src/fetchers/gitlab-integration/update-gitlab-integration.ts
+@@@ -18,7 -20,7 +20,11 @@@ async function updateGitlabIntegration
+    });
+  
+    if (!response.ok) {
+++<<<<<<< HEAD
+ +    throw await HttpError.fromResponse(response);
+++=======
++     throw new HttpError(response.status, await response.text());
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    }
+  
+    return response.json();

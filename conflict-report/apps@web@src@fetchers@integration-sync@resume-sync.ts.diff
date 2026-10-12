@@ -1,0 +1,39 @@
+diff --cc apps/web/src/fetchers/integration-sync/resume-sync.ts
+index 896b36c2,52185a66..00000000
+--- a/apps/web/src/fetchers/integration-sync/resume-sync.ts
++++ b/apps/web/src/fetchers/integration-sync/resume-sync.ts
+@@@ -8,12 -8,24 +8,34 @@@ export default async function resumeSyn
+    token: string,
+    source: "kaneo" | "provider",
+  ) {
+++<<<<<<< HEAD
+ +  const response = await client["integration-sync"].project[":projectId"][
+ +    ":provider"
+ +  ].links[":linkId"].resume.$post({
+ +    param: { ...param, linkId },
+ +    json: { token, source },
+ +  });
+ +  if (!response.ok) throw await HttpError.fromResponse(response);
+++=======
++   const response =
++     scope.kind === "binding"
++       ? await client["integration-sync"].integration[":integrationId"].links[
++           ":linkId"
++         ].resume.$post({
++           param: { integrationId: scope.integrationId, linkId },
++           json: { token, source },
++         })
++       : await client["integration-sync"].project[":projectId"][
++           ":provider"
++         ].links[":linkId"].resume.$post({
++           param: {
++             projectId: scope.projectId,
++             provider: scope.provider,
++             linkId,
++           },
++           json: { token, source },
++         });
++   if (!response.ok) throw new HttpError(response.status, await response.text());
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    return response.json();
+  }

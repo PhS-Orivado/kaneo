@@ -118,6 +118,7 @@ export async function handleIssueClosed(payload: IssueClosedPayload) {
               "issue_closed",
               "done",
               db,
+              integration.id,
             );
 
             const statusResult = await updateTaskStatus(

@@ -1,0 +1,513 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Откажи",
+			"close": "Затвори",
+			"clearAll": "Исчисти се",
+			"delete": "Избриши",
+			"deleting": "Се брише...",
+			"markAllRead": "Означи ги сите како прочитани",
+			"remove": "Отстрани",
+			"reset": "Ресетирај",
+			"filter": "Филтрирај",
+			"clearAllFilters": "Исчисти ги сите филтри"
+		},
+		"a11y": {
+			"toggleSidebar": "Вклучи/исклучи странична лента"
+		},
+		"sidebar": {
+			"title": "Странична лента",
+			"mobileDescription": "Ја прикажува мобилната странична лента."
+		},
+		"empty": {
+			"loading": "Се вчитува..."
+		},
+		"pagination": {
+			"label": "Пагинација",
+			"previous": "Претходна",
+			"next": "Следна",
+			"previousPage": "Оди на претходна страница",
+			"nextPage": "Оди на следна страница",
+			"morePages": "Повеќе страници"
+		},
+		"breadcrumb": {
+			"label": "Навигација",
+			"more": "Повеќе"
+		},
+		"language": {
+			"english": "Англиски",
+			"german": "Германски",
+			"greek": "Грчки",
+			"macedonian": "Македонски",
+			"french": "Француски",
+			"spanish": "Шпански",
+			"dutch": "Холандски",
+			"korean": "Корејски",
+			"chinese": "Кинески",
+			"italian": "Италијански"
+		},
+		"people": {
+			"someone": "Некој",
+			"unknown": "Непознат"
+		},
+		"error": {
+			"title": "Нешто тргна наопаку",
+			"troubleshooting": "Чекори за решавање проблеми:",
+			"tryAgain": "Обиди се повторно",
+			"viewDeploymentGuide": "Погледни го водичот за поставување",
+			"refreshPage": "Освежи ја страницата",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Никогаш"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Креирај нов проект",
+				"breadcrumbNew": "Креирај нов проект",
+				"workspaceFallback": "РАБОТЕН ПРОСТОР",
+				"description": "Креирај нов проект во твојот работен простор со име, клуч и избор на икона.",
+				"pickIcon": "Избери икона",
+				"searchIcons": "Пребарај икони...",
+				"projectName": "Име на проект",
+				"keyLabel": "Клуч:",
+				"keyHint": "Се користи за ID на тикети (пр. {{example}}-123)",
+				"createButton": "Креирај проект",
+				"successToast": "Проектот е успешно креиран",
+				"errorToast": "Неуспешно креирање на проект"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Креирај нов работен простор",
+				"description": "Креирај нов работен простор со внесување на име.",
+				"namePlaceholder": "Име на работен простор",
+				"descriptionPlaceholder": "Додади опис...",
+				"createButton": "Креирај работен простор",
+				"successToast": "Работниот простор е успешно креиран",
+				"errorToast": "Неуспешно креирање на работен простор"
+			},
+			"createTask": {
+				"breadcrumbTask": "ЗАДАЧА",
+				"selectProject": "Избери проект",
+				"title": "Нова задача",
+				"description": "Креирај нова задача со наслов, опис и други детали.",
+				"taskTitlePlaceholder": "Наслов на задача",
+				"descriptionPlaceholder": "Додади опис за твојата задача...",
+				"chooseProjectForImages": "Избери проект пред да прикачиш слики.",
+				"prepareTaskError": "Неуспешна подготовка на задача",
+				"successCreated": "Задачата е успешно креирана",
+				"successUpdated": "Задачата е успешно ажурирана",
+				"createError": "Неуспешно креирање на задача",
+				"priority": "Приоритет",
+				"statusFallback": "Во тек",
+				"startDate": "Почетен датум",
+				"dueDate": "Краен рок",
+				"clearStartDate": "Исчисти почетен датум",
+				"clearDueDate": "Исчисти краен рок",
+				"assign": "Додели",
+				"assignUnassigned": "Недоделен",
+				"assignUnassignedTitle": "Недоделен",
+				"labels": "Етикети",
+				"searchLabels": "Пребарај етикети...",
+				"noLabelsFound": "Не се пронајдени етикети",
+				"createLabel": "Креирај \"{{name}}\"",
+				"chooseColor": "Избери боја",
+				"labelCreated": "Етикетата е креирана",
+				"labelCreateError": "Неуспешно креирање на етикета",
+				"createMore": "Креирај уште",
+				"createButton": "Креирај задача",
+				"discardTitle": "Да се отфрли задачата?",
+				"discardDescription": "Незачуваните детали за задачата ќе се изгубат.",
+				"discardButton": "Отфрли ја задачата",
+				"untitledTask": "Задача без наслов",
+				"labelColors": {
+					"stone": "Камен",
+					"slate": "Плочест",
+					"lavender": "Лаванда",
+					"sage": "Жалфија",
+					"forest": "Шума",
+					"amber": "Килибар",
+					"terracotta": "Теракота",
+					"rose": "Роза",
+					"crimson": "Гримизна"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Најава",
+			"subtitle": {
+				"emailOrProvider": "Користи ја твојата е-пошта или поврзана сметка.",
+				"email": "Внеси ја твојата е-пошта и ќе ти испратиме код за најава.",
+				"password": "Користи ја твојата е-пошта и лозинка.",
+				"passwordOrProvider": "Користи ја твојата лозинка или поврзана сметка.",
+				"providers": "Избери како сакаш да се најавиш.",
+				"sso": "Со најавата овде управува твојата организација."
+			},
+			"lastUsed": "Последно користено",
+			"guestError": "Неуспешна најава како гостин",
+			"errors": {
+				"account_not_linked": "Овој идентитет не можеше да се поврзе со постоечката сметка. Најави се преку е-пошта за да ја потврдиш сметката, па обиди се повторно со SSO. Ако најавата преку е-пошта не е достапна, контактирај го твојот администратор.",
+				"oauth_code_verification_failed": "OAuth верификацијата не успеа. Обиди се повторно.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Регистрацијата е моментално оневозможена. Потребна ти е валидна покана за да креираш сметка.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Користи трајна адреса за е-пошта. Со привремени адреси не може да се креираат сметки."
+			},
+			"instanceStatusError": "Не можеше да се воспостави врска со серверот. Обиди се повторно за момент.",
+			"heading": "Најави се на Kaneo",
+			"submitPassword": "Најави се",
+			"invitation": {
+				"title": "{{inviterName}} те покани во {{workspaceName}}",
+				"fallbackTitle": "Имаш покана",
+				"description": "Најави се со е-поштата на која ја доби поканата. Веднаш потоа ќе се приклучиш на работниот простор."
+			},
+			"footer": {
+				"newHere": "Прв пат на Kaneo?",
+				"createAccount": "Креирај сметка",
+				"inviteOnly": "Сметките овде се само со покана. Побарај покана од администратор.",
+				"providerSignUp": "Прв пат тука? Најави се со некој од провајдерите погоре за да креираш сметка.",
+				"anyProvider": "Прв пат тука? Која било опција погоре ќе ти креира сметка.",
+				"contactAdmin": "Проблем со најавата? Контактирај го администраторот.",
+				"justLooking": "Само разгледуваш?"
+			},
+			"autoLogin": {
+				"title": "Те најавуваме",
+				"subtitle": "Те носиме до страницата за најава на твојата организација.",
+				"opening": "Се отвора {{provider}}…",
+				"stuck": "Не се случува ништо?",
+				"continue": "Продолжи кон {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Продолжи со {{provider}}",
+			"error": "Најавата со {{provider}} не успеа. Обиди се повторно."
+		},
+		"forms": {
+			"or": "или",
+			"email": "Е-пошта",
+			"password": "Лозинка",
+			"emailPlaceholder": "me@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Прикажи лозинка",
+			"hidePassword": "Сокриј лозинка",
+			"name": "Име",
+			"namePlaceholder": "Марија Петровска",
+			"invalidEmail": "Внеси целосна адреса за е-пошта, на пр. name@company.com.",
+			"nameRequired": "Внеси го твоето име.",
+			"passwordRequired": "Внеси ја твојата лозинка.",
+			"passwordTooShort": "Користи најмалку 8 знаци.",
+			"disposableEmail": "Користи трајна адреса за е-пошта. Со привремени адреси не може да се креираат сметки.",
+			"continueWithEmail": "Продолжи со е-пошта"
+		},
+		"checkEmail": {
+			"pageTitle": "Провери ја е-поштата",
+			"title": "Провери ја е-поштата",
+			"inboxMessage": "Ти испративме привремен линк за најава. Провери го сандачето на <email>{{email}}</email>.",
+			"emailFallback": "твојата е-пошта",
+			"backToLogin": "Назад кон најава"
+		},
+		"signUp": {
+			"pageTitle": "Креирај сметка",
+			"registrationDisabledAlert": "Регистрацијата е моментално оневозможена. Ако си поканет, внеси ја е-поштата на која ја доби поканата за да ја креираш сметката.",
+			"continueAsGuest": "Продолжи како гостин",
+			"toggleMessage": "Веќе имаш сметка?",
+			"toggleLink": "Најави се",
+			"instanceStatusError": "Не можеше да се воспостави врска со серверот. Обиди се повторно за момент.",
+			"instanceAdminTitle": "Постави ја твојата Kaneo инстанца",
+			"instanceAdminSubtitle": "Оваа сметка станува администратор на инстанцата со целосен пристап.",
+			"heading": "Креирај ја твојата сметка",
+			"submitPassword": "Креирај сметка",
+			"failed": "Не можевме да ја креираме твојата сметка. Обиди се повторно.",
+			"subtitle": {
+				"email": "Започни со твојата е-пошта. Ќе ти испратиме код, не ти треба лозинка.",
+				"password": "Внеси име, е-пошта и лозинка за да започнеш.",
+				"providers": "Користи поврзана сметка за да ја креираш твојата."
+			},
+			"invitation": {
+				"description": "Користи ја е-поштата на која ја доби поканата. Веднаш потоа ќе се приклучиш на работниот простор."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Потврди код",
+			"validation": {
+				"codeLength": "Кодот мора да има 6 цифри"
+			},
+			"toast": {
+				"invalidCode": "Невалиден код за потврда",
+				"verifyFailed": "Неуспешна потврда на кодот",
+				"resendFailed": "Неуспешно повторно испраќање на кодот",
+				"resendSuccess": "Нов код за потврда е испратен!"
+			},
+			"heading": "Провери ја е-поштата",
+			"description": "Испративме 6-цифрен код на {{email}}. Истекува за {{minutes}} минути.",
+			"label": "Код за потврда",
+			"submit": "Потврди и продолжи",
+			"didntGetIt": "Не стигна?",
+			"resendCode": "Испрати го кодот повторно",
+			"useDifferentEmail": "Користи друга е-пошта",
+			"expired": "Овој код истече. Побарај нов.",
+			"tooManyAttempts": "Премногу обиди. Побарај нов код."
+		},
+		"otpSignIn": {
+			"sendFailed": "Неуспешно испраќање на кодот за потврда"
+		},
+		"signInForm": {
+			"failedSignIn": "Неуспешна најава"
+		},
+		"invitation": {
+			"pageTitleAccept": "Прифати покана",
+			"pageTitleError": "Грешка со поканата",
+			"pageTitleInvalid": "Невалидна покана",
+			"joinWorkspace": "Приклучи се на {{workspaceName}}",
+			"createAccount": "Креирај сметка",
+			"signIn": "Најави се",
+			"toast": {
+				"acceptFailed": "Неуспешно прифаќање на поканата",
+				"acceptSuccess": "Поканата е прифатена! Добредојде во тимот."
+			},
+			"description": "{{inviterName}} те покани во овој работен простор на Kaneo.",
+			"invitedBy": "Покана од",
+			"sentTo": "Испратена до",
+			"signedInAs": "Најавена сметка",
+			"expires": "Истекува на",
+			"notNow": "Не сега",
+			"join": "Приклучи се на работниот простор",
+			"switchAccount": "Смени сметка",
+			"goToKaneo": "Оди на Kaneo",
+			"mismatch": {
+				"title": "Најавата е со друга е-пошта",
+				"description": "Оваа покана е испратена до {{invitedEmail}}. Моментално е најавена сметката {{email}}."
+			},
+			"expired": {
+				"title": "Оваа покана истече",
+				"description": "Побарај од {{inviterName}} да ти испрати нова покана за {{workspaceName}}."
+			},
+			"invalid": {
+				"title": "Оваа покана повеќе не важи",
+				"description": "Можеби е веќе прифатена или откажана. Побарај нова од администратор на работниот простор."
+			},
+			"loadFailed": {
+				"title": "Поканата не можеше да се вчита",
+				"description": "Провери ја врската и освежи ја страницата."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Добредојде на Kaneo",
+			"workspaceName": "Име на работен простор",
+			"workspaceNamePlaceholder": "пр. Acme Inc, Мојот тим",
+			"toast": {
+				"createFailed": "Неуспешно креирање на работен простор"
+			},
+			"validation": {
+				"workspaceNameRequired": "Името на работниот простор е задолжително",
+				"projectNameRequired": "Дај име на твојот прв проект"
+			},
+			"restrictedSubtitle": "Овде само администратор на инстанцата може да создава работни простори. Побарајте покана и освежете ја страницата.",
+			"restrictedCheckInvitations": "Провери покани",
+			"restrictedTitle": "Ви треба покана",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Мој прв проект",
+			"starterTasks": {
+				"drag": {
+					"title": "Повлечи ја оваа картичка во следната колона",
+					"description": "Картичките се движат од колона во колона како што напредува работата. Повлечи ја оваа во следната колона, или отвори ја и смени ѝ го статусот."
+				},
+				"details": {
+					"title": "Отвори ја оваа задача и додај подзадача",
+					"description": "Задачата може да има опис, подзадачи, ознаки, задолжено лице и рок. Додај подзадача на оваа за да пробаш."
+				},
+				"invite": {
+					"title": "Покани го твојот тим",
+					"description": "Kaneo најдобро функционира кога сите се внатре. Отвори **Членови** во страничната лента за да поканиш луѓе преку е-пошта."
+				},
+				"integrations": {
+					"title": "Поврзи GitHub, GitLab или Gitea",
+					"description": "Синхронизирај issues и автоматски преместувај задачи кога pull requests се отвораат и спојуваат. Постави го тоа во **Поставки на проектот**."
+				},
+				"create": {
+					"title": "Создај своја задача",
+					"description": "Користи го **+** до името на колоната или притисни **T**, па **C**. Избриши ги овие почетни задачи кога ќе бидеш подготвен."
+				}
+			},
+			"progress": "Чекор {{current}} од {{total}}",
+			"welcome": "Добредојде, {{name}}",
+			"settingUp": "Го поставуваме {{name}}",
+			"continue": "Продолжи",
+			"signedInAs": "Најавена сметка: {{email}}",
+			"signOut": "Одјави се",
+			"workspace": {
+				"title": "Именувај го работниот простор",
+				"description": "Тука ќе бидат твоите проекти. Користи го името на твојот тим или компанија, можеш да го смениш подоцна."
+			},
+			"usage": {
+				"title": "За кого е?",
+				"description": "Ќе го прилагодиме {{name}} според тоа. Секогаш можеш да поканиш луѓе подоцна."
+			},
+			"project": {
+				"title": "Започни го првиот проект",
+				"description": "Ќе додадеме неколку почетни задачи за да се снајдеш. Преименувај ги или избриши ги кога сакаш.",
+				"label": "Име на проектот",
+				"numbered": "Задачите ќе бидат нумерирани"
+			},
+			"invite": {
+				"title": "Доведи го твојот тим",
+				"description": "Ќе добијат е-пошта за да се приклучат на {{name}}. Прескокни го ова ако сакаш прво да разгледаш.",
+				"label": "Е-пошти на членовите на тимот",
+				"send_one": "Испрати {{count}} покана",
+				"send_other": "Испрати {{count}} покани",
+				"sendNone": "Испрати покани"
+			},
+			"plan": {
+				"title": "Како сакаш да започнеш?",
+				"descriptionTrial_one": "Секој план вклучува неограничени проекти и задачи. Пробај го {{name}} бесплатно {{count}} ден или претплати се сега.",
+				"descriptionTrial_other": "Секој план вклучува неограничени проекти и задачи. Пробај го {{name}} бесплатно {{count}} дена или претплати се сега.",
+				"choose": "Избери план",
+				"description": {
+					"team": "Неограничени членови, улоги и дозволи",
+					"personal": "За една личност"
+				},
+				"perUserMonth": "по корисник / месец",
+				"perMonth": "месечно",
+				"subscribe": "Претплати се на {{plan}}",
+				"checkout": "Продолжи кон плаќање",
+				"trialNote": "За пробниот период не ти треба картичка. Плаќањата ги обработува Creem.",
+				"paymentNote": "Плаќањата ги обработува Creem."
+			},
+			"ready": {
+				"eyebrow": "Сè е подготвено",
+				"title": "{{name}} е подготвен",
+				"description": "Ова е она што го поставивме. Сè можеш да смениш подоцна.",
+				"workspace": "Работен простор",
+				"project": "Прв проект",
+				"projectValue_one": "{{name}}, со {{count}} почетна задача",
+				"projectValue_other": "{{name}}, со {{count}} почетни задачи",
+				"invitations": "Покани",
+				"invitationsValue_one": "Испратено до {{count}} личност",
+				"invitationsValue_other": "Испратено до {{count}} луѓе",
+				"open": "Отвори го {{name}}"
+			},
+			"preview": {
+				"live": "Преглед во живо на {{name}}",
+				"liveNoName": "Преглед во живо",
+				"ready": "{{name}} е подготвен",
+				"untitled": "Твојот работен простор"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Заврши го профилот",
+			"completeTitle": "Заврши го твојот профил",
+			"subtitle": "Внеси го твоето име за да започнеш",
+			"yourName": "Твоето име",
+			"namePlaceholder": "пр. Петар Петровски",
+			"saving": "Се зачувува...",
+			"continue": "Продолжи",
+			"welcome": "Добредојде, {{name}}!",
+			"redirecting": "Те носиме на контролната табла...",
+			"toast": {
+				"updateSuccess": "Профилот е успешно ажуриран",
+				"updateFailed": "Неуспешно ажурирање на профилот"
+			},
+			"validation": {
+				"nameRequired": "Името е задолжително",
+				"nameShort": "Името мора да има најмалку 2 знаци"
+			}
+		},
+		"passwordReset": {
+			"forgotPassword": "Forgot password?",
+			"requestTitle": "Reset your password",
+			"requestSubtitle": "Enter your email and we’ll send you a password reset link.",
+			"sendLink": "Send reset link",
+			"requestError": "Could not request a reset link. Please try again.",
+			"unavailable": "Password reset is unavailable. Contact your instance administrator.",
+			"configError": "Could not reach the server. Please reload the page to try again.",
+			"resetTitle": "Choose a new password",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm new password",
+			"passwordMismatch": "The passwords do not match.",
+			"passwordLength": "Use between 8 and 128 characters.",
+			"invalidLink": "This reset link is invalid or has expired. Request a new link to continue.",
+			"requestNewLink": "Request a new link",
+			"resetError": "Could not reset your password. Please try again.",
+			"success": "Your password has been reset. Sign in with your new password.",
+			"backToSignIn": "Back to sign in",
+			"sentTitle": "Провери го сандачето",
+			"sentDescription": "Ако постои сметка за {{email}}, линкот за ресетирање на лозинката е на пат. Истекува за 1 час.",
+			"sentHelpTitle": "Не стигна?",
+			"sentHelpDescription": "Провери ја папката за спам или побарај нов линк за една минута.",
+			"rememberedIt": "Се сети?",
+			"resetDescription": "Користи од 8 до 128 знаци. Другите уреди ќе бидат одјавени.",
+			"updatePassword": "Ажурирај лозинка",
+			"changedMind": "Се предомисли?",
+			"invalidLinkTitle": "Овој линк истече",
+			"successTitle": "Лозинката е ажурирана"
+		},
+		"page": {
+			"terms": "Услови",
+			"privacy": "Приватност"
+		},
+		"device": {
+			"connect": {
+				"title": "Поврзи уред",
+				"description": "Внеси го кодот прикажан во терминалот или апликацијата за да го поврзеш �

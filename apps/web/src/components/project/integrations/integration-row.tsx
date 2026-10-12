@@ -1,4 +1,3 @@
-import { SyncRulesSection } from "@/components/project/sync-rules/sync-rules-section";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { IntegrationStatus } from "@/components/project/integrations/get-integration-status";
@@ -48,7 +47,18 @@ export function IntegrationRow({
             <p className="truncate text-sm font-medium">{name}</p>
             <IntegrationStatusBadge state={state} />
           </div>
-          {isSetUp && status?.detail ? (
+          {isSetUp && status?.details?.length ? (
+            <ul className="space-y-0.5">
+              {status.details.map((repository) => (
+                <li
+                  className="truncate font-mono text-xs text-muted-foreground"
+                  key={repository}
+                >
+                  {repository}
+                </li>
+              ))}
+            </ul>
+          ) : isSetUp && status?.detail ? (
             <p className="truncate font-mono text-xs text-muted-foreground">
               {status.detail}
             </p>
@@ -90,18 +100,6 @@ export function IntegrationRow({
       <CollapsiblePanel>
         <div className="border-t border-border bg-muted/40 p-4">
           <integration.Settings projectId={projectId} />
-          {isSetUp &&
-            (integration.id === "github" ||
-              integration.id === "gitea" ||
-              integration.id === "gitlab") && (
-              <div className="mt-4">
-                <SyncRulesSection
-                  key={`${projectId}:${integration.id}`}
-                  projectId={projectId}
-                  provider={integration.id}
-                />
-              </div>
-            )}
         </div>
       </CollapsiblePanel>
     </Collapsible>

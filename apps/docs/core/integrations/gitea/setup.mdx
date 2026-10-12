@@ -1,55 +1,61 @@
 ---
 title: Connect Gitea
-description: Verify repository access, configure webhooks, and import existing issues.
+description: Verify repository access, connect repositories, configure webhooks, and import existing issues.
 ---
 
-Connect a Kaneo project to one Gitea repository to sync issues and respond to branch and pull-request activity. You need permission to manage the Kaneo project, a Gitea token that can read the account and repository and write issues, and repository admin access to create its webhook.
+Connect a Kaneo project to one or more Gitea repositories to sync issues and respond to branch and pull-request activity. You need permission to manage the Kaneo project, a Gitea token that can read the account and repositories and write issues, and repository admin access to create webhooks.
 
-## Connect the repository
+## Connect the first repository
 
-1. Create a personal access token in Gitea under **Settings → Applications**. Give it the scopes needed to read your user and repository and write issues. The token’s account must also have write access to the target repository.
+1. Create a personal access token in Gitea under **Settings → Applications**. Give it the scopes needed to read your user and repositories and write issues. The token's account must also have write access to the target repositories.
 2. In Kaneo, open **Settings → Projects**, select your project, and open **Integrations → Gitea**.
 3. Enter the Gitea base URL, such as `https://git.example.com`. Use the final URL directly, without `/api/v1`, credentials, a query string, or a fragment.
-4. Enter the access token and repository owner and name. You can also browse repositories from the form.
+4. Enter the access token and the repository owner and name. You can also browse repositories from the form.
 5. Choose **Verify access** and resolve any reported problem, then save the connection.
 
 The API must be able to reach your Gitea server. Verification checks the token and repository permissions; it does not prove that webhooks can reach Kaneo in the other direction.
 
-## Configure the webhook
+## Add more repositories
 
-After saving, Kaneo shows a webhook URL and secret. Copy both into a repository webhook in Gitea under **Settings → Webhooks → Add Webhook → Gitea**.
+Select **Add repository** to connect further repositories from the same Gitea instance with the stored token. Each repository becomes its own binding, listed with the instance host shown under the repository name. Repositories already linked in the current project are marked in the browser and cannot be added twice.
+
+A project can combine several Gitea bindings with GitHub and GitLab bindings. Each binding keeps its own settings, sync rules, workflow rules, and import state. All repositories feed one per-project task sequence, and the same repository may be shared with other projects: Gitea events fan out to every project bound to the repository, and each project applies its own rules and numbering. Active bindings are limited per project; see [repository limits](/core/integrations/repository-limits).
+
+## Configure the webhooks
+
+Every connected repository has its own binding, so create one webhook in Gitea per repository. After saving a binding, Kaneo shows that binding's webhook URL and secret. Copy both into a repository webhook in Gitea under **Settings → Webhooks → Add Webhook → Gitea**.
 
 | Gitea setting | Value |
 | --- | --- |
-| Target URL | The webhook URL shown in Kaneo |
+| Target URL | The webhook URL shown for that binding in Kaneo |
 | HTTP method | POST |
 | Content type | `application/json` |
-| Secret | The exact secret shown in Kaneo |
+| Secret | The exact secret shown for that binding in Kaneo |
 | Active | Enabled |
 
 Select push, pull request, issue, and issue comment events. Include issue label events if your Gitea version exposes that selection. Kaneo handles `issue_label`; the Git branch/tag **Create** event is not a label event.
 
-The URL has this shape:
+Each URL has this shape, with the binding's integration ID:
 
 ```text
 https://kaneo.example.com/api/gitea-integration/webhook/INTEGRATION_ID
 ```
 
-Use Gitea’s test delivery, then create a test issue and confirm it appears in Kaneo. A successful test response proves the request arrived; checking the resulting task proves issue sync works. See [Gitea’s webhook documentation](https://docs.gitea.com/usage/repository/webhooks/) for its settings and delivery log.
+A webhook signed with one binding's secret resolves only within that binding, so a webhook for one repository does not create tasks from another repository's events. Use Gitea's test delivery, then create a test issue and confirm it appears in Kaneo. A successful test response proves the request arrived; checking the resulting task proves issue sync works. See [Gitea's webhook documentation](https://docs.gitea.com/usage/repository/webhooks/) for its settings and delivery log.
 
 ## Import existing issues
 
-Save the repository connection, verify its current settings, then choose **Import Issues**. Verification is cleared when you reload the page or change connection details. If import is disabled, verify again. When replacing the token, save it before importing because the importer uses the saved connection.
+Save the repository connection, verify its current settings, then choose **Import issues** on the repository's row. Verification is cleared when you reload the page or change connection details. If import is disabled, verify again. When replacing the token, save it before importing because the importer uses the saved connection. Each repository binding keeps its own import progress.
 
 ## Configure automation
 
-Choose your branch naming pattern in the integration settings. In the project’s [Workflow settings](/core/functional/configure-workflows), map branch pushes, opened pull requests, and merged pull requests to the intended columns. Try one task first and check its status before adopting the pattern across your team.
+Choose the branch naming pattern in the repository binding's workflow rules. A rule can apply to that repository only or type-wide across all Gitea bindings; a repository-specific rule wins. In the project's [Workflow settings](/core/functional/configure-workflows), map branch pushes, opened pull requests, and merged pull requests to the intended columns. Try one task first and check its status before adopting the pattern across your team.
 
 ## Link task IDs to Kaneo
 
-Every task has a short link built from its workspace and ticket ID, such as `https://kaneo.example.com/acme/task/KAN-12/fix-login-timeout`. The title at the end is optional and ignored, so `https://kaneo.example.com/acme/task/KAN-12` opens the same task. **Copy link** on a task gives you this link, which shows your workspace’s part of the path.
+Every task has a short link built from its workspace and ticket ID, such as `https://kaneo.example.com/acme/task/KAN-12/fix-login-timeout`. The title at the end is optional and ignored, so `https://kaneo.example.com/acme/task/KAN-12` opens the same task. **Copy link** on a task gives you this link, which shows your workspace's part of the path.
 
-To turn references such as `KAN-12` in Gitea commits and pull requests into links, open the repository’s **Settings**, enable **Use External Issue Tracker**, and set:
+To turn references such as `KAN-12` in Gitea commits and pull requests into links, open the repository's **Settings**, enable **Use External Issue Tracker**, and set:
 
 | Gitea setting | Value |
 | --- | --- |
@@ -57,21 +63,22 @@ To turn references such as `KAN-12` in Gitea commits and pull requests into link
 | External Issue Tracker URL Format | `https://kaneo.example.com/acme/task/{index}`, with your workspace in place of `acme` |
 | External Issue Tracker Number Format | Alphanumeric |
 
-The alphanumeric format only matches keys of one to ten uppercase letters. For any other key, choose **Regular Expression** and match your project’s key exactly, such as `(DE_-\d+)`, `(ПРО-\d+)`, or `(OPS\.2-\d+)` with the `.` escaped. To link several projects, list their keys: `((?:KAN|OPS)-\d+)`.
+The alphanumeric format only matches keys of one to ten uppercase letters. For any other key, choose **Regular Expression** and match your project's key exactly, such as `(DE_-\d+)`, `(ПРО-\d+)`, or `(OPS\.2-\d+)` with the `.` escaped. To link several projects, list their keys: `((?:KAN|OPS)-\d+)`.
 
 ## Replace a token or disconnect
 
 To rotate credentials, enter a replacement token, verify access, and save. On an existing connection, an empty token field keeps the saved token; it does not clear it.
 
-Choose **Disconnect** to remove the Kaneo connection. This does not delete the Gitea repository or Kaneo tasks. Remove the webhook in Gitea as well, and revoke its token if nothing else uses it.
+Choose **Disconnect** on a repository's row to remove that binding. This does not delete the Gitea repository or the Kaneo tasks; the binding's external links and import progress are removed. Remove the repository's webhook in Gitea as well, and revoke its token if nothing else uses it. Other bindings of the same instance are unaffected.
 
 ## Troubleshooting
 
 | Problem | What to check |
 | --- | --- |
-| URL redirects or returns HTML | Use Gitea’s final base URL and make sure an authentication proxy is not intercepting API requests. |
+| URL redirects or returns HTML | Use Gitea's final base URL and make sure an authentication proxy is not intercepting API requests. |
 | Repository not found | Check owner, name, and token access to private repositories. |
-| Verification succeeds, writes fail | Check token scopes as well as the account’s repository permissions. |
-| Invalid webhook signature | Copy the current secret from Kaneo and save it in Gitea. |
-| No tasks arrive | Check recent Gitea deliveries, selected events, repository identity, and the active connection. |
-| Task does not move after a push | Check the branch naming pattern and workflow mapping. |
+| Verification succeeds, writes fail | Check token scopes as well as the account's repository permissions. |
+| Invalid webhook signature | Copy the current secret from that binding in Kaneo and save it in Gitea. |
+| No tasks arrive | Check recent Gitea deliveries, selected events, repository identity, and the active binding. |
+| Events from one repository create tasks in another | Each webhook belongs to one binding; check that the URL and secret were copied for the correct repository. |
+| Task does not move after a push | Check the branch naming pattern and workflow mapping of that repository binding. |

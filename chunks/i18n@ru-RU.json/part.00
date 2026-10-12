@@ -1,0 +1,485 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Отмена",
+			"close": "Закрыть",
+			"clearAll": "Очистить все",
+			"delete": "Удалить",
+			"deleting": "Удаление...",
+			"markAllRead": "Отметить все как прочитанные",
+			"remove": "Убрать",
+			"reset": "Сбросить",
+			"filter": "Фильтр",
+			"clearAllFilters": "Сбросить все фильтры"
+		},
+		"a11y": {
+			"toggleSidebar": "Переключить боковую панель"
+		},
+		"sidebar": {
+			"title": "Боковая панель",
+			"mobileDescription": "Отображает мобильную боковую панель."
+		},
+		"empty": {
+			"loading": "Загрузка..."
+		},
+		"pagination": {
+			"label": "Пагинация",
+			"previous": "Назад",
+			"next": "Вперёд",
+			"previousPage": "Перейти на предыдущую страницу",
+			"nextPage": "Перейти на следующую страницу",
+			"morePages": "Ещё страницы"
+		},
+		"breadcrumb": {
+			"label": "Навигационная цепочка",
+			"more": "Ещё"
+		},
+		"language": {
+			"english": "Английский",
+			"german": "Немецкий",
+			"greek": "Греческий",
+			"macedonian": "Македонский",
+			"french": "Французский",
+			"spanish": "Испанский",
+			"dutch": "Нидерландский",
+			"korean": "Корейский",
+			"chinese": "Китайский",
+			"italian": "Итальянский"
+		},
+		"people": {
+			"someone": "Кто-то",
+			"unknown": "Неизвестно"
+		},
+		"error": {
+			"title": "Что-то пошло не так",
+			"troubleshooting": "Шаги для устранения неполадок:",
+			"tryAgain": "Попробовать снова",
+			"viewDeploymentGuide": "Руководство по развёртыванию",
+			"refreshPage": "Обновить страницу",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Никогда"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Создать новый проект",
+				"breadcrumbNew": "Создать новый проект",
+				"workspaceFallback": "РАБОЧАЯ ОБЛАСТЬ",
+				"description": "Создайте новый проект в вашей рабочей области, указав название, ключ и выбрав иконку.",
+				"pickIcon": "Выбрать иконку",
+				"searchIcons": "Поиск иконок...",
+				"projectName": "Название проекта",
+				"keyLabel": "Ключ:",
+				"keyHint": "Используется для идентификаторов задач (например, {{example}}-123)",
+				"createButton": "Создать проект",
+				"successToast": "Проект успешно создан",
+				"errorToast": "Не удалось создать проект"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Создать новую рабочую область",
+				"description": "Создайте новую рабочую область, указав её название.",
+				"namePlaceholder": "Название рабочей области",
+				"descriptionPlaceholder": "Добавить описание...",
+				"createButton": "Создать рабочую область",
+				"successToast": "Рабочая область успешно создана",
+				"errorToast": "Не удалось создать рабочую область"
+			},
+			"createTask": {
+				"breadcrumbTask": "ЗАДАЧА",
+				"selectProject": "Выберите проект",
+				"title": "Новая задача",
+				"description": "Создайте новую задачу, указав название, описание и другие детали.",
+				"taskTitlePlaceholder": "Название задачи",
+				"descriptionPlaceholder": "Добавьте описание задачи...",
+				"chooseProjectForImages": "Выберите проект перед загрузкой изображений.",
+				"prepareTaskError": "Не удалось подготовить задачу",
+				"successCreated": "Задача успешно создана",
+				"successUpdated": "Задача успешно обновлена",
+				"createError": "Не удалось создать задачу",
+				"priority": "Приоритет",
+				"statusFallback": "В работе",
+				"startDate": "Дата начала",
+				"dueDate": "Срок выполнения",
+				"clearStartDate": "Очистить дату начала",
+				"clearDueDate": "Очистить срок выполнения",
+				"assign": "Назначить",
+				"assignUnassigned": "Не назначено",
+				"assignUnassignedTitle": "Не назначено",
+				"labels": "Метки",
+				"searchLabels": "Поиск меток...",
+				"noLabelsFound": "Метки не найдены",
+				"createLabel": "Создать «{{name}}»",
+				"chooseColor": "Выберите цвет",
+				"labelCreated": "Метка создана",
+				"labelCreateError": "Не удалось создать метку",
+				"createMore": "Создать ещё",
+				"createButton": "Создать задачу",
+				"discardTitle": "Отменить задачу?",
+				"discardDescription": "Несохранённые данные задачи будут потеряны.",
+				"discardButton": "Отменить задачу",
+				"untitledTask": "Задача без названия",
+				"labelColors": {
+					"stone": "Камень",
+					"slate": "Сланец",
+					"lavender": "Лаванда",
+					"sage": "Шалфей",
+					"forest": "Лес",
+					"amber": "Янтарь",
+					"terracotta": "Терракота",
+					"rose": "Роза",
+					"crimson": "Малиновый"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_few": "Issues in {{count}} repos",
+				"issuesIn_many": "Issues in {{count}} repos",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Вход",
+			"subtitle": {
+				"emailOrProvider": "Войдите по электронной почте или через подключённый аккаунт.",
+				"email": "Введите адрес электронной почты, и мы отправим вам код для входа.",
+				"password": "Войдите с помощью электронной почты и пароля.",
+				"passwordOrProvider": "Войдите с паролем или через подключённый аккаунт.",
+				"providers": "Выберите способ входа.",
+				"sso": "Входом здесь управляет ваша организация."
+			},
+			"lastUsed": "Использовался последним",
+			"guestError": "Не удалось войти как гость",
+			"errors": {
+				"account_not_linked": "Не удалось привязать эту учётную запись к существующему аккаунту. Войдите по электронной почте, чтобы подтвердить аккаунт, затем повторите вход через SSO. Если вход по почте недоступен, обратитесь к администратору.",
+				"oauth_code_verification_failed": "Не удалось выполнить проверку OAuth. Попробуйте ещё раз.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Регистрация в данный момент отключена. Для создания аккаунта требуется действительное приглашение.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Используйте постоянный адрес электронной почты. С одноразовыми адресами создать аккаунт нельзя."
+			},
+			"instanceStatusError": "Не удалось связаться с сервером. Повторите попытку чуть позже.",
+			"heading": "Вход в Kaneo",
+			"submitPassword": "Войти",
+			"invitation": {
+				"title": "{{inviterName}} приглашает вас в {{workspaceName}}",
+				"fallbackTitle": "Вас пригласили",
+				"description": "Войдите с адресом электронной почты, на который пришло приглашение. Сразу после этого вы присоединитесь к рабочей области."
+			},
+			"footer": {
+				"newHere": "Впервые в Kaneo?",
+				"createAccount": "Создать аккаунт",
+				"inviteOnly": "Аккаунты здесь создаются только по приглашению. Попросите приглашение у администратора.",
+				"providerSignUp": "Впервые здесь? Войдите через одного из провайдеров выше, чтобы создать аккаунт.",
+				"anyProvider": "Впервые здесь? Любой из вариантов выше создаст ваш аккаунт.",
+				"contactAdmin": "Не получается войти? Обратитесь к администратору.",
+				"justLooking": "Просто хотите осмотреться?"
+			},
+			"autoLogin": {
+				"title": "Выполняется вход",
+				"subtitle": "Перенаправляем вас на страницу входа вашей организации.",
+				"opening": "Открываем {{provider}}…",
+				"stuck": "Ничего не происходит?",
+				"continue": "Перейти в {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Продолжить через {{provider}}",
+			"error": "Не удалось войти через {{provider}}. Попробуйте ещё раз."
+		},
+		"forms": {
+			"or": "или",
+			"email": "Электронная почта",
+			"password": "Пароль",
+			"emailPlaceholder": "me@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Показать пароль",
+			"hidePassword": "Скрыть пароль",
+			"name": "Имя",
+			"namePlaceholder": "Анна Иванова",
+			"invalidEmail": "Введите полный адрес электронной почты, например name@company.com.",
+			"nameRequired": "Введите имя.",
+			"passwordRequired": "Введите пароль.",
+			"passwordTooShort": "Используйте не менее 8 символов.",
+			"disposableEmail": "Используйте постоянный адрес электронной почты. С одноразовыми адресами создать аккаунт нельзя.",
+			"continueWithEmail": "Продолжить по электронной почте"
+		},
+		"checkEmail": {
+			"pageTitle": "Проверьте почту",
+			"title": "Проверьте свою почту",
+			"inboxMessage": "Мы отправили вам временную ссылку для входа. Пожалуйста, проверьте свой почтовый ящик по адресу <email>{{email}}</email>.",
+			"emailFallback": "ваш адрес электронной почты",
+			"backToLogin": "Вернуться к входу"
+		},
+		"signUp": {
+			"pageTitle": "Создание аккаунта",
+			"registrationDisabledAlert": "Регистрация в данный момент отключена. Если вы получили приглашение, введите адрес электронной почты, на который оно было отправлено.",
+			"continueAsGuest": "Продолжить как гость",
+			"toggleMessage": "Уже есть аккаунт?",
+			"toggleLink": "Войти",
+			"instanceStatusError": "Не удалось связаться с сервером. Повторите попытку чуть позже.",
+			"instanceAdminTitle": "Настройте свой экземпляр Kaneo",
+			"instanceAdminSubtitle": "Этот аккаунт станет администратором экземпляра с полным доступом.",
+			"heading": "Создайте аккаунт",
+			"submitPassword": "Создать аккаунт",
+			"failed": "Не удалось создать аккаунт. Попробуйте ещё раз.",
+			"subtitle": {
+				"email": "Начните с адреса электронной почты. Мы отправим код, пароль не нужен.",
+				"password": "Укажите имя, адрес электронной почты и пароль, чтобы начать.",
+				"providers": "Используйте подключённый аккаунт, чтобы создать свой."
+			},
+			"invitation": {
+				"description": "Используйте адрес электронной почты, на который пришло приглашение. Сразу после этого вы присоединитесь к рабочей области."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Проверка кода",
+			"validation": {
+				"codeLength": "Код должен содержать 6 цифр"
+			},
+			"toast": {
+				"invalidCode": "Неверный код подтверждения",
+				"verifyFailed": "Не удалось проверить код",
+				"resendFailed": "Не удалось отправить код повторно",
+				"resendSuccess": "Новый код подтверждения отправлен!"
+			},
+			"heading": "Проверьте почту",
+			"description": "Мы отправили 6-значный код на {{email}}. Он действует {{minutes}} мин.",
+			"label": "Код подтверждения",
+			"submit": "Подтвердить и продолжить",
+			"didntGetIt": "Код не пришёл?",
+			"resendCode": "Отправить код повторно",
+			"useDifferentEmail": "Использовать другой адрес",
+			"expired": "Срок действия кода истёк. Запросите новый.",
+			"tooManyAttempts": "Слишком много попыток. Запросите новый код."
+		},
+		"otpSignIn": {
+			"sendFailed": "Не удалось отправить код подтверждения"
+		},
+		"signInForm": {
+			"failedSignIn": "Не удалось войти"
+		},
+		"invitation": {
+			"pageTitleAccept": "Принять приглашение",
+			"pageTitleError": "Ошибка приглашения",
+			"pageTitleInvalid": "Недействительное приглашение",
+			"joinWorkspace": "Присоединиться к {{workspaceName}}",
+			"createAccount": "Создать аккаунт",
+			"signIn": "Войти",
+			"toast": {
+				"acceptFailed": "Не удалось принять приглашение",
+				"acceptSuccess": "Приглашение принято! Добро пожаловать в команду."
+			},
+			"description": "{{inviterName}} приглашает вас в эту рабочую область в Kaneo.",
+			"invitedBy": "Приглашение от",
+			"sentTo": "Отправлено на",
+			"signedInAs": "Вы вошли как",
+			"expires": "Действует до",
+			"notNow": "Не сейчас",
+			"join": "Присоединиться к рабочей области",
+			"switchAccount": "Сменить аккаунт",
+			"goToKaneo": "Перейти в Kaneo",
+			"mismatch": {
+				"title": "Вы вошли с другим адресом",
+				"description": "Это приглашение отправлено на {{invitedEmail}}. Вы вошли как {{email}}."
+			},
+			"expired": {
+				"title": "Срок действия приглашения истёк",
+				"description": "Попросите пользователя {{inviterName}} отправить вам новое приглашение в {{workspaceName}}."
+			},
+			"invalid": {
+				"title": "Приглашение больше недействительно",
+				"description": "Возможно, его уже приняли или отменили. Попросите новое у администратора рабочей области."
+			},
+			"loadFailed": {
+				"title": "Не удалось загрузить приглашение",
+				"description": "Проверьте подключение и перезагрузите страницу."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Добро пожаловать в Kaneo",
+			"workspaceName": "Название рабочей области",
+			"workspaceNamePlaceholder": "например, Acme Inc, Моя команда",
+			"toast": {
+				"createFailed": "Не удалось создать рабочую область"
+			},
+			"validation": {
+				"workspaceNameRequired": "Название рабочей области обязательно",
+				"projectNameRequired": "Назовите ваш первый проект"
+			},
+			"restrictedSubtitle": "Здесь создавать рабочие пространства может только администратор экземпляра. Попросите приглашение и обновите страницу.",
+			"restrictedCheckInvitations": "Проверить приглашения",
+			"restrictedTitle": "Нужно приглашение",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_few": "{{count}} invitations sent",
+					"sent_many": "{{count}} invitations sent",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Мой первый проект",
+			"starterTasks": {
+				"drag": {
+					"title": "Перетащите эту карточку в следующую колонку",
+					"description": "Карточки переходят из колонки в колонку по мере продвижения работы. Перетащите эту в следующую колонку или откройте её и измените статус."
+				},
+				"details": {
+					"title": "Откройте эту задачу и добавьте подзадачу",
+					"description": "У задачи могут быть описание, подзадачи, метки, исполнитель и срок. Добавьте подзадачу к этой, чтобы попробовать."
+				},
+				"invite": {
+					"title": "Пригласите команду",
+					"description": "Kaneo лучше всего работает, когда в нём вся команда. Откройте **Участники** на боковой панели, чтобы пригласить людей по email."
+				},
+				"integrations": {
+					"title": "Подключите GitHub, GitLab или Gitea",
+					"description": "Синхронизируйте issues и автоматически перемещайте задачи, когда pull request открывается и сливается. Настройте это в разделе **Настройки проекта**."
+				},
+				"create": {
+					"title": "Создайте свою задачу",
+					"description": "Используйте **+** рядом с названием колонки или нажмите **T**, а затем **C**. Удалите эти стартовые задачи, когда будете готовы."
+				}
+			},
+			"progress": "Шаг {{current}} из {{total}}",
+			"welcome": "Добро пожаловать, {{name}}",
+			"settingUp": "Настройка: {{name}}",
+			"continue": "Продолжить",
+			"signedInAs": "Вы вошли как {{email}}",
+			"signOut": "Выйти",
+			"workspace": {
+				"title": "Назовите рабочую область",
+				"description": "Здесь будут ваши проекты. Используйте название команды или компании, его можно изменить позже."
+			},
+			"usage": {
+				"title": "Кто будет ею пользоваться?",
+				"description": "Мы настроим рабочую область {{name}} под ваши задачи. Пригласить людей можно и позже."
+			},
+			"project": {
+				"title": "Создайте первый проект",
+				"description": "Мы добавим несколько стартовых задач, чтобы помочь вам освоиться. Их можно переименовать или удалить в любой момент.",
+				"label": "Название проекта",
+				"numbered": "Задачи будут нумероваться так:"
+			},
+			"invite": {
+				"title": "Пригласите команду",
+				"description": "Они получат письмо с приглашением в {{name}}. Пропустите этот шаг, если хотите сначала осмотреться.",
+				"label": "Адреса электронной почты коллег",
+				"send_few": "Отправить {{count}} приглашения",
+				"send_many": "Отправить {{count}} приглашений",
+				"send_one": "Отправить {{count}} приглашение",
+				"send_other": "Отправить {{count}} приглашения",
+				"sendNone": "Отправить приглашения"
+			},
+			"plan": {
+				"title": "С чего хотите начать?",
+				"descriptionTrial_few": "Все тарифы включают неограниченное число проектов и задач. Попробуйте {{name}} бесплатно в течение {{count}} дней или оформите подписку сейчас.",
+				"descriptionTrial_many": "Все тарифы включают неограниченное число проектов и задач. Попробуйте {{name}} бесплатно в течение {{count}} дней или оформите подписку сейчас.",
+				"descriptionTrial_one": "Все тарифы включают неограниченное число проектов и задач. Попробуйте {{name}} бесплатно в течение {{count}} дня или оформите подписку сейчас.",
+				"descriptionTrial_other": "Все тарифы включают неограниченное число проектов и задач. Попробуйте {{name}} бесплатно в течение {{count}} дня или оформите подписку сейчас.",
+				"choose": "Выберите тариф",
+				"description": {
+					"team": "Неограниченное число участников, роли и права доступа",
+					"personal": "Для одного человека"
+				},
+				"perUserMonth": "за пользователя / месяц",
+				"perMonth": "в месяц",
+				"subscribe": "Оформить тариф {{plan}}",
+				"checkout": "Перейти к оплате",
+				"trialNote": "Для пробного периода карта не нужна. Платежи обрабатывает Creem.",
+				"paymentNote": "Платежи обрабатывает Creem."
+			},
+			"ready": {
+				"eyebrow": "Всё готово",
+				"title": "Рабочая область {{name}} готова",
+				"description": "Вот что мы настроили. Всё это можно изменить позже.",
+				"workspace": "Рабочая область",
+				"project": "Первый проект",
+				"projectValue_few": "{{name}}, {{count}} стартовые задачи",
+				"projectValue_many": "{{name}}, {{count}} стартовых задач",
+				"projectValue_one": "{{name}}, {{count}} стартовая задача",
+				"projectValue_other": "{{name}}, {{count}} стартовой задачи",
+				"invitations": "Приглашения",
+				"invitationsValue_few": "Отправлено {{count}} приглашения",
+				"invitationsValue_many": "Отправлено {{count}} приглашений",
+				"invitationsValue_one": "Отправлено {{count}} приглашение",
+				"invitationsValue_other": "Отправлено {{count}} приглашения",
+				"open": "Открыть {{name}}"
+			},
+			"preview": {
+				"live": "Предпросмотр: {{name}}",
+				"liveNoName": "Предпросмотр",
+				"ready": "Рабочая область {{name}} готова",
+				"untitled": "Ваша рабочая область"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Заполнение профиля",
+			"completeTitle": "Заполните свой профиль",
+			"subtitle": "Пожалуйста, введите своё имя, чтобы начать",
+			"yourName": "Ваше имя",
+			"namePlaceholder": "например, Иван Иванов",
+			"saving": "Сохранение...",
+			"continue": "Продолжить",
+			"welcome": "Добро пожаловать, {{name}}!",
+			"redirecting": "Переход к панели управления...",
+			"toast": {
+				"updateSuccess": "Профиль успешно обновлён",
+				"updateFailed": "Не удалось обновить профиль"
+			},
+			"validation": {
+				"nameRequired": "Имя обя�

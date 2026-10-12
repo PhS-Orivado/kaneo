@@ -8,6 +8,9 @@ async function getWorkflowRules(projectId: string) {
       id: workflowRuleTable.id,
       projectId: workflowRuleTable.projectId,
       integrationType: workflowRuleTable.integrationType,
+      // RFC 0001 WP6: the editor distinguishes repository-specific rules
+      // (integrationId set) from type-wide rules (null) with this column.
+      integrationId: workflowRuleTable.integrationId,
       eventType: workflowRuleTable.eventType,
       columnId: workflowRuleTable.columnId,
       columnName: columnTable.name,

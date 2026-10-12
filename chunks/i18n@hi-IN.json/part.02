@@ -1,0 +1,425 @@
+,
+				"yourApiKey": "आपकी API कुंजी",
+				"copy": "कॉपी करें",
+				"copied": "कॉपी किया",
+				"toastCopied": "API कुंजी क्लिपबोर्ड पर कॉपी की गई",
+				"alertTitle": "सफल! आपकी API कुंजी बनाई गई है",
+				"alertDescription": "इस कुंजी को अभी कॉपी करें। आप इसे दोबारा नहीं देख पाएँगे।",
+				"done": "हो गया",
+				"copyToContinue": "जारी रखने के लिए कुंजी कॉपी करें"
+			},
+			"table": {
+				"loading": "API कुंजियाँ लोड हो रही हैं...",
+				"empty": "अभी तक कोई API कुंजी नहीं। शुरू करने के लिए एक बनाएँ।",
+				"columnName": "नाम",
+				"columnKey": "कुंजी",
+				"columnCreated": "बनाया गया",
+				"columnExpires": "समाप्ति",
+				"columnActions": "कार्रवाइयाँ",
+				"unnamedKey": "अनाम कुंजी",
+				"expiredBadge": "समाप्त {{label}}",
+				"deleteConfirmTitle": "API कुंजी हटाएँ?",
+				"deleteConfirmDescription": "यह कार्रवाई पूर्ववत नहीं की जा सकती। यह {{name}} को स्थायी रूप से हटा देगी।",
+				"deleteFallbackName": "यह API कुंजी",
+				"delete": "हटाएँ",
+				"deleting": "हटा रहे हैं...",
+				"deleteAria": "{{name}} हटाएँ",
+				"deleteAriaFallback": "API कुंजी",
+				"toastDeleted": "API कुंजी सफलतापूर्वक हटाई गई",
+				"toastDeleteError": "API कुंजी हटाने में विफल"
+			},
+			"createDialog": {
+				"title": "API कुंजी बनाएँ",
+				"description": "Kaneo API को प्रोग्रामेटिक रूप से एक्सेस करने के लिए नई API कुंजी बनाएँ।",
+				"nameLabel": "नाम",
+				"namePlaceholder": "मेरी API कुंजी",
+				"nameDescription": "इस API कुंजी के लिए विवरणात्मक नाम",
+				"expirationLabel": "समाप्ति",
+				"expirationPlaceholder": "समाप्ति चुनें",
+				"expirationDescription": "चुनें कि यह API कुंजी कितने समय तक वैध रहे। कभी नहीं एक बिना स्वचालित समाप्ति की कुंजी बनाएगा।",
+				"expiration1d": "1 दिन",
+				"expiration7d": "7 दिन",
+				"expiration30d": "30 दिन",
+				"expiration90d": "90 दिन",
+				"expirationNever": "कभी नहीं",
+				"create": "बनाएँ",
+				"creating": "बना रहे हैं...",
+				"failedCreate": "API कुंजी बनाने में विफल",
+				"validation": {
+					"nameRequired": "नाम आवश्यक है",
+					"nameShort": "नाम कम से कम 3 अक्षरों का होना चाहिए",
+					"expirationRequired": "समाप्ति आवश्यक है"
+				}
+			}
+		},
+		"workspaceGeneral": {
+			"pageTitle": "सामान्य सेटिंग",
+			"title": "सामान्य सेटिंग",
+			"subtitle": "अपने वर्कस्पेस का नाम और विवरण प्रबंधित करें।",
+			"workspaceInfoTitle": "वर्कस्पेस जानकारी",
+			"workspaceInfoSubtitle": "अपने वर्कस्पेस का विवरण और प्राथमिकताएँ कॉन्फ़िगर करें।",
+			"nameLabel": "वर्कस्पेस का नाम",
+			"nameHint": "आपके वर्कस्पेस का नाम",
+			"namePlaceholder": "वर्कस्पेस का नाम दर्ज करें",
+			"descriptionLabel": "विवरण",
+			"descriptionHint": "आपके वर्कस्पेस का संक्षिप्त विवरण",
+			"descriptionPlaceholder": "वर्कस्पेस विवरण दर्ज करें",
+			"dangerZone": "खतरनाक ज़ोन",
+			"dangerZoneSubtitle": "अपरिवर्तनीय और विनाशकारी कार्रवाइयाँ।",
+			"deleteWorkspace": "वर्कस्पेस हटाएँ",
+			"deleteWorkspaceDescription": "वर्कस्पेस को स्थायी रूप से हटाने के लिए शेड्यूल करें",
+			"deleteModalTitle": "वर्कस्पेस हटाएँ?",
+			"deleteModalDescription": "यह वर्कस्पेस \"{{name}}\" और इसके सभी डेटा को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"deleteModalConfirm": "वर्कस्पेस हटाएँ",
+			"toastUpdated": "वर्कस्पेस सफलतापूर्वक अपडेट किया गया",
+			"toastUpdateError": "वर्कस्पेस अपडेट करने में विफल",
+			"toastDeleted": "वर्कस्पेस सफलतापूर्वक हटाया गया",
+			"toastDeleteError": "वर्कस्पेस हटाने में विफल",
+			"validation": {
+				"nameRequired": "वर्कस्पेस का नाम आवश्यक है",
+				"nameShort": "वर्कस्पेस का नाम कम से कम 2 अक्षरों का होना चाहिए"
+			},
+			"transferOwnership": {
+				"toastSuccess": "स्वामित्व स्थानांतरित किया गया",
+				"toastError": "स्वामित्व स्थानांतरित करने में विफल",
+				"title": "स्वामित्व स्थानांतरित करें",
+				"subtitle": "यह वर्कस्पेस किसी अन्य सदस्य को सौंपें। आपकी भूमिका घटकर एडमिन हो जाएगी और आप केवल मालिक को उपलब्ध क्षमताएँ खो देंगे।",
+				"pickerLabel": "नया मालिक",
+				"noEligibleMembers": "स्वामित्व स्थानांतरित करने से पहले कम से कम एक अन्य सदस्य को आमंत्रित करें।",
+				"pickerHint": "वे इस वर्कस्पेस के एकमात्र मालिक बन जाएँगे।",
+				"pickerPlaceholder": "सदस्य चुनें",
+				"button": "स्थानांतरित करें",
+				"dialogTitle": "स्वामित्व स्थानांतरित करें?",
+				"dialogDescription": "{{name}} {{workspace}} के एकमात्र मालिक बन जाएँगे। आपकी एडमिन पहुँच बनी रहेगी, लेकिन वर्कस्पेस हटाने या उसे फिर से स्थानांतरित करने जैसी केवल मालिक को उपलब्ध क्षमताएँ आप खो देंगे।",
+				"transferring": "स्थानांतरित हो रहा है…",
+				"confirm": "स्वामित्व स्थानांतरित करें"
+			}
+		},
+		"workspaceRoles": {
+			"pageTitle": "भूमिकाएँ",
+			"title": "भूमिकाएँ",
+			"subtitle": "परिभाषित करें कि सदस्य {{workspaceName}} में कौन से कार्य कर सकते हैं।",
+			"thisWorkspace": "इस वर्कस्पेस",
+			"noAccess": "वर्कस्पेस भूमिकाएँ प्रबंधित करने के लिए आपको व्यवस्थापक या मालिक अनुमति चाहिए।",
+			"sectionTitle": "वर्कस्पेस भूमिकाएँ",
+			"sectionSubtitle": "डिफ़ॉल्ट भूमिकाएँ संपादित करें या कस्टम जोड़ें। संपादन के बाद भी सदस्य अपनी असाइन की गई भूमिका का नाम रखते हैं।",
+			"newRole": "नई भूमिका",
+			"loading": "लोड हो रहा है…",
+			"loadError": "भूमिकाएँ लोड करने में विफल।",
+			"emptyTitle": "अभी तक कोई भूमिका नहीं",
+			"emptyDescription": "डिफ़ॉल्ट भूमिकाएँ इस वर्कस्पेस के लिए सीड होने पर यहाँ दिखाई देंगी।",
+			"defaultBadge": "डिफ़ॉल्ट",
+			"permissionCount_one": "{{count}} अनुमति",
+			"permissionCount_other": "{{count}} अनुमतियाँ",
+			"nameLabel": "नाम",
+			"nameHint": "लोअरकेस। बाद में बदला नहीं जा सकता।",
+			"namePlaceholder": "जैसे reviewer",
+			"discard": "खारिज करें",
+			"createRole": "भूमिका बनाएँ",
+			"deleteRole": "भूमिका हटाएँ",
+			"defaultRoleHelp": "डिफ़ॉल्ट भूमिका: नाम आरक्षित है और पंक्ति हटाई नहीं जा सकती।",
+			"unsavedChanges": "आपके पास सहेजे नहीं गए परिवर्तन हैं",
+			"allChangesSaved": "सभी परिवर्तन सहेजे गए",
+			"saveChanges": "परिवर्तन सहेजें",
+			"defaultRoleDescriptions": {
+				"viewer": "कार्य देख और टिप्पणी कर सकते हैं।",
+				"member": "कार्य और प्रोजेक्ट बना और प्रबंधित कर सकते हैं।",
+				"admin": "वर्कस्पेस तक पूर्ण पहुँच है।"
+			},
+			"resources": {
+				"project": "प्रोजेक्ट",
+				"task": "कार्य",
+				"label": "लेबल",
+				"workspace": "वर्कस्पेस",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "बनाएँ",
+						"description": "नए प्रोजेक्ट बना सकते हैं"
+					},
+					"read": {
+						"label": "पढ़ें",
+						"description": "प्रोजेक्ट देख सकते हैं"
+					},
+					"update": {
+						"label": "अपडेट करें",
+						"description": "प्रोजेक्ट सेटिंग संपादित कर सकते हैं"
+					},
+					"delete": {
+						"label": "हटाएँ",
+						"description": "प्रोजेक्ट हटा सकते हैं"
+					},
+					"share": {
+						"label": "साझा करें",
+						"description": "प्रोजेक्ट साझा कर सकते हैं"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "बनाएँ",
+						"description": "कार्य बना सकते हैं"
+					},
+					"read": {
+						"label": "पढ़ें",
+						"description": "कार्य देख सकते हैं"
+					},
+					"update": {
+						"label": "अपडेट करें",
+						"description": "कार्य संपादित कर सकते हैं"
+					},
+					"delete": {
+						"label": "हटाएँ",
+						"description": "कार्य हटा सकते हैं"
+					},
+					"assign": {
+						"label": "सौंपें",
+						"description": "सदस्यों को कार्य सौंप सकते हैं"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "बनाएँ",
+						"description": "लेबल बना सकते हैं"
+					},
+					"read": {
+						"label": "पढ़ें",
+						"description": "लेबल देख सकते हैं"
+					},
+					"update": {
+						"label": "अपडेट करें",
+						"description": "लेबल संपादित कर सकते हैं"
+					},
+					"delete": {
+						"label": "हटाएँ",
+						"description": "लेबल हटा सकते हैं"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "पढ़ें",
+						"description": "वर्कस्पेस सेटिंग देख सकते हैं"
+					},
+					"update": {
+						"label": "अपडेट करें",
+						"description": "वर्कस्पेस सेटिंग अपडेट कर सकते हैं"
+					},
+					"delete": {
+						"label": "हटाएँ",
+						"description": "वर्कस्पेस हटा सकते हैं"
+					},
+					"manage_settings": {
+						"label": "सेटिंग प्रबंधित करें",
+						"description": "वर्कस्पेस सेटिंग प्रबंधित कर सकते हैं"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "भूमिका का नाम आवश्यक है",
+				"nameExists": "इस नाम की भूमिका पहले से मौजूद है",
+				"permissionRequired": "कम से कम एक अनुमति चुनी जानी चाहिए"
+			},
+			"toast": {
+				"created": "भूमिका बनाई गई",
+				"createError": "भूमिका बनाने में विफल",
+				"updated": "भूमिका अपडेट की गई",
+				"updateError": "भूमिका अपडेट करने में विफल",
+				"deleted": "भूमिका हटाई गई",
+				"deleteError": "भूमिका हटाने में विफल"
+			},
+			"deleteDialog": {
+				"title": "भूमिका हटाएँ",
+				"description": "यह भूमिका \"{{role}}\" को स्थायी रूप से हटा देगा। इस भूमिका वाले सदस्य इसकी अनुमतियाँ खो देंगे।"
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "लेबल सेटिंग",
+			"title": "लेबल",
+			"subtitle": "वर्कस्पेस-स्तरीय लेबल बनाएँ, संपादित करें और हटाएँ।",
+			"cardDescription": "कार्यों को असाइन किए जा सकने वाले लेबल प्रबंधित करें।",
+			"createLabel": "लेबल बनाएँ",
+			"editLabel": "लेबल संपादित करें",
+			"deleteLabel": "हटाएँ",
+			"saveLabel": "सहेजें",
+			"nameLabel": "लेबल का नाम",
+			"namePlaceholder": "लेबल का नाम दर्ज करें",
+			"colorLabel": "रंग",
+			"createDescription": "एक नया लेबल बनाएँ जो इस वर्कस्पेस में सभी कार्यों में उपयोग किया जा सकता है।",
+			"editDescription": "इस लेबल का नाम या रंग अपडेट करें।",
+			"deleteConfirmTitle": "यह लेबल हटाएँ?",
+			"deleteConfirmDescription": "यह सभी कार्यों से इस लेबल को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"empty": "अभी तक कोई लेबल नहीं। शुरू करने के लिए अपना पहला लेबल बनाएँ।",
+			"createSuccess": "लेबल बनाया गया",
+			"updateSuccess": "लेबल अपडेट किया गया",
+			"deleteSuccess": "लेबल हटाया गया",
+			"createError": "लेबल बनाने में विफल",
+			"updateError": "लेबल अपडेट करने में विफल",
+			"deleteError": "लेबल हटाने में विफल",
+			"nameRequired": "लेबल का नाम आवश्यक है",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"projectGeneral": {
+			"pageTitle": "प्रोजेक्ट सेटिंग",
+			"title": "सामान्य सेटिंग",
+			"subtitle": "अपने प्रोजेक्ट का नाम, कुंजी, आइकन और विवरण प्रबंधित करें।",
+			"projectInfoTitle": "प्रोजेक्ट जानकारी",
+			"projectInfoSubtitle": "अपने प्रोजेक्ट का विवरण और प्राथमिकताएँ कॉन्फ़िगर करें।",
+			"iconLabel": "आइकन",
+			"iconHint": "साइडबार और प्रोजेक्ट सतहों में प्रदर्शित।",
+			"pickIconTitle": "आइकन चुनें",
+			"searchIconsPlaceholder": "आइकन खोजें...",
+			"projectNameLabel": "प्रोजेक्ट का नाम",
+			"projectNameHint": "आपके प्रोजेक्ट का नाम",
+			"projectNamePlaceholder": "प्रोजेक्ट का नाम दर्ज करें",
+			"keyLabel": "कुंजी",
+			"keyHint": "टिकट ID के लिए उपयोग (जैसे, {{slug}}-123)",
+			"keyPlaceholder": "PRO",
+			"descriptionLabel": "विवरण",
+			"descriptionHint": "आपके प्रोजेक्ट का संक्षिप्त विवरण",
+			"descriptionPlaceholder": "प्रोजेक्ट विवरण दर्ज करें",
+			"dangerZone": "खतरनाक ज़ोन",
+			"dangerZoneSubtitle": "अपरिवर्तनीय और विनाशकारी कार्रवाइयाँ।",
+			"deleteProject": "प्रोजेक्ट हटाएँ",
+			"deleteProjectDescription": "प्रोजेक्ट को स्थायी रूप से हटाने के लिए शेड्यूल करें",
+			"deleteModalTitle": "प्रोजेक्ट हटाएँ?",
+			"deleteModalDescription": "यह प्रोजेक्ट \"{{name}}\" और इसके सभी डेटा को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"deleteModalConfirm": "प्रोजेक्ट हटाएँ",
+			"toastUpdated": "प्रोजेक्ट सफलतापूर्वक अपडेट किया गया",
+			"toastUpdateError": "प्रोजेक्ट अपडेट करने में विफल",
+			"toastDeleted": "प्रोजेक्ट सफलतापूर्वक हटाया गया",
+			"toastDeleteError": "प्रोजेक्ट हटाने में विफल",
+			"validation": {
+				"nameRequired": "प्रोजेक्ट का नाम आवश्यक है",
+				"keyRequired": "कुंजी आवश्यक है",
+				"keyMax": "कुंजी अधिकतम 8 अक्षरों की होनी चाहिए",
+				"iconRequired": "आइकन आवश्यक है"
+			},
+			"importExportTasks": "आयात/निर्यात",
+			"importExportTasksDescription": "कार्यों को आयात और निर्यात करें।",
+			"backgroundHint": "Choose an image shown behind this project's board.",
+			"backgroundLabel": "Board background",
+			"backgroundRemove": "Remove image",
+			"backgroundRemoveError": "Failed to remove project background",
+			"backgroundRemoveSuccess": "Project background removed",
+			"backgroundReplace": "Replace image",
+			"backgroundUpload": "Upload image",
+			"backgroundUploadError": "Failed to update project background",
+			"backgroundUploadSuccess": "Project background updated",
+			"moveModalConfirm": "प्रोजेक्ट ले जाएँ",
+			"moveModalDescription": "इससे प्रोजेक्ट \"{{name}}\" और उसके सभी कार्य \"{{workspace}}\" में चले जाएँगे। जो कार्य उन लोगों को सौंपे गए हैं जो उस वर्कस्पेस के सदस्य नहीं हैं, उनका असाइनमेंट हटा दिया जाएगा, और इस प्रोजेक्ट की सूचना सदस्यताएँ हटा दी जाएँगी।",
+			"moveModalTitle": "प्रोजेक्ट ले जाएँ?",
+			"moveProject": "वर्कस्पेस में ले जाएँ",
+			"moveProjectAction": "ले जाएँ",
+			"moveProjectDescription": "इस प्रोजेक्ट को उसके सभी कार्यों सहित किसी अन्य वर्कस्पेस में ले जाएँ।",
+			"moveProjectPlaceholder": "वर्कस्पेस चुनें",
+			"toastMoved": "प्रोजेक्ट सफलतापूर्वक ले जाया गया",
+			"toastMovedWithUnassigned": "प्रोजेक्ट सफलतापूर्वक ले जाया गया। {{taskCount}} कार्य का असाइनमेंट हटा दिया गया।",
+			"toastMoveError": "प्रोजेक्ट ले जाने में विफल",
+			"moveTargetsError": "यह जाँचा नहीं जा सका कि आप इस प्रोजेक्ट को किन वर्कस्पेस में ले जा सकते हैं। पुनः प्रयास करने के लिए पेज रीलोड करें।"
+		},
+		"projectIntegrations": {
+			"pageTitle": "प्रोजेक्ट एकीकरण",
+			"title": "प्रोजेक्ट एकीकरण",
+			"subtitle": "अपने कार्यप्रवाह को सुगम बनाने के लिए अपने प्रोजेक्ट को बाहरी उपकरणों और सेवाओं से जोड़ें।",
+			"githubSectionTitle": "GitHub एकीकरण",
+			"githubSectionSubtitle": "GitHub issues के साथ कार्यों को सिंक करें और दो-तरफ़ा सिंक सक्षम करें।",
+			"giteaSectionTitle": "Gitea एकीकरण",
+			"giteaSectionSubtitle": "स्व-होस्टेड Gitea इंस्टेंस के साथ कार्यों को सिंक करें (issues, PRs, webhooks)।",
+			"discordSectionTitle": "Discord एकीकरण",
+			"discordSectionSubtitle": "वेबहुक के साथ Discord चैनल में प्रोजेक्ट कार्य अपडेट भेजें।",
+			"genericWebhookSectionTitle": "सामान्य वेबहुक",
+			"genericWebhookSectionSubtitle": "प्रोजेक्ट कार्य इवेंट किसी भी HTTP एंडपॉइंट पर JSON के रूप में भेजें।",
+			"slackSectionTitle": "Slack एकीकरण",
+			"slackSectionSubtitle": "इनकमिंग वेबहुक के साथ Slack चैनल में प्रोजेक्ट कार्य अपडेट भेजें।",
+			"telegramSectionTitle": "Telegram एकीकरण",
+			"telegramSectionSubtitle": "बॉट के साथ Telegram चैट या टॉपिक में प्रोजेक्ट कार्य अपडेट भेजें।",
+			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
+			"mattermostSectionTitle": "Mattermost Integration",
+			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
+			"gitlabSectionTitle": "GitLab Integration",
+			"codeHostingTitle": "कोड होस्टिंग",
+			"chatTitle": "चैट और वेबहुक",
+			"statusConnected": "कनेक्टेड",
+			"statusPaused": "रोका गया",
+			"connect": "कनेक्ट करें",
+			"configure": "कॉन्फ़िगर करें",
+			"done": "हो गया"
+		},
+		"projectVisibility": {
+			"pageTitle": "प्रोजेक्ट दृश्यता",
+			"title": "दृश्यता",
+			"subtitle": "नियंत्रित करें कि आपका प्रोजेक्ट कौन देख और एक्सेस कर सकता है।",
+			"sectionTitle": "दृश्यता",
+			"sectionSubtitle": "सार्वजनिक पहुँच टॉग

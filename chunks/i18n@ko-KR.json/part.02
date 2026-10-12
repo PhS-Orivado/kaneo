@@ -1,0 +1,670 @@
+ 연동 업데이트에 실패했습니다",
+				"secretCopied": "복사됨",
+				"unableToCopySecret": "시크릿을 복사할 수 없습니다",
+				"notGiteaInstance": "URL이 Gitea 인스턴스를 가리키지 않습니다",
+				"redirected": "Gitea URL이 리디렉션되었습니다(보통 HTTPS로). 최종 URL을 직접 사용하세요."
+			},
+			"webhookShow": "표시",
+			"webhookHide": "숨기기",
+			"webhookCopy": "복사",
+			"connectionStatus": "연결 상태",
+			"connectedActive": "저장소가 연결되어 활성 상태입니다",
+			"notConnectedHint": "연결된 Gitea 저장소가 없습니다",
+			"badgeConnected": "연결됨",
+			"badgeNotConnected": "연결 안 됨",
+			"repository": "저장소",
+			"repositoryHint": "연결된 Gitea 저장소",
+			"commentTaskLinkTitle": "새 이슈에 Kaneo 링크 댓글 달기",
+			"commentTaskLinkHint": "활성화하면 Kaneo가 새 이슈마다 작업 링크가 포함된 댓글을 게시합니다.",
+			"webhookTitle": "웹훅",
+			"webhookHint": "Gitea 저장소에서 이 URL과 시크릿으로 웹훅을 추가합니다. push, pull request, issues, issue comments 및 create(라벨용)를 활성화하세요.",
+			"webhookSecretLabel": "시크릿 (Gitea의 웹훅 시크릿과 일치해야 함)",
+			"baseUrlLabel": "Gitea URL",
+			"baseUrlHint": "Gitea 인스턴스의 루트 URL",
+			"tokenLabel": "개인 액세스 토큰",
+			"tokenHint": "저장소 및 이슈 접근 권한이 있는 토큰",
+			"tokenPlaceholder": "토큰 붙여넣기",
+			"tokenPlaceholderUpdate": "교체할 새 토큰 붙여넣기",
+			"currentToken": "저장됨",
+			"ownerLabel": "소유자",
+			"ownerHint": "사용자 또는 조직 이름",
+			"repoNameLabel": "저장소 이름",
+			"repoNameHint": "저장소 이름만 (소유자 제외)",
+			"actionsTitle": "작업",
+			"actionsHint": "접근을 확인하고 연결합니다",
+			"browse": "찾아보기",
+			"verify": "확인",
+			"update": "업데이트",
+			"connect": "연결",
+			"disconnect": "연결 해제",
+			"importSectionTitle": "Gitea 이슈 가져오기",
+			"importSectionHint": "저장소의 열린 이슈와 풀 리퀘스트를 가져옵니다",
+			"importing": "가져오는 중…",
+			"importIssues": "이슈 가져오기",
+			"importDisabledHint": "가져오기를 활성화하려면 위의 저장소를 확인하세요",
+			"browseModalTitle": "내 저장소",
+			"browseModalHint": "토큰으로 접근할 수 있는 저장소",
+			"searchRepos": "검색…",
+			"browseNeedsCredentials": "찾아보려면 Gitea URL과 토큰을 입력하세요",
+			"loadingRepos": "저장소 로딩 중…",
+			"retry": "재시도",
+			"providerName": "Gitea"
+		},
+		"slackIntegration": {
+			"validation": {
+				"webhookInvalid": "유효한 Slack 웹훅 URL을 입력하세요"
+			},
+			"toast": {
+				"saved": "Slack 연동이 저장되었습니다",
+				"saveError": "Slack 연동 저장에 실패했습니다",
+				"enabled": "Slack 알림이 활성화되었습니다",
+				"disabled": "Slack 알림이 일시 중지되었습니다",
+				"updateError": "Slack 연동 업데이트에 실패했습니다",
+				"removed": "Slack 연동이 제거되었습니다",
+				"removeError": "Slack 연동 제거에 실패했습니다"
+			},
+			"connectionTitle": "Slack 웹훅 연결",
+			"connectionHint": "Slack 수신 웹훅 URL을 붙여넣고 게시할 작업 이벤트를 선택하세요.",
+			"connected": "연결됨",
+			"paused": "일시 중지됨",
+			"webhookLabel": "수신 웹훅 URL",
+			"webhookPlaceholder": "https://hooks.slack.com/services/...",
+			"webhookHint": "Slack에서 수신 웹훅을 만들고 생성된 URL을 여기에 붙여넣으세요.",
+			"channelLabel": "채널 이름",
+			"channelPlaceholder": "#team-updates",
+			"channelHint": "참고용 선택 라벨입니다. 실제 대상 채널은 Slack의 웹훅 설정에서 제어합니다.",
+			"eventsTitle": "이벤트 알림",
+			"eventsHint": "Slack에 게시할 프로젝트 변경 사항을 선택합니다.",
+			"events": {
+				"taskCreated": "새 작업",
+				"taskStatusChanged": "상태 변경",
+				"taskPriorityChanged": "우선순위 변경",
+				"taskTitleChanged": "제목 변경",
+				"taskDescriptionChanged": "설명 변경",
+				"taskCommentCreated": "새 댓글"
+			},
+			"connect": "Slack 연결",
+			"saveChanges": "변경사항 저장",
+			"update": "Slack 업데이트",
+			"disconnect": "연결 해제"
+		},
+		"discordIntegration": {
+			"validation": {
+				"webhookInvalid": "유효한 Discord 웹훅 URL을 입력하세요"
+			},
+			"toast": {
+				"saved": "Discord 연동이 저장되었습니다",
+				"saveError": "Discord 연동 저장에 실패했습니다",
+				"enabled": "Discord 알림이 활성화되었습니다",
+				"disabled": "Discord 알림이 일시 중지되었습니다",
+				"updateError": "Discord 연동 업데이트에 실패했습니다",
+				"removed": "Discord 연동이 제거되었습니다",
+				"removeError": "Discord 연동 제거에 실패했습니다"
+			},
+			"connectionTitle": "Discord 웹훅 연결",
+			"connectionHint": "Discord 웹훅 URL을 붙여넣고 게시할 작업 이벤트를 선택하세요.",
+			"connected": "연결됨",
+			"paused": "일시 중지됨",
+			"webhookLabel": "웹훅 URL",
+			"webhookPlaceholder": "https://discord.com/api/webhooks/...",
+			"webhookHint": "Discord 채널 웹훅을 만들고 생성된 URL을 여기에 붙여넣으세요.",
+			"channelLabel": "채널 이름",
+			"channelPlaceholder": "#team-updates",
+			"channelHint": "참고용 선택 라벨입니다. 실제 대상 채널은 Discord의 웹훅 설정에서 제어합니다.",
+			"eventsTitle": "이벤트 알림",
+			"eventsHint": "Discord에 게시할 프로젝트 변경 사항을 선택합니다.",
+			"events": {
+				"taskCreated": "새 작업",
+				"taskStatusChanged": "상태 변경",
+				"taskPriorityChanged": "우선순위 변경",
+				"taskTitleChanged": "제목 변경",
+				"taskDescriptionChanged": "설명 변경",
+				"taskCommentCreated": "새 댓글"
+			},
+			"connect": "Discord 연결",
+			"saveChanges": "변경사항 저장",
+			"update": "Discord 업데이트",
+			"disconnect": "연결 해제"
+		},
+		"genericWebhookIntegration": {
+			"validation": {
+				"webhookInvalid": "유효한 웹훅 URL을 입력하세요"
+			},
+			"toast": {
+				"saved": "일반 웹훅 연동이 저장되었습니다",
+				"saveError": "일반 웹훅 연동 저장에 실패했습니다",
+				"enabled": "일반 웹훅 알림이 활성화되었습니다",
+				"disabled": "일반 웹훅 알림이 일시 중지되었습니다",
+				"updateError": "일반 웹훅 연동 업데이트에 실패했습니다",
+				"removed": "일반 웹훅 연동이 제거되었습니다",
+				"removeError": "일반 웹훅 연동 제거에 실패했습니다"
+			},
+			"connectionTitle": "발신 웹훅 연결",
+			"connectionHint": "작업 이벤트를 자체 엔드포인트로 JSON 형식으로 전송합니다. 시크릿이 구성된 경우 서명된 X-Kaneo-Signature 헤더가 포함됩니다.",
+			"connected": "연결됨",
+			"paused": "일시 중지됨",
+			"webhookLabel": "엔드포인트 URL",
+			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
+			"webhookHint": "Kaneo는 활성화된 각 이벤트에 대해 JSON 페이로드와 함께 POST 요청을 전송합니다.",
+			"secretLabel": "서명 시크릿",
+			"secretPlaceholder": "선택 사항 - 공유 시크릿",
+			"secretHint": "선택 사항. 입력하면 Kaneo가 요청 본문에 서명하고 16진수 다이제스트를 X-Kaneo-Signature 헤더로 전송합니다.",
+			"secretHintConfigured": "서명 시크릿이 이미 구성되어 있습니다 ({{secret}}). 교체하려면 새 시크릿을 입력하세요.",
+			"eventsTitle": "이벤트 알림",
+			"eventsHint": "발신 웹훅을 트리거할 프로젝트 변경 사항을 선택합니다.",
+			"events": {
+				"taskCreated": "새 작업",
+				"taskStatusChanged": "상태 변경",
+				"taskPriorityChanged": "우선순위 변경",
+				"taskTitleChanged": "제목 변경",
+				"taskDescriptionChanged": "설명 변경",
+				"taskCommentCreated": "새 댓글",
+				"taskDeleted": "작업 삭제",
+				"taskMoved": "작업 이동",
+				"taskDueDateChanged": "마감일 변경",
+				"taskAssigneeChanged": "담당자 변경",
+				"taskUnassigned": "할당 해제",
+				"dueDateReminder": "마감일 미리 알림"
+			},
+			"connect": "웹훅 연결",
+			"saveChanges": "변경사항 저장",
+			"disconnect": "연결 해제",
+			"reminderLeadTimeLabel": "마감 몇 시간 전에 웹훅 전송"
+		},
+		"telegramIntegration": {
+			"validation": {
+				"botTokenInvalid": "유효한 Telegram 봇 토큰을 입력하세요",
+				"chatIdRequired": "채팅 ID는 필수입니다",
+				"threadIdInvalid": "유효한 Telegram 토픽 스레드 ID를 입력하세요"
+			},
+			"toast": {
+				"saved": "Telegram 연동이 저장되었습니다",
+				"saveError": "Telegram 연동 저장에 실패했습니다",
+				"enabled": "Telegram 알림이 활성화되었습니다",
+				"disabled": "Telegram 알림이 일시 중지되었습니다",
+				"updateError": "Telegram 연동 업데이트에 실패했습니다",
+				"removed": "Telegram 연동이 제거되었습니다",
+				"removeError": "Telegram 연동 제거에 실패했습니다"
+			},
+			"connectionTitle": "Telegram 봇 연결",
+			"connectionHint": "Telegram 봇 토큰과 채팅 ID를 사용하여 채팅 또는 토픽으로 프로젝트 작업 업데이트를 전송합니다.",
+			"connected": "연결됨",
+			"paused": "일시 중지됨",
+			"botTokenLabel": "봇 토큰",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"botTokenHint": "BotFather로 봇을 만들고 해당 토큰을 여기에 붙여넣으세요.",
+			"botTokenHintConfigured": "봇 토큰이 이미 구성되어 있습니다 ({{token}}). 교체하려면 새 토큰을 입력하세요.",
+			"chatIdLabel": "채팅 ID",
+			"chatIdPlaceholder": "-1001234567890 또는 @team_updates",
+			"chatIdHint": "업데이트를 게시할 Telegram 채팅 ID 또는 채널 사용자 이름을 입력하세요.",
+			"threadIdLabel": "토픽 스레드 ID",
+			"threadIdPlaceholder": "선택 사항 - 토픽 ID",
+			"threadIdHint": "선택 사항. Telegram 그룹 내 포럼 토픽에 사용하세요.",
+			"chatLabelLabel": "채팅 라벨",
+			"chatLabelPlaceholder": "엔지니어링 업데이트",
+			"chatLabelHint": "Kaneo 내부 참고용 선택 라벨입니다.",
+			"eventsTitle": "이벤트 알림",
+			"eventsHint": "Telegram에 게시할 프로젝트 변경 사항을 선택합니다.",
+			"events": {
+				"taskCreated": "새 작업",
+				"taskStatusChanged": "상태 변경",
+				"taskPriorityChanged": "우선순위 변경",
+				"taskTitleChanged": "제목 변경",
+				"taskDescriptionChanged": "설명 변경",
+				"taskCommentCreated": "새 댓글"
+			},
+			"connect": "Telegram 연결",
+			"saveChanges": "변경사항 저장",
+			"disconnect": "연결 해제"
+		},
+		"repositoryBrowser": {
+			"title": "저장소 선택",
+			"description": "이슈 동기화를 활성화하기 위해 GitHub 앱이 설치된 저장소를 선택합니다.",
+			"searchPlaceholder": "저장소 검색...",
+			"loadError": "저장소 로딩에 실패했습니다",
+			"tryAgain": "다시 시도",
+			"emptyTitle": "저장소를 찾을 수 없음",
+			"emptyHint": "여기서 보려면 저장소에 GitHub 앱을 설치하세요.",
+			"installGithubApp": "GitHub 앱 설치",
+			"noSearchMatchTitle": "검색과 일치하는 저장소가 없습니다",
+			"noSearchMatchHint": "검색어를 조정하거나 검색을 지워서 모든 저장소를 확인하세요.",
+			"footerSummary": "설치 {{installationCount}}건에 걸쳐 저장소 {{repoCount}}개",
+			"manageInstallations": "설치 관리",
+			"updatedPrefix": "업데이트됨",
+			"relativeJustNow": "방금 전",
+			"relativeMinutesAgo": "{{count}}분 전",
+			"relativeHoursAgo": "{{count}}시간 전",
+			"relativeDaysAgo": "{{count}}일 전"
+		},
+		"tasksImportExport": {
+			"exportTasks": "작업 내보내기",
+			"importTasks": "작업 가져오기",
+			"dialogTitle": "작업 가져오기",
+			"dialogDescription": "이 프로젝트로 가져올 작업이 포함된 JSON 파일을 업로드합니다.",
+			"expectedFormat": "예상 형식:",
+			"dropHint": "여기에 JSON 파일을 드래그하여 놓으세요",
+			"selectFile": "파일 선택",
+			"exporting": "작업 내보내는 중...",
+			"exportSuccess": "작업을 내보냈습니다",
+			"exportError": "작업 내보내기에 실패했습니다",
+			"importing": "작업 가져오는 중...",
+			"importSuccess": "작업 {{count}}개를 가져왔습니다",
+			"importPartialError": "작업 {{count}}개 가져오기에 실패했습니다",
+			"importError": "작업 가져오기에 실패했습니다",
+			"invalidFormat": "잘못된 가져오기 파일 형식입니다",
+			"noFileDropped": "파일이 놓이지 않았습니다",
+			"notJsonFile": "JSON 파일을 업로드하세요"
+		},
+		"workflowEditor": {
+			"loading": "로딩 중...",
+			"createColumnsFirst": "자동화 규칙을 구성하려면 먼저 컬럼을 만드세요.",
+			"githubHeading": "GitHub",
+			"githubHint": "GitHub 이벤트가 발생하면 연결된 작업을 컬럼으로 이동합니다.",
+			"giteaHeading": "Gitea",
+			"giteaHint": "Gitea 웹훅 이벤트가 발생하면 연결된 작업을 컬럼으로 이동합니다.",
+			"selectColumnPlaceholder": "컬럼 선택...",
+			"toastUpdated": "워크플로 규칙이 업데이트되었습니다",
+			"toastError": "규칙 업데이트에 실패했습니다",
+			"events": {
+				"branch_push": "브랜치 푸시",
+				"pr_opened": "PR 열림",
+				"pr_merged": "PR 병합됨",
+				"issue_opened": "이슈 열림",
+				"issue_closed": "이슈 닫힘"
+			},
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "When a GitLab webhook event occurs, move the linked task to a column.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"externalLinks": {
+			"resources": "리소스",
+			"issue": "이슈",
+			"branch": "브랜치",
+			"merged": "병합됨",
+			"draft": "초안",
+			"open": "열림",
+			"adding": "Adding...",
+			"addResource": "Add resource",
+			"cancel": "Cancel",
+			"empty": "No resources linked to this task.",
+			"titleOptional": "Title (optional)",
+			"url": "URL",
+			"remove": "Remove {{title}}",
+			"removeError": "Failed to remove the resource link."
+		},
+		"workspaceRoles": {
+			"pageTitle": "역할",
+			"title": "역할",
+			"subtitle": "{{workspaceName}}에서 멤버가 수행할 수 있는 작업을 정의합니다.",
+			"thisWorkspace": "이 워크스페이스",
+			"noAccess": "워크스페이스 역할을 관리하려면 관리자 또는 소유자 권한이 필요합니다.",
+			"sectionTitle": "워크스페이스 역할",
+			"sectionSubtitle": "기본 역할을 편집하거나 맞춤 역할을 추가하세요. 편집해도 멤버에게 할당된 역할 이름은 유지됩니다.",
+			"newRole": "새 역할",
+			"loading": "로딩 중...",
+			"loadError": "역할을 불러오지 못했습니다.",
+			"emptyTitle": "아직 역할이 없습니다",
+			"emptyDescription": "이 워크스페이스에 기본 역할이 생성되면 여기에 표시됩니다.",
+			"defaultBadge": "기본",
+			"permissionCount_other": "권한 {{count}}개",
+			"nameLabel": "이름",
+			"nameHint": "소문자로 입력하세요. 나중에 변경할 수 없습니다.",
+			"namePlaceholder": "예: reviewer",
+			"discard": "취소",
+			"createRole": "역할 만들기",
+			"deleteRole": "역할 삭제",
+			"defaultRoleHelp": "기본 역할: 이름이 예약되어 있으며 행을 삭제할 수 없습니다.",
+			"unsavedChanges": "저장되지 않은 변경사항이 있습니다",
+			"allChangesSaved": "모든 변경사항이 저장되었습니다",
+			"saveChanges": "변경사항 저장",
+			"defaultRoleDescriptions": {
+				"viewer": "작업을 보고 댓글을 달 수 있습니다.",
+				"member": "작업과 프로젝트를 만들고 관리할 수 있습니다.",
+				"admin": "워크스페이스에 대한 전체 권한을 가집니다."
+			},
+			"resources": {
+				"project": "프로젝트",
+				"task": "작업",
+				"label": "라벨",
+				"workspace": "워크스페이스",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "만들기",
+						"description": "새 프로젝트를 만들 수 있습니다"
+					},
+					"read": {
+						"label": "읽기",
+						"description": "프로젝트를 볼 수 있습니다"
+					},
+					"update": {
+						"label": "수정",
+						"description": "프로젝트 설정을 편집할 수 있습니다"
+					},
+					"delete": {
+						"label": "삭제",
+						"description": "프로젝트를 삭제할 수 있습니다"
+					},
+					"share": {
+						"label": "공유",
+						"description": "프로젝트를 공유할 수 있습니다"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "만들기",
+						"description": "작업을 만들 수 있습니다"
+					},
+					"read": {
+						"label": "읽기",
+						"description": "작업을 볼 수 있습니다"
+					},
+					"update": {
+						"label": "수정",
+						"description": "작업을 편집할 수 있습니다"
+					},
+					"delete": {
+						"label": "삭제",
+						"description": "작업을 삭제할 수 있습니다"
+					},
+					"assign": {
+						"label": "할당",
+						"description": "멤버에게 작업을 할당할 수 있습니다"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "만들기",
+						"description": "라벨을 만들 수 있습니다"
+					},
+					"read": {
+						"label": "읽기",
+						"description": "라벨을 볼 수 있습니다"
+					},
+					"update": {
+						"label": "수정",
+						"description": "라벨을 편집할 수 있습니다"
+					},
+					"delete": {
+						"label": "삭제",
+						"description": "라벨을 삭제할 수 있습니다"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "읽기",
+						"description": "워크스페이스 설정을 볼 수 있습니다"
+					},
+					"update": {
+						"label": "수정",
+						"description": "워크스페이스 설정을 업데이트할 수 있습니다"
+					},
+					"delete": {
+						"label": "삭제",
+						"description": "워크스페이스를 삭제할 수 있습니다"
+					},
+					"manage_settings": {
+						"label": "설정 관리",
+						"description": "워크스페이스 설정을 관리할 수 있습니다"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "역할 이름은 필수입니다",
+				"nameExists": "같은 이름의 역할이 이미 있습니다",
+				"permissionRequired": "최소 한 개의 권한을 선택해야 합니다"
+			},
+			"toast": {
+				"created": "역할이 생성되었습니다",
+				"createError": "역할 생성에 실패했습니다",
+				"updated": "역할이 업데이트되었습니다",
+				"updateError": "역할 업데이트에 실패했습니다",
+				"deleted": "역할이 삭제되었습니다",
+				"deleteError": "역할 삭제에 실패했습니다"
+			},
+			"deleteDialog": {
+				"title": "역할 삭제",
+				"description": "역할 \"{{role}}\"이(가) 영구적으로 삭제됩니다. 이 역할이 할당된 멤버는 해당 권한을 잃게 됩니다."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "라벨 설정",
+			"title": "라벨",
+			"subtitle": "워크스페이스 수준 라벨을 만들고, 편집하고, 삭제합니다.",
+			"cardDescription": "작업에 할당할 수 있는 라벨을 관리합니다.",
+			"createLabel": "라벨 만들기",
+			"editLabel": "라벨 편집",
+			"deleteLabel": "삭제",
+			"saveLabel": "저장",
+			"nameLabel": "라벨 이름",
+			"namePlaceholder": "라벨 이름 입력",
+			"colorLabel": "색상",
+			"createDescription": "이 워크스페이스의 작업 전반에서 사용할 수 있는 새 라벨을 만듭니다.",
+			"editDescription": "이 라벨의 이름이나 색상을 업데이트합니다.",
+			"deleteConfirmTitle": "이 라벨을 삭제하시겠습니까?",
+			"deleteConfirmDescription": "모든 작업에서 이 라벨이 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.",
+			"empty": "아직 라벨이 없습니다. 첫 라벨을 만들어 시작하세요.",
+			"createSuccess": "라벨이 생성되었습니다",
+			"updateSuccess": "라벨이 업데이트되었습니다",
+			"deleteSuccess": "라벨이 삭제되었습니다",
+			"createError": "라벨 생성에 실패했습니다",
+			"updateError": "라벨 업데이트에 실패했습니다",
+			"deleteError": "라벨 삭제에 실패했습니다",
+			"nameRequired": "라벨 이름은 필수입니다",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"administration": "Administration",
+		"adminUsers": {
+			"actions": {
+				"deactivate": "Deactivate account",
+				"edit": "Edit account",
+				"open": "Actions for {{name}}",
+				"reactivate": "Reactivate account"
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"joined": "Joined",
+				"role": "Global role",
+				"status": "Status",
+				"user": "User"
+			},
+			"confirm": {
+				"deactivate": {
+					"action": "Deactivate account",
+					"description": "{{name}} will be signed out and unable to sign in until an administrator reactivates the account.",
+					"title": "Deactivate this account?"
+				},
+				"delete": {
+					"action": "Delete permanently",
+					"description": "This permanently deletes {{name}}, their sessions, memberships, and associated data. This cannot be undone.",
+					"title": "Permanently delete this account?"
+				},
+				"reactivate": {
+					"action": "Reactivate account",
+					"description": "{{name}} will be able to sign in and access their workspaces again.",
+					"title": "Reactivate this account?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "User directory",
+			"edit": {
+				"description": "Update this account's identity and instance-wide access.",
+				"email": "Email address",
+				"name": "Full name",
+				"role": "Global role",
+				"save": "Save changes",
+				"saving": "Saving…",
+				"selfRoleHint": "You cannot change your own global role.",
+				"title": "Edit user"
+			},
+			"emptyDescription": "Try another name or email address.",
+			"emptyTitle": "No users found",
+			"instanceBadge": "Instance",
+			"loadError": "Users could not be loaded.",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing users",
+			"retry": "Retry",
+			"roles": {
+				"admin": "Instance admin",
+				"user": "User"
+			},
+			"searchCount_other": "{{count}} matching users",
+			"searchLabel": "Search users",
+			"searchPlaceholder": "Search name or email…",
+			"status": {
+				"active": "Active",
+				"deactivated": "Deactivated"
+			},
+			"subtitle": "Manage every ac

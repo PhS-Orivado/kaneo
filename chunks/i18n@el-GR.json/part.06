@@ -1,0 +1,549 @@
+�εργασίες",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Ιδιότητες",
+			"labels": "Ετικέτες",
+			"copyTaskLink": "Αντιγραφή συνδέσμου εργασίας",
+			"copyTaskBranch": "Αντιγραφή κλάδου εργασίας",
+			"taskLinkCopied": "Ο σύνδεσμος της εργασίας αντιγράφηκε",
+			"taskBranchCopied": "Το όνομα του branch αντιγράφηκε",
+			"start": "Έναρξη",
+			"startDate": "Ημερομηνία έναρξης",
+			"noDate": "Χωρίς ημερομηνία"
+		},
+		"move": {
+			"title": "Μετακίνηση εργασίας",
+			"projectLabel": "Έργο προορισμού",
+			"projectPlaceholder": "Επιλέξτε έργο",
+			"statusLabel": "Κατάσταση προορισμού",
+			"statusHintKeep": "Η τρέχουσα κατάσταση υποστηρίζεται ήδη στο έργο προορισμού.",
+			"statusHintAdjust": "Επιλέξτε την κατάσταση που θα χρησιμοποιηθεί στο έργο προορισμού.",
+			"action": "Μετακίνηση εργασίας",
+			"success": "Η εργασία μετακινήθηκε με επιτυχία",
+			"error": "Αποτυχία μετακίνησης εργασίας"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Χωρίς ανάθεση",
+				"updateError": "Αποτυχία ενημέρωσης ανάθεσης εργασίας"
+			},
+			"status": {
+				"updateError": "Αποτυχία ενημέρωσης κατάστασης εργασίας"
+			},
+			"priority": {
+				"updateError": "Αποτυχία ενημέρωσης προτεραιότητας εργασίας"
+			},
+			"dueDate": {
+				"updateSuccess": "Η ημερομηνία λήξης της εργασίας ενημερώθηκε με επιτυχία",
+				"updateError": "Αποτυχία ενημέρωσης ημερομηνίας λήξης εργασίας",
+				"clear": "Εκκαθάριση ημερομηνίας"
+			},
+			"startDate": {
+				"updateSuccess": "Η ημερομηνία έναρξης της εργασίας ενημερώθηκε με επιτυχία",
+				"updateError": "Αποτυχία ενημέρωσης ημερομηνίας έναρξης εργασίας",
+				"clear": "Εκκαθάριση ημερομηνίας έναρξης"
+			},
+			"labels": {
+				"searchPlaceholder": "Αναζήτηση ετικετών...",
+				"empty": "Δεν βρέθηκαν ετικέτες",
+				"create": "Δημιουργία \"{{name}}\"",
+				"chooseColor": "Επιλογή χρώματος",
+				"addSuccess": "Η ετικέτα προστέθηκε",
+				"removeSuccess": "Η ετικέτα αφαιρέθηκε",
+				"updateError": "Αποτυχία ενημέρωσης ετικέτας",
+				"createSuccess": "Η ετικέτα δημιουργήθηκε και προστέθηκε",
+				"createError": "Αποτυχία δημιουργίας ετικέτας",
+				"colors": {
+					"stone": "Πέτρα",
+					"slate": "Σχιστόλιθος",
+					"lavender": "Λεβάντα",
+					"sage": "Φασκόμηλο",
+					"forest": "Δάσος",
+					"amber": "Κεχριμπάρι",
+					"terracotta": "Τερακότα",
+					"rose": "Ροζ",
+					"crimson": "Βυσσινί"
+				},
+				"editLabels": "Επεξεργασία ετικετών"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Backlog του {{name}}",
+			"noTasksToMove": "Δεν υπάρχουν προγραμματισμένες εργασίες για μετακίνηση",
+			"moveAllConfirm": "Να μετακινηθούν και οι {{count}} προγραμματισμένες εργασίες στο Προς υλοποίηση;",
+			"moveAllSuccess": "Μετακινήθηκαν {{count}} εργασίες στο Προς υλοποίηση",
+			"plan": "Προγραμματισμός",
+			"moveAllTooltip": "Μετακίνηση όλων των προγραμματισμένων στο Προς υλοποίηση",
+			"moveAll": "Μετακίνηση όλων",
+			"addTask": "Προσθήκη εργασίας",
+			"filter": "Φίλτρο",
+			"addFilter": "Προσθήκη φίλτρου...",
+			"sections": {
+				"planned": "Προγραμματισμένα",
+				"archived": "Αρχειοθετημένα"
+			},
+			"noTasksInSection": "Δεν υπάρχουν {{section}} εργασίες",
+			"filters": {
+				"priority": "Προτεραιότητα: {{name}}",
+				"assignee": "Ανατεθειμένος: {{name}}",
+				"due": "Λήξη: {{date}}",
+				"label": "Ετικέτα: {{name}}",
+				"dueThisWeek": "Λήγει αυτή την εβδομάδα",
+				"dueNextWeek": "Λήγει την επόμενη εβδομάδα",
+				"noDueDate": "Χωρίς ημερομηνία λήξης"
+			}
+		},
+		"sort": {
+			"label": "Ταξινόμηση",
+			"by": "Ταξινόμηση κατά",
+			"direction": "Κατεύθυνση",
+			"ascending": "Αύξουσα",
+			"descending": "Φθίνουσα",
+			"fields": {
+				"position": "Χειροκίνητα (θέση)",
+				"createdAt": "Ημερομηνία δημιουργίας",
+				"priority": "Προτεραιότητα",
+				"dueDate": "Ημερομηνία λήξης",
+				"title": "Τίτλος",
+				"number": "Αριθμός εργασίας"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Φιλτράρισμα κατά",
+			"allStatuses": "Όλες οι καταστάσεις",
+			"allPriorities": "Όλες οι προτεραιότητες",
+			"allAssignees": "Όλοι οι ανατεθειμένοι",
+			"allDueDates": "Όλες οι ημερομηνίες λήξης",
+			"allLabels": "Όλες οι ετικέτες",
+			"selectedCount": "{{count}} επιλεγμένα",
+			"subjects": {
+				"status": "Κατάσταση",
+				"priority": "Προτεραιότητα",
+				"assignee": "Ανατεθειμένος",
+				"dueDate": "Ημερομηνία λήξης",
+				"labels": "Ετικέτες"
+			},
+			"operators": {
+				"isAnyOf": "είναι ένα από",
+				"includeAnyOf": "περιλαμβάνει κάποιο από"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Χρονοδιάγραμμα Gantt",
+			"searchPlaceholder": "Αναζήτηση προγραμματισμένων αιτημάτων...",
+			"hideTasks": "Απόκρυψη εργασιών",
+			"showTasks": "Εμφάνιση εργασιών",
+			"noTasks": "Δεν υπάρχουν προγραμματισμένες εργασίες",
+			"noTasksSubtitle": "Προσθέστε ημερομηνία έναρξης, ημερομηνία λήξης ή και τα δύο στις εργασίες για να τοποθετηθούν στο χρονοδιάγραμμα του έργου.",
+			"noTasksFound": "Δεν βρέθηκαν εργασίες",
+			"noTasksMatch": "Δεν υπάρχουν προγραμματισμένες εργασίες που να ταιριάζουν με \"{{query}}\"",
+			"taskHeader": "Εργασία",
+			"updateDatesError": "Αποτυχία ενημέρωσης ημερομηνιών εργασίας",
+			"resizeStart": "Αλλαγή μεγέθους ημερομηνίας έναρξης",
+			"resizeDue": "Αλλαγή μεγέθους ημερομηνίας λήξης",
+			"taskAriaLabel": "{{title}}: άνοιγμα ή σύρσιμο για μετακίνηση",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Διαγραφή εργασίας;",
+			"description": "Αυτό θα αφαιρέσει οριστικά την εργασία και όλα τα δεδομένα της. Δεν μπορείτε να αναιρέσετε αυτήν την ενέργεια.",
+			"action": "Διαγραφή εργασίας",
+			"success": "Η εργασία διαγράφηκε με επιτυχία",
+			"error": "Αποτυχία διαγραφής εργασίας"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (αντίγραφο)",
+			"success": "Το αντίγραφο της εργασίας δημιουργήθηκε με επιτυχία",
+			"error": "Αποτυχία δημιουργίας αντιγράφου εργασίας"
+		},
+		"archive": {
+			"success": "Αρχειοθετήθηκαν {{count}} εργασίες"
+		},
+		"listView": {
+			"addTask": "Προσθήκη εργασίας",
+			"archiveAllTooltip": "Αρχειοθέτηση όλων των ολοκληρωμένων εργασιών",
+			"noTasks": "Δεν υπάρχουν εργασίες"
+		},
+		"kanban": {
+			"addTask": "Προσθήκη εργασίας",
+			"automaticallySortedHint": "Αυτόματη ταξινόμηση κατά {{sort}}"
+		},
+		"pr": {
+			"merged": "Συγχωνευμένο",
+			"draft": "Πρόχειρο",
+			"open": "Ανοιχτό",
+			"label": "Pull Request",
+			"count_one": "{{count}} PR",
+			"count_other": "{{count}} PRs"
+		},
+		"assignee": {
+			"label": "Ανατεθειμένος",
+			"unassigned": "Χωρίς ανάθεση"
+		},
+		"dueDate": {
+			"label": "Ημερομηνία λήξης",
+			"clear": "Εκκαθάριση ημερομηνίας",
+			"updateSuccess": "Η ημερομηνία λήξης της εργασίας ενημερώθηκε με επιτυχία",
+			"updateError": "Αποτυχία ενημέρωσης ημερομηνίας λήξης εργασίας",
+			"clearSuccess": "Η ημερομηνία λήξης της εργασίας αφαιρέθηκε",
+			"clearError": "Αποτυχία αφαίρεσης ημερομηνίας λήξης"
+		},
+		"labels": {
+			"label": "Ετικέτες",
+			"empty": "Δεν υπάρχουν διαθέσιμες ετικέτες"
+		},
+		"update": {
+			"success": "Η εργασία ενημερώθηκε με επιτυχία",
+			"error": "Αποτυχία ενημέρωσης εργασίας"
+		},
+		"contextMenu": {
+			"copyLink": "Αντιγραφή συνδέσμου",
+			"copyLinkSuccess": "Ο σύνδεσμος της εργασίας αντιγράφηκε!"
+		},
+		"actions": {
+			"duplicate": "Δημιουργία αντιγράφου",
+			"archive": "Αρχειοθέτηση",
+			"markAsPlanned": "Επισήμανση ως προγραμματισμένη",
+			"delete": "Διαγραφή..."
+		},
+		"bulk": {
+			"selectedCount": "{{count}} επιλεγμένα",
+			"moveToBacklog": "Μετακίνηση στο Backlog",
+			"moveToBacklogSuccess": "{{count}} εργασίες μετακινήθηκαν στο backlog",
+			"moveToBacklogError": "Αποτυχία μετακίνησης εργασιών στο backlog",
+			"moveToBoard": "Μετακίνηση στον πίνακα",
+			"moveToBoardSuccess": "{{count}} εργασίες μετακινήθηκαν στον πίνακα",
+			"moveToBoardError": "Αποτυχία μετακίνησης εργασιών στον πίνακα",
+			"delete": "Διαγραφή εργασιών",
+			"deleteConfirm": "Διαγραφή {{count}} εργασιών; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+			"deleteSuccess": "{{count}} εργασίες διαγράφηκαν",
+			"deleteError": "Αποτυχία διαγραφής εργασιών",
+			"archive": "Αρχειοθέτηση εργασιών",
+			"archiveSuccess": "{{count}} εργασίες αρχειοθετήθηκαν",
+			"archiveError": "Αποτυχία αρχειοθέτησης εργασιών",
+			"updateSuccess": "{{count}} εργασίες ενημερώθηκαν",
+			"updateError": "Αποτυχία ενημέρωσης εργασιών",
+			"assignTo": "Ανάθεση σε",
+			"assignSuccess": "{{count}} εργασίες ανατέθηκαν",
+			"assignError": "Αποτυχία ανάθεσης εργασιών",
+			"setPriority": "Ορισμός προτεραιότητας",
+			"updatePriorityError": "Αποτυχία ενημέρωσης προτεραιότητας",
+			"addLabel": "Προσθήκη ετικέτας",
+			"addLabelSuccess": "Η ετικέτα προστέθηκε σε {{count}} εργασίες",
+			"addLabelError": "Αποτυχία προσθήκης ετικέτας",
+			"setDueDate": "Ορισμός ημερομηνίας λήξης",
+			"updateDueDateError": "Αποτυχία ενημέρωσης ημερομηνίας λήξης",
+			"actions": "Ενέργειες",
+			"searchActions": "Αναζήτηση ενεργειών...",
+			"noActionsFound": "Δεν βρέθηκαν ενέργειες.",
+			"changeStatus": "Αλλαγή κατάστασης"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "Εισαγωγή στήλης αριστερά",
+				"addColumnAfter": "Εισαγωγή στήλης δεξιά",
+				"deleteColumn": "Διαγραφή στήλης",
+				"addRowBefore": "Εισαγωγή γραμμής επάνω",
+				"addRowAfter": "Εισαγωγή γραμμής κάτω",
+				"deleteRow": "Διαγραφή γραμμής",
+				"deleteTable": "Διαγραφή πίνακα"
+			}
+		},
+		"calendar": {
+			"dayTasksAriaLabel": "Εμφάνιση όλων των εργασιών για {{date}}",
+			"moreTasks": "+{{count}} ακόμη",
+			"nextMonth": "Επόμενος μήνας",
+			"noTasks": "Δεν υπάρχουν προγραμματισμένες εργασίες",
+			"noTasksSubtitle": "Προσθέστε ημερομηνία έναρξης, ημερομηνία λήξης ή και τις δύο στις εργασίες για να εμφανιστούν στο ημερολόγιο.",
+			"pageTitle": "{{name}} – Ημερολόγιο",
+			"previousMonth": "Προηγούμενος μήνας",
+			"taskAriaLabel": "{{title}}, {{range}}: άνοιγμα εργασίας",
+			"title": "Ημερολόγιο",
+			"today": "Σήμερα",
+			"loadError": "Αποτυχία φόρτωσης εργασιών.",
+			"noTasksThisMonth": "Τίποτα προγραμματισμένο αυτόν τον μήνα"
+		},
+		"descriptionSearchLoading": "Searching full descriptions…",
+		"descriptionSearchError": "Description search failed. Results may be incomplete.",
+		"descriptionRetry": "Retry",
+		"descriptionLoading": "Loading description…",
+		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
+		"checklistProgress": "Ολοκληρώθηκαν {{completed}} από {{total}} στοιχεία λίστας ελέγχου",
+		"customFields": {
+			"ariaLabel": "Custom fields"
+		},
+		"board": {
+			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_one": "Created {{branch}} in {{count}} repository",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
+		}
+	},
+	"invitations": {
+		"email": {
+			"subject": "Ο/Η {{inviterName}} σας προσκάλεσε να συμμετάσχετε στο {{workspaceName}} στο Kaneo",
+			"preview": "Έχετε πρόσκληση για το {{workspaceName}} στο Kaneo",
+			"title": "Συμμετοχή στο {{workspaceName}}",
+			"subtitle": "Ο/Η {{inviterName}} ({{inviterEmail}}) σας προσκάλεσε να συνεργαστείτε στο Kaneo.",
+			"cta": "Αποδοχή πρόσκλησης",
+			"sameEmail": "Μπορείτε να αποδεχτείτε την πρόσκληση με το ίδιο email που έλαβε αυτό το μήνυμα.",
+			"ignore": "Αν δεν το περιμένατε, μπορείτε να αγνοήσετε με ασφάλεια αυτό το email.",
+			"footer": "Πρόσκληση χώρου εργασίας Kaneo",
+			"details": {
+				"title": "Λεπτομέρειες πρόσκλησης",
+				"sentTo": "Στάλθηκε σε",
+				"instance": "Διακομιστής",
+				"role": "Ρόλος",
+				"expires": "Λήγει"
+			}
+		},
+		"pageTitle": "Προσκλήσεις",
+		"pendingInvitations": "Εκκρεμείς προσκλήσεις",
+		"acceptSubtitle": "Αποδεχτείτε προσκλήσεις για να συμμετάσχετε σε χώρους εργασίας",
+		"noPendingTitle": "Δεν υπάρχουν εκκρεμείς προσκλήσεις",
+		"noPendingDescription": "Δεν έχετε καμία εκκρεμή πρόσκληση για χώρο εργασίας αυτή τη στιγμή.",
+		"continueToSetup": "Συνέχεια στη ρύθμιση",
+		"skipForNow": "Παράλειψη για τώρα",
+		"table": {
+			"workspace": "Χώρος εργασίας",
+			"invitedBy": "Προσκλήθηκε από",
+			"expires": "Λήγει"
+		},
+		"toast": {
+			"acceptError": "Αποτυχία αποδοχής πρόσκλησης",
+			"acceptSuccess": "Η πρόσκληση έγινε αποδεκτή! Καλώς ήρθατε στην ομάδα.",
+			"rejectError": "Αποτυχία απόρριψης πρόσκλησης",
+			"rejectSuccess": "Η πρόσκληση απορρίφθηκε"
+		}
+	},
+	"workspace": {
+		"projects": {
+			"pageTitle": "Έργα",
+			"createProject": "Δημιουργία έργου",
+			"title": "Τίτλος",
+			"progress": "Πρόοδος",
+			"targetDate": "Ημερομηνία στόχος",
+			"dueDate": "Ημερομηνία λήξης",
+			"status": "Κατάσταση",
+			"emptyTitle": "Δεν υπάρχουν ακόμα έργα",
+			"emptyDescription": "Ξεκινήστε δημιουργώντας το πρώτο σας έργο.",
+			"projectStatus": {
+				"notStarted": "Δεν έχει ξεκινήσει",
+				"complete": "Ολοκληρωμένο",
+				"inProgress": "Σε εξέλιξη"
+			},
+			"noDueDate": "Χωρίς ημερομηνία λήξης",
+			"reorderHandle": "Αναδιάταξη έργου",
+			"reorderError": "Η αναδιάταξη των έργων απέτυχε",
+			"emptyDescriptionReadOnly": "Δεν υπάρχουν ακόμα έργα σε αυτόν τον χώρο εργασίας. Ζητήστε από έναν διαχειριστή να δημιουργήσει ένα.",
+			"unavailable": {
+				"backToWorkspace": "Back to workspace",
+				"noAccessDescription": "Ask a workspace admin to give you access.",
+				"noAccessTitle": "You don't have access to this project",
+				"notFoundDescription": "This project doesn't exist or has been deleted.",
+				"notFoundTitle": "Project not found"
+			}
+		},
+		"search": {
+			"pageTitle": "Αναζήτηση",
+			"backToDashboard": "Επιστροφή στον πίνακα ελέγχου",
+			"placeholder": "Αναζήτηση εργασιών με βάση τον τίτλο ή το σύντομο ID (π.χ. DEP-23)...",
+			"hint": "Αναζητήστε σε όλα τα έργα αυτού του χώρου εργασίας. Χρησιμοποιήστε σύντομα IDs όπως DEP-23 για να βρείτε συγκεκριμένες εργασίες.",
+			"searching": "Γίνεται αναζήτηση...",
+			"resultsFound_one": "{{count}} αποτέλεσμα βρέθηκε",
+			"resultsFound_other": "{{count}} αποτελέσματα βρέθηκαν",
+			"noResultsTitle": "Δεν βρέθηκαν αποτελέσματα",
+			"noResultsDescription": "Δοκιμάστε να προσαρμόσετε τους όρους αναζήτησης ή να αναζητήσετε κάτι άλλο",
+			"startTitle": "Ξεκινήστε την αναζήτηση",
+			"startDescription": "Εισαγάγετε έναν όρο αναζήτησης για να βρείτε εργασίες σε όλα τα έργα",
+			"quickSearchesLabel": "Γρήγορες αναζητήσεις:",
+			"suggestionHighPriority": "Υψηλή προτεραιότητα",
+			"suggestionBug": "Σφάλμα",
+			"suggestionFeature": "Δυνατότητα",
+			"suggestionInProgress": "Σε εξέλιξη",
+			"suggestionCompleted": "Ολοκληρωμένα"
+		},
+		"create": {
+			"pageTitle": "Δημιουργία χώρου εργασίας",
+			"heading": "Δημιουργία νέου χώρου εργασίας",
+			"subtitle": "Οι χώροι εργασίας είναι κοινόχρηστα περιβάλλοντα όπου οι ομάδες μπορούν να εργάζονται σε έργα, κύκλους και ζητήματα.",
+			"nameLabel": "Όνομα χώρου εργασίας",
+			"namePlaceholder": "Εισαγάγετε όνομα χώρου εργασίας",
+			"descriptionLabel": "Περιγραφή (προαιρετικό)",
+			"descriptionPlaceholder": "Προσθέστε μια περιγραφή για τον χώρο εργασίας σας",
+			"required": "Υποχρεωτικό",
+			"creating": "Γίνεται δημιουργία...",
+			"submit": "Δημιουργία χώρου εργασίας",
+			"success": "Ο χώρος εργασίας δημιουργήθηκε με επιτυχία",
+			"error": "Αποτυχία δημιουργίας χώρου εργασίας"
+		},
+		"home": {
+			"activity": {
+				"commented": "commented",
+				"empty": "Nothing has happened in the last 30 days.",
+				"loadError": "Activity couldn't be loaded.",
+				"title": "Activity",
+				"updated": "updated the task"
+			},
+			"greeting": {
+				"afternoon": "Good afternoon",
+				"evening": "Good evening",
+				"morning": "Good morning"
+			},
+			"newTask": "New task",
+			"pageTitle": "Home",
+			"projects": {
+				"all": "All projects",
+				"tasks_one": "{{count}} task",
+				"tasks_other": "{{count}} tasks",
+				"title": "Your projects",
+				"loadError": "Projects couldn't be loaded."
+			},
+			"upNext": {
+				"assigned_one": "{{count}} assigned to you",
+				"assigned_other": "{{count}} assigned to you",
+				"title": "Up next",
+				"viewAll": "View all"
+			},
+			"week": {
+				"more_one": "+{{count}} more",
+				"more_other": "+{{count}} more",
+				"truncated": "The week preview includes only the first {{shown}} of {{total}} assigned tasks."
+			}
+		},
+		"myTasks": {
+			"emptyDescription": "Tasks assigned to you across this workspace show up here.",
+			"groupBy": {
+				"dueDate": "Due date",
+				"label": "Group by",
+				"project": "Project"
+			},
+			"pageTitle": "My tasks",
+			"truncated": "Showing the first {{shown}} of {{total}} tasks."
+		},
+		"myWork": {
+			"due": {
+				"later": "Later",
+				"noDueDate": "No due date",
+				"overdue": "Overdue",
+				"thisWeek": "This week",
+				"today": "Today",
+				"tomorrow": "Tomorrow"
+			},
+			"empty": "Nothing assigned to you",
+			"loadError": "Your tasks couldn't be loaded."
+		}
+	},
+	"team": {
+		"roles": {
+			"owner": "Ιδιοκτήτης",
+			"admin": "Διαχειριστής",
+			"member": "Μέλος",
+			"viewer": "Θεατής"
+		},
+		"members": {
+			"pageTitle": "Μέλη",
+			"inviteMember": "Πρόσκληση μέλους",
+			"you": "Εσείς"
+		},
+		"invitations": {
+			"linkLabel": "Σύνδεσμος πρόσκλησης",
+			"copyLink": "Αντιγραφή συνδέσμου",
+			"linkCopied": "Ο σύνδεσμος της πρόσκλησης αντιγράφηκε",
+			"copyFailed": "Δεν ήταν δυνατή η αυτόματη αντιγραφή. Επιλέξτε τον σύνδεσμο και πατήστε Ctrl+C.",
+			"pendingBadge": "σε εκκρεμότητα",
+			"expires": "Λήγει {{date}}"
+		},
+		"inviteModal": {
+			"title": "Πρόσκληση μέλους ομάδας",
+			"emailLabel": "Email",
+			"emailPlaceholder": "colleague@company.com",
+			"sendInvitation": "Αποστολή πρόσκλησης",
+			"success": "Η πρόσκληση στάλθηκε με επιτυχία",
+			"error": "Αποτυχία πρόσκλησης μέλους ομάδας",
+			"createdTitle": "Η πρόσκληση δημιουργήθηκε",
+			"shareLinkDescription": "Μοιραστείτε αυτόν τον σύνδεσμο με τον/την {{email}} για να συμμετάσχει στον χώρο εργασίας.",
+			"done": "Ολοκλήρωση"
+		},
+		"membersTable": {
+			"emptyTitle": "Δεν υπάρχουν ακόμα μέλη ομάδας",
+			"emptyDescription": "Προσκαλέστε το πρώτο μέλος της ομάδας σας για να ξεκινήσετε.",
+			"columns": {
+				"name": "Όνομα",
+				"role": "Ρόλος",
+				"joined": "Εντάχθηκε",
+				"actions": "Ενέργειες",
+				"projects": "Projects"
+			},
+			"memberRolePending": "{{role}} (Σε εκκρεμότητα)",
+			"ariaCancelInvitation": "Ακύρωση πρόσκλησης",
+			"ariaRemoveMember": "Αφαίρεση μέλους",
+			"removeDialogTitle": "Αφαίρεση μέλους ομάδας;",
+			"removeDialogDescription": "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε τον/την {{name}} από τον χώρο εργασίας; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+			"cancelDialogTitle": "Ακύρωση πρόσκλησης;",
+			"cancelDialogDescription": "Είστε βέβαιοι ότι θέλετε να ακυρώσετε την πρόσκληση για το {{email}}; Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+			"removeMember": "Αφαίρεση μέλους",
+			"cancelInvitation": "Ακύρωση πρόσκλησης",
+			"removeSuccess": "Το μέλος της ομάδας αφαιρέθηκε με επιτυχία",
+			"removeError": "Αποτυχία αφαίρεσης μέλους ομάδας",
+			"cancelInviteSuccess": "Η πρόσκληση ακυρώθηκε με επιτυχία",
+			"cancelInviteError": "Αποτυχία ακύρωσης πρόσκλησης",
+			"ariaInvitationActions": "Ενέργειες πρόσκλησης",
+			"roleUpdateSuccess": "Ο ρόλος ενημερώθηκε",
+			"roleUpdateError": "Αποτυχία ενημέρωσης ρόλου"
+		},
+		"projectAccess": {
+			"allProjects": "All projects",
+			"allProjectsDescription": "Access every project in this workspace, including new ones.",
+			"description": "Choose which projects this person can see.",
+			"dialogDescription": "Cho

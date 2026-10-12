@@ -1,0 +1,818 @@
+",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Öneriler",
+			"commands": "Komutlar",
+			"projects": "Projeler",
+			"search": "Ara",
+			"members": "Üyeler",
+			"createTask": "Talep oluştur",
+			"createProject": "Proje oluştur",
+			"createWorkspace": "Çalışma alanı oluştur",
+			"lightTheme": "Açık tema",
+			"darkTheme": "Koyu tema",
+			"systemTheme": "Sistem teması",
+			"keyboardShortcuts": "Klavye kısayolları",
+			"inputPlaceholder": "Uygulama ve komut ara...",
+			"empty": "Sonuç bulunamadı.",
+			"footer": {
+				"navigate": "Gezin",
+				"open": "Aç",
+				"close": "Kapat"
+			}
+		},
+		"sidebar": {
+			"projects": "Projeler",
+			"members": "Üyeler",
+			"invitations": "Davetler",
+			"more": "Daha fazla",
+			"backToBoard": "Panoya dön",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Projeyi Görüntüle",
+			"shareProject": "Projeyi Paylaş",
+			"projectSettings": "Proje ayarları",
+			"linkCopied": "Proje bağlantısı panoya kopyalandı",
+			"addProject": "Proje ekle",
+			"deleteConfirmTitle": "Proje Silinsin mi?",
+			"deleteConfirmDescription": "Bu, projeyi ve tüm verilerini kalıcı olarak kaldıracak. Bu işlemi geri alamazsınız.",
+			"deletedToast": "Proje silindi",
+			"deleteProject": "Projeyi Sil",
+			"switcherLabel": "Proje veya görünüm değiştir"
+		},
+		"search": {
+			"inputPlaceholder": "Talep, proje, yorum ara...",
+			"minCharsHint": "Aramak için en az 3 karakter yazın",
+			"groups": {
+				"task": "Talepler",
+				"project": "Projeler",
+				"workspace": "Çalışma Alanları",
+				"comment": "Yorumlar",
+				"activity": "Aktiviteler",
+				"fallback": "Sonuçlar"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Kenar çubuğunu aç/kapat",
+			"back": "Geri"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Başarıyla çıkış yapıldı",
+			"signOutFailed": "Çıkış yapılamadı",
+			"unnamedUser": "Kullanıcı",
+			"settings": "Ayarlar",
+			"signingOut": "Çıkış yapılıyor...",
+			"logOut": "Çıkış yap"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Çalışma Alanları",
+			"switching": "Geçiliyor...",
+			"addWorkspace": "Çalışma alanı ekle",
+			"selectWorkspace": "Çalışma alanı seç"
+		},
+		"page": {
+			"projectsTitle": "Projeler",
+			"settingsTitle": "Ayarlar",
+			"backToWorkspace": "Çalışma Alanına Dön",
+			"settingsWorkspaceTab": "Çalışma Alanı"
+		},
+		"projectSettings": {
+			"projectLabel": "Proje"
+		},
+		"keyboardShortcuts": {
+			"title": "Klavye Kısayolları",
+			"subtitle": "Klavye kısayollarıyla iş akışınızı hızlandırın",
+			"searchPlaceholder": "Kısayol ara...",
+			"footer": "Kapatmak için <kbd>Escape</kbd> tuşuna basın",
+			"categories": {
+				"general": "Genel",
+				"create": "Oluştur",
+				"views": "Görünümler",
+				"navigation": "Gezinme",
+				"quickSelect": "Hızlı Seçim (açılır pencerelerde)"
+			},
+			"items": {
+				"openCommandPalette": "Komut paletini aç",
+				"globalSearch": "Genel arama",
+				"toggleSidebar": "Kenar çubuğunu aç/kapat",
+				"showShortcuts": "Klavye kısayollarını göster",
+				"closeModal": "Modal/açılır pencereyi kapat",
+				"createTask": "Talep oluştur",
+				"createProject": "Proje oluştur",
+				"createWorkspace": "Çalışma alanı oluştur",
+				"boardView": "Pano görünümüne geç",
+				"listView": "Liste görünümüne geç",
+				"backlogView": "Backlog görünümüne geç",
+				"nextTask": "Sonraki talep",
+				"prevTask": "Önceki talep",
+				"openTask": "Seçili talebi aç",
+				"quickSelectNumber": "Numarayla seçenek seç",
+				"calendarView": "Takvim görünümüne geç"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} yeni",
+		"newCount_other": "{{count}} yeni",
+		"emptyTitle": "Henüz bildirim yok",
+		"emptySubtitle": "Güncellemeleri ve aktiviteleri burada göreceksiniz.",
+		"clearAll": "Tüm bildirimleri temizle",
+		"clearDialogTitle": "Tüm bildirimler temizlensin mi?",
+		"clearDialogDescription": "Bu, tüm bildirimleri kalıcı olarak kaldıracak. Bu işlemi geri alamazsınız.",
+		"events": {
+			"task_created": {
+				"title": "Yeni Talep Oluşturuldu",
+				"content": "\"{{taskTitle}}\" talebi oluşturuldu"
+			},
+			"workspace_created": {
+				"title": "Çalışma alanı oluşturuldu",
+				"content": "\"{{workspaceName}}\" çalışma alanınız başarıyla oluşturuldu"
+			},
+			"task_status_changed": {
+				"title": "Talep durumu değişti",
+				"content": "\"{{taskTitle}}\" talebinin durumu \"{{oldStatus}}\" yerine \"{{newStatus}}\" olarak değişti"
+			},
+			"task_assignee_changed": {
+				"title": "Size atanan talep",
+				"content": "Size şu talep atandı: {{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} sizden bahsetti",
+				"content": "{{mentionerName}} sizden şu talepte bahsetti: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "Zaman takibi başlatıldı",
+				"contentWithTask": "Şu talepte zaman takibi başlatıldı: {{taskTitle}}",
+				"contentWithoutTask": "Bir talepte zaman takibi başlatıldı"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} talebinize yorum yaptı",
+				"content": "{{taskTitle}} talebine yeni yorum: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Talebin bitiş tarihi yaklaşıyor",
+				"content": "{{taskTitle}} talebinin bitiş tarihine {{leadTime}} kaldı"
+			},
+			"task_overdue": {
+				"title": "Talep gecikti",
+				"content": "{{taskTitle}} talebinin bitiş tarihi geçti"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} dakika",
+			"minutes_other": "{{count}} dakika",
+			"hours_one": "{{count}} saat",
+			"hours_other": "{{count}} saat",
+			"days_one": "{{count}} gün",
+			"days_other": "{{count}} gün"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "talebi kendisine atadı",
+		"unassigned": "talebin atamasını kaldırdı",
+		"assignedTo": "talebi {{name}} kişisine atadı",
+		"changedStatus": "durumu {{from}} yerine {{to}} olarak değiştirdi",
+		"changedPriority": "önceliği {{from}} yerine {{to}} olarak değiştirdi",
+		"clearedDueDate": "bitiş tarihini temizledi",
+		"setDueDate": "bitiş tarihini {{date}} olarak ayarladı",
+		"changedDueDate": "bitiş tarihini {{from}} yerine {{to}} olarak değiştirdi",
+		"changedTitle": "başlığı \"{{from}}\" yerine \"{{to}}\" olarak değiştirdi",
+		"moved": "talebi \"{{from}}\" yerine \"{{to}}\" konumuna taşıdı",
+		"created": "bu talebi oluşturdu",
+		"githubUser": "GitHub Kullanıcısı",
+		"comment": {
+			"viewGithubProfile": "GitHub Profilini Görüntüle",
+			"cannotBeEmpty": "Yorum boş olamaz",
+			"mustBeLoggedInToEdit": "Yorumları düzenlemek için giriş yapmış olmalısınız",
+			"updated": "Yorum güncellendi",
+			"failedToUpdate": "Yorum güncellenemedi",
+			"edit": "Yorumu düzenle",
+			"editPlaceholder": "Yorumu düzenle...",
+			"save": "Kaydet",
+			"added": "Yorum eklendi",
+			"failedToAdd": "Yorum eklenemedi",
+			"leavePlaceholder": "Yorum bırakın...",
+			"attachFile": "Dosya ekle",
+			"submitShortcut": "Yorumu gönder",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Dosya yüklemeleri yalnızca kaydedilmiş taleplerde kullanılabilir.",
+				"uploadingFile": "Dosya yükleniyor...",
+				"imageUploaded": "Görsel yüklendi",
+				"fileAttached": "Dosya eklendi",
+				"failedToUploadFile": "Dosya yüklenemedi",
+				"enterUrl": "URL girin",
+				"plaintext": "Düz metin",
+				"autoDetect": "Otomatik algıla",
+				"slashGroupText": "Metin",
+				"slashGroupLists": "Listeler",
+				"slashGroupInsert": "Ekle",
+				"slashParagraph": "Metin",
+				"slashHeading": "Başlık",
+				"slashBulletList": "Madde işaretli liste",
+				"slashTaskList": "Yapılacaklar listesi",
+				"slashOrderedList": "Numaralı liste",
+				"slashQuote": "Alıntı",
+				"slashCodeBlock": "Kod bloğu",
+				"slashTable": "Tablo",
+				"slashFile": "Dosya",
+				"searchParagraph": "metin paragraf normal",
+				"searchHeading": "başlık başlık h2",
+				"searchBulletList": "liste madde sırasız",
+				"searchTaskList": "yapılacak kontrol listesi onay kutusu görev listesi",
+				"searchOrderedList": "liste numaralı sıralı",
+				"searchQuote": "alıntı blok alıntı",
+				"searchCodeBlock": "kod parçacığı",
+				"searchTable": "tablo ızgara",
+				"searchFile": "dosya ek görsel fotoğraf resim yükleme",
+				"embedErrorInvalidUrl": "Geçerli bir URL girin",
+				"embedErrorYoutubeOnly": "Yalnızca YouTube bağlantıları gömülebilir.",
+				"embedVideo": "Video göm",
+				"keepAsLink": "Bağlantı olarak tut",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "URL yapıştır",
+				"asLink": "Bağlantı olarak",
+				"embed": "Göm",
+				"noCommands": "Komut yok",
+				"ariaCommentContent": "Yorum içeriği",
+				"ariaCommentEditor": "Yorum düzenleyici",
+				"ariaCopyCode": "Kodu kopyala",
+				"ariaCopied": "Kopyalandı",
+				"copy": "Kopyala",
+				"copied": "Kopyalandı",
+				"dropImageToUpload": "Yüklemek için görseli bırakın",
+				"previewImageAlt": "Önizleme görseli",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Düz Metin",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Sola sütun ekle",
+					"addColumnAfter": "Sağa sütun ekle",
+					"deleteColumn": "Sütunu sil",
+					"addRowBefore": "Üste satır ekle",
+					"addRowAfter": "Alta satır ekle",
+					"deleteRow": "Satırı sil",
+					"deleteTable": "Tabloyu sil"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diyagramı oluşturulamadı"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "{{forge}}'da yorum yaptı"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Görevler",
+		"status": {
+			"label": "Durum",
+			"to-do": "Yapılacak",
+			"in-progress": "Devam Ediyor",
+			"in-review": "İncelemede",
+			"done": "Tamamlandı",
+			"archived": "Arşivlendi",
+			"planned": "Planlandı"
+		},
+		"priority": {
+			"label": "Öncelik",
+			"no-priority": "Öncelik yok",
+			"low": "Düşük",
+			"medium": "Orta",
+			"high": "Yüksek",
+			"urgent": "Acil"
+		},
+		"boardSearchPlaceholder": "Talep ara...",
+		"view": {
+			"board": "Pano",
+			"list": "Liste",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Görünüm"
+		},
+		"common": {
+			"selectTask": "Talep seç",
+			"loadingTask": "Talep yükleniyor...",
+			"taskNotFound": "Talep bulunamadı",
+			"taskNotFoundDescription": "Aradığınız talep mevcut değil veya silinmiş.",
+			"ticketAmbiguous": "Talep kimliği birden fazla talep ile eşleşiyor",
+			"ticketAmbiguousDescription": "{{ticketId}} bu çalışma alanındaki birden fazla projedeki taleplerle eşleşiyor. Bağlantının çalışması için bu projelerden birine farklı bir anahtar verin.",
+			"ticketNotFoundDescription": "Bu çalışma alanında {{ticketId}} kimliğine sahip bir talep yok veya bu talebe erişiminiz yok.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Şunun alt talebi:",
+			"activity": "Aktivite",
+			"noActivity": "Aktivite bulunamadı",
+			"openInFullPage": "Tam sayfada aç",
+			"titlePlaceholder": "Başlık eklemek için tıklayın",
+			"addDescription": "Açıklama ekle...",
+			"editor": {
+				"ariaLabel": "Talep açıklama düzenleyici",
+				"placeholder": "Açıklama yazın...",
+				"previewImage": "Önizleme görseli",
+				"enterUrl": "URL girin",
+				"autoDetect": "Otomatik algıla",
+				"copyCode": "Kodu kopyala",
+				"copy": "Kopyala",
+				"copied": "Kopyalandı",
+				"attachFile": "Dosya ekle",
+				"dropToUpload": "Yüklemek için görseli bırakın",
+				"checkbox": {
+					"markIncomplete": "Talebi tamamlanmadı olarak işaretle",
+					"markComplete": "Talebi tamamlandı olarak işaretle"
+				},
+				"upload": {
+					"loading": "Dosya yükleniyor...",
+					"failed": "Dosya yüklenemedi",
+					"imageSuccess": "Görsel yüklendi",
+					"fileSuccess": "Dosya eklendi"
+				},
+				"slash": {
+					"groups": {
+						"text": "Metin",
+						"lists": "Listeler",
+						"insert": "Ekle"
+					},
+					"empty": "Komut yok",
+					"commands": {
+						"paragraph": "Metin",
+						"heading-2": "Başlık",
+						"bullet-list": "Madde işaretli liste",
+						"task-list": "Yapılacaklar listesi",
+						"ordered-list": "Numaralı liste",
+						"blockquote": "Alıntı",
+						"code-block": "Kod bloğu",
+						"table": "Tablo",
+						"file": "Dosya"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Düz Metin",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Video göm",
+						"keepAsLink": "Bağlantı olarak tut"
+					},
+					"inputPlaceholder": "URL yapıştır",
+					"embeddedContent": "Gömülü içerik",
+					"asLink": "Bağlantı olarak",
+					"submit": "Göm",
+					"errors": {
+						"invalidUrl": "Geçerli bir URL girin",
+						"onlyYoutube": "Yalnızca YouTube bağlantıları gömülebilir."
+					},
+					"onlyYoutubeInline": "Yalnızca YouTube URL'leri gömülebilir. Bağlantı modunu kullanın."
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diyagramı oluşturulamadı"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Talep"
+		},
+		"relations": {
+			"title": "İlişkiler",
+			"tasksInProject": "Projedeki talepler",
+			"linkError": "Talep bağlanamadı",
+			"empty": "İlişkili talep yok",
+			"searchPlaceholder": "Bağlanacak talep ara...",
+			"noTasksFound": "Talep bulunamadı",
+			"openTask": "Talebi aç",
+			"removeRelation": "İlişkiyi kaldır",
+			"related": "İlişkili",
+			"blocks": "Engeller",
+			"selectTask": "Bağlanacak bir talep seç",
+			"types": {
+				"blocks": "engeller",
+				"blocked_by": "engellenen",
+				"related": "ilişkilidir"
+			}
+		},
+		"subtasks": {
+			"title": "Alt talepler",
+			"inputPlaceholder": "Alt talep başlığı...",
+			"addAction": "Ekle",
+			"empty": "Henüz alt talep yok",
+			"createError": "Alt talep oluşturulamadı",
+			"deleteSuccess": "Talep başarıyla silindi",
+			"deleteError": "Talep silinemedi",
+			"deleteDialogTitle": "Talep Silinsin mi?",
+			"deleteDialogDescription": "Bu, talebi ve tüm verilerini kalıcı olarak kaldıracak. Bu işlemi geri alamazsınız.",
+			"deleteAction": "Talebi Sil",
+			"completeAria": "Alt talebi tamamlandı olarak işaretle",
+			"progress": "{{total}} alt görevin {{completed}} tanesi tamamlandı",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Özellikler",
+			"labels": "Etiketler",
+			"copyTaskLink": "Talep bağlantısını kopyala",
+			"copyTaskBranch": "Talep dalını kopyala",
+			"taskLinkCopied": "Görev bağlantısı kopyalandı",
+			"taskBranchCopied": "Branch adı kopyalandı",
+			"start": "Başlat",
+			"startDate": "Başlangıç tarihi",
+			"noDate": "Tarih yok"
+		},
+		"move": {
+			"title": "Talebi taşı",
+			"projectLabel": "Hedef proje",
+			"projectPlaceholder": "Bir proje seç",
+			"statusLabel": "Hedef durum",
+			"statusHintKeep": "Bu projenin iş akışı mevcut durumu zaten destekliyor.",
+			"statusHintAdjust": "Hedef projede kullanılacak durumu seçin.",
+			"action": "Talebi taşı",
+			"success": "Talep başarıyla taşındı",
+			"error": "Talep taşınamadı"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Atanmamış",
+				"updateError": "Talep atananı güncellenemedi"
+			},
+			"status": {
+				"updateError": "Talep durumu güncellenemedi"
+			},
+			"priority": {
+				"updateError": "Talep önceliği güncellenemedi"
+			},
+			"dueDate": {
+				"updateSuccess": "Talep bitiş tarihi başarıyla güncellendi",
+				"updateError": "Talep bitiş tarihi güncellenemedi",
+				"clear": "Tarihi temizle"
+			},
+			"startDate": {
+				"updateSuccess": "Talep başlangıç tarihi başarıyla güncellendi",
+				"updateError": "Talep başlangıç tarihi güncellenemedi",
+				"clear": "Başlangıç tarihini temizle"
+			},
+			"labels": {
+				"searchPlaceholder": "Etiket ara...",
+				"empty": "Etiket bulunamadı",
+				"create": "\"{{name}}\" oluştur",
+				"chooseColor": "Renk seç",
+				"addSuccess": "Etiket eklendi",
+				"removeSuccess": "Etiket kaldırıldı",
+				"updateError": "Etiket güncellenemedi",
+				"createSuccess": "Etiket oluşturuldu ve eklendi",
+				"createError": "Etiket oluşturulamadı",
+				"colors": {
+					"stone": "Taş",
+					"slate": "Arduvaz",
+					"lavender": "Lavanta",
+					"sage": "Adaçayı",
+					"forest": "Orman",
+					"amber": "Kehribar",
+					"terracotta": "Terakota",
+					"rose": "Gül Kurusu",
+					"crimson": "Koyu Kırmızı"
+				},
+				"editLabels": "Etiketleri düzenle"
+			}
+		},
+		"backlog": {
+			"pageTitle": "{{name}} backlog",
+			"noTasksToMove": "Taşınacak planlanmış talep yok",
+			"moveAllConfirm": "Tüm {{count}} planlanmış talep Yapılacak'a taşınsın mı?",
+			"moveAllSuccess": "{{count}} talep Yapılacak'a taşındı",
+			"plan": "Planla",
+			"moveAllTooltip": "Tüm Planlanmış Talepleri Yapılacak'a Taşı",
+			"moveAll": "Tümünü Taşı",
+			"addTask": "Talep ekle",
+			"filter": "Filtrele",
+			"addFilter": "Filtre ekle...",
+			"sections": {
+				"planned": "Planlandı",
+				"archived": "Arşivlendi"
+			},
+			"noTasksInSection": "{{section}} talebi yok",
+			"filters": {
+				"priority": "Öncelik: {{name}}",
+				"assignee": "Atanan: {{name}}",
+				"due": "Bitiş: {{date}}",
+				"label": "Etiket: {{name}}",
+				"dueThisWeek": "Bu hafta bitiyor",
+				"dueNextWeek": "Önümüzdeki hafta bitiyor",
+				"noDueDate": "Bitiş tarihi yok"
+			}
+		},
+		"sort": {
+			"label": "Sırala",
+			"by": "Sıralama Ölçütü",
+			"direction": "Yön",
+			"ascending": "Artan",
+			"descending": "Azalan",
+			"fields": {
+				"position": "Manuel (konum)",
+				"createdAt": "Oluşturma tarihi",
+				"priority": "Öncelik",
+				"dueDate": "Bitiş tarihi",
+				"title": "Başlık",
+				"number": "Talep numarası"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Filtrele",
+			"allStatuses": "Tüm durumlar",
+			"allPriorities": "Tüm öncelikler",
+			"allAssignees": "Tüm atananlar",
+			"allDueDates": "Tüm bitiş tarihleri",
+			"allLabels": "Tüm etiketler",
+			"selectedCount": "{{count}} seçili",
+			"subjects": {
+				"status": "Durum",
+				"priority": "Öncelik",
+				"assignee": "Atanan",
+				"dueDate": "Bitiş tarihi",
+				"labels": "Etiketler"
+			},
+			"operators": {
+				"isAnyOf": "herhangi biri",
+				"includeAnyOf": "herhangi birini içer"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Gantt Zaman Çizelgesi",
+			"searchPlaceholder": "Zamanlanmış talep ara...",
+			"hideTasks": "Talepleri gizle",
+			"showTasks": "Talepleri göster",
+			"noTasks": "Zamanlanmış talep yok",
+			"noTasksSubtitle": "Talepleri proje zaman çizelgesine yerleştirmek için başlangıç tarihi, bitiş tarihi veya her ikisini ekleyin.",
+			"noTasksFound": "Talep bulunamadı",
+			"noTasksMatch": "\"{{query}}\" ile eşleşen zamanlanmış talep yok",
+			"taskHeader": "Talep",
+			"updateDatesError": "Talep tarihleri güncellenemedi",
+			"resizeStart": "Başlangıç tarihini yeniden boyutlandır",
+			"resizeDue": "Bitiş tarihini yeniden boyutlandır",
+			"taskAriaLabel": "{{title}}: açmak veya taşımak için sürükleyin",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Talep Silinsin mi?",
+			"description": "Bu, talebi ve tüm verilerini kalıcı olarak kaldıracak. Bu işlemi geri alamazsınız.",
+			"action": "Talebi Sil",
+			"success": "Talep başarıyla silindi",
+			"error": "Talep silinemedi"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (kopya)",
+			"success": "Talep başarıyla çoğaltıldı",
+			"error": "Talep çoğaltılamadı"
+		},
+		"archive": {
+			"success": "{{count}} talep arşivlendi"
+		},
+		"listView": {
+			"addTask": "Talep ekle",
+			"archiveAllTooltip": "Tüm tamamlanmış talepleri arşivle",
+			"noTasks": "Talep yok"
+		},
+		"kanban": {
+			"addTask": "Talep ekle",
+			"automaticallySortedHint": "{{sort}} ölçütüne göre otomatik olarak sıralandı"
+		},
+		"pr": {
+			"merged": "Birleştirildi",
+			"draft": "Taslak",
+			"open": "Açık",
+			"label": "Pull Request",
+			"count_one": "{{count}} PR",
+			"count_other": "{{count}} PR"
+		},
+		"assignee": {
+			"label": "Atanan",
+			"unassigned": "Atanmamış"
+		},
+		"dueDate": {
+			"label": "Bitiş tarihi",
+			"clear": "Tarihi temizle",
+			"updateSuccess": "Talep bitiş tarihi başarıyla güncellendi",
+			"updateError": "Talep bitiş tarihi güncellenemedi",
+			"clearSuccess": "Talep bitiş tarihi temizlendi",
+			"clearError": "Bitiş tarihi temizlenemedi"
+		},
+		"labels": {
+			"label": "Etiketler",
+			"empty": "Kullanılabilir etiket yok"
+		},
+		"update": {
+			"success": "Talep başarıyla güncellendi",
+			"error": "Talep güncellenemedi"
+		},
+		"contextMenu": {
+			"copyLink": "Bağlantıyı kopyala",
+			"copyLinkSuccess": "Talep bağlantısı kopyalandı!"
+		},
+		"actions": {
+			"duplicate": "Çoğalt",
+			"archive": "Arşivle",
+			"markAsPlanned": "Planlandı olarak işaretle",
+			"delete": "Sil..."
+		},
+		"bulk": {
+			"selectedCount": "{{count}} seçili",
+			"moveToBacklog": "Backlog'a Taşı",
+			"moveToBacklogSuccess": "{{count}} talep backlog'a taşındı",
+			"moveToBacklogError": "Talepler backlog'a taşınamadı",
+			"moveToBoard": "Panoya Taşı",
+			"moveToBoardSuccess": "{{count}} talep panoya taşındı",
+			"moveToBoardError": "Talepler panoya taşınamadı",
+			"delete": "Talepleri sil",
+			"deleteConfirm": "{{count}} talep silinsin mi? Bu işlem geri alınamaz.",
+			"deleteSuccess": "{{count}} talep silindi",
+			"deleteError": "Talepler silinemedi",
+			"archive": "Talepleri arşivle",
+			"archiveSuccess": "{{count}} talep arşivlendi",
+			"archiveError": "Talepler arşivlenemedi",
+			"updateSuccess": "{{count}} talep güncellendi",
+			"updateError": "Talepler güncellenemedi",
+			"assignTo": "Ata",
+			"assignSuccess": "{{count}} talep atandı",
+			"assignError": "Talepler atanamadı",
+			"setPriority": "Öncelik Belirle",
+			"updatePriorityError": "Öncelik güncellenemedi",
+			"addLabel": "Etiket Ekle",
+			"addLabelSuccess": "{{count}} talebe etiket eklendi",
+			"addLabelError": "Etiket eklenemedi",
+			"setDueDate": "Bitiş Tarihi Belirle",
+			"updateDueDateError": "Bitiş tarihi güncellenemedi",
+			"actions": "İşlemler",
+			"searchActions": "İşlem ara...",
+			"noActionsFound": "İşlem bulunamadı.",
+			"changeStatus": "Durumu Değiştir"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "Sola sütun ekle",
+				"addColumnAfter": "Sağa sütun ekle",
+				"deleteColumn": "Sütunu sil",
+				"addRowBefore": "Üste satır ekle",
+				"addRowAfter": "Alta satır ekle",
+				"deleteRow": "Satırı sil",
+				"deleteTable": "Tabloyu sil"
+			}
+		},
+		"calendar": {
+			"dayTasksAriaLabel": "{{date}} için tüm talepleri göster",
+			"moreTasks": "+{{count}} daha",
+			"nextMonth": "Sonraki ay",
+			"noTasks": "Zamanlanmış talep yok",
+			"noTasksSubtitle": "Talepleri takvimde göstermek için başlangıç tarihi, bitiş tarihi veya her ikisini ekleyin.",
+			"pageTitle": "{{name}} – Takvim",
+			"previousMonth": "Önceki ay",
+			"taskAriaLabel": "{{title}}, {{range}}: talebi aç",
+			"title": "Takvim",
+			"today": "Bugün",
+			"loadError": "Talepler yüklenemedi.",
+			"noTasksThisMonth": "Bu ay planlanmış bir şey yok"
+		},
+		"descriptionSearchLoading": "Searching full descriptions…",
+		"descriptionSearchError": "Description search failed. Results may be incomplete.",
+		"descriptionRetry": "Retry",
+		"descriptionLoading": "Loading description…",
+		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
+		"checklistProgress": "{{total}} kontrol listesi öğesinin {{completed}} tanesi tamamlandı",
+		"customFields": {
+			"ariaLabel": "Custom 

@@ -1,0 +1,899 @@
+onents/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-team-members": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationTeamMembers",
+        "summary": "List Organization Team Members",
+        "description": "List the members of the given team.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Unique identifier of the team member"
+                      },
+                      "userId": {
+                        "type": "string",
+                        "description": "The user ID of the team member"
+                      },
+                      "teamId": {
+                        "type": "string",
+                        "description": "The team ID of the team the team member is in"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "Timestamp when the team member was created"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "userId",
+                      "teamId",
+                      "createdAt"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-teams": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationTeams",
+        "summary": "List Organization Teams",
+        "description": "List all teams in an organization",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "Unique identifier of the team"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "Name of the team"
+                      },
+                      "organizationId": {
+                        "type": "string",
+                        "description": "ID of the organization the team belongs to"
+                      },
+                      "createdAt": {
+                        "type": "string",
+                        "description": "Timestamp when the team was created"
+                      },
+                      "updatedAt": {
+                        "type": "string",
+                        "description": "Timestamp when the team was last updated"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "name",
+                      "organizationId",
+                      "createdAt",
+                      "updatedAt"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-user-invitations": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationUserInvitations",
+        "summary": "List Organization User Invitations",
+        "description": "List all invitations a user has received",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      },
+                      "organizationId": {
+                        "type": "string"
+                      },
+                      "organizationName": {
+                        "type": "string"
+                      },
+                      "inviterId": {
+                        "type": "string",
+                        "description": "The ID of the user who created the invitation"
+                      },
+                      "teamId": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "The ID of the team associated with the invitation"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "expiresAt": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "email",
+                      "role",
+                      "organizationId",
+                      "organizationName",
+                      "inviterId",
+                      "status",
+                      "expiresAt",
+                      "createdAt"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-user-teams": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationUserTeams",
+        "summary": "List Organization User Teams",
+        "description": "List all teams that the current user is a part of.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/reject-invitation": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "rejectOrganizationInvitation",
+        "summary": "Reject Organization Invitation",
+        "description": "Reject an invitation to an organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "invitationId": {
+                    "type": "string",
+                    "description": "The ID of the invitation to reject"
+                  }
+                },
+                "required": [
+                  "invitationId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "invitation": {
+                      "type": "object",
+                      "additionalProperties": {}
+                    },
+                    "member": {
+                      "type": [
+                        "object",
+                        "null"
+                      ],
+                      "additionalProperties": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/remove-member": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "removeOrganizationMember",
+        "summary": "Remove Organization Member",
+        "description": "Remove a member from an organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "memberIdOrEmail": {
+                    "type": "string",
+                    "description": "The ID or email of the member to remove"
+                  },
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The ID of the organization to remove the member from. If not provided, the active organization will be used. Eg: \"org-id\""
+                  }
+                },
+                "required": [
+                  "memberIdOrEmail"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "member": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "userId": {
+                          "type": "string"
+                        },
+                        "organizationId": {
+                          "type": "string"
+                        },
+                        "role": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "userId",
+                        "organizationId",
+                        "role"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "member"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/remove-team": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "removeOrganizationTeam",
+        "summary": "Remove Organization Team",
+        "description": "Remove a team from an organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teamId": {
+                    "type": "string",
+                    "description": "The team ID of the team to remove. Eg: \"team-id\""
+                  },
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID which the team falls under. If not provided, it will default to the user's active organization. Eg: \"organization-id\""
+                  }
+                },
+                "required": [
+                  "teamId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "enum": [
+                        "Team removed successfully."
+                      ],
+                      "description": "Confirmation message indicating successful removal"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/remove-team-member": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "removeOrganizationTeamMember",
+        "summary": "Remove Organization Team Member",
+        "description": "Remove a member from a team",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teamId": {
+                    "type": "string",
+                    "description": "The team the user should be removed from."
+                  },
+                  "userId": {
+                    "type": "string",
+                    "description": "The user which should be removed from the team."
+                  },
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID which the team falls under. If not provided, it will default to the user's active organization."
+                  }
+                },
+                "required": [
+                  "teamId",
+                  "userId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "enum": [
+                        "Team member removed successfully."
+                      ],
+                      "description": "Confirmation message indicating successful removal"
+                    }
+                  },
+                  "required": [
+                    "message"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/set-active": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "setOrganizationActive",
+        "summary": "Set Organization Active",
+        "description": "Set the active organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "organizationId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The organization id to set as active. It can be null to unset the active organization. Eg: \"org-id\""
+                  },
+                  "organizationSlug": {
+                    "type": "string",
+                    "description": "The organization slug to set as active. It can be null to unset the active organization if organizationId is not provided. Eg: \"org-slug\""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/set-active-team": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "setOrganizationActiveTeam",
+        "summary": "Set Organization Active Team",
+        "description": "Set the active team for the current active organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "teamId": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "The team id to set as active. It can be null to unset the active team"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/update": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "updateOrganization",
+        "summary": "Update Organization",
+        "description": "Update an organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "description": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the organization"
+                      },
+                      "slug": {
+                        "type": "string",
+                        "description": "The slug of the organization"
+                      },
+                      "logo": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "description": "The logo of the organization"
+                      },
+                      "metadata": {
+                        "type": "object",
+                        "additionalProperties": {},
+                        "description": "The metadata of the organization"
+                      }
+                    }
+                  },
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID. Eg: \"org-id\""
+                  }
+                },
+                "required": [
+                  "data"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/update-member-role": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "updateOrganizationMemberRole",
+        "summary": "Update Organization Member Role",
+        "description": "Update the role of a member in an organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "description": "The new role to be applied. This can be a string or array of strings representing the roles. Eg: [\"admin\", \"sale\"]"
+                  },
+                  "memberId": {
+                    "type": "string",
+                    "description": "The member id to apply the role update to. Eg: \"member-id\""
+                  },
+                  "organizationId": {
+                    "type": "string",
+                    "description": "An optional organization ID which the member is a part of to apply the role update. If not provided, you must provide session headers to get the active organization. Eg: \"organization-id\""
+                  }
+                },
+                "required": [
+                  "role",
+                  "memberId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "member": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "string"
+                        },
+                        "userId": {
+                          "type": "string"
+                        },
+                        "organizationId": {
+                          "type": "string"
+                        },
+                        "role": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "id",
+                        "userId",
+                        "organizationId",
+                        "role"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "member"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/update-role": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "updateOrganizationRole",
+        "summary": "Update Organization Role",
+        "description": "Update Organization Role",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "organizationId": {
+                        "type": "string"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "permission": {
+                            "type": "object",
+                            "additionalProperties": {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "roleName": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "required": [
+                      "data"
+                    ]
+                  },
+                  {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "pro

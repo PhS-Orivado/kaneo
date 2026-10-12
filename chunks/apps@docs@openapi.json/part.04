@@ -1,0 +1,1114 @@
+ "expiresAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "status": {
+                "type": "string"
+              },
+              "expired": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "id",
+              "email",
+              "workspaceName",
+              "inviterName",
+              "expiresAt",
+              "status",
+              "expired"
+            ],
+            "description": "Omitted when the invitation does not exist, was already accepted, or was canceled -- the details are withheld rather than leaked."
+          },
+          "error": {
+            "type": "string",
+            "description": "Why the invitation is unusable, when valid is false."
+          }
+        },
+        "required": [
+          "valid"
+        ]
+      },
+      "Workspace": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "logo": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The caller's workspace role: a built-in role (owner, admin, member, viewer) or the name of a custom role defined in the workspace. Several roles are comma-separated, for example owner,viewer. Null when an instance admin views a workspace they are not a member of."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "logo",
+          "description",
+          "createdAt",
+          "role"
+        ]
+      },
+      "WorkspaceMember": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "description": "The member's workspace role: a built-in role (owner, admin, member, viewer) or the name of a custom role defined in the workspace. Several roles are comma-separated, for example owner,viewer."
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "image",
+          "role"
+        ]
+      },
+      "MemberProjectAccess": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "projectAccess": {
+            "type": "string",
+            "enum": [
+              "all",
+              "selected"
+            ]
+          },
+          "projectIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "userId",
+          "projectAccess",
+          "projectIds"
+        ]
+      },
+      "WorkspaceCapabilities": {
+        "type": "object",
+        "properties": {
+          "manageProjects": {
+            "type": "boolean"
+          },
+          "createProjects": {
+            "type": "boolean"
+          },
+          "updateProjects": {
+            "type": "boolean"
+          },
+          "shareProjects": {
+            "type": "boolean"
+          },
+          "deleteProjects": {
+            "type": "boolean"
+          },
+          "updateTasks": {
+            "type": "boolean"
+          },
+          "createTasks": {
+            "type": "boolean"
+          },
+          "deleteTasks": {
+            "type": "boolean"
+          },
+          "assignTasks": {
+            "type": "boolean"
+          },
+          "createLabels": {
+            "type": "boolean"
+          },
+          "updateLabels": {
+            "type": "boolean"
+          },
+          "deleteLabels": {
+            "type": "boolean"
+          },
+          "manageWorkspace": {
+            "type": "boolean"
+          },
+          "manageSettings": {
+            "type": "boolean"
+          },
+          "deleteWorkspace": {
+            "type": "boolean"
+          },
+          "inviteUsers": {
+            "type": "boolean"
+          },
+          "manageTeam": {
+            "type": "boolean"
+          },
+          "updateMembers": {
+            "type": "boolean"
+          },
+          "removeMembers": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "manageProjects",
+          "createProjects",
+          "updateProjects",
+          "shareProjects",
+          "deleteProjects",
+          "updateTasks",
+          "createTasks",
+          "deleteTasks",
+          "assignTasks",
+          "createLabels",
+          "updateLabels",
+          "deleteLabels",
+          "manageWorkspace",
+          "manageSettings",
+          "deleteWorkspace",
+          "inviteUsers",
+          "manageTeam",
+          "updateMembers",
+          "removeMembers"
+        ],
+        "description": "Whether the caller's roles (and API key scope, if any) allow each named action in the workspace. Mirrors the checks the API enforces."
+      },
+      "CustomFieldDefinition": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "defaultValue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "options": {},
+          "position": {
+            "type": "number"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "name",
+          "type",
+          "required",
+          "defaultValue",
+          "position",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CustomFieldValue": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "fieldId": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "fieldName": {
+            "type": "string"
+          },
+          "fieldPosition": {
+            "type": "number"
+          },
+          "fieldType": {
+            "type": "string"
+          },
+          "fieldOptions": {}
+        },
+        "required": [
+          "id",
+          "taskId",
+          "fieldId",
+          "value",
+          "fieldName",
+          "fieldPosition",
+          "fieldType"
+        ]
+      },
+      "CustomFieldFilterValues": {
+        "type": "object",
+        "properties": {
+          "fieldId": {
+            "type": "string"
+          },
+          "fieldName": {
+            "type": "string"
+          },
+          "fieldType": {
+            "type": "string"
+          },
+          "values": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "fieldId",
+          "fieldName",
+          "fieldType",
+          "values"
+        ]
+      },
+      "ReorderCustomFieldsResponse": {},
+      "SetCustomFieldValueResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "fieldId": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "taskId",
+          "fieldId",
+          "value"
+        ]
+      },
+      "ImportSourceProjectList": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportSourceProject"
+            }
+          }
+        },
+        "required": [
+          "projects"
+        ]
+      },
+      "ImportSourceProject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Extra context shown next to the name, such as the source workspace or team."
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "ImportConnection": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/PlankaImportConnection"
+          },
+          {
+            "$ref": "#/components/schemas/PlaneImportConnection"
+          },
+          {
+            "$ref": "#/components/schemas/LinearImportConnection"
+          },
+          {
+            "$ref": "#/components/schemas/JiraImportConnection"
+          },
+          {
+            "$ref": "#/components/schemas/TrelloImportConnection"
+          },
+          {
+            "$ref": "#/components/schemas/KaneoImportConnection"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "source",
+          "mapping": {
+            "planka": "#/components/schemas/PlankaImportConnection",
+            "plane": "#/components/schemas/PlaneImportConnection",
+            "linear": "#/components/schemas/LinearImportConnection",
+            "jira": "#/components/schemas/JiraImportConnection",
+            "trello": "#/components/schemas/TrelloImportConnection",
+            "kaneo": "#/components/schemas/KaneoImportConnection"
+          }
+        },
+        "description": "Where to import from and how to sign in. Credentials are used only for this request and the import it starts; they are never stored, logged, or returned."
+      },
+      "PlankaImportConnection": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "planka"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "description": "Address of the PLANKA instance.",
+            "example": "https://planka.example.com"
+          },
+          "apiKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "A PLANKA API key. Send it, or username and password. Used only for this import and never stored or logged."
+          },
+          "username": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "description": "Username or email of a PLANKA account, used with password when no API key is sent."
+          },
+          "password": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "Password of that PLANKA account. Used only for this import and never stored or logged."
+          }
+        },
+        "required": [
+          "source",
+          "url"
+        ]
+      },
+      "PlaneImportConnection": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "plane"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "description": "Address of the Plane instance, e.g. https://app.plane.so for Plane Cloud.",
+            "example": "https://planka.example.com"
+          },
+          "apiKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "A Plane personal access token. Used only for this import and never stored or logged."
+          },
+          "workspaceSlug": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "description": "Slug of the Plane workspace to read. Optional when the URL already names it."
+          }
+        },
+        "required": [
+          "source",
+          "url",
+          "apiKey"
+        ]
+      },
+      "LinearImportConnection": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "linear"
+            ]
+          },
+          "apiKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "A Linear personal API key. Used only for this import and never stored or logged."
+          }
+        },
+        "required": [
+          "source",
+          "apiKey"
+        ]
+      },
+      "JiraImportConnection": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "jira"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "description": "Address of the Jira site, e.g. https://your-site.atlassian.net for Jira Cloud, or your own domain for Jira Data Center.",
+            "example": "https://your-site.atlassian.net"
+          },
+          "email": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 320,
+            "description": "Email of the Atlassian account the API token belongs to. Required for Jira Cloud; leave it out for Jira Data Center."
+          },
+          "apiToken": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "A Jira Cloud API token, sent with email, or a Jira Data Center personal access token, sent without email. Used only for this import and never stored or logged."
+          }
+        },
+        "required": [
+          "source",
+          "url",
+          "apiToken"
+        ]
+      },
+      "TrelloImportConnection": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "trello"
+            ]
+          },
+          "token": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "A Trello token authorized for this Kaneo instance. Used only for this import and never stored or logged."
+          },
+          "apiKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 256,
+            "description": "Trello API key, a public app identifier. Defaults to the server's TRELLO_API_KEY."
+          }
+        },
+        "required": [
+          "source",
+          "token"
+        ]
+      },
+      "KaneoImportConnection": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "type": "string",
+            "enum": [
+              "kaneo"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "description": "Address of the Kaneo instance to import from.",
+            "example": "https://planka.example.com"
+          },
+          "apiKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "An API key from that Kaneo instance. Used only for this import and never stored or logged."
+          }
+        },
+        "required": [
+          "source",
+          "url",
+          "apiKey"
+        ]
+      },
+      "ImportRunEnvelope": {
+        "type": "object",
+        "properties": {
+          "run": {
+            "$ref": "#/components/schemas/ImportRun"
+          }
+        },
+        "required": [
+          "run"
+        ]
+      },
+      "ImportRun": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "planka",
+              "plane",
+              "linear",
+              "jira",
+              "trello",
+              "kaneo"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "completed",
+              "failed"
+            ],
+            "description": "completed once every selected project was attempted, even if some failed; check each project's status. failed means the run itself stopped."
+          },
+          "includeComments": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Latest progress line while the run is running."
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportRunProject"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "finishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "workspaceId",
+          "source",
+          "status",
+          "includeComments",
+          "message",
+          "error",
+          "projects",
+          "createdAt",
+          "finishedAt"
+        ]
+      },
+      "ImportRunProject": {
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "running",
+              "completed",
+              "failed"
+            ]
+          },
+          "projectId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The Kaneo project created by the import, once completed."
+          },
+          "projectSlug": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "counts": {
+            "$ref": "#/components/schemas/ImportCounts"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "sourceId",
+          "name",
+          "status",
+          "projectId",
+          "projectSlug",
+          "counts",
+          "warnings",
+          "error"
+        ]
+      },
+      "ImportCounts": {
+        "type": "object",
+        "properties": {
+          "columns": {
+            "type": "integer"
+          },
+          "tasks": {
+            "type": "integer"
+          },
+          "labels": {
+            "type": "integer"
+          },
+          "comments": {
+            "type": "integer"
+          },
+          "assignees": {
+            "type": "integer",
+            "description": "Tasks that were assigned to a workspace member."
+          },
+          "relations": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "columns",
+          "tasks",
+          "labels",
+          "comments",
+          "assignees",
+          "relations"
+        ]
+      },
+      "ImportRunList": {
+        "type": "object",
+        "properties": {
+          "runs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportRun"
+            }
+          }
+        },
+        "required": [
+          "runs"
+        ]
+      },
+      "TrelloAuthorizeUrl": {
+        "type": "object",
+        "properties": {
+          "authorizeUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Trello page where the user approves read access for Kaneo and copies a token. null when the server has no TRELLO_API_KEY; the user then sends their own Trello API key with the token."
+          }
+        },
+        "required": [
+          "authorizeUrl"
+        ]
+      },
+      "CurrentUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "image",
+          "role"
+        ]
+      },
+      "UserAvatar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Public URL for the stored avatar, served from /api/user/avatar/{id}."
+          },
+          "size": {
+            "type": "number",
+            "description": "Decoded size in bytes."
+          }
+        },
+        "required": [
+          "id",
+          "url",
+          "size"
+        ]
+      },
+      "UserAvatarDeleted": {
+        "type": "object",
+        "properties": {
+          "deleted": {
+            "type": "boolean",
+            "description": "False when the user had no uploaded avatar to remove."
+          }
+        },
+        "required": [
+          "deleted"
+        ]
+      },
+      "AdminUserList": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminUser"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Number of users matching the search, across all pages."
+          }
+        },
+        "required": [
+          "users",
+          "total"
+        ]
+      },
+      "AdminUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "emailVerified": {
+            "type": "boolean"
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "role": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "banned": {
+            "type": "boolean"
+          },
+          "banReason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "banExpires": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "email",
+          "emailVerified",
+          "image",
+          "createdAt",
+          "updatedAt",
+          "role",
+          "banned",
+          "banReason",
+          "banExpires"
+        ]
+      },
+      "AdminWorkspaceList": {
+        "type": "object",
+        "properties": {
+          "workspaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AdminWorkspace"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "description": "Number of workspaces matching the search, across all pages."
+          }
+        },
+        "required": [
+          "workspaces",
+          "total"
+        ]
+      },
+      "AdminWorkspace": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "memberCount": {
+            "type": "integer"
+          },
+          "projectCount": {
+            "type": "integer"
+          },
+          "owners": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "email"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "slug",
+          "createdAt",
+          "memberCount",
+          "projectCount",
+          "owners"
+        ]
+      },
+      "AdminWorkspaceMember": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "role": {
+            "type": "string"
+          },
+          "joinedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "userId",
+          "name",
+          "email",
+          "image",
+          "role",
+          "joinedAt"
+        ]
+      }
+    },
+    "parameters": {}
+  },
+  "paths": {
+    "/instance/status": {
+      "get": {
+        "operationId": "getInstanceStatus",
+        "tags": [
+          "Instance"
+        ],
+        "summary": "Get instance status",
+        "description": "Public instance setup status. When hasUsers is false the next signup becomes the instance admin.",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Instance status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public-project/{id}": {
+      "get": {
+        "operationId": "getPublicProject",
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Get a public project board",
+        "description": "Read a public board in bounded task pages. Visibility is checked before loading tasks. Continue through pagination.totalPages for all task

@@ -1,0 +1,861 @@
+rovider",
++             "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1
++             },
++             "required": true,
++             "name": "linkId",
++             "in": "path"
++           }
++         ],
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "token": {
++                     "type": "string",
++                     "minLength": 64,
++                     "maxLength": 64
++                   },
++                   "source": {
++                     "type": "string",
++                     "enum": [
++                       "kaneo",
++                       "provider"
++                     ]
++                   }
++                 },
++                 "required": [
++                   "token",
++                   "source"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "Sync resumed",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "type": "object",
++                   "properties": {
++                     "success": {
++                       "type": "boolean"
++                     }
++                   },
++                   "required": [
++                     "success"
++                   ]
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "Invalid rule or workspace label",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access or required permission",
+++            "description": "No access to the project, or missing required permission",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
+ -            "description": "Integration or linked task not found",
+++            "description": "Project, integration, or linked task not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "Comparison changed or synchronization is busy; review or retry",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
+++          },
++           "502": {
++             "description": "External issue unavailable; sync remains paused",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           }
++         }
++       }
++     },
++     "/github-integration/app-info": {
++       "get": {
++         "operationId": "getGitHubAppInfo",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Get GitHub app info",
++         "description": "Get the GitHub App this instance is configured with, so the client can build an install link.",
++         "responses": {
++           "200": {
++             "description": "GitHub app information",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubAppInfo"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/github-integration/repositories/{projectId}": {
++       "get": {
++         "operationId": "listGitHubRepositories",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "List GitHub repositories",
++         "description": "List the repositories reachable through the installed GitHub App, for picking one to link.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string"
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "pattern": "^[1-9][0-9]{0,5}$",
++               "default": "1"
++             },
++             "required": false,
++             "name": "installationPage",
++             "in": "query"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "pattern": "^[1-9][0-9]{0,5}$",
++               "default": "1"
++             },
++             "required": false,
++             "name": "repositoryPage",
++             "in": "query"
++           }
++         ],
++         "responses": {
++           "200": {
++             "description": "Repositories reachable through the installed App",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubRepositoryList"
++                 }
++               }
++             }
++           },
+ -          "400": {
+ -            "description": "Unknown project, or its workspace could not be determined",
+++          "401": {
+++            "description": "Missing or invalid credentials",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
+ -          "401": {
+ -            "description": "Missing or invalid credentials"
+ -          },
++           "403": {
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++          },
+++          "404": {
+++            "description": "Project not found",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/github-integration/verify": {
++       "post": {
++         "operationId": "verifyGitHubInstallation",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Verify GitHub installation",
++         "description": "Check that the GitHub App is installed on a repository and holds the permissions Kaneo needs. Always 200 -- problems are reported in the body so the client can guide the user.",
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "projectId": {
++                     "type": "string",
++                     "minLength": 1
++                   },
++                   "repositoryOwner": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 100
++                   },
++                   "repositoryName": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 100
++                   }
++                 },
++                 "required": [
++                   "projectId",
++                   "repositoryOwner",
++                   "repositoryName"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "Verification result",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubVerificationResult"
++                 }
++               }
++             }
++           },
++           "400": {
+ -            "description": "Invalid body, or unknown project",
+++            "description": "Invalid body",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++          },
+++          "404": {
+++            "description": "Project not found",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/github-integration/project/{projectId}": {
++       "get": {
++         "operationId": "getGitHubIntegration",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Get GitHub integration",
++         "description": "Compatibility shim: returns the project's first GitHub binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string"
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           }
++         ],
++         "responses": {
++           "200": {
++             "description": "GitHub integration details, or null",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubIntegration"
++                 }
++               }
++             }
++           },
+ -          "400": {
+ -            "description": "Unknown project, or its workspace could not be determined",
+++          "401": {
+++            "description": "Missing or invalid credentials",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
+ -          "401": {
+ -            "description": "Missing or invalid credentials"
+ -          },
++           "403": {
+ -            "description": "No access to the project's workspace",
+++            "description": "No access to the project",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++          },
+++          "404": {
+++            "description": "Project not found",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       },
++       "post": {
++         "operationId": "createGitHubIntegration",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Create GitHub integration",
++         "description": "Link a project to one GitHub repository. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Existing issue and pull request links are kept per binding.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string"
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           }
++         ],
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "repositoryOwner": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 100
++                   },
++                   "repositoryName": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 100
++                   }
++                 },
++                 "required": [
++                   "repositoryOwner",
++                   "repositoryName"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "The stored integration",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/CreatedGitHubIntegration"
++                 }
++               }
++             }
++           },
++           "400": {
+ -            "description": "Invalid body, or unknown project",
+++            "description": "Invalid body",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "402": {
++             "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
++           },
++           "403": {
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++          },
+++          "404": {
+++            "description": "Project not found",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "The repository is already linked to this project (repository_already_linked)",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
++           }
++         }
++       }
++     },
++     "/github-integration/project/{projectId}/integrations": {
++       "get": {
++         "operationId": "listGitHubIntegrations",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "List GitHub integrations",
++         "description": "List every GitHub repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string"
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           }
++         ],
++         "responses": {
++           "200": {
++             "description": "The project's GitHub bindings and the repository binding usage",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubIntegrationList"
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "Unknown project, or its workspace could not be determined",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
++           },
++           "401": {
++             "description": "Missing or invalid credentials"
++           },
++           "403": {
++             "description": "No workspace access, or missing workspace:manage_settings",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
++           }
++         }
++       }
++     },
++     "/github-integration/integration/{integrationId}": {
++       "get": {
++         "operationId": "getGitHubIntegrationById",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Get a GitHub integration by id",
++         "description": "Get one GitHub repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1,
++               "maxLength": 128
++             },
++             "required": true,
++             "name": "integrationId",
++             "in": "path"
++           }
++         ],
++         "responses": {
++           "200": {
++             "description": "GitHub integration details, or null",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubIntegration"
++                 }
++               }
++             }
++           },
++           "401": {
++             "description": "Missing or invalid credentials"
++           },
++           "403": {
++             "description": "No access to the integration's workspace",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
++           },
++           "404": {
++             "description": "Integration not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       },
++       "patch": {
++         "operationId": "updateGitHubIntegration",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Update GitHub integration",
++         "description": "Update one GitHub repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1,
++               "maxLength": 128
++             },
++             "required": true,
++             "name": "integrationId",
++             "in": "path"
++           }
++         ],
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "isActive": {
++                     "type": "boolean"
++                   },
++                   "commentTaskLinkOnGitHubIssue": {
++                     "type": "boolean"
++                   }
++                 }
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "The updated integration",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubIntegration"
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "The resulting config failed validation",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "402": {
++             "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
++           },
++           "403": {
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
+ -            "description": "Integration not found",
+++            "description": "Project or integration not found",
++             "content": {
++               "application/json": {
++                 "schema": {
+ -                  "$ref": "#/components/schemas/GitHubIntegrationNotFound"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "Integration changed; refresh before updating",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       },
++       "delete": {
++         "operationId": "deleteGitHubIntegration",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Delete GitHub integration",
++         "description": "Unlink one GitHub repository binding. Its issue and pull request links and import state are removed with it; tasks created from its issues remain in the project.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1,
++               "maxLength": 128
++             },
++             "required": true,
++             "name": "integrationId",
++             "in": "path"
++           }
++         ],
++         "responses": {
++           "200": {
++             "description": "The integration was removed",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GitHubDeleteResult"
++                 }
++               }
++             }
++           },
++           "401": {
+++<<<<<<< HEAD
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++=======
++             "description": "Missing or invalid credentials"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
++           },
++           "403": {
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++  

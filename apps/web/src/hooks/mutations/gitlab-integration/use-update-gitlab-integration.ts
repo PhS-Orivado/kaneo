@@ -3,21 +3,21 @@ import updateGitlabIntegration, {
   type UpdateGitlabIntegrationRequest,
 } from "@/fetchers/gitlab-integration/update-gitlab-integration";
 
+// RFC 0001 WP4/WP7: updates are keyed by the integration id of the binding
+// row that triggered them.
 export function useUpdateGitlabIntegration() {
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: ({
-      projectId,
+      integrationId,
       json,
     }: {
-      projectId: string;
+      integrationId: string;
       json: UpdateGitlabIntegrationRequest;
-    }) => updateGitlabIntegration(projectId, json),
-    onSuccess: (_, { projectId }) => {
-      queryClient.invalidateQueries({
-        queryKey: ["gitlab-integration", projectId],
-      });
+    }) => updateGitlabIntegration(integrationId, json),
+    onSuccess: () => {
+      void queryClient.invalidateQueries({ queryKey: ["gitlab-integrations"] });
     },
   });
 }

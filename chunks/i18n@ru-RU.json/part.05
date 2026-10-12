@@ -1,0 +1,626 @@
+_few": "{{done}} of {{count}} boards imported.",
+					"someImported_many": "{{done}} of {{count}} boards imported.",
+					"someImported_one": "{{done}} of {{count}} board imported.",
+					"someImported_other": "{{done}} of {{count}} boards imported.",
+					"step": "Choose boards"
+				},
+				"project": {
+					"allImported_few": "All {{count}} projects imported.",
+					"allImported_many": "All {{count}} projects imported.",
+					"allImported_one": "{{count}} project imported.",
+					"allImported_other": "All {{count}} projects imported.",
+					"empty": "No projects found. Check that this key can see the projects you want to import.",
+					"found_few": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"found_many": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"found_one": "{{count}} project found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_few": "Import {{count}} projects",
+					"importButton_many": "Import {{count}} projects",
+					"importButton_one": "Import {{count}} project",
+					"importButton_other": "Import {{count}} projects",
+					"limit": "Pick up to {{max}} projects per import.",
+					"pick": "Pick the projects to bring over.",
+					"progress_few": "{{done}} of {{count}} projects imported",
+					"progress_many": "{{done}} of {{count}} projects imported",
+					"progress_one": "{{done}} of {{count}} project imported",
+					"progress_other": "{{done}} of {{count}} projects imported",
+					"runTitle_few": "{{source}}, {{count}} projects",
+					"runTitle_many": "{{source}}, {{count}} projects",
+					"runTitle_one": "{{source}}, {{count}} project",
+					"runTitle_other": "{{source}}, {{count}} projects",
+					"section": "Projects",
+					"someImported_few": "{{done}} of {{count}} projects imported.",
+					"someImported_many": "{{done}} of {{count}} projects imported.",
+					"someImported_one": "{{done}} of {{count}} project imported.",
+					"someImported_other": "{{done}} of {{count}} projects imported.",
+					"step": "Choose projects"
+				},
+				"team": {
+					"allImported_few": "All {{count}} teams imported.",
+					"allImported_many": "All {{count}} teams imported.",
+					"allImported_one": "{{count}} team imported.",
+					"allImported_other": "All {{count}} teams imported.",
+					"empty": "No teams found. Check that this key can see the teams you want to import.",
+					"found_few": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"found_many": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"found_one": "{{count}} team found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_few": "Import {{count}} teams",
+					"importButton_many": "Import {{count}} teams",
+					"importButton_one": "Import {{count}} team",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_few": "{{done}} of {{count}} teams imported",
+					"progress_many": "{{done}} of {{count}} teams imported",
+					"progress_one": "{{done}} of {{count}} team imported",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_few": "{{source}}, {{count}} teams",
+					"runTitle_many": "{{source}}, {{count}} teams",
+					"runTitle_one": "{{source}}, {{count}} team",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_few": "{{done}} of {{count}} teams imported.",
+					"someImported_many": "{{done}} of {{count}} teams imported.",
+					"someImported_one": "{{done}} of {{count}} team imported.",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Предложения",
+			"commands": "Команды",
+			"projects": "Проекты",
+			"search": "Поиск",
+			"members": "Участники",
+			"createTask": "Создать задачу",
+			"createProject": "Создать проект",
+			"createWorkspace": "Создать рабочую область",
+			"lightTheme": "Светлая тема",
+			"darkTheme": "Тёмная тема",
+			"systemTheme": "Системная тема",
+			"keyboardShortcuts": "Сочетания клавиш",
+			"inputPlaceholder": "Поиск приложений и команд...",
+			"empty": "Результатов не найдено.",
+			"footer": {
+				"navigate": "Навигация",
+				"open": "Открыть",
+				"close": "Закрыть"
+			}
+		},
+		"sidebar": {
+			"projects": "Проекты",
+			"members": "Участники",
+			"invitations": "Приглашения",
+			"more": "Ещё",
+			"backToBoard": "Назад к доске",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Открыть проект",
+			"shareProject": "Поделиться проектом",
+			"projectSettings": "Настройки проекта",
+			"linkCopied": "Ссылка на проект скопирована в буфер обмена",
+			"addProject": "Добавить проект",
+			"deleteConfirmTitle": "Удалить проект?",
+			"deleteConfirmDescription": "Проект и все его данные будут безвозвратно удалены. Это действие нельзя отменить.",
+			"deletedToast": "Проект удалён",
+			"deleteProject": "Удалить проект",
+			"switcherLabel": "Сменить проект или вид"
+		},
+		"search": {
+			"inputPlaceholder": "Поиск задач, проектов, комментариев...",
+			"minCharsHint": "Введите минимум 3 символа для поиска",
+			"groups": {
+				"task": "Задачи",
+				"project": "Проекты",
+				"workspace": "Рабочие области",
+				"comment": "Комментарии",
+				"activity": "Активности",
+				"fallback": "Результаты"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Переключить боковую панель",
+			"back": "Назад"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Выход выполнен успешно",
+			"signOutFailed": "Не удалось выйти",
+			"unnamedUser": "Пользователь",
+			"settings": "Настройки",
+			"signingOut": "Выход...",
+			"logOut": "Выйти"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Рабочие области",
+			"switching": "Переключение...",
+			"addWorkspace": "Добавить рабочую область",
+			"selectWorkspace": "Выберите рабочую область"
+		},
+		"page": {
+			"projectsTitle": "Проекты",
+			"settingsTitle": "Настройки",
+			"backToWorkspace": "Вернуться к рабочей области",
+			"settingsWorkspaceTab": "Рабочая область"
+		},
+		"projectSettings": {
+			"projectLabel": "Проект"
+		},
+		"keyboardShortcuts": {
+			"title": "Сочетания клавиш",
+			"subtitle": "Ускорьте работу с помощью сочетаний клавиш",
+			"searchPlaceholder": "Поиск сочетаний...",
+			"footer": "Нажмите <kbd>Escape</kbd>, чтобы закрыть",
+			"categories": {
+				"general": "Основные",
+				"create": "Создание",
+				"views": "Представления",
+				"navigation": "Навигация",
+				"quickSelect": "Быстрый выбор (в выпадающих списках)"
+			},
+			"items": {
+				"openCommandPalette": "Открыть палитру команд",
+				"globalSearch": "Глобальный поиск",
+				"toggleSidebar": "Переключить боковую панель",
+				"showShortcuts": "Показать сочетания клавиш",
+				"closeModal": "Закрыть модальное окно/всплывающее меню",
+				"createTask": "Создать задачу",
+				"createProject": "Создать проект",
+				"createWorkspace": "Создать рабочую область",
+				"boardView": "Переключиться на доску",
+				"listView": "Переключиться на список",
+				"backlogView": "Переключиться на бэклог",
+				"nextTask": "Следующая задача",
+				"prevTask": "Предыдущая задача",
+				"openTask": "Открыть выбранную задачу",
+				"quickSelectNumber": "Выбрать вариант по номеру",
+				"calendarView": "Переключиться на календарь"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} новое",
+		"newCount_few": "{{count}} новых",
+		"newCount_many": "{{count}} новых",
+		"newCount_other": "{{count}} новых",
+		"emptyTitle": "Уведомлений пока нет",
+		"emptySubtitle": "Здесь будут отображаться обновления и активность.",
+		"clearAll": "Очистить все уведомления",
+		"clearDialogTitle": "Очистить все уведомления?",
+		"clearDialogDescription": "Все уведомления будут безвозвратно удалены. Это действие нельзя отменить.",
+		"events": {
+			"task_created": {
+				"title": "Создана новая задача",
+				"content": "Задача «{{taskTitle}}» создана"
+			},
+			"workspace_created": {
+				"title": "Рабочая область создана",
+				"content": "Ваша рабочая область «{{workspaceName}}» успешно создана"
+			},
+			"task_status_changed": {
+				"title": "Статус задачи изменён",
+				"content": "Статус задачи «{{taskTitle}}» изменён с «{{oldStatus}}» на «{{newStatus}}»"
+			},
+			"task_assignee_changed": {
+				"title": "Задача назначена вам",
+				"content": "Вам назначена задача: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "Трекинг времени начат",
+				"contentWithTask": "Трекинг времени начат для задачи: {{taskTitle}}",
+				"contentWithoutTask": "Трекинг времени начат для задачи"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} упомянул вас",
+				"content": "{{mentionerName}} упомянул вас в задаче: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} прокомментировал вашу задачу",
+				"content": "Новый комментарий к задаче «{{taskTitle}}»: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Скоро срок выполнения задачи",
+				"content": "Срок задачи «{{taskTitle}}» наступит через {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Задача просрочена",
+				"content": "Срок выполнения задачи «{{taskTitle}}» истёк"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} минута",
+			"minutes_few": "{{count}} минуты",
+			"minutes_many": "{{count}} минут",
+			"minutes_other": "{{count}} минут",
+			"hours_one": "{{count}} час",
+			"hours_few": "{{count}} часа",
+			"hours_many": "{{count}} часов",
+			"hours_other": "{{count}} часов",
+			"days_one": "{{count}} день",
+			"days_few": "{{count}} дня",
+			"days_many": "{{count}} дней",
+			"days_other": "{{count}} дней"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "назначил задачу себе",
+		"unassigned": "снял назначение с задачи",
+		"assignedTo": "назначил задачу на {{name}}",
+		"changedStatus": "изменил статус с {{from}} на {{to}}",
+		"changedPriority": "изменил приоритет с {{from}} на {{to}}",
+		"clearedDueDate": "очистил срок выполнения",
+		"setDueDate": "установил срок выполнения: {{date}}",
+		"changedDueDate": "изменил срок выполнения с {{from}} на {{to}}",
+		"changedTitle": "изменил название с «{{from}}» на «{{to}}»",
+		"githubUser": "Пользователь GitHub",
+		"comment": {
+			"viewGithubProfile": "Открыть профиль GitHub",
+			"cannotBeEmpty": "Комментарий не может быть пустым",
+			"mustBeLoggedInToEdit": "Для редактирования комментариев необходимо войти в систему",
+			"updated": "Комментарий обновлён",
+			"failedToUpdate": "Не удалось обновить комментарий",
+			"edit": "Редактировать комментарий",
+			"editPlaceholder": "Редактировать комментарий...",
+			"save": "Сохранить",
+			"added": "Комментарий добавлен",
+			"failedToAdd": "Не удалось добавить комментарий",
+			"leavePlaceholder": "Оставить комментарий...",
+			"attachFile": "Прикрепить файл",
+			"submitShortcut": "Отправить комментарий",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Загрузка файлов доступна только для сохранённых задач.",
+				"uploadingFile": "Загрузка файла...",
+				"imageUploaded": "Изображение загружено",
+				"fileAttached": "Файл прикреплён",
+				"failedToUploadFile": "Не удалось загрузить файл",
+				"enterUrl": "Введите URL",
+				"plaintext": "Простой текст",
+				"autoDetect": "Автоопределение",
+				"slashGroupText": "Текст",
+				"slashGroupLists": "Списки",
+				"slashGroupInsert": "Вставка",
+				"slashParagraph": "Текст",
+				"slashHeading": "Заголовок",
+				"slashBulletList": "Маркированный список",
+				"slashTaskList": "Чек-лист",
+				"slashOrderedList": "Нумерованный список",
+				"slashQuote": "Цитата",
+				"slashCodeBlock": "Блок кода",
+				"slashTable": "Таблица",
+				"slashFile": "Файл",
+				"searchParagraph": "текст параграф обычный",
+				"searchHeading": "заголовок h2",
+				"searchBulletList": "список маркированный",
+				"searchTaskList": "чеклист список задач",
+				"searchOrderedList": "список нумерованный",
+				"searchQuote": "цитата блок",
+				"searchCodeBlock": "код фрагмент",
+				"searchTable": "таблица сетка",
+				"searchFile": "файл вложение изображение фото загрузка",
+				"embedErrorInvalidUrl": "Введите корректный URL",
+				"embedErrorYoutubeOnly": "Можно встраивать только ссылки YouTube.",
+				"embedVideo": "Встроить видео",
+				"keepAsLink": "Оставить как ссылку",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Вставьте URL",
+				"asLink": "Как ссылку",
+				"embed": "Встроить",
+				"noCommands": "Нет команд",
+				"ariaCommentContent": "Содержимое комментария",
+				"ariaCommentEditor": "Редактор комментариев",
+				"ariaCopyCode": "Скопировать код",
+				"ariaCopied": "Скопировано",
+				"copy": "Копировать",
+				"copied": "Скопировано",
+				"dropImageToUpload": "Перетащите изображение для загрузки",
+				"previewImageAlt": "Предпросмотр изображения",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Простой текст",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Вставить столбец слева",
+					"addColumnAfter": "Вставить столбец справа",
+					"deleteColumn": "Удалить столбец",
+					"addRowBefore": "Вставить строку выше",
+					"addRowAfter": "Вставить строку ниже",
+					"deleteRow": "Удалить строку",
+					"deleteTable": "Удалить таблицу"
+				},
+				"mermaid": {
+					"renderFailed": "Не удалось отобразить диаграмму Mermaid"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "прокомментировал на {{forge}}"
+		},
+		"moved": "переместил задачу из «{{from}}» в «{{to}}»",
+		"created": "создал эту задачу",
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Задачи",
+		"status": {
+			"label": "Статус",
+			"to-do": "К выполнению",
+			"in-progress": "В работе",
+			"in-review": "На проверке",
+			"done": "Готово",
+			"archived": "В архиве",
+			"planned": "Запланировано"
+		},
+		"priority": {
+			"label": "Приоритет",
+			"no-priority": "Без приоритета",
+			"low": "Низкий",
+			"medium": "Средний",
+			"high": "Высокий",
+			"urgent": "Срочный"
+		},
+		"boardSearchPlaceholder": "Поиск задач...",
+		"view": {
+			"board": "Доска",
+			"list": "Список",
+			"backlog": "Бэклог",
+			"gantt": "Гант",
+			"heading": "Вид"
+		},
+		"common": {
+			"selectTask": "Выбрать задачу",
+			"loadingTask": "Загрузка задачи...",
+			"taskNotFound": "Задача не найдена",
+			"taskNotFoundDescription": "Задача, которую вы ищете, не существует или была удалена.",
+			"ticketAmbiguous": "Идентификатор соответствует нескольким задачам",
+			"ticketAmbiguousDescription": "{{ticketId}} соответствует задачам в нескольких проектах этой рабочей области. Задайте одному из этих проектов другой ключ, чтобы ссылка заработала.",
+			"ticketNotFoundDescription": "В этой рабочей области нет задачи с идентификатором {{ticketId}}, или у вас нет к ней доступа.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Подзадача",
+			"activity": "Активность",
+			"noActivity": "Активность не найдена",
+			"openInFullPage": "Открыть на полной странице",
+			"titlePlaceholder": "Нажмите, чтобы добавить название",
+			"addDescription": "Добавить описание...",
+			"editor": {
+				"ariaLabel": "Редактор описания задачи",
+				"placeholder": "Напишите описание...",
+				"previewImage": "Предпросмотр изображения",
+				"enterUrl": "Введите URL",
+				"autoDetect": "Автоопределение",
+				"copyCode": "Скопировать код",
+				"copy": "Копировать",
+				"copied": "Скопировано",
+				"attachFile": "Прикрепить файл",
+				"dropToUpload": "Перетащите изображение для загрузки",
+				"checkbox": {
+					"markIncomplete": "Отметить задачу как невыполненную",
+					"markComplete": "Отметить задачу как выполненную"
+				},
+				"upload": {
+					"loading": "Загрузка файла...",
+					"failed": "Не удалось загрузить файл",
+					"imageSuccess": "Изображение загружено",
+					"fileSuccess": "Файл прикреплён"
+				},
+				"slash": {
+					"groups": {
+						"text": "Текст",
+						"lists": "Списки",
+						"insert": "Вставка"
+					},
+					"empty": "Нет команд",
+					"commands": {
+						"paragraph": "Текст",
+						"heading-2": "Заголовок",
+						"bullet-list": "Маркированный список",
+						"task-list": "Чек-лист",
+						"ordered-list": "Нумерованный список",
+						"blockquote": "Цитата",
+						"code-block": "Блок кода",
+						"table": "Таблица",
+						"file": "Файл"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Простой текст",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Встроить видео",
+						"keepAsLink": "Оставить как ссылку"
+					},
+					"inputPlaceholder": "Вставьте URL",
+					"embeddedContent": "Встроенный контент",
+					"asLink": "Как ссылку",
+					"submit": "Встроить",
+					"errors": {
+						"invalidUrl": "Введите корректный URL",
+						"onlyYoutube": "Можно встраивать только ссылки YouTube."
+					},
+					"onlyYoutubeInline": "Можно встраивать только URL YouTube. Используйте режим ссылки."
+				},
+				"mermaid": {
+					"renderFailed": "Не удалось отобразить диаграмму Mermaid"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Задача"
+		},
+		"relations": {
+			"title": "Связи",
+			"tasksInProject": "Задачи в проекте",
+			"linkError": "Не удалось связать задачу",
+			"empty": "Нет связанных задач",
+			"searchPlaceholder": "Поиск задач для связывания...",
+			"noTasksFound": "Задачи не найдены",
+			"openTask": "Открыть задачу",
+			"removeRelation": "Удалить связь",
+			"related": "Связана",
+			"blocks": "Блокирует",
+			"selectTask": "Выберите задачу для связывания",
+			"types": {
+				"

@@ -1,0 +1,826 @@
+tasks": {
+		"title": "任务",
+		"status": {
+			"label": "状态",
+			"to-do": "待办",
+			"in-progress": "进行中",
+			"in-review": "评审中",
+			"done": "已完成",
+			"archived": "已归档",
+			"planned": "已计划"
+		},
+		"priority": {
+			"label": "优先级",
+			"no-priority": "无优先级",
+			"low": "低",
+			"medium": "中",
+			"high": "高",
+			"urgent": "紧急"
+		},
+		"boardSearchPlaceholder": "搜索工单…",
+		"view": {
+			"board": "看板",
+			"list": "列表",
+			"backlog": "待办",
+			"gantt": "甘特图",
+			"heading": "视图"
+		},
+		"common": {
+			"selectTask": "选择任务",
+			"loadingTask": "正在加载任务…",
+			"taskNotFound": "未找到任务",
+			"taskNotFoundDescription": "你查找的任务不存在或已删除。",
+			"ticketAmbiguous": "该任务 ID 匹配多个任务",
+			"ticketAmbiguousDescription": "{{ticketId}} 匹配此工作区中多个项目的任务。请为其中一个项目设置不同的键，使链接正常工作。",
+			"ticketNotFoundDescription": "此工作区中不存在 ID 为 {{ticketId}} 的任务，或你无权访问该任务。",
+			"customFields": "自定义字段"
+		},
+		"detail": {
+			"subtaskOf": "子任务属于",
+			"activity": "活动",
+			"noActivity": "暂无活动",
+			"openInFullPage": "在新页面打开",
+			"titlePlaceholder": "点击添加标题",
+			"addDescription": "添加描述…",
+			"editor": {
+				"ariaLabel": "任务描述编辑器",
+				"placeholder": "编写描述…",
+				"previewImage": "预览图片",
+				"enterUrl": "输入 URL",
+				"autoDetect": "自动检测",
+				"copyCode": "复制代码",
+				"copy": "复制",
+				"copied": "已复制",
+				"attachFile": "附加文件",
+				"dropToUpload": "拖入图片以上传",
+				"checkbox": {
+					"markIncomplete": "将任务标记为未完成",
+					"markComplete": "将任务标记为已完成"
+				},
+				"upload": {
+					"loading": "正在上传文件…",
+					"failed": "上传文件失败",
+					"imageSuccess": "图片已上传",
+					"fileSuccess": "文件已附加"
+				},
+				"slash": {
+					"groups": {
+						"text": "文本",
+						"lists": "列表",
+						"insert": "插入"
+					},
+					"empty": "无命令",
+					"commands": {
+						"paragraph": "文本",
+						"heading-2": "标题",
+						"bullet-list": "无序列表",
+						"task-list": "待办列表",
+						"ordered-list": "有序列表",
+						"blockquote": "引用",
+						"code-block": "代码块",
+						"table": "表格",
+						"file": "文件"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "纯文本",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "嵌入视频",
+						"keepAsLink": "保留为链接"
+					},
+					"inputPlaceholder": "粘贴 URL",
+					"embeddedContent": "嵌入内容",
+					"asLink": "作为链接",
+					"submit": "嵌入",
+					"errors": {
+						"invalidUrl": "请输入有效的 URL",
+						"onlyYoutube": "只能嵌入 YouTube 链接。"
+					},
+					"onlyYoutubeInline": "仅支持嵌入 YouTube URL，请改用链接模式。"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid 图渲染失败"
+				},
+				"image": {
+					"large": "大",
+					"medium": "中",
+					"reset": "恢复原始大小",
+					"resizeHandle": "调整图片大小",
+					"small": "小"
+				},
+				"saved": "已保存",
+				"saving": "正在保存…",
+				"saveFailed": "更改保存失败",
+				"retrySave": "重试"
+			},
+			"customFieldUpdated": "字段已更新",
+			"selectOption": "选择选项"
+		},
+		"entity": {
+			"task": "任务"
+		},
+		"relations": {
+			"title": "关联",
+			"tasksInProject": "项目内任务",
+			"linkError": "关联任务失败",
+			"empty": "无关联任务",
+			"searchPlaceholder": "搜索要关联的任务…",
+			"noTasksFound": "未找到任务",
+			"openTask": "打开任务",
+			"removeRelation": "移除关联",
+			"related": "关联",
+			"blocks": "阻塞",
+			"selectTask": "选择要关联的任务",
+			"types": {
+				"blocks": "阻塞",
+				"blocked_by": "被阻塞",
+				"related": "关联"
+			}
+		},
+		"subtasks": {
+			"title": "子任务",
+			"inputPlaceholder": "子任务标题…",
+			"addAction": "添加",
+			"empty": "暂无子任务",
+			"createError": "创建子任务失败",
+			"deleteSuccess": "任务已删除",
+			"deleteError": "删除任务失败",
+			"deleteDialogTitle": "删除任务？",
+			"deleteDialogDescription": "这将永久删除任务及其所有数据，此操作不可撤销。",
+			"deleteAction": "删除任务",
+			"completeAria": "将子任务标记为完成",
+			"progress": "已完成 {{completed}}/{{total}} 个子任务",
+			"noCompletionColumn": "此项目没有可用于完成或重新打开该子任务的列。"
+		},
+		"properties": {
+			"title": "属性",
+			"labels": "标签",
+			"copyTaskLink": "复制任务链接",
+			"copyTaskBranch": "复制任务分支",
+			"taskLinkCopied": "已复制任务链接",
+			"taskBranchCopied": "已复制分支名称",
+			"start": "开始",
+			"startDate": "开始日期",
+			"noDate": "无日期"
+		},
+		"move": {
+			"title": "移动任务",
+			"projectLabel": "目标项目",
+			"projectPlaceholder": "选择项目",
+			"statusLabel": "目标状态",
+			"statusHintKeep": "该项目的工作流已支持当前状态。",
+			"statusHintAdjust": "选择在目标项目中使用的状态。",
+			"action": "移动任务",
+			"success": "任务移动成功",
+			"error": "移动任务失败"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "未指派",
+				"updateError": "更新任务负责人失败"
+			},
+			"status": {
+				"updateError": "更新任务状态失败"
+			},
+			"priority": {
+				"updateError": "更新任务优先级失败"
+			},
+			"dueDate": {
+				"updateSuccess": "任务截止日期更新成功",
+				"updateError": "更新任务截止日期失败",
+				"clear": "清除日期"
+			},
+			"startDate": {
+				"updateSuccess": "任务开始日期更新成功",
+				"updateError": "更新任务开始日期失败",
+				"clear": "清除开始日期"
+			},
+			"labels": {
+				"searchPlaceholder": "搜索标签…",
+				"empty": "未找到标签",
+				"create": "创建 \"{{name}}\"",
+				"chooseColor": "选择颜色",
+				"addSuccess": "标签已添加",
+				"removeSuccess": "标签已移除",
+				"updateError": "更新标签失败",
+				"createSuccess": "标签已创建并添加",
+				"createError": "创建标签失败",
+				"colors": {
+					"stone": "石板灰",
+					"slate": "石板蓝",
+					"lavender": "薰衣草",
+					"sage": "鼠尾草绿",
+					"forest": "森林绿",
+					"amber": "琥珀",
+					"terracotta": "赤陶",
+					"rose": "玫红",
+					"crimson": "深红"
+				},
+				"editLabels": "编辑标签"
+			}
+		},
+		"backlog": {
+			"pageTitle": "{{name}} 的待办",
+			"noTasksToMove": "没有可移动的已计划任务",
+			"moveAllConfirm": "将 {{count}} 个已计划任务全部移至待办？",
+			"moveAllSuccess": "已将 {{count}} 个任务移至待办",
+			"plan": "计划",
+			"moveAllTooltip": "将所有已计划任务移至待办",
+			"moveAll": "全部移动",
+			"addTask": "添加任务",
+			"filter": "筛选",
+			"addFilter": "添加筛选…",
+			"sections": {
+				"planned": "已计划",
+				"archived": "已归档"
+			},
+			"noTasksInSection": "无 {{section}} 任务",
+			"filters": {
+				"priority": "优先级：{{name}}",
+				"assignee": "负责人：{{name}}",
+				"due": "截止：{{date}}",
+				"label": "标签：{{name}}",
+				"dueThisWeek": "本周到期",
+				"dueNextWeek": "下周到期",
+				"noDueDate": "无截止日期"
+			}
+		},
+		"sort": {
+			"label": "排序",
+			"by": "排序方式",
+			"direction": "方向",
+			"ascending": "升序",
+			"descending": "降序",
+			"fields": {
+				"position": "手动（位置）",
+				"createdAt": "创建日期",
+				"priority": "优先级",
+				"dueDate": "截止日期",
+				"title": "标题",
+				"number": "任务编号"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "筛选条件",
+			"allStatuses": "所有状态",
+			"allPriorities": "所有优先级",
+			"allAssignees": "所有负责人",
+			"allDueDates": "所有截止日期",
+			"allLabels": "所有标签",
+			"selectedCount": "已选 {{count}} 个",
+			"subjects": {
+				"status": "状态",
+				"priority": "优先级",
+				"assignee": "负责人",
+				"dueDate": "截止日期",
+				"labels": "标签"
+			},
+			"operators": {
+				"isAnyOf": "为以下任一",
+				"includeAnyOf": "包含以下任一"
+			},
+			"all": "全部",
+			"allCustomFieldValues": "所有值",
+			"noCustomFieldValues": "没有自定义字段的值",
+			"noValuesUsedYet": "还没有使用过任何值"
+		},
+		"calendar": {
+			"pageTitle": "{{name}} – 日历",
+			"title": "日历",
+			"previousMonth": "上个月",
+			"nextMonth": "下个月",
+			"today": "今天",
+			"noTasks": "暂无安排的任务",
+			"noTasksSubtitle": "给任务加上开始日期或截止日期（或两者），它就会出现在日历上。",
+			"moreTasks": "+{{count}} 项",
+			"loadError": "任务加载失败。",
+			"dayTasksAriaLabel": "查看 {{date}} 的全部任务",
+			"taskAriaLabel": "{{title}}，{{range}}：打开任务",
+			"noTasksThisMonth": "本月没有安排"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – 甘特图",
+			"title": "甘特图时间线",
+			"jumpToToday": "回到今天",
+			"searchPlaceholder": "搜索已排期工单…",
+			"hideTasks": "隐藏任务",
+			"showTasks": "显示任务",
+			"noTasks": "无已排期任务",
+			"noTasksSubtitle": "为任务添加开始日期、截止日期或两者，以将其放入项目时间线。",
+			"noTasksFound": "未找到任务",
+			"noTasksMatch": "没有匹配 \"{{query}}\" 的已排期任务",
+			"taskHeader": "任务",
+			"updateDatesError": "更新任务日期失败",
+			"resizeStart": "调整开始日期",
+			"resizeDue": "调整截止日期",
+			"taskAriaLabel": "{{title}}：打开或拖动以移动",
+			"previousPeriod": "上一周期",
+			"nextPeriod": "下一周期",
+			"periodStart": "时间线开始日期",
+			"showTaskDates": "显示任务日期"
+		},
+		"delete": {
+			"title": "删除任务？",
+			"description": "这将永久删除任务及其所有数据，此操作不可撤销。",
+			"action": "删除任务",
+			"success": "任务已删除",
+			"error": "删除任务失败"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}}（副本）",
+			"success": "已创建任务副本",
+			"error": "创建任务副本失败"
+		},
+		"archive": {
+			"success": "已归档 {{count}} 个任务"
+		},
+		"listView": {
+			"addTask": "添加任务",
+			"archiveAllTooltip": "归档所有已完成任务",
+			"noTasks": "无任务"
+		},
+		"kanban": {
+			"addTask": "添加任务",
+			"automaticallySortedHint": "按{{sort}}自动排序"
+		},
+		"pr": {
+			"merged": "已合并",
+			"draft": "草稿",
+			"open": "打开",
+			"label": "Pull Request",
+			"count_other": "{{count}} 个 PR"
+		},
+		"assignee": {
+			"label": "负责人",
+			"unassigned": "未指派"
+		},
+		"dueDate": {
+			"label": "截止日期",
+			"clear": "清除日期",
+			"updateSuccess": "任务截止日期更新成功",
+			"updateError": "更新任务截止日期失败",
+			"clearSuccess": "任务截止日期已清除",
+			"clearError": "清除截止日期失败"
+		},
+		"labels": {
+			"label": "标签",
+			"empty": "无可用标签"
+		},
+		"update": {
+			"success": "任务更新成功",
+			"error": "更新任务失败"
+		},
+		"contextMenu": {
+			"copyLink": "复制链接",
+			"copyLinkSuccess": "任务链接已复制！"
+		},
+		"actions": {
+			"duplicate": "创建副本",
+			"archive": "归档",
+			"markAsPlanned": "标记为已计划",
+			"delete": "删除…"
+		},
+		"bulk": {
+			"selectedCount": "已选 {{count}} 个",
+			"moveToBacklog": "移至待办",
+			"moveToBacklogSuccess": "{{count}} 个任务已移至待办",
+			"moveToBacklogError": "将任务移至待办失败",
+			"moveToBoard": "移至看板",
+			"moveToBoardSuccess": "{{count}} 个任务已移至看板",
+			"moveToBoardError": "将任务移至看板失败",
+			"delete": "删除任务",
+			"deleteConfirm": "删除 {{count}} 个任务？此操作不可撤销。",
+			"deleteSuccess": "已删除 {{count}} 个任务",
+			"deleteError": "删除任务失败",
+			"archive": "归档任务",
+			"archiveSuccess": "已归档 {{count}} 个任务",
+			"archiveError": "归档任务失败",
+			"updateSuccess": "已更新 {{count}} 个任务",
+			"updateError": "更新任务失败",
+			"assignTo": "指派给",
+			"assignSuccess": "已指派 {{count}} 个任务",
+			"assignError": "指派任务失败",
+			"setPriority": "设置优先级",
+			"updatePriorityError": "更新优先级失败",
+			"addLabel": "添加标签",
+			"addLabelSuccess": "已为 {{count}} 个任务添加标签",
+			"addLabelError": "添加标签失败",
+			"setDueDate": "设置截止日期",
+			"updateDueDateError": "更新截止日期失败",
+			"actions": "操作",
+			"searchActions": "搜索操作…",
+			"noActionsFound": "未找到操作。",
+			"changeStatus": "更改状态"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "在左侧插入列",
+				"addColumnAfter": "在右侧插入列",
+				"deleteColumn": "删除列",
+				"addRowBefore": "在上方插入行",
+				"addRowAfter": "在下方插入行",
+				"deleteRow": "删除行",
+				"deleteTable": "删除表格"
+			}
+		},
+		"descriptionSearchLoading": "正在搜索完整描述…",
+		"descriptionSearchError": "描述搜索失败，结果可能不完整。",
+		"descriptionRetry": "重试",
+		"descriptionLoading": "正在加载描述…",
+		"descriptionLoadError": "描述加载失败，请重试载入当前版本。",
+		"checklistProgress": "已完成 {{completed}}/{{total}} 个清单项",
+		"customFields": {
+			"ariaLabel": "自定义字段"
+		},
+		"board": {
+			"reorderFailed": "无法移动任务，请重试。"
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
+		}
+	},
+	"invitations": {
+		"email": {
+			"subject": "{{inviterName}} 邀请你加入 Kaneo 上的 {{workspaceName}}",
+			"preview": "你被邀请加入 Kaneo 上的 {{workspaceName}}",
+			"title": "加入 {{workspaceName}}",
+			"subtitle": "{{inviterName}}（{{inviterEmail}}）邀请你在 Kaneo 中协作。",
+			"cta": "接受邀请",
+			"sameEmail": "你可以使用收到此邮件的同一邮箱接受。",
+			"ignore": "如果这不是你预期的，可以安全忽略此邮件。",
+			"footer": "Kaneo 工作区邀请",
+			"details": {
+				"title": "邀请详情",
+				"sentTo": "发送至",
+				"instance": "实例",
+				"role": "角色",
+				"expires": "过期时间"
+			}
+		},
+		"pageTitle": "邀请",
+		"pendingInvitations": "待处理的邀请",
+		"acceptSubtitle": "接受邀请以加入工作区",
+		"noPendingTitle": "无待处理邀请",
+		"noPendingDescription": "你目前没有任何待处理的工作区邀请。",
+		"continueToSetup": "继续设置",
+		"skipForNow": "暂时跳过",
+		"table": {
+			"workspace": "工作区",
+			"invitedBy": "邀请人",
+			"expires": "过期时间"
+		},
+		"toast": {
+			"acceptError": "接受邀请失败",
+			"acceptSuccess": "邀请已接受，欢迎加入团队！",
+			"rejectError": "拒绝邀请失败",
+			"rejectSuccess": "邀请已拒绝"
+		}
+	},
+	"workspace": {
+		"projects": {
+			"pageTitle": "项目",
+			"createProject": "创建项目",
+			"title": "标题",
+			"progress": "进度",
+			"targetDate": "目标日期",
+			"dueDate": "截止日期",
+			"status": "状态",
+			"emptyTitle": "暂无项目",
+			"emptyDescription": "先创建你的第一个项目以开始使用。",
+			"emptyDescriptionReadOnly": "此工作区中暂无项目，请联系管理员创建。",
+			"projectStatus": {
+				"notStarted": "未开始",
+				"complete": "已完成",
+				"inProgress": "进行中"
+			},
+			"noDueDate": "无截止日期",
+			"reorderHandle": "重新排序项目",
+			"reorderError": "重新排序项目失败",
+			"unavailable": {
+				"backToWorkspace": "Back to workspace",
+				"noAccessDescription": "Ask a workspace admin to give you access.",
+				"noAccessTitle": "You don't have access to this project",
+				"notFoundDescription": "This project doesn't exist or has been deleted.",
+				"notFoundTitle": "Project not found"
+			}
+		},
+		"search": {
+			"pageTitle": "搜索",
+			"backToDashboard": "返回控制台",
+			"placeholder": "按任务标题或短 ID 搜索（例如 DEP-23）…",
+			"hint": "在此工作区的所有项目中搜索。使用类似 DEP-23 的短 ID 来定位任务。",
+			"searching": "搜索中…",
+			"resultsFound_other": "找到 {{count}} 条结果",
+			"noResultsTitle": "未找到结果",
+			"noResultsDescription": "请调整搜索条件或搜索其他内容",
+			"startTitle": "开始搜索",
+			"startDescription": "输入搜索词以在所有项目中查找任务",
+			"quickSearchesLabel": "快速搜索：",
+			"suggestionHighPriority": "高优先级",
+			"suggestionBug": "缺陷",
+			"suggestionFeature": "新功能",
+			"suggestionInProgress": "进行中",
+			"suggestionCompleted": "已完成"
+		},
+		"create": {
+			"pageTitle": "创建工作区",
+			"heading": "创建新工作区",
+			"subtitle": "工作区是团队协作开展项目、迭代和问题的共享环境。",
+			"nameLabel": "工作区名称",
+			"namePlaceholder": "输入工作区名称",
+			"descriptionLabel": "描述（可选）",
+			"descriptionPlaceholder": "为工作区添加描述",
+			"required": "必填",
+			"creating": "创建中…",
+			"submit": "创建工作区",
+			"success": "工作区创建成功",
+			"error": "工作区创建失败"
+		},
+		"home": {
+			"activity": {
+				"commented": "评论了",
+				"empty": "最近 30 天没有任何动态。",
+				"loadError": "动态加载失败。",
+				"title": "动态",
+				"updated": "更新了任务"
+			},
+			"greeting": {
+				"afternoon": "下午好",
+				"evening": "晚上好",
+				"morning": "早上好"
+			},
+			"newTask": "新建任务",
+			"pageTitle": "首页",
+			"projects": {
+				"all": "所有项目",
+				"tasks_other": "{{count}} 个任务",
+				"title": "你的项目",
+				"loadError": "项目加载失败。"
+			},
+			"upNext": {
+				"assigned_other": "{{count}} 个指派给你",
+				"title": "接下来",
+				"viewAll": "查看全部"
+			},
+			"week": {
+				"more_other": "还有 {{count}} 个",
+				"truncated": "本周预览只显示前 {{shown}} 个指派给你的任务（共 {{total}} 个）。"
+			}
+		},
+		"myTasks": {
+			"emptyDescription": "指派给你的任务都会汇总在这里。",
+			"groupBy": {
+				"dueDate": "截止日期",
+				"label": "分组方式",
+				"project": "项目"
+			},
+			"pageTitle": "我的任务",
+			"truncated": "共 {{total}} 个任务，只显示前 {{shown}} 个。"
+		},
+		"myWork": {
+			"due": {
+				"later": "以后",
+				"noDueDate": "无截止日期",
+				"overdue": "已逾期",
+				"thisWeek": "本周",
+				"today": "今天",
+				"tomorrow": "明天"
+			},
+			"empty": "暂时没有指派给你的任务",
+			"loadError": "你的任务加载失败。"
+		}
+	},
+	"team": {
+		"roles": {
+			"owner": "所有者",
+			"admin": "管理员",
+			"member": "成员",
+			"viewer": "访客"
+		},
+		"members": {
+			"pageTitle": "成员",
+			"inviteMember": "邀请成员",
+			"you": "你"
+		},
+		"invitations": {
+			"pendingBadge": "待处理",
+			"expires": "{{date}} 过期",
+			"linkLabel": "邀请链接",
+			"copyLink": "复制链接",
+			"linkCopied": "邀请链接已复制",
+			"copyFailed": "无法自动复制，请选中链接后按 Ctrl+C。"
+		},
+		"inviteModal": {
+			"title": "邀请团队成员",
+			"emailLabel": "邮箱",
+			"emailPlaceholder": "colleague@company.com",
+			"sendInvitation": "发送邀请",
+			"success": "邀请已成功发送",
+			"error": "邀请团队成员失败",
+			"createdTitle": "邀请已创建",
+			"shareLinkDescription": "将此链接分享给 {{email}}，以便对方加入工作区。",
+			"done": "完成"
+		},
+		"membersTable": {
+			"emptyTitle": "暂无团队成员",
+			"emptyDescription": "先邀请你的第一个团队成员以开始使用。",
+			"columns": {
+				"name": "姓名",
+				"role": "角色",
+				"joined": "加入于",
+				"actions": "操作",
+				"projects": "Projects"
+			},
+			"memberRolePending": "{{role}}（待处理）",
+			"ariaCancelInvitation": "取消邀请",
+			"ariaInvitationActions": "邀请操作",
+			"ariaRemoveMember": "移除成员",
+			"removeDialogTitle": "移除团队成员？",
+			"removeDialogDescription": "确定要从工作区中移除 {{name}} 吗？此操作不可撤销。",
+			"cancelDialogTitle": "取消邀请？",
+			"cancelDialogDescription": "确定要取消 {{email}} 的邀请吗？此操作不可撤销。",
+			"removeMember": "移除成员",
+			"cancelInvitation": "取消邀请",
+			"removeSuccess": "团队成员已移除",
+			"removeError": "移除团队成员失败",
+			"cancelInviteSuccess": "邀请已取消",
+			"cancelInviteError": "取消邀请失败",
+			"roleUpdateSuccess": "角色已更新",
+			"roleUpdateError": "更新角色失败"
+		},
+		"projectAccess": {
+			"allProjects": "All projects",
+			"allProjectsDescription": "Access every project in this workspace, including new ones.",
+			"description": "Choose which projects this person can see.",
+			"dialogDescription": "Choose which projects {{name}} can access.",
+			"dialogTitle": "Project access",
+			"editAria": "Change project access for {{name}} ({{access}})",
+			"label": "Project access",
+			"noProjects": "No projects in this workspace yet.",
+			"projectCount_other": "{{count}} projects",
+			"projectsLabel": "Projects",
+			"save": "Save",
+			"selectAtLeastOne": "Choose at least one project.",
+			"selectedProjects": "Selected projects",
+			"selectedProjectsDescription": "Only access the projects you choose.",
+			"updateError": "Failed to update project access",
+			"updateSuccess": "Project access updated",
+			"archived": "Archived",
+			"allProjectsUnavailable": "Your own access is limited, so you can only give access to selected projects."
+		}
+	},
+	"publicProject": {
+		"pageTitle": "公开视图",
+		"badge": "公开",
+		"readOnly": "只读",
+		"error": {
+			"title": "未找到项目",
+			"description": "此项目不存在或未公开。"
+		},
+		"taskCard": {
+			"viewDetailsAria": "查看任务 {{title}} 的详情"
+		},
+		"taskDetail": {
+			"labels": "标签",
+			"externalLinks": "外部链接",
+			"pullRequestFallback": "Pull Request",
+			"issueFallback": "Issue",
+			"prStatusMerged": "已合并",
+			"prStatusDraft": "草稿",
+			"prStatusOpen": "打开",
+			"dueWithDate": "{{date}} 到期",
+			"created": "创建于",
+			"dueDateLabel": "截止日期"
+		},
+		"theme": {
+			"switchToLight": "切换到浅色模式",
+			"switchToDark": "切换到深色模式"
+		},
+		"copyUrl": {
+			"successToast": "链接已复制",
+			"errorToast": "复制链接失败",
+			"copied": "已复制",
+			"share": "分享"
+		},
+		"branding": {
+			"poweredBy": "由以下技术提供支持"
+		}
+	},
+	"press": {
+		"title": "媒体资源包",
+		"headline": "Kaneo 媒体资源包",
+		"intro": "供文章、视频等媒体使用的 Kaneo 标志和产品截图。",
+		"description": "Kaneo 媒体资源：产品介绍、标志、截图，以及面向记者和创作者的联络方式。",
+		"downloadKit": "下载全部素材",
+		"boilerplateTitle": "关于 Kaneo",
+		"boilerplate": "Kaneo 是由 Andrej Acevski 创建的开源项目管理平台。团队可以用看板和列表视图整理任务、指派工作、设置优先级和截止日期，并接入 GitHub。Kaneo 采用 MIT 许可，可自行托管，也可以通过 Kaneo Cloud 使用托管服务。",
+		"logosTitle": "标志",
+		"darkLogo": "深色字标",
+		"darkLogoAlt": "浅色背景上的深色 Kaneo 标志",
+		"darkLogoDetail": "SVG",
+		"lightLogo": "浅色字标",
+		"lightLogoAlt": "深色背景上的浅色 Kaneo 标志",
+		"lightLogoDetail": "SVG",
+		"icon": "应用图标",
+		"iconAlt": "Kaneo 应用图标",
+		"iconDetail": "PNG, 512 × 512",
+		"download": "下载",
+		"screenshotsTitle": "截图",
+		"lightScreenshot": "看板（浅色）",
+		"lightScreenshotAlt": "浅色主题下的 Kaneo 看板，任务卡片按状态排列",
+		"darkScreenshot": "看板（深色）",
+		"darkScreenshotAlt": "深色主题下的 Kaneo 看板，任务卡片按状态排列",
+		"contactTitle": "媒体联络",
+		"contactBody": "产品咨询、采访邀约或索取更多素材，请联系 Kaneo 团队。",
+		"usageContrast": "深色背景用浅色字标，浅色背景用深色字标。",
+		"usageProportions": "保持标志原有的比例和配色，不要拉伸或叠加特效。",
+		"usageSpace": "标志周围留出足够空间，保证清晰易读。",
+		"darkListScreenshot": "列表（深色）",
+		"darkListScreenshotAlt": "深色主题下的 Kaneo 任务列表，按状态分组，显示负责人、优先级、标签和截止日期",
+		"darkTaskScreenshot": "任务详情（深色）",
+		"darkTaskScreenshotAlt": "深色主题下的 Kaneo 任务详情，包含描述、清单、团队评论和任务属性",
+		"darkTimelineScreenshot": "时间线（深色）",
+		"darkTimelineScreenshotAlt": "深色主题下的 Kaneo 甘特时间线，展示已排期任务及其时长",
+		"lightListScreenshot": "列表（浅色）",
+		"lightListScreenshotAlt": "浅色主题下的 Kaneo 任务列表，按状态分组，显示负责人、优先级、标签和截止日期",
+		"lightTaskScreenshot": "任务详情（浅色）",
+		"lightTaskScreenshotAlt": "浅色主题下的 Kaneo 任务详情，包含描述、清单、团队评论和任务属性",
+		"lightTimelineScreenshot": "时间线（浅色）",
+		"lightTimelineScreenshotAlt": "浅色主题下的 Kaneo 甘特时间线，展示

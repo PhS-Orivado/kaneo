@@ -1,0 +1,707 @@
+页",
+			"refreshComparison": "刷新对比",
+			"refreshPreview": "刷新预览",
+			"removeLabel": "移除 {{name}}",
+			"repository": "仓库",
+			"repositoryLabel": "仓库标签名称",
+			"resumeError": "无法恢复同步。任务、Issue 或规则可能已经变化，也可能是对方服务暂时不可用。同步仍保持暂停，请刷新对比后重试。",
+			"review": "确认并恢复",
+			"reviewHint": "对比双方当前的标题、描述和打开/关闭状态，并选择以哪一侧为准。标签和历史评论不受影响。",
+			"reviewRequired": "符合规则 · 需要确认",
+			"reviewTitle": "恢复同步前先确认",
+			"saved": "同步规则已保存",
+			"saveError": "这些规则未能应用。集成配置或任务范围可能已经变化，请刷新预览后重试。",
+			"selectLabel": "至少选择一个标签，才能预览这条规则。",
+			"sharedHint": "这些规则对该项目的所有成员都生效。关闭高级设置并不会让规则失效。",
+			"title": "同步范围",
+			"unavailableLabel": "不可用的标签",
+			"useKaneo": "以 Kaneo 为准",
+			"useRepository": "以仓库为准",
+			"exportPending": "导出匹配的任务",
+			"inactiveHint": "该集成已暂停。重新启用之前，不会有任务被导出。",
+			"loadSavedRules": "载入已保存的规则",
+			"rulesChanged": "你编辑期间，已保存的规则发生了变化。你的草稿已保留，可以先检查上面的当前规则再决定是否应用，也可以直接载入已保存的规则。"
+		},
+		"advancedSettingsDescription": "这是针对当前浏览器的一项个人显示偏好，在你所有的工作区中通用。",
+		"adminWorkspaces": {
+			"addMember": {
+				"adding": "Adding…",
+				"alreadyMember": "Already a member",
+				"description": "Add an existing user to {{name}}. They can access every project until you limit them.",
+				"noUsers": "No users found",
+				"role": "Role",
+				"searching": "Searching users…",
+				"submit": "Add member",
+				"title": "Add member",
+				"user": "User",
+				"userPlaceholder": "Search name or email…",
+				"usersError": "Users could not be loaded."
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"created": "Created",
+				"members": "Members",
+				"owners": "Owners",
+				"projects": "Projects",
+				"workspace": "Workspace"
+			},
+			"confirm": {
+				"remove": {
+					"action": "Remove member",
+					"description": "{{name}} loses access to {{workspace}} and its projects. Their account stays on this instance.",
+					"title": "Remove {{name}}?"
+				},
+				"transfer": {
+					"action": "Make owner",
+					"description": "{{name}} becomes the only owner of {{workspace}}. Anyone who owns it now becomes an admin.",
+					"title": "Make {{name}} the owner?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "Workspace directory",
+			"emptyDescription": "Try another name or slug.",
+			"emptyTitle": "No workspaces found",
+			"instanceBadge": "Instance",
+			"loadError": "Workspaces could not be loaded.",
+			"manage": "Manage",
+			"manageLabel": "Manage {{name}}",
+			"members": {
+				"actions": "Actions for {{name}}",
+				"add": "Add member",
+				"columns": {
+					"actions": "Actions",
+					"joined": "Joined",
+					"member": "Member",
+					"projects": "Projects",
+					"role": "Role"
+				},
+				"count_other": "{{count}} members",
+				"description": "Change roles, project access, and ownership, even if you aren't a member of this workspace.",
+				"editAccess": "Change project access for {{name}} ({{access}})",
+				"empty": "This workspace has no members.",
+				"loadError": "Members could not be loaded.",
+				"makeOwner": "Make owner",
+				"remove": "Remove from workspace",
+				"roleLabel": "Role for {{name}}",
+				"title": "Members of {{name}}"
+			},
+			"next": "Next",
+			"noOwner": "No owner",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing workspaces",
+			"retry": "Retry",
+			"searchCount_other": "{{count}} matching workspaces",
+			"searchLabel": "Search workspaces",
+			"searchPlaceholder": "Search name or slug…",
+			"subtitle": "Manage every workspace on this Kaneo instance, including ones you don't belong to.",
+			"title": "Workspace management",
+			"toast": {
+				"added": "Member added",
+				"addError": "Failed to add member",
+				"ownershipTransferred": "Ownership transferred",
+				"removed": "Member removed",
+				"removeError": "Failed to remove member",
+				"roleError": "Failed to update role",
+				"roleUpdated": "Role updated",
+				"transferError": "Failed to transfer ownership"
+			},
+			"workspaceCount_other": "{{count}} workspaces"
+		},
+<<<<<<< HEAD
+		"workspaceImport": {
+			"back": {
+				"allSources": "All sources",
+				"changeKey": "Change key",
+				"overview": "Import overview"
+			},
+			"connect": {
+				"cancel": "Cancel",
+				"continue": "Continue",
+				"hideSecret": "Hide {{field}}",
+				"sectionDescription": "Kaneo only reads from {{source}}. The key is used for this import and never stored.",
+				"sectionTitle": "Connect",
+				"showSecret": "Show {{field}}",
+				"title": "Import from {{source}}",
+				"whereToFind": "Where to find it"
+			},
+			"counts": {
+				"columns_other": "{{count, number}} columns",
+				"comments_other": "{{count, number}} comments",
+				"labels_other": "{{count, number}} labels",
+				"tasks_other": "{{count, number}} tasks"
+			},
+			"entry": {
+				"createProjectLink": "Import your projects",
+				"createProjectPrompt": "Moving from Jira, Linear, Trello or Plane?",
+				"projectsEmpty": "Import from another tool"
+			},
+			"history": {
+				"description": "Imports keep running on the server if you leave this page.",
+				"empty": "No imports yet. Imports you start show up here.",
+				"loadError": "Recent imports could not be loaded.",
+				"started": "Started {{time}}",
+				"title": "Recent imports"
+			},
+			"kaneo": {
+				"apiKeyDescription": "In that Kaneo, open Settings, then API Keys.",
+				"apiKeyLabel": "API key",
+				"apiKeyPlaceholder": "Paste API key",
+				"urlDescription": "The instance you are moving from.",
+				"urlLabel": "Kaneo URL"
+			},
+			"linear": {
+				"apiKeyDescription": "Read access is enough. You can revoke it after the import.",
+				"apiKeyLabel": "Personal API key",
+				"openSettings": "Open Linear settings",
+				"stepCreate": "Under Personal API keys, create a key with Read access.",
+				"stepOpen": "In Linear, open Settings, then Security and access.",
+				"stepPaste": "Copy it and paste it above."
+			},
+			"notAllowed": {
+				"description": "Importing creates projects, so it needs permission to manage workspace settings and create projects. Ask a workspace admin to run it.",
+				"title": "Only workspace admins can import"
+			},
+			"opensInNewTab": "(opens in a new tab)",
+			"pageTitle": "Import",
+			"plane": {
+				"tokenDescription": "Profile settings, Developer, then Personal Access Tokens.",
+				"tokenLabel": "Personal access token",
+				"urlDescription": "Copy it from your browser while in Plane. Self-hosted works too.",
+				"urlLabel": "Workspace URL",
+				"urlPlaceholder": "https://app.plane.so/your-workspace"
+			},
+			"planka": {
+				"adminTip": "Use a PLANKA admin account. PLANKA only shows email addresses to admins, and card members are matched to people here by email.",
+				"apiKeyDescription": "Created in PLANKA under your account settings.",
+				"apiKeyLabel": "API key",
+				"apiKeyPlaceholder": "Paste API key",
+				"passwordDescription": "Used only to sign in for this import.",
+				"passwordLabel": "Password",
+				"signInApiKey": "API key",
+				"signInDescription": "Use an API key if your account signs in through SSO.",
+				"signInLabel": "Sign in with",
+				"signInPassword": "Email and password",
+				"urlDescription": "The address you open PLANKA at.",
+				"urlLabel": "PLANKA URL",
+				"usernameDescription": "The account you sign in to PLANKA with.",
+				"usernameLabel": "Email or username"
+			},
+			"retry": "Try again",
+			"run": {
+				"failedBadge": "Failed",
+				"failedNames_other": "{{names, list}} failed, so nothing was created for them.",
+				"failedTitle": "Import failed",
+				"finishedNote": "Imported tasks did not send notifications. Comments keep their original author and date.",
+				"finishedNoteNoComments": "Imported tasks did not send notifications.",
+				"finishedTitle": "Import finished",
+				"goToProjects": "Go to projects",
+				"importingBadge": "Importing",
+				"importingTitle": "Importing from {{source}}",
+				"importMore": "Import more",
+				"keyInMemory": "Your {{source}} key is only kept in memory until this import finishes.",
+				"leavePage": "You can leave this page. The import keeps running on the server.",
+				"loadError": "This import could not be loaded",
+				"noTasks": "No tasks",
+				"nothingImported": "Nothing was imported",
+				"notImported": "Not imported",
+				"open": "Open",
+				"openProject": "Open {{name}}",
+				"queued": "Queued",
+				"started": "Started {{time}}",
+				"starting": "Starting",
+				"took_other": "Took {{count}} minutes",
+				"tookUnderMinute": "Took less than a minute",
+				"totals": "{{parts, list}} imported",
+				"waiting": "Waiting",
+				"warnings_other": "{{count}} warnings"
+			},
+			"select": {
+				"back": "Back",
+				"clear": "Clear",
+				"commentsDescription": "Keeps each comment's original author and date.",
+				"commentsLabel": "Import comments",
+				"inviteMembers": "Invite members",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"selectAll": "Select all",
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+			},
+			"sources": {
+				"connect": "Connect",
+				"connectTo": "Connect {{source}}",
+				"description": "Pick the tool you are moving from. Each project you choose becomes a new project here.",
+				"kaneo": {
+					"description": "Move projects between Kaneo Cloud and a self-hosted instance.",
+					"intro": "Projects from every workspace the key can see. Each one you pick is copied here.",
+					"pickerName": "Another Kaneo"
+				},
+				"linear": {
+					"description": "Teams, issues, labels, sub-issues and comments. Paste a personal API key.",
+					"intro": "Each Linear team becomes a project, with its workflow as columns."
+				},
+				"plane": {
+					"description": "Projects, work items, sub-issues and comments. Cloud or self-hosted.",
+					"intro": "Each Plane project becomes a project here, with its states as columns."
+				},
+				"planka": {
+					"description": "Boards, lists, cards, checklists and comments from your PLANKA instance.",
+					"intro": "Each PLANKA board becomes a project, with its lists as columns."
+				},
+				"title": "Choose a source",
+				"trello": {
+					"description": "Boards, lists, cards, checklists and comments. Authorize with one click.",
+					"intro": "Each Trello board becomes a project, with its lists as columns."
+				},
+				"jira": {
+					"description": "Projects, issues, sub-tasks, links and comments. Cloud or Data Center.",
+					"intro": "Each Jira project becomes a project here, with its workflow as columns."
+				}
+			},
+			"status": {
+				"failed": "Failed",
+				"imported": "Imported",
+				"importing": "Importing {{current}} of {{total}}",
+				"partial": "{{done}} of {{total}} imported",
+				"warnings_other": "Done with {{count}} warnings"
+			},
+			"steps": {
+				"connect": "Connect",
+				"done": "(completed)",
+				"import": "Import",
+				"label": "Import steps"
+			},
+			"subtitle": "Bring your projects from another tool into {{workspace}}. Kaneo only reads from the source.",
+			"title": "Import",
+			"toast": {
+				"failed": "Import from {{source}} failed",
+				"finished": "Import from {{source}} finished",
+				"partial": "Import from {{source}} finished with errors"
+			},
+			"trello": {
+				"apiKeyDescription": "In a Power-Up you own, open the Trello Auth tab and generate an API key (not the OAuth 2.0 tab) at",
+				"apiKeyLabel": "API key",
+				"apiKeyPlaceholder": "Paste API key",
+				"authorizeButton": "Authorize on Trello",
+				"authorizeDescription": "Opens Trello in a new tab. Read only, expires after a day.",
+				"authorizeLabel": "Authorize Kaneo",
+				"authorizeNeedsKey": "Enter the API key first. Read only, expires after a day.",
+				"tokenDescription": "Click Allow on Trello, then paste the token it shows you.",
+				"tokenLabel": "Token",
+				"tokenPlaceholder": "Paste token"
+			},
+			"units": {
+				"board": {
+					"allImported_other": "All {{count}} boards imported.",
+					"empty": "No boards found. Check that this key can see the boards you want to import.",
+					"found_other": "{{count}} boards found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_other": "Import {{count}} boards",
+					"limit": "Pick up to {{max}} boards per import.",
+					"pick": "Pick the boards to bring over.",
+					"progress_other": "{{done}} of {{count}} boards imported",
+					"runTitle_other": "{{source}}, {{count}} boards",
+					"section": "Boards",
+					"someImported_other": "{{done}} of {{count}} boards imported.",
+					"step": "Choose boards"
+				},
+				"project": {
+					"allImported_other": "All {{count}} projects imported.",
+					"empty": "No projects found. Check that this key can see the projects you want to import.",
+					"found_other": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_other": "Import {{count}} projects",
+					"limit": "Pick up to {{max}} projects per import.",
+					"pick": "Pick the projects to bring over.",
+					"progress_other": "{{done}} of {{count}} projects imported",
+					"runTitle_other": "{{source}}, {{count}} projects",
+					"section": "Projects",
+					"someImported_other": "{{done}} of {{count}} projects imported.",
+					"step": "Choose projects"
+				},
+				"team": {
+					"allImported_other": "All {{count}} teams imported.",
+					"empty": "No teams found. Check that this key can see the teams you want to import.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "建议",
+			"commands": "命令",
+			"projects": "项目",
+			"search": "搜索",
+			"members": "成员",
+			"createTask": "创建任务",
+			"createProject": "创建项目",
+			"createWorkspace": "创建工作区",
+			"lightTheme": "浅色主题",
+			"darkTheme": "深色主题",
+			"systemTheme": "跟随系统主题",
+			"keyboardShortcuts": "键盘快捷键",
+			"inputPlaceholder": "搜索应用和命令…",
+			"empty": "未找到结果。",
+			"footer": {
+				"navigate": "导航",
+				"open": "打开",
+				"close": "关闭"
+			}
+		},
+		"sidebar": {
+			"projects": "项目",
+			"members": "成员",
+			"invitations": "邀请",
+			"more": "更多",
+			"backToBoard": "返回看板",
+			"home": "首页",
+			"inbox": "收件箱",
+			"invitePeople": "邀请成员",
+			"myTasks": "我的任务"
+		},
+		"projectList": {
+			"viewProject": "查看项目",
+			"shareProject": "分享项目",
+			"projectSettings": "项目设置",
+			"linkCopied": "项目链接已复制到剪贴板",
+			"addProject": "添加项目",
+			"deleteConfirmTitle": "删除项目？",
+			"deleteConfirmDescription": "这将永久删除项目及其所有数据，此操作不可撤销。",
+			"deletedToast": "项目已删除",
+			"deleteProject": "删除项目",
+			"switcherLabel": "切换项目或视图"
+		},
+		"search": {
+			"inputPlaceholder": "搜索任务、项目、评论…",
+			"minCharsHint": "输入至少 3 个字符开始搜索",
+			"groups": {
+				"task": "任务",
+				"project": "项目",
+				"workspace": "工作区",
+				"comment": "评论",
+				"activity": "活动",
+				"fallback": "结果"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "切换侧边栏",
+			"back": "返回"
+		},
+		"userMenu": {
+			"signedOutSuccess": "已成功退出登录",
+			"signOutFailed": "退出登录失败",
+			"unnamedUser": "用户",
+			"settings": "设置",
+			"signingOut": "正在退出…",
+			"logOut": "退出登录"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "工作区",
+			"switching": "切换中…",
+			"addWorkspace": "添加工作区",
+			"selectWorkspace": "选择工作区"
+		},
+		"page": {
+			"projectsTitle": "项目",
+			"settingsTitle": "设置",
+			"backToWorkspace": "返回工作区",
+			"settingsWorkspaceTab": "工作区"
+		},
+		"projectSettings": {
+			"projectLabel": "项目"
+		},
+		"keyboardShortcuts": {
+			"title": "键盘快捷键",
+			"subtitle": "使用键盘快捷键提升效率",
+			"searchPlaceholder": "搜索快捷键…",
+			"footer": "按 <kbd>Esc</kbd> 关闭",
+			"categories": {
+				"general": "通用",
+				"create": "创建",
+				"views": "视图",
+				"navigation": "导航",
+				"quickSelect": "快速选择（在弹层中）"
+			},
+			"items": {
+				"openCommandPalette": "打开命令面板",
+				"globalSearch": "全局搜索",
+				"toggleSidebar": "切换侧边栏",
+				"showShortcuts": "显示键盘快捷键",
+				"closeModal": "关闭弹窗/弹层",
+				"createTask": "创建任务",
+				"createProject": "创建项目",
+				"createWorkspace": "创建工作区",
+				"boardView": "切换到看板视图",
+				"listView": "切换到列表视图",
+				"backlogView": "切换到待办视图",
+				"calendarView": "切换到日历视图",
+				"nextTask": "下一任务",
+				"prevTask": "上一任务",
+				"openTask": "打开所选任务",
+				"quickSelectNumber": "按数字选择选项"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_other": "{{count}} 条新通知",
+		"emptyTitle": "暂无通知",
+		"emptySubtitle": "更新和活动将显示在这里。",
+		"clearAll": "清空所有通知",
+		"clearDialogTitle": "清空所有通知？",
+		"clearDialogDescription": "这将永久删除所有通知，此操作不可撤销。",
+		"reminderLeadTime": {
+			"minutes_other": "{{count}} 分钟",
+			"hours_other": "{{count}} 小时",
+			"days_other": "{{count}} 天"
+		},
+		"events": {
+			"task_created": {
+				"title": "已创建新任务",
+				"content": "任务 \"{{taskTitle}}\" 已创建"
+			},
+			"workspace_created": {
+				"title": "工作区已创建",
+				"content": "你的工作区 \"{{workspaceName}}\" 已成功创建"
+			},
+			"task_status_changed": {
+				"title": "任务状态已变更",
+				"content": "任务 \"{{taskTitle}}\" 状态从 \"{{oldStatus}}\" 变更为 \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "任务已指派给你",
+				"content": "你已被指派到任务：{{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} 提到了你",
+				"content": "{{mentionerName}} 在 {{taskTitle}} 中提到了你"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} 评论了你的任务",
+				"content": "新评论于 {{taskTitle}}：{{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "任务即将到期",
+				"content": "{{taskTitle}} 将在 {{leadTime}} 后到期"
+			},
+			"task_overdue": {
+				"title": "任务已逾期",
+				"content": "{{taskTitle}} 已超过截止日期"
+			},
+			"time_entry_created": {
+				"title": "已开始计时",
+				"contentWithTask": "已开始为任务 {{taskTitle}} 计时",
+				"contentWithoutTask": "已开始为某个任务计时"
+			}
+		},
+		"inbox": {
+			"back": "收件箱",
+			"earlier": "更早",
+			"emptyFilter": "这里什么都没有",
+			"filters": {
+				"all": "全部",
+				"label": "筛选通知",
+				"mentions": "提及",
+				"unread": "未读"
+			},
+			"openTask": "打开任务",
+			"pageTitle": "收件箱",
+			"recentActivity": "最近动态",
+			"selectPrompt": "选择一条通知查看内容",
+			"taskUnavailable": "该任务已不存在。",
+			"today": "今天",
+			"unread": "未读",
+			"loadError": "通知加载失败。",
+			"taskLoadError": "该任务加载失败。"
+		}
+	},
+	"activity": {
+		"assignedToSelf": "将任务指派给了自己",
+		"unassigned": "取消了任务指派",
+		"assignedTo": "将任务指派给 {{name}}",
+		"changedStatus": "将状态从 {{from}} 改为 {{to}}",
+		"changedPriority": "将优先级从 {{from}} 改为 {{to}}",
+		"clearedDueDate": "清除了截止日期",
+		"setDueDate": "将截止日期设为 {{date}}",
+		"changedDueDate": "将截止日期从 {{from}} 改为 {{to}}",
+		"changedTitle": "将标题从 \"{{from}}\" 改为 \"{{to}}\"",
+		"moved": "将任务从 \"{{from}}\" 移动到 \"{{to}}\"",
+		"created": "创建了此任务",
+		"githubUser": "GitHub 用户",
+		"comment": {
+			"viewGithubProfile": "查看 GitHub 主页",
+			"cannotBeEmpty": "评论不能为空",
+			"mustBeLoggedInToEdit": "你需要登录后才能编辑评论",
+			"updated": "评论已更新",
+			"failedToUpdate": "更新评论失败",
+			"edit": "编辑评论",
+			"editPlaceholder": "编辑评论…",
+			"save": "保存",
+			"added": "评论已添加",
+			"failedToAdd": "添加评论失败",
+			"leavePlaceholder": "发表评论…",
+			"attachFile": "附加文件",
+			"submitShortcut": "提交评论",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "仅在已保存的任务上可上传文件。",
+				"uploadingFile": "正在上传文件…",
+				"imageUploaded": "图片已上传",
+				"fileAttached": "文件已附加",
+				"failedToUploadFile": "上传文件失败",
+				"enterUrl": "输入 URL",
+				"plaintext": "纯文本",
+				"autoDetect": "自动检测",
+				"slashGroupText": "文本",
+				"slashGroupLists": "列表",
+				"slashGroupInsert": "插入",
+				"slashParagraph": "文本",
+				"slashHeading": "标题",
+				"slashBulletList": "无序列表",
+				"slashTaskList": "待办列表",
+				"slashOrderedList": "有序列表",
+				"slashQuote": "引用",
+				"slashCodeBlock": "代码块",
+				"slashTable": "表格",
+				"slashFile": "文件",
+				"searchParagraph": "文本 段落 普通",
+				"searchHeading": "标题 heading h2",
+				"searchBulletList": "列表 项目 无序",
+				"searchTaskList": "待办 清单 复选框 任务列表",
+				"searchOrderedList": "列表 有序 编号",
+				"searchQuote": "引用 块引用",
+				"searchCodeBlock": "代码 片段",
+				"searchTable": "表格 网格",
+				"searchFile": "文件 附件 图片 照片 图片 上传",
+				"embedErrorInvalidUrl": "请输入有效的 URL",
+				"embedErrorYoutubeOnly": "只能嵌入 YouTube 链接。",
+				"embedVideo": "嵌入视频",
+				"keepAsLink": "保留为链接",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "粘贴 URL",
+				"asLink": "作为链接",
+				"embed": "嵌入",
+				"noCommands": "无命令",
+				"ariaCommentContent": "评论内容",
+				"ariaCommentEditor": "评论编辑器",
+				"ariaCopyCode": "复制代码",
+				"ariaCopied": "已复制",
+				"copy": "复制",
+				"copied": "已复制",
+				"dropImageToUpload": "拖入图片以上传",
+				"previewImageAlt": "预览图片",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "纯文本",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "在左侧插入列",
+					"addColumnAfter": "在右侧插入列",
+					"deleteColumn": "删除列",
+					"addRowBefore": "在上方插入行",
+					"addRowAfter": "在下方插入行",
+					"deleteRow": "删除行",
+					"deleteTable": "删除表格"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid 图渲染失败"
+				}
+			},
+			"importedFrom": "从 {{source}} 导入",
+			"importedBy": "由 {{name}} 导入",
+			"commentedOnForge": "在 {{forge}} 上评论"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"

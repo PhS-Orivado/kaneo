@@ -1,0 +1,556 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "キャンセル",
+			"close": "閉じる",
+			"clearAll": "すべてクリア",
+			"delete": "削除",
+			"deleting": "削除中...",
+			"markAllRead": "すべて既読にする",
+			"remove": "削除",
+			"reset": "リセット",
+			"filter": "フィルター",
+			"clearAllFilters": "すべてのフィルターをクリア"
+		},
+		"a11y": {
+			"toggleSidebar": "サイドバーを切り替え"
+		},
+		"sidebar": {
+			"title": "サイドバー",
+			"mobileDescription": "モバイルサイドバーを表示します。"
+		},
+		"empty": {
+			"loading": "読み込み中..."
+		},
+		"pagination": {
+			"label": "ページネーション",
+			"previous": "前へ",
+			"next": "次へ",
+			"previousPage": "前のページに移動",
+			"nextPage": "次のページに移動",
+			"morePages": "その他のページ"
+		},
+		"breadcrumb": {
+			"label": "パンくずリスト",
+			"more": "その他の階層"
+		},
+		"language": {
+			"english": "英語",
+			"german": "ドイツ語",
+			"greek": "ギリシャ語",
+			"macedonian": "マケドニア語",
+			"french": "フランス語",
+			"spanish": "スペイン語",
+			"dutch": "オランダ語",
+			"korean": "韓国語",
+			"chinese": "中国語",
+			"italian": "イタリア語"
+		},
+		"people": {
+			"someone": "ユーザー",
+			"unknown": "不明なユーザー"
+		},
+		"error": {
+			"title": "問題が発生しました",
+			"description": "ページが予期せずクラッシュしました。再読み込みすると解決することがあります。",
+			"troubleshooting": "トラブルシューティングの手順:",
+			"tryAgain": "もう一度試す",
+			"viewDeploymentGuide": "デプロイガイドを表示",
+			"refreshPage": "ページを更新",
+			"messages": {
+				"cors": "サーバーに接続できません。CORS設定に問題がある可能性があります。",
+				"network": "ネットワークエラーが発生しました。インターネット接続を確認して再試行してください。",
+				"auth": "認証に失敗しました。再度サインインしてください。",
+				"server": "サーバーエラーが発生しました。しばらくしてからもう一度お試しください。",
+				"unknown": "予期しないエラーが発生しました。"
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkApiRunning": "APIサーバーが起動していることを確認してください",
+					"checkApiUrl": "フロントエンドの.envにあるVITE_API_URLがAPIサーバーのURLと一致しているか確認してください",
+					"verifyCorsOrigins": "APIの.envにあるCORS_ORIGINSにフロントエンドのURLが含まれていることを確認してください",
+					"checkProtocol": "フロントエンドとAPIが同じプロトコル(http/https)を使用していることを確認してください",
+					"checkAccessibility": "ブラウザからAPIサーバーにアクセスできるか確認してください"
+				},
+				"network": {
+					"checkConnection": "インターネット接続を確認してください",
+					"verifyApiRunning": "APIサーバーが稼働しておりアクセス可能か確認してください",
+					"tryRefresh": "ページを再読み込みしてみてください",
+					"checkFirewall": "ファイアウォールやプロキシの問題がないか確認してください"
+				}
+			}
+		},
+		"formats": {
+			"never": "無期限"
+		},
+		"modals": {
+			"createProject": {
+				"title": "新しいプロジェクトを作成",
+				"breadcrumbNew": "新しいプロジェクトを作成",
+				"workspaceFallback": "ワークスペース",
+				"description": "名前、キー、アイコンを設定してワークスペースに新しいプロジェクトを作成します。",
+				"pickIcon": "アイコンを選択",
+				"searchIcons": "アイコンを検索...",
+				"projectName": "プロジェクト名",
+				"keyLabel": "キー:",
+				"keyHint": "チケットIDに使用されます (例: {{example}}-123)",
+				"createButton": "プロジェクトを作成",
+				"successToast": "プロジェクトを作成しました",
+				"errorToast": "プロジェクトの作成に失敗しました"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "新しいワークスペースを作成",
+				"description": "名前を入力して新しいワークスペースを作成します。",
+				"namePlaceholder": "ワークスペース名",
+				"descriptionPlaceholder": "説明を追加...",
+				"createButton": "ワークスペースを作成",
+				"successToast": "ワークスペースを作成しました",
+				"errorToast": "ワークスペースの作成に失敗しました"
+			},
+			"createTask": {
+				"breadcrumbTask": "タスク",
+				"selectProject": "プロジェクトを選択",
+				"title": "新規タスク",
+				"description": "タイトル、説明、その他の詳細を入力して新しいタスクを作成します。",
+				"taskTitlePlaceholder": "タスク名",
+				"descriptionPlaceholder": "タスクの説明を追加...",
+				"chooseProjectForImages": "画像をアップロードする前にプロジェクトを選択してください。",
+				"prepareTaskError": "タスクの準備に失敗しました",
+				"successCreated": "タスクを作成しました",
+				"successUpdated": "タスクを更新しました",
+				"createError": "タスクの作成に失敗しました",
+				"priority": "優先度",
+				"statusFallback": "進行中",
+				"startDate": "開始日",
+				"dueDate": "期限",
+				"clearStartDate": "開始日をクリア",
+				"clearDueDate": "期限をクリア",
+				"assign": "担当者を割り当て",
+				"assignUnassigned": "未割り当て",
+				"assignUnassignedTitle": "未割り当て",
+				"labels": "ラベル",
+				"searchLabels": "ラベルを検索...",
+				"noLabelsFound": "ラベルが見つかりません",
+				"createLabel": "「{{name}}」を作成",
+				"chooseColor": "色を選択",
+				"labelCreated": "ラベルを作成しました",
+				"labelCreateError": "ラベルの作成に失敗しました",
+				"createMore": "続けて作成",
+				"createButton": "タスクを作成",
+				"discardTitle": "タスクを破棄しますか？",
+				"discardDescription": "保存されていないタスクの詳細は失われます。",
+				"discardButton": "タスクを破棄",
+				"untitledTask": "無題のタスク",
+				"labelColors": {
+					"stone": "ストーン",
+					"slate": "スレート",
+					"lavender": "ラベンダー",
+					"sage": "セージ",
+					"forest": "フォレスト",
+					"amber": "アンバー",
+					"terracotta": "テラコッタ",
+					"rose": "ローズ",
+					"crimson": "クリムゾン"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "サインイン",
+			"subtitle": {
+				"emailOrProvider": "メールアドレスまたは連携済みのアカウントを使用してください。",
+				"email": "メールアドレスを入力すると、サインイン用のコードをお送りします。",
+				"password": "メールアドレスとパスワードを使用してください。",
+				"passwordOrProvider": "パスワードまたは連携済みのアカウントを使用してください。",
+				"providers": "サインイン方法を選択してください。",
+				"sso": "ここでのサインインは組織によって管理されています。"
+			},
+			"lastUsed": "前回使用",
+			"guestError": "ゲストとしてのサインインに失敗しました",
+			"errors": {
+				"account_not_linked": "この認証情報は既存のアカウントにリンクできませんでした。メールでサインインしてアカウントを確認後、再度SSOをお試しください。メールサインインが利用できない場合は、管理者にお問い合わせください。",
+				"oauth_code_verification_failed": "OAuth 認証に失敗しました。もう一度お試しください。",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "現在、新規登録は無効になっています。アカウントを作成するには有効な招待が必要です。",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "恒久的なメールアドレスを使用してください。使い捨てのメールアドレスではアカウントを作成できません。"
+			},
+			"instanceStatusError": "サーバーに接続できませんでした。しばらくしてから再試行してください。",
+			"heading": "Kaneo にサインイン",
+			"submitPassword": "サインイン",
+			"invitation": {
+				"title": "{{inviterName}} さんから {{workspaceName}} への招待が届いています",
+				"fallbackTitle": "招待が届いています",
+				"description": "招待を受け取ったメールアドレスでサインインしてください。サインイン後すぐにワークスペースに参加できます。"
+			},
+			"footer": {
+				"newHere": "Kaneo は初めてですか？",
+				"createAccount": "アカウントを作成",
+				"inviteOnly": "このインスタンスのアカウントは招待制です。管理者に招待を依頼してください。",
+				"providerSignUp": "初めての方は、上のいずれかのプロバイダーでサインインするとアカウントが作成されます。",
+				"anyProvider": "初めての方は、上のどの方法でもアカウントが作成されます。",
+				"contactAdmin": "サインインできない場合は、管理者にお問い合わせください。",
+				"justLooking": "見てみるだけですか？"
+			},
+			"autoLogin": {
+				"title": "サインインしています",
+				"subtitle": "組織のサインインページに移動しています。",
+				"opening": "{{provider}} を開いています…",
+				"stuck": "画面が切り替わりませんか？",
+				"continue": "{{provider}} に進む"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "{{provider}} で続ける",
+			"error": "{{provider}} でサインインできませんでした。もう一度お試しください。"
+		},
+		"forms": {
+			"or": "または",
+			"email": "メールアドレス",
+			"password": "パスワード",
+			"emailPlaceholder": "me@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "パスワードを表示",
+			"hidePassword": "パスワードを非表示",
+			"name": "名前",
+			"namePlaceholder": "山田 花子",
+			"invalidEmail": "name@company.com のような完全なメールアドレスを入力してください。",
+			"nameRequired": "名前を入力してください。",
+			"passwordRequired": "パスワードを入力してください。",
+			"passwordTooShort": "8文字以上で入力してください。",
+			"disposableEmail": "恒久的なメールアドレスを使用してください。使い捨てのメールアドレスではアカウントを作成できません。",
+			"continueWithEmail": "メールアドレスで続ける"
+		},
+		"checkEmail": {
+			"pageTitle": "メールを確認してください",
+			"title": "メールを確認してください",
+			"inboxMessage": "一時的なログインリンクを送信しました。<email>{{email}}</email> の受信トレイをご確認ください。",
+			"emailFallback": "ご登録のメールアドレス",
+			"backToLogin": "サインインに戻る"
+		},
+		"signUp": {
+			"pageTitle": "アカウント作成",
+			"registrationDisabledAlert": "現在、新規登録は無効になっています。招待を受け取っている場合は、招待を受信したメールアドレスを入力してアカウントを作成してください。",
+			"continueAsGuest": "ゲストとして続ける",
+			"toggleMessage": "すでにアカウントをお持ちですか？",
+			"toggleLink": "サインイン",
+			"instanceStatusError": "サーバーに接続できませんでした。しばらくしてから再試行してください。",
+			"instanceAdminTitle": "Kaneo インスタンスのセットアップ",
+			"instanceAdminSubtitle": "このアカウントはフルアクセス権を持つインスタンス管理者になります。",
+			"heading": "アカウントを作成",
+			"submitPassword": "アカウントを作成",
+			"failed": "アカウントを作成できませんでした。もう一度お試しください。",
+			"subtitle": {
+				"email": "まずはメールアドレスを入力してください。パスワードは不要で、コードをお送りします。",
+				"password": "名前、メールアドレス、パスワードを入力して始めましょう。",
+				"providers": "連携済みのアカウントを使ってアカウントを作成できます。"
+			},
+			"invitation": {
+				"description": "招待を受け取ったメールアドレスを使用してください。登録後すぐにワークスペースに参加できます。"
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "認証コードの確認",
+			"validation": {
+				"codeLength": "6桁のコードを入力してください"
+			},
+			"toast": {
+				"invalidCode": "無効な認証コードです",
+				"verifyFailed": "コードの確認に失敗しました",
+				"resendFailed": "コードの再送信に失敗しました",
+				"resendSuccess": "新しい認証コードを送信しました！"
+			},
+			"heading": "メールを確認してください",
+			"description": "{{email}} に6桁のコードを送信しました。有効期限は{{minutes}}分です。",
+			"label": "認証コード",
+			"submit": "確認して続ける",
+			"didntGetIt": "コードが届きませんか？",
+			"resendCode": "コードを再送信",
+			"useDifferentEmail": "別のメールアドレスを使う",
+			"expired": "このコードは有効期限が切れています。新しいコードを送信してください。",
+			"tooManyAttempts": "試行回数が多すぎます。新しいコードを送信してください。"
+		},
+		"otpSignIn": {
+			"sendFailed": "認証コードの送信に失敗しました"
+		},
+		"signInForm": {
+			"failedSignIn": "サインインに失敗しました"
+		},
+		"invitation": {
+			"pageTitleAccept": "招待を承諾",
+			"pageTitleError": "招待エラー",
+			"pageTitleInvalid": "無効な招待",
+			"joinWorkspace": "{{workspaceName}} に参加",
+			"createAccount": "アカウント作成",
+			"signIn": "サインイン",
+			"toast": {
+				"acceptFailed": "招待の承諾に失敗しました",
+				"acceptSuccess": "招待を承諾しました！チームへようこそ。"
+			},
+			"description": "{{inviterName}} さんから Kaneo のこのワークスペースに招待されました。",
+			"invitedBy": "招待者",
+			"sentTo": "送信先",
+			"signedInAs": "サインイン中のアカウント",
+			"expires": "有効期限",
+			"notNow": "今はしない",
+			"join": "ワークスペースに参加",
+			"switchAccount": "アカウントを切り替え",
+			"goToKaneo": "Kaneo に移動",
+			"mismatch": {
+				"title": "別のメールアドレスでサインインしています",
+				"description": "この招待は {{invitedEmail}} 宛てに送信されました。現在 {{email}} でサインインしています。"
+			},
+			"expired": {
+				"title": "この招待は有効期限が切れています",
+				"description": "{{inviterName}} さんに {{workspaceName}} への招待を再送してもらってください。"
+			},
+			"invalid": {
+				"title": "この招待は無効になりました",
+				"description": "すでに承諾されたか、取り消された可能性があります。ワークスペースの管理者に新しい招待を依頼してください。"
+			},
+			"loadFailed": {
+				"title": "招待を読み込めませんでした",
+				"description": "接続を確認して、ページを再読み込みしてください。"
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Kaneo へようこそ",
+			"workspaceName": "ワークスペース名",
+			"workspaceNamePlaceholder": "例: Acme Inc, 開発チーム",
+			"toast": {
+				"createFailed": "ワークスペースの作成に失敗しました"
+			},
+			"validation": {
+				"workspaceNameRequired": "ワークスペース名を入力してください",
+				"projectNameRequired": "最初のプロジェクトに名前を付けてください"
+			},
+			"restrictedSubtitle": "このインスタンスでワークスペースを作成できるのは管理者だけです。招待を依頼してから、このページを再読み込みしてください。",
+			"restrictedCheckInvitations": "招待を確認",
+			"restrictedTitle": "招待が必要です",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "はじめてのプロジェクト",
+			"starterTasks": {
+				"drag": {
+					"title": "このカードを次の列へドラッグする",
+					"description": "作業が進むにつれて、カードは列から列へ移動します。このカードを次の列へドラッグするか、開いてステータスを変更してください。"
+				},
+				"details": {
+					"title": "このタスクを開いてサブタスクを追加する",
+					"description": "タスクには説明、サブタスク、ラベル、担当者、期日を設定できます。試しにこのタスクにサブタスクを追加してみましょう。"
+				},
+				"invite": {
+					"title": "チームを招待する",
+					"description": "Kaneo は全員がそろうと一番役立ちます。サイドバーの **メンバー** を開いて、メールでメンバーを招待しましょう。"
+				},
+				"integrations": {
+					"title": "GitHub、GitLab、Gitea を連携する",
+					"description": "Issue を同期し、プルリクエストの作成やマージに合わせてタスクを自動で移動できます。**プロジェクト設定** から設定してください。"
+				},
+				"create": {
+					"title": "自分のタスクを作成する",
+					"description": "列名の横にある **+** を使うか、**T** を押してから **C** を押します。準備ができたら、これらのスタータータスクは削除してください。"
+				}
+			},
+			"progress": "ステップ {{current}}/{{total}}",
+			"welcome": "ようこそ、{{name}} さん",
+			"settingUp": "{{name}} をセットアップ中",
+			"continue": "続ける",
+			"signedInAs": "{{email}} でサインイン中",
+			"signOut": "サインアウト",
+			"workspace": {
+				"title": "ワークスペースに名前を付けましょう",
+				"description": "ここにプロジェクトがまとまります。チーム名や会社名がおすすめです。名前は後から変更できます。"
+			},
+			"usage": {
+				"title": "誰が使いますか？",
+				"description": "使い方に合わせて {{name}} を設定します。メンバーはいつでも後から招待できます。"
+			},
+			"project": {
+				"title": "最初のプロジェクトを作成しましょう",
+				"description": "使い方がわかるように、いくつかのサンプルタスクを追加します。名前の変更や削除はいつでもできます。",
+				"label": "プロジェクト名",
+				"numbered": "タスク番号の例"
+			},
+			"invite": {
+				"title": "チームを招待しましょう",
+				"description": "{{name}} への参加用メールが届きます。先に中を見てみたい場合は、このステップをスキップできます。",
+				"label": "チームメンバーのメールアドレス",
+				"send_other": "{{count}}件の招待を送信",
+				"sendNone": "招待を送信"
+			},
+			"plan": {
+				"title": "どのように始めますか？",
+				"descriptionTrial_other": "すべてのプランでプロジェクトとタスクを無制限に利用できます。{{name}} を{{count}}日間無料でお試しいただくか、今すぐお申し込みください。",
+				"choose": "プランを選択",
+				"description": {
+					"team": "メンバー、ロール、権限が無制限",
+					"personal": "個人向け"
+				},
+				"perUserMonth": "ユーザーあたり / 月",
+				"perMonth": "月あたり",
+				"subscribe": "{{plan}} プランに申し込む",
+				"checkout": "お支払いに進む",
+				"trialNote": "トライアルにカードは不要です。お支払いは Creem によって処理されます。",
+				"paymentNote": "お支払いは Creem によって処理されます。"
+			},
+			"ready": {
+				"eyebrow": "準備完了",
+				"title": "{{name}} の準備ができました",
+				"description": "以下の内容を設定しました。すべて後から変更できます。",
+				"workspace": "ワークスペース",
+				"project": "最初のプロジェクト",
+				"projectValue_other": "{{name}}（サンプルタスク{{count}}件）",
+				"invitations": "招待",
+				"invitationsValue_other": "{{count}}人に送信済み",
+				"open": "{{name}} を開く"
+			},
+			"preview": {
+				"live": "{{name}} のライブプレビュー",
+				"liveNoName": "ライブプレビュー",
+				"ready": "{{name}} の準備ができました",
+				"untitled": "あなたのワークスペース"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "プロフィール設定",
+			"completeTitle": "プロフィールを完成させる",
+			"subtitle": "始めるには名前を入力してください",
+			"yourName": "お名前",
+			"namePlaceholder": "例: 山田 太郎",
+			"saving": "保存中...",
+			"continue": "続ける",
+			"welcome": "ようこそ、{{name}} さん！",
+			"redirecting": "ダッシュボードに移動しています...",
+			"toast": {
+				"updateSuccess": "プロフィールを更新しました",
+				"updateFailed": "プロフィールの更新に失敗しました"
+			},
+			"validation": {
+				"nameRequired": "名前を入力してください",
+				"nameShort": "名前は2文字以上で入力してください"
+			}
+		},
+		"passwordReset": {
+			"forgotPassword": "Forgot password?",
+			"requestTitle": "Reset your password",
+			"requestSubtitle": "Enter your email and we’ll send you a password reset link.",
+			"sendLink": "Send reset link",
+			"requestError": "Could not request a reset link. Please try again.",
+			"unavailable": "Password reset is unavailable. Contact your instance administrator.",
+			"configError": "Could not reach the server. Please reload the page to try again.",
+			"resetTitle": "Choose a new password",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm new password",
+			"passwordMismatch": "The passwords do not match.",
+			"passwordLength": "Use between 8 and 128 characters.",
+			"invalidLink": "This reset link is invalid or has expired. Request a new link to continue.",
+			"requestNewLink": "Request a new link",
+			"resetError": "Could not reset your password. Please try again.",
+			"success": "Your password has been reset. Sign in with your new password.",
+			"backToSignIn": "Back to sign in",
+			"sentTitle": "受信トレイを確認してください",
+			"sentDescription": "{{email}} のアカウントが存在する場合、パスワード再設定用のリンクをお送りしています。有効期限は1時間です。",
+			"sentHelpTitle": "メールが届きませんか？",
+			"sentHelpDescription": "迷惑メールフォルダを確認するか、1分ほど待ってから別のリンクをリクエストしてください。",
+			"rememberedIt": "思い出しましたか？",
+			"resetDescription": "8文字以上128文字以下で入力してください。他のデバイスからはサインアウトされます。",
+			"updatePassword": "パスワードを更新",
+			"changedMind": "やめておきますか？",
+			"invalidLinkTitle": "このリンクは有効期限切れです",
+			"successTitle": "パスワードを更新しました"
+		},
+		"page": {
+			"terms": "利用規約",
+			"privacy": "プライバシー"
+		},
+		"device": {
+			"connect": {
+				"title": "デバイスを接続",
+				"description": "ターミナルまたはアプリに表示されたコードを入力して、Kaneo アカウントと連携します。",
+				"label": "デバイスコード",
+				"submit": "続ける",
+				"noCode": "コードがまだありませんか？先にアプリからサインインを開始してください。",
+				"codeRequired": "デバイスに表示されたコードを入力してください。",
+				"invalidCode": "このコードは無効か、有効期限が切れています。"
+			},
+			"approve": {
+				"pageTitle": "デバイスの承認",
+				"title": "このデバイスを接続しますか？",
+				"description": "デバイスが {{email}} としてサインインしようとしています。ご自身で開始した場合のみ承認してください。",
+				"matchCode": "デバイスに表示されたコードと一致することを確認してください",
+				"deny": "拒否",
+				"approve": "承認",
+				"failed": "リクエストを更新できませんでした。もう一度お試しください。"
+			},
+			"approved": {
+				"title": "デバイスを接続しました",
+				"description": "ターミナルまたはアプリに戻ってください。このタブは閉じてかまいません。"
+			},
+			"denied": {
+				"title": "リクエストを拒否しました",
+				"description": "何も接続されていません。このタブは閉じてかまいません。"
+			},
+			"missing": {
+				"title": "デバイスコードがありません",
+				"description": "デバイスからこのページを開くか、コードを手動で入力してください。",
+				"enterCode": "コードを入力"
+			},
+			"signIn": {
+				"title": "サインインしてデバイスを接続",
+				"description": "サインイン後すぐにこのページに戻り、承認できます。",
+				"submit": "サインイン"
+			}
+		},
+		"mcp": {
+			"authorize": {
+				"title": "MCP クライアントを承認",
+				"description": "このクライアントは、あなたがアクセスできるすべてのワークスペースであなたとして操作できます。この接続をご自身で開始した場合のみ続行してください。",
+				"client": "クライアント",
+				"unknownClient": "MCP クライアント",
+				"selfReported": "自己申告",
+				"redirect": "戻り先",
+				"signedInAs": "サインイン中のアカウント",
+				"deny": "拒否",
+				"allow": "アクセスを許可"
+			},
+			"expired": {
+				"title": "このリクエストは有効期限が切れています",
+				"description": "MCP クライアントに戻�

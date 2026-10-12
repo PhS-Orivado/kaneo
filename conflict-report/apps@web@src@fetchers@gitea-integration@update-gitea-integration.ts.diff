@@ -1,0 +1,16 @@
+diff --cc apps/web/src/fetchers/gitea-integration/update-gitea-integration.ts
+index be9994e3,56a44ee1..00000000
+--- a/apps/web/src/fetchers/gitea-integration/update-gitea-integration.ts
++++ b/apps/web/src/fetchers/gitea-integration/update-gitea-integration.ts
+@@@ -18,7 -20,7 +20,11 @@@ async function updateGiteaIntegration
+    });
+  
+    if (!response.ok) {
+++<<<<<<< HEAD
+ +    throw await HttpError.fromResponse(response);
+++=======
++     throw new HttpError(response.status, await response.text());
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    }
+  
+    return response.json();

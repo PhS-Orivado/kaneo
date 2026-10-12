@@ -1,0 +1,680 @@
+wklej tutaj wygenerowany adres URL.",
+			"webhookLabel": "Adres URL przychodzącego webhooka",
+			"webhookPlaceholder": "https://hooks.slack.com/services/..."
+		},
+		"tasksImportExport": {
+			"dialogDescription": "Prześlij plik JSON zawierający zadania, aby zaimportować je do tego projektu.",
+			"dialogTitle": "Importuj zadania",
+			"dropHint": "Przeciągnij i upuść tutaj plik JSON",
+			"expectedFormat": "Oczekiwany format:",
+			"exportError": "Nie udało się wyeksportować zadań",
+			"exporting": "Eksportowanie zadań...",
+			"exportSuccess": "Zadania wyeksportowano pomyślnie",
+			"exportTasks": "Eksportuj zadania",
+			"importError": "Nie udało się zaimportować zadań",
+			"importing": "Importowanie zadań...",
+			"importPartialError": "Nie udało się zaimportować {{count}} zadań",
+			"importSuccess": "Pomyślnie zaimportowano {{count}} zadań",
+			"importTasks": "Importuj zadania",
+			"invalidFormat": "Nieprawidłowy format pliku importu",
+			"noFileDropped": "Nie upuszczono pliku",
+			"notJsonFile": "Prześlij plik JSON",
+			"selectFile": "Wybierz plik"
+		},
+		"telegramIntegration": {
+			"botTokenHint": "Utwórz bota za pomocą BotFather i wklej tutaj jego token.",
+			"botTokenHintConfigured": "Token bota jest już skonfigurowany ({{token}}). Wpisz nowy token, aby go zastąpić.",
+			"botTokenLabel": "Token bota",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"chatIdHint": "Wpisz identyfikator czatu Telegram lub nazwę użytkownika kanału, na którym mają być publikowane aktualizacje.",
+			"chatIdLabel": "ID czatu",
+			"chatIdPlaceholder": "-1001234567890 lub @team_updates",
+			"chatLabelHint": "Opcjonalna etykieta pomocnicza wewnątrz Kaneo.",
+			"chatLabelLabel": "Etykieta czatu",
+			"chatLabelPlaceholder": "Aktualizacje zespołu",
+			"connect": "Połącz Telegram",
+			"connected": "Połączono",
+			"connectionHint": "Użyj tokenu bota Telegram i identyfikatora czatu, aby wysyłać aktualizacje zadań projektu do czatu lub wątku.",
+			"connectionTitle": "Połączenie bota Telegram",
+			"disconnect": "Rozłącz",
+			"events": {
+				"taskCommentCreated": "Nowe komentarze",
+				"taskCreated": "Nowe zadania",
+				"taskDescriptionChanged": "Zmiany opisu",
+				"taskPriorityChanged": "Zmiany priorytetu",
+				"taskStatusChanged": "Zmiany statusu",
+				"taskTitleChanged": "Zmiany tytułu"
+			},
+			"eventsHint": "Wybierz, które zmiany w projekcie mają być publikowane na Telegramie.",
+			"eventsTitle": "Powiadomienia o zdarzeniach",
+			"paused": "Wstrzymano",
+			"saveChanges": "Zapisz zmiany",
+			"threadIdHint": "Opcjonalne. Użyj tego dla wątków na forach w grupach Telegram.",
+			"threadIdLabel": "ID wątku tematu",
+			"threadIdPlaceholder": "Opcjonalne ID wątku",
+			"toast": {
+				"disabled": "Powiadomienia Telegram wstrzymane",
+				"enabled": "Powiadomienia Telegram włączone",
+				"removed": "Integrację z Telegramem usunięto pomyślnie",
+				"removeError": "Nie udało się usunąć integracji z Telegramem",
+				"saved": "Integrację z Telegramem zapisano pomyślnie",
+				"saveError": "Nie udało się zapisać integracji z Telegramem",
+				"updateError": "Nie udało się zaktualizować integracji z Telegramem"
+			},
+			"validation": {
+				"botTokenInvalid": "Wpisz prawidłowy token bota Telegram",
+				"chatIdRequired": "ID czatu jest wymagane",
+				"threadIdInvalid": "Wpisz prawidłowe ID wątku tematu Telegram"
+			}
+		},
+		"workflowEditor": {
+			"createColumnsFirst": "Najpierw utwórz kolumny, aby skonfigurować reguły automatyzacji.",
+			"events": {
+				"branch_push": "Wypchnięcie gałęzi",
+				"issue_closed": "Zamknięto zgłoszenie",
+				"issue_opened": "Otwarto zgłoszenie",
+				"pr_merged": "Scalono pull request",
+				"pr_opened": "Otwarto pull request"
+			},
+			"giteaHeading": "Gitea",
+			"giteaHint": "Gdy wystąpi zdarzenie webhooka Gitea, przenieś powiązane zadanie do kolumny.",
+			"githubHeading": "GitHub",
+			"githubHint": "Gdy wystąpi zdarzenie GitHub, przenieś powiązane zadanie do kolumny.",
+			"loading": "Ładowanie...",
+			"selectColumnPlaceholder": "Wybierz kolumnę...",
+			"toastError": "Nie udało się zaktualizować reguły",
+			"toastUpdated": "Zaktualizowano regułę obiegu pracy",
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "When a GitLab webhook event occurs, move the linked task to a column.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"workspaceGeneral": {
+			"dangerZone": "Strefa niebezpieczna",
+			"dangerZoneSubtitle": "Nieodwracalne i destrukcyjne działania.",
+			"deleteModalConfirm": "Usuń obszar roboczy",
+			"deleteModalDescription": "Obszar roboczy „{{name}}” i wszystkie jego dane zostaną trwale usunięte. Tej operacji nie można cofnąć.",
+			"deleteModalTitle": "Usunąć obszar roboczy?",
+			"deleteWorkspace": "Usuń obszar roboczy",
+			"deleteWorkspaceDescription": "Trwale usuń ten obszar roboczy",
+			"descriptionHint": "Krótki opis obszaru roboczego",
+			"descriptionLabel": "Opis",
+			"descriptionPlaceholder": "Wpisz opis obszaru roboczego",
+			"nameHint": "Nazwa obszaru roboczego",
+			"nameLabel": "Nazwa obszaru roboczego",
+			"namePlaceholder": "Wpisz nazwę obszaru roboczego",
+			"pageTitle": "Ustawienia ogólne",
+			"subtitle": "Zarządzaj nazwą i opisem obszaru roboczego.",
+			"title": "Ustawienia ogólne",
+			"toastDeleted": "Obszar roboczy usunięto pomyślnie",
+			"toastDeleteError": "Nie udało się usunąć obszaru roboczego",
+			"toastUpdated": "Obszar roboczy zaktualizowano pomyślnie",
+			"toastUpdateError": "Nie udało się zaktualizować obszaru roboczego",
+			"transferOwnership": {
+				"button": "Przenieś",
+				"confirm": "Przenieś własność",
+				"dialogDescription": "{{name}} zostanie jedynym właścicielem {{workspace}}. Zachowasz dostęp administratora, ale utracisz uprawnienia właściciela, takie jak usuwanie obszaru roboczego lub ponowne przekazanie własności.",
+				"dialogTitle": "Przenieść własność?",
+				"noEligibleMembers": "Zaproś co najmniej jednego innego członka, zanim przekażesz własność.",
+				"pickerHint": "Ta osoba zostanie jedynym właścicielem tego obszaru roboczego.",
+				"pickerLabel": "Nowy właściciel",
+				"pickerPlaceholder": "Wybierz członka",
+				"subtitle": "Przekaż ten obszar roboczy innemu członkowi. Otrzymasz rolę administratora i utracisz uprawnienia właściciela.",
+				"title": "Przenieś własność",
+				"toastError": "Nie udało się przekazać własności",
+				"toastSuccess": "Przekazano własność",
+				"transferring": "Przenoszenie…"
+			},
+			"validation": {
+				"nameRequired": "Nazwa obszaru roboczego jest wymagana",
+				"nameShort": "Nazwa obszaru roboczego musi mieć co najmniej 2 znaki"
+			},
+			"workspaceInfoSubtitle": "Skonfiguruj szczegóły i preferencje obszaru roboczego.",
+			"workspaceInfoTitle": "Informacje o obszarze roboczym"
+		},
+		"workspaceLabels": {
+			"cardDescription": "Zarządzaj etykietami, które można przypisywać do zadań.",
+			"colorLabel": "Kolor",
+			"createDescription": "Utwórz nową etykietę, której można używać w zadaniach tego obszaru roboczego.",
+			"createError": "Nie udało się utworzyć etykiety",
+			"createLabel": "Utwórz etykietę",
+			"createSuccess": "Utworzono etykietę",
+			"deleteConfirmDescription": "Ta etykieta zostanie trwale usunięta ze wszystkich zadań. Tej operacji nie można cofnąć.",
+			"deleteConfirmTitle": "Usunąć tę etykietę?",
+			"deleteError": "Nie udało się usunąć etykiety",
+			"deleteLabel": "Usuń",
+			"deleteSuccess": "Usunięto etykietę",
+			"editDescription": "Zaktualizuj nazwę lub kolor tej etykiety.",
+			"editLabel": "Edytuj etykietę",
+			"empty": "Brak etykiet. Utwórz pierwszą, aby rozpocząć.",
+			"nameLabel": "Nazwa etykiety",
+			"namePlaceholder": "Wpisz nazwę etykiety",
+			"nameRequired": "Nazwa etykiety jest wymagana",
+			"pageTitle": "Ustawienia etykiet",
+			"saveLabel": "Zapisz",
+			"subtitle": "Twórz, edytuj i usuwaj etykiety na poziomie obszaru roboczego.",
+			"title": "Etykiety",
+			"updateError": "Nie udało się zaktualizować etykiety",
+			"updateSuccess": "Zaktualizowano etykietę",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"workspaceRoles": {
+			"allChangesSaved": "Wszystkie zmiany zostały zapisane",
+			"createRole": "Utwórz rolę",
+			"defaultBadge": "Domyślna",
+			"defaultRoleDescriptions": {
+				"admin": "Ma pełny dostęp do obszaru roboczego.",
+				"member": "Może tworzyć zadania i projekty oraz nimi zarządzać.",
+				"viewer": "Może wyświetlać zadania i dodawać komentarze."
+			},
+			"defaultRoleHelp": "Rola domyślna: nazwa jest zarezerwowana i nie można usunąć tego wiersza.",
+			"deleteDialog": {
+				"description": "Rola „{{role}}” zostanie trwale usunięta. Członkowie przypisani do tej roli utracą jej uprawnienia.",
+				"title": "Usunąć rolę?"
+			},
+			"deleteRole": "Usuń rolę",
+			"discard": "Odrzuć",
+			"emptyDescription": "Role domyślne pojawią się tutaj po utworzeniu ich dla tego obszaru roboczego.",
+			"emptyTitle": "Brak ról",
+			"loadError": "Nie udało się załadować ról.",
+			"loading": "Ładowanie…",
+			"nameHint": "Małymi literami. Później nie można jej zmienić.",
+			"nameLabel": "Nazwa",
+			"namePlaceholder": "np. recenzent",
+			"newRole": "Nowa rola",
+			"noAccess": "Do zarządzania rolami obszaru roboczego potrzebujesz uprawnień administratora lub właściciela.",
+			"pageTitle": "Role",
+			"permissionCount_one": "{{count}} uprawnienie",
+			"permissionCount_few": "{{count}} uprawnienia",
+			"permissionCount_many": "{{count}} uprawnień",
+			"permissionCount_other": "{{count}} uprawnienia",
+			"permissions": {
+				"label": {
+					"create": {
+						"description": "Może tworzyć etykiety",
+						"label": "Utwórz"
+					},
+					"delete": {
+						"description": "Może usuwać etykiety",
+						"label": "Usuń"
+					},
+					"read": {
+						"description": "Może wyświetlać etykiety",
+						"label": "Odczyt"
+					},
+					"update": {
+						"description": "Może edytować etykiety",
+						"label": "Zaktualizuj"
+					}
+				},
+				"project": {
+					"create": {
+						"description": "Może tworzyć nowe projekty",
+						"label": "Utwórz"
+					},
+					"delete": {
+						"description": "Może usuwać projekty",
+						"label": "Usuń"
+					},
+					"read": {
+						"description": "Może wyświetlać projekty",
+						"label": "Odczyt"
+					},
+					"share": {
+						"description": "Może udostępniać projekty",
+						"label": "Udostępnij"
+					},
+					"update": {
+						"description": "Może edytować ustawienia projektu",
+						"label": "Zaktualizuj"
+					}
+				},
+				"task": {
+					"assign": {
+						"description": "Może przypisywać zadania członkom",
+						"label": "Przypisz"
+					},
+					"create": {
+						"description": "Może tworzyć zadania",
+						"label": "Utwórz"
+					},
+					"delete": {
+						"description": "Może usuwać zadania",
+						"label": "Usuń"
+					},
+					"read": {
+						"description": "Może wyświetlać zadania",
+						"label": "Odczyt"
+					},
+					"update": {
+						"description": "Może edytować zadania",
+						"label": "Zaktualizuj"
+					}
+				},
+				"workspace": {
+					"delete": {
+						"description": "Może usuwać obszar roboczy",
+						"label": "Usuń"
+					},
+					"manage_settings": {
+						"description": "Może zarządzać ustawieniami obszaru roboczego",
+						"label": "Zarządzaj ustawieniami"
+					},
+					"read": {
+						"description": "Może wyświetlać ustawienia obszaru roboczego",
+						"label": "Odczyt"
+					},
+					"update": {
+						"description": "Może aktualizować ustawienia obszaru roboczego",
+						"label": "Zaktualizuj"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"resources": {
+				"label": "Etykiety",
+				"project": "Projekty",
+				"task": "Zadania",
+				"workspace": "Obszar roboczy",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"saveChanges": "Zapisz zmiany",
+			"sectionSubtitle": "Edytuj role domyślne lub dodaj własną. Członkowie zachowują przypisaną nazwę roli podczas edycji.",
+			"sectionTitle": "Role obszaru roboczego",
+			"subtitle": "Określ, jakie działania członkowie mogą wykonywać w {{workspaceName}}.",
+			"thisWorkspace": "ten obszar roboczy",
+			"title": "Role",
+			"toast": {
+				"created": "Utworzono rolę",
+				"createError": "Nie udało się utworzyć roli",
+				"deleted": "Usunięto rolę",
+				"deleteError": "Nie udało się usunąć roli",
+				"updated": "Zaktualizowano rolę",
+				"updateError": "Nie udało się zaktualizować roli"
+			},
+			"unsavedChanges": "Masz niezapisane zmiany",
+			"validation": {
+				"nameExists": "Rola o tej nazwie już istnieje",
+				"nameRequired": "Nazwa roli jest wymagana",
+				"permissionRequired": "Należy wybrać co najmniej jedno uprawnienie"
+			}
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"administration": "Administration",
+		"adminUsers": {
+			"actions": {
+				"deactivate": "Deactivate account",
+				"edit": "Edit account",
+				"open": "Actions for {{name}}",
+				"reactivate": "Reactivate account"
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"joined": "Joined",
+				"role": "Global role",
+				"status": "Status",
+				"user": "User"
+			},
+			"confirm": {
+				"deactivate": {
+					"action": "Deactivate account",
+					"description": "{{name}} will be signed out and unable to sign in until an administrator reactivates the account.",
+					"title": "Deactivate this account?"
+				},
+				"delete": {
+					"action": "Delete permanently",
+					"description": "This permanently deletes {{name}}, their sessions, memberships, and associated data. This cannot be undone.",
+					"title": "Permanently delete this account?"
+				},
+				"reactivate": {
+					"action": "Reactivate account",
+					"description": "{{name}} will be able to sign in and access their workspaces again.",
+					"title": "Reactivate this account?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "User directory",
+			"edit": {
+				"description": "Update this account's identity and instance-wide access.",
+				"email": "Email address",
+				"name": "Full name",
+				"role": "Global role",
+				"save": "Save changes",
+				"saving": "Saving…",
+				"selfRoleHint": "You cannot change your own global role.",
+				"title": "Edit user"
+			},
+			"emptyDescription": "Try another name or email address.",
+			"emptyTitle": "No users found",
+			"instanceBadge": "Instance",
+			"loadError": "Users could not be loaded.",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing users",
+			"retry": "Retry",
+			"roles": {
+				"admin": "Instance admin",
+				"user": "User"
+			},
+			"searchCount_few": "{{count}} matching users",
+			"searchCount_many": "{{count}} matching users",
+			"searchCount_one": "{{count}} matching user",
+			"searchCount_other": "{{count}} matching users",
+			"searchLabel": "Search users",
+			"searchPlaceholder": "Search name or email…",
+			"status": {
+				"active": "Active",
+				"deactivated": "Deactivated"
+			},
+			"subtitle": "Manage every account registered on this Kaneo instance.",
+			"title": "User management",
+			"toast": {
+				"actionError": "Failed to update user status",
+				"deactivated": "User deactivated",
+				"deleted": "User deleted",
+				"reactivated": "User reactivated",
+				"updated": "User updated",
+				"updateError": "Failed to update user"
+			},
+			"userCount_few": "{{count}} registered users",
+			"userCount_many": "{{count}} registered users",
+			"userCount_one": "{{count}} registered user",
+			"userCount_other": "{{count}} registered users",
+			"you": "(you)"
+		},
+		"security": "Security",
+		"securityPage": {
+			"confirmPassword": "Confirm new password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"currentPassword": "Current password",
+			"currentPasswordPlaceholder": "Enter your current password",
+			"newPassword": "New password",
+			"newPasswordPlaceholder": "Enter a new password",
+			"noPassword": {
+				"description": "Your account signs in with a different method, so there is no password to change.",
+				"title": "Password change isn't available"
+			},
+			"pageTitle": "Security",
+			"sectionSubtitle": "Change the password you use to sign in.",
+			"sectionTitle": "Password",
+			"submit": "Update password",
+			"submitting": "Updating...",
+			"subtitle": "Manage your password and account security.",
+			"title": "Security",
+			"updateError": "Failed to update password.",
+			"updateSuccess": "Password updated.",
+			"validation": {
+				"confirmRequired": "Confirm your new password.",
+				"currentRequired": "Enter your current password.",
+				"mismatch": "Passwords do not match.",
+				"tooShort": "New password must be at least 8 characters.",
+				"sameAsCurrent": "New password must be different from your current password."
+			}
+		},
+		"gitlabIntegration": {
+			"actionsHint": "Verify access and connect",
+			"actionsTitle": "Actions",
+			"badgeConnected": "Connected",
+			"badgeNotConnected": "Not connected",
+			"baseUrlHint": "https://gitlab.com, or the root URL of your instance",
+			"baseUrlLabel": "GitLab URL",
+			"browse": "Browse",
+			"browseModalHint": "Projects your token is a member of",
+			"browseModalTitle": "Your projects",
+			"browseNeedsCredentials": "Enter GitLab URL and token to browse",
+			"commentTaskLinkHint": "When enabled, Kaneo comments with a link to the task on each issue opened in GitLab.",
+			"commentTaskLinkTitle": "Comment a Kaneo link on issues opened in GitLab",
+			"connect": "Connect",
+			"connectedActive": "Project connected and active",
+			"connectionStatus": "Connection status",
+			"currentToken": "stored",
+			"disconnect": "Disconnect",
+			"importDisabledHint": "Verify the project above to enable importing",
+			"importing": "Importing…",
+			"importIssues": "Import issues",
+			"importSectionHint": "Import open issues and merge requests from the project",
+			"importSectionTitle": "Import GitLab issues",
+			"loadingProjects": "Loading projects…",
+			"notConnectedHint": "No GitLab project connected",
+			"openInGitlab": "Open {{project}} in GitLab",
+			"project": "Project",
+			"projectHint": "Linked GitLab project",
+			"projectPathHint": "Full path including any groups, e.g. group/subgroup/project",
+			"projectPathLabel": "Project path",
+			"retry": "Retry",
+			"searchProjects": "Search…",
+			"toast": {
+				"commentOnDisabled": "Task link comments on issues opened in GitLab are turned off",
+				"commentOnEnabled": "Kaneo will comment with a task link on issues opened in GitLab",
+				"importError": "Failed to import issues",
+				"issuesImported": "Issues imported successfully",
+				"notGitlabInstance": "The URL does not point to a GitLab instance",
+				"projectNotFound": "Project not found or not accessible",
+				"redirected": "GitLab URL redirected (usually to HTTPS). Use the final URL directly.",
+				"removed": "GitLab integration removed",
+				"removeError": "Failed to remove GitLab integration",
+				"secretCopied": "Copied",
+				"settingsUpdateError": "Failed to update GitLab integration",
+				"tokenRequired": "Access token is required",
+				"tokenRequiredVerify": "Enter a token to verify",
+				"unableToCopySecret": "Unable to copy secret",
+				"updated": "GitLab integration saved",
+				"updateError": "Failed to save GitLab integration",
+				"verifyError": "Failed to verify GitLab access",
+				"verifyFirst": "Verify access failed. Check URL, token, and project path",
+				"verifyOk": "GitLab token can access this project",
+				"verifyWarning": "Check token permissions or project access"
+			},
+			"tokenHint": "Token with api scope and at least Developer on the project",
+			"tokenLabel": "Access token",
+			"tokenPlaceholder": "Paste token",
+			"tokenPlaceholderUpdate": "Paste new token to rotate",
+			"tokenTypeBearer": "OAuth2 token",
+			"tokenTypeHint": "How the token is sent. Access tokens use PRIVATE-TOKEN; an OAuth2 token uses Authorization.",
+			"tokenTypeLabel": "Token type",
+			"tokenTypePrivate": "Personal, project or group access token",
+			"update": "Update",
+			"validation": {
+				"baseUrlInvalid": "Enter a valid URL (e.g. https://gitlab.com)",
+				"baseUrlRequired": "GitLab base URL is required",
+				"pathInvalid": "Enter the full path, e.g. group/project",
+				"pathRequired": "Project path is required"
+			},
+			"verify": "Verify",
+			"webhookCopy": "Copy",
+			"webhookHide": "Hide",
+			"webhookHint": "In your GitLab project, add a webhook with this URL and secret token. Enable push, issues, comments, and merge request events.",
+			"webhookSecretLabel": "Secret token (must match the one set on the webhook in GitLab)",
+			"webhookShow": "Show",
+			"webhookTitle": "Webhook",
+			"loadProjectsError": "Failed to load projects",
+			"importPermissionHint": "Importing requires permission to create and update tasks.",
+			"providerName": "GitLab"
+		},
+		"calendarFeeds": {
+			"title": "Calendar feeds",
+			"subtitle": "Subscribe to scheduled project tasks in your calendar app.",
+			"createTitle": "Create a calendar feed",
+			"filterHint": "Include tasks with a start or due date. Select labels to include only tasks matching at least one, or leave empty to include all scheduled project tasks.",
+			"labels": "Labels",
+			"selectLabels": "Search and select labels…",
+			"noLabels": "No labels found.",
+			"timeZoneHint": "All-day dates use {{timeZone}}.",
+			"accessHint": "Anyone with a feed link can read the matching task titles, descriptions, and dates. Revoke a link to stop future access.",
+			"create": "Create feed",
+			"creating": "Creating…",
+			"created": "Calendar feed created.",
+			"createError": "Could not create the calendar feed.",
+			"activeFeeds": "Active feeds",
+			"allScheduledTasks": "All scheduled project tasks",
+			"subscribeHint": "Copy a link and add it as a calendar subscription. Updates appear when your calendar app refreshes the feed.",
+			"empty": "No calendar feeds yet.",
+			"feedUrl": "Calendar feed URL",
+			"copy": "Copy link",
+			"copied": "Calendar feed link copied.",
+			"copyError": "Could not copy the link. Select the URL and copy it manually.",
+			"revoke": "Revoke",
+			"revoked": "Calendar feed revoked.",
+			"revokeError": "Could not revoke the calendar feed.",
+			"loadError": "Could not load calendar feeds or labels. Please try again.",
+			"deletedLabel": "Deleted label",
+			"permissionRequired": "You need project-sharing permission to manage calendar feeds."
+		},
+		"invitationEmailFailed": "Invitation saved, but email delivery failed. Check SMTP settings and resend the invitation.",
+		"billing": {
+			"accessEnds": "Access ends",
+			"adminsOnly": "Only workspace owners and admins can manage billing.",
+			"choose": "Choose {{plan}}",
+			"choosePlan": {
+				"subtitle": "Switch anytime. Cancel whenever you like.",
+				"title": "Choose a plan"
+			},
+			"currentPlan": {
+				"subtitle": "Your workspace's active plan and billing status.",
+				"title": "Curren

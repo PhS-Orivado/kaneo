@@ -1,0 +1,107 @@
+Auto-merging apps/api/drizzle/meta/0062_snapshot.json
+CONFLICT (add/add): Merge conflict in apps/api/drizzle/meta/0062_snapshot.json
+Auto-merging apps/api/drizzle/meta/_journal.json
+CONFLICT (content): Merge conflict in apps/api/drizzle/meta/_journal.json
+Auto-merging apps/api/src/database/index.ts
+Auto-merging apps/api/src/database/schema.ts
+Auto-merging apps/api/src/gitea-integration/index.ts
+CONFLICT (content): Merge conflict in apps/api/src/gitea-integration/index.ts
+Auto-merging apps/api/src/gitea-integration/response.ts
+Auto-merging apps/api/src/github-integration/index.ts
+Auto-merging apps/api/src/github-integration/response.ts
+CONFLICT (content): Merge conflict in apps/api/src/github-integration/response.ts
+Auto-merging apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts
+CONFLICT (content): Merge conflict in apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts
+Auto-merging apps/api/src/gitlab-integration/index.ts
+CONFLICT (content): Merge conflict in apps/api/src/gitlab-integration/index.ts
+Auto-merging apps/api/src/gitlab-integration/response.ts
+Auto-merging apps/api/src/index.ts
+Auto-merging apps/api/src/integration-sync/index.ts
+Auto-merging apps/api/src/task/index.ts
+Auto-merging apps/api/src/utils/workspace-access-middleware.ts
+CONFLICT (content): Merge conflict in apps/api/src/utils/workspace-access-middleware.ts
+Auto-merging apps/api/src/workflow-rule/index.ts
+CONFLICT (content): Merge conflict in apps/api/src/workflow-rule/index.ts
+Auto-merging apps/docs/core/integrations/gitlab/setup.mdx
+Auto-merging apps/docs/docs.json
+Auto-merging apps/docs/openapi.json
+CONFLICT (content): Merge conflict in apps/docs/openapi.json
+Auto-merging apps/web/src/components/external-links/external-links-accordion.tsx
+Auto-merging apps/web/src/components/shared/modals/create-task-modal.tsx
+Auto-merging apps/web/src/components/task/task-details-content.tsx
+Auto-merging apps/web/src/components/task/task-properties-sidebar.tsx
+Auto-merging apps/web/src/fetchers/gitea-integration/delete-gitea-integration.ts
+CONFLICT (modify/delete): apps/web/src/fetchers/gitea-integration/get-gitea-integration.ts deleted in 0d3149e38b9ca5b66b6f032dce0422cc354a3250 and modified in HEAD.  Version HEAD of apps/web/src/fetchers/gitea-integration/get-gitea-integration.ts left in tree.
+Auto-merging apps/web/src/fetchers/gitea-integration/import-gitea-issues.ts
+Auto-merging apps/web/src/fetchers/gitea-integration/update-gitea-integration.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/gitea-integration/update-gitea-integration.ts
+Auto-merging apps/web/src/fetchers/github-integration/delete-github-integration.ts
+CONFLICT (modify/delete): apps/web/src/fetchers/github-integration/get-github-integration.ts deleted in 0d3149e38b9ca5b66b6f032dce0422cc354a3250 and modified in HEAD.  Version HEAD of apps/web/src/fetchers/github-integration/get-github-integration.ts left in tree.
+Auto-merging apps/web/src/fetchers/github-integration/update-github-integration.ts
+Auto-merging apps/web/src/fetchers/gitlab-integration/delete-gitlab-integration.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/gitlab-integration/delete-gitlab-integration.ts
+CONFLICT (modify/delete): apps/web/src/fetchers/gitlab-integration/get-gitlab-integration.ts deleted in 0d3149e38b9ca5b66b6f032dce0422cc354a3250 and modified in HEAD.  Version HEAD of apps/web/src/fetchers/gitlab-integration/get-gitlab-integration.ts left in tree.
+Auto-merging apps/web/src/fetchers/gitlab-integration/import-gitlab-issues.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/gitlab-integration/import-gitlab-issues.ts
+Auto-merging apps/web/src/fetchers/gitlab-integration/update-gitlab-integration.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/gitlab-integration/update-gitlab-integration.ts
+Auto-merging apps/web/src/fetchers/integration-sync/get-sync-rules.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/integration-sync/get-sync-rules.ts
+Auto-merging apps/web/src/fetchers/integration-sync/preview-sync-rules.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/integration-sync/preview-sync-rules.ts
+Auto-merging apps/web/src/fetchers/integration-sync/resume-sync.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/integration-sync/resume-sync.ts
+Auto-merging apps/web/src/fetchers/integration-sync/review-sync-resume.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/integration-sync/review-sync-resume.ts
+Auto-merging apps/web/src/fetchers/integration-sync/save-sync-rules.ts
+CONFLICT (content): Merge conflict in apps/web/src/fetchers/integration-sync/save-sync-rules.ts
+Auto-merging apps/web/src/fetchers/task/create-task.ts
+Auto-merging apps/web/src/fetchers/workflow-rule/upsert-workflow-rule.ts
+Auto-merging i18n/az-AZ.json
+CONFLICT (content): Merge conflict in i18n/az-AZ.json
+Auto-merging i18n/de-DE.json
+CONFLICT (content): Merge conflict in i18n/de-DE.json
+Auto-merging i18n/el-GR.json
+CONFLICT (content): Merge conflict in i18n/el-GR.json
+Auto-merging i18n/en-US.json
+Auto-merging i18n/es-ES.json
+CONFLICT (content): Merge conflict in i18n/es-ES.json
+Auto-merging i18n/fr-FR.json
+CONFLICT (content): Merge conflict in i18n/fr-FR.json
+Auto-merging i18n/hi-IN.json
+CONFLICT (content): Merge conflict in i18n/hi-IN.json
+Auto-merging i18n/id-ID.json
+CONFLICT (content): Merge conflict in i18n/id-ID.json
+Auto-merging i18n/it-IT.json
+CONFLICT (content): Merge conflict in i18n/it-IT.json
+Auto-merging i18n/ja-JP.json
+CONFLICT (content): Merge conflict in i18n/ja-JP.json
+Auto-merging i18n/ko-KR.json
+CONFLICT (content): Merge conflict in i18n/ko-KR.json
+Auto-merging i18n/mk-MK.json
+CONFLICT (content): Merge conflict in i18n/mk-MK.json
+Auto-merging i18n/nl-NL.json
+CONFLICT (content): Merge conflict in i18n/nl-NL.json
+Auto-merging i18n/pl-PL.json
+CONFLICT (content): Merge conflict in i18n/pl-PL.json
+Auto-merging i18n/pt-BR.json
+CONFLICT (content): Merge conflict in i18n/pt-BR.json
+Auto-merging i18n/ru-RU.json
+CONFLICT (content): Merge conflict in i18n/ru-RU.json
+Auto-merging i18n/schema.json
+Auto-merging i18n/tr-TR.json
+CONFLICT (content): Merge conflict in i18n/tr-TR.json
+Auto-merging i18n/uk-UA.json
+CONFLICT (content): Merge conflict in i18n/uk-UA.json
+Auto-merging i18n/vi-VN.json
+CONFLICT (content): Merge conflict in i18n/vi-VN.json
+Auto-merging i18n/zh-CN.json
+CONFLICT (content): Merge conflict in i18n/zh-CN.json
+Auto-merging i18n/zh-TW.json
+CONFLICT (content): Merge conflict in i18n/zh-TW.json
+Auto-merging pnpm-workspace.yaml
+CONFLICT (content): Merge conflict in pnpm-workspace.yaml
+Auto-merging tests/api-integration/github-binding-routes.test.ts
+Auto-merging tests/api-integration/github-import-bounds.test.ts
+Auto-merging tests/api-integration/integration-sync-rules.test.ts
+Automatic merge failed; fix conflicts and then commit the result.

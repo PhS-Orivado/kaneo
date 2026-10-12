@@ -189,6 +189,11 @@ async function setup(type: "github" | "gitea" | "gitlab") {
       type,
       projectId: project.id,
       isActive: true,
+      // RFC 0001 WP2: github webhook events resolve their binding by the
+      // repository identity key, so the row must carry it.
+      ...(type === "github"
+        ? { repositoryKey: "github:1", repositoryId: 1 }
+        : {}),
       config: JSON.stringify(config),
     })
     .returning();

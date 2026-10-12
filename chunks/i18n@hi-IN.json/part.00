@@ -1,0 +1,425 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "रद्द करें",
+			"close": "बंद करें",
+			"clearAll": "सभी साफ़ करें",
+			"delete": "हटाएँ",
+			"deleting": "हटा रहे हैं...",
+			"markAllRead": "सभी पढ़ा हुआ करें",
+			"remove": "निकालें",
+			"reset": "रीसेट करें",
+			"filter": "फ़िल्टर",
+			"clearAllFilters": "सभी फ़िल्टर साफ़ करें"
+		},
+		"a11y": {
+			"toggleSidebar": "साइडबार टॉगल करें"
+		},
+		"sidebar": {
+			"title": "साइडबार",
+			"mobileDescription": "मोबाइल साइडबार दिखाता है।"
+		},
+		"empty": {
+			"loading": "लोड हो रहा है..."
+		},
+		"pagination": {
+			"label": "पेजिनेशन",
+			"previous": "पिछला",
+			"next": "अगला",
+			"previousPage": "पिछले पेज पर जाएँ",
+			"nextPage": "अगले पेज पर जाएँ",
+			"morePages": "और पेज"
+		},
+		"breadcrumb": {
+			"label": "ब्रेडक्रंब",
+			"more": "और"
+		},
+		"language": {
+			"english": "अंग्रेज़ी",
+			"german": "जर्मन",
+			"greek": "ग्रीक",
+			"macedonian": "मैसेडोनियन",
+			"french": "फ़्रेंच",
+			"spanish": "स्पेनिश",
+			"dutch": "डच",
+			"korean": "कोरियन",
+			"chinese": "चीनी",
+			"italian": "इतालवी"
+		},
+		"people": {
+			"someone": "कोई",
+			"unknown": "अज्ञात"
+		},
+		"error": {
+			"title": "कुछ गलत हो गया",
+			"troubleshooting": "समस्या निवारण कदम:",
+			"tryAgain": "पुनः प्रयास करें",
+			"viewDeploymentGuide": "डिप्लॉयमेंट गाइड देखें",
+			"refreshPage": "पेज रिफ़्रेश करें",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "कभी नहीं"
+		},
+		"modals": {
+			"createProject": {
+				"title": "नया प्रोजेक्ट बनाएँ",
+				"breadcrumbNew": "नया प्रोजेक्ट बनाएँ",
+				"workspaceFallback": "वर्कस्पेस",
+				"description": "अपने वर्कस्पेस में नाम, कुंजी और आइकन चुनकर एक नया प्रोजेक्ट बनाएँ।",
+				"pickIcon": "आइकन चुनें",
+				"searchIcons": "आइकन खोजें...",
+				"projectName": "प्रोजेक्ट का नाम",
+				"keyLabel": "कुंजी:",
+				"keyHint": "टिकट ID के लिए उपयोग (जैसे, {{example}}-123)",
+				"createButton": "प्रोजेक्ट बनाएँ",
+				"successToast": "प्रोजेक्ट सफलतापूर्वक बनाया गया",
+				"errorToast": "प्रोजेक्ट बनाने में विफल"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "नया वर्कस्पेस बनाएँ",
+				"description": "अपने वर्कस्पेस के लिए नाम देकर एक नया वर्कस्पेस बनाएँ।",
+				"namePlaceholder": "वर्कस्पेस का नाम",
+				"descriptionPlaceholder": "विवरण जोड़ें...",
+				"createButton": "वर्कस्पेस बनाएँ",
+				"successToast": "वर्कस्पेस सफलतापूर्वक बनाया गया",
+				"errorToast": "वर्कस्पेस बनाने में विफल"
+			},
+			"createTask": {
+				"breadcrumbTask": "कार्य",
+				"selectProject": "प्रोजेक्ट चुनें",
+				"title": "नया कार्य",
+				"description": "शीर्षक, विवरण और अन्य विवरण देकर एक नया कार्य बनाएँ।",
+				"taskTitlePlaceholder": "कार्य का शीर्षक",
+				"descriptionPlaceholder": "अपने कार्य के लिए विवरण जोड़ें...",
+				"chooseProjectForImages": "चित्र अपलोड करने से पहले प्रोजेक्ट चुनें।",
+				"prepareTaskError": "कार्य तैयार करने में विफल",
+				"successCreated": "कार्य सफलतापूर्वक बनाया गया",
+				"successUpdated": "कार्य सफलतापूर्वक अपडेट किया गया",
+				"createError": "कार्य बनाने में विफल",
+				"priority": "प्राथमिकता",
+				"statusFallback": "प्रगति में",
+				"startDate": "शुरू की तारीख",
+				"dueDate": "नियत तारीख",
+				"clearStartDate": "शुरू की तारीख साफ़ करें",
+				"clearDueDate": "नियत तारीख साफ़ करें",
+				"assign": "सौंपें",
+				"assignUnassigned": "असाइन नहीं",
+				"assignUnassignedTitle": "असाइन नहीं",
+				"labels": "लेबल",
+				"searchLabels": "लेबल खोजें...",
+				"noLabelsFound": "कोई लेबल नहीं मिला",
+				"createLabel": "\"{{name}}\" बनाएँ",
+				"chooseColor": "रंग चुनें",
+				"labelCreated": "लेबल बनाया गया",
+				"labelCreateError": "लेबल बनाने में विफल",
+				"createMore": "और बनाएँ",
+				"createButton": "कार्य बनाएँ",
+				"discardTitle": "कार्य छोड़ें?",
+				"discardDescription": "आपके सहेजे नहीं गए कार्य विवरण खो जाएँगे।",
+				"discardButton": "कार्य छोड़ें",
+				"untitledTask": "बिना शीर्षक कार्य",
+				"labelColors": {
+					"stone": "पत्थर",
+					"slate": "स्लेट",
+					"lavender": "लैवेंडर",
+					"sage": "सेज",
+					"forest": "वन",
+					"amber": "एम्बर",
+					"terracotta": "टेराकोटा",
+					"rose": "गुलाब",
+					"crimson": "किरमिज़ी"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "साइन इन",
+			"subtitle": {
+				"emailOrProvider": "अपने ईमेल या किसी कनेक्टेड खाते का उपयोग करें।",
+				"email": "अपना ईमेल दर्ज करें, हम आपको साइन-इन कोड भेजेंगे।",
+				"password": "अपने ईमेल और पासवर्ड का उपयोग करें।",
+				"passwordOrProvider": "अपने पासवर्ड या किसी कनेक्टेड खाते का उपयोग करें।",
+				"providers": "चुनें कि आप कैसे साइन इन करना चाहते हैं।",
+				"sso": "यहाँ साइन-इन आपका संगठन प्रबंधित करता है।"
+			},
+			"lastUsed": "पिछली बार उपयोग किया",
+			"guestError": "अतिथि के रूप में साइन इन विफल",
+			"errors": {
+				"account_not_linked": "यह पहचान मौजूदा खाते से लिंक नहीं हो सकी। खाते की पुष्टि के लिए ईमेल से साइन इन करें, फिर SSO पुनः प्रयास करें। यदि ईमेल साइन-इन उपलब्ध नहीं है, तो अपने व्यवस्थापक से संपर्क करें।",
+				"oauth_code_verification_failed": "OAuth सत्यापन विफल। कृपया पुनः प्रयास करें।",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "पंजीकरण वर्तमान में अक्षम है। खाता बनाने के लिए आपको वैध निमंत्रण चाहिए।",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "स्थायी ईमेल पते का उपयोग करें। अस्थायी पतों से खाते नहीं बनाए जा सकते।"
+			},
+			"instanceStatusError": "सर्वर से संपर्क नहीं हो सका। कृपया कुछ देर बाद पुनः प्रयास करें।",
+			"heading": "Kaneo में साइन इन करें",
+			"submitPassword": "साइन इन करें",
+			"invitation": {
+				"title": "{{inviterName}} ने आपको {{workspaceName}} में निमंत्रित किया है",
+				"fallbackTitle": "आपको निमंत्रित किया गया है",
+				"description": "उसी ईमेल से साइन इन करें जिस पर निमंत्रण मिला था। इसके तुरंत बाद आप वर्कस्पेस में शामिल हो जाएँगे।"
+			},
+			"footer": {
+				"newHere": "Kaneo पर नए हैं?",
+				"createAccount": "खाता बनाएँ",
+				"inviteOnly": "यहाँ खाते केवल निमंत्रण से बनते हैं। किसी व्यवस्थापक से निमंत्रण माँगें।",
+				"providerSignUp": "नए हैं? खाता बनाने के लिए ऊपर दिए किसी प्रदाता से साइन इन करें।",
+				"anyProvider": "नए हैं? ऊपर दिया कोई भी विकल्प आपका खाता बना देगा।",
+				"contactAdmin": "साइन इन करने में समस्या है? अपने व्यवस्थापक से संपर्क करें।",
+				"justLooking": "बस देख रहे हैं?"
+			},
+			"autoLogin": {
+				"title": "आपको साइन इन किया जा रहा है",
+				"subtitle": "आपको आपके संगठन के साइन-इन पेज पर ले जाया जा रहा है।",
+				"opening": "{{provider}} खोला जा रहा है…",
+				"stuck": "आगे नहीं बढ़ रहा?",
+				"continue": "{{provider}} पर जाएँ"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "{{provider}} के साथ जारी रखें",
+			"error": "{{provider}} से साइन इन नहीं हो सका। फिर से कोशिश करें।"
+		},
+		"forms": {
+			"or": "या",
+			"email": "ईमेल",
+			"password": "पासवर्ड",
+			"emailPlaceholder": "me@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "पासवर्ड दिखाएँ",
+			"hidePassword": "पासवर्ड छिपाएँ",
+			"name": "नाम",
+			"namePlaceholder": "प्रिया शर्मा",
+			"invalidEmail": "पूरा ईमेल पता दर्ज करें, जैसे name@company.com",
+			"nameRequired": "अपना नाम दर्ज करें।",
+			"passwordRequired": "अपना पासवर्ड दर्ज करें।",
+			"passwordTooShort": "कम से कम 8 वर्णों का उपयोग करें।",
+			"disposableEmail": "स्थायी ईमेल पते का उपयोग करें। अस्थायी पतों से खाते नहीं बनाए जा सकते।",
+			"continueWithEmail": "ईमेल के साथ जारी रखें"
+		},
+		"checkEmail": {
+			"pageTitle": "अपना ईमेल जाँचें",
+			"title": "अपना ईमेल जाँचें",
+			"inboxMessage": "हमने आपको एक अस्थायी लॉगिन लिंक भेजा है। कृपया <email>{{email}}</email> पर अपना इनबॉक्स जाँचें।",
+			"emailFallback": "आपका ईमेल पता",
+			"backToLogin": "लॉगिन पर वापस जाएँ"
+		},
+		"signUp": {
+			"pageTitle": "खाता बनाएँ",
+			"registrationDisabledAlert": "पंजीकरण वर्तमान में अक्षम है। यदि आपको निमंत्रित किया गया था, तो वह ईमेल पता दर्ज करें जिसे निमंत्रण मिला था।",
+			"continueAsGuest": "अतिथि के रूप में जारी रखें",
+			"toggleMessage": "पहले से खाता है?",
+			"toggleLink": "साइन इन करें",
+			"instanceStatusError": "सर्वर से संपर्क नहीं हो सका। कृपया कुछ देर बाद पुनः प्रयास करें।",
+			"instanceAdminTitle": "अपना Kaneo इंस्टेंस सेट अप करें",
+			"instanceAdminSubtitle": "यह खाता पूर्ण पहुँच के साथ इंस्टेंस व्यवस्थापक बन जाता है।",
+			"heading": "अपना खाता बनाएँ",
+			"submitPassword": "खाता बनाएँ",
+			"failed": "आपका खाता नहीं बन सका। फिर से कोशिश करें।",
+			"subtitle": {
+				"email": "अपने ईमेल से शुरू करें। हम एक कोड भेजेंगे, पासवर्ड की ज़रूरत नहीं।",
+				"password": "शुरू करने के लिए अपना नाम, ईमेल और एक पासवर्ड जोड़ें।",
+				"providers": "अपना खाता बनाने के लिए किसी कनेक्टेड खाते का उपयोग करें।"
+			},
+			"invitation": {
+				"description": "उसी ईमेल का उपयोग करें जिस पर निमंत्रण मिला था। इसके तुरंत बाद आप वर्कस्पेस में शामिल हो जाएँगे।"
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "कोड सत्यापित करें",
+			"validation": {
+				"codeLength": "कोड 6 अंकों का होना चाहिए"
+			},
+			"toast": {
+				"invalidCode": "अमान्य सत्यापन कोड",
+				"verifyFailed": "कोड सत्यापित करने में विफल",
+				"resendFailed": "कोड पुनः भेजने में विफल",
+				"resendSuccess": "नया सत्यापन कोड भेजा गया!"
+			},
+			"heading": "अपना ईमेल जाँचें",
+			"description": "हमने {{email}} पर 6 अंकों का कोड भेजा है। यह {{minutes}} मिनट में समाप्त हो जाएगा।",
+			"label": "सत्यापन कोड",
+			"submit": "सत्यापित करें और जारी रखें",
+			"didntGetIt": "कोड नहीं मिला?",
+			"resendCode": "कोड फिर से भेजें",
+			"useDifferentEmail": "दूसरा ईमेल इस्तेमाल करें",
+			"expired": "यह कोड समाप्त हो गया है। नया कोड मँगवाएँ।",
+			"tooManyAttempts": "बहुत अधिक प्रयास हो गए। नया कोड मँगवाएँ।"
+		},
+		"otpSignIn": {
+			"sendFailed": "सत्यापन कोड भेजने में विफल"
+		},
+		"signInForm": {
+			"failedSignIn": "साइन इन विफल"
+		},
+		"invitation": {
+			"pageTitleAccept": "निमंत्रण स्वीकार करें",
+			"pageTitleError": "निमंत्रण त्रुटि",
+			"pageTitleInvalid": "अमान्य निमंत्रण",
+			"joinWorkspace": "{{workspaceName}} में शामिल हों",
+			"createAccount": "खाता बनाएँ",
+			"signIn": "साइन इन",
+			"toast": {
+				"acceptFailed": "निमंत्रण स्वीकार करने में विफल",
+				"acceptSuccess": "निमंत्रण स्वीकार किया! टीम में स्वागत है।"
+			},
+			"description": "{{inviterName}} ने आपको Kaneo पर इस वर्कस्पेस में निमंत्रित किया है।",
+			"invitedBy": "निमंत्रण भेजने वाले",
+			"sentTo": "इस पते पर भेजा गया",
+			"signedInAs": "साइन इन किया गया खाता",
+			"expires": "समाप्ति",
+			"notNow": "अभी नहीं",
+			"join": "वर्कस्पेस में शामिल हों",
+			"switchAccount": "खाता बदलें",
+			"goToKaneo": "Kaneo पर जाएँ",
+			"mismatch": {
+				"title": "आपने किसी दूसरे ईमेल से साइन इन किया है",
+				"description": "यह निमंत्रण {{invitedEmail}} पर भेजा गया था। आपने {{email}} से साइन इन किया है।"
+			},
+			"expired": {
+				"title": "इस निमंत्रण की समय-सीमा समाप्त हो गई है",
+				"description": "{{inviterName}} से {{workspaceName}} के लिए नया निमंत्रण भेजने को कहें।"
+			},
+			"invalid": {
+				"title": "यह निमंत्रण अब मान्य नहीं है",
+				"description": "हो सकता है इसे स्वीकार या रद्द कर दिया गया हो। वर्कस्पेस के किसी व्यवस्थापक से नया निमंत्रण माँगें।"
+			},
+			"loadFailed": {
+				"title": "यह निमंत्रण लोड नहीं हो सका",
+				"description": "अपना कनेक्शन जाँचें और पेज फिर से लोड करें।"
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Kaneo में आपका स्वागत है",
+			"workspaceName": "वर्कस्पेस का नाम",
+			"workspaceNamePlaceholder": "जैसे Acme Inc, मेरी टीम",
+			"toast": {
+				"createFailed": "वर्कस्पेस बनाने में विफल"
+			},
+			"validation": {
+				"workspaceNameRequired": "वर्कस्पेस का नाम आवश्यक है",
+				"projectNameRequired": "अपने पहले प्रोजेक्ट को एक नाम दें"
+			},
+			"restrictedSubtitle": "यहाँ केवल इंस्टेंस व्यवस्थापक ही कार्यक्षेत्र बना सकता है। आमंत्रण के लिए कहें, फिर यह पृष्ठ पुनः लोड करें।",
+			"restrictedCheckInvitations": "आमंत्रण देखें",
+			"restrictedTitle": "आपको आमंत्रण चाहिए",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "मेरा पहला प्रोजेक्ट",
+			"starterTasks": {
+				"drag": {
+					"title": "इस कार्ड को अगले कॉलम में खींचें",
+					"description": "काम आगे बढ़ने के साथ कार्ड एक कॉलम से दूसरे कॉलम में जाते हैं। इसे अगले कॉलम में खींचें, या इसे खोलकर इसका स्टेटस बदलें।"
+				},
+				"details": {
+					"title": "इस टास्क को खोलें और एक सबटास्क जोड़ें",
+					"description": "एक टास्क में विवरण, सबटास्क, लेबल, असाइनी और ड्यू डेट हो सकती है। आज़माने के लिए इसमें एक सबटास्क जोड़ें।"
+				},
+				"invite": {
+					"title": "अपनी टीम को आमंत्रित करें",
+					"description": "Kaneo तब सबसे अच्छा काम करता है जब सभी इसमें हों। लोगों को ईमेल से आमंत्रित करने के लिए साइडबार में **सदस्य** खोलें।"
+				},
+				"integrations": {
+					"title": "GitHub, GitLab या Gitea कनेक्ट करें",
+					"description": "इश्यू सिंक करें और पुल रिक्वेस्ट खुलने और मर्ज होने पर टास्क अपने आप आगे बढ़ाएँ। इसे **प्रोजेक्ट सेटिंग** में सेट करें।"
+				},
+				"create": {
+					"title": "अपना खुद का टास्क बनाएँ",
+					"description": "किसी कॉलम के नाम के पास **+** का इस्तेमाल करें, या **T** और फिर **C** दबाएँ। तैयार होने पर इन स्टार्टर टास्क को हटा दें।"
+				}
+			},
+			"progress": "चरण {{current}} / {{total}}",
+			"welcome": "स्वागत है, {{name}}",
+			"settingUp": "{{name}} सेट अप हो रहा है",
+			"continue": "जारी रखें",
+			"signedInAs": "{{email}} के रूप में साइन इन",
+			"signOut": "साइन आउट करें",
+			"workspace": {
+				"title": "अपने वर्कस्पेस को नाम दें",
+				"description": "यहीं आपके प्रोजेक्ट रहेंगे। अपनी टीम या कंपनी का नाम इस्तेमाल करें, आप इसे बाद में बदल सकते हैं।"
+			},
+			"usage": {
+				"title": "यह किसके लिए है?",
+				"description": "हम {{name}} को उसी हिसाब से सेट करेंगे। आप लोगों को बाद में भी कभी भी निमंत्रित कर सकते हैं।"
+			},
+			"project": {
+				"title": "अपना पहला प्रोजेक्ट शुरू करें",
+				"description": "शुरुआत में मदद के लिए हम कुछ स्टार्टर टास्क जोड़ेंगे। आप कभी भी इनका नाम बदल सकते हैं या इन्हें हटा सकते हैं।",
+				"label": "प्रोजेक्ट का नाम",
+				"numbered": "टास्क इस तरह क्रमांकित होंगे"
+			},
+			"invite": {
+				"title": "अपनी टीम को जोड़ें",
+				"description": "उन्हें {{name}} में शामिल होने के लिए एक ईमेल मिलेगा। अगर आप पहले देखना चाहते हैं तो इसे छोड़ दें।",
+				"label": "टीम के साथियों के ईमेल",
+				"send_one": "{{count}} निमंत्रण भेजें",
+				"send_other": "{{count}} निमंत्रण भेजें",
+				"sendNone": "निमंत्रण भेजें"
+			},
+			"plan": {
+				"title": "आप कैसे शुरू करना चाहते हैं?",
+				"descriptionTrial_one": "हर प्लान में अनलिमिटेड प्रोजेक्ट और टास्क शामिल हैं। {{name}} को {{count}} दिन मुफ़्त आज़माएँ, या अभी सब्सक्राइब करें।",
+				"descriptionTrial_other": "हर प्लान में अनलिमिटेड प्रोजेक्ट और टास

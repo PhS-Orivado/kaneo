@@ -1,0 +1,553 @@
+ωση Discord αφαιρέθηκε με επιτυχία",
+				"removeError": "Αποτυχία αφαίρεσης της ενσωμάτωσης Discord",
+				"saved": "Η ενσωμάτωση Discord αποθηκεύτηκε με επιτυχία",
+				"saveError": "Αποτυχία αποθήκευσης της ενσωμάτωσης Discord",
+				"updateError": "Αποτυχία ενημέρωσης της ενσωμάτωσης Discord"
+			},
+			"update": "Ενημέρωση Discord",
+			"validation": {
+				"webhookInvalid": "Εισαγάγετε ένα έγκυρο URL webhook Discord"
+			},
+			"webhookHint": "Δημιουργήστε ένα webhook καναλιού Discord και επικολλήστε εδώ το παραγόμενο URL.",
+			"webhookLabel": "URL webhook",
+			"webhookPlaceholder": "https://discord.com/api/webhooks/..."
+		},
+		"genericWebhookIntegration": {
+			"connect": "Σύνδεση webhook",
+			"connected": "Συνδεδεμένο",
+			"connectionHint": "Στείλτε γεγονότα εργασιών στο δικό σας endpoint ως JSON. Περιλαμβάνεται υπογεγραμμένη κεφαλίδα X-Kaneo-Signature όταν έχει ρυθμιστεί μυστικό.",
+			"connectionTitle": "Σύνδεση εξερχόμενου webhook",
+			"disconnect": "Αποσύνδεση",
+			"events": {
+				"taskAssigneeChanged": "Αλλαγή ανάθεσης",
+				"taskCommentCreated": "Νέα σχόλια",
+				"taskCreated": "Νέες εργασίες",
+				"taskDeleted": "Διαγραφή εργασίας",
+				"taskDescriptionChanged": "Αλλαγές περιγραφής",
+				"taskDueDateChanged": "Αλλαγή ημερομηνίας λήξης",
+				"taskMoved": "Μετακίνηση εργασίας",
+				"taskPriorityChanged": "Αλλαγές προτεραιότητας",
+				"taskStatusChanged": "Αλλαγές κατάστασης",
+				"taskTitleChanged": "Αλλαγές τίτλου",
+				"taskUnassigned": "Αφαίρεση ανάθεσης",
+				"dueDateReminder": "Υπενθυμίσεις ημερομηνίας λήξης"
+			},
+			"eventsHint": "Επιλέξτε ποιες αλλαγές έργου θα ενεργοποιούν εξερχόμενα webhooks.",
+			"eventsTitle": "Ειδοποιήσεις γεγονότων",
+			"paused": "Σε παύση",
+			"saveChanges": "Αποθήκευση αλλαγών",
+			"secretHint": "Προαιρετικό. Αν δοθεί, το Kaneo υπογράφει το σώμα του αιτήματος και στέλνει το hex digest στην κεφαλίδα X-Kaneo-Signature.",
+			"secretHintConfigured": "Έχει ήδη ρυθμιστεί ένα μυστικό υπογραφής ({{secret}}). Εισαγάγετε ένα νέο για να το αντικαταστήσετε.",
+			"secretLabel": "Μυστικό υπογραφής",
+			"secretPlaceholder": "Προαιρετικό κοινόχρηστο μυστικό",
+			"toast": {
+				"disabled": "Οι ειδοποιήσεις γενικού webhook τέθηκαν σε παύση",
+				"enabled": "Οι ειδοποιήσεις γενικού webhook ενεργοποιήθηκαν",
+				"removed": "Η ενσωμάτωση γενικού webhook αφαιρέθηκε με επιτυχία",
+				"removeError": "Αποτυχία αφαίρεσης της ενσωμάτωσης γενικού webhook",
+				"saved": "Η ενσωμάτωση γενικού webhook αποθηκεύτηκε με επιτυχία",
+				"saveError": "Αποτυχία αποθήκευσης της ενσωμάτωσης γενικού webhook",
+				"updateError": "Αποτυχία ενημέρωσης της ενσωμάτωσης γενικού webhook"
+			},
+			"validation": {
+				"webhookInvalid": "Εισαγάγετε ένα έγκυρο URL webhook"
+			},
+			"webhookHint": "Το Kaneo στέλνει αιτήματα POST με JSON payload για κάθε ενεργοποιημένο γεγονός.",
+			"webhookLabel": "URL endpoint",
+			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
+			"reminderLeadTimeLabel": "Αποστολή του webhook τόσες ώρες πριν από τη λήξη"
+		},
+		"telegramIntegration": {
+			"validation": {
+				"botTokenInvalid": "Εισαγάγετε έγκυρο token bot Telegram",
+				"chatIdRequired": "Το αναγνωριστικό συνομιλίας είναι υποχρεωτικό",
+				"threadIdInvalid": "Εισαγάγετε έγκυρο αναγνωριστικό θέματος Telegram"
+			},
+			"toast": {
+				"saved": "Η ενσωμάτωση Telegram αποθηκεύτηκε με επιτυχία",
+				"saveError": "Αποτυχία αποθήκευσης της ενσωμάτωσης Telegram",
+				"enabled": "Οι ειδοποιήσεις Telegram ενεργοποιήθηκαν",
+				"disabled": "Οι ειδοποιήσεις Telegram μπήκαν σε παύση",
+				"updateError": "Αποτυχία ενημέρωσης της ενσωμάτωσης Telegram",
+				"removed": "Η ενσωμάτωση Telegram αφαιρέθηκε με επιτυχία",
+				"removeError": "Αποτυχία αφαίρεσης της ενσωμάτωσης Telegram"
+			},
+			"connectionTitle": "Σύνδεση bot Telegram",
+			"connectionHint": "Χρησιμοποιήστε token bot Telegram και αναγνωριστικό συνομιλίας για να στέλνετε ενημερώσεις έργου σε συνομιλία ή θέμα.",
+			"connected": "Συνδεδεμένο",
+			"paused": "Σε παύση",
+			"botTokenLabel": "Token bot",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"botTokenHint": "Δημιουργήστε bot με το BotFather και επικολλήστε εδώ το token του.",
+			"botTokenHintConfigured": "Ένα token bot έχει ήδη ρυθμιστεί ({{token}}). Εισαγάγετε νέο για να το αντικαταστήσετε.",
+			"chatIdLabel": "Αναγνωριστικό συνομιλίας",
+			"chatIdPlaceholder": "-1001234567890 ή @team_updates",
+			"chatIdHint": "Εισαγάγετε το αναγνωριστικό συνομιλίας Telegram ή το όνομα καναλιού όπου θα δημοσιεύονται οι ενημερώσεις.",
+			"threadIdLabel": "Αναγνωριστικό θέματος",
+			"threadIdPlaceholder": "Προαιρετικό αναγνωριστικό θέματος",
+			"threadIdHint": "Προαιρετικό. Χρησιμοποιήστε το για θέματα forum μέσα σε ομάδες Telegram.",
+			"chatLabelLabel": "Ετικέτα συνομιλίας",
+			"chatLabelPlaceholder": "Ενημερώσεις ομάδας μηχανικών",
+			"chatLabelHint": "Προαιρετική ετικέτα για δική σας αναφορά μέσα στο Kaneo.",
+			"eventsTitle": "Ειδοποιήσεις συμβάντων",
+			"eventsHint": "Επιλέξτε ποιες αλλαγές έργου θα δημοσιεύονται στο Telegram.",
+			"events": {
+				"taskCreated": "Νέες εργασίες",
+				"taskStatusChanged": "Αλλαγές κατάστασης",
+				"taskPriorityChanged": "Αλλαγές προτεραιότητας",
+				"taskTitleChanged": "Αλλαγές τίτλου",
+				"taskDescriptionChanged": "Αλλαγές περιγραφής",
+				"taskCommentCreated": "Νέα σχόλια"
+			},
+			"connect": "Σύνδεση Telegram",
+			"saveChanges": "Αποθήκευση αλλαγών",
+			"disconnect": "Αποσύνδεση"
+		},
+		"repositoryBrowser": {
+			"title": "Επιλογή αποθετηρίου",
+			"description": "Επιλέξτε ένα αποθετήριο στο οποίο είναι εγκατεστημένη η εφαρμογή GitHub για να ενεργοποιήσετε τον συγχρονισμό issues.",
+			"searchPlaceholder": "Αναζήτηση αποθετηρίων...",
+			"loadError": "Αποτυχία φόρτωσης αποθετηρίων",
+			"tryAgain": "Δοκιμάστε ξανά",
+			"emptyTitle": "Δεν βρέθηκαν αποθετήρια",
+			"emptyHint": "Εγκαταστήστε την εφαρμογή GitHub στα αποθετήριά σας για να τα δείτε εδώ.",
+			"installGithubApp": "Εγκατάσταση εφαρμογής GitHub",
+			"noSearchMatchTitle": "Κανένα αποθετήριο δεν ταιριάζει με την αναζήτησή σας",
+			"noSearchMatchHint": "Δοκιμάστε να προσαρμόσετε τους όρους αναζήτησης ή καθαρίστε την αναζήτηση για να δείτε όλα τα αποθετήρια.",
+			"footerSummary": "{{repoCount}} αποθετήρια σε {{installationCount}} εγκαταστάσεις",
+			"manageInstallations": "Διαχείριση εγκαταστάσεων",
+			"updatedPrefix": "Ενημερώθηκε",
+			"relativeJustNow": "μόλις τώρα",
+			"relativeMinutesAgo": "πριν από {{count}}λ",
+			"relativeHoursAgo": "πριν από {{count}}ω",
+			"relativeDaysAgo": "πριν από {{count}}η"
+		},
+		"tasksImportExport": {
+			"exportTasks": "Εξαγωγή εργασιών",
+			"importTasks": "Εισαγωγή εργασιών",
+			"dialogTitle": "Εισαγωγή εργασιών",
+			"dialogDescription": "Ανεβάστε ένα αρχείο JSON που περιέχει εργασίες για εισαγωγή σε αυτό το έργο.",
+			"expectedFormat": "Αναμενόμενη μορφή:",
+			"dropHint": "Σύρετε και αποθέστε το αρχείο JSON εδώ",
+			"selectFile": "Επιλογή αρχείου",
+			"exporting": "Γίνεται εξαγωγή εργασιών...",
+			"exportSuccess": "Οι εργασίες εξήχθησαν με επιτυχία",
+			"exportError": "Αποτυχία εξαγωγής εργασιών",
+			"importing": "Γίνεται εισαγωγή εργασιών...",
+			"importSuccess": "Εισήχθησαν επιτυχώς {{count}} εργασίες",
+			"importPartialError": "Αποτυχία εισαγωγής {{count}} εργασιών",
+			"importError": "Αποτυχία εισαγωγής εργασιών",
+			"invalidFormat": "Μη έγκυρη μορφή αρχείου εισαγωγής",
+			"noFileDropped": "Δεν αποθέσατε κανένα αρχείο",
+			"notJsonFile": "Παρακαλώ ανεβάστε αρχείο JSON"
+		},
+		"workflowEditor": {
+			"loading": "Φόρτωση...",
+			"createColumnsFirst": "Δημιουργήστε πρώτα στήλες για να ρυθμίσετε τους κανόνες αυτοματοποίησης.",
+			"githubHeading": "GitHub",
+			"githubHint": "Όταν συμβαίνει ένα γεγονός στο GitHub, μετακινήστε τη συνδεδεμένη εργασία σε μια στήλη.",
+			"selectColumnPlaceholder": "Επιλέξτε στήλη...",
+			"toastUpdated": "Ο κανόνας ροής εργασίας ενημερώθηκε",
+			"toastError": "Αποτυχία ενημέρωσης κανόνα",
+			"events": {
+				"branch_push": "Push κλάδου",
+				"pr_opened": "Άνοιγμα PR",
+				"pr_merged": "Συγχώνευση PR",
+				"issue_opened": "Άνοιγμα issue",
+				"issue_closed": "Κλείσιμο issue"
+			},
+			"giteaHeading": "Gitea",
+			"giteaHint": "Όταν συμβαίνει ένα γεγονός webhook του Gitea, μετακινήστε τη συνδεδεμένη εργασία σε μια στήλη.",
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "When a GitLab webhook event occurs, move the linked task to a column.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"externalLinks": {
+			"resources": "Πόροι",
+			"issue": "Issue",
+			"branch": "Κλάδος",
+			"merged": "Συγχωνευμένο",
+			"draft": "Πρόχειρο",
+			"open": "Ανοιχτό",
+			"adding": "Adding...",
+			"addResource": "Add resource",
+			"cancel": "Cancel",
+			"empty": "No resources linked to this task.",
+			"titleOptional": "Title (optional)",
+			"url": "URL",
+			"remove": "Remove {{title}}",
+			"removeError": "Failed to remove the resource link."
+		},
+		"workspaceRoles": {
+			"pageTitle": "Ρόλοι",
+			"title": "Ρόλοι",
+			"subtitle": "Ορίστε ποιες ενέργειες μπορούν να εκτελούν τα μέλη στο {{workspaceName}}.",
+			"thisWorkspace": "αυτόν τον χώρο εργασίας",
+			"noAccess": "Χρειάζεστε δικαιώματα διαχειριστή ή ιδιοκτήτη για να διαχειριστείτε τους ρόλους του χώρου εργασίας.",
+			"sectionTitle": "Ρόλοι χώρου εργασίας",
+			"sectionSubtitle": "Επεξεργαστείτε τους προεπιλεγμένους ρόλους ή προσθέστε έναν προσαρμοσμένο. Τα μέλη διατηρούν το όνομα του ρόλου που τους έχει ανατεθεί μετά τις αλλαγές.",
+			"newRole": "Νέος ρόλος",
+			"loading": "Φόρτωση…",
+			"loadError": "Αποτυχία φόρτωσης ρόλων.",
+			"emptyTitle": "Δεν υπάρχουν ακόμα ρόλοι",
+			"emptyDescription": "Οι προεπιλεγμένοι ρόλοι θα εμφανιστούν εδώ μόλις δημιουργηθούν για αυτόν τον χώρο εργασίας.",
+			"defaultBadge": "Προεπιλογή",
+			"permissionCount_one": "{{count}} δικαίωμα",
+			"permissionCount_other": "{{count}} δικαιώματα",
+			"nameLabel": "Όνομα",
+			"nameHint": "Πεζά γράμματα. Δεν μπορεί να αλλάξει αργότερα.",
+			"namePlaceholder": "π.χ. reviewer",
+			"discard": "Απόρριψη",
+			"createRole": "Δημιουργία ρόλου",
+			"deleteRole": "Διαγραφή ρόλου",
+			"defaultRoleHelp": "Προεπιλεγμένος ρόλος: το όνομα είναι δεσμευμένο και η γραμμή δεν μπορεί να διαγραφεί.",
+			"unsavedChanges": "Έχετε μη αποθηκευμένες αλλαγές",
+			"allChangesSaved": "Όλες οι αλλαγές αποθηκεύτηκαν",
+			"saveChanges": "Αποθήκευση αλλαγών",
+			"defaultRoleDescriptions": {
+				"viewer": "Μπορεί να βλέπει και να σχολιάζει εργασίες.",
+				"member": "Μπορεί να δημιουργεί και να διαχειρίζεται εργασίες και έργα.",
+				"admin": "Έχει πλήρη πρόσβαση στον χώρο εργασίας."
+			},
+			"resources": {
+				"project": "Έργα",
+				"task": "Εργασίες",
+				"label": "Ετικέτες",
+				"workspace": "Χώρος εργασίας",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Δημιουργία",
+						"description": "Μπορεί να δημιουργεί νέα έργα"
+					},
+					"read": {
+						"label": "Ανάγνωση",
+						"description": "Μπορεί να βλέπει έργα"
+					},
+					"update": {
+						"label": "Ενημέρωση",
+						"description": "Μπορεί να επεξεργάζεται τις ρυθμίσεις έργου"
+					},
+					"delete": {
+						"label": "Διαγραφή",
+						"description": "Μπορεί να διαγράφει έργα"
+					},
+					"share": {
+						"label": "Κοινοποίηση",
+						"description": "Μπορεί να κοινοποιεί έργα"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Δημιουργία",
+						"description": "Μπορεί να δημιουργεί εργασίες"
+					},
+					"read": {
+						"label": "Ανάγνωση",
+						"description": "Μπορεί να βλέπει εργασίες"
+					},
+					"update": {
+						"label": "Ενημέρωση",
+						"description": "Μπορεί να επεξεργάζεται εργασίες"
+					},
+					"delete": {
+						"label": "Διαγραφή",
+						"description": "Μπορεί να διαγράφει εργασίες"
+					},
+					"assign": {
+						"label": "Ανάθεση",
+						"description": "Μπορεί να αναθέτει εργασίες σε μέλη"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Δημιουργία",
+						"description": "Μπορεί να δημιουργεί ετικέτες"
+					},
+					"read": {
+						"label": "Ανάγνωση",
+						"description": "Μπορεί να βλέπει ετικέτες"
+					},
+					"update": {
+						"label": "Ενημέρωση",
+						"description": "Μπορεί να επεξεργάζεται ετικέτες"
+					},
+					"delete": {
+						"label": "Διαγραφή",
+						"description": "Μπορεί να διαγράφει ετικέτες"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Ανάγνωση",
+						"description": "Μπορεί να βλέπει τις ρυθμίσεις του χώρου εργασίας"
+					},
+					"update": {
+						"label": "Ενημέρωση",
+						"description": "Μπορεί να ενημερώνει τις ρυθμίσεις του χώρου εργασίας"
+					},
+					"delete": {
+						"label": "Διαγραφή",
+						"description": "Μπορεί να διαγράφει τον χώρο εργασίας"
+					},
+					"manage_settings": {
+						"label": "Διαχείριση ρυθμίσεων",
+						"description": "Μπορεί να διαχειρίζεται τις ρυθμίσεις του χώρου εργασίας"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "Το όνομα ρόλου είναι υποχρεωτικό",
+				"nameExists": "Υπάρχει ήδη ρόλος με αυτό το όνομα",
+				"permissionRequired": "Πρέπει να επιλεγεί τουλάχιστον ένα δικαίωμα"
+			},
+			"toast": {
+				"created": "Ο ρόλος δημιουργήθηκε",
+				"createError": "Αποτυχία δημιουργίας ρόλου",
+				"updated": "Ο ρόλος ενημερώθηκε",
+				"updateError": "Αποτυχία ενημέρωσης ρόλου",
+				"deleted": "Ο ρόλος διαγράφηκε",
+				"deleteError": "Αποτυχία διαγραφής ρόλου"
+			},
+			"deleteDialog": {
+				"title": "Διαγραφή ρόλου",
+				"description": "Αυτό θα διαγράψει οριστικά τον ρόλο \"{{role}}\". Τα μέλη με αυτόν τον ρόλο θα χάσουν τα δικαιώματά του."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "Ρυθμίσεις ετικετών",
+			"title": "Ετικέτες",
+			"subtitle": "Δημιουργήστε, επεξεργαστείτε και διαγράψτε ετικέτες σε επίπεδο χώρου εργασίας.",
+			"cardDescription": "Διαχειριστείτε τις ετικέτες που μπορούν να ανατεθούν σε εργασίες.",
+			"createLabel": "Δημιουργία ετικέτας",
+			"editLabel": "Επεξεργασία ετικέτας",
+			"deleteLabel": "Διαγραφή",
+			"saveLabel": "Αποθήκευση",
+			"nameLabel": "Όνομα ετικέτας",
+			"namePlaceholder": "Εισαγάγετε όνομα ετικέτας",
+			"colorLabel": "Χρώμα",
+			"createDescription": "Δημιουργήστε μια νέα ετικέτα που μπορεί να χρησιμοποιείται στις εργασίες αυτού του χώρου εργασίας.",
+			"editDescription": "Ενημερώστε το όνομα ή το χρώμα αυτής της ετικέτας.",
+			"deleteConfirmTitle": "Διαγραφή αυτής της ετικέτας;",
+			"deleteConfirmDescription": "Αυτό θα αφαιρέσει οριστικά την ετικέτα από όλες τις εργασίες. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί.",
+			"empty": "Δεν υπάρχουν ακόμα ετικέτες. Δημιουργήστε την πρώτη σας ετικέτα για να ξεκινήσετε.",
+			"createSuccess": "Η ετικέτα δημιουργήθηκε",
+			"updateSuccess": "Η ετικέτα ενημερώθηκε",
+			"deleteSuccess": "Η ετικέτα διαγράφηκε",
+			"createError": "Αποτυχία δημιουργίας ετικέτας",
+			"updateError": "Αποτυχία ενημέρωσης ετικέτας",
+			"deleteError": "Αποτυχία διαγραφής ετικέτας",
+			"nameRequired": "Το όνομα ετικέτας είναι υποχρεωτικό",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"administration": "Administration",
+		"adminUsers": {
+			"actions": {
+				"deactivate": "Deactivate account",
+				"edit": "Edit account",
+				"open": "Actions for {{name}}",
+				"reactivate": "Reactivate account"
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"joined": "Joined",
+				"role": "Global role",
+				"status": "Status",
+				"user": "User"
+			},
+			"confirm": {
+				"deactivate": {
+					"action": "Deactivate account",
+					"description": "{{name}} will be signed out and unable to sign in until an administrator reactivates the account.",
+					"title": "Deactivate this account?"
+				},
+				"delete": {
+					"action": "Delete permanently",
+					"description": "This permanently deletes {{name}}, their sessions, memberships, and associated data. This cannot be undone.",
+					"title": "Permanently delete this account?"
+				},
+				"reactivate": {
+					"action": "Reactivate account",
+					"description": "{{name}} will be able to sign in and access their workspaces again.",
+					"title": "Reactivate this account?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "User directory",
+			"edit": {
+				"description": "Update this account's identity and instance-wide access.",
+				"email": "Email address",
+				"name": "Full name",
+				"role": "Global role",
+				"save": "Save changes",
+				"saving": "Saving…",
+				"selfRoleHint": "You cannot change your own global role.",
+				"title": "Edit user"
+			},
+			"emptyDescription": "Try another name or email address.",
+			"emptyTitle": "No users found",
+			"instanceBadge": "Instance",
+			"loadError": "Users could not be loaded.",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing users",
+			"retry": "Retry",
+			"roles": {
+				"admin": "Instance admin",
+				"user": "User"
+			},
+			"searchCount_one": "{{count}} matching user",
+			"searchCount_other": "{{count}} matching users",
+			"searchLabel": "Search users",
+			"searchPlac

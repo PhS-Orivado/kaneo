@@ -1,0 +1,654 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Cancelar",
+			"close": "Cerrar",
+			"clearAll": "Limpiar todo",
+			"delete": "Borrar",
+			"deleting": "Borrando...",
+			"markAllRead": "Marcar todos como leídos",
+			"remove": "Borrar",
+			"reset": "Restablecer",
+			"filter": "Filtrar",
+			"clearAllFilters": "Eliminar todos los filtros"
+		},
+		"a11y": {
+			"toggleSidebar": "Mostrar barra lateral"
+		},
+		"sidebar": {
+			"title": "Barra lateral",
+			"mobileDescription": "Muestra la barra lateral."
+		},
+		"empty": {
+			"loading": "Cargando..."
+		},
+		"pagination": {
+			"label": "Paginación",
+			"previous": "Anterior",
+			"next": "Siguiente",
+			"previousPage": "Ir a la página anterior",
+			"nextPage": "Ir a la página siguiente",
+			"morePages": "Más páginas"
+		},
+		"breadcrumb": {
+			"label": "Ruta de navegación",
+			"more": "Más"
+		},
+		"language": {
+			"english": "Inglés",
+			"german": "Alemán",
+			"greek": "Griego",
+			"macedonian": "Macedonio",
+			"french": "Francés",
+			"spanish": "Español",
+			"korean": "Coreano",
+			"chinese": "Chino",
+			"italian": "Italiano",
+			"dutch": "Neerlandés"
+		},
+		"people": {
+			"someone": "Alguien",
+			"unknown": "Desconocido"
+		},
+		"error": {
+			"title": "Algo ha ido mal",
+			"troubleshooting": "Pasos para solucionar problemas:",
+			"tryAgain": "Intentar de nuevo",
+			"viewDeploymentGuide": "Ver el manual del despliegue",
+			"refreshPage": "Actualizar página",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Nunca"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Crear un nuevo proyecto",
+				"breadcrumbNew": "Crear un nuevo proyecto",
+				"workspaceFallback": "WORKSPACE",
+				"description": "Crea un nuevo proyecto en tu espacio de trabajo, eligiendo nombre, identificador y seleccionando un icono.",
+				"pickIcon": "Elegir icono",
+				"searchIcons": "Buscar iconos...",
+				"projectName": "Nombre del proyecto",
+				"keyLabel": "Identificador:",
+				"keyHint": "Se usa para los ID de los tickets (p. ej., {{example}}-123)",
+				"createButton": "Crear proyecto",
+				"successToast": "Proyecto creado satisfactoriamente",
+				"errorToast": "Hubo un error al crear el proyecto"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Crear un nuevo espacio de trabajo",
+				"description": "Crea un nuevo espacio de trabajo eligiendo un nombre.",
+				"namePlaceholder": "Nombre del espacio de trabajo",
+				"descriptionPlaceholder": "Añadir descripción...",
+				"createButton": "Crear espacio de trabajo",
+				"successToast": "Espacio de trabajo creado satisfactoriamente",
+				"errorToast": "Hubo un error al crear el espacio de trabajo"
+			},
+			"createTask": {
+				"breadcrumbTask": "TASK",
+				"selectProject": "Seleccionar proyecto",
+				"title": "Nueva tarea",
+				"description": "Crear una nueva tarea con título, descripción y otra información.",
+				"taskTitlePlaceholder": "Título de la tarea",
+				"descriptionPlaceholder": "Añade una descripción para la tarea...",
+				"chooseProjectForImages": "Elige un proyecto antes de subir imágenes.",
+				"prepareTaskError": "Error al preparar la tarea",
+				"successCreated": "Tarea creada satisfactoriamente",
+				"successUpdated": "Tarea actualizada satisfactoriamente",
+				"createError": "Error al crear la tarea",
+				"priority": "Prioridad",
+				"statusFallback": "En progreso",
+				"startDate": "Fecha de inicio",
+				"dueDate": "Fecha de vencimiento",
+				"clearStartDate": "Borrar fecha de inicio",
+				"clearDueDate": "Borrar fecha de vencimiento",
+				"assign": "Asignar",
+				"assignUnassigned": "Sin asignar",
+				"assignUnassignedTitle": "Sin asignar",
+				"labels": "Etiquetas",
+				"searchLabels": "Buscar etiquetas...",
+				"noLabelsFound": "No se han encontrado etiquetas",
+				"createLabel": "Crear \"{{name}}\"",
+				"chooseColor": "Elegir color",
+				"labelCreated": "Etiqueta creada",
+				"labelCreateError": "Error al crear la etiqueta",
+				"createMore": "Crear más",
+				"createButton": "Crear tarea",
+				"discardTitle": "¿Descartar tarea?",
+				"discardDescription": "Los detalles de la tarea que no hayas guardado se perderán.",
+				"discardButton": "Descartar tarea",
+				"untitledTask": "Tarea sin título",
+				"labelColors": {
+					"stone": "Piedra",
+					"slate": "Pizarra",
+					"lavender": "Lavanda",
+					"sage": "Savia",
+					"forest": "Bosque",
+					"amber": "Ámbar",
+					"terracotta": "Terracota",
+					"rose": "Rosa",
+					"crimson": "Carmesí"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_many": "Issues in {{count}} repos",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Iniciar sesión",
+			"subtitle": {
+				"emailOrProvider": "Usa tu correo electrónico o una cuenta conectada.",
+				"email": "Introduce tu correo electrónico y te enviaremos un código para iniciar sesión.",
+				"password": "Usa tu correo electrónico y tu contraseña.",
+				"passwordOrProvider": "Usa tu contraseña o una cuenta conectada.",
+				"providers": "Elige cómo quieres iniciar sesión.",
+				"sso": "Aquí el inicio de sesión lo gestiona tu organización."
+			},
+			"lastUsed": "Usado por última vez",
+			"guestError": "Error al iniciar sesión como invitado",
+			"errors": {
+				"account_not_linked": "No se ha podido vincular esta identidad a la cuenta existente. Inicia sesión con tu correo electrónico para verificar la cuenta y vuelve a intentar el SSO. Si el inicio de sesión por correo no está disponible, contacta con tu administrador.",
+				"oauth_code_verification_failed": "La verificación OAuth ha fallado. Por favor, inténtalo de nuevo.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "El registro está actualmente deshabilitado. Necesitas una invitación válida para crear una cuenta.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Usa una dirección de correo permanente. Con direcciones desechables no se pueden crear cuentas."
+			},
+			"instanceStatusError": "No se ha podido contactar con el servidor. Vuelve a intentarlo en un momento.",
+			"heading": "Inicia sesión en Kaneo",
+			"submitPassword": "Iniciar sesión",
+			"invitation": {
+				"title": "{{inviterName}} te ha invitado a {{workspaceName}}",
+				"fallbackTitle": "Has recibido una invitación",
+				"description": "Inicia sesión con el correo que recibió la invitación. Te unirás al espacio de trabajo justo después."
+			},
+			"footer": {
+				"newHere": "¿Primera vez en Kaneo?",
+				"createAccount": "Crear una cuenta",
+				"inviteOnly": "Aquí las cuentas son solo por invitación. Pide una invitación a un administrador.",
+				"providerSignUp": "¿Primera vez aquí? Inicia sesión con uno de los proveedores de arriba para crear una cuenta.",
+				"anyProvider": "¿Primera vez aquí? Cualquiera de las opciones de arriba crea tu cuenta.",
+				"contactAdmin": "¿Problemas para iniciar sesión? Contacta con tu administrador.",
+				"justLooking": "¿Solo quieres echar un vistazo?"
+			},
+			"autoLogin": {
+				"title": "Iniciando sesión",
+				"subtitle": "Te llevamos a la página de inicio de sesión de tu organización.",
+				"opening": "Abriendo {{provider}}…",
+				"stuck": "¿No avanza?",
+				"continue": "Continuar a {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Continuar con {{provider}}",
+			"error": "No se ha podido iniciar sesión con {{provider}}. Inténtalo de nuevo."
+		},
+		"forms": {
+			"or": "o",
+			"email": "Email",
+			"password": "Contraseña",
+			"emailPlaceholder": "yo@ejemplo.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Mostrar contraseña",
+			"hidePassword": "Ocultar contraseña",
+			"name": "Nombre",
+			"namePlaceholder": "María García",
+			"invalidEmail": "Introduce una dirección de correo completa, como nombre@empresa.com.",
+			"nameRequired": "Introduce tu nombre.",
+			"passwordRequired": "Introduce tu contraseña.",
+			"passwordTooShort": "Usa al menos 8 caracteres.",
+			"disposableEmail": "Usa una dirección de correo permanente. Con direcciones desechables no se pueden crear cuentas.",
+			"continueWithEmail": "Continuar con correo electrónico"
+		},
+		"checkEmail": {
+			"pageTitle": "Verifica tu email",
+			"title": "Verifica tu email",
+			"inboxMessage": "Te hemos enviado un enlace temporal. Por favor, comprueba tu bandeja de entrada en <email>{{email}}</email>.",
+			"emailFallback": "tu dirección de correo electrónico",
+			"backToLogin": "Volver a login"
+		},
+		"signUp": {
+			"pageTitle": "Crear Cuenta",
+			"registrationDisabledAlert": "El registro está actualmente deshabilitado. Si has sido invitado, introduce la dirección de correo electrónico en la que has recibido la invitación para crear tu cuenta.",
+			"continueAsGuest": "Continuar como invitado",
+			"toggleMessage": "¿Ya tienes cuenta?",
+			"toggleLink": "Iniciar sesión",
+			"instanceStatusError": "No se ha podido contactar con el servidor. Vuelve a intentarlo en un momento.",
+			"instanceAdminTitle": "Configura tu instancia de Kaneo",
+			"instanceAdminSubtitle": "Esta cuenta se convierte en la administradora de la instancia con acceso completo.",
+			"heading": "Crea tu cuenta",
+			"submitPassword": "Crear cuenta",
+			"failed": "No se ha podido crear tu cuenta. Inténtalo de nuevo.",
+			"subtitle": {
+				"email": "Empieza con tu correo electrónico. Te enviaremos un código, sin necesidad de contraseña.",
+				"password": "Añade tu nombre, tu correo electrónico y una contraseña para empezar.",
+				"providers": "Usa una cuenta conectada para crear la tuya."
+			},
+			"invitation": {
+				"description": "Usa el correo que recibió la invitación. Te unirás al espacio de trabajo justo después."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Verificar Código",
+			"validation": {
+				"codeLength": "El código debe contener 6 dígitos"
+			},
+			"toast": {
+				"invalidCode": "El código de verificación no es válido",
+				"verifyFailed": "Fallo al verificar el código",
+				"resendFailed": "Error al reenviar el código",
+				"resendSuccess": "¡Nuevo código de verificación enviado!"
+			},
+			"heading": "Revisa tu correo",
+			"description": "Hemos enviado un código de 6 dígitos a {{email}}. Caduca en {{minutes}} minutos.",
+			"label": "Código de verificación",
+			"submit": "Verificar y continuar",
+			"didntGetIt": "¿No te ha llegado?",
+			"resendCode": "Reenviar código",
+			"useDifferentEmail": "Usar otro correo",
+			"expired": "Este código ha caducado. Solicita uno nuevo.",
+			"tooManyAttempts": "Demasiados intentos. Solicita un código nuevo."
+		},
+		"otpSignIn": {
+			"sendFailed": "Error al enviar el código de verificación"
+		},
+		"signInForm": {
+			"failedSignIn": "Error al iniciar sesión"
+		},
+		"invitation": {
+			"pageTitleAccept": "Aceptar Invitación",
+			"pageTitleError": "Error en la invitación",
+			"pageTitleInvalid": "Invitación no válida",
+			"joinWorkspace": "Unirse a {{workspaceName}}",
+			"createAccount": "Crear cuenta",
+			"signIn": "Iniciar sesión",
+			"toast": {
+				"acceptFailed": "Error al aceptar la invitación",
+				"acceptSuccess": "¡Invitación aceptada! Bienvenido al equipo."
+			},
+			"description": "{{inviterName}} te ha invitado a este espacio de trabajo en Kaneo.",
+			"invitedBy": "Invitación de",
+			"sentTo": "Enviada a",
+			"signedInAs": "Sesión iniciada como",
+			"expires": "Caduca el",
+			"notNow": "Ahora no",
+			"join": "Unirse al espacio de trabajo",
+			"switchAccount": "Cambiar de cuenta",
+			"goToKaneo": "Ir a Kaneo",
+			"mismatch": {
+				"title": "Has iniciado sesión con otro correo",
+				"description": "Esta invitación se envió a {{invitedEmail}}. Has iniciado sesión como {{email}}."
+			},
+			"expired": {
+				"title": "Esta invitación ha caducado",
+				"description": "Pide a {{inviterName}} que te envíe una nueva para {{workspaceName}}."
+			},
+			"invalid": {
+				"title": "Esta invitación ya no es válida",
+				"description": "Puede que ya se haya aceptado o cancelado. Pide una nueva a un administrador del espacio de trabajo."
+			},
+			"loadFailed": {
+				"title": "No se ha podido cargar esta invitación",
+				"description": "Comprueba tu conexión y recarga la página."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Bienvenido a Kaneo",
+			"workspaceName": "Nombre del espacio de trabajo",
+			"workspaceNamePlaceholder": "e.g. Acme SA, Mi Equipo",
+			"toast": {
+				"createFailed": "Error al crear el espacio de trabajo"
+			},
+			"validation": {
+				"workspaceNameRequired": "El nombre del espacio de trabajo es obligatorio",
+				"projectNameRequired": "Ponle un nombre a tu primer proyecto"
+			},
+			"restrictedSubtitle": "Aquí solo un administrador de la instancia puede crear espacios de trabajo. Pide que te inviten y recarga esta página.",
+			"restrictedCheckInvitations": "Ver invitaciones",
+			"restrictedTitle": "Necesitas una invitación",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_many": "{{count}} invitations sent",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Mi primer proyecto",
+			"starterTasks": {
+				"drag": {
+					"title": "Arrastra esta tarjeta a la siguiente columna",
+					"description": "Las tarjetas pasan de columna en columna a medida que avanza el trabajo. Arrastra esta a la siguiente columna, o ábrela y cambia su estado."
+				},
+				"details": {
+					"title": "Abre esta tarea y añade una subtarea",
+					"description": "Una tarea puede tener descripción, subtareas, etiquetas, una persona asignada y fecha límite. Añade una subtarea a esta para probarlo."
+				},
+				"invite": {
+					"title": "Invita a tu equipo",
+					"description": "Kaneo funciona mejor cuando todos están dentro. Abre **Miembros** en la barra lateral para invitar a personas por correo."
+				},
+				"integrations": {
+					"title": "Conecta GitHub, GitLab o Gitea",
+					"description": "Sincroniza issues y mueve tareas automáticamente cuando se abren y fusionan pull requests. Configúralo en **Ajustes del proyecto**."
+				},
+				"create": {
+					"title": "Crea tu propia tarea",
+					"description": "Usa el **+** junto al nombre de una columna, o pulsa **T** y luego **C**. Elimina estas tareas de ejemplo cuando quieras."
+				}
+			},
+			"progress": "Paso {{current}} de {{total}}",
+			"welcome": "Te damos la bienvenida, {{name}}",
+			"settingUp": "Configurando {{name}}",
+			"continue": "Continuar",
+			"signedInAs": "Sesión iniciada como {{email}}",
+			"signOut": "Cerrar sesión",
+			"workspace": {
+				"title": "Ponle nombre a tu espacio de trabajo",
+				"description": "Aquí vivirán tus proyectos. Usa el nombre de tu equipo o empresa, puedes cambiarlo más adelante."
+			},
+			"usage": {
+				"title": "¿Para quién es?",
+				"description": "Configuraremos {{name}} en consecuencia. Siempre puedes invitar a otras personas más adelante."
+			},
+			"project": {
+				"title": "Empieza tu primer proyecto",
+				"description": "Añadiremos algunas tareas iniciales para que te orientes. Puedes renombrarlas o eliminarlas cuando quieras.",
+				"label": "Nombre del proyecto",
+				"numbered": "Las tareas se numerarán así"
+			},
+			"invite": {
+				"title": "Trae a tu equipo",
+				"description": "Recibirán un correo para unirse a {{name}}. Omite este paso si prefieres echar un vistazo primero.",
+				"label": "Correos de tus compañeros",
+				"send_many": "Enviar {{count}} invitaciones",
+				"send_one": "Enviar {{count}} invitación",
+				"send_other": "Enviar {{count}} invitaciones",
+				"sendNone": "Enviar invitaciones"
+			},
+			"plan": {
+				"title": "¿Cómo quieres empezar?",
+				"descriptionTrial_many": "Todos los planes incluyen proyectos y tareas ilimitados. Prueba {{name}} gratis durante {{count}} días o suscríbete ahora.",
+				"descriptionTrial_one": "Todos los planes incluyen proyectos y tareas ilimitados. Prueba {{name}} gratis durante {{count}} día o suscríbete ahora.",
+				"descriptionTrial_other": "Todos los planes incluyen proyectos y tareas ilimitados. Prueba {{name}} gratis durante {{count}} días o suscríbete ahora.",
+				"choose": "Elige un plan",
+				"description": {
+					"team": "Miembros, roles y permisos ilimitados",
+					"personal": "Para una persona"
+				},
+				"perUserMonth": "por usuario / mes",
+				"perMonth": "al mes",
+				"subscribe": "Suscribirse a {{plan}}",
+				"checkout": "Continuar al pago",
+				"trialNote": "No necesitas tarjeta para la prueba. Los pagos los procesa Creem.",
+				"paymentNote": "Los pagos los procesa Creem."
+			},
+			"ready": {
+				"eyebrow": "Todo listo",
+				"title": "{{name}} está listo",
+				"description": "Esto es lo que hemos configurado. Puedes cambiar cualquier cosa más adelante.",
+				"workspace": "Espacio de trabajo",
+				"project": "Primer proyecto",
+				"projectValue_many": "{{name}}, con {{count}} tareas iniciales",
+				"projectValue_one": "{{name}}, con {{count}} tarea inicial",
+				"projectValue_other": "{{name}}, con {{count}} tareas iniciales",
+				"invitations": "Invitaciones",
+				"invitationsValue_many": "Enviadas a {{count}} personas",
+				"invitationsValue_one": "Enviada a {{count}} persona",
+				"invitationsValue_other": "Enviadas a {{count}} personas",
+				"open": "Abrir {{name}}"
+			},
+			"preview": {
+				"live": "Vista previa en directo de {{name}}",
+				"liveNoName": "Vista previa en directo",
+				"ready": "{{name}} está listo",
+				"untitled": "Tu espacio de trabajo"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Completar Perfil",
+			"completeTitle": "Completa tu perfil",
+			"subtitle": "Por favor, introduce tu nombre para empezar",
+			"yourName": "Tu nombre",
+			"namePlaceholder": "Pepe Pérez",
+			"saving": "Guardando...",
+			"continue": "Continuar",
+			"welcome": "Bienvenido, {{name}}!",
+			"redirecting": "Navegando a tu panel de control...",
+			"toast": {
+				"updateSuccess": "Perfil actualizado correctamente",
+				"updateFailed": "Error al actualizar tu perfil"
+			},
+			"validation": {
+				"nameRequired": "El nombre es obligatorio",
+				"nameShort": "Tu nombre debe tener al menos 2 caracteres"
+			}
+		},
+		"passwordReset": {
+			"forgotPassword": "Forgot password?",
+			"requestTitle": "Reset your password",
+			"requestSubtitle": "Enter your email and we’ll send you a password reset link.",
+			"sendLink": "Send reset link",
+			"requestError": "Could not request a reset link. Please try again.",
+			"unavailable": "Password reset is unavailable. Contact your instance administrator.",
+			"configError": "Could not reach the server. Please reload the page to try again.",
+			"resetTitle": "Choose a new password",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm new password",
+			"passwordMismatch": "The passwords do not match.",
+			"passwordLength": "Use between 8 and 128 characters.",
+			"invalidLink": "This reset link is invalid or has expired. Request a new link to continue.",
+			"requestNewLink": "Request a new link",
+			"resetError": "Could not reset your password. Please try again.",
+			"success": "Your password has been reset. Sign in with your new password.",
+			"backToSignIn": "Back to sign in",
+			"sentTitle": "Revisa tu bandeja de entrada",
+			"sentDescription": "Si existe una cuenta para {{email}}, recibirás un enlace para restablecer tu contraseña. Caduca en 1 hora.",
+			"sentHelpTitle": "¿No te ha llegado?",
+			"sentHelpDescription": "Revisa tu carpeta de spam o solicita otro enlace dentro de un minuto.",
+			"rememberedIt": "¿Ya la recuerdas?",
+			"resetDescription": "Usa entre 8 y 128 caracteres. Se cerrará la sesión en los demás dispositivos.",
+			"updatePassword": "Actualizar contraseña",
+			"changedMind": "¿Has cambiado de opinión?",
+			"invalidLinkTitle": "Este enlace ha caducado",
+			"successTitle": "Contraseña actualizada"
+		},
+		"page": {
+			"terms": "Términos",
+			"privacy": "Privacidad"
+		},
+		"device": {
+			"connect": {
+				"title": "Conectar un dispositivo",
+				"description": "Introduce el código que aparece en tu terminal o aplicación para vincularlo a tu cuenta de Kaneo.",
+				"label": "Código del dispositivo",
+				"submit": "Continuar",
+				"noCode": "¿Aún no tienes código? Empieza a iniciar sesión desde tu aplicación.",
+				"codeRequired": "Introduce el código que aparece en tu dispositivo.",
+				"invalidCode": "Ese código no es válido o ha caducado."
+			},
+			"approve": {
+				"pageTitle": "Aprobar dispositivo",
+				"title": "¿Conectar este dispositivo?",
+				"description": "Un dispositivo quiere iniciar sesión como {{email}}. Apruébalo solo si lo has iniciado tú.",
+				"matchCode": "Comprueba que coincide con el código de tu dispositivo",
+				"deny": "Denegar",
+				"approve": "Aprobar",
+				"failed": "No se ha podido actualizar la solicitud. Inténtalo de nuevo."
+			},
+			"approved": {
+				"title": "Dispositivo conectado",
+				"description": "Vuelve a tu terminal o aplicación. Ya puedes cerrar esta pestaña."
+			},
+			"denied": {
+				"title": "Solicitud denegada",
+				"description": "No se ha conectado nada. Ya puedes cerrar esta pestaña."
+			},
+			"missing": {
+				"title": "Sin código de dispositivo",
+				"description": "Abre esta página desde tu dispositivo o introduce tú el código.",
+				"enterCode": "Introducir un código"
+			},
+			"signIn": {
+				"title": "Inicia sesión para conectar tu dispositivo",
+				"description": "Volverás aquí enseguida para aprobarlo.",
+				"submit": "Iniciar sesión"
+			}
+		},
+		"mcp": {
+			"authorize": {
+				"title": "Autorizar un cliente MCP",
+				"description": "Podrá actuar en tu nombre en todos los espacios de trabajo a los que tienes acceso. Continúa solo si has iniciado tú esta conexión.",
+				"client": "Cliente",
+				"unknownClient": "Cliente MCP",
+				"selfReported": "Declarado por el cliente",
+				"redirect": "Te redirige a",
+				"signedInAs": "Sesión iniciada como",
+				"deny": "Denegar",
+				"allow": "Permitir acceso"
+			},
+			"expired": {
+				"title": "Esta solicitud ha caducado",
+				"description": "Vuelve a tu cliente MCP y conéctate de nuevo."
+			},
+			"signIn": {
+				"title": "Inicia sesión para autorizar este cliente",
+				"description": "Volverás aquí enseguida para revisarlo.",
+				"submit": "Iniciar sesión"
+			}
+		}
+	},
+	"settings": {
+		"advancedSettings": "Configuración avanzada",
+		"account": "Cuenta",
+		"developer": "Desarrollador",
+		"information": "Información",
+		"preferences": "Ajustes",
+		"apiKeys": "Claves de APIs",
+		"informationPage": {
+			"pageTitle": "Información Personal",
+			"title": "Información Personal",
+			"subtitle": "Gestiona los detalles e información de tu cuenta.",
+			"sectionTitle": "Información de la cuenta",
+			"sectionSubtitle": "Gestiona tu perfil y detalles de tu cuenta.",
+			"profilePicture": "Foto de perfil",
+			"fullName": "Nombre completo",
+			"fullNamePlaceholder": "Introduce tu nombre",
+			"email": "Email",
+			"emailPlaceholder": "Introduce tu correo electrónico",
+			"updateSuccess": "Perfil actualizado correctamente",
+			"updateError": "Error al actualizar tu perfil",
+			"validation": {
+				"nameRequired": "El nombre es obligatorio",
+				"nameShort": "Tu nombre debe tener al menos 2 caracteres",
+				"invalidEmail": "Dirección de correo electrónico no válida"
+			},
+			"avatar": {
+				"hint": "PNG, JPEG, or WebP. Cropped to a square and resized to 256x256.",
+				"remove": "Remove",
+				"removeError": "Failed to remove profile picture",
+				"removeSuccess": "Profile picture removed",
+				"updateError": "Failed to update profile picture",
+				"updateSuccess": "Profile picture updated",
+				"change": "Change avatar",
+				"edit": "Change your profile picture"
+			},
+			"deleteAccount": {
+				"confirm": "Delete account",
+				"confirmLabel": "Confirm your email address",
+				"description": "Workspaces only you belong to are deleted with your account. Elsewhere, your tasks stay and become unassigned, and your comments are removed.",
+				"error": "Failed to delete account",
+				"modalDescription": "This cannot be undone. Type {{email}} to confirm.",
+				"modalTitle": "Delete your account?",
+				"sectionSubtitle": "Permanent actions that affect your whole account.",
+				"sectionTitle": "Danger zone",
+				"success": "Your account has been deleted",
+				"title": "Delete account",
+				"sessionTooOld": "For security, sign out and sign back in before deleting your account."
+			}
+		},
+		"preferencesPage": {
+			"title": "Preferencias",
+			"subtitle": "Personaliza tu experiencia Kaneo.",
+			"appearanceTitle": "Apariencia",
+			"appearanceSubtitle": "Ajustes visuales y de diseño.",
+			"theme": "Tema",
+			"themeDescription": "Elige tu tema preferido",
+			"selectTheme": "Selecciona un tema",
+			"themeLight": "Día",
+			"themeDark": "Noche",
+			"themeSystem": "Sistema",
+			"language": "Idioma",
+			"languageDescription": "Elige el idioma de la interfaz",
+			"selectLanguage": "Seleccionar un idioma",
+			"firstDayOfWeek": "Primer día de la semana",
+			"firstDayOfWeekDescription": "Elige qué día comienzan los calendarios y las semanas",
+			"selectFirstDayOfWeek": "Selecciona el primer día",
+			"weekStartsOnSunday": "Domingo",
+			"weekStartsOnMonday": "Lunes",
+			"weekStartsOnSaturday": "Sábado",
+			"defaultView": "Vista por defecto",
+			"defaultViewDescription": "Elige la vista por defecto para las tareas",
+			"selectViewMode": "Elige una vista por defecto",
+			"board": "Tablero",
+			"list": "Lista",
+			"gantt": "Gantt",
+			"sidebarDefault": "Barra lateral por defecto",
+			"sidebarDefaultDescription": "Mantener la barra lateral al iniciar",
+			"displayOptions": "Ver op

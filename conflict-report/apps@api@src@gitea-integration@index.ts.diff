@@ -1,0 +1,81 @@
+diff --cc apps/api/src/gitea-integration/index.ts
+index 4b2de6da,dab82174..00000000
+--- a/apps/api/src/gitea-integration/index.ts
++++ b/apps/api/src/gitea-integration/index.ts
+@@@ -136,11 -204,16 +199,21 @@@ const createIntegrationRoute = createRo
+    },
+    responses: {
+      200: jsonResponse("The stored integration", giteaIntegrationSchema),
+++<<<<<<< HEAD
+ +    400: errorResponse("Invalid body"),
+++=======
++     409: errorResponse(
++       "The repository is already linked to this project (repository_already_linked)",
++     ),
++     402: errorResponse(
++       "The plan's repository binding limit is reached (binding_limit_exceeded)",
++     ),
++     400: errorResponse("Invalid body, or unknown project"),
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+      403: errorResponse(
+ -      "No workspace access, or missing workspace:manage_settings",
+ +      "No access to the project, or missing workspace:manage_settings",
+      ),
+ +    404: errorResponse("Project not found"),
+    },
+  });
+  
+@@@ -162,12 -238,15 +238,20 @@@ const updateIntegrationRoute = createRo
+    },
+    responses: {
+      200: jsonResponse("The updated integration", giteaIntegrationSchema),
++     409: errorResponse("Integration changed; refresh before updating settings"),
++     402: errorResponse(
++       "The plan's repository binding limit is reached (binding_limit_exceeded)",
++     ),
+      400: errorResponse("The resulting config failed validation"),
+      403: errorResponse(
+ -      "No workspace access, or missing workspace:manage_settings",
+ +      "No access to the project, or missing workspace:manage_settings",
+      ),
+++<<<<<<< HEAD
+ +    404: errorResponse("Project or integration not found"),
+ +    409: errorResponse("Integration changed; refresh before updating settings"),
+++=======
++     404: jsonResponse("Integration not found", integrationNotFoundSchema),
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    },
+  });
+  
+@@@ -209,11 -292,11 +297,11 @@@ const importIssuesRoute = createRoute(
+    },
+    responses: {
+      200: jsonResponse("Import summary", giteaImportResultSchema),
+-     400: errorResponse("projectId is required"),
++     400: errorResponse("integrationId is required"),
+      403: errorResponse(
+ -      "No workspace access, or missing task:create or task:update permission",
+ +      "No access to the project, or missing task:create or task:update permission",
+      ),
+-     404: errorResponse("Project not found"),
++     404: errorResponse("Integration or project not found"),
+    },
+  });
+  
+@@@ -276,9 -369,15 +374,15 @@@ const giteaIntegration = apiRouter<Base
+      });
+  
+      if (!row) {
+ -      return c.json({ error: "Integration not found" }, 404);
+ +      throw new HTTPException(404, { message: "Integration not found" });
+      }
+  
++     // WP10: reactivation re-enters the binding count, so the quota guard runs
++     // before the update writes isActive=true.
++     if (body.isActive === true && !row.isActive) {
++       await assertRepositoryBindingQuota(row.projectId, c.get("workspaceId"));
++     }
++ 
+      let config: GiteaConfig;
+      try {
+        config = JSON.parse(row.config) as GiteaConfig;

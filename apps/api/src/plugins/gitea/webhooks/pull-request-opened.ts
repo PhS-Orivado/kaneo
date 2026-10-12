@@ -147,6 +147,7 @@ export async function handleGiteaPullRequestOpened(
         "pr_opened",
         config.statusTransitions?.onPROpen || "in-review",
         database,
+        integration.id,
       );
 
       if (currentTask.status !== targetStatus) {

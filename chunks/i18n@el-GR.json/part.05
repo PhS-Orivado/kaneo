@@ -1,0 +1,601 @@
+ect found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_one": "Import {{count}} project",
+					"importButton_other": "Import {{count}} projects",
+					"limit": "Pick up to {{max}} projects per import.",
+					"pick": "Pick the projects to bring over.",
+					"progress_one": "{{done}} of {{count}} project imported",
+					"progress_other": "{{done}} of {{count}} projects imported",
+					"runTitle_one": "{{source}}, {{count}} project",
+					"runTitle_other": "{{source}}, {{count}} projects",
+					"section": "Projects",
+					"someImported_one": "{{done}} of {{count}} project imported.",
+					"someImported_other": "{{done}} of {{count}} projects imported.",
+					"step": "Choose projects"
+				},
+				"team": {
+					"allImported_one": "{{count}} team imported.",
+					"allImported_other": "All {{count}} teams imported.",
+					"empty": "No teams found. Check that this key can see the teams you want to import.",
+					"found_one": "{{count}} team found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_one": "Import {{count}} team",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_one": "{{done}} of {{count}} team imported",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_one": "{{source}}, {{count}} team",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_one": "{{done}} of {{count}} team imported.",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Προτάσεις",
+			"commands": "Εντολές",
+			"projects": "Έργα",
+			"search": "Αναζήτηση",
+			"members": "Μέλη",
+			"createTask": "Δημιουργία εργασίας",
+			"createProject": "Δημιουργία έργου",
+			"createWorkspace": "Δημιουργία χώρου εργασίας",
+			"lightTheme": "Ανοιχτό θέμα",
+			"darkTheme": "Σκούρο θέμα",
+			"systemTheme": "Θέμα συστήματος",
+			"keyboardShortcuts": "Συντομεύσεις πληκτρολογίου",
+			"inputPlaceholder": "Αναζήτηση εφαρμογών και εντολών...",
+			"empty": "Δεν βρέθηκαν αποτελέσματα.",
+			"footer": {
+				"navigate": "Πλοήγηση",
+				"open": "Άνοιγμα",
+				"close": "Κλείσιμο"
+			}
+		},
+		"sidebar": {
+			"projects": "Έργα",
+			"members": "Μέλη",
+			"invitations": "Προσκλήσεις",
+			"more": "Περισσότερα",
+			"backToBoard": "Επιστροφή στον πίνακα",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Προβολή έργου",
+			"shareProject": "Κοινοποίηση έργου",
+			"projectSettings": "Ρυθμίσεις έργου",
+			"linkCopied": "Ο σύνδεσμος του έργου αντιγράφηκε στο πρόχειρο",
+			"addProject": "Προσθήκη έργου",
+			"deleteConfirmTitle": "Διαγραφή έργου;",
+			"deleteConfirmDescription": "Αυτό θα αφαιρέσει οριστικά το έργο και όλα τα δεδομένα του. Δεν μπορείτε να αναιρέσετε αυτήν την ενέργεια.",
+			"deletedToast": "Το έργο διαγράφηκε",
+			"deleteProject": "Διαγραφή έργου",
+			"switcherLabel": "Αλλαγή έργου ή προβολής"
+		},
+		"search": {
+			"inputPlaceholder": "Αναζήτηση εργασιών, έργων, σχολίων...",
+			"minCharsHint": "Πληκτρολογήστε τουλάχιστον 3 χαρακτήρες για αναζήτηση",
+			"groups": {
+				"task": "Εργασίες",
+				"project": "Έργα",
+				"workspace": "Χώροι εργασίας",
+				"comment": "Σχόλια",
+				"activity": "Δραστηριότητες",
+				"fallback": "Αποτελέσματα"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Εναλλαγή πλαϊνής μπάρας",
+			"back": "Πίσω"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Αποσυνδεθήκατε με επιτυχία",
+			"signOutFailed": "Αποτυχία αποσύνδεσης",
+			"unnamedUser": "Χρήστης",
+			"settings": "Ρυθμίσεις",
+			"signingOut": "Γίνεται αποσύνδεση...",
+			"logOut": "Αποσύνδεση"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Χώροι εργασίας",
+			"switching": "Γίνεται εναλλαγή...",
+			"addWorkspace": "Προσθήκη χώρου εργασίας",
+			"selectWorkspace": "Επιλέξτε χώρο εργασίας"
+		},
+		"page": {
+			"projectsTitle": "Έργα",
+			"settingsTitle": "Ρυθμίσεις",
+			"backToWorkspace": "Επιστροφή στον χώρο εργασίας",
+			"settingsWorkspaceTab": "Χώρος εργασίας"
+		},
+		"projectSettings": {
+			"projectLabel": "Έργο"
+		},
+		"keyboardShortcuts": {
+			"title": "Συντομεύσεις πληκτρολογίου",
+			"subtitle": "Επιταχύνετε τη ροή εργασίας σας με συντομεύσεις πληκτρολογίου",
+			"searchPlaceholder": "Αναζήτηση συντομεύσεων...",
+			"footer": "Πατήστε <kbd>Escape</kbd> για κλείσιμο",
+			"categories": {
+				"general": "Γενικά",
+				"create": "Δημιουργία",
+				"views": "Προβολές",
+				"navigation": "Πλοήγηση",
+				"quickSelect": "Γρήγορη επιλογή (σε αναδυόμενα)"
+			},
+			"items": {
+				"openCommandPalette": "Άνοιγμα παλέτας εντολών",
+				"globalSearch": "Καθολική αναζήτηση",
+				"toggleSidebar": "Εναλλαγή πλαϊνής μπάρας",
+				"showShortcuts": "Εμφάνιση συντομεύσεων πληκτρολογίου",
+				"closeModal": "Κλείσιμο modal/popover",
+				"createTask": "Δημιουργία εργασίας",
+				"createProject": "Δημιουργία έργου",
+				"createWorkspace": "Δημιουργία χώρου εργασίας",
+				"boardView": "Μετάβαση σε προβολή πίνακα",
+				"listView": "Μετάβαση σε προβολή λίστας",
+				"backlogView": "Μετάβαση σε προβολή backlog",
+				"nextTask": "Επόμενη εργασία",
+				"prevTask": "Προηγούμενη εργασία",
+				"openTask": "Άνοιγμα επιλεγμένης εργασίας",
+				"quickSelectNumber": "Επιλογή επιλογής με αριθμό",
+				"calendarView": "Μετάβαση σε προβολή ημερολογίου"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} νέα",
+		"newCount_other": "{{count}} νέα",
+		"emptyTitle": "Δεν υπάρχουν ακόμα ειδοποιήσεις",
+		"emptySubtitle": "Θα βλέπετε εδώ ενημερώσεις και δραστηριότητα.",
+		"clearAll": "Εκκαθάριση όλων των ειδοποιήσεων",
+		"clearDialogTitle": "Εκκαθάριση όλων των ειδοποιήσεων;",
+		"clearDialogDescription": "Αυτό θα αφαιρέσει οριστικά όλες τις ειδοποιήσεις. Δεν μπορείτε να αναιρέσετε αυτήν την ενέργεια.",
+		"events": {
+			"task_created": {
+				"title": "Δημιουργήθηκε νέα εργασία",
+				"content": "Η εργασία \"{{taskTitle}}\" δημιουργήθηκε"
+			},
+			"workspace_created": {
+				"title": "Ο χώρος εργασίας δημιουργήθηκε",
+				"content": "Ο χώρος εργασίας σας \"{{workspaceName}}\" δημιουργήθηκε με επιτυχία"
+			},
+			"task_status_changed": {
+				"title": "Η κατάσταση της εργασίας άλλαξε",
+				"content": "Η κατάσταση της εργασίας \"{{taskTitle}}\" άλλαξε από \"{{oldStatus}}\" σε \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "Σας ανατέθηκε εργασία",
+				"content": "Σας ανατέθηκε η εργασία: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "Η χρονομέτρηση ξεκίνησε",
+				"contentWithTask": "Η χρονομέτρηση ξεκίνησε για την εργασία: {{taskTitle}}",
+				"contentWithoutTask": "Η χρονομέτρηση ξεκίνησε για μια εργασία"
+			},
+			"task_mention": {
+				"title": "Ο/Η {{mentionerName}} σας ανέφερε",
+				"content": "Ο/Η {{mentionerName}} σας ανέφερε στην εργασία: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "Ο/Η {{commenterName}} σχολίασε την εργασία σας",
+				"content": "Νέο σχόλιο στην εργασία {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Η εργασία λήγει σύντομα",
+				"content": "Η εργασία {{taskTitle}} λήγει σε {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Εκπρόθεσμη εργασία",
+				"content": "Η εργασία {{taskTitle}} έχει ξεπεράσει την ημερομηνία λήξης της"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} λεπτό",
+			"minutes_other": "{{count}} λεπτά",
+			"hours_one": "{{count}} ώρα",
+			"hours_other": "{{count}} ώρες",
+			"days_one": "{{count}} ημέρα",
+			"days_other": "{{count}} ημέρες"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "ανέθεσε την εργασία στον εαυτό του/της",
+		"unassigned": "αφαίρεσε την ανάθεση από την εργασία",
+		"assignedTo": "ανέθεσε την εργασία στον/στην {{name}}",
+		"changedStatus": "άλλαξε την κατάσταση από {{from}} σε {{to}}",
+		"changedPriority": "άλλαξε την προτεραιότητα από {{from}} σε {{to}}",
+		"clearedDueDate": "αφαίρεσε την ημερομηνία λήξης",
+		"setDueDate": "όρισε ως ημερομηνία λήξης την {{date}}",
+		"changedDueDate": "άλλαξε την ημερομηνία λήξης από {{from}} σε {{to}}",
+		"changedTitle": "άλλαξε τον τίτλο από \"{{from}}\" σε \"{{to}}\"",
+		"created": "δημιούργησε αυτή την εργασία",
+		"moved": "μετακίνησε την εργασία από \"{{from}}\" σε \"{{to}}\"",
+		"githubUser": "Χρήστης GitHub",
+		"comment": {
+			"viewGithubProfile": "Προβολή προφίλ GitHub",
+			"cannotBeEmpty": "Το σχόλιο δεν μπορεί να είναι κενό",
+			"mustBeLoggedInToEdit": "Πρέπει να είστε συνδεδεμένοι για να επεξεργαστείτε σχόλια",
+			"updated": "Το σχόλιο ενημερώθηκε",
+			"failedToUpdate": "Αποτυχία ενημέρωσης σχολίου",
+			"edit": "Επεξεργασία σχολίου",
+			"editPlaceholder": "Επεξεργασία σχολίου...",
+			"save": "Αποθήκευση",
+			"added": "Το σχόλιο προστέθηκε",
+			"failedToAdd": "Αποτυχία προσθήκης σχολίου",
+			"leavePlaceholder": "Αφήστε ένα σχόλιο...",
+			"attachFile": "Επισύναψη αρχείου",
+			"submitShortcut": "Υποβολή σχολίου",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Οι μεταφορτώσεις αρχείων είναι διαθέσιμες μόνο σε αποθηκευμένες εργασίες.",
+				"uploadingFile": "Γίνεται μεταφόρτωση αρχείου...",
+				"imageUploaded": "Η εικόνα μεταφορτώθηκε",
+				"fileAttached": "Το αρχείο επισυνάφθηκε",
+				"failedToUploadFile": "Αποτυχία μεταφόρτωσης αρχείου",
+				"enterUrl": "Εισαγάγετε URL",
+				"plaintext": "Απλό κείμενο",
+				"autoDetect": "Αυτόματη ανίχνευση",
+				"slashGroupText": "Κείμενο",
+				"slashGroupLists": "Λίστες",
+				"slashGroupInsert": "Εισαγωγή",
+				"slashParagraph": "Κείμενο",
+				"slashHeading": "Επικεφαλίδα",
+				"slashBulletList": "Λίστα με κουκκίδες",
+				"slashTaskList": "Λίστα εργασιών",
+				"slashOrderedList": "Αριθμημένη λίστα",
+				"slashQuote": "Παράθεση",
+				"slashCodeBlock": "Μπλοκ κώδικα",
+				"slashTable": "Πίνακας",
+				"slashFile": "Αρχείο",
+				"searchParagraph": "κανονική παράγραφος κειμένου",
+				"searchHeading": "επικεφαλίδα τίτλος h2",
+				"searchBulletList": "λίστα κουκκίδων μη ταξινομημένη",
+				"searchTaskList": "εκκρεμότητες λίστα εργασιών checklist πλαίσιο επιλογής todo",
+				"searchOrderedList": "λίστα αριθμημένη",
+				"searchQuote": "παράθεση blockquote",
+				"searchCodeBlock": "απόσπασμα κώδικα",
+				"searchTable": "πίνακας πλέγμα",
+				"searchFile": "επισύναψη αρχείου εικόνα φωτογραφία ανεβάστε",
+				"embedErrorInvalidUrl": "Εισαγάγετε έγκυρο URL",
+				"embedErrorYoutubeOnly": "Μόνο σύνδεσμοι YouTube μπορούν να ενσωματωθούν.",
+				"embedVideo": "Ενσωμάτωση βίντεο",
+				"keepAsLink": "Διατήρηση ως σύνδεσμος",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Επικόλληση URL",
+				"asLink": "Ως σύνδεσμος",
+				"embed": "Ενσωμάτωση",
+				"noCommands": "Δεν υπάρχουν εντολές",
+				"ariaCommentContent": "Περιεχόμενο σχολίου",
+				"ariaCommentEditor": "Επεξεργαστής σχολίου",
+				"ariaCopyCode": "Αντιγραφή κώδικα",
+				"ariaCopied": "Αντιγράφηκε",
+				"copy": "Αντιγραφή",
+				"copied": "Αντιγράφηκε",
+				"dropImageToUpload": "Αποθέστε εικόνα για μεταφόρτωση",
+				"previewImageAlt": "Προεπισκόπηση εικόνας",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Απλό κείμενο",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Εισαγωγή στήλης αριστερά",
+					"addColumnAfter": "Εισαγωγή στήλης δεξιά",
+					"deleteColumn": "Διαγραφή στήλης",
+					"addRowBefore": "Εισαγωγή γραμμής επάνω",
+					"addRowAfter": "Εισαγωγή γραμμής κάτω",
+					"deleteRow": "Διαγραφή γραμμής",
+					"deleteTable": "Διαγραφή πίνακα"
+				},
+				"mermaid": {
+					"renderFailed": "Δεν ήταν δυνατή η απόδοση του διαγράμματος Mermaid"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "σχολίασε στο {{forge}}"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Εργασίες",
+		"status": {
+			"label": "Κατάσταση",
+			"to-do": "Προς υλοποίηση",
+			"in-progress": "Σε εξέλιξη",
+			"in-review": "Σε έλεγχο",
+			"done": "Ολοκληρώθηκε",
+			"archived": "Αρχειοθετημένο",
+			"planned": "Προγραμματισμένο"
+		},
+		"priority": {
+			"label": "Προτεραιότητα",
+			"no-priority": "Χωρίς προτεραιότητα",
+			"low": "Χαμηλή",
+			"medium": "Μεσαία",
+			"high": "Υψηλή",
+			"urgent": "Επείγουσα"
+		},
+		"boardSearchPlaceholder": "Αναζήτηση αιτημάτων...",
+		"view": {
+			"board": "Πίνακας",
+			"list": "Λίστα",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Προβολή"
+		},
+		"common": {
+			"selectTask": "Επιλέξτε εργασία",
+			"loadingTask": "Φόρτωση εργασίας...",
+			"taskNotFound": "Η εργασία δεν βρέθηκε",
+			"taskNotFoundDescription": "Η εργασία που αναζητάτε δεν υπάρχει ή έχει διαγραφεί.",
+			"ticketAmbiguous": "Το αναγνωριστικό αντιστοιχεί σε περισσότερες από μία εργασίες",
+			"ticketAmbiguousDescription": "Το {{ticketId}} αντιστοιχεί σε εργασίες σε περισσότερα από ένα έργα αυτού του χώρου εργασίας. Δώστε σε ένα από αυτά τα έργα διαφορετικό κλειδί για να λειτουργήσει ο σύνδεσμος.",
+			"ticketNotFoundDescription": "Δεν υπάρχει εργασία με αναγνωριστικό {{ticketId}} σε αυτόν τον χώρο εργασίας ή δεν έχετε πρόσβαση σε αυτήν.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Υποεργασία του",
+			"activity": "Δραστηριότητα",
+			"noActivity": "Δεν βρέθηκε δραστηριότητα",
+			"openInFullPage": "Άνοιγμα σε πλήρη σελίδα",
+			"titlePlaceholder": "Κάντε κλικ για να προσθέσετε τίτλο",
+			"addDescription": "Προσθήκη περιγραφής...",
+			"editor": {
+				"ariaLabel": "Επεξεργαστής περιγραφής εργασίας",
+				"placeholder": "Γράψτε μια περιγραφή...",
+				"previewImage": "Προεπισκόπηση εικόνας",
+				"enterUrl": "Εισαγάγετε URL",
+				"autoDetect": "Αυτόματη ανίχνευση",
+				"copyCode": "Αντιγραφή κώδικα",
+				"copy": "Αντιγραφή",
+				"copied": "Αντιγράφηκε",
+				"attachFile": "Επισύναψη αρχείου",
+				"dropToUpload": "Αποθέστε εικόνα για μεταφόρτωση",
+				"checkbox": {
+					"markIncomplete": "Σήμανση εργασίας ως μη ολοκληρωμένη",
+					"markComplete": "Σήμανση εργασίας ως ολοκληρωμένη"
+				},
+				"upload": {
+					"loading": "Γίνεται μεταφόρτωση αρχείου...",
+					"failed": "Αποτυχία μεταφόρτωσης αρχείου",
+					"imageSuccess": "Η εικόνα μεταφορτώθηκε",
+					"fileSuccess": "Το αρχείο επισυνάφθηκε"
+				},
+				"slash": {
+					"groups": {
+						"text": "Κείμενο",
+						"lists": "Λίστες",
+						"insert": "Εισαγωγή"
+					},
+					"empty": "Δεν υπάρχουν εντολές",
+					"commands": {
+						"paragraph": "Κείμενο",
+						"heading-2": "Επικεφαλίδα",
+						"bullet-list": "Λίστα με κουκκίδες",
+						"task-list": "Λίστα εργασιών",
+						"ordered-list": "Αριθμημένη λίστα",
+						"blockquote": "Παράθεση",
+						"code-block": "Μπλοκ κώδικα",
+						"table": "Πίνακας",
+						"file": "Αρχείο"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Απλό κείμενο",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Ενσωμάτωση βίντεο",
+						"keepAsLink": "Διατήρηση ως σύνδεσμος"
+					},
+					"inputPlaceholder": "Επικόλληση URL",
+					"embeddedContent": "Ενσωματωμένο περιεχόμενο",
+					"asLink": "Ως σύνδεσμος",
+					"submit": "Ενσωμάτωση",
+					"errors": {
+						"invalidUrl": "Εισαγάγετε έγκυρο URL",
+						"onlyYoutube": "Μόνο σύνδεσμοι YouTube μπορούν να ενσωματωθούν."
+					},
+					"onlyYoutubeInline": "Μόνο URLs YouTube μπορούν να ενσωματωθούν. Χρησιμοποιήστε λειτουργία συνδέσμου."
+				},
+				"mermaid": {
+					"renderFailed": "Δεν ήταν δυνατή η απόδοση του διαγράμματος Mermaid"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Εργασία"
+		},
+		"relations": {
+			"title": "Σχέσεις",
+			"tasksInProject": "Εργασίες στο έργο",
+			"linkError": "Αποτυχία σύνδεσης εργασίας",
+			"empty": "Δεν υπάρχουν σχετικές εργασίες",
+			"searchPlaceholder": "Αναζήτηση εργασιών για σύνδεση...",
+			"noTasksFound": "Δεν βρέθηκαν εργασίες",
+			"openTask": "Άνοιγμα εργασίας",
+			"removeRelation": "Αφαίρεση σχέσης",
+			"related": "Σχετικές",
+			"blocks": "Εμποδίζει",
+			"selectTask": "Επιλέξτε εργασία για σύνδεση",
+			"types": {
+				"blocks": "μπλοκάρει",
+				"related": "σχετίζεται με",
+				"blocked_by": "μπλοκάρεται από"
+			}
+		},
+		"subtasks": {
+			"title": "Υποεργασίες",
+			"inputPlaceholder": "Τίτλος υποεργασίας...",
+			"addAction": "Προσθήκη",
+			"empty": "Δεν υπάρχουν ακόμα υποεργασίες",
+			"createError": "Αποτυχία δημιουργίας υποεργασίας",
+			"deleteSuccess": "Η εργασία διαγράφηκε με επιτυχία",
+			"deleteError": "Αποτυχία διαγραφής εργασίας",
+			"deleteDialogTitle": "Διαγραφή εργασίας;",
+			"deleteDialogDescription": "Αυτό θα αφαιρέσει οριστικά την εργασία και όλα τα δεδομένα της. Δεν μπορείτε να αναιρέσετε αυτήν την ενέργεια.",
+			"deleteAction": "Διαγραφή εργασίας",
+			"completeAria": "Επισήμανση υποεργασίας ως ολοκληρωμένης",
+			"progress": "Ολοκληρώθηκαν {{completed}} από {{total}} υπ�

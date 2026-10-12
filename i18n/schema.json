@@ -592,6 +592,36 @@
 										"rose",
 										"crimson"
 									]
+								},
+								"repositories": {
+									"type": "string"
+								},
+								"issuesIn_one": {
+									"type": "string"
+								},
+								"issuesIn_zero": {
+									"type": "string"
+								},
+								"issuesIn_two": {
+									"type": "string"
+								},
+								"issuesIn_few": {
+									"type": "string"
+								},
+								"issuesIn_many": {
+									"type": "string"
+								},
+								"issuesIn_other": {
+									"type": "string"
+								},
+								"repositoriesHint": {
+									"type": "string"
+								},
+								"repositoriesAll": {
+									"type": "string"
+								},
+								"repositoriesNone": {
+									"type": "string"
 								}
 							},
 							"required": [
@@ -629,7 +659,11 @@
 								"discardDescription",
 								"discardButton",
 								"untitledTask",
-								"labelColors"
+								"labelColors",
+								"repositories",
+								"repositoriesHint",
+								"repositoriesAll",
+								"repositoriesNone"
 							]
 						}
 					},
@@ -7476,6 +7510,9 @@
 						},
 						"importSummary": {
 							"type": "string"
+						},
+						"providerName": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -7521,7 +7558,8 @@
 						"reverifyHint",
 						"resumeImport",
 						"importPaused",
-						"importSummary"
+						"importSummary",
+						"providerName"
 					]
 				},
 				"giteaIntegration": {
@@ -7779,6 +7817,9 @@
 						},
 						"retry": {
 							"type": "string"
+						},
+						"providerName": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -7827,7 +7868,8 @@
 						"searchRepos",
 						"browseNeedsCredentials",
 						"loadingRepos",
-						"retry"
+						"retry",
+						"providerName"
 					]
 				},
 				"gitlabIntegration": {
@@ -8092,6 +8134,9 @@
 						},
 						"importPermissionHint": {
 							"type": "string"
+						},
+						"providerName": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -8145,7 +8190,8 @@
 						"loadProjectsError",
 						"openInGitlab",
 						"retry",
-						"importPermissionHint"
+						"importPermissionHint",
+						"providerName"
 					]
 				},
 				"slackIntegration": {
@@ -9276,6 +9322,18 @@
 								"issue_opened",
 								"issue_closed"
 							]
+						},
+						"scopeLabel": {
+							"type": "string"
+						},
+						"scopeTypeWide": {
+							"type": "string"
+						},
+						"bindingScopeHint": {
+							"type": "string"
+						},
+						"typeWideScopeHint": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -9290,7 +9348,11 @@
 						"selectColumnPlaceholder",
 						"toastUpdated",
 						"toastError",
-						"events"
+						"events",
+						"scopeLabel",
+						"scopeTypeWide",
+						"bindingScopeHint",
+						"typeWideScopeHint"
 					]
 				},
 				"externalLinks": {
@@ -10005,6 +10067,207 @@
 						"expiredCallout",
 						"openFailed"
 					]
+				},
+				"repositoryBindings": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"addFirstTitle": {
+							"type": "string"
+						},
+						"addFirstHint": {
+							"type": "string"
+						},
+						"listTitle": {
+							"type": "string"
+						},
+						"addMore": {
+							"type": "string"
+						},
+						"listError": {
+							"type": "string"
+						},
+						"listEmpty": {
+							"type": "string"
+						},
+						"rowMenuLabel": {
+							"type": "string"
+						},
+						"openRepository": {
+							"type": "string"
+						},
+						"importMeta": {
+							"type": "string"
+						},
+						"statusActive": {
+							"type": "string"
+						},
+						"statusPaused": {
+							"type": "string"
+						},
+						"statusNeedsVerification": {
+							"type": "string"
+						},
+						"actionSettings": {
+							"type": "string"
+						},
+						"actionSyncRules": {
+							"type": "string"
+						},
+						"actionWorkflowRules": {
+							"type": "string"
+						},
+						"actionImportIssues": {
+							"type": "string"
+						},
+						"actionDisconnect": {
+							"type": "string"
+						},
+						"usageUnlimited": {
+							"type": "string"
+						},
+						"usageLimited": {
+							"type": "string"
+						},
+						"settingsTitle": {
+							"type": "string"
+						},
+						"commentTaskLinkTitle": {
+							"type": "string"
+						},
+						"commentTaskLinkHint": {
+							"type": "string"
+						},
+						"webhookTitle": {
+							"type": "string"
+						},
+						"webhookHint": {
+							"type": "string"
+						},
+						"webhookSecretLabel": {
+							"type": "string"
+						},
+						"webhookHide": {
+							"type": "string"
+						},
+						"webhookShow": {
+							"type": "string"
+						},
+						"webhookCopy": {
+							"type": "string"
+						},
+						"toast": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"secretCopied": {
+									"type": "string"
+								},
+								"unableToCopySecret": {
+									"type": "string"
+								},
+								"added": {
+									"type": "string"
+								}
+							},
+							"required": ["secretCopied", "unableToCopySecret", "added"]
+						},
+						"syncRulesTitle": {
+							"type": "string"
+						},
+						"syncRulesHint": {
+							"type": "string"
+						},
+						"workflowRulesTitle": {
+							"type": "string"
+						},
+						"workflowRulesHint": {
+							"type": "string"
+						},
+						"disconnectTitle": {
+							"type": "string"
+						},
+						"disconnectDescription": {
+							"type": "string"
+						},
+						"disconnectWorking": {
+							"type": "string"
+						},
+						"disconnectConfirm": {
+							"type": "string"
+						},
+						"addRepositoryTitle": {
+							"type": "string"
+						},
+						"addRepositoryHint": {
+							"type": "string"
+						},
+						"browseRepositories": {
+							"type": "string"
+						},
+						"upgrade": {
+							"type": "string"
+						},
+						"dismissError": {
+							"type": "string"
+						},
+						"linkedInProject": {
+							"type": "string"
+						},
+						"linkedInOtherProject": {
+							"type": "string"
+						},
+						"linkedInUnknownProject": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"addFirstTitle",
+						"addFirstHint",
+						"listTitle",
+						"addMore",
+						"listError",
+						"listEmpty",
+						"rowMenuLabel",
+						"openRepository",
+						"importMeta",
+						"statusActive",
+						"statusPaused",
+						"statusNeedsVerification",
+						"actionSettings",
+						"actionSyncRules",
+						"actionWorkflowRules",
+						"actionImportIssues",
+						"actionDisconnect",
+						"usageUnlimited",
+						"usageLimited",
+						"settingsTitle",
+						"commentTaskLinkTitle",
+						"commentTaskLinkHint",
+						"webhookTitle",
+						"webhookHint",
+						"webhookSecretLabel",
+						"webhookHide",
+						"webhookShow",
+						"webhookCopy",
+						"toast",
+						"syncRulesTitle",
+						"syncRulesHint",
+						"workflowRulesTitle",
+						"workflowRulesHint",
+						"disconnectTitle",
+						"disconnectDescription",
+						"disconnectWorking",
+						"disconnectConfirm",
+						"addRepositoryTitle",
+						"addRepositoryHint",
+						"browseRepositories",
+						"upgrade",
+						"dismissError",
+						"linkedInProject",
+						"linkedInOtherProject",
+						"linkedInUnknownProject"
+					]
 				}
 			},
 			"required": [
@@ -10052,7 +10315,8 @@
 				"securityPage",
 				"calendarFeeds",
 				"invitationEmailFailed",
-				"billing"
+				"billing",
+				"repositoryBindings"
 			]
 		},
 		"navigation": {
@@ -13377,6 +13641,188 @@
 						}
 					},
 					"required": ["reorderFailed"]
+				},
+				"branches": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"empty": {
+							"type": "string"
+						},
+						"create": {
+							"type": "string"
+						},
+						"createTitle": {
+							"type": "string"
+						},
+						"typeLabel": {
+							"type": "string"
+						},
+						"nameLabel": {
+							"type": "string"
+						},
+						"namePlaceholder": {
+							"type": "string"
+						},
+						"nameHint": {
+							"type": "string"
+						},
+						"repositories": {
+							"type": "string"
+						},
+						"createButton": {
+							"type": "string"
+						},
+						"creating": {
+							"type": "string"
+						},
+						"createdIn_one": {
+							"type": "string"
+						},
+						"createdIn_zero": {
+							"type": "string"
+						},
+						"createdIn_two": {
+							"type": "string"
+						},
+						"createdIn_few": {
+							"type": "string"
+						},
+						"createdIn_many": {
+							"type": "string"
+						},
+						"createdIn_other": {
+							"type": "string"
+						},
+						"createError": {
+							"type": "string"
+						},
+						"createRepoError": {
+							"type": "string"
+						},
+						"find": {
+							"type": "string"
+						},
+						"findTitle": {
+							"type": "string"
+						},
+						"findDescription": {
+							"type": "string"
+						},
+						"searchPlaceholder": {
+							"type": "string"
+						},
+						"link": {
+							"type": "string"
+						},
+						"linking": {
+							"type": "string"
+						},
+						"linked": {
+							"type": "string"
+						},
+						"noMatches": {
+							"type": "string"
+						},
+						"moreResults": {
+							"type": "string"
+						},
+						"searchError": {
+							"type": "string"
+						},
+						"noGithubRepos": {
+							"type": "string"
+						},
+						"pastePr": {
+							"type": "string"
+						},
+						"pastePrTitle": {
+							"type": "string"
+						},
+						"pastePrDescription": {
+							"type": "string"
+						},
+						"pastePrButton": {
+							"type": "string"
+						},
+						"pasting": {
+							"type": "string"
+						},
+						"remove": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"empty",
+						"create",
+						"createTitle",
+						"typeLabel",
+						"nameLabel",
+						"namePlaceholder",
+						"nameHint",
+						"repositories",
+						"createButton",
+						"creating",
+						"createError",
+						"createRepoError",
+						"find",
+						"findTitle",
+						"findDescription",
+						"searchPlaceholder",
+						"link",
+						"linking",
+						"linked",
+						"noMatches",
+						"moreResults",
+						"searchError",
+						"noGithubRepos",
+						"pastePr",
+						"pastePrTitle",
+						"pastePrDescription",
+						"pastePrButton",
+						"pasting",
+						"remove"
+					]
+				},
+				"branchTypes": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"fix": {
+							"type": "string"
+						},
+						"feature": {
+							"type": "string"
+						},
+						"docs": {
+							"type": "string"
+						},
+						"chore": {
+							"type": "string"
+						},
+						"refactor": {
+							"type": "string"
+						},
+						"test": {
+							"type": "string"
+						},
+						"release": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"fix",
+						"feature",
+						"docs",
+						"chore",
+						"refactor",
+						"test",
+						"release"
+					]
 				}
 			},
 			"required": [
@@ -13419,7 +13865,9 @@
 				"descriptionRetry",
 				"descriptionLoading",
 				"descriptionLoadError",
-				"board"
+				"board",
+				"branches",
+				"branchTypes"
 			]
 		},
 		"invitations": {

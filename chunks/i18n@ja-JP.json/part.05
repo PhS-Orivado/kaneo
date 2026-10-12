@@ -1,0 +1,686 @@
+maid": {
+					"renderFailed": "Mermaid ダイアグラムを描画できませんでした"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "タスク"
+		},
+		"relations": {
+			"title": "関連",
+			"tasksInProject": "プロジェクト内のタスク",
+			"linkError": "タスクのリンクに失敗しました",
+			"empty": "関連タスクはありません",
+			"searchPlaceholder": "リンクするタスクを検索...",
+			"noTasksFound": "タスクが見つかりません",
+			"openTask": "タスクを開く",
+			"removeRelation": "関連付けを解除",
+			"related": "関連",
+			"blocks": "ブロック中",
+			"selectTask": "リンクするタスクを選択",
+			"types": {
+				"blocks": "ブロック中",
+				"blocked_by": "ブロックされている",
+				"related": "関連"
+			}
+		},
+		"subtasks": {
+			"title": "サブタスク",
+			"inputPlaceholder": "サブタスクのタイトル...",
+			"addAction": "追加",
+			"empty": "サブタスクはまだありません",
+			"createError": "サブタスクの作成に失敗しました",
+			"deleteSuccess": "タスクを削除しました",
+			"deleteError": "タスクの削除に失敗しました",
+			"deleteDialogTitle": "タスクを削除しますか？",
+			"deleteDialogDescription": "これにより、タスクとそのすべてのデータが完全に削除されます。この操作は取り消せません。",
+			"deleteAction": "タスクを削除",
+			"completeAria": "サブタスクを完了にする",
+			"progress": "サブタスク {{total}} 件中 {{completed}} 件完了",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "プロパティ",
+			"labels": "ラベル",
+			"copyTaskLink": "タスクのリンクをコピー",
+			"copyTaskBranch": "タスクのブランチ名をコピー",
+			"taskLinkCopied": "タスクのリンクをコピーしました",
+			"taskBranchCopied": "ブランチ名をコピーしました",
+			"start": "開始",
+			"startDate": "開始日",
+			"noDate": "日付なし"
+		},
+		"move": {
+			"title": "タスクを移動",
+			"projectLabel": "移動先プロジェクト",
+			"projectPlaceholder": "プロジェクトを選択",
+			"statusLabel": "移動先ステータス",
+			"statusHintKeep": "このプロジェクトのワークフローは現在のステータスに対応しています。",
+			"statusHintAdjust": "移動先のプロジェクトで使用するステータスを選択してください。",
+			"action": "タスクを移動",
+			"success": "タスクを移動しました",
+			"error": "タスクの移動に失敗しました"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "未割り当て",
+				"updateError": "担当者の更新に失敗しました"
+			},
+			"status": {
+				"updateError": "ステータスの更新に失敗しました"
+			},
+			"priority": {
+				"updateError": "優先度の更新に失敗しました"
+			},
+			"dueDate": {
+				"updateSuccess": "期限を更新しました",
+				"updateError": "期限の更新に失敗しました",
+				"clear": "日付をクリア"
+			},
+			"startDate": {
+				"updateSuccess": "開始日を更新しました",
+				"updateError": "開始日の更新に失敗しました",
+				"clear": "開始日をクリア"
+			},
+			"labels": {
+				"searchPlaceholder": "ラベルを検索...",
+				"empty": "ラベルが見つかりません",
+				"create": "「{{name}}」を作成",
+				"chooseColor": "色を選択",
+				"addSuccess": "ラベルを追加しました",
+				"removeSuccess": "ラベルを削除しました",
+				"updateError": "ラベルの更新に失敗しました",
+				"createSuccess": "ラベルを作成して追加しました",
+				"createError": "ラベルの作成に失敗しました",
+				"colors": {
+					"stone": "ストーン",
+					"slate": "スレート",
+					"lavender": "ラベンダー",
+					"sage": "セージ",
+					"forest": "フォレスト",
+					"amber": "アンバー",
+					"terracotta": "テラコッタ",
+					"rose": "ローズ",
+					"crimson": "クリムゾン"
+				},
+				"editLabels": "ラベルを編集"
+			}
+		},
+		"backlog": {
+			"pageTitle": "{{name}} のバックログ",
+			"noTasksToMove": "移動できる計画中のタスクはありません",
+			"moveAllConfirm": "計画中の {{count}} 件のタスクをすべて To Do に移動しますか？",
+			"moveAllSuccess": "{{count}} 件のタスクを To Do に移動しました",
+			"plan": "計画",
+			"moveAllTooltip": "計画中のタスクをすべて To Do に移動",
+			"moveAll": "すべて移動",
+			"addTask": "タスクを追加",
+			"filter": "フィルター",
+			"addFilter": "フィルターを追加...",
+			"sections": {
+				"planned": "計画中",
+				"archived": "アーカイブ済み"
+			},
+			"noTasksInSection": "{{section}} のタスクはありません",
+			"filters": {
+				"priority": "優先度: {{name}}",
+				"assignee": "担当者: {{name}}",
+				"due": "期限: {{date}}",
+				"label": "ラベル: {{name}}",
+				"dueThisWeek": "今週が期限",
+				"dueNextWeek": "来週が期限",
+				"noDueDate": "期限なし"
+			}
+		},
+		"sort": {
+			"label": "並び替え",
+			"by": "並び替え基準",
+			"direction": "順序",
+			"ascending": "昇順",
+			"descending": "降順",
+			"fields": {
+				"position": "手動 (位置)",
+				"createdAt": "作成日",
+				"priority": "優先度",
+				"dueDate": "期限",
+				"title": "タイトル",
+				"number": "タスク番号"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "フィルター条件",
+			"allStatuses": "すべてのステータス",
+			"allPriorities": "すべての優先度",
+			"allAssignees": "すべての担当者",
+			"allDueDates": "すべての期限",
+			"allLabels": "すべてのラベル",
+			"selectedCount": "{{count}} 件選択中",
+			"subjects": {
+				"status": "ステータス",
+				"priority": "優先度",
+				"assignee": "担当者",
+				"dueDate": "期限",
+				"labels": "ラベル"
+			},
+			"operators": {
+				"isAnyOf": "次のいずれか",
+				"includeAnyOf": "次のいずれかを含む"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"calendar": {
+			"pageTitle": "{{name}} – カレンダー",
+			"title": "カレンダー",
+			"previousMonth": "前月",
+			"nextMonth": "翌月",
+			"today": "今日",
+			"noTasks": "予定されたタスクはありません",
+			"noTasksSubtitle": "タスクに開始日、期限、またはその両方を追加すると、カレンダーに表示されます。",
+			"moreTasks": "+{{count}} 件",
+			"loadError": "タスクの読み込みに失敗しました。",
+			"dayTasksAriaLabel": "{{date}}のすべてのタスクを表示",
+			"taskAriaLabel": "{{title}}、{{range}}: タスクを開く",
+			"noTasksThisMonth": "今月の予定はありません"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – ガントチャート",
+			"title": "ガントタイムライン",
+			"searchPlaceholder": "スケジュール済みのチケットを検索...",
+			"hideTasks": "タスクを非表示",
+			"showTasks": "タスクを表示",
+			"noTasks": "スケジュール済みのタスクはありません",
+			"noTasksSubtitle": "タスクに開始日や期限を設定して、プロジェクトのタイムラインに配置します。",
+			"noTasksFound": "タスクが見つかりません",
+			"noTasksMatch": "「{{query}}」に一致するスケジュール済みタスクはありません",
+			"taskHeader": "タスク",
+			"updateDatesError": "タスクの日程の更新に失敗しました",
+			"resizeStart": "開始日を変更",
+			"resizeDue": "期限を変更",
+			"taskAriaLabel": "{{title}}: 開く、またはドラッグして移動",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "タスクを削除しますか？",
+			"description": "これにより、タスクとそのすべてのデータが完全に削除されます。この操作は取り消せません。",
+			"action": "タスクを削除",
+			"success": "タスクを削除しました",
+			"error": "タスクの削除に失敗しました"
+		},
+		"archive": {
+			"success": "{{count}} 件のタスクをアーカイブしました"
+		},
+		"listView": {
+			"addTask": "タスクを追加",
+			"archiveAllTooltip": "完了したタスクをすべてアーカイブ",
+			"noTasks": "タスクはありません"
+		},
+		"kanban": {
+			"addTask": "タスクを追加",
+			"automaticallySortedHint": "{{sort}}で自動的に並べ替え"
+		},
+		"pr": {
+			"merged": "マージ済み",
+			"draft": "下書き",
+			"open": "オープン",
+			"label": "Pull Request",
+			"count_other": "{{count}} 件の PR"
+		},
+		"assignee": {
+			"label": "担当者",
+			"unassigned": "未割り当て"
+		},
+		"dueDate": {
+			"label": "期限",
+			"clear": "日付をクリア",
+			"updateSuccess": "期限を更新しました",
+			"updateError": "期限の更新に失敗しました",
+			"clearSuccess": "期限をクリアしました",
+			"clearError": "期限のクリアに失敗しました"
+		},
+		"labels": {
+			"label": "ラベル",
+			"empty": "利用可能なラベルがありません"
+		},
+		"update": {
+			"success": "タスクを更新しました",
+			"error": "タスクの更新に失敗しました"
+		},
+		"contextMenu": {
+			"copyLink": "リンクをコピー",
+			"copyLinkSuccess": "タスクのリンクをコピーしました！"
+		},
+		"actions": {
+			"archive": "アーカイブ",
+			"markAsPlanned": "計画中に設定",
+			"delete": "削除...",
+			"duplicate": "Duplicate"
+		},
+		"bulk": {
+			"selectedCount": "{{count}} 件選択中",
+			"moveToBacklog": "バックログに移動",
+			"moveToBacklogSuccess": "{{count}} 件のタスクをバックログに移動しました",
+			"moveToBacklogError": "バックログへの移動に失敗しました",
+			"moveToBoard": "ボードに移動",
+			"moveToBoardSuccess": "{{count}} 件のタスクをボードに移動しました",
+			"moveToBoardError": "ボードへの移動に失敗しました",
+			"delete": "タスクを削除",
+			"deleteConfirm": "{{count}} 件のタスクを削除しますか？この操作は取り消せません。",
+			"deleteSuccess": "{{count}} 件のタスクを削除しました",
+			"deleteError": "タスクの削除に失敗しました",
+			"archive": "タスクをアーカイブ",
+			"archiveSuccess": "{{count}} 件のタスクをアーカイブしました",
+			"archiveError": "タスクのアーカイブに失敗しました",
+			"updateSuccess": "{{count}} 件のタスクを更新しました",
+			"updateError": "タスクの更新に失敗しました",
+			"assignTo": "担当者を割り当て",
+			"assignSuccess": "{{count}} 件のタスクに担当者を割り当てました",
+			"assignError": "担当者の割り当てに失敗しました",
+			"setPriority": "優先度を設定",
+			"updatePriorityError": "優先度の更新に失敗しました",
+			"addLabel": "ラベルを追加",
+			"addLabelSuccess": "{{count}} 件のタスクにラベルを追加しました",
+			"addLabelError": "ラベルの追加に失敗しました",
+			"setDueDate": "期限を設定",
+			"updateDueDateError": "期限の更新に失敗しました",
+			"actions": "操作",
+			"searchActions": "操作を検索...",
+			"noActionsFound": "操作が見つかりません。",
+			"changeStatus": "ステータスを変更"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "左に列を挿入",
+				"addColumnAfter": "右に列を挿入",
+				"deleteColumn": "列を削除",
+				"addRowBefore": "上に行を挿入",
+				"addRowAfter": "下に行を挿入",
+				"deleteRow": "行を削除",
+				"deleteTable": "表を削除"
+			}
+		},
+		"descriptionSearchLoading": "Searching full descriptions…",
+		"descriptionSearchError": "Description search failed. Results may be incomplete.",
+		"descriptionRetry": "Retry",
+		"descriptionLoading": "Loading description…",
+		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
+		"duplicate": {
+			"error": "Failed to duplicate task",
+			"success": "Task duplicated successfully",
+			"titleSuffix": "{{title}} (copy)"
+		},
+		"checklistProgress": "チェックリスト {{total}} 項目中 {{completed}} 項目完了",
+		"customFields": {
+			"ariaLabel": "Custom fields"
+		},
+		"board": {
+			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
+		}
+	},
+	"invitations": {
+		"email": {
+			"subject": "{{inviterName}} さんが Kaneo の「{{workspaceName}}」にあなたを招待しました",
+			"preview": "Kaneo の「{{workspaceName}}」に招待されました",
+			"title": "「{{workspaceName}}」に参加",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) さんが Kaneo でのコラボレーションにあなたを招待しました。",
+			"cta": "招待を承諾",
+			"sameEmail": "このメッセージを受信したメールアドレスで承諾できます。",
+			"ignore": "心当たりがない場合は、このメールを無視していただいて構いません。",
+			"footer": "Kaneo ワークスペース招待",
+			"details": {
+				"title": "招待の詳細",
+				"sentTo": "送信先",
+				"instance": "インスタンス",
+				"role": "ロール",
+				"expires": "有効期限"
+			}
+		},
+		"pageTitle": "招待",
+		"pendingInvitations": "保留中の招待",
+		"acceptSubtitle": "招待を承諾してワークスペースに参加",
+		"noPendingTitle": "保留中の招待はありません",
+		"noPendingDescription": "現在、保留中のワークスペース招待はありません。",
+		"continueToSetup": "セットアップへ進む",
+		"skipForNow": "今はスキップ",
+		"table": {
+			"workspace": "ワークスペース",
+			"invitedBy": "招待者",
+			"expires": "有効期限"
+		},
+		"toast": {
+			"acceptError": "招待の承諾に失敗しました",
+			"acceptSuccess": "招待を承諾しました！チームへようこそ。",
+			"rejectError": "招待の辞退に失敗しました",
+			"rejectSuccess": "招待を辞退しました"
+		}
+	},
+	"workspace": {
+		"projects": {
+			"pageTitle": "プロジェクト",
+			"createProject": "プロジェクトを作成",
+			"title": "タイトル",
+			"progress": "進捗",
+			"targetDate": "目標日",
+			"dueDate": "期限",
+			"status": "ステータス",
+			"emptyTitle": "プロジェクトがまだありません",
+			"emptyDescription": "最初のプロジェクトを作成して始めましょう。",
+			"emptyDescriptionReadOnly": "このワークスペースにはまだプロジェクトがありません。管理者に作成を依頼してください。",
+			"projectStatus": {
+				"notStarted": "未着手",
+				"complete": "完了",
+				"inProgress": "進行中"
+			},
+			"noDueDate": "期限なし",
+			"reorderHandle": "プロジェクトの並び替え",
+			"reorderError": "プロジェクトの並び替えに失敗しました",
+			"unavailable": {
+				"backToWorkspace": "Back to workspace",
+				"noAccessDescription": "Ask a workspace admin to give you access.",
+				"noAccessTitle": "You don't have access to this project",
+				"notFoundDescription": "This project doesn't exist or has been deleted.",
+				"notFoundTitle": "Project not found"
+			}
+		},
+		"search": {
+			"pageTitle": "検索",
+			"backToDashboard": "ダッシュボードに戻る",
+			"placeholder": "タイトルまたはID (例: DEP-23) でタスクを検索...",
+			"hint": "このワークスペース内のすべてのプロジェクトを検索します。特定のタスクを見つけるには DEP-23 のようなタスクIDを使用してください。",
+			"searching": "検索中...",
+			"resultsFound_other": "{{count}} 件の結果が見つかりました",
+			"noResultsTitle": "結果が見つかりません",
+			"noResultsDescription": "検索語句を変更するか、別のキーワードで検索してください",
+			"startTitle": "検索を開始",
+			"startDescription": "キーワードを入力して、すべてのプロジェクトからタスクを検索します",
+			"quickSearchesLabel": "クイック検索:",
+			"suggestionHighPriority": "高優先度",
+			"suggestionBug": "バグ",
+			"suggestionFeature": "機能",
+			"suggestionInProgress": "進行中",
+			"suggestionCompleted": "完了"
+		},
+		"create": {
+			"pageTitle": "ワークスペースを作成",
+			"heading": "新しいワークスペースを作成",
+			"subtitle": "ワークスペースは、チームがプロジェクト、サイクル、課題に取り組むための共有環境です。",
+			"nameLabel": "ワークスペース名",
+			"namePlaceholder": "ワークスペース名を入力",
+			"descriptionLabel": "説明 (任意)",
+			"descriptionPlaceholder": "ワークスペースの説明を追加",
+			"required": "必須",
+			"creating": "作成中...",
+			"submit": "ワークスペースを作成",
+			"success": "ワークスペースを作成しました",
+			"error": "ワークスペースの作成に失敗しました"
+		},
+		"home": {
+			"activity": {
+				"commented": "commented",
+				"empty": "Nothing has happened in the last 30 days.",
+				"loadError": "Activity couldn't be loaded.",
+				"title": "Activity",
+				"updated": "updated the task"
+			},
+			"greeting": {
+				"afternoon": "Good afternoon",
+				"evening": "Good evening",
+				"morning": "Good morning"
+			},
+			"newTask": "New task",
+			"pageTitle": "Home",
+			"projects": {
+				"all": "All projects",
+				"tasks_other": "{{count}} tasks",
+				"title": "Your projects",
+				"loadError": "Projects couldn't be loaded."
+			},
+			"upNext": {
+				"assigned_other": "{{count}} assigned to you",
+				"title": "Up next",
+				"viewAll": "View all"
+			},
+			"week": {
+				"more_other": "+{{count}} more",
+				"truncated": "The week preview includes only the first {{shown}} of {{total}} assigned tasks."
+			}
+		},
+		"myTasks": {
+			"emptyDescription": "Tasks assigned to you across this workspace show up here.",
+			"groupBy": {
+				"dueDate": "Due date",
+				"label": "Group by",
+				"project": "Project"
+			},
+			"pageTitle": "My tasks",
+			"truncated": "Showing the first {{shown}} of {{total}} tasks."
+		},
+		"myWork": {
+			"due": {
+				"later": "Later",
+				"noDueDate": "No due date",
+				"overdue": "Overdue",
+				"thisWeek": "This week",
+				"today": "Today",
+				"tomorrow": "Tomorrow"
+			},
+			"empty": "Nothing assigned to you",
+			"loadError": "Your tasks couldn't be loaded."
+		}
+	},
+	"team": {
+		"roles": {
+			"owner": "オーナー",
+			"admin": "管理者",
+			"member": "メンバー",
+			"viewer": "閲覧者"
+		},
+		"members": {
+			"pageTitle": "メンバー",
+			"inviteMember": "メンバーを招待",
+			"you": "あなた"
+		},
+		"invitations": {
+			"pendingBadge": "保留中",
+			"expires": "有効期限: {{date}}",
+			"linkLabel": "招待リンク",
+			"copyLink": "リンクをコピー",
+			"linkCopied": "招待リンクをコピーしました",
+			"copyFailed": "自動コピーできませんでした。リンクを選択して Ctrl+C を押してください。"
+		},
+		"inviteModal": {
+			"title": "チームメンバーを招待",
+			"emailLabel": "メールアドレス",
+			"emailPlaceholder": "colleague@company.com",
+			"sendInvitation": "招待を送信",
+			"success": "招待を送信しました",
+			"error": "チームメンバーの招待に失敗しました",
+			"createdTitle": "招待を作成しました",
+			"shareLinkDescription": "{{email}} にこのリンクを共有して、ワークスペースに参加してもらいましょう。",
+			"done": "完了"
+		},
+		"membersTable": {
+			"emptyTitle": "チームメンバーがまだいません",
+			"emptyDescription": "最初のチームメンバーを招待して始めましょう。",
+			"columns": {
+				"name": "名前",
+				"role": "ロール",
+				"joined": "参加日",
+				"actions": "操作",
+				"projects": "Projects"
+			},
+			"memberRolePending": "{{role}} (保留中)",
+			"ariaCancelInvitation": "招待をキャンセル",
+			"ariaInvitationActions": "招待の操作",
+			"ariaRemoveMember": "メンバーを削除",
+			"removeDialogTitle": "チームメンバーを削除しますか？",
+			"removeDialogDescription": "本当に {{name}} をワークスペースから削除しますか？この操作は取り消せません。",
+			"cancelDialogTitle": "招待をキャンセルしますか？",
+			"cancelDialogDescription": "本当に {{email}} への招待をキャンセルしますか？この操作は取り消せません。",
+			"removeMember": "メンバーを削除",
+			"cancelInvitation": "招待をキャンセル",
+			"removeSuccess": "チームメンバーを削除しました",
+			"removeError": "チームメンバーの削除に失敗しました",
+			"cancelInviteSuccess": "招待をキャンセルしました",
+			"cancelInviteError": "招待のキャンセルに失敗しました",
+			"roleUpdateSuccess": "ロールを更新しました",
+			"roleUpdateError": "ロールの更新に失敗しました"
+		},
+		"projectAccess": {
+			"allProjects": "All projects",
+			"allProjectsDescription": "Access every project in this workspace, including new ones.",
+			"description": "Choose which projects this person can see.",
+			"dialogDescription": "Choose which projects {{name}} can access.",
+			"dialogTitle": "Project access",
+			"editAria": "Change project access for {{name}} ({{access}})",
+			"label": "Project access",
+			"noProjects": "No projects in this workspace yet.",
+			"projectCount_other": "{{count}} projects",
+			"projectsLabel": "Projects",
+			"save": "Save",
+			"selectAtLeastOne": "Choose at least one project.",
+			"selectedProjects": "Selected projects",
+			"selectedProjectsDescription": "Only access the projects you choose.",
+			"updateError": "Failed to update project access",
+			"updateSuccess": "Project access updated",
+			"archived": "Archived",
+			"allProjectsUnavailable": "Your own access is limited, so you can only give access to selected projects."
+		}
+	},
+	"publicProject": {
+		"pageTitle": "公開ビュー",
+		"badge": "公開",
+		"readOnly": "閲覧専用",
+		"error": {
+			"title": "プロジェクトが見つかりません",
+			"description": "このプロジェクトは存在しないか、一般公開されていません。"
+		},
+		"taskCard": {
+			"viewDetailsAria": "タスク「{{title}}」の詳細を表示"
+		},
+		"taskDetail": {
+			"labels": "ラベル",
+			"externalLinks": "外部リンク",
+			"pullRequestFallback": "Pull Request",
+			"issueFallback": "Issue",
+			"prStatusMerged": "マージ済み",
+			"prStatusDraft": "下書き",
+			"prStatusOpen": "オープン",
+			"dueWithDate": "期限: {{date}}",
+			"created": "作成日",
+			"dueDateLabel": "期限"
+		},
+		"theme": {
+			"switchToLight": "ライトモードに切り替え",
+			"switchToDark": "ダークモードに切り替え"
+		},
+		"copyUrl": {
+			"successToast": "URLをコピーしました",
+			"errorToast": "URLのコピーに失敗しました",
+			"copied": "コピー完了",
+			"share": "共有"
+		},
+		"branding": {
+			"poweredBy": "Powered by"
+		}
+	},
+	"press": {
+		"title": "Press kit",
+		"headline": "Kaneo press kit",
+		"intro": "Kaneo logos and product screenshots for articles, videos, and other media.",
+		"description": "Kaneo press resources: product information, logos, screenshots, and contact details for journalists and creators.",
+		"downloadKit": "Download all assets",
+		"boilerplateTitle": "About Kaneo",
+		"boilerplate": "Kaneo is an open-source project management platform created by Andrej Acevski. Teams can organize tasks in board and list views, assign work, set priorities and due dates, and connect GitHub. Kaneo is available under the MIT license for self-hosting, or as a managed service through Kaneo Cloud.",
+		"logosTitle": "Logos",
+		"darkLogo": "Dark wordmark",
+		"darkLogoAlt": "Dark Kaneo logo on a light background",
+		"darkLogoDetail": "SVG",
+		"lightLogo": "Light wordmark",
+		"lightLogoAlt": "Light Kaneo logo on a dark background",
+		"lightLogoDetail": "SVG",
+		"icon": "App icon",
+		"iconAlt": "Kaneo app icon",
+		"iconDetail": "PNG, 512 × 512",
+		"download": "Download",
+		"screenshotsTitle": "Screenshots",
+		"lightScreenshot": "Board (light)",
+		"lightScreenshotAlt": "Kaneo board in light theme, with task cards arranged by status",
+		"darkScreenshot": "Board (dark)",
+		"darkScreenshotAlt": "Kaneo board in dark theme, with task cards arranged by status",
+		"contactTitle": "Press enquiries",
+		"contactBody": "Contact the Kaneo team for product questions, interviews, or additional materials.",
+		"usageContrast": "Choose the light wordmark for dark backgrounds and the dark wordmark for light backgrounds.",
+		"usageProportions": "Keep the original proportions and colours, without stretching or adding effects.",
+		"usageSpace": "Leave enough space around the logo to keep it clear and readable.",
+		"darkListScreenshot": "List (dark)",
+		"darkListScreenshotAlt": "Kaneo task list in dark theme, grouped by status with assignees, priorities, labels, and due dates",
+		"darkTaskScreenshot": "Task details (dark)",
+		"darkTaskScreenshotAlt": "Kaneo task details in dark theme, with a description, checklist, team comment, and task properties",
+		"darkTimelineScreenshot": "Timeline (dark)",
+		"darkTimelineScreenshotAlt": "Kaneo Gantt timeline in dark theme, showing scheduled tasks and their durations",
+		"lightListScreenshot": "List (light)",
+		"lightListScreenshotAlt": "Kaneo task list in light theme, grouped by status with assignees, priorities, labels, and due dates",
+		"lightTaskScreenshot": "Task details (light)",
+		"lightTaskScreenshotAlt": "Kaneo task details in light theme, with a d

@@ -1,0 +1,735 @@
+r": "{{done}} of {{count}} boards imported",
+					"runTitle_one": "{{source}}, {{count}} board",
+					"runTitle_other": "{{source}}, {{count}} boards",
+					"section": "Boards",
+					"someImported_one": "{{done}} of {{count}} board imported.",
+					"someImported_other": "{{done}} of {{count}} boards imported.",
+					"step": "Choose boards"
+				},
+				"project": {
+					"allImported_one": "{{count}} project imported.",
+					"allImported_other": "All {{count}} projects imported.",
+					"empty": "No projects found. Check that this key can see the projects you want to import.",
+					"found_one": "{{count}} project found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_one": "Import {{count}} project",
+					"importButton_other": "Import {{count}} projects",
+					"limit": "Pick up to {{max}} projects per import.",
+					"pick": "Pick the projects to bring over.",
+					"progress_one": "{{done}} of {{count}} project imported",
+					"progress_other": "{{done}} of {{count}} projects imported",
+					"runTitle_one": "{{source}}, {{count}} project",
+					"runTitle_other": "{{source}}, {{count}} projects",
+					"section": "Projects",
+					"someImported_one": "{{done}} of {{count}} project imported.",
+					"someImported_other": "{{done}} of {{count}} projects imported.",
+					"step": "Choose projects"
+				},
+				"team": {
+					"allImported_one": "{{count}} team imported.",
+					"allImported_other": "All {{count}} teams imported.",
+					"empty": "No teams found. Check that this key can see the teams you want to import.",
+					"found_one": "{{count}} team found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_one": "Import {{count}} team",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_one": "{{done}} of {{count}} team imported",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_one": "{{source}}, {{count}} team",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_one": "{{done}} of {{count}} team imported.",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Təkliflər",
+			"commands": "Əmrlər",
+			"projects": "Layihələr",
+			"search": "Axtarış",
+			"members": "Üzvlər",
+			"createTask": "Tapşırıq yarat",
+			"createProject": "Layihə yarat",
+			"createWorkspace": "İş sahəsi yarat",
+			"lightTheme": "Açıq tema",
+			"darkTheme": "Tünd tema",
+			"systemTheme": "Sistem teması",
+			"keyboardShortcuts": "Klaviatura qısayolları",
+			"inputPlaceholder": "Tətbiqləri və əmrləri axtar...",
+			"empty": "Nəticə tapılmadı.",
+			"footer": {
+				"navigate": "Keçid et",
+				"open": "Aç",
+				"close": "Bağla"
+			}
+		},
+		"sidebar": {
+			"projects": "Layihələr",
+			"members": "Üzvlər",
+			"invitations": "Dəvətlər",
+			"more": "Daha çox",
+			"backToBoard": "Lövhəyə qayıt",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Layihəyə bax",
+			"shareProject": "Layihəni paylaş",
+			"projectSettings": "Layihə parametrləri",
+			"linkCopied": "Layihənin keçidi mübadilə buferinə kopyalandı",
+			"addProject": "Layihə əlavə et",
+			"deleteConfirmTitle": "Layihə silinsin?",
+			"deleteConfirmDescription": "Bu, layihəni və bütün məlumatlarını həmişəlik siləcək. Bu əməliyyatı geri qaytara bilməzsiniz.",
+			"deletedToast": "Layihə silindi",
+			"deleteProject": "Layihəni sil",
+			"switcherLabel": "Layihəni və ya görünüşü dəyiş"
+		},
+		"search": {
+			"inputPlaceholder": "Tapşırıqları, layihələri və şərhləri axtar...",
+			"minCharsHint": "Axtarış üçün ən azı 3 simvol daxil edin",
+			"groups": {
+				"task": "Tapşırıqlar",
+				"project": "Layihələr",
+				"workspace": "İş sahələri",
+				"comment": "Şərhlər",
+				"activity": "Fəaliyyətlər",
+				"fallback": "Nəticələr"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Yan paneli aç/bağla",
+			"back": "Geri"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Uğurla çıxış edildi",
+			"signOutFailed": "Çıxış etmək alınmadı",
+			"unnamedUser": "İstifadəçi",
+			"settings": "Parametrlər",
+			"signingOut": "Çıxış edilir...",
+			"logOut": "Çıxış et"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "İş sahələri",
+			"switching": "Dəyişdirilir...",
+			"addWorkspace": "İş sahəsi əlavə et",
+			"selectWorkspace": "İş sahəsi seç"
+		},
+		"page": {
+			"projectsTitle": "Layihələr",
+			"settingsTitle": "Parametrlər",
+			"backToWorkspace": "İş sahəsinə qayıt",
+			"settingsWorkspaceTab": "İş sahəsi"
+		},
+		"projectSettings": {
+			"projectLabel": "Layihə"
+		},
+		"keyboardShortcuts": {
+			"title": "Klaviatura qısayolları",
+			"subtitle": "Klaviatura qısayolları ilə işinizi sürətləndirin",
+			"searchPlaceholder": "Qısayolları axtar...",
+			"footer": "Bağlamaq üçün <kbd>Escape</kbd> düyməsini basın",
+			"categories": {
+				"general": "Ümumi",
+				"create": "Yarat",
+				"views": "Görünüşlər",
+				"navigation": "Naviqasiya",
+				"quickSelect": "Sürətli seçim (açılan pəncərələrdə)"
+			},
+			"items": {
+				"openCommandPalette": "Əmr palitrasını aç",
+				"globalSearch": "Ümumi axtarış",
+				"toggleSidebar": "Yan paneli aç/bağla",
+				"showShortcuts": "Klaviatura qısayollarını göstər",
+				"closeModal": "Modal/açılan pəncərəni bağla",
+				"createTask": "Tapşırıq yarat",
+				"createProject": "Layihə yarat",
+				"createWorkspace": "İş sahəsi yarat",
+				"boardView": "Lövhə görünüşünə keç",
+				"listView": "Siyahı görünüşünə keç",
+				"backlogView": "Gözləyən tapşırıqlar görünüşünə keç",
+				"calendarView": "Təqvim görünüşünə keç",
+				"nextTask": "Növbəti tapşırıq",
+				"prevTask": "Əvvəlki tapşırıq",
+				"openTask": "Seçilmiş tapşırığı aç",
+				"quickSelectNumber": "Nömrəyə görə seçim et"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} yeni",
+		"newCount_other": "{{count}} yeni",
+		"emptyTitle": "Hələ bildiriş yoxdur",
+		"emptySubtitle": "Yenilikləri və fəaliyyəti burada görəcəksiniz.",
+		"clearAll": "Bütün bildirişləri təmizlə",
+		"clearDialogTitle": "Bütün bildirişlər təmizlənsin?",
+		"clearDialogDescription": "Bu, bütün bildirişləri həmişəlik siləcək. Bu əməliyyatı geri qaytara bilməzsiniz.",
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} dəqiqə",
+			"minutes_other": "{{count}} dəqiqə",
+			"hours_one": "{{count}} saat",
+			"hours_other": "{{count}} saat",
+			"days_one": "{{count}} gün",
+			"days_other": "{{count}} gün"
+		},
+		"events": {
+			"task_created": {
+				"title": "Yeni tapşırıq yaradıldı",
+				"content": "\"{{taskTitle}}\" tapşırığı yaradıldı"
+			},
+			"workspace_created": {
+				"title": "İş sahəsi yaradıldı",
+				"content": "\"{{workspaceName}}\" iş sahəniz uğurla yaradıldı"
+			},
+			"task_status_changed": {
+				"title": "Tapşırığın vəziyyəti dəyişdi",
+				"content": "\"{{taskTitle}}\" tapşırığının vəziyyəti \"{{oldStatus}}\" vəziyyətindən \"{{newStatus}}\" vəziyyətinə dəyişdi"
+			},
+			"task_assignee_changed": {
+				"title": "Tapşırıq sizə təyin edildi",
+				"content": "Sizə tapşırıq təyin edildi: {{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} sizi xatırlatdı",
+				"content": "{{mentionerName}} sizi burada xatırlatdı: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} tapşırığınıza şərh yazdı",
+				"content": "{{taskTitle}} tapşırığına yeni şərh: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Tapşırığın son tarixi yaxınlaşır",
+				"content": "{{taskTitle}} tapşırığının son tarixinə {{leadTime}} qalıb"
+			},
+			"task_overdue": {
+				"title": "Tapşırığın vaxtı keçib",
+				"content": "{{taskTitle}} tapşırığının son tarixi keçib"
+			},
+			"time_entry_created": {
+				"title": "Vaxtın izlənməsi başladı",
+				"contentWithTask": "Tapşırıqda vaxtın izlənməsi başladı: {{taskTitle}}",
+				"contentWithoutTask": "Tapşırıqda vaxtın izlənməsi başladı"
+			}
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "Tapşırığı özünə təyin etdi",
+		"unassigned": "Tapşırığın icraçısını çıxardı",
+		"assignedTo": "Tapşırığı {{name}} adlı şəxsə təyin etdi",
+		"changedStatus": "Vəziyyəti {{from}} vəziyyətindən {{to}} vəziyyətinə dəyişdi",
+		"changedPriority": "Prioriteti {{from}} səviyyəsindən {{to}} səviyyəsinə dəyişdi",
+		"clearedDueDate": "Son tarixi təmizlədi",
+		"setDueDate": "Son tarixi {{date}} olaraq təyin etdi",
+		"changedDueDate": "Son tarixi {{from}} tarixindən {{to}} tarixinə dəyişdi",
+		"changedTitle": "Başlığı \"{{from}}\" əvəzinə \"{{to}}\" etdi",
+		"moved": "Tapşırığı \"{{from}}\" bölməsindən \"{{to}}\" bölməsinə köçürdü",
+		"created": "Bu tapşırığı yaratdı",
+		"githubUser": "GitHub istifadəçisi",
+		"comment": {
+			"viewGithubProfile": "GitHub profilinə bax",
+			"cannotBeEmpty": "Şərh boş ola bilməz",
+			"mustBeLoggedInToEdit": "Şərhləri redaktə etmək üçün daxil olmalısınız",
+			"updated": "Şərh yeniləndi",
+			"failedToUpdate": "Şərhi yeniləmək alınmadı",
+			"edit": "Şərhi redaktə et",
+			"editPlaceholder": "Şərhi redaktə et...",
+			"save": "Yadda saxla",
+			"added": "Şərh əlavə edildi",
+			"failedToAdd": "Şərh əlavə etmək alınmadı",
+			"leavePlaceholder": "Şərh yazın...",
+			"attachFile": "Fayl əlavə et",
+			"submitShortcut": "Şərhi göndər",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Faylları yalnız yadda saxlanmış tapşırıqlara yükləmək olar.",
+				"uploadingFile": "Fayl yüklənir...",
+				"imageUploaded": "Şəkil yükləndi",
+				"fileAttached": "Fayl əlavə edildi",
+				"failedToUploadFile": "Faylı yükləmək alınmadı",
+				"enterUrl": "URL daxil edin",
+				"plaintext": "Sadə mətn",
+				"autoDetect": "Avtomatik müəyyən et",
+				"slashGroupText": "Mətn",
+				"slashGroupLists": "Siyahılar",
+				"slashGroupInsert": "Daxil et",
+				"slashParagraph": "Mətn",
+				"slashHeading": "Başlıq",
+				"slashBulletList": "İşarəli siyahı",
+				"slashTaskList": "Görüləcək işlər siyahısı",
+				"slashOrderedList": "Nömrəli siyahı",
+				"slashQuote": "Sitat",
+				"slashCodeBlock": "Kod bloku",
+				"slashTable": "Cədvəl",
+				"slashFile": "Fayl",
+				"searchParagraph": "mətn abzas adi",
+				"searchHeading": "başlıq sərlövhə h2",
+				"searchBulletList": "siyahı işarəli sırasız",
+				"searchTaskList": "görüləcək işlər yoxlama siyahısı seçim qutusu tapşırıq siyahısı",
+				"searchOrderedList": "siyahı sıralı nömrəli",
+				"searchQuote": "sitat sitat bloku",
+				"searchCodeBlock": "kod parçası",
+				"searchTable": "cədvəl tor",
+				"searchFile": "fayl əlavə şəkil foto təsvir yükləmə",
+				"embedErrorInvalidUrl": "Etibarlı URL daxil edin",
+				"embedErrorYoutubeOnly": "Yalnız YouTube keçidləri yerləşdirilə bilər.",
+				"embedVideo": "Videonu yerləşdir",
+				"keepAsLink": "Keçid kimi saxla",
+				"hintTab": "Tabulyasiya",
+				"hintEsc": "Çıxış",
+				"pasteUrl": "URL-i yapışdır",
+				"asLink": "Keçid kimi",
+				"embed": "Yerləşdir",
+				"noCommands": "Əmr yoxdur",
+				"ariaCommentContent": "Şərhin məzmunu",
+				"ariaCommentEditor": "Şərh redaktoru",
+				"ariaCopyCode": "Kodu kopyala",
+				"ariaCopied": "Kopyalandı",
+				"copy": "Kopyala",
+				"copied": "Kopyalandı",
+				"dropImageToUpload": "Yükləmək üçün şəkli buraxın",
+				"previewImageAlt": "Şəklə önbaxış",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Sadə mətn",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Sola sütun daxil et",
+					"addColumnAfter": "Sağa sütun daxil et",
+					"deleteColumn": "Sütunu sil",
+					"addRowBefore": "Yuxarıya sətir daxil et",
+					"addRowAfter": "Aşağıya sətir daxil et",
+					"deleteRow": "Sətri sil",
+					"deleteTable": "Cədvəli sil"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diaqramını göstərmək mümkün olmadı"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "{{forge}}-da şərh yazdı"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Tapşırıqlar",
+		"status": {
+			"label": "Vəziyyət",
+			"to-do": "Görüləcək",
+			"in-progress": "İcra olunur",
+			"in-review": "Yoxlanılır",
+			"done": "Hazırdır",
+			"archived": "Arxivlənmiş",
+			"planned": "Planlaşdırılmış"
+		},
+		"priority": {
+			"label": "Prioritet",
+			"no-priority": "Prioritet yoxdur",
+			"low": "Aşağı",
+			"medium": "Orta",
+			"high": "Yüksək",
+			"urgent": "Təcili"
+		},
+		"boardSearchPlaceholder": "Tapşırıqları axtar...",
+		"view": {
+			"board": "Lövhə",
+			"list": "Siyahı",
+			"backlog": "Gözləyən tapşırıqlar",
+			"gantt": "Qant",
+			"heading": "Görünüş"
+		},
+		"common": {
+			"selectTask": "Tapşırıq seç",
+			"loadingTask": "Tapşırıq yüklənir...",
+			"taskNotFound": "Tapşırıq tapılmadı",
+			"taskNotFoundDescription": "Axtardığınız tapşırıq mövcud deyil və ya silinib.",
+			"ticketAmbiguous": "Tapşırıq ID-si birdən çox tapşırığa uyğun gəlir",
+			"ticketAmbiguousDescription": "{{ticketId}} bu iş sahəsində birdən çox layihədəki tapşırıqlara uyğun gəlir. Linki düzəltmək üçün həmin layihələrdən birinə fərqli açar verin.",
+			"ticketNotFoundDescription": "Bu iş sahəsində {{ticketId}} ID-li tapşırıq yoxdur və ya ona girişiniz yoxdur.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Əsas tapşırıq",
+			"activity": "Fəaliyyət",
+			"noActivity": "Fəaliyyət tapılmadı",
+			"openInFullPage": "Tam səhifədə aç",
+			"titlePlaceholder": "Başlıq əlavə etmək üçün klikləyin",
+			"addDescription": "Təsvir əlavə et...",
+			"editor": {
+				"ariaLabel": "Tapşırıq təsviri redaktoru",
+				"placeholder": "Təsvir yazın...",
+				"previewImage": "Şəklə önbaxış",
+				"enterUrl": "URL daxil edin",
+				"autoDetect": "Avtomatik müəyyən et",
+				"copyCode": "Kodu kopyala",
+				"copy": "Kopyala",
+				"copied": "Kopyalandı",
+				"attachFile": "Fayl əlavə et",
+				"dropToUpload": "Yükləmək üçün şəkli buraxın",
+				"checkbox": {
+					"markIncomplete": "Tapşırığı tamamlanmamış kimi işarələ",
+					"markComplete": "Tapşırığı tamamlanmış kimi işarələ"
+				},
+				"upload": {
+					"loading": "Fayl yüklənir...",
+					"failed": "Faylı yükləmək alınmadı",
+					"imageSuccess": "Şəkil yükləndi",
+					"fileSuccess": "Fayl əlavə edildi"
+				},
+				"slash": {
+					"groups": {
+						"text": "Mətn",
+						"lists": "Siyahılar",
+						"insert": "Daxil et"
+					},
+					"empty": "Əmr yoxdur",
+					"commands": {
+						"paragraph": "Mətn",
+						"heading-2": "Başlıq",
+						"bullet-list": "İşarəli siyahı",
+						"task-list": "Görüləcək işlər siyahısı",
+						"ordered-list": "Nömrəli siyahı",
+						"blockquote": "Sitat",
+						"code-block": "Kod bloku",
+						"table": "Cədvəl",
+						"file": "Fayl"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Fərqlər",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Sadə mətn",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Videonu yerləşdir",
+						"keepAsLink": "Keçid kimi saxla"
+					},
+					"inputPlaceholder": "URL-i yapışdır",
+					"embeddedContent": "Yerləşdirilmiş məzmun",
+					"asLink": "Keçid kimi",
+					"submit": "Yerləşdir",
+					"errors": {
+						"invalidUrl": "Etibarlı URL daxil edin",
+						"onlyYoutube": "Yalnız YouTube keçidləri yerləşdirilə bilər."
+					},
+					"onlyYoutubeInline": "Yalnız YouTube URL-ləri yerləşdirilə bilər. Keçid rejimindən istifadə edin."
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diaqramını göstərmək mümkün olmadı"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Tapşırıq"
+		},
+		"relations": {
+			"title": "Əlaqələr",
+			"tasksInProject": "Layihədəki tapşırıqlar",
+			"linkError": "Tapşırığı əlaqələndirmək alınmadı",
+			"empty": "Əlaqəli tapşırıq yoxdur",
+			"searchPlaceholder": "Əlaqələndirmək üçün tapşırıqları axtar...",
+			"noTasksFound": "Tapşırıq tapılmadı",
+			"openTask": "Tapşırığı aç",
+			"removeRelation": "Əlaqəni çıxar",
+			"related": "Əlaqəli",
+			"blocks": "Mane olur",
+			"selectTask": "Əlaqələndirmək üçün tapşırıq seçin",
+			"types": {
+				"blocks": "Mane olur",
+				"blocked_by": "Mane olan",
+				"related": "Əlaqəlidir"
+			}
+		},
+		"subtasks": {
+			"title": "Alt tapşırıqlar",
+			"inputPlaceholder": "Alt tapşırığın başlığı...",
+			"addAction": "Əlavə et",
+			"empty": "Hələ alt tapşırıq yoxdur",
+			"createError": "Alt tapşırığı yaratmaq alınmadı",
+			"deleteSuccess": "Tapşırıq uğurla silindi",
+			"deleteError": "Tapşırığı silmək alınmadı",
+			"deleteDialogTitle": "Tapşırıq silinsin?",
+			"deleteDialogDescription": "Bu, tapşırığı və bütün məlumatlarını həmişəlik siləcək. Bu əməliyyatı geri qaytara bilməzsiniz.",
+			"deleteAction": "Tapşırığı sil",
+			"completeAria": "Alt tapşırığı tamamlanmış kimi işarələ",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask.",
+			"progress": "{{completed}} of {{total}} subtasks completed"
+		},
+		"properties": {
+			"title": "Xüsusiyyətlər",
+			"labels": "Etiketlər",
+			"copyTaskLink": "Tapşırığın keçidini kopyala",
+			"copyTaskBranch": "Tapşırığın budağını kopyala",
+			"taskLinkCopied": "Tapşırıq keçidi kopyalandı",
+			"taskBranchCopied": "Branch adı kopyalandı",
+			"start": "Başlat",
+			"startDate": "Başlama tarixi",
+			"noDate": "Tarix yoxdur"
+		},
+		"move": {
+			"title": "Tapşırığı köçür",
+			"projectLabel": "Təyinat layihəsi",
+			"projectPlaceholder": "Layihə seçin",
+			"statusLabel": "Təyinat vəziyyəti",
+			"statusHintKeep": "Bu layihənin iş axını artıq cari vəziyyəti dəstəkləyir.",
+			"statusHintAdjust": "Təyinat layihəsində istifadə ediləcək vəziyyəti seçin.",
+			"action": "Tapşırığı köçür",
+			"success": "Tapşırıq uğurla köçürüldü",
+			"error": "Tapşırığı köçürmək alınmadı"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Təyin olunmayıb",
+				"updateError": "Tapşırığın icraçısını yeniləmək alınmadı"
+			},
+			"status": {
+				"updateError": "Tapşırığın vəziyyətini yeniləmək alınmadı"
+			},
+			"priority": {
+				"updateError": "Tapşırığın prioritetini yeniləmək alınmadı"
+			},
+			"dueDate": {
+				"updateSuccess": "Tapşırığın son tarixi uğurla yeniləndi",
+				"updateError": "Tapşırığın son tarixini yeniləmək alınmadı",
+				"clear": "Tarixi təmizlə"
+			},
+			"startDate": {
+				"updateSuccess": "Tapşırığın başlama tarixi uğurla yeniləndi",
+				"updateError": "Tapşırığın başlama tarixini yeniləmək alınmadı",
+				"clear": "Başlama tarixini təmizlə"
+			},
+			"labels": {
+				"searchPlaceholder": "Etiketləri axtar...",
+				"empty": "Etiket tapılmadı",
+				"create": "\"{{name}}\" adlı etiket yarat",
+				"chooseColor": "Rəng seç",
+				"addSuccess": "Etiket əlavə edildi",
+				"removeSuccess": "Etiket çıxarıldı",
+				"updateError": "Etiketi yeniləmək alınmadı",
+				"createSuccess": "Etiket yaradıldı və əlavə edildi",
+				"createError": "Etiketi yaratmaq alınmadı",
+				"colors": {
+					"stone": "Daş rəngi",
+					"slate": "Şifer rəngi",
+					"lavender": "Lavanda rəngi",
+					"sage": "Adaçayı rəngi",
+					"forest": "Meşə yaşılı",
+					"amber": "Kəhrəba rəngi",
+					"terracotta": "Bişmiş gil rəngi",
+					"rose": "Çəhrayı",
+					"crimson": "Tünd qırmızı"
+				},
+				"editLabels": "Etiketləri redaktə et"
+			}
+		},
+		"backlog": {
+			"pageTitle": "{{name}} — gözləyən tapşırıqlar",
+			"noTasksToMove": "Köçürüləcək planlaşdırılmış tapşırıq yoxdur",
+			"moveAllConfirm": "Bütün {{count}} planlaşdırılmış tapşırıq «Görüləcək» bölməsinə köçürülsün?",
+			"moveAllSuccess": "{{count}} tapşırıq «Görüləcək» bölməsinə köçürüldü",
+			"plan": "Planlaşdır",
+			"moveAllTooltip": "Bütün planlaşdırılmış tapşırıqları «Görüləcək» bölməsinə köçür",
+			"moveAll": "Hamısını köçür",
+			"addTask": "Tapşırıq əlavə et",
+			"filter": "Süzgəc",
+			"addFilter": "Süzgəc əlavə et...",
+			"sections": {
+				"planned": "Planlaşdırılmış",
+				"archived": "Arxivlənmiş"
+			},
+			"noTasksInSection": "{{section}} bölməsində tapşırıq yoxdur",
+			"filters": {
+				"priority": "Prioritet: {{name}}",
+				"assignee": "İcraçı: {{name}}",
+				"due": "Son tarix: {{date}}",
+				"label": "Etiket: {{name}}",
+				"dueThisWeek": "Son tarixi bu həftə olan",
+				"dueNextWeek": "Son tarixi gələn həftə olan",
+				"noDueDate": "Son tarix yoxdur"
+			}
+		},
+		"sort": {
+			"label": "Sırala",
+			"by": "Sıralama meyarı",
+			"direction": "İstiqamət",
+			"ascending": "Artan",
+			"descending": "Azalan",
+			"fields": {
+				"position": "Əl ilə (mövqe)",
+				"createdAt": "Yaradılma tarixi",
+				"priority": "Prioritet",
+				"dueDate": "Son tarix",
+				"title": "Başlıq",
+				"number": "Tapşırıq nömrəsi"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Süzmə meyarı",
+			"allStatuses": "Bütün vəziyyətlər",
+			"allPriorities": "Bütün prioritetlər",
+			"allAssignees": "Bütün icraçılar",
+			"allDueDates": "Bütün son tarixlər",
+			"allLabels": "Bütün etiketlər",
+			"selectedCount": "{{count}} seçilib",
+			"subjects": {
+				"status": "Vəziyyət",
+				"priority": "Prioritet",
+				"

@@ -1,0 +1,680 @@
+,
+			"allProjects": "所有專案",
+			"allProjectsDescription": "傳送此工作區中所有專案的通知。",
+			"selectedProjects": "已選專案",
+			"selectedProjectsDescription": "僅傳送所選專案的通知。",
+			"noProjectsInWorkspace": "此工作區目前沒有可用的專案。",
+			"createRule": "建立規則",
+			"removeRule": "移除規則",
+			"toastEmailSaved": "電子郵件通知設定已儲存",
+			"toastEmailSaveFailed": "儲存電子郵件設定失敗",
+			"toastNtfySaved": "ntfy 設定已儲存",
+			"toastNtfySaveFailed": "儲存 ntfy 設定失敗",
+			"toastNtfyDisconnected": "ntfy 已中斷連線",
+			"toastNtfyDisconnectFailed": "中斷 ntfy 連線失敗",
+			"toastGotifySaved": "Gotify 設定已儲存",
+			"toastGotifySaveFailed": "儲存 Gotify 設定失敗",
+			"toastGotifyDisconnected": "Gotify 已中斷連線",
+			"toastGotifyDisconnectFailed": "中斷 Gotify 連線失敗",
+			"toastWebhookSaved": "Webhook 設定已儲存",
+			"toastWebhookSaveFailed": "儲存 Webhook 設定失敗",
+			"toastWebhookDisconnected": "Webhook 已中斷連線",
+			"toastWebhookDisconnectFailed": "中斷 Webhook 連線失敗",
+			"toastRuleSaved": "已儲存 {{workspaceName}} 的通知規則",
+			"toastRuleSaveFailed": "儲存工作區通知規則失敗",
+			"toastRuleRemoved": "已移除 {{workspaceName}} 的通知規則",
+			"toastRuleRemoveFailed": "移除工作區通知規則失敗",
+			"toastPreferencesSaved": "通知偏好設定已儲存",
+			"toastPreferencesSaveFailed": "儲存通知偏好設定失敗",
+			"toastRuleSavedGeneric": "工作區通知規則已儲存",
+			"toastRuleRemovedGeneric": "工作區通知規則已移除",
+			"recipientHint": "指派給你的任務有新留言或狀態變更時會通知你。提及則會通知被提及的成員。你自己的留言、提及與狀態變更不會通知你。"
+		},
+		"preferencesPage": {
+			"title": "偏好設定",
+			"subtitle": "自訂你的 Kaneo 使用體驗。",
+			"appearanceTitle": "外觀",
+			"appearanceSubtitle": "視覺設定與版面配置偏好。",
+			"theme": "主題",
+			"themeDescription": "選擇你偏好的色彩配置",
+			"selectTheme": "選擇主題",
+			"themeLight": "淺色",
+			"themeDark": "深色",
+			"themeSystem": "跟隨系統",
+			"language": "語言",
+			"languageDescription": "選擇你偏好的介面語言",
+			"selectLanguage": "選擇語言",
+			"firstDayOfWeek": "每週起始日",
+			"firstDayOfWeekDescription": "選擇行事曆與每週範圍從星期幾開始",
+			"selectFirstDayOfWeek": "選擇起始日",
+			"weekStartsOnSunday": "星期日",
+			"weekStartsOnMonday": "星期一",
+			"weekStartsOnSaturday": "星期六",
+			"defaultView": "預設檢視",
+			"defaultViewDescription": "選擇你偏好的任務檢視模式",
+			"selectViewMode": "選擇檢視模式",
+			"board": "看板",
+			"list": "清單",
+			"gantt": "甘特圖",
+			"sidebarDefault": "預設展開側邊欄",
+			"sidebarDefaultDescription": "啟動時保持側邊欄展開",
+			"displayOptions": "顯示選項",
+			"displayOptionsDescription": "選擇要在任務檢視中顯示哪些資訊",
+			"taskNumbers": "任務編號",
+			"taskNumbersDescription": "顯示任務 ID 與編號",
+			"assignees": "負責人",
+			"assigneesDescription": "顯示任務指派給誰",
+			"dueDates": "截止日期",
+			"dueDatesDescription": "顯示任務截止日期",
+			"labels": "標籤",
+			"labelsDescription": "顯示任務標籤",
+			"priority": "優先順序",
+			"priorityDescription": "顯示優先順序指標",
+			"projectBackgrounds": "專案背景",
+			"projectBackgroundsDescription": "在看板上顯示專案背景圖片"
+		},
+		"developerPage": {
+			"pageTitle": "開發者設定",
+			"title": "開發者設定",
+			"subtitle": "管理你的 API 金鑰與開發者資源。",
+			"apiKeysCardTitle": "API 金鑰",
+			"apiKeysCardDescription": "建立並管理 API 金鑰，以程式化方式存取 Kaneo。",
+			"createApiKey": "建立 API 金鑰",
+			"unnamedKey": "未命名金鑰"
+		},
+		"apiKey": {
+			"createdModal": {
+				"title": "API 金鑰已建立",
+				"description": "你的 API 金鑰「{{keyName}}」已成功建立。",
+				"yourApiKey": "你的 API 金鑰",
+				"copy": "複製",
+				"copied": "已複製",
+				"toastCopied": "API 金鑰已複製到剪貼簿",
+				"alertTitle": "成功！你的 API 金鑰已建立",
+				"alertDescription": "請立即複製此金鑰，之後將無法再次查看。",
+				"done": "完成",
+				"copyToContinue": "複製金鑰以繼續"
+			},
+			"table": {
+				"loading": "正在載入 API 金鑰…",
+				"empty": "尚無 API 金鑰，建立一個開始使用吧。",
+				"columnName": "名稱",
+				"columnKey": "金鑰",
+				"columnCreated": "建立時間",
+				"columnExpires": "到期時間",
+				"columnActions": "操作",
+				"unnamedKey": "未命名金鑰",
+				"expiredBadge": "{{label}} 已到期",
+				"deleteConfirmTitle": "要刪除 API 金鑰嗎？",
+				"deleteConfirmDescription": "此操作無法復原，將永久刪除 {{name}}。",
+				"deleteFallbackName": "此 API 金鑰",
+				"delete": "刪除",
+				"deleting": "正在刪除…",
+				"deleteAria": "刪除 {{name}}",
+				"deleteAriaFallback": "API 金鑰",
+				"toastDeleted": "API 金鑰已刪除",
+				"toastDeleteError": "刪除 API 金鑰失敗"
+			},
+			"createDialog": {
+				"title": "建立 API 金鑰",
+				"description": "建立新的 API 金鑰，以程式化方式存取 Kaneo API。",
+				"nameLabel": "名稱",
+				"namePlaceholder": "我的 API 金鑰",
+				"nameDescription": "此 API 金鑰的說明性名稱",
+				"expirationLabel": "有效期限",
+				"expirationPlaceholder": "選擇有效期限",
+				"expirationDescription": "選擇此 API 金鑰的有效期限。選擇「永不到期」會建立不會自動到期的金鑰。",
+				"expiration1d": "1 天",
+				"expiration7d": "7 天",
+				"expiration30d": "30 天",
+				"expiration90d": "90 天",
+				"expirationNever": "永不到期",
+				"create": "建立",
+				"creating": "建立中…",
+				"failedCreate": "建立 API 金鑰失敗",
+				"validation": {
+					"nameRequired": "請輸入名稱",
+					"nameShort": "名稱至少需要 3 個字元",
+					"expirationRequired": "請選擇有效期限"
+				}
+			}
+		},
+		"workspaceGeneral": {
+			"pageTitle": "一般設定",
+			"title": "一般設定",
+			"subtitle": "管理工作區的名稱與說明。",
+			"workspaceInfoTitle": "工作區資訊",
+			"workspaceInfoSubtitle": "設定工作區的詳細資料與偏好。",
+			"nameLabel": "工作區名稱",
+			"nameHint": "你的工作區名稱",
+			"namePlaceholder": "輸入工作區名稱",
+			"descriptionLabel": "說明",
+			"descriptionHint": "工作區的簡短說明",
+			"descriptionPlaceholder": "輸入工作區說明",
+			"dangerZone": "危險區域",
+			"dangerZoneSubtitle": "無法復原的破壞性操作。",
+			"deleteWorkspace": "刪除工作區",
+			"deleteWorkspaceDescription": "安排永久刪除此工作區",
+			"deleteModalTitle": "要刪除工作區嗎？",
+			"deleteModalDescription": "這會永久刪除工作區「{{name}}」及其所有資料，且無法復原。",
+			"deleteModalConfirm": "刪除工作區",
+			"toastUpdated": "工作區已更新",
+			"toastUpdateError": "更新工作區失敗",
+			"toastDeleted": "工作區已刪除",
+			"toastDeleteError": "刪除工作區失敗",
+			"validation": {
+				"nameRequired": "請輸入工作區名稱",
+				"nameShort": "工作區名稱至少需要 2 個字元"
+			},
+			"transferOwnership": {
+				"toastSuccess": "擁有權已轉移",
+				"toastError": "轉移擁有權失敗",
+				"title": "轉移擁有權",
+				"subtitle": "將此工作區移交給其他成員。你會降為管理員，並失去擁有者專屬的權限。",
+				"pickerLabel": "新擁有者",
+				"noEligibleMembers": "請先邀請至少一位其他成員，才能轉移擁有權。",
+				"pickerHint": "對方將成為此工作區唯一的擁有者。",
+				"pickerPlaceholder": "選擇成員",
+				"button": "轉移",
+				"dialogTitle": "要轉移擁有權嗎？",
+				"dialogDescription": "{{name}} 將成為 {{workspace}} 唯一的擁有者。你會保留管理員權限，但將失去刪除工作區或再次轉移等擁有者專屬權限。",
+				"transferring": "轉移中…",
+				"confirm": "轉移擁有權"
+			}
+		},
+		"workspaceRoles": {
+			"pageTitle": "角色",
+			"title": "角色",
+			"subtitle": "定義成員在 {{workspaceName}} 中可以執行哪些操作。",
+			"thisWorkspace": "此工作區",
+			"noAccess": "你需要管理員或擁有者權限才能管理工作區角色。",
+			"sectionTitle": "工作區角色",
+			"sectionSubtitle": "編輯預設角色，或新增自訂角色。編輯時，成員已指派的角色名稱不會改變。",
+			"newRole": "新角色",
+			"loading": "載入中…",
+			"loadError": "載入角色失敗。",
+			"emptyTitle": "尚無角色",
+			"emptyDescription": "此工作區初始化後，預設角色就會顯示在這裡。",
+			"defaultBadge": "預設",
+			"permissionCount_other": "{{count}} 項權限",
+			"nameLabel": "名稱",
+			"nameHint": "請使用小寫，之後無法變更。",
+			"namePlaceholder": "例如：reviewer",
+			"discard": "捨棄",
+			"createRole": "建立角色",
+			"deleteRole": "刪除角色",
+			"defaultRoleHelp": "預設角色：名稱為保留名稱，且此角色無法刪除。",
+			"unsavedChanges": "你有尚未儲存的變更",
+			"allChangesSaved": "所有變更皆已儲存",
+			"saveChanges": "儲存變更",
+			"defaultRoleDescriptions": {
+				"viewer": "可以檢視任務並留言。",
+				"member": "可以建立並管理任務與專案。",
+				"admin": "擁有工作區的完整存取權限。"
+			},
+			"resources": {
+				"project": "專案",
+				"task": "任務",
+				"label": "標籤",
+				"workspace": "工作區",
+				"organization": "工作區管理",
+				"member": "成員",
+				"invitation": "邀請",
+				"team": "團隊",
+				"ac": "角色與權限"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "建立",
+						"description": "可以建立新專案"
+					},
+					"read": {
+						"label": "檢視",
+						"description": "可以檢視專案"
+					},
+					"update": {
+						"label": "更新",
+						"description": "可以編輯專案設定"
+					},
+					"delete": {
+						"label": "刪除",
+						"description": "可以刪除專案"
+					},
+					"share": {
+						"label": "分享",
+						"description": "可以分享專案"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "建立",
+						"description": "可以建立任務"
+					},
+					"read": {
+						"label": "檢視",
+						"description": "可以檢視任務"
+					},
+					"update": {
+						"label": "更新",
+						"description": "可以編輯任務"
+					},
+					"delete": {
+						"label": "刪除",
+						"description": "可以刪除任務"
+					},
+					"assign": {
+						"label": "指派",
+						"description": "可以將任務指派給成員"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "建立",
+						"description": "可以建立標籤"
+					},
+					"read": {
+						"label": "檢視",
+						"description": "可以檢視標籤"
+					},
+					"update": {
+						"label": "更新",
+						"description": "可以編輯標籤"
+					},
+					"delete": {
+						"label": "刪除",
+						"description": "可以刪除標籤"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "檢視",
+						"description": "可以檢視工作區設定"
+					},
+					"update": {
+						"label": "更新",
+						"description": "可以更新工作區設定"
+					},
+					"delete": {
+						"label": "刪除",
+						"description": "可以刪除工作區"
+					},
+					"manage_settings": {
+						"label": "管理設定",
+						"description": "可以管理工作區設定"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "編輯工作區管理設定",
+						"description": "透過帳號服務變更工作區設定。"
+					},
+					"delete": {
+						"label": "刪除工作區",
+						"description": "透過帳號服務永久刪除工作區。"
+					}
+				},
+				"member": {
+					"create": {
+						"label": "新增成員",
+						"description": "將使用者加入此工作區。"
+					},
+					"update": {
+						"label": "變更成員角色",
+						"description": "變更指派給工作區成員的角色。"
+					},
+					"delete": {
+						"label": "移除成員",
+						"description": "將使用者從此工作區移除。"
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "邀請成員",
+						"description": "傳送工作區邀請。"
+					},
+					"cancel": {
+						"label": "取消邀請",
+						"description": "撤銷待處理的工作區邀請。"
+					}
+				},
+				"team": {
+					"create": {
+						"label": "建立團隊",
+						"description": "在此工作區中建立團隊。"
+					},
+					"update": {
+						"label": "編輯團隊",
+						"description": "變更團隊與團隊成員。"
+					},
+					"delete": {
+						"label": "刪除團隊",
+						"description": "刪除此工作區中的團隊。"
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "建立角色",
+						"description": "建立工作區角色並指派其權限。"
+					},
+					"read": {
+						"label": "檢視角色",
+						"description": "檢視工作區角色及其權限。"
+					},
+					"update": {
+						"label": "變更角色權限",
+						"description": "變更角色權限，包含管理存取權限。"
+					},
+					"delete": {
+						"label": "刪除角色",
+						"description": "刪除自訂的工作區角色。"
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "請輸入角色名稱",
+				"nameExists": "已有同名的角色",
+				"permissionRequired": "至少需要選擇一項權限"
+			},
+			"toast": {
+				"created": "角色已建立",
+				"createError": "建立角色失敗",
+				"updated": "角色已更新",
+				"updateError": "更新角色失敗",
+				"deleted": "角色已刪除",
+				"deleteError": "刪除角色失敗"
+			},
+			"deleteDialog": {
+				"title": "刪除角色",
+				"description": "這會永久刪除角色「{{role}}」，被指派此角色的成員將失去其權限。"
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "標籤設定",
+			"title": "標籤",
+			"subtitle": "建立、編輯與刪除工作區層級的標籤。",
+			"cardDescription": "管理可指派給任務的標籤。",
+			"createLabel": "建立標籤",
+			"editLabel": "編輯標籤",
+			"deleteLabel": "刪除",
+			"saveLabel": "儲存",
+			"nameLabel": "標籤名稱",
+			"namePlaceholder": "輸入標籤名稱",
+			"colorLabel": "顏色",
+			"createDescription": "建立可用於此工作區所有任務的新標籤。",
+			"editDescription": "更新此標籤的名稱或顏色。",
+			"deleteConfirmTitle": "要刪除這個標籤嗎？",
+			"deleteConfirmDescription": "這會從所有任務中永久移除此標籤，且無法復原。",
+			"empty": "尚無標籤，建立第一個標籤開始使用吧。",
+			"createSuccess": "標籤已建立",
+			"updateSuccess": "標籤已更新",
+			"deleteSuccess": "標籤已刪除",
+			"createError": "建立標籤失敗",
+			"updateError": "更新標籤失敗",
+			"deleteError": "刪除標籤失敗",
+			"nameRequired": "請輸入標籤名稱",
+			"deletionPending": "等待刪除",
+			"resumeDeletion": "繼續刪除"
+		},
+		"projectGeneral": {
+			"pageTitle": "專案設定",
+			"title": "一般設定",
+			"subtitle": "管理專案名稱、代號、圖示與說明。",
+			"projectInfoTitle": "專案資訊",
+			"projectInfoSubtitle": "設定專案的詳細資料與偏好。",
+			"iconLabel": "圖示",
+			"iconHint": "顯示於側邊欄與專案介面。",
+			"pickIconTitle": "選擇圖示",
+			"searchIconsPlaceholder": "搜尋圖示…",
+			"projectNameLabel": "專案名稱",
+			"projectNameHint": "你的專案名稱",
+			"projectNamePlaceholder": "輸入專案名稱",
+			"keyLabel": "代號",
+			"keyHint": "用於任務 ID（例如 {{slug}}-123）",
+			"keyPlaceholder": "PRO",
+			"descriptionLabel": "說明",
+			"descriptionHint": "專案的簡短說明",
+			"descriptionPlaceholder": "輸入專案說明",
+			"dangerZone": "危險區域",
+			"dangerZoneSubtitle": "無法復原的破壞性操作。",
+			"deleteProject": "刪除專案",
+			"deleteProjectDescription": "安排永久刪除此專案",
+			"deleteModalTitle": "要刪除專案嗎？",
+			"deleteModalDescription": "這會永久刪除專案「{{name}}」及其所有資料，且無法復原。",
+			"deleteModalConfirm": "刪除專案",
+			"toastUpdated": "專案已更新",
+			"toastUpdateError": "更新專案失敗",
+			"toastDeleted": "專案已刪除",
+			"toastDeleteError": "刪除專案失敗",
+			"validation": {
+				"nameRequired": "請輸入專案名稱",
+				"keyRequired": "請輸入代號",
+				"keyMax": "代號最多 8 個字元",
+				"iconRequired": "請選擇圖示"
+			},
+			"importExportTasks": "匯入／匯出",
+			"importExportTasksDescription": "匯入與匯出任務。",
+			"backgroundHint": "選擇要顯示在此專案看板後方的圖片。",
+			"backgroundLabel": "看板背景",
+			"backgroundRemove": "移除圖片",
+			"backgroundRemoveError": "移除專案背景失敗",
+			"backgroundRemoveSuccess": "專案背景已移除",
+			"backgroundReplace": "更換圖片",
+			"backgroundUpload": "上傳圖片",
+			"backgroundUploadError": "更新專案背景失敗",
+			"backgroundUploadSuccess": "專案背景已更新",
+			"moveModalConfirm": "移動專案",
+			"moveModalDescription": "這會將專案「{{name}}」及其所有任務移動到「{{workspace}}」。指派給非該工作區成員的任務將變為未指派，此專案的通知訂閱也會被清除。",
+			"moveModalTitle": "要移動專案嗎？",
+			"moveProject": "移動到其他工作區",
+			"moveProjectAction": "移動",
+			"moveProjectDescription": "將此專案及其所有任務移動到其他工作區。",
+			"moveProjectPlaceholder": "選擇工作區",
+			"toastMoved": "專案已移動",
+			"toastMovedWithUnassigned": "專案已移動。有 {{taskCount}} 個任務已變為未指派。",
+			"toastMoveError": "移動專案失敗",
+			"moveTargetsError": "無法確認你可以將此專案移動到哪些工作區。請重新載入後再試一次。"
+		},
+		"projectIntegrations": {
+			"pageTitle": "專案整合",
+			"title": "專案整合",
+			"subtitle": "將專案與外部工具和服務連接，簡化你的工作流程。",
+			"githubSectionTitle": "GitHub 整合",
+			"githubSectionSubtitle": "與 GitHub Issues 同步任務，並啟用雙向同步。",
+			"giteaSectionTitle": "Gitea 整合",
+			"giteaSectionSubtitle": "與自行託管的 Gitea 執行個體同步任務（Issues、PR、Webhook）。",
+			"discordSectionTitle": "Discord 整合",
+			"discordSectionSubtitle": "透過 Webhook 將專案任務更新傳送到 Discord 頻道。",
+			"genericWebhookSectionTitle": "通用 Webhook",
+			"genericWebhookSectionSubtitle": "將專案任務事件以 JSON 格式傳送到任意 HTTP 端點。",
+			"slackSectionTitle": "Slack 整合",
+			"slackSectionSubtitle": "透過 Incoming Webhook 將專案任務更新傳送到 Slack 頻道。",
+			"mattermostSectionTitle": "Mattermost 整合",
+			"mattermostSectionSubtitle": "透過 Incoming Webhook 將專案任務更新傳送到 Mattermost 頻道。",
+			"telegramSectionTitle": "Telegram 整合",
+			"telegramSectionSubtitle": "透過 Bot 將專案任務更新傳送到 Telegram 聊天室或主題。",
+			"gitlabSectionSubtitle": "與 GitLab.com 或自行管理的執行個體同步任務（Issues、Merge Request、Webhook）。",
+			"gitlabSectionTitle": "GitLab 整合",
+			"codeHostingTitle": "程式碼託管",
+			"chatTitle": "聊天與 Webhook",
+			"statusConnected": "已連接",
+			"statusPaused": "已暫停",
+			"connect": "連接",
+			"configure": "設定",
+			"done": "完成"
+		},
+		"projectVisibility": {
+			"pageTitle": "專案可見度",
+			"title": "可見度",
+			"subtitle": "控制誰可以檢視與存取你的專案。",
+			"sectionTitle": "可見度",
+			"sectionSubtitle": "切換公開存取，並分享公開連結。",
+			"publicAccess": "公開存取",
+			"publicAccessHint": "允許任何擁有連結的人檢視此專案",
+			"publicUrl": "公開連結",
+			"publicUrlHint": "專案公開後，可分享此連結",
+			"copy": "複製",
+			"copiedToast": "已複製",
+			"toastUpdated": "可見度已更新",
+			"toastUpdateError": "更新可見度失敗"
+		},
+		"projectWorkflow": {
+			"pageTitle": "工作流程設定",
+			"title": "工作流程",
+			"subtitle": "設定此專案的看板欄位與自動化規則。",
+			"columnsTitle": "欄位",
+			"columnsDescription": "管理看板上顯示的欄位，可拖曳調整順序。請為代表已完成工作的階段開啟「完成欄」。",
+			"automationTitle": "自動化規則",
+			"automationDescription": "將整合事件對應到欄位。事件發生時，關聯的任務會移動到指定的欄位。",
+			"customFieldsDescription": "管理此專案的自訂欄位。拖曳  可調整順序。",
+			"customFieldsTitle": "自訂欄位"
+		},
+		"projectSwitcher": {
+			"selectProject": "選擇專案",
+			"noProjects": "沒有專案"
+		},
+		"columnEditor": {
+			"toastCreated": "欄位已建立",
+			"toastCreateError": "建立欄位失敗",
+			"toastRenamed": "欄位已重新命名",
+			"toastRenameError": "更新欄位失敗",
+			"toastFinalOn": "已將欄位設為完成欄",
+			"toastFinalOff": "已取消欄位的完成欄設定",
+			"toastUpdateError": "更新欄位失敗",
+			"toastIconUpdated": "欄位圖示已更新",
+			"toastDeleted": "欄位已刪除",
+			"toastDeleteError": "刪除欄位失敗",
+			"loading": "正在載入欄位…",
+			"pickIconTitle": "選擇欄位圖示",
+			"searchIconsPlaceholder": "搜尋圖示…",
+			"doneColumnTooltip": "將此欄視為完成欄",
+			"doneColumn": "完成欄",
+			"markDoneAria": "將 {{name}} 標記為完成欄",
+			"on": "開",
+			"off": "關",
+			"newColumnPlaceholder": "新欄位名稱…",
+			"add": "新增",
+			"deleteAria": "刪除 {{name}} 欄",
+			"renameAria": "重新命名 {{name}} 欄"
+		},
+		"githubIntegration": {
+			"validation": {
+				"ownerRequired": "Repo 擁有者為必填",
+				"ownerInvalid": "Repo 擁有者格式無效",
+				"nameRequired": "Repo 名稱為必填",
+				"nameInvalid": "Repo 名稱格式無效"
+			},
+			"toast": {
+				"installedOk": "GitHub App 已正確安裝！",
+				"installedMissingPerms": "GitHub App 已安裝，但缺少必要權限",
+				"needsInstallOnRepo": "此 Repo 需要安裝 GitHub App",
+				"repoNotFound": "找不到 Repo 或無法存取",
+				"verifyError": "無法驗證 GitHub 安裝狀態",
+				"installAppFirst": "請先在此 Repo 安裝 GitHub App",
+				"missingPermsDetail": "GitHub App 缺少必要權限：{{list}}。請更新應用程式權限。",
+				"updated": "GitHub 整合已更新",
+				"updateError": "無法更新 GitHub 整合",
+				"removed": "GitHub 整合已移除",
+				"removeError": "無法移除 GitHub 整合",
+				"issuesImported": "已匯入 Issue",
+				"importError": "無法匯入 Issue",
+				"commentOnEnabled": "Kaneo 會在新的 Issue 下留言並附上任務連結",
+				"commentOnDisabled": "已關閉在新 Issue 下留言任務連結",
+				"settingsUpdateError": "無法更新 GitHub 整合"
+			},
+			"connectionStatus": "連線狀態",
+			"connectedActive": "Repo 已連線並啟用中",
+			"notConnectedHint": "尚未連線 Repo",
+			"badgeConnected": "已連線",
+			"badgeNotConnected": "未連線",
+			"repository": "Repo",
+			"repositoryHint": "已連線的 GitHub Repo",
+			"commentTaskLinkTitle": "在新 Issue 下留言 Kaneo 連結",
+			"commentTaskLinkHint": "啟用後，Kaneo 會在每個新的 GitHub Issue 下留言，並附上任務連結。",
+			"appStatusTitle": "GitHub App 狀態",
+			"appStatusHint": "安裝與權限狀態",
+			"statusProperlyConfigured": "設定正確",
+			"statusMissingPermissions": "缺少權限",
+			"statusNotInstalled": "未安裝",
+			"ownerLabel": "Repo 擁有者",
+			"ownerHint": "GitHub 使用者名稱或組織",
+			"ownerPlaceholder": "例如：octocat",
+			"repoNameLabel": "Repo 名稱",
+			"repoNameHint": "Repo 名稱",
+			"repoNamePlaceholder": "例如：my-project",
+			"actionsTitle": "操作",
+			"actionsHint": "管理 Repo 連線",
+			"browse": "瀏覽",
+			"verify": "驗證",
+			"update": "更新",
+			"connect": "連線",
+			"disconnect": "中斷連線",
+			"missingPermissionsLabel": "缺少權限：",
+			"updatePermissions": "更新權限",
+			"installGithubApp": "安裝 GitHub App",
+			"importSectionTitle": "匯入 GitHub Issue",
+			"importSectionHint": "將 GitHub Repo 中現有的 Issue 匯入為任務",
+			"importing": "匯入中...",
+			"importIssues": "匯入 Issue",
+			"importDisabledHint": "請先完成上方的 Repo 設定才能匯入",
+			"accountVerificationHint": "連結你的 GitHub 帳號，以驗證你是此 Repo 的管理員。",
+			"enableGithubSignInHint": "請聯絡執行個體管理員啟用 GitHub 登入。",
+			"reverifyHint": "請重新連線此 Repo 以驗證存取權限並繼續同步。",
+			"resumeImport": "繼續匯入",
+			"importPaused": "此匯入已儲存進度，可以繼續。",
+			"importSummary": "已建立：{{imported}} · 已更新：{{updated}} · 已略過：{{skipped}}",
+			"providerName": "GitHub"
+		},
+		"giteaIntegration": {
+			"validation": {
+				"baseUrlRequired": "必須提供 Gitea 基礎 URL",
+				"baseUrlInvalid": "請輸入有效的 URL（例如 https://gitea.example.com）",
+				"ownerRequired": "Repo 擁有者為必填",
+				"ownerInvalid": "Repo 擁有者格式無效",
+				"nameRequired": "Repo 名稱為必填",
+				"nameInvalid": "Repo 名稱格式無效"
+			},
+			"toast": {
+				"verifyOk": "Gitea Token 可存取此 Repo",
+				"verifyWarning": "請檢查 Token 權限或 Repo 存取權",
+				"repoNotFound": "找不到 Repo 或無法存取",
+				"redirected": "Gitea URL 已被重新導向（通常是改為 HTTPS），請直接使用最終的 URL。",
+				"notGiteaInstance": "此 URL 並非指向 Gitea 執行個體",
+				"verifyError": "無法驗證 Gitea 存取權",
+				"tokenRequired": "必須提供個人存取 Token",
+				"tokenRequiredVerify": "請輸入要驗證的 Token",
+				"verifyFirst": "存取驗證失敗，請檢查 URL、Token 與 Repo",
+				"updated": "Gitea 整合已儲存",
+				"updateError": "無法儲存 Gitea 整合",
+				"removed": "Gitea 整合已移除",
+				"removeError": "無法移除 Gitea 整合",
+				"issuesImported": "已匯入 Issue",
+				"importError": "無法匯入 Issue",
+				"commentOnEnabled": "Kaneo 會在新的 Issue 下留言並附上任務連結",
+				"commentOnDisabled": "已關閉在新 Issue 下留言任務連結",
+				"settingsUpdateError": "無法更新 Gitea 整合",
+				"secretCopied": "已複製",
+				"unableToCopySecret": "無法複製密鑰"
+			},
+			"webhookShow": "顯示",
+			"webhookHide": "隱藏",
+			"webhookCopy": "複製",
+			"connectionStatus": "連線狀態",
+			"connectedActive": "Repo 已連線並啟用中",
+			"notConnectedHint": "尚未連線 Gitea Repo",
+			"badgeConnected": "已連線",
+			"badgeNotConnected": "未連線",
+			"repository": "Repo",
+			"repositoryHint": "已連結的 Gitea Repo",
+			"commentTaskLinkTitle": "在新 Issue 下留言 Kaneo 連結",
+			"commentTaskLinkHint": "啟用後，Kaneo 會在每個新 Issue 下留言，並附上任務連結。",
+			"webhookTitle": "Webhook",
+			"webhookHint": "請在 Gitea Repo 中新增 Webhook，並填入此 URL 與密鑰。啟用 push、pull request、issues、issue comments 與 create（用於標籤）事件。",
+			"webhookSecretLabel": "密鑰（須與 Gitea 中的 Webhook 密鑰一致）",
+			"baseUrlLabel": "Gitea URL",
+			"baseUrlHint": "你的 Gitea 執行個體的根 URL",
+			"tokenLabel": "個人存取 Token",
+			"tokenHint": "具備 Repo 與 Issue 存取權的 Token",
+			"tokenPlaceholder": "貼上 Token",
+			"tokenPlaceholderUpdate": "貼上新 Token 以輪替",
+			"currentToken": "已儲

@@ -1,0 +1,699 @@
+utuskan"
+		},
+		"genericWebhookIntegration": {
+			"validation": {
+				"webhookInvalid": "Masukkan URL webhook yang valid"
+			},
+			"toast": {
+				"saved": "Integrasi webhook generik berhasil disimpan",
+				"saveError": "Gagal menyimpan integrasi webhook generik",
+				"enabled": "Notifikasi webhook generik diaktifkan",
+				"disabled": "Notifikasi webhook generik dijeda",
+				"updateError": "Gagal memperbarui integrasi webhook generik",
+				"removed": "Integrasi webhook generik berhasil dihapus",
+				"removeError": "Gagal menghapus integrasi webhook generik"
+			},
+			"connectionTitle": "Koneksi webhook keluar",
+			"connectionHint": "Kirim event tugas ke endpoint Anda sendiri sebagai JSON. Header X-Kaneo-Signature yang ditandatangani disertakan saat rahasia dikonfigurasi.",
+			"connected": "Terhubung",
+			"paused": "Dijeda",
+			"webhookLabel": "URL endpoint",
+			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
+			"webhookHint": "Kaneo mengirim request POST dengan payload JSON untuk setiap event yang diaktifkan.",
+			"secretLabel": "Rahasia penandatanganan",
+			"secretPlaceholder": "Rahasia bersama opsional",
+			"secretHint": "Opsional. Jika diberikan, Kaneo menandatangani body request dan mengirim digest hex di header X-Kaneo-Signature.",
+			"secretHintConfigured": "Rahasia penandatanganan sudah dikonfigurasi ({{secret}}). Masukkan yang baru untuk menggantinya.",
+			"eventsTitle": "Notifikasi event",
+			"eventsHint": "Pilih perubahan proyek yang harus memicu webhook keluar.",
+			"events": {
+				"taskCreated": "Tugas baru",
+				"taskStatusChanged": "Perubahan status",
+				"taskPriorityChanged": "Perubahan prioritas",
+				"taskTitleChanged": "Perubahan judul",
+				"taskDescriptionChanged": "Perubahan deskripsi",
+				"taskCommentCreated": "Komentar baru",
+				"taskDeleted": "Tugas dihapus",
+				"taskMoved": "Tugas dipindahkan",
+				"taskDueDateChanged": "Tenggat diubah",
+				"taskAssigneeChanged": "Penanggung jawab diubah",
+				"taskUnassigned": "Penugasan dihapus",
+				"dueDateReminder": "Pengingat tenggat"
+			},
+			"connect": "Hubungkan webhook",
+			"saveChanges": "Simpan perubahan",
+			"disconnect": "Putuskan",
+			"reminderLeadTimeLabel": "Kirim webhook sekian jam sebelum tenggat"
+		},
+		"telegramIntegration": {
+			"validation": {
+				"botTokenInvalid": "Masukkan token bot Telegram yang valid",
+				"chatIdRequired": "Chat ID wajib diisi",
+				"threadIdInvalid": "Masukkan ID thread topik Telegram yang valid"
+			},
+			"toast": {
+				"saved": "Integrasi Telegram berhasil disimpan",
+				"saveError": "Gagal menyimpan integrasi Telegram",
+				"enabled": "Notifikasi Telegram diaktifkan",
+				"disabled": "Notifikasi Telegram dijeda",
+				"updateError": "Gagal memperbarui integrasi Telegram",
+				"removed": "Integrasi Telegram berhasil dihapus",
+				"removeError": "Gagal menghapus integrasi Telegram"
+			},
+			"connectionTitle": "Koneksi bot Telegram",
+			"connectionHint": "Gunakan token bot Telegram dan chat ID untuk mengirim pembaruan tugas proyek ke chat atau topik.",
+			"connected": "Terhubung",
+			"paused": "Dijeda",
+			"botTokenLabel": "Token bot",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"botTokenHint": "Buat bot dengan BotFather dan tempel tokennya di sini.",
+			"botTokenHintConfigured": "Token bot sudah dikonfigurasi ({{token}}). Masukkan yang baru untuk menggantinya.",
+			"chatIdLabel": "Chat ID",
+			"chatIdPlaceholder": "-1001234567890 atau @team_updates",
+			"chatIdHint": "Masukkan chat ID Telegram atau username kanal tempat pembaruan akan diposting.",
+			"threadIdLabel": "ID thread topik",
+			"threadIdPlaceholder": "ID topik opsional",
+			"threadIdHint": "Opsional. Gunakan ini untuk topik forum di dalam grup Telegram.",
+			"chatLabelLabel": "Label chat",
+			"chatLabelPlaceholder": "Engineering Updates",
+			"chatLabelHint": "Label opsional untuk referensi Anda di Kaneo.",
+			"eventsTitle": "Notifikasi event",
+			"eventsHint": "Pilih perubahan proyek yang harus diposting ke Telegram.",
+			"events": {
+				"taskCreated": "Tugas baru",
+				"taskStatusChanged": "Perubahan status",
+				"taskPriorityChanged": "Perubahan prioritas",
+				"taskTitleChanged": "Perubahan judul",
+				"taskDescriptionChanged": "Perubahan deskripsi",
+				"taskCommentCreated": "Komentar baru"
+			},
+			"connect": "Hubungkan Telegram",
+			"saveChanges": "Simpan perubahan",
+			"disconnect": "Putuskan"
+		},
+		"repositoryBrowser": {
+			"title": "Pilih Repositori",
+			"description": "Pilih repositori tempat GitHub App Anda terpasang untuk mengaktifkan sinkronisasi issue.",
+			"searchPlaceholder": "Cari repositori...",
+			"loadError": "Gagal memuat repositori",
+			"tryAgain": "Coba Lagi",
+			"emptyTitle": "Repositori tidak ditemukan",
+			"emptyHint": "Pasang GitHub App pada repositori Anda untuk melihatnya di sini.",
+			"installGithubApp": "Pasang GitHub App",
+			"noSearchMatchTitle": "Tidak ada repositori yang cocok dengan pencarian Anda",
+			"noSearchMatchHint": "Coba sesuaikan kata pencarian atau hapus pencarian untuk melihat semua repositori.",
+			"footerSummary": "{{repoCount}} repositori di {{installationCount}} pemasangan",
+			"manageInstallations": "Kelola Pemasangan",
+			"updatedPrefix": "Diperbarui",
+			"relativeJustNow": "baru saja",
+			"relativeMinutesAgo": "{{count}}m lalu",
+			"relativeHoursAgo": "{{count}}j lalu",
+			"relativeDaysAgo": "{{count}}h lalu"
+		},
+		"tasksImportExport": {
+			"exportTasks": "Ekspor Tugas",
+			"importTasks": "Impor Tugas",
+			"dialogTitle": "Impor Tugas",
+			"dialogDescription": "Unggah file JSON berisi tugas untuk diimpor ke proyek ini.",
+			"expectedFormat": "Format yang diharapkan:",
+			"dropHint": "Seret dan lepaskan file JSON Anda di sini",
+			"selectFile": "Pilih File",
+			"exporting": "Mengekspor tugas...",
+			"exportSuccess": "Tugas berhasil diekspor",
+			"exportError": "Gagal mengekspor tugas",
+			"importing": "Mengimpor tugas...",
+			"importSuccess": "Berhasil mengimpor {{count}} tugas",
+			"importPartialError": "Gagal mengimpor {{count}} tugas",
+			"importError": "Gagal mengimpor tugas",
+			"invalidFormat": "Format file impor tidak valid",
+			"noFileDropped": "Tidak ada file yang dilepas",
+			"notJsonFile": "Silakan unggah file JSON"
+		},
+		"workflowEditor": {
+			"loading": "Memuat...",
+			"createColumnsFirst": "Buat kolom terlebih dahulu untuk mengonfigurasi aturan otomatisasi.",
+			"githubHeading": "GitHub",
+			"githubHint": "Saat event GitHub terjadi, pindahkan tugas tertaut ke kolom.",
+			"giteaHeading": "Gitea",
+			"giteaHint": "Saat event webhook Gitea terjadi, pindahkan tugas tertaut ke kolom.",
+			"selectColumnPlaceholder": "Pilih kolom...",
+			"toastUpdated": "Aturan alur kerja diperbarui",
+			"toastError": "Gagal memperbarui aturan",
+			"events": {
+				"branch_push": "Push Branch",
+				"pr_opened": "PR Dibuka",
+				"pr_merged": "PR Digabung",
+				"issue_opened": "Issue Dibuka",
+				"issue_closed": "Issue Ditutup"
+			},
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "When a GitLab webhook event occurs, move the linked task to a column.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"externalLinks": {
+			"resources": "Sumber daya",
+			"issue": "Issue",
+			"branch": "Branch",
+			"merged": "Digabung",
+			"draft": "Draf",
+			"open": "Terbuka",
+			"adding": "Adding...",
+			"addResource": "Add resource",
+			"cancel": "Cancel",
+			"empty": "No resources linked to this task.",
+			"titleOptional": "Title (optional)",
+			"url": "URL",
+			"remove": "Remove {{title}}",
+			"removeError": "Failed to remove the resource link."
+		},
+		"workspaceRoles": {
+			"pageTitle": "Peran",
+			"title": "Peran",
+			"subtitle": "Tentukan tindakan yang dapat dilakukan anggota di {{workspaceName}}.",
+			"thisWorkspace": "ruang kerja ini",
+			"noAccess": "Anda memerlukan izin admin atau pemilik untuk mengelola peran ruang kerja.",
+			"sectionTitle": "Peran ruang kerja",
+			"sectionSubtitle": "Ubah peran bawaan atau tambahkan peran khusus. Anggota tetap memakai nama peran yang ditetapkan meski peran diubah.",
+			"newRole": "Peran baru",
+			"loading": "Memuat...",
+			"loadError": "Gagal memuat peran.",
+			"emptyTitle": "Belum ada peran",
+			"emptyDescription": "Peran bawaan akan muncul di sini setelah disiapkan untuk ruang kerja ini.",
+			"defaultBadge": "Bawaan",
+			"permissionCount_other": "{{count}} izin",
+			"nameLabel": "Nama",
+			"nameHint": "Huruf kecil. Tidak dapat diubah nanti.",
+			"namePlaceholder": "mis. peninjau",
+			"discard": "Buang",
+			"createRole": "Buat peran",
+			"deleteRole": "Hapus peran",
+			"defaultRoleHelp": "Peran bawaan - nama dicadangkan dan baris tidak dapat dihapus.",
+			"unsavedChanges": "Ada perubahan yang belum disimpan",
+			"allChangesSaved": "Semua perubahan tersimpan",
+			"saveChanges": "Simpan perubahan",
+			"defaultRoleDescriptions": {
+				"viewer": "Akses hanya baca ke proyek, tugas, dan ruang kerja.",
+				"member": "Dapat membuat dan memperbarui proyek serta tugas.",
+				"admin": "Manajemen penuh proyek dan tugas serta pengaturan ruang kerja."
+			},
+			"resources": {
+				"project": "Proyek",
+				"task": "Tugas",
+				"label": "Label",
+				"workspace": "Ruang kerja",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Buat proyek",
+						"description": "Buat proyek baru di ruang kerja ini."
+					},
+					"read": {
+						"label": "Lihat proyek",
+						"description": "Lihat proyek dan detailnya."
+					},
+					"update": {
+						"label": "Ubah proyek",
+						"description": "Perbarui nama, ikon, deskripsi, dan pengaturan proyek."
+					},
+					"delete": {
+						"label": "Hapus proyek",
+						"description": "Hapus proyek di ruang kerja ini secara permanen."
+					},
+					"share": {
+						"label": "Bagikan proyek",
+						"description": "Jadikan proyek dapat diakses publik melalui tautan berbagi."
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Buat tugas",
+						"description": "Buat tugas baru di proyek mana pun."
+					},
+					"read": {
+						"label": "Lihat tugas",
+						"description": "Lihat tugas di semua proyek."
+					},
+					"update": {
+						"label": "Ubah tugas",
+						"description": "Ubah isi tugas, status, prioritas, tenggat, dan label."
+					},
+					"delete": {
+						"label": "Hapus tugas",
+						"description": "Hapus tugas secara permanen."
+					},
+					"assign": {
+						"label": "Tugaskan tugas",
+						"description": "Tugaskan tugas kepada anggota ruang kerja lain."
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Buat label",
+						"description": "Tambahkan label baru ke tugas di ruang kerja ini."
+					},
+					"read": {
+						"label": "Lihat label",
+						"description": "Lihat label yang terpasang pada tugas."
+					},
+					"update": {
+						"label": "Ubah label",
+						"description": "Ganti nama, warna, dan penugasan label."
+					},
+					"delete": {
+						"label": "Hapus label",
+						"description": "Hapus label dari ruang kerja ini secara permanen."
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Akses ruang kerja",
+						"description": "Baca metadata dan anggota ruang kerja."
+					},
+					"update": {
+						"label": "Ubah ruang kerja",
+						"description": "Ubah nama dan deskripsi ruang kerja."
+					},
+					"delete": {
+						"label": "Hapus ruang kerja",
+						"description": "Hapus ruang kerja ini secara permanen."
+					},
+					"manage_settings": {
+						"label": "Kelola pengaturan",
+						"description": "Atur integrasi, aturan notifikasi, dan preferensi ruang kerja."
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "Nama wajib diisi",
+				"nameExists": "Peran dengan nama tersebut sudah ada",
+				"permissionRequired": "Pilih setidaknya satu izin"
+			},
+			"toast": {
+				"created": "Peran dibuat",
+				"createError": "Gagal membuat peran",
+				"updated": "Peran diperbarui",
+				"updateError": "Gagal memperbarui peran",
+				"deleted": "Peran dihapus",
+				"deleteError": "Gagal menghapus peran"
+			},
+			"deleteDialog": {
+				"title": "Hapus peran",
+				"description": "Ini akan menghapus peran \"{{role}}\" secara permanen. Anggota yang memakai peran ini akan kehilangan izinnya."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "Pengaturan Label",
+			"title": "Label",
+			"subtitle": "Buat, edit, dan hapus label tingkat ruang kerja.",
+			"cardDescription": "Kelola label yang dapat ditetapkan ke tugas.",
+			"createLabel": "Buat Label",
+			"editLabel": "Edit Label",
+			"deleteLabel": "Hapus",
+			"saveLabel": "Simpan",
+			"nameLabel": "Nama label",
+			"namePlaceholder": "Masukkan nama label",
+			"colorLabel": "Warna",
+			"createDescription": "Buat label baru yang dapat digunakan di semua tugas dalam ruang kerja ini.",
+			"editDescription": "Perbarui nama atau warna label ini.",
+			"deleteConfirmTitle": "Hapus label ini?",
+			"deleteConfirmDescription": "Ini akan menghapus label ini secara permanen dari semua tugas. Tindakan ini tidak dapat dibatalkan.",
+			"empty": "Belum ada label. Buat label pertama Anda untuk memulai.",
+			"createSuccess": "Label dibuat",
+			"updateSuccess": "Label diperbarui",
+			"deleteSuccess": "Label dihapus",
+			"createError": "Gagal membuat label",
+			"updateError": "Gagal memperbarui label",
+			"deleteError": "Gagal menghapus label",
+			"nameRequired": "Nama label wajib diisi",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"administration": "Administration",
+		"adminUsers": {
+			"actions": {
+				"deactivate": "Deactivate account",
+				"edit": "Edit account",
+				"open": "Actions for {{name}}",
+				"reactivate": "Reactivate account"
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"joined": "Joined",
+				"role": "Global role",
+				"status": "Status",
+				"user": "User"
+			},
+			"confirm": {
+				"deactivate": {
+					"action": "Deactivate account",
+					"description": "{{name}} will be signed out and unable to sign in until an administrator reactivates the account.",
+					"title": "Deactivate this account?"
+				},
+				"delete": {
+					"action": "Delete permanently",
+					"description": "This permanently deletes {{name}}, their sessions, memberships, and associated data. This cannot be undone.",
+					"title": "Permanently delete this account?"
+				},
+				"reactivate": {
+					"action": "Reactivate account",
+					"description": "{{name}} will be able to sign in and access their workspaces again.",
+					"title": "Reactivate this account?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "User directory",
+			"edit": {
+				"description": "Update this account's identity and instance-wide access.",
+				"email": "Email address",
+				"name": "Full name",
+				"role": "Global role",
+				"save": "Save changes",
+				"saving": "Saving…",
+				"selfRoleHint": "You cannot change your own global role.",
+				"title": "Edit user"
+			},
+			"emptyDescription": "Try another name or email address.",
+			"emptyTitle": "No users found",
+			"instanceBadge": "Instance",
+			"loadError": "Users could not be loaded.",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing users",
+			"retry": "Retry",
+			"roles": {
+				"admin": "Instance admin",
+				"user": "User"
+			},
+			"searchCount_other": "{{count}} matching users",
+			"searchLabel": "Search users",
+			"searchPlaceholder": "Search name or email…",
+			"status": {
+				"active": "Active",
+				"deactivated": "Deactivated"
+			},
+			"subtitle": "Manage every account registered on this Kaneo instance.",
+			"title": "User management",
+			"toast": {
+				"actionError": "Failed to update user status",
+				"deactivated": "User deactivated",
+				"deleted": "User deleted",
+				"reactivated": "User reactivated",
+				"updated": "User updated",
+				"updateError": "Failed to update user"
+			},
+			"userCount_other": "{{count}} registered users",
+			"you": "(you)"
+		},
+		"security": "Security",
+		"securityPage": {
+			"confirmPassword": "Confirm new password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"currentPassword": "Current password",
+			"currentPasswordPlaceholder": "Enter your current password",
+			"newPassword": "New password",
+			"newPasswordPlaceholder": "Enter a new password",
+			"noPassword": {
+				"description": "Your account signs in with a different method, so there is no password to change.",
+				"title": "Password change isn't available"
+			},
+			"pageTitle": "Security",
+			"sectionSubtitle": "Change the password you use to sign in.",
+			"sectionTitle": "Password",
+			"submit": "Update password",
+			"submitting": "Updating...",
+			"subtitle": "Manage your password and account security.",
+			"title": "Security",
+			"updateError": "Failed to update password.",
+			"updateSuccess": "Password updated.",
+			"validation": {
+				"confirmRequired": "Confirm your new password.",
+				"currentRequired": "Enter your current password.",
+				"mismatch": "Passwords do not match.",
+				"tooShort": "New password must be at least 8 characters.",
+				"sameAsCurrent": "New password must be different from your current password."
+			}
+		},
+		"gitlabIntegration": {
+			"actionsHint": "Verify access and connect",
+			"actionsTitle": "Actions",
+			"badgeConnected": "Connected",
+			"badgeNotConnected": "Not connected",
+			"baseUrlHint": "https://gitlab.com, or the root URL of your instance",
+			"baseUrlLabel": "GitLab URL",
+			"browse": "Browse",
+			"browseModalHint": "Projects your token is a member of",
+			"browseModalTitle": "Your projects",
+			"browseNeedsCredentials": "Enter GitLab URL and token to browse",
+			"commentTaskLinkHint": "When enabled, Kaneo comments with a link to the task on each issue opened in GitLab.",
+			"commentTaskLinkTitle": "Comment a Kaneo link on issues opened in GitLab",
+			"connect": "Connect",
+			"connectedActive": "Project connected and active",
+			"connectionStatus": "Connection status",
+			"currentToken": "stored",
+			"disconnect": "Disconnect",
+			"importDisabledHint": "Verify the project above to enable importing",
+			"importing": "Importing…",
+			"importIssues": "Import issues",
+			"importSectionHint": "Import open issues and merge requests from the project",
+			"importSectionTitle": "Import GitLab issues",
+			"loadingProjects": "Loading projects…",
+			"notConnectedHint": "No GitLab project connected",
+			"openInGitlab": "Open {{project}} in GitLab",
+			"project": "Project",
+			"projectHint": "Linked GitLab project",
+			"projectPathHint": "Full path including any groups, e.g. group/subgroup/project",
+			"projectPathLabel": "Project path",
+			"retry": "Retry",
+			"searchProjects": "Search…",
+			"toast": {
+				"commentOnDisabled": "Task link comments on issues opened in GitLab are turned off",
+				"commentOnEnabled": "Kaneo will comment with a task link on issues opened in GitLab",
+				"importError": "Failed to import issues",
+				"issuesImported": "Issues imported successfully",
+				"notGitlabInstance": "The URL does not point to a GitLab instance",
+				"projectNotFound": "Project not found or not accessible",
+				"redirected": "GitLab URL redirected (usually to HTTPS). Use the final URL directly.",
+				"removed": "GitLab integration removed",
+				"removeError": "Failed to remove GitLab integration",
+				"secretCopied": "Copied",
+				"settingsUpdateError": "Failed to update GitLab integration",
+				"tokenRequired": "Access token is required",
+				"tokenRequiredVerify": "Enter a token to verify",
+				"unableToCopySecret": "Unable to copy secret",
+				"updated": "GitLab integration saved",
+				"updateError": "Failed to save GitLab integration",
+				"verifyError": "Failed to verify GitLab access",
+				"verifyFirst": "Verify access failed. Check URL, token, and project path",
+				"verifyOk": "GitLab token can access this project",
+				"verifyWarning": "Check token permissions or project access"
+			},
+			"tokenHint": "Token with api scope and at least Developer on the project",
+			"tokenLabel": "Access token",
+			"tokenPlaceholder": "Paste token",
+			"tokenPlaceholderUpdate": "Paste new token to rotate",
+			"tokenTypeBearer": "OAuth2 token",
+			"tokenTypeHint": "How the token is sent. Access tokens use PRIVATE-TOKEN; an OAuth2 token uses Authorization.",
+			"tokenTypeLabel": "Token type",
+			"tokenTypePrivate": "Personal, project or group access token",
+			"update": "Update",
+			"validation": {
+				"baseUrlInvalid": "Enter a valid URL (e.g. https://gitlab.com)",
+				"baseUrlRequired": "GitLab base URL is required",
+				"pathInvalid": "Enter the full path, e.g. group/project",
+				"pathRequired": "Project path is required"
+			},
+			"verify": "Verify",
+			"webhookCopy": "Copy",
+			"webhookHide": "Hide",
+			"webhookHint": "In your GitLab project, add a webhook with this URL and secret token. Enable push, issues, comments, and merge request events.",
+			"webhookSecretLabel": "Secret token (must match the one set on the webhook in GitLab)",
+			"webhookShow": "Show",
+			"webhookTitle": "Webhook",
+			"loadProjectsError": "Failed to load projects",
+			"importPermissionHint": "Importing requires permission to create and update tasks.",
+			"providerName": "GitLab"
+		},
+		"calendarFeeds": {
+			"title": "Calendar feeds",
+			"subtitle": "Subscribe to scheduled project tasks in your calendar app.",
+			"createTitle": "Create a calendar feed",
+			"filterHint": "Include tasks with a start or due date. Select labels to include only tasks matching at least one, or leave empty to include all scheduled project tasks.",
+			"labels": "Labels",
+			"selectLabels": "Search and select labels…",
+			"noLabels": "No labels found.",
+			"timeZoneHint": "All-day dates use {{timeZone}}.",
+			"accessHint": "Anyone with a feed link can read the matching task titles, descriptions, and dates. Revoke a link to stop future access.",
+			"create": "Create feed",
+			"creating": "Creating…",
+			"created": "Calendar feed created.",
+			"createError": "Could not create the calendar feed.",
+			"activeFeeds": "Active feeds",
+			"allScheduledTasks": "All scheduled project tasks",
+			"subscribeHint": "Copy a link and add it as a calendar subscription. Updates appear when your calendar app refreshes the feed.",
+			"empty": "No calendar feeds yet.",
+			"feedUrl": "Calendar feed URL",
+			"copy": "Copy link",
+			"copied": "Calendar feed link copied.",
+			"copyError": "Could not copy the link. Select the URL and copy it manually.",
+			"revoke": "Revoke",
+			"revoked": "Calendar feed revoked.",
+			"revokeError": "Could not revoke the calendar feed.",
+			"loadError": "Could not load calendar feeds or labels. Please try again.",
+			"deletedLabel": "Deleted label",
+			"permissionRequired": "You need project-sharing permission to manage calendar feeds."
+		},
+		"invitationEmailFailed": "Invitation saved, but email delivery failed. Check SMTP settings and resend the invitation.",
+		"billing": {
+			"accessEnds": "Access ends",
+			"adminsOnly": "Only workspace owners and admins can manage billing.",
+			"choose": "Choose {{

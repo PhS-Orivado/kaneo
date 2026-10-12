@@ -1,0 +1,48 @@
+diff --cc apps/api/src/utils/workspace-access-middleware.ts
+index e6367429,83eb691c..00000000
+--- a/apps/api/src/utils/workspace-access-middleware.ts
++++ b/apps/api/src/utils/workspace-access-middleware.ts
+@@@ -22,7 -11,17 +22,21 @@@ type WorkspaceIdSource 
+    | { type: "param"; key: string }
+    | {
+        type: "lookup";
+++<<<<<<< HEAD
+ +      resource: LookupResource;
+++=======
++       resource:
++         | "project"
++         | "task"
++         | "label"
++         | "timeEntry"
++         | "activity"
++         | "comment"
++         | "column"
++         | "workflowRule"
++         | "customField"
++         | "integration";
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+        idKey: string;
+      }
+    | {
+@@@ -166,7 -142,17 +180,21 @@@ export function workspaceAccessMiddlewa
+  }
+  
+  async function lookupScope(
+++<<<<<<< HEAD
+ +  resource: LookupResource,
+++=======
++   resource:
++     | "project"
++     | "task"
++     | "label"
++     | "timeEntry"
++     | "activity"
++     | "comment"
++     | "column"
++     | "workflowRule"
++     | "customField"
++     | "integration",
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    id: string,
+  ): Promise<ResourceScope | null> {
+    switch (resource) {

@@ -160,7 +160,13 @@
 					"terracotta": "Terracotta",
 					"rose": "Rose",
 					"crimson": "Crimson"
-				}
+				},
+				"repositories": "Issues",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesAll": "Select all",
+				"repositoriesNone": "Clear"
 			}
 		}
 	},
@@ -1835,7 +1841,8 @@
 			"reverifyHint": "Reconnect this repository to verify access and resume synchronization.",
 			"resumeImport": "Resume import",
 			"importPaused": "This import has saved progress. You can resume it.",
-			"importSummary": "Created: {{imported}} · Updated: {{updated}} · Skipped: {{skipped}}"
+			"importSummary": "Created: {{imported}} · Updated: {{updated}} · Skipped: {{skipped}}",
+			"providerName": "GitHub"
 		},
 		"giteaIntegration": {
 			"validation": {
@@ -1911,7 +1918,8 @@
 			"searchRepos": "Search…",
 			"browseNeedsCredentials": "Enter Gitea URL and token to browse",
 			"loadingRepos": "Loading repositories…",
-			"retry": "Retry"
+			"retry": "Retry",
+			"providerName": "Gitea"
 		},
 		"gitlabIntegration": {
 			"validation": {
@@ -1990,7 +1998,8 @@
 			"loadProjectsError": "Failed to load projects",
 			"openInGitlab": "Open {{project}} in GitLab",
 			"retry": "Retry",
-			"importPermissionHint": "Importing requires permission to create and update tasks."
+			"importPermissionHint": "Importing requires permission to create and update tasks.",
+			"providerName": "GitLab"
 		},
 		"slackIntegration": {
 			"validation": {
@@ -2253,7 +2262,11 @@
 				"pr_merged": "PR Merged",
 				"issue_opened": "Issue Opened",
 				"issue_closed": "Issue Closed"
-			}
+			},
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
 		},
 		"externalLinks": {
 			"resources": "Resources",
@@ -2428,6 +2441,57 @@
 				"action": "Choose a plan"
 			},
 			"openFailed": "Couldn't open billing for this workspace"
+		},
+		"repositoryBindings": {
+			"addFirstTitle": "Connect your first repository",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"listTitle": "Connected repositories",
+			"addMore": "Add repository",
+			"listError": "The repository bindings could not be loaded.",
+			"listEmpty": "No repository is connected yet.",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"openRepository": "Open {{repository}}",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"statusActive": "Active",
+			"statusPaused": "Paused",
+			"statusNeedsVerification": "Needs verification",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"actionImportIssues": "Import issues",
+			"actionDisconnect": "Disconnect",
+			"usageUnlimited": "{{used}} repositories",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"settingsTitle": "Binding settings",
+			"commentTaskLinkTitle": "Comment task link",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"webhookTitle": "Webhook",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookHide": "Hide secret",
+			"webhookShow": "Show secret",
+			"webhookCopy": "Copy secret",
+			"toast": {
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied.",
+				"added": "Repository connected."
+			},
+			"syncRulesTitle": "Sync rules",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectWorking": "Disconnecting...",
+			"disconnectConfirm": "Disconnect",
+			"addRepositoryTitle": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"browseRepositories": "Browse repositories",
+			"upgrade": "Upgrade plan",
+			"dismissError": "Dismiss",
+			"linkedInProject": "Linked in this project",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInUnknownProject": "Linked in another project"
 		}
 	},
 	"navigation": {
@@ -3212,6 +3276,49 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"title": "Branches",
+			"empty": "No branches linked to this task.",
+			"create": "Create branch",
+			"createTitle": "Create task branch",
+			"typeLabel": "Branch type",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"repositories": "Repositories",
+			"createButton": "Create branch",
+			"creating": "Creating...",
+			"createdIn_one": "Created {{branch}} in {{count}} repository",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"find": "Find branch",
+			"findTitle": "Find a branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"link": "Link",
+			"linking": "Linking...",
+			"linked": "Linked",
+			"noMatches": "No matching branches.",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"searchError": "Failed to load branches.",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"pastePr": "Add pull request",
+			"pastePrTitle": "Link a pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrButton": "Link pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}"
+		},
+		"branchTypes": {
+			"fix": "Fix",
+			"feature": "Feature",
+			"docs": "Documentation",
+			"chore": "Chore",
+			"refactor": "Refactor",
+			"test": "Test",
+			"release": "Release"
 		}
 	},
 	"invitations": {

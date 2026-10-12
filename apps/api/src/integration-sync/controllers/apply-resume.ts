@@ -55,6 +55,7 @@ export async function applySyncResume(
         review.remote.state === "closed" ? "issue_closed" : "issue_reopened",
         fallback.slug,
         tx,
+        review.integration.id,
       );
       const target = columns.find((column) => column.slug === slug)!;
       status = { status: target.slug, columnId: target.id };

@@ -1,0 +1,551 @@
+ड हो रही है...",
+				"imageUploaded": "चित्र अपलोड किया गया",
+				"fileAttached": "फ़ाइल संलग्न की गई",
+				"failedToUploadFile": "फ़ाइल अपलोड करने में विफल",
+				"enterUrl": "URL दर्ज करें",
+				"plaintext": "सादा पाठ",
+				"autoDetect": "स्वतः पहचान",
+				"slashGroupText": "पाठ",
+				"slashGroupLists": "सूचियाँ",
+				"slashGroupInsert": "सम्मिलित करें",
+				"slashParagraph": "पाठ",
+				"slashHeading": "शीर्षक",
+				"slashBulletList": "बुलेट सूची",
+				"slashTaskList": "कार्य सूची",
+				"slashOrderedList": "क्रमांकित सूची",
+				"slashQuote": "उद्धरण",
+				"slashCodeBlock": "कोड ब्लॉक",
+				"slashTable": "तालिका",
+				"slashFile": "फ़ाइल",
+				"searchParagraph": "पाठ अनुच्छेद पैराग्राफ़ सामान्य text paragraph normal",
+				"searchHeading": "शीर्षक हेडिंग heading title h2",
+				"searchBulletList": "सूची बुलेट list bullet unordered",
+				"searchTaskList": "कार्य सूची चेकलिस्ट todo to-do checklist checkbox task list",
+				"searchOrderedList": "सूची क्रमांकित list ordered numbered",
+				"searchQuote": "उद्धरण quote blockquote",
+				"searchCodeBlock": "code snippet",
+				"searchTable": "table grid",
+				"searchFile": "फ़ाइल संलग्नक चित्र फ़ोटो अपलोड file attachment image photo upload",
+				"embedErrorInvalidUrl": "वैध URL दर्ज करें",
+				"embedErrorYoutubeOnly": "केवल YouTube लिंक एम्बेड किए जा सकते हैं।",
+				"embedVideo": "वीडियो एम्बेड करें",
+				"keepAsLink": "लिंक के रूप में रखें",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "URL चिपकाएँ",
+				"asLink": "लिंक के रूप में",
+				"embed": "एम्बेड करें",
+				"noCommands": "कोई कमांड नहीं",
+				"ariaCommentContent": "टिप्पणी सामग्री",
+				"ariaCommentEditor": "टिप्पणी संपादक",
+				"ariaCopyCode": "कोड कॉपी करें",
+				"ariaCopied": "कॉपी किया",
+				"copy": "कॉपी करें",
+				"copied": "कॉपी किया",
+				"dropImageToUpload": "अपलोड करने के लिए चित्र छोड़ें",
+				"previewImageAlt": "पूर्वावलोकन चित्र",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"plaintext": "Plaintext",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"table": {
+					"addColumnBefore": "बाईं ओर कॉलम जोड़ें",
+					"addColumnAfter": "दाईं ओर कॉलम जोड़ें",
+					"deleteColumn": "कॉलम हटाएँ",
+					"addRowBefore": "ऊपर पंक्ति जोड़ें",
+					"addRowAfter": "नीचे पंक्ति जोड़ें",
+					"deleteRow": "पंक्ति हटाएँ",
+					"deleteTable": "तालिका हटाएँ"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid डायग्राम प्रस्तुत नहीं किया जा सका"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "{{forge}} पर टिप्पणी की"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "कार्य",
+		"status": {
+			"label": "स्थिति",
+			"to-do": "करना है",
+			"in-progress": "प्रगति में",
+			"in-review": "समीक्षा में",
+			"done": "पूरा हुआ",
+			"archived": "संग्रहित",
+			"planned": "नियोजित"
+		},
+		"priority": {
+			"label": "प्राथमिकता",
+			"no-priority": "कोई प्राथमिकता नहीं",
+			"low": "कम",
+			"medium": "मध्यम",
+			"high": "उच्च",
+			"urgent": "अत्यावश्यक"
+		},
+		"boardSearchPlaceholder": "टिकट खोजें...",
+		"view": {
+			"board": "बोर्ड",
+			"list": "सूची",
+			"backlog": "बैकलॉग",
+			"gantt": "गैंट",
+			"heading": "व्यू"
+		},
+		"common": {
+			"selectTask": "कार्य चुनें",
+			"loadingTask": "कार्य लोड हो रहा है...",
+			"taskNotFound": "कार्य नहीं मिला",
+			"taskNotFoundDescription": "जो कार्य आप खोज रहे हैं वह मौजूद नहीं है या हटा दिया गया है।",
+			"ticketAmbiguous": "यह कार्य ID एक से अधिक कार्यों से मेल खाती है",
+			"ticketAmbiguousDescription": "{{ticketId}} इस वर्कस्पेस के एक से अधिक प्रोजेक्ट के कार्यों से मेल खाती है। लिंक ठीक करने के लिए उनमें से किसी एक प्रोजेक्ट को अलग कुंजी दें।",
+			"ticketNotFoundDescription": "इस वर्कस्पेस में {{ticketId}} ID वाला कोई कार्य नहीं है, या आपके पास उसकी पहुँच नहीं है।",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "उप-कार्य",
+			"activity": "गतिविधि",
+			"noActivity": "कोई गतिविधि नहीं मिली",
+			"openInFullPage": "पूरे पेज में खोलें",
+			"titlePlaceholder": "शीर्षक जोड़ने के लिए क्लिक करें",
+			"addDescription": "विवरण जोड़ें...",
+			"editor": {
+				"ariaLabel": "कार्य विवरण संपादक",
+				"placeholder": "विवरण लिखें...",
+				"previewImage": "पूर्वावलोकन चित्र",
+				"enterUrl": "URL दर्ज करें",
+				"autoDetect": "स्वतः पहचान",
+				"copyCode": "कोड कॉपी करें",
+				"copy": "कॉपी करें",
+				"copied": "कॉपी किया",
+				"attachFile": "फ़ाइल संलग्न करें",
+				"dropToUpload": "अपलोड करने के लिए चित्र छोड़ें",
+				"checkbox": {
+					"markIncomplete": "कार्य को अपूर्ण चिह्नित करें",
+					"markComplete": "कार्य को पूर्ण चिह्नित करें"
+				},
+				"upload": {
+					"loading": "फ़ाइल अपलोड हो रही है...",
+					"failed": "फ़ाइल अपलोड करने में विफल",
+					"imageSuccess": "चित्र अपलोड किया गया",
+					"fileSuccess": "फ़ाइल संलग्न की गई"
+				},
+				"slash": {
+					"groups": {
+						"text": "पाठ",
+						"lists": "सूचियाँ",
+						"insert": "सम्मिलित करें"
+					},
+					"empty": "कोई कमांड नहीं",
+					"commands": {
+						"paragraph": "पाठ",
+						"heading-2": "शीर्षक",
+						"bullet-list": "बुलेट सूची",
+						"task-list": "कार्य सूची",
+						"ordered-list": "क्रमांकित सूची",
+						"blockquote": "उद्धरण",
+						"code-block": "कोड ब्लॉक",
+						"table": "तालिका",
+						"file": "फ़ाइल"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Plaintext",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "वीडियो एम्बेड करें",
+						"keepAsLink": "लिंक के रूप में रखें"
+					},
+					"inputPlaceholder": "URL चिपकाएँ",
+					"embeddedContent": "एम्बेडेड सामग्री",
+					"asLink": "लिंक के रूप में",
+					"submit": "एम्बेड करें",
+					"errors": {
+						"invalidUrl": "वैध URL दर्ज करें",
+						"onlyYoutube": "केवल YouTube लिंक एम्बेड किए जा सकते हैं।"
+					},
+					"onlyYoutubeInline": "केवल YouTube URL एम्बेड किए जा सकते हैं। इसके बजाय लिंक मोड का उपयोग करें।"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid डायग्राम प्रस्तुत नहीं किया जा सका"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "कार्य"
+		},
+		"relations": {
+			"title": "संबंध",
+			"tasksInProject": "प्रोजेक्ट में कार्य",
+			"linkError": "कार्य लिंक करने में विफल",
+			"empty": "कोई संबंधित कार्य नहीं",
+			"searchPlaceholder": "लिंक करने के लिए कार्य खोजें...",
+			"noTasksFound": "कोई कार्य नहीं मिला",
+			"openTask": "कार्य खोलें",
+			"removeRelation": "संबंध हटाएँ",
+			"related": "संबंधित",
+			"blocks": "ब्लॉक करता है",
+			"selectTask": "लिंक करने के लिए कार्य चुनें",
+			"types": {
+				"blocks": "ब्लॉक करता है",
+				"blocked_by": "ब्लॉक किया गया",
+				"related": "संबंधित है"
+			}
+		},
+		"subtasks": {
+			"title": "उप-कार्य",
+			"inputPlaceholder": "उप-कार्य शीर्षक...",
+			"addAction": "जोड़ें",
+			"empty": "अभी तक कोई उप-कार्य नहीं",
+			"createError": "उप-कार्य बनाने में विफल",
+			"deleteSuccess": "कार्य सफलतापूर्वक हटाया गया",
+			"deleteError": "कार्य हटाने में विफल",
+			"deleteDialogTitle": "कार्य हटाएँ?",
+			"deleteDialogDescription": "यह कार्य और इसका सभी डेटा स्थायी रूप से हटा दिया जाएगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"deleteAction": "कार्य हटाएँ",
+			"completeAria": "उप-कार्य को पूर्ण चिह्नित करें",
+			"progress": "{{total}} में से {{completed}} उपकार्य पूरे हुए",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "गुण",
+			"labels": "लेबल",
+			"copyTaskLink": "कार्य लिंक कॉपी करें",
+			"copyTaskBranch": "कार्य शाखा कॉपी करें",
+			"taskLinkCopied": "कार्य का लिंक कॉपी किया गया",
+			"taskBranchCopied": "ब्रांच का नाम कॉपी किया गया",
+			"start": "शुरू",
+			"startDate": "शुरू की तारीख",
+			"noDate": "कोई तारीख नहीं"
+		},
+		"move": {
+			"title": "कार्य ले जाएँ",
+			"projectLabel": "गंतव्य प्रोजेक्ट",
+			"projectPlaceholder": "प्रोजेक्ट चुनें",
+			"statusLabel": "गंतव्य स्थिति",
+			"statusHintKeep": "इस प्रोजेक्ट का वर्कफ़्लो पहले से वर्तमान स्थिति का समर्थन करता है।",
+			"statusHintAdjust": "गंतव्य प्रोजेक्ट में उपयोग करने के लिए स्थिति चुनें।",
+			"action": "कार्य ले जाएँ",
+			"success": "कार्य सफलतापूर्वक ले जाया गया",
+			"error": "कार्य ले जाने में विफल"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "असाइन नहीं",
+				"updateError": "कार्य का सौंपा गया अपडेट करने में विफल"
+			},
+			"status": {
+				"updateError": "कार्य की स्थिति अपडेट करने में विफल"
+			},
+			"priority": {
+				"updateError": "कार्य की प्राथमिकता अपडेट करने में विफल"
+			},
+			"dueDate": {
+				"updateSuccess": "कार्य की नियत तारीख सफलतापूर्वक अपडेट की गई",
+				"updateError": "कार्य की नियत तारीख अपडेट करने में विफल",
+				"clear": "तारीख साफ़ करें"
+			},
+			"startDate": {
+				"updateSuccess": "कार्य की शुरू तारीख सफलतापूर्वक अपडेट की गई",
+				"updateError": "कार्य की शुरू तारीख अपडेट करने में विफल",
+				"clear": "शुरू तारीख साफ़ करें"
+			},
+			"labels": {
+				"searchPlaceholder": "लेबल खोजें...",
+				"empty": "कोई लेबल नहीं मिला",
+				"create": "\"{{name}}\" बनाएँ",
+				"chooseColor": "रंग चुनें",
+				"addSuccess": "लेबल जोड़ा गया",
+				"removeSuccess": "लेबल हटाया गया",
+				"updateError": "लेबल अपडेट करने में विफल",
+				"createSuccess": "लेबल बनाया और जोड़ा गया",
+				"createError": "लेबल बनाने में विफल",
+				"colors": {
+					"stone": "पत्थर",
+					"slate": "स्लेट",
+					"lavender": "लैवेंडर",
+					"sage": "सेज",
+					"forest": "वन",
+					"amber": "एम्बर",
+					"terracotta": "टेराकोटा",
+					"rose": "गुलाब",
+					"crimson": "किरमिज़ी"
+				},
+				"editLabels": "लेबल संपादित करें"
+			}
+		},
+		"backlog": {
+			"pageTitle": "{{name}} का बैकलॉग",
+			"noTasksToMove": "ले जाने के लिए कोई नियोजित कार्य नहीं",
+			"moveAllConfirm": "सभी {{count}} नियोजित कार्य To Do में ले जाएँ?",
+			"moveAllSuccess": "{{count}} कार्य To Do में ले जाए गए",
+			"plan": "योजना",
+			"moveAllTooltip": "सभी नियोजित को To Do में ले जाएँ",
+			"moveAll": "सभी ले जाएँ",
+			"addTask": "कार्य जोड़ें",
+			"filter": "फ़िल्टर",
+			"addFilter": "फ़िल्टर जोड़ें...",
+			"sections": {
+				"planned": "नियोजित",
+				"archived": "संग्रहित"
+			},
+			"noTasksInSection": "कोई {{section}} कार्य नहीं",
+			"filters": {
+				"priority": "प्राथमिकता: {{name}}",
+				"assignee": "सौंपा गया: {{name}}",
+				"due": "देय: {{date}}",
+				"label": "लेबल: {{name}}",
+				"dueThisWeek": "इस सप्ताह देय",
+				"dueNextWeek": "अगले सप्ताह देय",
+				"noDueDate": "कोई नियत तारीख नहीं"
+			}
+		},
+		"sort": {
+			"label": "क्रमबद्ध करें",
+			"by": "इसके अनुसार",
+			"direction": "दिशा",
+			"ascending": "आरोही",
+			"descending": "अवरोही",
+			"fields": {
+				"position": "मैनुअल (स्थिति)",
+				"createdAt": "बनाने की तारीख",
+				"priority": "प्राथमिकता",
+				"dueDate": "नियत तारीख",
+				"title": "शीर्षक",
+				"number": "कार्य संख्या"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "इसके अनुसार फ़िल्टर करें",
+			"allStatuses": "सभी स्थितियाँ",
+			"allPriorities": "सभी प्राथमिकताएँ",
+			"allAssignees": "सभी सौंपे गए",
+			"allDueDates": "सभी नियत तारीखें",
+			"allLabels": "सभी लेबल",
+			"selectedCount": "{{count}} चयनित",
+			"subjects": {
+				"status": "स्थिति",
+				"priority": "प्राथमिकता",
+				"assignee": "सौंपा गया",
+				"dueDate": "नियत तारीख",
+				"labels": "लेबल"
+			},
+			"operators": {
+				"isAnyOf": "में से कोई है",
+				"includeAnyOf": "में से कोई शामिल है"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – गैंट",
+			"title": "गैंट टाइमलाइन",
+			"searchPlaceholder": "शेड्यूल किए गए टिकट खोजें...",
+			"hideTasks": "कार्य छिपाएँ",
+			"showTasks": "कार्य दिखाएँ",
+			"noTasks": "कोई शेड्यूल किए गए कार्य नहीं",
+			"noTasksSubtitle": "प्रोजेक्ट टाइमलाइन पर रखने के लिए कार्यों में शुरू तारीख, नियत तारीख, या दोनों जोड़ें।",
+			"noTasksFound": "कोई कार्य नहीं मिला",
+			"noTasksMatch": "\"{{query}}\" से मेल खाने वाले कोई शेड्यूल किए गए कार्य नहीं",
+			"taskHeader": "कार्य",
+			"updateDatesError": "कार्य की तारीखें अपडेट करने में विफल",
+			"resizeStart": "शुरू तारीख बदलें",
+			"resizeDue": "नियत तारीख बदलें",
+			"taskAriaLabel": "{{title}}: खोलें या ले जाने के लिए खींचें",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "कार्य हटाएँ?",
+			"description": "यह कार्य और इसका सभी डेटा स्थायी रूप से हटा दिया जाएगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"action": "कार्य हटाएँ",
+			"success": "कार्य सफलतापूर्वक हटाया गया",
+			"error": "कार्य हटाने में विफल"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (प्रतिलिपि)",
+			"success": "कार्य सफलतापूर्वक डुप्लिकेट किया गया",
+			"error": "कार्य डुप्लिकेट करने में विफल"
+		},
+		"archive": {
+			"success": "{{count}} कार्य संग्रहित किए गए"
+		},
+		"listView": {
+			"addTask": "कार्य जोड़ें",
+			"archiveAllTooltip": "सभी पूर्ण कार्य संग्रहित करें",
+			"noTasks": "कोई कार्य नहीं"
+		},
+		"kanban": {
+			"addTask": "कार्य जोड़ें",
+			"automaticallySortedHint": "{{sort}} के अनुसार स्वचालित रूप से क्रमबद्ध"
+		},
+		"pr": {
+			"merged": "मर्ज किया",
+			"draft": "ड्राफ़्ट",
+			"open": "खुला",
+			"label": "पुल अनुरोध",
+			"count_one": "{{count}} PR",
+			"count_other": "{{count}} PR"
+		},
+		"assignee": {
+			"label": "सौंपा गया",
+			"unassigned": "असाइन नहीं"
+		},
+		"dueDate": {
+			"label": "नियत तारीख",
+			"clear": "तारीख साफ़ करें",
+			"updateSuccess": "कार्य की नियत तारीख सफलतापूर्वक अपडेट की गई",
+			"updateError": "कार्य की नियत तारीख अपडेट करने में विफल",
+			"clearSuccess": "कार्य की नियत तारीख साफ़ की गई",
+			"clearError": "नियत तारीख साफ़ करने में विफल"
+		},
+		"labels": {
+			"label": "लेबल",
+			"empty": "कोई लेबल उपलब्ध नहीं"
+		},
+		"update": {
+			"success": "कार्य सफलतापूर्वक अपडेट किया गया",
+			"error": "कार्य अपडेट करने में विफल"
+		},
+		"contextMenu": {
+			"copyLink": "लिंक कॉपी करें",
+			"copyLinkSuccess": "कार्य लिंक कॉपी किया गया!"
+		},
+		"actions": {
+			"duplicate": "डुप्लिकेट करें",
+			"archive": "संग्रहित करें",
+			"markAsPlanned": "नियोजित चिह्नित करें",
+			"delete": "हटाएँ..."
+		},
+		"bulk": {
+			"selectedCount": "{{count}} चयनित",
+			"moveToBacklog": "बैकलॉग में ले जाएँ",
+			"moveToBacklogSuccess": "{{count}} कार्य बैकलॉग में ले जाए गए",
+			"moveToBacklogError": "कार्य बैकलॉग में ले जाने में विफल",
+			"moveToBoard": "बोर्ड पर ले जाएँ",
+			"moveToBoardSuccess": "{{count}} कार्य बोर्ड पर ले जाए गए",
+			"moveToBoardError": "कार्य बोर्ड पर ले जाने में विफल",
+			"delete": "कार्य हटाएँ",
+			"deleteConfirm": "{{count}} कार्य हटाएँ? यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"deleteSuccess": "{{count}} कार्य हटाए गए",
+			"deleteError": "कार्य हटाने में विफल",
+			"archive": "कार्य संग्रहित करें",
+			"archiveSuccess": "{{count}} कार्य संग्रहित किए गए",
+			"archiveError": "कार्य संग्रहित करने में विफल",
+			"updateSuccess": "{{count}} कार्य अपडेट किए गए",
+			"updateError": "कार्य अपडेट करने में विफल",
+			"assignTo": "को सौंपें",
+			"assignSuccess": "{{count}} कार्य सौंपे गए",
+			"assignError": "कार्य सौंपने में विफल",
+			"setPriority": "प्राथमिकता सेट करें",
+			"updatePriorityError": "प्राथमिकता अपडेट करने में विफल",
+			"addLabel": "लेबल जोड़ें",
+			"addLabelSuccess": "{{count}} कार्यों में लेबल जोड़ा गया",
+			"addLabelError": "लेबल जोड़ने में विफल",
+			"setDueDate": "नियत तारीख सेट करें",
+			"updateDueDateError": "नियत तारीख अपडेट करने में विफल",
+			"actions": "कार्रवाइयाँ",
+			"searchActions": "कार्रवाइयाँ खोजें...",
+			"noActionsFound": "कोई कार्रवाई नहीं मिली।",
+			"changeStatus": "स्थिति बदलें"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "बाईं ओर कॉलम जोड़ें",
+				"addColumnAfter": "दाईं ओर कॉलम जोड़ें",
+				"deleteColumn": "कॉलम हटाएँ",
+				"addRowBefore": "ऊपर पंक्ति जोड़ें",
+				"addRowAfter": "नीचे पंक्ति जोड़ें",
+				"deleteRow": "पंक्ति हटाएँ",
+				"deleteTable": "तालिका हटाएँ"
+			}
+		},
+		"calendar": {
+			"dayTasksAriaLabel": "{{date}} के सभी कार्य दिखाएँ",
+			"moreTasks": "+{{count}} और",
+			"nextMonth": "अगला महीना",
+			"noTasks": "कोई शेड्यूल किए गए कार्य नहीं",
+			"noTasksSubtitle": "कार्यों को कैलेंडर पर दिखाने के लिए उनमें प्रारंभ तिथि, नियत तिथि या दोनों जोड़ें।",
+			"pageTitle": "{{name}} – कैलेंडर",
+			"previousMonth": "पिछला महीना",
+			"taskAriaLabel": "{{title}}, {{range}}: कार्य खोलें",
+			"title": "कैलेंडर",
+			"today": "आज",
+			"loadError": "कार्य लोड नहीं हो सके।",
+			"noTasksThisMonth": "इस महीने कुछ भी शेड्यूल नहीं है"
+		},
+		"descriptionSearchLoad

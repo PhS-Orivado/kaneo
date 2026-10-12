@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "id": "0466239b-b8ab-4220-a847-dde109ec6508",
+=======
+  "id": "2bc377c0-dc6d-4bab-9642-34581d46ab15",
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
   "prevId": "57657924-5578-41e7-99bd-b2e744037c44",
   "version": "7",
   "dialect": "postgresql",
@@ -79,7 +83,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
@@ -153,14 +161,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "user_id": {
           "name": "user_id",
@@ -624,7 +640,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -828,7 +848,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {},
@@ -878,14 +902,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1003,7 +1035,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1111,14 +1147,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1192,14 +1236,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1327,14 +1379,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1408,14 +1468,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1508,7 +1576,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {},
@@ -1552,14 +1624,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "expires_at": {
           "name": "expires_at",
@@ -1723,14 +1803,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -1872,7 +1960,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {},
@@ -2023,14 +2115,52 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+        },
+        "repository_key": {
+          "name": "repository_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "repository_owner": {
+          "name": "repository_owner",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "repository_name": {
+          "name": "repository_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "repository_id": {
+          "name": "repository_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "base_url": {
+          "name": "base_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -2063,6 +2193,52 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+<<<<<<< HEAD
+=======
+        },
+        "integration_type_repository_key_idx": {
+          "name": "integration_type_repository_key_idx",
+          "columns": [
+            {
+              "expression": "type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "repository_key",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "integration_project_type_null_repo_unique": {
+          "name": "integration_project_type_null_repo_unique",
+          "columns": [
+            {
+              "expression": "project_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "where": "\"integration\".\"repository_key\" is null",
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "foreignKeys": {
@@ -2082,12 +2258,22 @@
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
+<<<<<<< HEAD
         "integration_project_type_unique": {
           "name": "integration_project_type_unique",
           "nullsNotDistinct": false,
           "columns": [
             "project_id",
             "type"
+=======
+        "integration_project_type_repo_unique": {
+          "name": "integration_project_type_repo_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "project_id",
+            "type",
+            "repository_key"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
           ]
         }
       },
@@ -2147,7 +2333,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "inviter_id": {
           "name": "inviter_id",
@@ -2309,14 +2499,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "deletion_started_at": {
           "name": "deletion_started_at",
@@ -2507,14 +2705,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -2675,6 +2881,7 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+<<<<<<< HEAD
     "public.workspace_role": {
       "name": "workspace_role",
       "schema": "",
@@ -2771,6 +2978,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+=======
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
     "public.project": {
       "name": "project",
       "schema": "",
@@ -2817,7 +3026,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "is_public": {
           "name": "is_public",
@@ -2961,7 +3174,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
@@ -3073,7 +3290,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {},
@@ -3084,6 +3305,7 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+<<<<<<< HEAD
     "public.task_relation": {
       "name": "task_relation",
       "schema": "",
@@ -3270,6 +3492,8 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+=======
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
     "public.task": {
       "name": "task",
       "schema": "",
@@ -3355,14 +3579,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -3505,6 +3737,195 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+<<<<<<< HEAD
+=======
+    "public.task_relation": {
+      "name": "task_relation",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "source_task_id": {
+          "name": "source_task_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "target_task_id": {
+          "name": "target_task_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "relation_type": {
+          "name": "relation_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "task_relation_source_idx": {
+          "name": "task_relation_source_idx",
+          "columns": [
+            {
+              "expression": "source_task_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "task_relation_target_idx": {
+          "name": "task_relation_target_idx",
+          "columns": [
+            {
+              "expression": "target_task_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "task_relation_source_task_id_task_id_fk": {
+          "name": "task_relation_source_task_id_task_id_fk",
+          "tableFrom": "task_relation",
+          "tableTo": "task",
+          "columnsFrom": [
+            "source_task_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        },
+        "task_relation_target_task_id_task_id_fk": {
+          "name": "task_relation_target_task_id_task_id_fk",
+          "tableFrom": "task_relation",
+          "tableTo": "task",
+          "columnsFrom": [
+            "target_task_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.task_reminder_sent": {
+      "name": "task_reminder_sent",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "task_id": {
+          "name": "task_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "reminder_type": {
+          "name": "reminder_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "task_reminder_sent_taskId_idx": {
+          "name": "task_reminder_sent_taskId_idx",
+          "columns": [
+            {
+              "expression": "task_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "task_reminder_sent_task_id_task_id_fk": {
+          "name": "task_reminder_sent_task_id_task_id_fk",
+          "tableFrom": "task_reminder_sent",
+          "tableTo": "task",
+          "columnsFrom": [
+            "task_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "task_reminder_sent_task_type_unique": {
+          "name": "task_reminder_sent_task_type_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "task_id",
+            "reminder_type"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
     "public.team": {
       "name": "team",
       "schema": "",
@@ -3725,14 +4146,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -3822,7 +4251,11 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {},
@@ -3878,14 +4311,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "is_anonymous": {
           "name": "is_anonymous",
@@ -3975,14 +4416,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -4157,14 +4606,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {},
@@ -4230,14 +4687,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -4443,14 +4908,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -4569,14 +5042,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -4642,14 +5123,28 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+        },
+        "integration_id": {
+          "name": "integration_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -4682,6 +5177,57 @@
           "concurrently": false,
           "method": "btree",
           "with": {}
+<<<<<<< HEAD
+=======
+        },
+        "workflow_rule_integrationId_idx": {
+          "name": "workflow_rule_integrationId_idx",
+          "columns": [
+            {
+              "expression": "integration_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "workflow_rule_resolution_idx": {
+          "name": "workflow_rule_resolution_idx",
+          "columns": [
+            {
+              "expression": "project_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "integration_type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "event_type",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "integration_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "foreignKeys": {
@@ -4710,6 +5256,22 @@
           ],
           "onDelete": "cascade",
           "onUpdate": "cascade"
+<<<<<<< HEAD
+=======
+        },
+        "workflow_rule_integration_id_integration_id_fk": {
+          "name": "workflow_rule_integration_id_integration_id_fk",
+          "tableFrom": "workflow_rule",
+          "tableTo": "integration",
+          "columnsFrom": [
+            "integration_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "compositePrimaryKeys": {},
@@ -4870,14 +5432,22 @@
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+          "default": "now()"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         }
       },
       "indexes": {
@@ -4933,16 +5503,26 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+<<<<<<< HEAD
     "public.workspace_member_access": {
       "name": "workspace_member_access",
       "schema": "",
       "columns": {
         "id": {
           "name": "id",
+=======
+    "public.workspace_limit": {
+      "name": "workspace_limit",
+      "schema": "",
+      "columns": {
+        "workspace_id": {
+          "name": "workspace_id",
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
           "type": "text",
           "primaryKey": true,
           "notNull": true
         },
+<<<<<<< HEAD
         "workspace_id": {
           "name": "workspace_id",
           "type": "text",
@@ -4968,12 +5548,20 @@
           "primaryKey": false,
           "notNull": true,
           "default": "(now() AT TIME ZONE 'utc')"
+=======
+        "max_repositories_per_project": {
+          "name": "max_repositories_per_project",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
         },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
+<<<<<<< HEAD
           "default": "(now() AT TIME ZONE 'utc')"
         }
       },
@@ -4998,6 +5586,16 @@
         "workspace_member_access_workspace_id_workspace_id_fk": {
           "name": "workspace_member_access_workspace_id_workspace_id_fk",
           "tableFrom": "workspace_member_access",
+=======
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "workspace_limit_workspace_id_workspace_id_fk": {
+          "name": "workspace_limit_workspace_id_workspace_id_fk",
+          "tableFrom": "workspace_limit",
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
           "tableTo": "workspace",
           "columnsFrom": [
             "workspace_id"
@@ -5006,6 +5604,7 @@
             "id"
           ],
           "onDelete": "cascade",
+<<<<<<< HEAD
           "onUpdate": "no action"
         },
         "workspace_member_access_user_id_user_id_fk": {
@@ -5117,10 +5716,13 @@
             "id"
           ],
           "onDelete": "cascade",
+=======
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
           "onUpdate": "cascade"
         }
       },
       "compositePrimaryKeys": {},
+<<<<<<< HEAD
       "uniqueConstraints": {
         "workspace_member_project_workspace_user_project_unique": {
           "name": "workspace_member_project_workspace_user_project_unique",
@@ -5132,6 +5734,9 @@
           ]
         }
       },
+=======
+      "uniqueConstraints": {},
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
@@ -5237,6 +5842,308 @@
       "policies": {},
       "checkConstraints": {},
       "isRLSEnabled": false
+<<<<<<< HEAD
+=======
+    },
+    "public.workspace_member_access": {
+      "name": "workspace_member_access",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_access": {
+          "name": "project_access",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'all'"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "workspace_member_access_userId_idx": {
+          "name": "workspace_member_access_userId_idx",
+          "columns": [
+            {
+              "expression": "user_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "workspace_member_access_workspace_id_workspace_id_fk": {
+          "name": "workspace_member_access_workspace_id_workspace_id_fk",
+          "tableFrom": "workspace_member_access",
+          "tableTo": "workspace",
+          "columnsFrom": [
+            "workspace_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "workspace_member_access_user_id_user_id_fk": {
+          "name": "workspace_member_access_user_id_user_id_fk",
+          "tableFrom": "workspace_member_access",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "workspace_member_access_workspace_user_unique": {
+          "name": "workspace_member_access_workspace_user_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "workspace_id",
+            "user_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.workspace_member_project": {
+      "name": "workspace_member_project",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "project_id": {
+          "name": "project_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "workspace_member_project_projectId_idx": {
+          "name": "workspace_member_project_projectId_idx",
+          "columns": [
+            {
+              "expression": "project_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "workspace_member_project_user_id_user_id_fk": {
+          "name": "workspace_member_project_user_id_user_id_fk",
+          "tableFrom": "workspace_member_project",
+          "tableTo": "user",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "workspace_member_project_workspace_id_project_id_project_workspace_id_id_fk": {
+          "name": "workspace_member_project_workspace_id_project_id_project_workspace_id_id_fk",
+          "tableFrom": "workspace_member_project",
+          "tableTo": "project",
+          "columnsFrom": [
+            "workspace_id",
+            "project_id"
+          ],
+          "columnsTo": [
+            "workspace_id",
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "workspace_member_project_workspace_user_project_unique": {
+          "name": "workspace_member_project_workspace_user_project_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "workspace_id",
+            "user_id",
+            "project_id"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.workspace_role": {
+      "name": "workspace_role",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "workspace_id": {
+          "name": "workspace_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "permission": {
+          "name": "permission",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "workspace_role_workspaceId_idx": {
+          "name": "workspace_role_workspaceId_idx",
+          "columns": [
+            {
+              "expression": "workspace_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "workspace_role_role_idx": {
+          "name": "workspace_role_role_idx",
+          "columns": [
+            {
+              "expression": "role",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {
+        "workspace_role_workspace_id_workspace_id_fk": {
+          "name": "workspace_role_workspace_id_workspace_id_fk",
+          "tableFrom": "workspace_role",
+          "tableTo": "workspace",
+          "columnsFrom": [
+            "workspace_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "cascade"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
     }
   },
   "enums": {},
@@ -5250,4 +6157,8 @@
     "schemas": {},
     "tables": {}
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250

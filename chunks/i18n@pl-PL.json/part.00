@@ -1,0 +1,685 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Anuluj",
+			"close": "Zamknij",
+			"clearAll": "Wyczyść wszystko",
+			"delete": "Usuń",
+			"deleting": "Usuwanie...",
+			"markAllRead": "Oznacz wszystko jako przeczytane",
+			"remove": "Usuń",
+			"reset": "Resetuj",
+			"filter": "Filtruj",
+			"clearAllFilters": "Wyczyść wszystkie filtry"
+		},
+		"a11y": {
+			"toggleSidebar": "Przełącz pasek boczny"
+		},
+		"sidebar": {
+			"title": "Pasek boczny",
+			"mobileDescription": "Wyświetla mobilny pasek boczny."
+		},
+		"empty": {
+			"loading": "Ładowanie..."
+		},
+		"pagination": {
+			"label": "Paginacja",
+			"previous": "Poprzednia",
+			"next": "Następna",
+			"previousPage": "Przejdź do poprzedniej strony",
+			"nextPage": "Przejdź do następnej strony",
+			"morePages": "Więcej stron"
+		},
+		"breadcrumb": {
+			"label": "Nawigacja okruszkowa",
+			"more": "Więcej"
+		},
+		"language": {
+			"english": "Angielski",
+			"german": "Niemiecki",
+			"greek": "Grecki",
+			"macedonian": "Macedoński",
+			"french": "Francuski",
+			"spanish": "Hiszpański",
+			"dutch": "Niderlandzki",
+			"korean": "Koreański",
+			"chinese": "Chiński",
+			"italian": "Włoski"
+		},
+		"people": {
+			"someone": "Ktoś",
+			"unknown": "Nieznany"
+		},
+		"error": {
+			"title": "Coś poszło nie tak",
+			"description": "Strona niespodziewanie się zawiesiła. Odświeżenie powinno pomóc.",
+			"troubleshooting": "Kroki diagnostyczne:",
+			"tryAgain": "Spróbuj ponownie",
+			"viewDeploymentGuide": "Zobacz przewodnik wdrożenia",
+			"refreshPage": "Odśwież stronę",
+			"messages": {
+				"cors": "Nie można połączyć się z serwerem. Przyczyną mogą być ustawienia CORS.",
+				"network": "Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.",
+				"auth": "Nie udało się uwierzytelnić. Zaloguj się ponownie.",
+				"server": "Błąd serwera. Spróbuj ponownie później.",
+				"unknown": "Wystąpił nieoczekiwany błąd."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkApiRunning": "Upewnij się, że serwer API działa",
+					"checkApiUrl": "Sprawdź, czy VITE_API_URL w pliku .env frontendu zgadza się z adresem API",
+					"verifyCorsOrigins": "Sprawdź, czy CORS_ORIGINS w pliku .env API zawiera adres frontendu",
+					"checkProtocol": "Upewnij się, że frontend i API używają tego samego protokołu (http/https)",
+					"checkAccessibility": "Sprawdź, czy serwer API jest dostępny z poziomu przeglądarki"
+				},
+				"network": {
+					"checkConnection": "Sprawdź połączenie z internetem",
+					"verifyApiRunning": "Sprawdź, czy serwer API działa i jest dostępny",
+					"tryRefresh": "Spróbuj odświeżyć stronę",
+					"checkFirewall": "Sprawdź, czy nie ma problemów z zaporą lub proxy"
+				}
+			}
+		},
+		"formats": {
+			"never": "Nigdy"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Utwórz nowy projekt",
+				"breadcrumbNew": "Utwórz nowy projekt",
+				"workspaceFallback": "OBSZAR ROBOCZY",
+				"description": "Utwórz nowy projekt w swoim obszarze roboczym, podając nazwę, klucz i wybierając ikonę.",
+				"pickIcon": "Wybierz ikonę",
+				"searchIcons": "Szukaj ikon...",
+				"projectName": "Nazwa projektu",
+				"keyLabel": "Klucz:",
+				"keyHint": "Używany w identyfikatorach zadań (np. {{example}}-123)",
+				"createButton": "Utwórz projekt",
+				"successToast": "Projekt został utworzony",
+				"errorToast": "Nie udało się utworzyć projektu"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Utwórz nowy obszar roboczy",
+				"description": "Utwórz nowy obszar roboczy, podając jego nazwę.",
+				"namePlaceholder": "Nazwa obszaru roboczego",
+				"descriptionPlaceholder": "Dodaj opis...",
+				"createButton": "Utwórz obszar roboczy",
+				"successToast": "Obszar roboczy został utworzony",
+				"errorToast": "Nie udało się utworzyć obszaru roboczego"
+			},
+			"createTask": {
+				"breadcrumbTask": "ZADANIE",
+				"selectProject": "Wybierz projekt",
+				"title": "Nowe zadanie",
+				"description": "Utwórz nowe zadanie, podając tytuł, opis i inne szczegóły.",
+				"taskTitlePlaceholder": "Tytuł zadania",
+				"descriptionPlaceholder": "Dodaj opis zadania...",
+				"chooseProjectForImages": "Wybierz projekt przed dodaniem obrazów.",
+				"prepareTaskError": "Nie udało się przygotować zadania",
+				"successCreated": "Zadanie zostało utworzone",
+				"successUpdated": "Zadanie zostało zaktualizowane",
+				"createError": "Nie udało się utworzyć zadania",
+				"priority": "Priorytet",
+				"statusFallback": "W trakcie",
+				"startDate": "Data rozpoczęcia",
+				"dueDate": "Termin",
+				"clearStartDate": "Wyczyść datę rozpoczęcia",
+				"clearDueDate": "Wyczyść termin",
+				"assign": "Przypisz",
+				"assignUnassigned": "Nieprzypisane",
+				"assignUnassignedTitle": "Nieprzypisane",
+				"labels": "Etykiety",
+				"searchLabels": "Szukaj etykiet...",
+				"noLabelsFound": "Nie znaleziono etykiet",
+				"createLabel": "Utwórz „{{name}}”",
+				"chooseColor": "Wybierz kolor",
+				"labelCreated": "Etykieta została utworzona",
+				"labelCreateError": "Nie udało się utworzyć etykiety",
+				"createMore": "Utwórz kolejne",
+				"createButton": "Utwórz zadanie",
+				"discardTitle": "Odrzucić zadanie?",
+				"discardDescription": "Niezapisane szczegóły zadania zostaną utracone.",
+				"discardButton": "Odrzuć zadanie",
+				"untitledTask": "Bez tytułu",
+				"labelColors": {
+					"stone": "Kamień",
+					"slate": "Łupek",
+					"lavender": "Lawenda",
+					"sage": "Szałwia",
+					"forest": "Las",
+					"amber": "Bursztyn",
+					"terracotta": "Terakota",
+					"rose": "Róża",
+					"crimson": "Karmazyn"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_few": "Issues in {{count}} repos",
+				"issuesIn_many": "Issues in {{count}} repos",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Zaloguj się",
+			"subtitle": {
+				"emailOrProvider": "Użyj adresu e-mail lub połączonego konta.",
+				"email": "Podaj adres e-mail, a wyślemy Ci kod logowania.",
+				"password": "Użyj adresu e-mail i hasła.",
+				"passwordOrProvider": "Użyj hasła lub połączonego konta.",
+				"providers": "Wybierz sposób logowania.",
+				"sso": "Logowaniem zarządza tutaj Twoja organizacja."
+			},
+			"lastUsed": "Ostatnio używane",
+			"guestError": "Nie udało się zalogować jako gość",
+			"errors": {
+				"account_not_linked": "Nie można było powiązać tej tożsamości z istniejącym kontem. Zaloguj się przez e-mail, aby zweryfikować konto, a następnie spróbuj ponownie SSO. Jeśli logowanie e-mail nie jest dostępne, skontaktuj się z administratorem.",
+				"oauth_code_verification_failed": "Weryfikacja OAuth nie powiodła się. Spróbuj ponownie.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Rejestracja jest obecnie wyłączona. Do utworzenia konta potrzebujesz prawidłowego zaproszenia.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Użyj stałego adresu e-mail. Na adresy jednorazowe nie można zakładać kont."
+			},
+			"instanceStatusError": "Nie można połączyć się z serwerem. Spróbuj ponownie za chwilę.",
+			"heading": "Zaloguj się do Kaneo",
+			"submitPassword": "Zaloguj się",
+			"invitation": {
+				"title": "{{inviterName}} zaprasza Cię do {{workspaceName}}",
+				"fallbackTitle": "Masz zaproszenie",
+				"description": "Zaloguj się adresem e-mail, na który przyszło zaproszenie. Zaraz potem dołączysz do obszaru roboczego."
+			},
+			"footer": {
+				"newHere": "Pierwszy raz w Kaneo?",
+				"createAccount": "Utwórz konto",
+				"inviteOnly": "Konta są tutaj dostępne tylko na zaproszenie. Poproś administratora o zaproszenie.",
+				"providerSignUp": "Pierwszy raz tutaj? Zaloguj się przez jednego z dostawców powyżej, aby utworzyć konto.",
+				"anyProvider": "Pierwszy raz tutaj? Każda z opcji powyżej utworzy Twoje konto.",
+				"contactAdmin": "Problem z logowaniem? Skontaktuj się z administratorem.",
+				"justLooking": "Chcesz się tylko rozejrzeć?"
+			},
+			"autoLogin": {
+				"title": "Trwa logowanie",
+				"subtitle": "Przekierowujemy Cię na stronę logowania Twojej organizacji.",
+				"opening": "Otwieranie {{provider}}…",
+				"stuck": "Nic się nie dzieje?",
+				"continue": "Przejdź do {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Kontynuuj z {{provider}}",
+			"error": "Nie udało się zalogować przez {{provider}}. Spróbuj ponownie."
+		},
+		"forms": {
+			"or": "lub",
+			"email": "E-mail",
+			"password": "Hasło",
+			"emailPlaceholder": "ja@przyklad.pl",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Pokaż hasło",
+			"hidePassword": "Ukryj hasło",
+			"name": "Imię i nazwisko",
+			"namePlaceholder": "Anna Kowalska",
+			"invalidEmail": "Podaj pełny adres e-mail, np. imie@firma.pl.",
+			"nameRequired": "Podaj imię i nazwisko.",
+			"passwordRequired": "Podaj hasło.",
+			"passwordTooShort": "Użyj co najmniej 8 znaków.",
+			"disposableEmail": "Użyj stałego adresu e-mail. Na adresy jednorazowe nie można zakładać kont.",
+			"continueWithEmail": "Kontynuuj z e-mailem"
+		},
+		"checkEmail": {
+			"pageTitle": "Sprawdź e-mail",
+			"title": "Sprawdź swoją skrzynkę",
+			"inboxMessage": "Wysłaliśmy tymczasowy link logowania. Sprawdź skrzynkę odbiorczą pod adresem <email>{{email}}</email>.",
+			"emailFallback": "twój adres e-mail",
+			"backToLogin": "Wróć do logowania"
+		},
+		"signUp": {
+			"pageTitle": "Utwórz konto",
+			"registrationDisabledAlert": "Rejestracja jest obecnie wyłączona. Jeśli otrzymałeś zaproszenie, wpisz adres e-mail, na który zostało wysłane, aby utworzyć konto.",
+			"continueAsGuest": "Kontynuuj jako gość",
+			"toggleMessage": "Masz już konto?",
+			"toggleLink": "Zaloguj się",
+			"instanceStatusError": "Nie można połączyć się z serwerem. Spróbuj ponownie za chwilę.",
+			"instanceAdminTitle": "Skonfiguruj swoją instancję Kaneo",
+			"instanceAdminSubtitle": "To konto stanie się administratorem instancji z pełnym dostępem.",
+			"heading": "Utwórz konto",
+			"submitPassword": "Utwórz konto",
+			"failed": "Nie udało się utworzyć konta. Spróbuj ponownie.",
+			"subtitle": {
+				"email": "Zacznij od adresu e-mail. Wyślemy Ci kod, hasło nie jest potrzebne.",
+				"password": "Podaj imię i nazwisko, adres e-mail i hasło, aby zacząć.",
+				"providers": "Użyj połączonego konta, aby utworzyć własne."
+			},
+			"invitation": {
+				"description": "Użyj adresu e-mail, na który przyszło zaproszenie. Zaraz potem dołączysz do obszaru roboczego."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Zweryfikuj kod",
+			"validation": {
+				"codeLength": "Kod musi mieć 6 cyfr"
+			},
+			"toast": {
+				"invalidCode": "Nieprawidłowy kod weryfikacyjny",
+				"verifyFailed": "Nie udało się zweryfikować kodu",
+				"resendFailed": "Nie udało się ponownie wysłać kodu",
+				"resendSuccess": "Nowy kod weryfikacyjny został wysłany!"
+			},
+			"heading": "Sprawdź skrzynkę e-mail",
+			"description": "Wysłaliśmy 6-cyfrowy kod na adres {{email}}. Kod wygaśnie za {{minutes}} min.",
+			"label": "Kod weryfikacyjny",
+			"submit": "Zweryfikuj i kontynuuj",
+			"didntGetIt": "Kod nie dotarł?",
+			"resendCode": "Wyślij kod ponownie",
+			"useDifferentEmail": "Użyj innego adresu e-mail",
+			"expired": "Ten kod wygasł. Poproś o nowy.",
+			"tooManyAttempts": "Zbyt wiele prób. Poproś o nowy kod."
+		},
+		"otpSignIn": {
+			"sendFailed": "Nie udało się wysłać kodu weryfikacyjnego"
+		},
+		"signInForm": {
+			"failedSignIn": "Nie udało się zalogować"
+		},
+		"invitation": {
+			"pageTitleAccept": "Zaakceptuj zaproszenie",
+			"pageTitleError": "Błąd zaproszenia",
+			"pageTitleInvalid": "Nieprawidłowe zaproszenie",
+			"joinWorkspace": "Dołącz do {{workspaceName}}",
+			"createAccount": "Utwórz konto",
+			"signIn": "Zaloguj się",
+			"toast": {
+				"acceptFailed": "Nie udało się zaakceptować zaproszenia",
+				"acceptSuccess": "Zaproszenie zaakceptowane! Witamy w zespole."
+			},
+			"description": "{{inviterName}} zaprasza Cię do tego obszaru roboczego w Kaneo.",
+			"invitedBy": "Zaproszenie od",
+			"sentTo": "Wysłane na adres",
+			"signedInAs": "Zalogowano jako",
+			"expires": "Wygasa",
+			"notNow": "Nie teraz",
+			"join": "Dołącz do obszaru roboczego",
+			"switchAccount": "Zmień konto",
+			"goToKaneo": "Przejdź do Kaneo",
+			"mismatch": {
+				"title": "Zalogowano na inny adres e-mail",
+				"description": "To zaproszenie zostało wysłane na adres {{invitedEmail}}. Zalogowano jako {{email}}."
+			},
+			"expired": {
+				"title": "To zaproszenie wygasło",
+				"description": "Poproś osobę zapraszającą ({{inviterName}}) o nowe zaproszenie do {{workspaceName}}."
+			},
+			"invalid": {
+				"title": "To zaproszenie jest już nieważne",
+				"description": "Mogło zostać zaakceptowane lub anulowane. Poproś administratora obszaru roboczego o nowe."
+			},
+			"loadFailed": {
+				"title": "Nie udało się wczytać zaproszenia",
+				"description": "Sprawdź połączenie i odśwież stronę."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Witamy w Kaneo",
+			"workspaceName": "Nazwa obszaru roboczego",
+			"workspaceNamePlaceholder": "np. Acme Inc, Mój zespół",
+			"toast": {
+				"createFailed": "Nie udało się utworzyć obszaru roboczego"
+			},
+			"validation": {
+				"workspaceNameRequired": "Nazwa obszaru roboczego jest wymagana",
+				"projectNameRequired": "Nadaj nazwę swojemu pierwszemu projektowi"
+			},
+			"restrictedSubtitle": "Tutaj tylko administrator instancji może tworzyć przestrzenie robocze. Poproś o zaproszenie i odśwież tę stronę.",
+			"restrictedCheckInvitations": "Sprawdź zaproszenia",
+			"restrictedTitle": "Potrzebujesz zaproszenia",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_few": "{{count}} invitations sent",
+					"sent_many": "{{count}} invitations sent",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Mój pierwszy projekt",
+			"starterTasks": {
+				"drag": {
+					"title": "Przeciągnij tę kartę do następnej kolumny",
+					"description": "Karty przechodzą z kolumny do kolumny wraz z postępem pracy. Przeciągnij tę do następnej kolumny albo otwórz ją i zmień jej status."
+				},
+				"details": {
+					"title": "Otwórz to zadanie i dodaj podzadanie",
+					"description": "Zadanie może mieć opis, podzadania, etykiety, osobę przypisaną i termin. Dodaj podzadanie do tego zadania, żeby to wypróbować."
+				},
+				"invite": {
+					"title": "Zaproś swój zespół",
+					"description": "Kaneo działa najlepiej, gdy wszyscy są na pokładzie. Otwórz **Członkowie** na pasku bocznym, aby zaprosić osoby przez e-mail."
+				},
+				"integrations": {
+					"title": "Połącz GitHub, GitLab lub Gitea",
+					"description": "Synchronizuj issues i automatycznie przenoś zadania, gdy pull requesty są otwierane i scalane. Skonfiguruj to w **Ustawienia projektu**."
+				},
+				"create": {
+					"title": "Utwórz własne zadanie",
+					"description": "Użyj **+** obok nazwy kolumny albo naciśnij **T**, a potem **C**. Usuń te zadania na start, kiedy zechcesz."
+				}
+			},
+			"progress": "Krok {{current}} z {{total}}",
+			"welcome": "Witaj, {{name}}",
+			"settingUp": "Konfiguracja: {{name}}",
+			"continue": "Dalej",
+			"signedInAs": "Zalogowano jako {{email}}",
+			"signOut": "Wyloguj się",
+			"workspace": {
+				"title": "Nazwij swój obszar roboczy",
+				"description": "Tu będą Twoje projekty. Użyj nazwy zespołu lub firmy, możesz ją później zmienić."
+			},
+			"usage": {
+				"title": "Kto będzie z niego korzystać?",
+				"description": "Dostosujemy obszar {{name}} do Twoich potrzeb. Zawsze możesz później zaprosić inne osoby."
+			},
+			"project": {
+				"title": "Utwórz pierwszy projekt",
+				"description": "Dodamy kilka zadań startowych, które pomogą Ci się zorientować. Możesz je w każdej chwili zmienić lub usunąć.",
+				"label": "Nazwa projektu",
+				"numbered": "Zadania będą numerowane jako"
+			},
+			"invite": {
+				"title": "Zaproś swój zespół",
+				"description": "Otrzymają e-mail z zaproszeniem do {{name}}. Pomiń ten krok, jeśli wolisz najpierw się rozejrzeć.",
+				"label": "Adresy e-mail członków zespołu",
+				"send_few": "Wyślij {{count}} zaproszenia",
+				"send_many": "Wyślij {{count}} zaproszeń",
+				"send_one": "Wyślij {{count}} zaproszenie",
+				"send_other": "Wyślij {{count}} zaproszenia",
+				"sendNone": "Wyślij zaproszenia"
+			},
+			"plan": {
+				"title": "Jak chcesz zacząć?",
+				"descriptionTrial_few": "Każdy plan obejmuje nieograniczoną liczbę projektów i zadań. Wypróbuj {{name}} za darmo przez {{count}} dni lub od razu wykup subskrypcję.",
+				"descriptionTrial_many": "Każdy plan obejmuje nieograniczoną liczbę projektów i zadań. Wypróbuj {{name}} za darmo przez {{count}} dni lub od razu wykup subskrypcję.",
+				"descriptionTrial_one": "Każdy plan obejmuje nieograniczoną liczbę projektów i zadań. Wypróbuj {{name}} za darmo przez {{count}} dzień lub od razu wykup subskrypcję.",
+				"descriptionTrial_other": "Każdy plan obejmuje nieograniczoną liczbę projektów i zadań. Wypróbuj {{name}} za darmo przez {{count}} dnia lub od razu wykup subskrypcję.",
+				"choose": "Wybierz plan",
+				"description": {
+					"team": "Nieograniczona liczba członków, role i uprawnienia",
+					"personal": "Dla jednej osoby"
+				},
+				"perUserMonth": "za użytkownika / miesiąc",
+				"perMonth": "miesięcznie",
+				"subscribe": "Subskrybuj plan {{plan}}",
+				"checkout": "Przejdź do płatności",
+				"trialNote": "Okres próbny nie wymaga karty. Płatności obsługuje Creem.",
+				"paymentNote": "Płatności obsługuje Creem."
+			},
+			"ready": {
+				"eyebrow": "Gotowe",
+				"title": "Obszar {{name}} jest gotowy",
+				"description": "Oto, co przygotowaliśmy. Wszystko możesz później zmienić.",
+				"workspace": "Obszar roboczy",
+				"project": "Pierwszy projekt",
+				"projectValue_few": "{{name}}, {{count}} zadania startowe",
+				"projectValue_many": "{{name}}, {{count}} zadań startowych",
+				"projectValue_one": "{{name}}, {{count}} zadanie startowe",
+				"projectValue_other": "{{name}}, {{count}} zadania startowego",
+				"invitations": "Zaproszenia",
+				"invitationsValue_few": "Wysłano do {{count}} osób",
+				"invitationsValue_many": "Wysłano do {{count}} osób",
+				"invitationsValue_one": "Wysłano do {{count}} osoby",
+				"invitationsValue_other": "Wysłano do {{count}} osoby",
+				"open": "Otwórz {{name}}"
+			},
+			"preview": {
+				"live": "Podgląd na żywo: {{name}}",
+				"liveNoName": "Podgląd na żywo",
+				"ready": "Obszar {{name}} jest gotowy",
+				"untitled": "Twój obszar roboczy"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Uzupełnij profil",
+			"completeTitle": "Uzupełnij swój profil",
+			"subtitle": "Wpisz swoje imię, aby zacząć",
+			"yourName": "Twoje imię",
+			"namePlaceholder": "np. Jan Kowalski",
+			"saving": "Zapisywanie...",
+			"continue": "Kontynuuj",
+			"welcome": "Witaj, {{name}}!",
+			"redirecting": "Przenoszenie do pulpitu...",
+			"toast": {
+				"updateSuccess": "Profil został zaktualizowany",
+				"updateFailed": "Nie udało się zaktualizować profilu"
+			},
+			"validation": {
+				"nameRequired": "Imię jest wymagane",
+				"nameShort": "Imię musi mieć co najmniej 2 znaki"
+			}
+		},
+		"passwordReset": {
+			"forgotPassword": "Forgot password?",
+			"requestTitle": "Reset your password",
+			"requestSubtitle": "Enter your email and we’ll send you a password reset link.",
+			"sendLink": "Send reset link",
+			"requestError": "Could not request a reset link. Please try again.",
+			"unavailable": "Password reset is unavailable. Contact your instance administrator.",
+			"configError": "Could not reach the server. Please reload the page to try again.",
+			"resetTitle": "Choose a new password",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm new password",
+			"passwordMismatch": "The passwords do not match.",
+			"passwordLength": "Use between 8 and 128 characters.",
+			"invalidLink": "This reset link is invalid or has expired. Request a new link to continue.",
+			"requestNewLink": "Request a new link",
+			"resetError": "Could not reset your password. Please try again.",
+			"success": "Your password has been reset. Sign in with your new password.",
+			"backToSignIn": "Back to sign in",
+			"sentTitle": "Sprawdź skrzynkę odbiorczą",
+			"sentDescription": "Jeśli istnieje konto dla {{email}}, link do zresetowania hasła jest już w drodze. Wygaśnie za 1 godzinę.",
+			"sentHelpTitle": "Wiadomość nie dotarła?",
+			"sentHelpDescription": "Sprawdź folder ze spamem lub poproś o kolejny link za minutę.",
+			"rememberedIt": "Już pamiętasz?",
+			"resetDescription": "Użyj od 8 do 128 znaków. Inne urządzenia zostaną wylogowane.",
+			"updatePassword": "Zaktualizuj hasło",
+			"changedMind": "Zmiana planów?",
+			"invalidLinkTitle": "Ten link wygasł",
+			"successTitle": "Hasło zostało zaktualizowane"
+		},
+		"page": {
+			"terms": "Regulamin",
+			"privacy": "Prywatność"
+		},
+		"device": {
+			"connect": {
+				"title": "Połącz urządzenie",
+				"description": "Wpisz kod wyświetlony w terminalu lub aplikacji, aby powiązać je z kontem Kaneo.",
+				"label": "Kod urządzenia",
+				"submit": "Dalej",
+				"noCode": "Nie masz jeszcze kodu? Najpierw rozpocznij logowanie w aplikacji.",
+				"codeRequired": "Wpisz kod wyświetlony na urządzeniu.",
+				"invalidCode": "Ten kod jest nieprawidłowy lub wygasł."
+			},
+			"approve": {
+				"pageTitle": "Zatwierdź urządzenie",
+				"title": "Połączyć to urządzenie?",
+				"description": "Urządzenie chce zalogować się jako {{email}}. Zatwierdź tylko wtedy, gdy ta prośba pochodzi od Ciebie.",
+				"matchCode": "Sprawdź, czy kod zgadza się z tym na urządzeniu",
+				"deny": "Odrzuć",
+				"approve": "Zatwierdź",
+				"failed": "Nie udało się zaktualizować prośby. Spróbuj ponownie."
+			},
+			"approved": {
+				"title": "Urządzenie połączone",
+				"description": "Wróć do terminala lub aplikacji. Możesz zamknąć tę kartę."
+			},
+			"denied": {
+				"title": "Prośba odrzucona",
+				"description": "Nic nie zostało połączone. Możesz zamknąć tę kartę."
+			},
+			"missing": {
+				"title": "Brak kodu urządzenia",
+				"description": "Otwórz tę stronę z urządzenia albo wpisz kod samodzielnie.",
+				"enterCode": "Wpisz kod"
+			},
+			"signIn": {
+				"title": "Zaloguj się, aby połączyć urządzenie",
+				"description": "Zaraz potem wrócisz tutaj, aby je zatwierdzić.",
+				"submit": "Zaloguj się"
+			}
+		},
+		"mcp": {
+			"authorize": {
+				"title": "Autoryzuj klienta MCP",
+				"description": "Będzie mógł działać w Twoim imieniu w każdym obszarze roboczym, do którego masz dostęp. Kontynuuj tylko wtedy, gdy to połączenie zostało zainicjowane przez Ciebie.",
+				"client": "Klient",
+				"unknownClient": "Klient MCP",
+				"selfReported": "Podane przez klienta",
+				"redirect": "Przekieruje Cię do",
+				"signedInAs": "Zalogowano jako",
+				"deny": "Odrzuć",
+				"allow": "Zezwól na dostęp"
+			},
+			"expired": {
+				"title": "Ta prośba wygasła",
+				"description": "Wróć do klienta MCP i połącz się ponownie."
+			},
+			"signIn": {
+				"title": "Zaloguj się, aby autoryzować tego klienta",
+				"description": "Zaraz potem wrócisz tutaj, aby go sprawdzić.",
+				"submit": "Zaloguj się"
+			}
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Sugestie",
+			"commands": "Polecenia",
+			"projects": "Projekty",
+			"search": "Szukaj",
+			"members": "Członkowie",
+			"createTask": "Utwórz zadanie",
+			"createProject": "Utwórz projekt",
+			"createWorkspace": "Utwórz obszar roboczy",
+			"lightTheme": "Jasny motyw",
+			"darkTheme": "Ciemny motyw",
+			"systemTheme": "Motyw systemowy",
+			"keyboardShortcuts": "Skróty klawiszowe",
+			"inputPlaceholder": "Szukaj aplikacji i poleceń...",
+			"empty": "Nie znaleziono wyników.",
+			"footer": {
+				"navigate": "Nawiguj",
+				"open": "Otwórz",
+				"close": "Zamknij"
+			}
+		},
+		"sidebar": {
+			"projects": "Projekty",
+			"members": "Członkowie",
+			"invitations": "Zaproszenia",
+			"more": "Więcej",
+			"backToBoard": "Wróć do tablicy",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Zobacz projekt",
+			"shareProject": "Udostępnij projekt",
+			"projectSettings": "Ustawienia projektu",
+			"linkCopied": "Link do projektu skopiowany do schowka",
+			"addProject": "Dodaj projekt",
+			"deleteConfirmTitle": "Usunąć projekt?",
+			"deleteConfirmDescription": "Spowoduje to trwałe usunięcie projektu i wszystkich jego danych. Nie można tego cofnąć.",
+			"deletedToast": "Projekt usunięty",
+			"deleteProject": "Usuń projekt",
+			"switcherLabel": "Przełącz projekt lub widok"
+		},
+		"search": {
+			"inputPlaceholder": "Szukaj zadań, projektów i komentarzy...",
+			"minCharsHint": "Wpisz co najmniej 3 znaki, aby wyszukać",
+			"groups": {
+				"task": "Zadania",
+				"project": "Projekty",
+				"workspace": "Obszary robocze",
+				"comment": "Komentarze",
+				"activity": "Aktywności",
+				"fallback": "Wyniki"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Przełącz pasek boczny",
+			"back": "Wstecz"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Pomyślnie wylogowano",
+			"signOutFailed": "Nie udało się wylogować",
+			"unnamedUser": "Użytkownik",
+			"settings": "Ustawienia",
+			"signingOut": "Wylogowywanie...",
+			"logOut": "Wyloguj się"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Obszary robocze",
+			"switching": "Przełączanie...",
+			"addWorkspace": "Dodaj obszar roboczy",
+			"selectWorkspace": "Wybierz obszar roboczy"
+		},
+		"page": {
+			"projectsTitle": "Projekty",
+			"settingsTitle": "Ustawienia",
+			"backToWorkspace": "Wróć do obszaru roboczego",
+			"settingsWorkspaceTab": "Obszar roboczy"
+		},
+		"projectSettings": {
+			"projectLabel": "Projekt"
+		},
+		"keyboardShortcuts": {
+			"title": "Skróty klawiszowe",
+			"subtitle": "Przyspiesz pracę dzięki skrótom klawiszowym",
+			"searchPlaceholder": "Szukaj skrótów...",
+			"footer": "Naciśnij <kbd>Escape</kbd>, aby zamknąć",
+			"categories": {
+				"general": "Ogólne",
+				"create": "Tworzenie",
+				"views": "Widoki",
+				"navigation": "Nawigacja",
+				"quickSelect": "Szybki wybór (w oknach podręcznych)"
+			},
+			"items": {
+				"openCommandPalette": "Otwórz paletę poleceń",
+				"globalSearch": "Globalne wyszukiwanie",
+				"toggleSidebar": "Przełącz pasek boczny",
+				"showShortcuts": "Pokaż skróty klawiszowe",
+				"closeModal": "Zamknij okno lub menu",
+				"createTask": "Utw

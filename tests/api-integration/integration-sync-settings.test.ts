@@ -54,7 +54,9 @@ it.each(["gitea", "gitlab"] as const)(
         ? "commentTaskLinkOnGiteaIssue"
         : "commentTaskLinkOnGitlabIssue";
     const patch = () =>
-      app.request(`/api/${type}-integration/project/${project.id}`, {
+      // RFC 0001 WP3/WP4: settings updates are keyed by integration id; the
+      // old project-keyed PATCH route is gone.
+      app.request(`/api/${type}-integration/integration/${integration!.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ [property]: false }),

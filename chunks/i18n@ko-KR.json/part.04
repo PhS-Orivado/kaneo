@@ -1,0 +1,776 @@
+tlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "추천",
+			"commands": "명령",
+			"projects": "프로젝트",
+			"search": "검색",
+			"members": "멤버",
+			"createTask": "작업 만들기",
+			"createProject": "프로젝트 만들기",
+			"createWorkspace": "워크스페이스 만들기",
+			"lightTheme": "라이트 테마",
+			"darkTheme": "다크 테마",
+			"systemTheme": "시스템 테마",
+			"keyboardShortcuts": "키보드 단축키",
+			"inputPlaceholder": "앱과 명령 검색...",
+			"empty": "결과를 찾을 수 없습니다.",
+			"footer": {
+				"navigate": "이동",
+				"open": "열기",
+				"close": "닫기"
+			}
+		},
+		"sidebar": {
+			"projects": "프로젝트",
+			"members": "멤버",
+			"invitations": "초대",
+			"more": "더 보기",
+			"backToBoard": "보드로 돌아가기",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "프로젝트 보기",
+			"shareProject": "프로젝트 공유",
+			"projectSettings": "프로젝트 설정",
+			"linkCopied": "프로젝트 링크가 클립보드에 복사되었습니다",
+			"addProject": "프로젝트 추가",
+			"deleteConfirmTitle": "프로젝트를 삭제하시겠습니까?",
+			"deleteConfirmDescription": "프로젝트와 모든 데이터가 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.",
+			"deletedToast": "프로젝트가 삭제되었습니다",
+			"deleteProject": "프로젝트 삭제",
+			"switcherLabel": "프로젝트 또는 보기 전환"
+		},
+		"search": {
+			"inputPlaceholder": "작업, 프로젝트, 댓글 검색...",
+			"minCharsHint": "검색하려면 3자 이상 입력하세요",
+			"groups": {
+				"task": "작업",
+				"project": "프로젝트",
+				"workspace": "워크스페이스",
+				"comment": "댓글",
+				"activity": "활동",
+				"fallback": "결과"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "사이드바 토글",
+			"back": "뒤로"
+		},
+		"userMenu": {
+			"signedOutSuccess": "로그아웃되었습니다",
+			"signOutFailed": "로그아웃에 실패했습니다",
+			"unnamedUser": "사용자",
+			"settings": "설정",
+			"signingOut": "로그아웃 중...",
+			"logOut": "로그아웃"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "워크스페이스",
+			"switching": "전환 중...",
+			"addWorkspace": "워크스페이스 추가",
+			"selectWorkspace": "워크스페이스 선택"
+		},
+		"page": {
+			"projectsTitle": "프로젝트",
+			"settingsTitle": "설정",
+			"backToWorkspace": "워크스페이스로 돌아가기",
+			"settingsWorkspaceTab": "워크스페이스"
+		},
+		"projectSettings": {
+			"projectLabel": "프로젝트"
+		},
+		"keyboardShortcuts": {
+			"title": "키보드 단축키",
+			"subtitle": "키보드 단축키로 워크플로 속도를 높이세요",
+			"searchPlaceholder": "단축키 검색...",
+			"footer": "닫으려면 <kbd>Escape</kbd>를 누르세요",
+			"categories": {
+				"general": "일반",
+				"create": "만들기",
+				"views": "보기",
+				"navigation": "탐색",
+				"quickSelect": "빠른 선택 (팝오버 내)"
+			},
+			"items": {
+				"openCommandPalette": "명령 팔레트 열기",
+				"globalSearch": "전체 검색",
+				"toggleSidebar": "사이드바 토글",
+				"showShortcuts": "키보드 단축키 표시",
+				"closeModal": "모달/팝오버 닫기",
+				"createTask": "작업 만들기",
+				"createProject": "프로젝트 만들기",
+				"createWorkspace": "워크스페이스 만들기",
+				"boardView": "보드 보기로 전환",
+				"listView": "목록 보기로 전환",
+				"backlogView": "백로그 보기로 전환",
+				"calendarView": "캘린더 보기로 전환",
+				"nextTask": "다음 작업",
+				"prevTask": "이전 작업",
+				"openTask": "선택한 작업 열기",
+				"quickSelectNumber": "번호로 옵션 선택"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_other": "새 알림 {{count}}개",
+		"emptyTitle": "아직 알림이 없습니다",
+		"emptySubtitle": "여기서 업데이트와 활동을 확인할 수 있습니다.",
+		"clearAll": "모든 알림 지우기",
+		"clearDialogTitle": "모든 알림을 지우시겠습니까?",
+		"clearDialogDescription": "모든 알림이 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.",
+		"events": {
+			"task_created": {
+				"title": "새 작업 생성됨",
+				"content": "작업 \"{{taskTitle}}\"이(가) 생성되었습니다"
+			},
+			"workspace_created": {
+				"title": "워크스페이스 생성됨",
+				"content": "워크스페이스 \"{{workspaceName}}\"이(가) 생성되었습니다"
+			},
+			"task_status_changed": {
+				"title": "작업 상태 변경됨",
+				"content": "작업 \"{{taskTitle}}\"의 상태가 \"{{oldStatus}}\"에서 \"{{newStatus}}\"(으)로 변경되었습니다"
+			},
+			"task_assignee_changed": {
+				"title": "작업이 나에게 할당됨",
+				"content": "다음 작업이 할당되었습니다: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "시간 추적 시작됨",
+				"contentWithTask": "다음 작업의 시간 추적이 시작되었습니다: {{taskTitle}}",
+				"contentWithoutTask": "작업의 시간 추적이 시작되었습니다"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}}님이 나를 멘션했습니다",
+				"content": "{{mentionerName}}님이 다음에서 나를 멘션했습니다: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}}님이 내 작업에 댓글을 남겼습니다",
+				"content": "{{taskTitle}}의 새 댓글: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "작업 마감 임박",
+				"content": "{{taskTitle}}이(가) {{leadTime}} 후에 마감됩니다"
+			},
+			"task_overdue": {
+				"title": "작업 기한 초과",
+				"content": "{{taskTitle}}이(가) 마감일을 지났습니다"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_other": "{{count}}분",
+			"hours_other": "{{count}}시간",
+			"days_other": "{{count}}일"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "이 작업을 자신에게 할당함",
+		"unassigned": "작업 할당을 해제함",
+		"assignedTo": "이 작업을 {{name}}님에게 할당함",
+		"changedStatus": "상태를 {{from}}에서 {{to}}(으)로 변경함",
+		"changedPriority": "우선순위를 {{from}}에서 {{to}}(으)로 변경함",
+		"clearedDueDate": "마감일을 지움",
+		"setDueDate": "마감일을 {{date}}(으)로 설정함",
+		"changedDueDate": "마감일을 {{from}}에서 {{to}}(으)로 변경함",
+		"changedTitle": "제목을 \"{{from}}\"에서 \"{{to}}\"(으)로 변경함",
+		"moved": "작업을 \"{{from}}\"에서 \"{{to}}\"(으)로 이동함",
+		"created": "이 작업을 생성함",
+		"githubUser": "GitHub 사용자",
+		"comment": {
+			"viewGithubProfile": "GitHub 프로필 보기",
+			"cannotBeEmpty": "댓글은 비워둘 수 없습니다",
+			"mustBeLoggedInToEdit": "댓글을 편집하려면 로그인해야 합니다",
+			"updated": "댓글이 업데이트되었습니다",
+			"failedToUpdate": "댓글 업데이트에 실패했습니다",
+			"edit": "댓글 편집",
+			"editPlaceholder": "댓글 편집...",
+			"save": "저장",
+			"added": "댓글이 추가되었습니다",
+			"failedToAdd": "댓글 추가에 실패했습니다",
+			"leavePlaceholder": "댓글을 남기세요...",
+			"attachFile": "파일 첨부",
+			"submitShortcut": "댓글 제출",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "파일 업로드는 저장된 작업에서만 가능합니다.",
+				"uploadingFile": "파일 업로드 중...",
+				"imageUploaded": "이미지가 업로드되었습니다",
+				"fileAttached": "파일이 첨부되었습니다",
+				"failedToUploadFile": "파일 업로드에 실패했습니다",
+				"enterUrl": "URL 입력",
+				"plaintext": "일반 텍스트",
+				"autoDetect": "자동 감지",
+				"slashGroupText": "텍스트",
+				"slashGroupLists": "목록",
+				"slashGroupInsert": "삽입",
+				"slashParagraph": "텍스트",
+				"slashHeading": "제목",
+				"slashBulletList": "글머리 기호 목록",
+				"slashTaskList": "할 일 목록",
+				"slashOrderedList": "번호 매기기 목록",
+				"slashQuote": "인용",
+				"slashCodeBlock": "코드 블록",
+				"slashTable": "표",
+				"slashFile": "파일",
+				"searchParagraph": "텍스트 단락 일반",
+				"searchHeading": "제목 헤딩 h2",
+				"searchBulletList": "목록 글머리 비순서",
+				"searchTaskList": "할일 to-do 체크리스트 체크박스 작업 목록",
+				"searchOrderedList": "목록 순서 번호",
+				"searchQuote": "인용 인용구",
+				"searchCodeBlock": "코드 스니펫",
+				"searchTable": "표 그리드",
+				"searchFile": "파일 첨부 이미지 사진 그림 업로드",
+				"embedErrorInvalidUrl": "유효한 URL을 입력하세요",
+				"embedErrorYoutubeOnly": "YouTube 링크만 임베드할 수 있습니다.",
+				"embedVideo": "동영상 임베드",
+				"keepAsLink": "링크로 유지",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "URL 붙여넣기",
+				"asLink": "링크로",
+				"embed": "임베드",
+				"noCommands": "명령 없음",
+				"ariaCommentContent": "댓글 내용",
+				"ariaCommentEditor": "댓글 편집기",
+				"ariaCopyCode": "코드 복사",
+				"ariaCopied": "복사됨",
+				"copy": "복사",
+				"copied": "복사됨",
+				"dropImageToUpload": "업로드할 이미지를 놓으세요",
+				"previewImageAlt": "이미지 미리보기",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "일반 텍스트",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "왼쪽에 열 삽입",
+					"addColumnAfter": "오른쪽에 열 삽입",
+					"deleteColumn": "열 삭제",
+					"addRowBefore": "위에 행 삽입",
+					"addRowAfter": "아래에 행 삽입",
+					"deleteRow": "행 삭제",
+					"deleteTable": "표 삭제"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid 다이어그램을 렌더링할 수 없습니다"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "{{forge}}에 댓글을 남김"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "작업",
+		"status": {
+			"label": "상태",
+			"to-do": "할 일",
+			"in-progress": "진행 중",
+			"in-review": "검토 중",
+			"done": "완료",
+			"archived": "보관됨",
+			"planned": "계획됨"
+		},
+		"priority": {
+			"label": "우선순위",
+			"no-priority": "우선순위 없음",
+			"low": "낮음",
+			"medium": "보통",
+			"high": "높음",
+			"urgent": "긴급"
+		},
+		"boardSearchPlaceholder": "티켓 검색...",
+		"view": {
+			"board": "보드",
+			"list": "목록",
+			"backlog": "백로그",
+			"gantt": "간트",
+			"heading": "보기"
+		},
+		"common": {
+			"selectTask": "작업 선택",
+			"loadingTask": "작업 로딩 중...",
+			"taskNotFound": "작업을 찾을 수 없음",
+			"taskNotFoundDescription": "찾는 작업이 존재하지 않거나 삭제되었습니다.",
+			"ticketAmbiguous": "작업 ID가 여러 작업과 일치합니다",
+			"ticketAmbiguousDescription": "{{ticketId}}이(가) 이 워크스페이스의 여러 프로젝트에 있는 작업과 일치합니다. 링크가 작동하도록 해당 프로젝트 중 하나의 키를 변경하세요.",
+			"ticketNotFoundDescription": "이 워크스페이스에 ID가 {{ticketId}}인 작업이 없거나 해당 작업에 대한 접근 권한이 없습니다.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "상위 작업",
+			"activity": "활동",
+			"noActivity": "활동을 찾을 수 없음",
+			"openInFullPage": "전체 페이지에서 열기",
+			"titlePlaceholder": "클릭하여 제목 추가",
+			"addDescription": "설명 추가...",
+			"editor": {
+				"ariaLabel": "작업 설명 편집기",
+				"placeholder": "설명을 작성하세요...",
+				"previewImage": "이미지 미리보기",
+				"enterUrl": "URL 입력",
+				"autoDetect": "자동 감지",
+				"copyCode": "코드 복사",
+				"copy": "복사",
+				"copied": "복사됨",
+				"attachFile": "파일 첨부",
+				"dropToUpload": "업로드할 이미지를 놓으세요",
+				"checkbox": {
+					"markIncomplete": "작업을 미완료로 표시",
+					"markComplete": "작업을 완료로 표시"
+				},
+				"upload": {
+					"loading": "파일 업로드 중...",
+					"failed": "파일 업로드에 실패했습니다",
+					"imageSuccess": "이미지가 업로드되었습니다",
+					"fileSuccess": "파일이 첨부되었습니다"
+				},
+				"slash": {
+					"groups": {
+						"text": "텍스트",
+						"lists": "목록",
+						"insert": "삽입"
+					},
+					"empty": "명령 없음",
+					"commands": {
+						"paragraph": "텍스트",
+						"heading-2": "제목",
+						"bullet-list": "글머리 기호 목록",
+						"task-list": "할 일 목록",
+						"ordered-list": "번호 매기기 목록",
+						"blockquote": "인용",
+						"code-block": "코드 블록",
+						"table": "표",
+						"file": "파일"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "일반 텍스트",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "동영상 임베드",
+						"keepAsLink": "링크로 유지"
+					},
+					"inputPlaceholder": "URL 붙여넣기",
+					"embeddedContent": "임베드된 콘텐츠",
+					"asLink": "링크로",
+					"submit": "임베드",
+					"errors": {
+						"invalidUrl": "유효한 URL을 입력하세요",
+						"onlyYoutube": "YouTube 링크만 임베드할 수 있습니다."
+					},
+					"onlyYoutubeInline": "YouTube URL만 임베드할 수 있습니다. 대신 링크 모드를 사용하세요."
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid 다이어그램을 렌더링할 수 없습니다"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "작업"
+		},
+		"relations": {
+			"title": "관계",
+			"tasksInProject": "프로젝트의 작업",
+			"linkError": "작업 연결에 실패했습니다",
+			"empty": "관련 작업 없음",
+			"searchPlaceholder": "연결할 작업 검색...",
+			"noTasksFound": "작업을 찾을 수 없음",
+			"openTask": "작업 열기",
+			"removeRelation": "관계 제거",
+			"related": "관련",
+			"blocks": "차단",
+			"selectTask": "연결할 작업 선택",
+			"types": {
+				"blocks": "차단함",
+				"related": "관련됨",
+				"blocked_by": "차단됨"
+			}
+		},
+		"subtasks": {
+			"title": "하위 작업",
+			"inputPlaceholder": "하위 작업 제목...",
+			"addAction": "추가",
+			"empty": "아직 하위 작업이 없습니다",
+			"createError": "하위 작업 생성에 실패했습니다",
+			"deleteSuccess": "작업이 삭제되었습니다",
+			"deleteError": "작업 삭제에 실패했습니다",
+			"deleteDialogTitle": "작업을 삭제하시겠습니까?",
+			"deleteDialogDescription": "작업과 모든 데이터가 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.",
+			"deleteAction": "작업 삭제",
+			"completeAria": "하위 작업을 완료로 표시",
+			"progress": "하위 작업 {{total}}개 중 {{completed}}개 완료",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "속성",
+			"labels": "라벨",
+			"copyTaskLink": "작업 링크 복사",
+			"copyTaskBranch": "작업 브랜치 복사",
+			"taskLinkCopied": "작업 링크를 복사했습니다",
+			"taskBranchCopied": "브랜치 이름을 복사했습니다",
+			"start": "시작",
+			"startDate": "시작일",
+			"noDate": "날짜 없음"
+		},
+		"move": {
+			"title": "작업 이동",
+			"projectLabel": "대상 프로젝트",
+			"projectPlaceholder": "프로젝트 선택",
+			"statusLabel": "대상 상태",
+			"statusHintKeep": "이 프로젝트의 워크플로가 이미 현재 상태를 지원합니다.",
+			"statusHintAdjust": "대상 프로젝트에서 사용할 상태를 선택하세요.",
+			"action": "작업 이동",
+			"success": "작업이 이동되었습니다",
+			"error": "작업 이동에 실패했습니다"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "미할당",
+				"updateError": "작업 담당자 업데이트에 실패했습니다"
+			},
+			"status": {
+				"updateError": "작업 상태 업데이트에 실패했습니다"
+			},
+			"priority": {
+				"updateError": "작업 우선순위 업데이트에 실패했습니다"
+			},
+			"dueDate": {
+				"updateSuccess": "작업 마감일이 업데이트되었습니다",
+				"updateError": "작업 마감일 업데이트에 실패했습니다",
+				"clear": "날짜 지우기"
+			},
+			"startDate": {
+				"updateSuccess": "작업 시작일이 업데이트되었습니다",
+				"updateError": "작업 시작일 업데이트에 실패했습니다",
+				"clear": "시작일 지우기"
+			},
+			"labels": {
+				"searchPlaceholder": "라벨 검색...",
+				"empty": "라벨을 찾을 수 없음",
+				"create": "\"{{name}}\" 만들기",
+				"chooseColor": "색상 선택",
+				"addSuccess": "라벨이 추가되었습니다",
+				"removeSuccess": "라벨이 제거되었습니다",
+				"updateError": "라벨 업데이트에 실패했습니다",
+				"createSuccess": "라벨이 생성되어 추가되었습니다",
+				"createError": "라벨 생성에 실패했습니다",
+				"colors": {
+					"stone": "스톤",
+					"slate": "슬레이트",
+					"lavender": "라벤더",
+					"sage": "세이지",
+					"forest": "포레스트",
+					"amber": "앰버",
+					"terracotta": "테라코타",
+					"rose": "로즈",
+					"crimson": "크림슨"
+				},
+				"editLabels": "라벨 편집"
+			}
+		},
+		"backlog": {
+			"pageTitle": "{{name}}님의 백로그",
+			"noTasksToMove": "이동할 계획된 작업이 없습니다",
+			"moveAllConfirm": "계획된 작업 {{count}}개를 모두 할 일로 이동하시겠습니까?",
+			"moveAllSuccess": "작업 {{count}}개를 할 일로 이동했습니다",
+			"plan": "계획",
+			"moveAllTooltip": "계획된 작업 모두 할 일로 이동",
+			"moveAll": "모두 이동",
+			"addTask": "작업 추가",
+			"filter": "필터",
+			"addFilter": "필터 추가...",
+			"sections": {
+				"planned": "계획됨",
+				"archived": "보관됨"
+			},
+			"noTasksInSection": "{{section}} 작업이 없습니다",
+			"filters": {
+				"priority": "우선순위: {{name}}",
+				"assignee": "담당자: {{name}}",
+				"due": "마감일: {{date}}",
+				"label": "라벨: {{name}}",
+				"dueThisWeek": "이번 주 마감",
+				"dueNextWeek": "다음 주 마감",
+				"noDueDate": "마감일 없음"
+			}
+		},
+		"sort": {
+			"label": "정렬",
+			"by": "정렬 기준",
+			"direction": "방향",
+			"ascending": "오름차순",
+			"descending": "내림차순",
+			"fields": {
+				"position": "수동 (위치)",
+				"createdAt": "생성일",
+				"priority": "우선순위",
+				"dueDate": "마감일",
+				"title": "제목",
+				"number": "작업 번호"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "필터 기준",
+			"allStatuses": "모든 상태",
+			"allPriorities": "모든 우선순위",
+			"allAssignees": "모든 담당자",
+			"allDueDates": "모든 마감일",
+			"allLabels": "모든 라벨",
+			"selectedCount": "{{count}}개 선택됨",
+			"subjects": {
+				"status": "상태",
+				"priority": "우선순위",
+				"assignee": "담당자",
+				"dueDate": "마감일",
+				"labels": "라벨"
+			},
+			"operators": {
+				"isAnyOf": "다음 중 하나",
+				"includeAnyOf": "다음 중 하나 포함"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"calendar": {
+			"pageTitle": "{{name}} – 캘린더",
+			"title": "캘린더",
+			"previousMonth": "이전 달",
+			"nextMonth": "다음 달",
+			"today": "오늘",
+			"noTasks": "예약된 작업 없음",
+			"noTasksSubtitle": "캘린더에 작업을 배치하려면 시작일, 마감일 또는 둘 다 추가하세요.",
+			"moreTasks": "+{{count}}개",
+			"loadError": "작업을 불러오지 못했습니다.",
+			"dayTasksAriaLabel": "{{date}}의 모든 작업 보기",
+			"taskAriaLabel": "{{title}}, {{range}}: 작업 열기",
+			"noTasksThisMonth": "이번 달 예정된 항목이 없습니다"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – 간트",
+			"title": "간트 타임라인",
+			"searchPlaceholder": "예약된 티켓 검색...",
+			"hideTasks": "작업 숨기기",
+			"showTasks": "작업 표시",
+			"noTasks": "예약된 작업 없음",
+			"noTasksSubtitle": "프로젝트 타임라인에 작업을 배치하려면 시작일, 마감일 또는 둘 다 추가하세요.",
+			"noTasksFound": "작업을 찾을 수 없음",
+			"noTasksMatch": "\"{{query}}\"와(과) 일치하는 예약된 작업이 없습니다",
+			"taskHeader": "작업",
+			"updateDatesError": "작업 날짜 업데이트에 실패했습니다",
+			"resizeStart": "시작일 크기 조정",
+			"resizeDue": "마감일 크기 조정",
+			"taskAriaLabel": "{{title}}: 열거나 드래그하여 이동",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "작업을 삭제하시겠습니까?",
+			"description": "작업과 모든 데이터가 영구적으로 제거됩니다. 이 작업은 취소할 수 없습니다.",
+			"action": "작업 삭제",
+			"success": "작업이 삭제되었습니다",
+			"error": "작업 삭제에 실패했습니다"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (사본)",
+			"success": "작업이 복제되었습니다",
+			"error": "작업 복제에 실패했습니다"
+		},
+		"archive": {
+			"success": "작업 {{count}}개를 보관했습니다"
+		},
+		"listView": {
+			"addTask": "작업 추가",
+			"archiveAllTooltip": "완료된 모든 작업 보관",
+			"noTasks": "작업 없음"
+		},
+		"kanban": {
+			"addTask": "작업 추가",
+			"automaticallySortedHint": "{{sort}} 기준으로 자동 정렬됨"
+		},
+		"pr": {
+			"merged": "병합됨",
+			"draft": "초안",
+			"open": "열림",
+			"label": "풀 리퀘스트",
+			"count_other": "PR {{count}}개"
+		},
+		"assignee": {
+			"label": "담당자",
+			"unassigned": "미할당"
+		},
+		"dueDate": {
+			"label": "마감일",
+			"clear": "날짜 지우기",
+			"updateSuccess": "작업 마감일이 업데이트되었습니다",
+			"updateError": "작업 마감일 업데이트에 실패했습니다",
+			"clearSuccess": "작업 마감일이 지워졌습니다",
+			"clearError": "마감일 지우기에 실패했습니다"
+		},
+		"labels": {
+			"label": "라벨",
+			"empty": "사용 가능한 라벨이 없습니다"
+		},
+		"update": {
+			"success": "작업이 업데이트되었습

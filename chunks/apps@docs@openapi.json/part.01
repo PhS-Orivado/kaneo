@@ -1,0 +1,1128 @@
+ect",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Object key to send back to the finalize route."
+          },
+          "uploadUrl": {
+            "type": "string",
+            "description": "Presigned URL to PUT the image bytes to."
+          },
+          "headers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Headers that must accompany the upload request, including Content-Type."
+          }
+        },
+        "required": [
+          "key",
+          "uploadUrl",
+          "headers"
+        ]
+      },
+      "TaskImageAsset": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "description": "Where the stored image can be read back from."
+          }
+        },
+        "required": [
+          "id",
+          "url"
+        ]
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "position": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Order within its column, ascending."
+          },
+          "number": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Per-project counter shown as {projectSlug}-{number}."
+          },
+          "userId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The assignee, if any."
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "descriptionDeferred": {
+            "type": "boolean",
+            "description": "True when the list omits a large description; load the task detail or description pages to read it. Do not replace stored text with this null summary."
+          },
+          "status": {
+            "type": "string",
+            "description": "The slug of the column the task sits in."
+          },
+          "priority": {
+            "type": "string",
+            "description": "One of: no-priority, low, medium, high, urgent."
+          },
+          "startDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "dueDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "customFields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "fieldId": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "fieldId",
+                "value"
+              ]
+            }
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "position",
+          "number",
+          "userId",
+          "title",
+          "description",
+          "status",
+          "priority",
+          "startDate",
+          "dueDate",
+          "createdAt"
+        ]
+      },
+      "TaskByTicketId": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TaskWithAssignee"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "workspaceId": {
+                "type": "string",
+                "description": "The workspace that owns the task's project."
+              }
+            },
+            "required": [
+              "workspaceId"
+            ]
+          }
+        ]
+      },
+      "TaskWithAssignee": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Task"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "workspaceId": {
+                "type": "string",
+                "description": "The workspace currently owning the task's project. Included in the detail view; omitted from the compact board view."
+              },
+              "columnId": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "The referenced workflow column; null for virtual statuses and legacy tasks without a column reference."
+              },
+              "subtaskCounts": {
+                "type": "object",
+                "properties": {
+                  "completed": {
+                    "type": "number"
+                  },
+                  "total": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "completed",
+                  "total"
+                ]
+              },
+              "parentSubtaskCounts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "taskId": {
+                      "type": "string"
+                    },
+                    "completed": {
+                      "type": "number"
+                    },
+                    "total": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "taskId",
+                    "completed",
+                    "total"
+                  ]
+                }
+              },
+              "assigneeName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "assigneeId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "columnId",
+              "assigneeName",
+              "assigneeId"
+            ]
+          }
+        ]
+      },
+      "MoveTaskResult": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "$ref": "#/components/schemas/Task"
+          },
+          "sourceProjectId": {
+            "type": "string"
+          },
+          "destinationProjectId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task",
+          "sourceProjectId",
+          "destinationProjectId"
+        ]
+      },
+      "TaskExport": {
+        "type": "object",
+        "properties": {
+          "project": {
+            "$ref": "#/components/schemas/TaskExportProject"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExportedTask"
+            }
+          }
+        },
+        "required": [
+          "project",
+          "tasks"
+        ]
+      },
+      "TaskExportProject": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "exportedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "slug",
+          "description",
+          "exportedAt"
+        ]
+      },
+      "ExportedTask": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string"
+          },
+          "dueDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "startDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "userId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExportedTaskLabel"
+            },
+            "description": "Label names and colors, without their ids."
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "status",
+          "priority",
+          "dueDate",
+          "startDate",
+          "userId",
+          "labels"
+        ]
+      },
+      "ExportedTaskLabel": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "color"
+        ]
+      },
+      "TaskImportResult": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "$ref": "#/components/schemas/TaskImportSummary"
+          }
+        },
+        "required": [
+          "results"
+        ]
+      },
+      "TaskImportSummary": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number"
+          },
+          "successful": {
+            "type": "number"
+          },
+          "failed": {
+            "type": "number"
+          },
+          "tasks": {
+            "type": "array",
+            "items": {},
+            "description": "Per-task outcome, each carrying a success flag."
+          }
+        },
+        "required": [
+          "total",
+          "successful",
+          "failed",
+          "tasks"
+        ]
+      },
+      "Column": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Stable identifier derived from the name; tasks store this as their status."
+          },
+          "position": {
+            "type": "number",
+            "description": "Board order, ascending. Columns are always returned sorted by it."
+          },
+          "icon": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "color": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "isFinal": {
+            "type": "boolean",
+            "description": "Marks the column as a done state, which stops overdue reminders for tasks in it."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "name",
+          "slug",
+          "position",
+          "icon",
+          "color",
+          "isFinal",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "WorkspaceActivity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "One of: comment, task, create, status_changed, priority_changed, assignee_changed, unassigned, due_date_changed, title_changed, description_changed."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "eventData": {
+            "description": "Type-specific payload. For status_changed, oldStatus/newStatus are slugs and oldStatusName/newStatusName carry current configured column names when available."
+          },
+          "excerpt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Plain-text preview of the stored content, at most 240 characters: the comment body, or the description older system events carry instead of eventData."
+          },
+          "userId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "userName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "userImage": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "externalUserName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "externalUserAvatar": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "taskTitle": {
+            "type": "string"
+          },
+          "taskNumber": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "projectSlug": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "createdAt",
+          "excerpt",
+          "userId",
+          "userName",
+          "userImage",
+          "externalUserName",
+          "externalUserAvatar",
+          "taskId",
+          "taskTitle",
+          "taskNumber",
+          "projectId",
+          "projectSlug"
+        ]
+      },
+      "Activity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "description": "One of: comment, task, create, status_changed, priority_changed, assignee_changed, unassigned, due_date_changed, title_changed, description_changed."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "eventData": {
+            "description": "Type-specific payload, e.g. { oldStatus, newStatus } for status_changed. Null for plain comments."
+          },
+          "externalUserName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Set when the activity was imported from another tool."
+          },
+          "externalUserAvatar": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "externalSource": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The tool it was imported from: planka, trello, jira, plane, linear, kaneo, or a connected forge such as github."
+          },
+          "externalUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "taskId",
+          "type",
+          "createdAt",
+          "updatedAt",
+          "userId",
+          "content",
+          "externalUserName",
+          "externalUserAvatar",
+          "externalSource",
+          "externalUrl"
+        ]
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/CommentAuthor"
+          }
+        },
+        "required": [
+          "id",
+          "taskId",
+          "userId",
+          "content",
+          "createdAt",
+          "updatedAt",
+          "user"
+        ]
+      },
+      "CommentAuthor": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "image": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "image"
+        ]
+      },
+      "TimeEntryWithUser": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/TimeEntry"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "userName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "userName"
+            ]
+          }
+        ]
+      },
+      "TimeEntry": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Null once the user who logged the time has been removed."
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Null while the timer is still running."
+          },
+          "duration": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Elapsed seconds, filled in once the entry has an endTime."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "taskId",
+          "userId",
+          "description",
+          "startTime",
+          "endTime",
+          "duration",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "Label": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "color": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "deletionStartedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "taskId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "workspaceId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "color",
+          "createdAt",
+          "updatedAt",
+          "taskId",
+          "workspaceId"
+        ]
+      },
+      "PendingLabelDeletion": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Label"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "pendingDeletion": {
+                "type": "boolean",
+                "enum": [
+                  true
+                ]
+              }
+            },
+            "required": [
+              "pendingDeletion"
+            ]
+          }
+        ]
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Free-text body. Null for generated notifications, whose text the client renders from type and eventData."
+          },
+          "type": {
+            "type": "string",
+            "description": "One of: info, task_created, workspace_created, task_status_changed, task_assignee_changed, time_entry_created, due_date_reminder, task_overdue, task_mention, task_comment."
+          },
+          "eventData": {
+            "description": "Type-specific payload, e.g. { taskTitle, oldStatus, newStatus, projectId, workspaceId }."
+          },
+          "isRead": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "resourceId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The id of the task or workspace the notification points at."
+          },
+          "resourceType": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "`task` or `workspace`."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "userId",
+          "title",
+          "content",
+          "type",
+          "isRead",
+          "resourceId",
+          "resourceType",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "NotificationBulkResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "success"
+        ]
+      },
+      "NotificationPreferences": {
+        "type": "object",
+        "properties": {
+          "emailAddress": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "emailEnabled": {
+            "type": "boolean"
+          },
+          "ntfyEnabled": {
+            "type": "boolean"
+          },
+          "ntfyConfigured": {
+            "type": "boolean"
+          },
+          "ntfyServerUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ntfyTopic": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ntfyTokenConfigured": {
+            "type": "boolean"
+          },
+          "maskedNtfyToken": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "gotifyEnabled": {
+            "type": "boolean"
+          },
+          "gotifyConfigured": {
+            "type": "boolean"
+          },
+          "gotifyServerUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "gotifyTokenConfigured": {
+            "type": "boolean"
+          },
+          "maskedGotifyToken": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "webhookEnabled": {
+            "type": "boolean"
+          },
+          "webhookConfigured": {
+            "type": "boolean"
+          },
+          "webhookUrl": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "webhookSecretConfigured": {
+            "type": "boolean"
+          },
+          "maskedWebhookSecret": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "taskAssignmentEnabled": {
+            "type": "boolean"
+          },
+          "taskCommentEnabled": {
+            "type": "boolean"
+          },
+          "taskStatusChangeEnabled": {
+            "type": "boolean"
+          },
+          "dueDateReminderEnabled": {
+            "type": "boolean"
+          },
+          "dueDateReminderLeadTimeMinutes": {
+            "type": "number",
+            "description": "How long before a due date the reminder fires, in minutes."
+          },
+          "workspaces": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationPreferenceWorkspaceRule"
+            },
+            "description": "Per-workspace overrides. A workspace with no rule follows the global settings."
+          },
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "emailAddress",
+          "emailEnabled",
+          "ntfyEnabled",
+          "ntfyConfigured",
+          "ntfyServerUrl",
+          "ntfyTopic",
+          "ntfyTokenConfigured",
+          "maskedNtfyToken",
+          "gotifyEnabled",
+          "gotifyConfigured",
+          "gotifyServerUrl",
+          "gotifyTokenConfigured",
+          "maskedGotifyToken",
+          "webhookEnabled",
+          "webhookConfigured",
+          "webhookUrl",
+          "webhookSecretConfigured",
+          "maskedWebhookSecret",
+          "taskAssignmentEnabled",
+          "taskCommentEnabled",
+          "taskStatusChangeEnabled",
+          "dueDateReminderEnabled",
+          "dueDateReminderLeadTimeMinutes",
+          "workspaces",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "NotificationPreferenceWorkspaceRule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string"
+          },
+          "workspaceName": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Turn all notifications for this workspace on or off."
+          },
+          "emailEnabled": {
+            "type": "boolean"
+          },
+          "ntfyEnabled": {
+            "type": "boolean"
+          },
+          "gotifyEnabled": {
+            "type": "boolean"
+          },
+          "webhookEnabled": {
+            "type": "boolean"
+          },
+          "projectMode": {
+            "type": "string",
+            "enum": [
+              "all",
+              "selected"
+            ],
+            "description": "`all` notifies for every project in the workspace; `selected` restricts it to selectedProjectIds."
+          },
+          "selectedProjectIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "workspaceId",
+          "workspaceName",
+          "isActive",
+          "emailEnabled",
+          "ntfyEnabled",
+          "gotifyEna

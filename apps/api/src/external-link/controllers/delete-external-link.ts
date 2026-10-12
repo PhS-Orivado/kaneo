@@ -1,4 +1,4 @@
-import { and, eq, isNull } from "drizzle-orm";
+import { and, eq, inArray, isNull } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { externalLinkTable, taskTable } from "../../database/schema";
@@ -19,7 +19,9 @@ export default async function deleteExternalLink({
   });
   if (!task) throw new HTTPException(404, { message: "Task not found" });
 
-  // Bind deletion to the authorized task and leave provider-managed links intact.
+  // Bind deletion to the authorized task and leave provider-managed links
+  // intact. Manual links include pasted pull request and branch URLs, which
+  // carry no integration id.
   const [deleted] = await db
     .delete(externalLinkTable)
     .where(
@@ -27,7 +29,11 @@ export default async function deleteExternalLink({
         eq(externalLinkTable.id, id),
         eq(externalLinkTable.taskId, taskId),
         isNull(externalLinkTable.integrationId),
-        eq(externalLinkTable.resourceType, "url"),
+        inArray(externalLinkTable.resourceType, [
+          "url",
+          "pull_request",
+          "branch",
+        ]),
       ),
     )
     .returning({ id: externalLinkTable.id });

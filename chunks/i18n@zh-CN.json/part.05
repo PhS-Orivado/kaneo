@@ -1,0 +1,172 @@
+已排期任务及其时长"
+	},
+	"landing": {
+		"sponsors": {
+			"ciSponsor": "合作伙伴"
+		},
+		"founder": {
+			"title": "Kaneo 为什么存在",
+			"intro": "我是 Andrej，做 Kaneo 的原因很简单——我受够了那些帮倒忙的项目管理工具。用了好几年臃肿又复杂的平台，注意力全被它们抢走，反而没法专心干活，我就知道一定有更好的做法。",
+			"problem": "问题从来不在于这些工具功能太少，而在于功能太多。每一条通知、每一个多余的按钮、每一套复杂的流程，都在把团队拉离真正重要的事——把产品做好。",
+			"principle": "我始终觉得，最好的工具用起来是感觉不到它存在的。它应该顺着团队本来的工作方式放大效率，而不是逼着你去适应它。Kaneo 就是照着“少即是多”做的：每个功能都因为解决了真实的问题而存在，而不是为了在演示里显得厉害。"
+		},
+		"hero": {
+			"cloudCta": "试用 Kaneo Cloud",
+			"selfHostCta": "自托管 Kaneo",
+			"trialNote": "云端试用 14 天，无需信用卡。",
+			"github": "GitHub",
+			"productHunt": "Product Hunt",
+			"title": "项目管理",
+			"titleAccent": "不该变成另一个项目。",
+			"description": "开源项目管理工具，带看板、甘特图和 GitHub 集成。免费自托管，内置 SSO；也可以交给 Kaneo Cloud 托管。"
+		},
+		"navigation": {
+			"product": "产品",
+			"pricing": "价格",
+			"resources": "资源",
+			"docs": "文档",
+			"blog": "博客",
+			"guides": "指南",
+			"comparisons": "工具对比",
+			"roadmap": "路线图",
+			"community": "社区",
+			"menu": "菜单",
+			"closeMenu": "关闭菜单",
+			"home": "Kaneo 首页",
+			"signIn": "登录",
+			"getStarted": "快速开始"
+		},
+		"showcase": {
+			"label": "Kaneo 产品视图",
+			"controls": "切换产品视图",
+			"play": "播放产品视图轮播",
+			"pause": "暂停产品视图轮播",
+			"board": "看板",
+			"list": "待办",
+			"gantt": "甘特图"
+		},
+		"features": {
+			"tasks": {
+				"label": "子任务与上下文",
+				"title": "大任务，也能拆出清晰的下一步。",
+				"description": "把工作拆成子任务，逐项指派，进度随时可查，原始需求也不会丢。相关细节都留在任务里。"
+			},
+			"github": {
+				"label": "GitHub 集成",
+				"title": "从 Pull Request 一路到完成。",
+				"description": "Issue 和标签双向同步。代码提交、Pull Request 合并时，关联任务会自动从评审推进到完成。",
+				"link": "配置 GitHub"
+			},
+			"hosting": {
+				"title": "跑在你自己的服务器上。",
+				"description": "用 Docker 部署，工作区始终跑在你自己掌控的服务器上。",
+				"link": "自托管 Kaneo"
+			},
+			"source": {
+				"title": "代码同样开放。",
+				"description": "阅读源码、反馈问题，或者直接提交改动。开发都在 GitHub 上。",
+				"link": "查看源码"
+			},
+			"preview": {
+				"taskAlt": "Kaneo 任务和子任务的交互预览。",
+				"githubAlt": "用 GitHub 合并操作更新 Kaneo 任务的交互预览。",
+				"taskTitle": "发布新版首页",
+				"taskDescription": "下次发布前更新文案，并检查布局。",
+				"checklistDone": "校对文案",
+				"checklistOpen": "检查手机端布局",
+				"inProgress": "进行中",
+				"high": "高",
+				"date": "10月12日",
+				"design": "设计",
+				"done": "已完成",
+				"relationsAlt": "Kaneo 任务依赖关系的交互预览。",
+				"inReview": "评审中",
+				"trySubtasks": "试着勾掉一个子任务。",
+				"tryGithub": "预览一次合并，看看任务怎么更新。",
+				"tryRelations": "打开关联任务，顺着连接往下看。",
+				"mergeAction": "预览合并",
+				"resetAction": "重置预览",
+				"mergedHint": "Pull Request 已合并，任务已移到已完成。",
+				"progress": "已完成 {{completed}}/{{total}} 个子任务",
+				"backToTask": "返回首页任务",
+				"releaseNotes": "撰写发布说明",
+				"dependencyDescription": "首页还在等移动端的评审结果。把发布说明的链接挂在这里，方便随时查看上下文。",
+				"mobileDescription": "上线之前，先在窄屏上检查新版首页。",
+				"notesDescription": "把改动记下来，方便写发布公告。"
+			},
+			"relations": {
+				"label": "关联任务与依赖",
+				"title": "一眼看清卡在哪里。",
+				"description": "把阻塞关系连起来，依赖一目了然，相关工作也聚在一处。打开关联任务，就能看清下一步的来龙去脉。"
+			}
+		},
+		"seo": {
+			"title": "Kaneo — 开源、可自托管的项目管理工具",
+			"description": "开源项目管理工具，带看板、甘特图和 GitHub 集成。免费自托管，内置 SSO，也可以使用 Kaneo Cloud。"
+		},
+		"resources": {
+			"eyebrow": "按你的方式来",
+			"title": "从试用到上手，路径清清楚楚。",
+			"description": "搭好服务器、接上你的工具，或者把 Kaneo 和现在用的工具做个对比。",
+			"docker": {
+				"title": "用 Docker 自托管",
+				"description": "部署、备份和更新，一切都在自己的掌控之中。"
+			},
+			"sso": {
+				"title": "接入你自己的身份提供商",
+				"description": "在免费的自托管版本里配置 OIDC 单点登录。"
+			},
+			"mcp": {
+				"title": "接入你的 AI 工具",
+				"description": "通过 AI 客户端用 MCP 处理任务和项目。"
+			},
+			"linear": {
+				"title": "Kaneo 与 Linear 对比",
+				"description": "看看在托管方式、授权许可和工作流上的差别。"
+			}
+		},
+		"product": {
+			"title": "开始之前",
+			"description": "关于自托管、规划能力和团队协作的实用细节。",
+			"overview": "Kaneo 是一个开源、MIT 许可的项目管理平台，带看板、待办、甘特图和日历视图、自定义字段、工时记录和 GitHub 集成。可以自托管在自己的服务器上，也可以使用 Kaneo Cloud。",
+			"hosting": {
+				"question": "Kaneo 自托管免费吗？",
+				"answer": "是的。Kaneo 采用 MIT 许可，自托管免费，并内置单点登录。用 Docker Compose 把应用和 PostgreSQL 一起跑起来，或者用官方 Helm Chart 部署。服务器、更新和备份都由你自己掌控。",
+				"link": "阅读安装指南"
+			},
+			"planning": {
+				"question": "Kaneo 有甘特图吗？",
+				"answer": "有。除了看板、列表和待办规划，Kaneo 还提供甘特图和日历视图。用任务的开始日期和截止日期，就能在时间线上排期。预算管理、基线对比和冲刺燃尽图目前还不在范围内。",
+				"link": "对比规划功能"
+			},
+			"sso": {
+				"question": "包含单点登录吗？",
+				"answer": "有。免费的自托管版本支持 Google、GitHub、Discord 以及自定义 OAuth/OIDC 提供商。直接在自己的实例上配置就行，不需要另买其他版本。",
+				"link": "配置 OIDC"
+			},
+			"agents": {
+				"question": "AI 客户端可以操作 Kaneo 吗？",
+				"answer": "可以。Kaneo 通过 @kaneo/mcp 包提供 MCP 服务器，另外还有一个 HTTP 接口。兼容的 AI 客户端可以用绑定到某个用户的 API 密钥读取和更新任务，权限受工作区设置限制。",
+				"link": "阅读 MCP 指南"
+			}
+		},
+		"comparison": {
+			"feature": "功能",
+			"yes": "支持",
+			"no": "不支持"
+		},
+		"selfHostingGuide": {
+			"summary": "自托管要做哪些事，附上官方维护的 Docker Compose 配置和安装步骤。",
+			"answer": "自托管 Kaneo 的流程是：用 Docker Compose 把应用和 PostgreSQL 跑起来，配好公网地址和密钥，前面再挂一个 TLS 反向代理。安装指南要求至少 2 GB 内存和 10 GB 磁盘空间。另外还要考虑后续的版本更新、数据库备份，以及上传文件的存储。",
+			"requirements": "官方给出的最低配置是 2 GB 内存和 10 GB 磁盘空间，Docker 20.10 以上、Docker Compose V2。实际使用还要按业务量、数据库增长和上传文件量预留更多容量。",
+			"compose": "直接使用 Docker Compose 指南里维护好的 compose.yml。里面定义了 PostgreSQL、持久化的数据库卷、Kaneo 应用和健康检查。启动服务前先配好环境变量文件；生产环境建议固定镜像版本，升级节奏由你掌控。",
+			"backups": "PostgreSQL 和上传文件用的对象存储都要备份。备份频率取决于团队能承受丢失多少工作，副本要放到应用服务器之外，而且在真正用到之前先做一次恢复演练。",
+			"worth": "当你需要掌控服务器和数据，并且有人负责日常维护时，自托管才划算。和托管服务比总成本时，要把服务器、存储、备份的费用和维护时间一起算进去。",
+			"minimum": "安装指南要求 Docker 20.10 或更高版本、Docker Compose V2、至少 2 GB 内存和 10 GB 磁盘空间。这套 Compose 配置已经包含 PostgreSQL。只跑一个 API 实例时，Redis 是可选的。",
+			"composeLink": "Docker Compose 配置",
+			"composeLinkDescription": "官方维护的 compose.yml，含持久化存储和健康检查。",
+			"startLink": "启动并检查服务",
+			"startLinkDescription": "启动整套服务，查看运行状态，确认应用可以访问。"
+		}
+	}
+}

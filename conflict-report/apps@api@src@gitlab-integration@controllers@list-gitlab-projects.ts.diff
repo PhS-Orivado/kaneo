@@ -1,0 +1,18 @@
+diff --cc apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts
+index 53861607,584dae82..00000000
+--- a/apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts
++++ b/apps/api/src/gitlab-integration/controllers/list-gitlab-projects.ts
+@@@ -1,4 -1,9 +1,13 @@@
+++<<<<<<< HEAD
+ +import { ApiError } from "../../errors/api-error";
+++=======
++ import { and, eq, inArray } from "drizzle-orm";
++ import { HTTPException } from "hono/http-exception";
++ import db from "../../database";
++ import { integrationTable } from "../../database/schema";
++ import { repositoryLinkedToSchema } from "../../integrations/response";
++ import { type z } from "../../openapi";
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+  import type { GitlabTokenType } from "../../plugins/gitlab/config";
+  import {
+    createGitlabClient,

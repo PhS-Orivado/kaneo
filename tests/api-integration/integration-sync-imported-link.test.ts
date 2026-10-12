@@ -130,9 +130,9 @@ it.each(["gitea", "gitlab"] as const)(
       );
     });
     expect(
-      await (provider === "gitea" ? importGiteaIssues : importGitlabIssues)(
-        project.id,
-      ),
+      await (provider === "gitea"
+        ? importGiteaIssues({ integrationId: integration!.id })
+        : importGitlabIssues({ integrationId: integration!.id })),
     ).toMatchObject({ updated: 1 });
     expect(pausedAtPublish).toEqual(Array(3).fill(provider === "gitea"));
     const labels = await db.query.labelTable.findMany({
@@ -174,6 +174,11 @@ it.each(
         projectId: project.id,
         type: provider,
         isActive: true,
+        // RFC 0001 WP2: github webhook events resolve their binding by the
+        // repository identity key, so the row must carry it.
+        ...(provider === "github"
+          ? { repositoryKey: "github:1", repositoryId: 1 }
+          : {}),
         config: JSON.stringify({
           repositoryOwner: "team",
           repositoryName: "repo",
@@ -228,9 +233,9 @@ it.each(
             },
       ]);
       expect(
-        await (provider === "gitea" ? importGiteaIssues : importGitlabIssues)(
-          project.id,
-        ),
+        await (provider === "gitea"
+          ? importGiteaIssues({ integrationId: integration!.id })
+          : importGitlabIssues({ integrationId: integration!.id })),
       ).toMatchObject({ imported: 1 });
     } else if (provider === "github")
       await handleIssueOpened(

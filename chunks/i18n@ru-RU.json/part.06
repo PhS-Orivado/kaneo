@@ -1,0 +1,572 @@
+blocks": "блокирует",
+				"related": "связана с",
+				"blocked_by": "заблокирована"
+			}
+		},
+		"subtasks": {
+			"title": "Подзадачи",
+			"inputPlaceholder": "Название подзадачи...",
+			"addAction": "Добавить",
+			"empty": "Подзадач пока нет",
+			"createError": "Не удалось создать подзадачу",
+			"deleteSuccess": "Задача успешно удалена",
+			"deleteError": "Не удалось удалить задачу",
+			"deleteDialogTitle": "Удалить задачу?",
+			"deleteDialogDescription": "Задача и все её данные будут безвозвратно удалены. Это действие нельзя отменить.",
+			"deleteAction": "Удалить задачу",
+			"completeAria": "Отметить подзадачу выполненной",
+			"progress": "Выполнено подзадач: {{completed}} из {{total}}",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Свойства",
+			"labels": "Метки",
+			"copyTaskLink": "Скопировать ссылку на задачу",
+			"copyTaskBranch": "Скопировать ветку задачи",
+			"taskLinkCopied": "Ссылка на задачу скопирована",
+			"taskBranchCopied": "Название ветки скопировано",
+			"start": "Начало",
+			"startDate": "Дата начала",
+			"noDate": "Без даты"
+		},
+		"move": {
+			"title": "Переместить задачу",
+			"projectLabel": "Целевой проект",
+			"projectPlaceholder": "Выберите проект",
+			"statusLabel": "Целевой статус",
+			"statusHintKeep": "Рабочий процесс этого проекта уже поддерживает текущий статус.",
+			"statusHintAdjust": "Выберите статус для использования в целевом проекте.",
+			"action": "Переместить задачу",
+			"success": "Задача успешно перемещена",
+			"error": "Не удалось переместить задачу"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Не назначено",
+				"updateError": "Не удалось обновить исполнителя задачи"
+			},
+			"status": {
+				"updateError": "Не удалось обновить статус задачи"
+			},
+			"priority": {
+				"updateError": "Не удалось обновить приоритет задачи"
+			},
+			"dueDate": {
+				"updateSuccess": "Срок выполнения задачи успешно обновлён",
+				"updateError": "Не удалось обновить срок выполнения задачи",
+				"clear": "Очистить дату"
+			},
+			"startDate": {
+				"updateSuccess": "Дата начала задачи успешно обновлена",
+				"updateError": "Не удалось обновить дату начала задачи",
+				"clear": "Очистить дату начала"
+			},
+			"labels": {
+				"searchPlaceholder": "Поиск меток...",
+				"empty": "Метки не найдены",
+				"create": "Создать «{{name}}»",
+				"chooseColor": "Выберите цвет",
+				"addSuccess": "Метка добавлена",
+				"removeSuccess": "Метка удалена",
+				"updateError": "Не удалось обновить метку",
+				"createSuccess": "Метка создана и добавлена",
+				"createError": "Не удалось создать метку",
+				"colors": {
+					"stone": "Камень",
+					"slate": "Сланец",
+					"lavender": "Лаванда",
+					"sage": "Шалфей",
+					"forest": "Лес",
+					"amber": "Янтарь",
+					"terracotta": "Терракота",
+					"rose": "Роза",
+					"crimson": "Малиновый"
+				},
+				"editLabels": "Изменить метки"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Бэклог – {{name}}",
+			"noTasksToMove": "Нет запланированных задач для перемещения",
+			"moveAllConfirm": "Переместить все {{count}} запланированных задач в «К выполнению»?",
+			"moveAllSuccess_one": "{{count}} задача перемещена в «К выполнению»",
+			"moveAllSuccess_few": "{{count}} задачи перемещены в «К выполнению»",
+			"moveAllSuccess_many": "{{count}} задач перемещено в «К выполнению»",
+			"moveAllSuccess_other": "{{count}} задач перемещено в «К выполнению»",
+			"plan": "Запланировать",
+			"moveAllTooltip": "Переместить все запланированные в «К выполнению»",
+			"moveAll": "Переместить все",
+			"addTask": "Добавить задачу",
+			"filter": "Фильтр",
+			"addFilter": "Добавить фильтр...",
+			"sections": {
+				"planned": "Запланировано",
+				"archived": "В архиве"
+			},
+			"noTasksInSection": "Нет задач в разделе «{{section}}»",
+			"filters": {
+				"priority": "Приоритет: {{name}}",
+				"assignee": "Исполнитель: {{name}}",
+				"due": "Срок: {{date}}",
+				"label": "Метка: {{name}}",
+				"dueThisWeek": "Срок на этой неделе",
+				"dueNextWeek": "Срок на следующей неделе",
+				"noDueDate": "Без срока"
+			},
+			"moveAllSuccess": "{{count}} задач перемещено в «К выполнению»"
+		},
+		"sort": {
+			"label": "Сортировка",
+			"by": "Сортировать по",
+			"direction": "Направление",
+			"ascending": "По возрастанию",
+			"descending": "По убыванию",
+			"fields": {
+				"position": "Вручную (позиция)",
+				"createdAt": "Дата создания",
+				"priority": "Приоритет",
+				"dueDate": "Срок выполнения",
+				"title": "Название",
+				"number": "Номер задачи"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Фильтровать по",
+			"allStatuses": "Все статусы",
+			"allPriorities": "Все приоритеты",
+			"allAssignees": "Все исполнители",
+			"allDueDates": "Все сроки",
+			"allLabels": "Все метки",
+			"selectedCount_one": "{{count}} выбран",
+			"selectedCount_few": "{{count}} выбрано",
+			"selectedCount_many": "{{count}} выбрано",
+			"selectedCount_other": "{{count}} выбрано",
+			"subjects": {
+				"status": "Статус",
+				"priority": "Приоритет",
+				"assignee": "Исполнитель",
+				"dueDate": "Срок выполнения",
+				"labels": "Метки"
+			},
+			"operators": {
+				"isAnyOf": "любой из",
+				"includeAnyOf": "включает любой из"
+			},
+			"selectedCount": "{{count}} выбрано",
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Гант",
+			"title": "Временная шкала Ганта",
+			"searchPlaceholder": "Поиск запланированных задач...",
+			"hideTasks": "Скрыть задачи",
+			"showTasks": "Показать задачи",
+			"noTasks": "Нет запланированных задач",
+			"noTasksSubtitle": "Добавьте дату начала, срок выполнения или оба значения к задачам, чтобы разместить их на временной шкале проекта.",
+			"noTasksFound": "Задачи не найдены",
+			"noTasksMatch": "Нет запланированных задач, соответствующих «{{query}}»",
+			"taskHeader": "Задача",
+			"updateDatesError": "Не удалось обновить даты задачи",
+			"resizeStart": "Изменить дату начала",
+			"resizeDue": "Изменить срок выполнения",
+			"taskAriaLabel": "{{title}}: откройте или перетащите для перемещения",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Удалить задачу?",
+			"description": "Задача и все её данные будут безвозвратно удалены. Это действие нельзя отменить.",
+			"action": "Удалить задачу",
+			"success": "Задача успешно удалена",
+			"error": "Не удалось удалить задачу"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (копия)",
+			"success": "Задача успешно дублирована",
+			"error": "Не удалось дублировать задачу"
+		},
+		"archive": {
+			"success_one": "{{count}} задача архивирована",
+			"success_few": "{{count}} задачи архивированы",
+			"success_many": "{{count}} задач архивировано",
+			"success_other": "{{count}} задач архивировано",
+			"success": "{{count}} задач архивировано"
+		},
+		"listView": {
+			"addTask": "Добавить задачу",
+			"archiveAllTooltip": "Архивировать все завершённые задачи",
+			"noTasks": "Нет задач"
+		},
+		"kanban": {
+			"addTask": "Добавить задачу",
+			"automaticallySortedHint": "Автоматическая сортировка: {{sort}}"
+		},
+		"pr": {
+			"merged": "Влит",
+			"draft": "Черновик",
+			"open": "Открыт",
+			"label": "Pull Request",
+			"count_one": "{{count}} PR",
+			"count_few": "{{count}} PR",
+			"count_many": "{{count}} PR",
+			"count_other": "{{count}} PR"
+		},
+		"assignee": {
+			"label": "Исполнитель",
+			"unassigned": "Не назначено"
+		},
+		"dueDate": {
+			"label": "Срок выполнения",
+			"clear": "Очистить дату",
+			"updateSuccess": "Срок выполнения задачи успешно обновлён",
+			"updateError": "Не удалось обновить срок выполнения задачи",
+			"clearSuccess": "Срок выполнения задачи очищен",
+			"clearError": "Не удалось очистить срок выполнения"
+		},
+		"labels": {
+			"label": "Метки",
+			"empty": "Нет доступных меток"
+		},
+		"update": {
+			"success": "Задача успешно обновлена",
+			"error": "Не удалось обновить задачу"
+		},
+		"contextMenu": {
+			"copyLink": "Скопировать ссылку",
+			"copyLinkSuccess": "Ссылка на задачу скопирована!"
+		},
+		"actions": {
+			"duplicate": "Дублировать",
+			"archive": "Архивировать",
+			"markAsPlanned": "Отметить как запланированную",
+			"delete": "Удалить..."
+		},
+		"bulk": {
+			"selectedCount_one": "{{count}} выбрана",
+			"selectedCount_few": "{{count}} выбраны",
+			"selectedCount_many": "{{count}} выбрано",
+			"selectedCount_other": "{{count}} выбрано",
+			"moveToBacklog": "Переместить в бэклог",
+			"moveToBacklogSuccess_one": "{{count}} задача перемещена в бэклог",
+			"moveToBacklogSuccess_few": "{{count}} задачи перемещены в бэклог",
+			"moveToBacklogSuccess_many": "{{count}} задач перемещено в бэклог",
+			"moveToBacklogSuccess_other": "{{count}} задач перемещено в бэклог",
+			"moveToBacklogError": "Не удалось переместить задачи в бэклог",
+			"moveToBoard": "Переместить на доску",
+			"moveToBoardSuccess_one": "{{count}} задача перемещена на доску",
+			"moveToBoardSuccess_few": "{{count}} задачи перемещены на доску",
+			"moveToBoardSuccess_many": "{{count}} задач перемещено на доску",
+			"moveToBoardSuccess_other": "{{count}} задач перемещено на доску",
+			"moveToBoardError": "Не удалось переместить задачи на доску",
+			"delete": "Удалить задачи",
+			"deleteConfirm_one": "Удалить {{count}} задачу? Это действие нельзя отменить.",
+			"deleteConfirm_few": "Удалить {{count}} задачи? Это действие нельзя отменить.",
+			"deleteConfirm_many": "Удалить {{count}} задач? Это действие нельзя отменить.",
+			"deleteConfirm_other": "Удалить {{count}} задач? Это действие нельзя отменить.",
+			"deleteSuccess_one": "{{count}} задача удалена",
+			"deleteSuccess_few": "{{count}} задачи удалены",
+			"deleteSuccess_many": "{{count}} задач удалено",
+			"deleteSuccess_other": "{{count}} задач удалено",
+			"deleteError": "Не удалось удалить задачи",
+			"archive": "Архивировать задачи",
+			"archiveSuccess_one": "{{count}} задача архивирована",
+			"archiveSuccess_few": "{{count}} задачи архивированы",
+			"archiveSuccess_many": "{{count}} задач архивировано",
+			"archiveSuccess_other": "{{count}} задач архивировано",
+			"archiveError": "Не удалось архивировать задачи",
+			"updateSuccess_one": "{{count}} задача обновлена",
+			"updateSuccess_few": "{{count}} задачи обновлены",
+			"updateSuccess_many": "{{count}} задач обновлено",
+			"updateSuccess_other": "{{count}} задач обновлено",
+			"updateError": "Не удалось обновить задачи",
+			"assignTo": "Назначить на",
+			"assignSuccess_one": "{{count}} задача назначена",
+			"assignSuccess_few": "{{count}} задачи назначены",
+			"assignSuccess_many": "{{count}} задач назначено",
+			"assignSuccess_other": "{{count}} задач назначено",
+			"assignError": "Не удалось назначить задачи",
+			"setPriority": "Установить приоритет",
+			"updatePriorityError": "Не удалось обновить приоритет",
+			"addLabel": "Добавить метку",
+			"addLabelSuccess_one": "Метка добавлена к {{count}} задаче",
+			"addLabelSuccess_few": "Метка добавлена к {{count}} задачам",
+			"addLabelSuccess_many": "Метка добавлена к {{count}} задачам",
+			"addLabelSuccess_other": "Метка добавлена к {{count}} задачам",
+			"addLabelError": "Не удалось добавить метку",
+			"setDueDate": "Установить срок",
+			"updateDueDateError": "Не удалось обновить срок выполнения",
+			"actions": "Действия",
+			"searchActions": "Поиск действий...",
+			"noActionsFound": "Действия не найдены.",
+			"changeStatus": "Изменить статус",
+			"selectedCount": "{{count}} выбрано",
+			"moveToBacklogSuccess": "{{count}} задач перемещено в бэклог",
+			"moveToBoardSuccess": "{{count}} задач перемещено на доску",
+			"deleteConfirm": "Удалить {{count}} задач? Это действие нельзя отменить.",
+			"deleteSuccess": "{{count}} задач удалено",
+			"archiveSuccess": "{{count}} задач архивировано",
+			"updateSuccess": "{{count}} задач обновлено",
+			"assignSuccess": "{{count}} задач назначено",
+			"addLabelSuccess": "Метка добавлена к {{count}} задачам"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "Вставить столбец слева",
+				"addColumnAfter": "Вставить столбец справа",
+				"deleteColumn": "Удалить столбец",
+				"addRowBefore": "Вставить строку выше",
+				"addRowAfter": "Вставить строку ниже",
+				"deleteRow": "Удалить строку",
+				"deleteTable": "Удалить таблицу"
+			}
+		},
+		"calendar": {
+			"dayTasksAriaLabel": "Показать все задачи на {{date}}",
+			"moreTasks": "Ещё {{count}}",
+			"nextMonth": "Следующий месяц",
+			"noTasks": "Нет запланированных задач",
+			"noTasksSubtitle": "Добавьте дату начала, срок выполнения или оба значения к задачам, чтобы они отображались в календаре.",
+			"pageTitle": "{{name}} – Календарь",
+			"previousMonth": "Предыдущий месяц",
+			"taskAriaLabel": "{{title}}, {{range}}: открыть задачу",
+			"title": "Календарь",
+			"today": "Сегодня",
+			"loadError": "Не удалось загрузить задачи.",
+			"noTasksThisMonth": "В этом месяце ничего не запланировано"
+		},
+		"descriptionSearchLoading": "Searching full descriptions…",
+		"descriptionSearchError": "Description search failed. Results may be incomplete.",
+		"descriptionRetry": "Retry",
+		"descriptionLoading": "Loading description…",
+		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
+		"checklistProgress": "Выполнено пунктов списка: {{completed}} из {{total}}",
+		"customFields": {
+			"ariaLabel": "Custom fields"
+		},
+		"board": {
+			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_few": "Created {{branch}} in {{count}} repositories",
+			"createdIn_many": "Created {{branch}} in {{count}} repositories",
+			"createdIn_one": "Created {{branch}} in {{count}} repository",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
+		}
+	},
+	"invitations": {
+		"email": {
+			"subject": "{{inviterName}} приглашает вас присоединиться к {{workspaceName}} в Kaneo",
+			"preview": "Вас пригласили в {{workspaceName}} в Kaneo",
+			"title": "Присоединяйтесь к {{workspaceName}}",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) приглашает вас к совместной работе в Kaneo.",
+			"cta": "Принять приглашение",
+			"sameEmail": "Вы можете принять приглашение с того же адреса электронной почты, на который пришло это письмо.",
+			"ignore": "Если вы не ожидали этого письма, просто проигнорируйте его.",
+			"footer": "Приглашение в рабочую область Kaneo",
+			"details": {
+				"title": "Сведения о приглашении",
+				"sentTo": "Отправлено на",
+				"instance": "Экземпляр",
+				"role": "Роль",
+				"expires": "Истекает"
+			}
+		},
+		"pageTitle": "Приглашения",
+		"pendingInvitations": "Ожидающие приглашения",
+		"acceptSubtitle": "Примите приглашения для присоединения к рабочим областям",
+		"noPendingTitle": "Нет ожидающих приглашений",
+		"noPendingDescription": "На данный момент у вас нет ожидающих приглашений в рабочие области.",
+		"continueToSetup": "Продолжить настройку",
+		"skipForNow": "Пропустить пока",
+		"table": {
+			"workspace": "Рабочая область",
+			"invitedBy": "Пригласил",
+			"expires": "Истекает"
+		},
+		"toast": {
+			"acceptError": "Не удалось принять приглашение",
+			"acceptSuccess": "Приглашение принято! Добро пожаловать в команду.",
+			"rejectError": "Не удалось отклонить приглашение",
+			"rejectSuccess": "Приглашение отклонено"
+		}
+	},
+	"workspace": {
+		"projects": {
+			"pageTitle": "Проекты",
+			"createProject": "Создать проект",
+			"title": "Название",
+			"progress": "Прогресс",
+			"targetDate": "Целевая дата",
+			"dueDate": "Срок выполнения",
+			"status": "Статус",
+			"emptyTitle": "Проектов пока нет",
+			"emptyDescription": "Начните с создания вашего первого проекта.",
+			"projectStatus": {
+				"notStarted": "Не начат",
+				"complete": "Завершён",
+				"inProgress": "В работе"
+			},
+			"noDueDate": "Без срока",
+			"reorderHandle": "Изменить порядок проекта",
+			"reorderError": "Не удалось изменить порядок проектов",
+			"emptyDescriptionReadOnly": "В этой рабочей области пока нет проектов. Попросите администратора создать проект.",
+			"unavailable": {
+				"backToWorkspace": "Back to workspace",
+				"noAccessDescription": "Ask a workspace admin to give you access.",
+				"noAccessTitle": "You don't have access to this project",
+				"notFoundDescription": "This project doesn't exist or has been deleted.",
+				"notFoundTitle": "Project not found"
+			}
+		},
+		"search": {
+			"pageTitle": "Поиск",
+			"backToDashboard": "Вернуться к панели управления",
+			"placeholder": "Поиск задач по названию или короткому ID (например, DEP-23)...",
+			"hint": "Поиск по всем проектам в этой рабочей области. Используйте короткие ID, такие как DEP-23, чтобы найти конкретные задачи.",
+			"searching": "Поиск...",
+			"resultsFound_one": "Найден {{count}} результат",
+			"resultsFound_few": "Найдено {{count}} результата",
+			"resultsFound_many": "Найдено {{count}} результатов",
+			"resultsFound_other": "Найдено {{count}} результатов",
+			"noResultsTitle": "Результатов не найдено",
+			"noResultsDescription": "Попробуйте изменить поисковый запрос или поискать что-то другое",
+			"startTitle": "Начните поиск",
+			"startDescription": "Введите поисковый запрос для поиска задач по всем проектам",
+			"quickSearchesLabel": "Быстрый поиск:",
+			"suggestionHighPriority": "Высокий приоритет",
+			"suggestionBug": "Баг",
+			"suggestionFeature": "Фича",
+			"suggestionInProgress": "В работе",
+			"suggestionCompleted": "Завершённые"
+		},
+		"create": {
+			"pageTitle": "Создание рабочей области",
+			"heading": "Создать новую рабочую область",
+			"subtitle": "Рабочие области представляют собой общие среды, где команды могут работать над проектами, циклами и задачами.",
+			"nameLabel": "Название рабочей области",
+			"namePlaceholder": "Введите название рабочей области",
+			"descriptionLabel": "Описание (необязательно)",
+			"descriptionPlaceholder": "Добавьте описание для вашей рабочей области",
+			"required": "Обязательно",
+			"creating": "Создание...",
+			"submit": "Создать рабочую область",
+			"success": "Рабочая область успешно создана",
+			"error": "Не удалось создать рабочую область"
+		},
+		"home": {
+			"activity": {
+				"commented": "commented",
+				"empty": "Nothing has happened in the last 30 days.",
+				"loadError": "Activity couldn't be loaded.",
+				"title": "Activity",
+				"updated": "updated the task"
+			},
+			"greeting": {
+				"afternoon": "Good afternoon",
+				"evening": "Good evening",
+				"morning": "Good morning"
+			},
+			"newTask": "New task",
+			"pageTitle": "Home",
+			"projects": {
+				"all": "All projects",
+				"tasks_few": "{{count}} tasks",
+				"tasks_many": "{{count}} tasks",
+				"tasks_one": "{{count}} task",
+				"tasks_other": "{{count}} tasks",
+				"title": "Your projects",
+				"loadError": "Projects couldn't be loaded."
+			},
+			"upNext": {
+				"assigned_few": "{{count}} assigned to you",
+				"assigned_many": "{{count}} assigned to you",
+				"assigned_one": "{{count}} assigned to you",
+				"assigned_other": "{{count}} assigned to you",
+				"title": "Up next",
+				"viewAll": "View all"
+			},
+			"week": {
+				"more_few": "+{{count}} more",
+				"more_many": "+{{count}} more",
+				"more_one": "+{{count}} more",
+				"more_other": "+{{count}} more",
+				"truncated": "The week preview includes only the first {{shown}} of {{total}} assigned tasks."
+			}
+		},
+		"myTasks": {
+			"emptyDescription": "Tasks assigned to you across this workspace show up here.",
+			"groupBy": {
+				"dueDate": "Due date",
+				"label": "Group by",
+				"project": "Project"
+			},
+			"pageTitle": "My tasks",
+			"truncated": "Showing the first {{shown}} of {{total}} tasks."
+		},
+		"myWork": {
+			"due": {
+				"later": "Later",
+				"noDueDate": "No due date",
+				"overdue": "Overdue",
+				"thisWeek": "This week",
+				"today": "Today",
+				"tomorrow": "Tomorrow"
+			},
+			"empty": "Nothing assigned to you",
+			"loadError": "Your tasks couldn't be loaded."
+		}
+	},
+	"team": {
+		"roles": {
+			"owner": "Владелец",
+			"admin": "Администратор",
+			"member": "Участник",
+			"viewer": "Наблюдатель"
+		},
+		"members": {
+			"p

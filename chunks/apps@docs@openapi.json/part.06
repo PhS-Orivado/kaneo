@@ -1,0 +1,917 @@
+
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "Unique identifier of the created team"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the team"
+                    },
+                    "organizationId": {
+                      "type": "string",
+                      "description": "ID of the organization the team belongs to"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "Timestamp when the team was created"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "description": "Timestamp when the team was last updated"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "name",
+                    "organizationId",
+                    "createdAt",
+                    "updatedAt"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/delete": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "deleteOrganization",
+        "summary": "Delete Organization",
+        "description": "Delete an organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The organization id to delete"
+                  }
+                },
+                "required": [
+                  "organizationId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/delete-role": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "deleteOrganizationRole",
+        "summary": "Delete Organization Role",
+        "description": "Delete Organization Role",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "organizationId": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "roleName": {
+                            "type": "string",
+                            "description": "The name of the role to delete"
+                          }
+                        },
+                        "required": [
+                          "roleName"
+                        ]
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "roleId": {
+                            "type": "string",
+                            "description": "The id of the role to delete"
+                          }
+                        },
+                        "required": [
+                          "roleId"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/get-active-member": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "getOrganizationActiveMember",
+        "summary": "Get Organization Active Member",
+        "description": "Get the member details of the active organization",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "organizationId": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "userId",
+                    "organizationId",
+                    "role"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/get-active-member-role": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "getOrganizationActiveMemberRole",
+        "summary": "Get Organization Active Member Role",
+        "description": "Get Organization Active Member Role",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/get-full-organization": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "getOrganizationFullOrganization",
+        "summary": "Get Organization Full Organization",
+        "description": "Get the full organization",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/get-invitation": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "getOrganizationInvitation",
+        "summary": "Get Organization Invitation",
+        "description": "Get an invitation by ID",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "organizationId": {
+                      "type": "string"
+                    },
+                    "inviterId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "type": "string"
+                    },
+                    "organizationName": {
+                      "type": "string"
+                    },
+                    "organizationSlug": {
+                      "type": "string"
+                    },
+                    "inviterEmail": {
+                      "type": "string"
+                    },
+                    "projectAccess": {
+                      "type": "string",
+                      "enum": [
+                        "all",
+                        "selected"
+                      ],
+                      "description": "\"all\" gives access to every project once accepted; \"selected\" limits the member to projectIds."
+                    },
+                    "projectIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Projects the invitation grants when projectAccess is \"selected\". Only projects the viewer can access are listed."
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "email",
+                    "role",
+                    "organizationId",
+                    "inviterId",
+                    "status",
+                    "expiresAt",
+                    "organizationName",
+                    "organizationSlug",
+                    "inviterEmail",
+                    "projectAccess",
+                    "projectIds"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/get-role": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "getOrganizationRole",
+        "summary": "Get Organization Role",
+        "description": "Get Organization Role",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/has-permission": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "hasOrganizationPermission",
+        "summary": "Check Organization Permission",
+        "description": "Check if the user has permission",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "permission": {
+                    "type": "object",
+                    "additionalProperties": {},
+                    "description": "The permission to check"
+                  },
+                  "permissions": {
+                    "type": "object",
+                    "additionalProperties": {},
+                    "description": "The permission to check"
+                  }
+                },
+                "required": [
+                  "permissions"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    },
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/invite-member": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "inviteOrganizationMember",
+        "summary": "Invite Organization Member",
+        "description": "Create or resend an invitation. Email delivery failures return 502; the invitation remains pending and can be resent after correcting SMTP settings.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "description": "The email address of the user to invite"
+                  },
+                  "role": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "description": "The role(s) to assign to the user. It can be `admin`, `member`, owner. Eg: \"member\""
+                  },
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The organization ID to invite the user to"
+                  },
+                  "resend": {
+                    "type": "boolean",
+                    "description": "Resend the invitation email, if the user is already invited. Eg: true"
+                  },
+                  "teamId": {
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ]
+                  },
+                  "projectAccess": {
+                    "type": "string",
+                    "enum": [
+                      "all",
+                      "selected"
+                    ],
+                    "description": "\"all\" (the default) gives access to every project. \"selected\" limits the new member to projectIds once they accept."
+                  },
+                  "projectIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "description": "Projects the new member can access when projectAccess is \"selected\". They must belong to the workspace, and an inviter whose own access is limited can only choose projects they can access."
+                  }
+                },
+                "required": [
+                  "email",
+                  "role"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "organizationId": {
+                      "type": "string"
+                    },
+                    "inviterId": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "expiresAt": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "projectAccess": {
+                      "type": "string",
+                      "enum": [
+                        "all",
+                        "selected"
+                      ],
+                      "description": "\"all\" gives access to every project once accepted; \"selected\" limits the member to projectIds."
+                    },
+                    "projectIds": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Projects the invitation grants when projectAccess is \"selected\". Only projects the viewer can access are listed."
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "email",
+                    "role",
+                    "organizationId",
+                    "inviterId",
+                    "status",
+                    "expiresAt",
+                    "createdAt",
+                    "projectAccess",
+                    "projectIds"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          },
+          "502": {
+            "description": "Invitation saved, but email delivery failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "enum": [
+                        "INVITATION_EMAIL_FAILED"
+                      ]
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/organization/leave": {
+      "post": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "leaveOrganization",
+        "summary": "Leave Organization",
+        "description": "Leave Organization",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "organizationId": {
+                    "type": "string",
+                    "description": "The organization Id for the member to leave. Eg: \"organization-id\""
+                  }
+                },
+                "required": [
+                  "organizationId"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganization",
+        "summary": "List Organization",
+        "description": "List all organizations",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {}
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-invitations": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationInvitations",
+        "summary": "List Organization Invitations",
+        "description": "List Organization Invitations",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "organizationId",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "email": {
+                        "type": "string"
+                      },
+                      "role": {
+                        "type": "string"
+                      },
+                      "organizationId": {
+                        "type": "string"
+                      },
+                      "inviterId": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "expiresAt": {
+                        "type": "string"
+                      },
+                      "createdAt": {
+                        "type": "string"
+                      },
+                      "projectAccess": {
+                        "type": "string",
+                        "enum": [
+                          "all",
+                          "selected"
+                        ],
+                        "description": "\"all\" gives access to every project once accepted; \"selected\" limits the member to projectIds."
+                      },
+                      "projectIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "Projects the invitation grants when projectAccess is \"selected\". Only projects the viewer can access are listed."
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "email",
+                      "role",
+                      "organizationId",
+                      "inviterId",
+                      "status",
+                      "expiresAt",
+                      "createdAt",
+                      "projectAccess",
+                      "projectIds"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-members": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationMembers",
+        "summary": "List Organization Members",
+        "description": "List Organization Members",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/auth/organization/list-roles": {
+      "get": {
+        "tags": [
+          "Organization Management"
+        ],
+        "operationId": "listOrganizationRoles",
+        "summary": "List Organization Roles",
+        "description": "List Organization Roles",
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/comp

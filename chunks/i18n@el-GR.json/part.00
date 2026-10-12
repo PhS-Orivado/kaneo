@@ -1,0 +1,473 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Ακύρωση",
+			"close": "Κλείσιμο",
+			"clearAll": "Εκκαθάριση όλων",
+			"delete": "Διαγραφή",
+			"deleting": "Γίνεται διαγραφή...",
+			"markAllRead": "Επισήμανση όλων ως αναγνωσμένα",
+			"remove": "Αφαίρεση",
+			"reset": "Επαναφορά",
+			"filter": "Φίλτρο",
+			"clearAllFilters": "Εκκαθάριση όλων των φίλτρων"
+		},
+		"a11y": {
+			"toggleSidebar": "Εναλλαγή πλαϊνής μπάρας"
+		},
+		"sidebar": {
+			"title": "Πλαϊνή μπάρα",
+			"mobileDescription": "Εμφανίζει την πλαϊνή μπάρα για κινητά."
+		},
+		"empty": {
+			"loading": "Φόρτωση..."
+		},
+		"pagination": {
+			"label": "Σελιδοποίηση",
+			"previous": "Προηγούμενο",
+			"next": "Επόμενο",
+			"previousPage": "Μετάβαση στην προηγούμενη σελίδα",
+			"nextPage": "Μετάβαση στην επόμενη σελίδα",
+			"morePages": "Περισσότερες σελίδες"
+		},
+		"breadcrumb": {
+			"label": "Διαδρομή πλοήγησης",
+			"more": "Περισσότερα"
+		},
+		"language": {
+			"english": "Αγγλικά",
+			"german": "Γερμανικά",
+			"greek": "Ελληνικά",
+			"macedonian": "Μακεδονικά",
+			"french": "Γαλλικά",
+			"spanish": "Ισπανικά",
+			"dutch": "Ολλανδικά",
+			"korean": "Κορεατικά",
+			"chinese": "Κινεζικά",
+			"italian": "Ιταλικά"
+		},
+		"people": {
+			"someone": "Κάποιος",
+			"unknown": "Άγνωστος"
+		},
+		"error": {
+			"title": "Κάτι πήγε στραβά",
+			"troubleshooting": "Βήματα αντιμετώπισης προβλημάτων:",
+			"tryAgain": "Δοκιμάστε ξανά",
+			"viewDeploymentGuide": "Προβολή οδηγού εγκατάστασης",
+			"refreshPage": "Ανανέωση σελίδας",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Ποτέ"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Δημιουργία νέου έργου",
+				"breadcrumbNew": "Δημιουργία νέου έργου",
+				"workspaceFallback": "ΧΩΡΟΣ ΕΡΓΑΣΙΑΣ",
+				"description": "Δημιουργήστε ένα νέο έργο στον χώρο εργασίας σας, ορίζοντας όνομα, κλειδί και επιλέγοντας ένα εικονίδιο.",
+				"pickIcon": "Επιλογή εικονιδίου",
+				"searchIcons": "Αναζήτηση εικονιδίων...",
+				"projectName": "Όνομα έργου",
+				"keyLabel": "Κλειδί:",
+				"keyHint": "Χρησιμοποιείται για IDs αιτημάτων (π.χ. {{example}}-123)",
+				"createButton": "Δημιουργία έργου",
+				"successToast": "Το έργο δημιουργήθηκε με επιτυχία",
+				"errorToast": "Αποτυχία δημιουργίας έργου"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Δημιουργία νέου χώρου εργασίας",
+				"description": "Δημιουργήστε έναν νέο χώρο εργασίας ορίζοντας ένα όνομα.",
+				"namePlaceholder": "Όνομα χώρου εργασίας",
+				"descriptionPlaceholder": "Προσθήκη περιγραφής...",
+				"createButton": "Δημιουργία χώρου εργασίας",
+				"successToast": "Ο χώρος εργασίας δημιουργήθηκε με επιτυχία",
+				"errorToast": "Αποτυχία δημιουργίας χώρου εργασίας"
+			},
+			"createTask": {
+				"breadcrumbTask": "ΕΡΓΑΣΙΑ",
+				"selectProject": "Επιλογή έργου",
+				"title": "Νέα εργασία",
+				"description": "Δημιουργήστε μια νέα εργασία συμπληρώνοντας τίτλο, περιγραφή και άλλες λεπτομέρειες.",
+				"taskTitlePlaceholder": "Τίτλος εργασίας",
+				"descriptionPlaceholder": "Προσθέστε μια περιγραφή για την εργασία σας...",
+				"chooseProjectForImages": "Επιλέξτε ένα έργο πριν ανεβάσετε εικόνες.",
+				"prepareTaskError": "Αποτυχία προετοιμασίας εργασίας",
+				"successCreated": "Η εργασία δημιουργήθηκε με επιτυχία",
+				"successUpdated": "Η εργασία ενημερώθηκε με επιτυχία",
+				"createError": "Αποτυχία δημιουργίας εργασίας",
+				"priority": "Προτεραιότητα",
+				"statusFallback": "Σε εξέλιξη",
+				"startDate": "Ημερομηνία έναρξης",
+				"dueDate": "Ημερομηνία λήξης",
+				"clearStartDate": "Εκκαθάριση ημερομηνίας έναρξης",
+				"clearDueDate": "Εκκαθάριση ημερομηνίας λήξης",
+				"assign": "Ανάθεση",
+				"assignUnassigned": "Χωρίς ανάθεση",
+				"assignUnassignedTitle": "Χωρίς ανάθεση",
+				"labels": "Ετικέτες",
+				"searchLabels": "Αναζήτηση ετικετών...",
+				"noLabelsFound": "Δεν βρέθηκαν ετικέτες",
+				"createLabel": "Δημιουργία \"{{name}}\"",
+				"chooseColor": "Επιλογή χρώματος",
+				"labelCreated": "Η ετικέτα δημιουργήθηκε",
+				"labelCreateError": "Αποτυχία δημιουργίας ετικέτας",
+				"createMore": "Δημιουργία περισσότερων",
+				"createButton": "Δημιουργία εργασίας",
+				"discardTitle": "Απόρριψη εργασίας;",
+				"discardDescription": "Οι μη αποθηκευμένες λεπτομέρειες της εργασίας θα χαθούν.",
+				"discardButton": "Απόρριψη εργασίας",
+				"untitledTask": "Εργασία χωρίς τίτλο",
+				"labelColors": {
+					"stone": "Πέτρα",
+					"slate": "Σχιστόλιθος",
+					"lavender": "Λεβάντα",
+					"sage": "Φασκόμηλο",
+					"forest": "Δάσος",
+					"amber": "Κεχριμπάρι",
+					"terracotta": "Τερακότα",
+					"rose": "Ροζ",
+					"crimson": "Βυσσινί"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Σύνδεση",
+			"subtitle": {
+				"emailOrProvider": "Χρησιμοποιήστε το email σας ή έναν συνδεδεμένο λογαριασμό.",
+				"email": "Εισάγετε το email σας και θα σας στείλουμε έναν κωδικό σύνδεσης.",
+				"password": "Χρησιμοποιήστε το email και τον κωδικό πρόσβασής σας.",
+				"passwordOrProvider": "Χρησιμοποιήστε τον κωδικό πρόσβασής σας ή έναν συνδεδεμένο λογαριασμό.",
+				"providers": "Επιλέξτε πώς θέλετε να συνδεθείτε.",
+				"sso": "Τη σύνδεση εδώ τη διαχειρίζεται ο οργανισμός σας."
+			},
+			"lastUsed": "Τελευταία χρήση",
+			"guestError": "Αποτυχία σύνδεσης ως επισκέπτης",
+			"errors": {
+				"account_not_linked": "Αυτή η ταυτότητα δεν ήταν δυνατό να συνδεθεί με τον υπάρχοντα λογαριασμό. Συνδεθείτε με email για να επαληθεύσετε τον λογαριασμό και έπειτα δοκιμάστε ξανά το SSO. Αν η σύνδεση με email δεν είναι διαθέσιμη, επικοινωνήστε με τον διαχειριστή σας.",
+				"oauth_code_verification_failed": "Η επαλήθευση OAuth απέτυχε. Δοκιμάστε ξανά.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Η εγγραφή είναι προς το παρόν απενεργοποιημένη. Χρειάζεστε έγκυρη πρόσκληση για να δημιουργήσετε λογαριασμό.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Χρησιμοποιήστε μια μόνιμη διεύθυνση email. Με προσωρινές διευθύνσεις δεν μπορούν να δημιουργηθούν λογαριασμοί."
+			},
+			"instanceStatusError": "Δεν ήταν δυνατή η επικοινωνία με τον διακομιστή. Δοκιμάστε ξανά σε λίγο.",
+			"heading": "Σύνδεση στο Kaneo",
+			"submitPassword": "Σύνδεση",
+			"invitation": {
+				"title": "Ο/Η {{inviterName}} σας προσκάλεσε στο {{workspaceName}}",
+				"fallbackTitle": "Έχετε λάβει πρόσκληση",
+				"description": "Συνδεθείτε με το email που έλαβε την πρόσκληση. Θα μπείτε στον χώρο εργασίας αμέσως μετά."
+			},
+			"footer": {
+				"newHere": "Πρώτη φορά στο Kaneo;",
+				"createAccount": "Δημιουργία λογαριασμού",
+				"inviteOnly": "Οι λογαριασμοί εδώ δημιουργούνται μόνο με πρόσκληση. Ζητήστε πρόσκληση από έναν διαχειριστή.",
+				"providerSignUp": "Πρώτη φορά εδώ; Συνδεθείτε με έναν από τους παρόχους παραπάνω για να δημιουργήσετε λογαριασμό.",
+				"anyProvider": "Πρώτη φορά εδώ; Οποιαδήποτε επιλογή παραπάνω δημιουργεί τον λογαριασμό σας.",
+				"contactAdmin": "Πρόβλημα με τη σύνδεση; Επικοινωνήστε με τον διαχειριστή σας.",
+				"justLooking": "Απλώς ρίχνετε μια ματιά;"
+			},
+			"autoLogin": {
+				"title": "Γίνεται σύνδεση",
+				"subtitle": "Σας μεταφέρουμε στη σελίδα σύνδεσης του οργανισμού σας.",
+				"opening": "Άνοιγμα {{provider}}…",
+				"stuck": "Δεν προχωράει;",
+				"continue": "Συνέχεια στο {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Συνέχεια με {{provider}}",
+			"error": "Δεν ήταν δυνατή η σύνδεση με {{provider}}. Δοκιμάστε ξανά."
+		},
+		"forms": {
+			"or": "ή",
+			"email": "Email",
+			"password": "Κωδικός πρόσβασης",
+			"emailPlaceholder": "me@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Εμφάνιση κωδικού",
+			"hidePassword": "Απόκρυψη κωδικού",
+			"name": "Όνομα",
+			"namePlaceholder": "Μαρία Παπαδοπούλου",
+			"invalidEmail": "Εισάγετε μια πλήρη διεύθυνση email, π.χ. name@company.com.",
+			"nameRequired": "Εισάγετε το όνομά σας.",
+			"passwordRequired": "Εισάγετε τον κωδικό πρόσβασής σας.",
+			"passwordTooShort": "Χρησιμοποιήστε τουλάχιστον 8 χαρακτήρες.",
+			"disposableEmail": "Χρησιμοποιήστε μια μόνιμη διεύθυνση email. Με προσωρινές διευθύνσεις δεν μπορούν να δημιουργηθούν λογαριασμοί.",
+			"continueWithEmail": "Συνέχεια με email"
+		},
+		"checkEmail": {
+			"pageTitle": "Ελέγξτε το email σας",
+			"title": "Ελέγξτε το email σας",
+			"inboxMessage": "Σας στείλαμε έναν προσωρινό σύνδεσμο σύνδεσης. Παρακαλούμε ελέγξτε τα εισερχόμενά σας στη διεύθυνση <email>{{email}}</email>.",
+			"emailFallback": "τη διεύθυνση email σας",
+			"backToLogin": "Επιστροφή στη σύνδεση"
+		},
+		"signUp": {
+			"pageTitle": "Δημιουργία λογαριασμού",
+			"registrationDisabledAlert": "Η εγγραφή είναι προσωρινά απενεργοποιημένη. Αν έχετε προσκληθεί, εισάγετε τη διεύθυνση email που έλαβε την πρόσκληση για να δημιουργήσετε λογαριασμό.",
+			"continueAsGuest": "Συνέχεια ως επισκέπτης",
+			"toggleMessage": "Έχετε ήδη λογαριασμό;",
+			"toggleLink": "Σύνδεση",
+			"instanceStatusError": "Δεν ήταν δυνατή η επικοινωνία με τον διακομιστή. Δοκιμάστε ξανά σε λίγο.",
+			"instanceAdminTitle": "Ρυθμίστε την εγκατάσταση Kaneo σας",
+			"instanceAdminSubtitle": "Αυτός ο λογαριασμός γίνεται ο διαχειριστής της εγκατάστασης με πλήρη πρόσβαση.",
+			"heading": "Δημιουργήστε τον λογαριασμό σας",
+			"submitPassword": "Δημιουργία λογαριασμού",
+			"failed": "Δεν ήταν δυνατή η δημιουργία του λογαριασμού σας. Δοκιμάστε ξανά.",
+			"subtitle": {
+				"email": "Ξεκινήστε με το email σας. Θα σας στείλουμε έναν κωδικό, χωρίς να χρειάζεται κωδικός πρόσβασης.",
+				"password": "Προσθέστε το όνομά σας, το email σας και έναν κωδικό πρόσβασης για να ξεκινήσετε.",
+				"providers": "Χρησιμοποιήστε έναν συνδεδεμένο λογαριασμό για να δημιουργήσετε τον δικό σας."
+			},
+			"invitation": {
+				"description": "Χρησιμοποιήστε το email που έλαβε την πρόσκληση. Θα μπείτε στον χώρο εργασίας αμέσως μετά."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Επαλήθευση κωδικού",
+			"validation": {
+				"codeLength": "Ο κωδικός πρέπει να αποτελείται από 6 ψηφία"
+			},
+			"toast": {
+				"invalidCode": "Μη έγκυρος κωδικός επαλήθευσης",
+				"verifyFailed": "Αποτυχία επαλήθευσης κωδικού",
+				"resendFailed": "Αποτυχία επαναποστολής κωδικού",
+				"resendSuccess": "Στάλθηκε νέος κωδικός επαλήθευσης!"
+			},
+			"heading": "Ελέγξτε το email σας",
+			"description": "Στείλαμε έναν 6ψήφιο κωδικό στο {{email}}. Λήγει σε {{minutes}} λεπτά.",
+			"label": "Κωδικός επαλήθευσης",
+			"submit": "Επαλήθευση και συνέχεια",
+			"didntGetIt": "Δεν λάβατε τον κωδικό;",
+			"resendCode": "Επαναποστολή κωδικού",
+			"useDifferentEmail": "Χρήση άλλου email",
+			"expired": "Αυτός ο κωδικός έληξε. Ζητήστε νέο.",
+			"tooManyAttempts": "Πάρα πολλές προσπάθειες. Ζητήστε νέο κωδικό."
+		},
+		"otpSignIn": {
+			"sendFailed": "Αποτυχία αποστολής κωδικού επαλήθευσης"
+		},
+		"signInForm": {
+			"failedSignIn": "Αποτυχία σύνδεσης"
+		},
+		"invitation": {
+			"pageTitleAccept": "Αποδοχή πρόσκλησης",
+			"pageTitleError": "Σφάλμα πρόσκλησης",
+			"pageTitleInvalid": "Μη έγκυρη πρόσκληση",
+			"joinWorkspace": "Συμμετοχή στο {{workspaceName}}",
+			"createAccount": "Δημιουργία λογαριασμού",
+			"signIn": "Σύνδεση",
+			"toast": {
+				"acceptFailed": "Αποτυχία αποδοχής πρόσκλησης",
+				"acceptSuccess": "Η πρόσκληση έγινε αποδεκτή! Καλώς ήρθατε στην ομάδα."
+			},
+			"description": "Ο/Η {{inviterName}} σας προσκάλεσε σε αυτόν τον χώρο εργασίας στο Kaneo.",
+			"invitedBy": "Πρόσκληση από",
+			"sentTo": "Στάλθηκε στο",
+			"signedInAs": "Σύνδεση ως",
+			"expires": "Λήγει",
+			"notNow": "Όχι τώρα",
+			"join": "Συμμετοχή στον χώρο εργασίας",
+			"switchAccount": "Αλλαγή λογαριασμού",
+			"goToKaneo": "Μετάβαση στο Kaneo",
+			"mismatch": {
+				"title": "Έχετε συνδεθεί με διαφορετικό email",
+				"description": "Αυτή η πρόσκληση στάλθηκε στο {{invitedEmail}}. Έχετε συνδεθεί ως {{email}}."
+			},
+			"expired": {
+				"title": "Αυτή η πρόσκληση έχει λήξει",
+				"description": "Ζητήστε από τον/την {{inviterName}} να σας στείλει νέα πρόσκληση για το {{workspaceName}}."
+			},
+			"invalid": {
+				"title": "Αυτή η πρόσκληση δεν ισχύει πλέον",
+				"description": "Μπορεί να έχει ήδη γίνει αποδεκτή ή να έχει ακυρωθεί. Ζητήστε νέα από έναν διαχειριστή του χώρου εργασίας."
+			},
+			"loadFailed": {
+				"title": "Δεν ήταν δυνατή η φόρτωση της πρόσκλησης",
+				"description": "Ελέγξτε τη σύνδεσή σας και ανανεώστε τη σελίδα."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Καλώς ήρθατε στο Kaneo",
+			"workspaceName": "Όνομα χώρου εργασίας",
+			"workspaceNamePlaceholder": "π.χ. Acme Inc, My Team",
+			"toast": {
+				"createFailed": "Αποτυχία δημιουργίας χώρου εργασίας"
+			},
+			"validation": {
+				"workspaceNameRequired": "Το όνομα χώρου εργασίας είναι υποχρεωτικό",
+				"projectNameRequired": "Δώστε ένα όνομα στο πρώτο σας έργο"
+			},
+			"restrictedSubtitle": "Μόνο ένας διαχειριστής της εγκατάστασης μπορεί να δημιουργεί χώρους εργασίας εδώ. Ζητήστε πρόσκληση και ανανεώστε τη σελίδα.",
+			"restrictedCheckInvitations": "Έλεγχος προσκλήσεων",
+			"restrictedTitle": "Χρειάζεστε πρόσκληση",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Το πρώτο μου έργο",
+			"starterTasks": {
+				"drag": {
+					"title": "Σύρετε αυτή την κάρτα στην επόμενη στήλη",
+					"description": "Οι κάρτες μετακινούνται από στήλη σε στήλη καθώς προχωρά η δουλειά. Σύρετε αυτή στην επόμενη στήλη ή ανοίξτε την και αλλάξτε την κατάστασή της."
+				},
+				"details": {
+					"title": "Ανοίξτε αυτή την εργασία και προσθέστε μια υποεργασία",
+					"description": "Μια εργασία μπορεί να έχει περιγραφή, υποεργασίες, ετικέτες, υπεύθυνο και ημερομηνία λήξης. Προσθέστε μια υποεργασία σε αυτή για να το δοκιμάσετε."
+				},
+				"invite": {
+					"title": "Προσκαλέστε την ομάδα σας",
+					"description": "Το Kaneo λειτουργεί καλύτερα όταν συμμετέχουν όλοι. Ανοίξτε τα **Μέλη** στην πλαϊνή στήλη για να προσκαλέσετε άτομα μέσω email."
+				},
+				"integrations": {
+					"title": "Συνδέστε GitHub, GitLab ή Gitea",
+					"description": "Συγχρονίστε τα issues και μετακινήστε εργασίες αυτόματα όταν ανοίγουν και συγχωνεύονται pull requests. Ρυθμίστε το στις **Ρυθμίσεις έργου**."
+				},
+				"create": {
+					"title": "Δημιουργήστε τη δική σας εργασία",
+					"description": "Χρησιμοποιήστε το **+** δίπλα στο όνομα μιας στήλης ή πατήστε **T** και μετά **C**. Διαγράψτε αυτές τις εργασίες εκκίνησης όποτε είστε έτοιμοι."
+				}
+			},
+			"progress": "Βήμα {{current}} από {{total}}",
+			"welcome": "Καλώς ήρθατε, {{name}}",
+			"settingUp": "Ρύθμιση του {{name}}",
+			"continue": "Συνέχεια",
+			"signedInAs": "Σύνδεση ως {{email}}",
+			"signOut": "Αποσύνδεση",
+			"workspace": {
+				"title": "Ονομάστε τον χώρο εργασίας σας",
+				"description": "Εδώ θα βρίσκονται τα έργα σας. Χρησιμοποιήστε το όνομα της ομάδας ή της εταιρείας σας, μπορείτε να το αλλάξετε αργότερα."
+			},
+			"usage": {
+				"title": "Για ποιον είναι;",
+				"description": "Θα προσαρμόσουμε το {{name}} ανάλογα. Μπορείτε πάντα να προσκαλέσετε άτομα αργότερα."
+			},
+			"project": {
+				"title": "Ξεκινήστε το πρώτο σας έργο",
+				"description": "Θα προσθέσουμε μερικές αρχικές εργασίες για να σας βοηθήσουμε να εξοικειωθείτε. Μετονομάστε τις ή διαγράψτε τις όποτε θέλετε.",
+				"label": "Όνομα έργου",
+				"numbered": "Οι εργασίες θα αριθμούνται"
+			},
+			"invite": {
+				"title": "Φέρτε την ομάδα σας",
+				"description": "Θα λάβουν ένα email για να συμμετάσχουν στο {{name}}. Παραλείψτε αυτό το βήμα αν προτιμάτε να ρίξετε πρώτα μια ματιά.",
+				"label": "Email συνεργατών",
+				"send_one": "Αποστολή {{count}} πρόσκλησης",
+				"send_other": "Αποστολή {{count}} προσκλήσεων",
+				"sendNone": "Αποστολή προσκλήσεων"
+			},
+			"plan": {
+				"title": "Πώς θέλετε να ξεκινήσετε;",
+				"descriptionTrial_one": "Κάθε πρόγραμμα περιλαμβάνει απεριόριστα έργα και εργασίες. Δοκιμάστε το {{name}} δωρεάν για {{count}} ημέρα ή γίνετε συνδρομητές τώρα.",
+				"descriptionTrial_other": "Κάθε πρόγραμμα περιλαμβάνει απεριόριστα έργα και εργασίες. Δοκιμάστε το {{name}} δωρεάν για {{count}} ημέρες ή γίνετε συνδρομητές τώρα.",
+				"choose": "Επιλέξτε πρόγραμμα",
+				"description": {
+					"team": "Απεριόριστα μέλη, ρόλοι και δικαιώματα",
+					"personal": "Για ένα άτομο"
+				},
+				"perUserMonth": "ανά χρήστη / μήνα",
+				"perMonth": "ανά μήνα",
+				"subscribe": "Συνδρομή στο {{plan}}",
+				"checkout": "Συνέχεια στην πληρωμή",
+				"trialNote": "Δεν χρειάζεται κάρτα για τη δοκιμή. Οι πληρωμές διεκπεραιώνονται από την Creem.",
+				"paymentNote": "Οι πληρωμές διεκπεραιώνονται από την Creem."
+			},
+			"ready": {
+				"eyebrow": "Όλα έτοιμα",
+				"title": "Το {{name}} είναι έτοιμο",
+				"description": "Αυτά ρυθμίσαμε. Μπορείτε να αλλάξετε οτιδήποτε αργότερα.",
+				"workspace": "Χώρος εργασίας",
+				"project": "Πρώτο έργο",
+				"projectValue_one": "{{name}}, με {{count}} αρχική εργασία",
+				"projectValue_other": "{{name}}, με {{count}} αρχικές εργασίες",
+				"invitations": "Προσκλήσεις",
+				"invitationsValue_one": "Στάλθηκε σε {{count}} άτομο",
+				"invitationsValue_other": "Στάλθηκαν σε {{count}} άτομα",
+				"open": "Άνοιγμα του {{name}}"
+			},
+			"preview": {
+				"live": "Ζωντανή προεπισκόπηση του {{name}}",
+				"liveNoName": "Ζωντανή προεπισκόπηση",
+				"ready": "Το {{name}} είναι έτοιμο",
+				"untitled": "Ο χώρος εργασίας σας"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Ολοκλήρωση προφίλ",
+			"completeTitle": "Ολοκληρώστε το προφίλ σας",
+			"subtitle": "Παρακαλούμε εισαγάγετε το όνομά σας για να ξεκινήσετε",
+			"yourName": "Το όνομά σας",
+			"namePlaceholder": "π.χ. John Doe",
+			"saving": "Γίνεται αποθήκευση...",
+			"continue": "Συνέχεια",
+			"welcome": "Καλώς ήρθατε, {{name}}!",
+			"redirecting": "Μεταφορά στον πίνακα ελέγχου σας...",
+			"toast": {
+				"updateSuccess": "Το προφίλ ενημερώθηκε με επιτυχία",
+				"updateFailed": "Αποτυχία ενημέρωσης προφίλ"
+			},
+			"validation": {
+				"nameRequired": "Το όνομα είναι υ

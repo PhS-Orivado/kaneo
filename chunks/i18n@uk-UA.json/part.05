@@ -1,0 +1,624 @@
+y": "All {{count}} teams imported.",
+					"allImported_one": "{{count}} team imported.",
+					"allImported_other": "All {{count}} teams imported.",
+					"empty": "No teams found. Check that this key can see the teams you want to import.",
+					"found_few": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"found_many": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"found_one": "{{count}} team found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_few": "Import {{count}} teams",
+					"importButton_many": "Import {{count}} teams",
+					"importButton_one": "Import {{count}} team",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_few": "{{done}} of {{count}} teams imported",
+					"progress_many": "{{done}} of {{count}} teams imported",
+					"progress_one": "{{done}} of {{count}} team imported",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_few": "{{source}}, {{count}} teams",
+					"runTitle_many": "{{source}}, {{count}} teams",
+					"runTitle_one": "{{source}}, {{count}} team",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_few": "{{done}} of {{count}} teams imported.",
+					"someImported_many": "{{done}} of {{count}} teams imported.",
+					"someImported_one": "{{done}} of {{count}} team imported.",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Пропозиції",
+			"commands": "Команди",
+			"projects": "Проєкти",
+			"search": "Пошук",
+			"members": "Учасники",
+			"createTask": "Створити завдання",
+			"createProject": "Створити проєкт",
+			"createWorkspace": "Створити робочий простір",
+			"lightTheme": "Світла тема",
+			"darkTheme": "Темна тема",
+			"systemTheme": "Системна тема",
+			"keyboardShortcuts": "Гарячі клавіші",
+			"inputPlaceholder": "Пошук застосунків та команд...",
+			"empty": "Нічого не знайдено.",
+			"footer": {
+				"navigate": "Навігація",
+				"open": "Відкрити",
+				"close": "Закрити"
+			}
+		},
+		"sidebar": {
+			"projects": "Проєкти",
+			"members": "Учасники",
+			"invitations": "Запрошення",
+			"more": "Більше",
+			"backToBoard": "Назад до дошки",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Переглянути проєкт",
+			"shareProject": "Поділитися проєктом",
+			"projectSettings": "Налаштування проєкту",
+			"linkCopied": "Посилання на проєкт скопійовано до буфера обміну",
+			"addProject": "Додати проєкт",
+			"deleteConfirmTitle": "Видалити проєкт?",
+			"deleteConfirmDescription": "Це назавжди видалить проєкт та всі його дані. Цю дію неможливо скасувати.",
+			"deletedToast": "Проєкт видалено",
+			"deleteProject": "Видалити проєкт",
+			"switcherLabel": "Змінити проєкт або вигляд"
+		},
+		"search": {
+			"inputPlaceholder": "Пошук завдань, проєктів, коментарів...",
+			"minCharsHint": "Введіть щонайменше 3 символи для пошуку",
+			"groups": {
+				"task": "Завдання",
+				"project": "Проєкти",
+				"workspace": "Робочі простори",
+				"comment": "Коментарі",
+				"activity": "Активність",
+				"fallback": "Результати"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Перемикач бічної панелі",
+			"back": "Назад"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Вихід виконано успішно",
+			"signOutFailed": "Не вдалося вийти",
+			"unnamedUser": "Користувач",
+			"settings": "Налаштування",
+			"signingOut": "Вихід...",
+			"logOut": "Вийти"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Робочі простори",
+			"switching": "Перемикання...",
+			"addWorkspace": "Додати робочий простір",
+			"selectWorkspace": "Обрати робочий простір"
+		},
+		"page": {
+			"projectsTitle": "Проєкти",
+			"settingsTitle": "Налаштування",
+			"backToWorkspace": "Повернутися до робочого простору",
+			"settingsWorkspaceTab": "Робочий простір"
+		},
+		"projectSettings": {
+			"projectLabel": "Проєкт"
+		},
+		"keyboardShortcuts": {
+			"title": "Гарячі клавіші",
+			"subtitle": "Прискорте роботу за допомогою гарячих клавіш",
+			"searchPlaceholder": "Пошук гарячих клавіш...",
+			"footer": "Натисніть <kbd>Escape</kbd>, щоб закрити",
+			"categories": {
+				"general": "Загальні",
+				"create": "Створення",
+				"views": "Перегляди",
+				"navigation": "Навігація",
+				"quickSelect": "Швидкий вибір (у спливаючих вікнах)"
+			},
+			"items": {
+				"openCommandPalette": "Відкрити командну палітру",
+				"globalSearch": "Глобальний пошук",
+				"toggleSidebar": "Перемикач бічної панелі",
+				"showShortcuts": "Показати гарячі клавіші",
+				"closeModal": "Закрити модальне/спливаюче вікно",
+				"createTask": "Створити завдання",
+				"createProject": "Створити проєкт",
+				"createWorkspace": "Створити робочий простір",
+				"boardView": "Перемкнути на вигляд дошки",
+				"listView": "Перемкнути на вигляд списку",
+				"backlogView": "Перемкнути на вигляд беклогу",
+				"nextTask": "Наступне завдання",
+				"prevTask": "Попереднє завдання",
+				"openTask": "Відкрити обране завдання",
+				"quickSelectNumber": "Обрати варіант за номером",
+				"calendarView": "Перемкнути на вигляд календаря"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} нове",
+		"newCount_few": "{{count}} нових",
+		"newCount_many": "{{count}} нових",
+		"newCount_other": "{{count}} нових",
+		"emptyTitle": "Сповіщень ще немає",
+		"emptySubtitle": "Тут з'являтимуться оновлення та активність.",
+		"clearAll": "Очистити всі сповіщення",
+		"clearDialogTitle": "Очистити всі сповіщення?",
+		"clearDialogDescription": "Це назавжди видалить усі сповіщення. Цю дію неможливо скасувати.",
+		"events": {
+			"task_created": {
+				"title": "Створено нове завдання",
+				"content": "Завдання «{{taskTitle}}» створено"
+			},
+			"workspace_created": {
+				"title": "Робочий простір створено",
+				"content": "Ваш робочий простір «{{workspaceName}}» успішно створено"
+			},
+			"task_status_changed": {
+				"title": "Статус завдання змінено",
+				"content": "Статус завдання «{{taskTitle}}» змінено з «{{oldStatus}}» на «{{newStatus}}»"
+			},
+			"task_assignee_changed": {
+				"title": "Завдання призначено вам",
+				"content": "Вас призначено на завдання: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "Відлік часу розпочато",
+				"contentWithTask": "Відлік часу розпочато для завдання: {{taskTitle}}",
+				"contentWithoutTask": "Відлік часу розпочато для завдання"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} згадав вас",
+				"content": "{{mentionerName}} згадав вас у: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} прокоментував ваше завдання",
+				"content": "Новий коментар до {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Наближається термін завдання",
+				"content": "Термін виконання завдання {{taskTitle}} спливає через {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Завдання прострочено",
+				"content": "Дата завершення {{taskTitle}} вже минула"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} хвилина",
+			"minutes_few": "{{count}} хвилини",
+			"minutes_many": "{{count}} хвилин",
+			"minutes_other": "{{count}} хвилин",
+			"hours_one": "{{count}} година",
+			"hours_few": "{{count}} години",
+			"hours_many": "{{count}} годин",
+			"hours_other": "{{count}} годин",
+			"days_one": "{{count}} день",
+			"days_few": "{{count}} дні",
+			"days_many": "{{count}} днів",
+			"days_other": "{{count}} днів"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "призначив завдання собі",
+		"unassigned": "зняв призначення завдання",
+		"assignedTo": "призначив завдання на {{name}}",
+		"changedStatus": "змінив статус з {{from}} на {{to}}",
+		"changedPriority": "змінив пріоритет з {{from}} на {{to}}",
+		"clearedDueDate": "очистив дату завершення",
+		"setDueDate": "встановив дату завершення на {{date}}",
+		"changedDueDate": "змінив дату завершення з {{from}} на {{to}}",
+		"changedTitle": "змінив назву з «{{from}}» на «{{to}}»",
+		"githubUser": "Користувач GitHub",
+		"comment": {
+			"viewGithubProfile": "Переглянути профіль GitHub",
+			"cannotBeEmpty": "Коментар не може бути порожнім",
+			"mustBeLoggedInToEdit": "Ви повинні увійти, щоб редагувати коментарі",
+			"updated": "Коментар оновлено",
+			"failedToUpdate": "Не вдалося оновити коментар",
+			"edit": "Редагувати коментар",
+			"editPlaceholder": "Редагувати коментар...",
+			"save": "Зберегти",
+			"added": "Коментар додано",
+			"failedToAdd": "Не вдалося додати коментар",
+			"leavePlaceholder": "Залишити коментар...",
+			"attachFile": "Прикріпити файл",
+			"submitShortcut": "Надіслати коментар",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Завантаження файлів доступне лише для збережених завдань.",
+				"uploadingFile": "Завантаження файлу...",
+				"imageUploaded": "Зображення завантажено",
+				"fileAttached": "Файл прикріплено",
+				"failedToUploadFile": "Не вдалося завантажити файл",
+				"enterUrl": "Введіть URL",
+				"plaintext": "Звичайний текст",
+				"autoDetect": "Автовизначення",
+				"slashGroupText": "Текст",
+				"slashGroupLists": "Списки",
+				"slashGroupInsert": "Вставка",
+				"slashParagraph": "Текст",
+				"slashHeading": "Заголовок",
+				"slashBulletList": "Маркований список",
+				"slashTaskList": "Список справ",
+				"slashOrderedList": "Нумерований список",
+				"slashQuote": "Цитата",
+				"slashCodeBlock": "Блок коду",
+				"slashTable": "Таблиця",
+				"slashFile": "Файл",
+				"searchParagraph": "текст параграф звичайний",
+				"searchHeading": "заголовок назва h2",
+				"searchBulletList": "список маркований ненумерований",
+				"searchTaskList": "справи чеклист прапорець завдання список",
+				"searchOrderedList": "список нумерований",
+				"searchQuote": "цитата блок цитування",
+				"searchCodeBlock": "код фрагмент",
+				"searchTable": "таблиця сітка",
+				"searchFile": "файл вкладення зображення фото завантаження",
+				"embedErrorInvalidUrl": "Введіть дійсну URL-адресу",
+				"embedErrorYoutubeOnly": "Можна вбудовувати лише посилання YouTube.",
+				"embedVideo": "Вбудувати відео",
+				"keepAsLink": "Залишити як посилання",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Вставте URL",
+				"asLink": "Як посилання",
+				"embed": "Вбудувати",
+				"noCommands": "Немає команд",
+				"ariaCommentContent": "Вміст коментаря",
+				"ariaCommentEditor": "Редактор коментарів",
+				"ariaCopyCode": "Копіювати код",
+				"ariaCopied": "Скопійовано",
+				"copy": "Копіювати",
+				"copied": "Скопійовано",
+				"dropImageToUpload": "Перетягніть зображення для завантаження",
+				"previewImageAlt": "Попередній перегляд зображення",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Звичайний текст",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Вставити колонку ліворуч",
+					"addColumnAfter": "Вставити колонку праворуч",
+					"deleteColumn": "Видалити колонку",
+					"addRowBefore": "Вставити рядок вище",
+					"addRowAfter": "Вставити рядок нижче",
+					"deleteRow": "Видалити рядок",
+					"deleteTable": "Видалити таблицю"
+				},
+				"mermaid": {
+					"renderFailed": "Не вдалося відобразити діаграму Mermaid"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "прокоментував на {{forge}}"
+		},
+		"moved": "перемістив завдання з «{{from}}» до «{{to}}»",
+		"created": "створив це завдання",
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Завдання",
+		"status": {
+			"label": "Статус",
+			"to-do": "До виконання",
+			"in-progress": "В роботі",
+			"in-review": "На перевірці",
+			"done": "Готово",
+			"archived": "Архівовано",
+			"planned": "Заплановано"
+		},
+		"priority": {
+			"label": "Пріоритет",
+			"no-priority": "Без пріоритету",
+			"low": "Низький",
+			"medium": "Середній",
+			"high": "Високий",
+			"urgent": "Терміновий"
+		},
+		"boardSearchPlaceholder": "Пошук тікетів...",
+		"view": {
+			"board": "Дошка",
+			"list": "Список",
+			"backlog": "Беклог",
+			"gantt": "Ґант",
+			"heading": "Вигляд"
+		},
+		"common": {
+			"selectTask": "Обрати завдання",
+			"loadingTask": "Завантаження завдання...",
+			"taskNotFound": "Завдання не знайдено",
+			"taskNotFoundDescription": "Завдання, яке ви шукаєте, не існує або було видалено.",
+			"ticketAmbiguous": "Ідентифікатор відповідає кільком завданням",
+			"ticketAmbiguousDescription": "{{ticketId}} відповідає завданням у кількох проєктах цього робочого простору. Призначте одному з цих проєктів інший ключ, щоб посилання працювало.",
+			"ticketNotFoundDescription": "У цьому робочому просторі немає завдання з ідентифікатором {{ticketId}}, або у вас немає до нього доступу.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Підзавдання",
+			"activity": "Активність",
+			"noActivity": "Активність не знайдено",
+			"openInFullPage": "Відкрити на повну сторінку",
+			"titlePlaceholder": "Натисніть, щоб додати назву",
+			"addDescription": "Додати опис...",
+			"editor": {
+				"ariaLabel": "Редактор опису завдання",
+				"placeholder": "Напишіть опис...",
+				"previewImage": "Попередній перегляд зображення",
+				"enterUrl": "Введіть URL",
+				"autoDetect": "Автовизначення",
+				"copyCode": "Копіювати код",
+				"copy": "Копіювати",
+				"copied": "Скопійовано",
+				"attachFile": "Прикріпити файл",
+				"dropToUpload": "Перетягніть зображення для завантаження",
+				"checkbox": {
+					"markIncomplete": "Позначити завдання як незавершене",
+					"markComplete": "Позначити завдання як завершене"
+				},
+				"upload": {
+					"loading": "Завантаження файлу...",
+					"failed": "Не вдалося завантажити файл",
+					"imageSuccess": "Зображення завантажено",
+					"fileSuccess": "Файл прикріплено"
+				},
+				"slash": {
+					"groups": {
+						"text": "Текст",
+						"lists": "Списки",
+						"insert": "Вставка"
+					},
+					"empty": "Немає команд",
+					"commands": {
+						"paragraph": "Текст",
+						"heading-2": "Заголовок",
+						"bullet-list": "Маркований список",
+						"task-list": "Список справ",
+						"ordered-list": "Нумерований список",
+						"blockquote": "Цитата",
+						"code-block": "Блок коду",
+						"table": "Таблиця",
+						"file": "Файл"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Звичайний текст",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Вбудувати відео",
+						"keepAsLink": "Залишити як посилання"
+					},
+					"inputPlaceholder": "Вставте URL",
+					"embeddedContent": "Вбудований вміст",
+					"asLink": "Як посилання",
+					"submit": "Вбудувати",
+					"errors": {
+						"invalidUrl": "Введіть дійсну URL-адресу",
+						"onlyYoutube": "Можна вбудовувати лише посилання YouTube."
+					},
+					"onlyYoutubeInline": "Можна вбудовувати лише URL-адреси YouTube. Натомість використовуйте режим посилання."
+				},
+				"mermaid": {
+					"renderFailed": "Не вдалося відобразити діаграму Mermaid"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Завдання"
+		},
+		"relations": {
+			"title": "Зв'язки",
+			"tasksInProject": "Завдання в проєкті",
+			"linkError": "Не вдалося зв'язати завдання",
+			"empty": "Немає пов'язаних завдань",
+			"searchPlaceholder": "Пошук завдань для зв'язування...",
+			"noTasksFound": "Завдання не знайдено",
+			"openTask": "Відкрити завдання",
+			"removeRelation": "Видалити зв'язок",
+			"related": "Пов'язано",
+			"blocks": "Блокує",
+			"selectTask": "Обрати завдання для зв'язування",
+			"types": {
+				"blocks": "блокує",
+				"related": "пов'язано з",
+				"blocked_by": "заблоковано"
+			}
+		},
+		"subtasks": {
+			"title": "Підзавдання",
+			"inputPlaceholder": "Назва підзавдання...",
+			"addAction": "Додати",
+			"empty": "Підзавдань ще немає",
+			"createError": "Не вдалося створити підзавдання",
+			"deleteSuccess": "Завдання успішно видалено",
+			"deleteError": "Не вдалося видалити завдання",
+			"deleteDialogTitle": "Видалити завдання?",
+			"deleteDialogDescription": "Це назавжди видалить завдання та всі його дані. Цю дію неможливо скасувати.",
+			"deleteAction": "Видалити завдання",
+			"completeAria": "Позначити підзавдання виконаним",
+			"progress": "Виконано підзавдань: {{completed}} із {{total}}",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Властивості",
+			"labels": "Мітки",
+			"copyTaskLink": "Копіювати посилання на завдання",
+			"copyTaskBranch": "Копіювати гілку завдання",
+			"taskLinkCopied": "Посилання на завдання скопійовано",
+			"taskBranchCopied": "Назву гілки скопійовано",
+			"start": "Початок",
+			"startDate": "Дата початку",
+			"noDate": "Немає дати"
+		},
+		"move": {
+			"title": "Перемістити завдання",
+			"projectLabel": "Цільовий проєкт",
+			"projectPlaceholder": "Обрати проєкт",
+			"statusLabel": "Цільовий статус",
+			"statusHintKeep": "Робочий процес цього проєкту вже підтримує поточний статус.",
+			"statusHintAdjust": "Оберіть стату

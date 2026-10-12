@@ -1,0 +1,195 @@
+",
+		"download": "下載",
+		"screenshotsTitle": "截圖",
+		"lightScreenshot": "看板（淺色）",
+		"lightScreenshotAlt": "淺色主題的 Kaneo 看板，任務卡片依狀態排列",
+		"darkScreenshot": "看板（深色）",
+		"darkScreenshotAlt": "深色主題的 Kaneo 看板，任務卡片依狀態排列",
+		"contactTitle": "媒體洽詢",
+		"contactBody": "若有產品問題、訪談或需要其他素材，歡迎聯絡 Kaneo 團隊。",
+		"usageContrast": "深色背景請使用淺色字標，淺色背景請使用深色字標。",
+		"usageProportions": "請維持原始比例與色彩，不要拉伸或加上特效。",
+		"usageSpace": "請在標誌周圍保留足夠空間，確保清晰易讀。",
+		"darkListScreenshot": "清單（深色）",
+		"darkListScreenshotAlt": "深色主題的 Kaneo 任務清單，依狀態分組，並顯示負責人、優先順序、標籤與截止日期",
+		"darkTaskScreenshot": "任務詳細資料（深色）",
+		"darkTaskScreenshotAlt": "深色主題的 Kaneo 任務詳細資料，包含說明、檢查清單、團隊留言與任務屬性",
+		"darkTimelineScreenshot": "時間軸（深色）",
+		"darkTimelineScreenshotAlt": "深色主題的 Kaneo 甘特圖時間軸，顯示已排程的任務及其期間",
+		"lightListScreenshot": "清單（淺色）",
+		"lightListScreenshotAlt": "淺色主題的 Kaneo 任務清單，依狀態分組，並顯示負責人、優先順序、標籤與截止日期",
+		"lightTaskScreenshot": "任務詳細資料（淺色）",
+		"lightTaskScreenshotAlt": "淺色主題的 Kaneo 任務詳細資料，包含說明、檢查清單、團隊留言與任務屬性",
+		"lightTimelineScreenshot": "時間軸（淺色）",
+		"lightTimelineScreenshotAlt": "淺色主題的 Kaneo 甘特圖時間軸，顯示已排程的任務及其期間"
+	},
+	"landing": {
+		"sponsors": {
+			"ciSponsor": "合作夥伴"
+		},
+		"founder": {
+			"title": "Kaneo 為什麼存在",
+			"intro": "我是 Andrej，我創立 Kaneo，是因為受夠了那些礙事多過幫忙的專案管理工具。多年來使用臃腫又過度複雜、讓人無法專心做事的平台後，我知道一定有更好的方式。",
+			"problem": "這些工具的問題不是功能不夠，而是太多。每一則通知、每一個多餘的按鈕、每一道複雜的流程，都把我的團隊從真正重要的事情上拉開：做出優秀的產品。",
+			"principle": "我相信最好的工具是隱形的。它們應該放大團隊原本的工作方式，不該逼你去適應它們的流程。Kaneo 建立在「少即是多」的原則上：每個功能都是為了解決真實的問題才存在，不為展示時好看。"
+		},
+		"hero": {
+			"cloudCta": "試用 Kaneo Cloud",
+			"selfHostCta": "自行架設 Kaneo",
+			"trialNote": "14 天雲端試用，無需信用卡。",
+			"github": "GitHub",
+			"productHunt": "Product Hunt",
+			"title": "專案管理，",
+			"titleAccent": "別讓它變成另一個專案。",
+			"description": "開源專案管理工具，提供看板、甘特圖與 GitHub 整合。可免費自行架設且內建 SSO，或交給 Kaneo Cloud 代管。"
+		},
+		"navigation": {
+			"product": "產品",
+			"pricing": "價格",
+			"resources": "資源",
+			"docs": "文件",
+			"blog": "部落格",
+			"guides": "指南",
+			"comparisons": "工具比較",
+			"roadmap": "路線圖",
+			"menu": "選單",
+			"closeMenu": "關閉選單",
+			"home": "Kaneo 首頁",
+			"signIn": "登入",
+			"getStarted": "開始使用",
+			"community": "社群"
+		},
+		"showcase": {
+			"label": "Kaneo 產品檢視",
+			"controls": "選擇產品檢視",
+			"play": "播放產品檢視",
+			"pause": "暫停產品檢視",
+			"board": "看板",
+			"list": "待辦事項",
+			"gantt": "甘特圖"
+		},
+		"features": {
+			"tasks": {
+				"label": "子任務與脈絡",
+				"title": "大任務，清楚的下一步。",
+				"description": "把工作拆成子任務、逐一指派，並在追蹤進度的同時不遺失原始需求。所有細節都跟著工作走。"
+			},
+			"github": {
+				"label": "GitHub 整合",
+				"title": "從 Pull Request 到完成。",
+				"description": "Issue 與標籤雙向同步。連結的 Pull Request 會隨著程式碼開啟與合併，帶動任務經過審查直到完成。",
+				"link": "設定 GitHub"
+			},
+			"hosting": {
+				"title": "在你自己的伺服器上執行。",
+				"description": "使用 Docker 部署，把工作區放在你能掌控的基礎設施上。",
+				"link": "自行架設 Kaneo"
+			},
+			"source": {
+				"title": "程式碼也是開放的。",
+				"description": "閱讀原始碼、回報問題，或貢獻修改。開發全在 GitHub 上。",
+				"link": "檢視原始碼"
+			},
+			"preview": {
+				"taskAlt": "可互動的 Kaneo 任務與子任務預覽。",
+				"githubAlt": "可互動的預覽，示範 GitHub 合併如何更新 Kaneo 任務。",
+				"taskTitle": "發布全新首頁",
+				"taskDescription": "在下次發版前更新文案並檢查版面。",
+				"checklistDone": "審閱文案",
+				"checklistOpen": "檢查行動版版面",
+				"inProgress": "進行中",
+				"high": "高",
+				"date": "10 月 12 日",
+				"design": "設計",
+				"done": "完成",
+				"relationsAlt": "可互動的 Kaneo 任務相依性預覽。",
+				"inReview": "審查中",
+				"trySubtasks": "試著勾選一個子任務。",
+				"tryGithub": "預覽一次合併，看看任務如何更新。",
+				"tryRelations": "開啟連結的任務，沿著關聯查看。",
+				"mergeAction": "預覽合併",
+				"resetAction": "重設預覽",
+				"mergedHint": "Pull Request 已合併，任務已移至完成。",
+				"progress": "已完成 {{completed}} / {{total}} 個子任務",
+				"backToTask": "返回首頁任務",
+				"releaseNotes": "撰寫發行說明",
+				"dependencyDescription": "首頁正在等待行動版審查。請保留連結的發行說明以便參考。",
+				"mobileDescription": "在上線前，先在窄螢幕上檢查新首頁。",
+				"notesDescription": "記下這次變更，用於發表公告。"
+			},
+			"relations": {
+				"label": "連結任務與相依性",
+				"title": "看清楚是什麼卡住了進度。",
+				"description": "連結阻擋項目、追蹤相依性，並讓相關工作靠近彼此。開啟連結的任務，就能看到下一步背後的脈絡。"
+			}
+		},
+		"seo": {
+			"title": "Kaneo：開源、可自行架設的專案管理工具",
+			"description": "開源專案管理工具，提供看板、甘特圖與 GitHub 整合。可免費自行架設且內建 SSO，或使用 Kaneo Cloud。"
+		},
+		"resources": {
+			"eyebrow": "專屬於你的工具",
+			"title": "從試用到上手，一條清楚的路。",
+			"description": "架設你的伺服器、連接你的工具，或將 Kaneo 與你目前的追蹤工具比較。",
+			"docker": {
+				"title": "使用 Docker 自行架設",
+				"description": "在你掌控的環境中安裝、備份與更新。"
+			},
+			"sso": {
+				"title": "使用你自己的身分提供者",
+				"description": "在免費的自架版本中設定 OIDC 單一登入。"
+			},
+			"mcp": {
+				"title": "連接你的 AI 工具",
+				"description": "透過 AI 用戶端，使用 MCP 處理任務與專案。"
+			},
+			"linear": {
+				"title": "比較 Kaneo 與 Linear",
+				"description": "看看在託管、授權與工作流程上的差異。"
+			}
+		},
+		"product": {
+			"title": "開始之前",
+			"description": "關於託管、規劃與串連團隊的實用細節。",
+			"overview": "Kaneo 是採用 MIT 授權的開源專案管理平台，提供看板、待辦事項、甘特圖與行事曆檢視、自訂欄位、時間追蹤與 GitHub 整合。可自行架設在你的基礎設施上，也可使用 Kaneo Cloud。",
+			"hosting": {
+				"question": "Kaneo 可以免費自行架設嗎？",
+				"answer": "可以。Kaneo 採用 MIT 授權，可免費自行架設，且內建單一登入。你可以用 Docker Compose 將應用程式與 PostgreSQL 一起執行，或使用官方 Helm chart 部署。基礎設施、更新與備份由你自行管理。",
+				"link": "閱讀安裝指南"
+			},
+			"planning": {
+				"question": "Kaneo 有甘特圖嗎？",
+				"answer": "有。Kaneo 除了看板、清單與待辦事項規劃之外，也提供甘特圖與行事曆檢視。你可以運用任務的開始日期與截止日期，在時間軸上規劃工作。預算、基準線比較與衝刺燃盡報表目前不在支援範圍內。",
+				"link": "比較規劃功能"
+			},
+			"sso": {
+				"question": "有內建單一登入嗎？",
+				"answer": "有。免費的自架版本支援 Google、GitHub、Discord，以及自訂的 OAuth/OIDC 提供者。在你的執行個體上設定提供者即可，不需要另外購買 Kaneo 版本。",
+				"link": "設定 OIDC"
+			},
+			"agents": {
+				"question": "AI 用戶端可以搭配 Kaneo 使用嗎？",
+				"answer": "可以。Kaneo 透過 @kaneo/mcp 套件與 HTTP 端點提供 MCP 伺服器。相容的 AI 用戶端可以使用綁定使用者的 API 金鑰讀取與更新任務，並受工作區權限限制。",
+				"link": "閱讀 MCP 指南"
+			}
+		},
+		"comparison": {
+			"feature": "功能",
+			"yes": "是",
+			"no": "否"
+		},
+		"selfHostingGuide": {
+			"summary": "說明自行架設需要做什麼，並附上維護中的 Docker Compose 設定與安裝步驟連結。",
+			"answer": "要自行架設 Kaneo，請用 Docker Compose 執行應用程式與 PostgreSQL，設定公開網址與密鑰，並在前面放一層 TLS 反向代理。安裝指南指定至少需要 2 GB 記憶體與 10 GB 磁碟空間。請規劃後續的更新、資料庫備份，以及上傳檔案的儲存空間。",
+			"requirements": "文件所列的最低需求為 2 GB 記憶體與 10 GB 磁碟空間，並需要 Docker 20.10 以上版本與 Docker Compose V2。請依你的工作負載、資料庫成長與上傳檔案預留更多容量。",
+			"compose": "請使用 Docker Compose 指南中維護的 compose.yml。其中定義了 PostgreSQL、持久化的資料庫磁碟區、Kaneo 應用程式與健康檢查。啟動服務前請先設定環境檔；正式環境建議固定映像檔版本，以便有計畫地更新。",
+			"backups": "請同時備份 PostgreSQL 與上傳所使用的任何物件儲存。依團隊能承受多少工作損失來決定備份頻率，把副本存放在應用程式伺服器之外，並在需要之前先測試還原。",
+			"worth": "當你需要掌控基礎設施與資料，且有人能負責維護時，自行架設就很合適。與託管服務比較成本時，請把伺服器容量、儲存空間、備份與維護時間一併計入。",
+			"minimum": "安裝指南指定需要 Docker 20.10 以上版本、Docker Compose V2、至少 2 GB 記憶體與 10 GB 磁碟空間。Compose 設定已包含 PostgreSQL。單一 API 執行個體時，Redis 為選用。",
+			"composeLink": "Docker Compose 設定",
+			"composeLinkDescription": "維護中的 compose.yml，包含持久化儲存與健康檢查。",
+			"startLink": "啟動並驗證服務",
+			"startLinkDescription": "啟動整個堆疊、檢視狀態，並確認應用程式可用。"
+		}
+	}
+}

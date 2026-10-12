@@ -1,0 +1,588 @@
+plo.com/webhooks/kaneo",
+			"webhookSecretPlaceholder": "Segredo compartilhado opcional",
+			"webhookSecretHintConfigured": "Um segredo de assinatura já está configurado ({{masked}}). Digite um novo para substituí-lo.",
+			"webhookSecretHintOptional": "Opcional. O Kaneo assina o corpo da requisição quando um segredo é definido.",
+			"connectWebhook": "Conectar webhook",
+			"workspaceRulesTitle": "Regras de envio do espaço de trabalho",
+			"workspaceRulesDescription": "Reutilize seus canais globais e decida quais espaços de trabalho e projetos podem enviar notificações da conta.",
+			"workspaceCardHint": "Escolha quais canais este espaço de trabalho pode usar para notificações da conta.",
+			"workspaceEnabledLabel": "Ativar notificações para {{workspaceName}}",
+			"eventPreferencesTitle": "Notificar sobre",
+			"eventPreferencesDescription": "Escolha quais eventos de tarefa criam notificações no aplicativo e podem ser entregues aos seus canais conectados.",
+			"eventTaskAssignments": "Atribuições de tarefas",
+			"eventComments": "Comentários e menções",
+			"eventCommentsHint": "Inclui novos comentários em tarefas atribuídas a você e menções diretas com @.",
+			"eventStatusChanges": "Mudanças de status da tarefa",
+			"eventDueDateReminders": "Lembretes de vencimento",
+			"reminderLeadTimeLabel": "Avisar antes da data de vencimento",
+			"reminderLeadTimeHint": "Entre 1 hora e 30 dias antes. Notificações de atraso são enviadas separadamente.",
+			"reminderLeadTimeUnitHours": "Horas",
+			"reminderLeadTimeUnitDays": "Dias",
+			"reminderLeadTimeInvalid": "Digite um número inteiro entre 1 e {{max}}.",
+			"saveEventPreferences": "Salvar tipos de notificação",
+			"workspaceCardLabelEmail": "E-mail",
+			"workspaceCardLabelNtfy": "ntfy",
+			"workspaceCardLabelGotify": "Gotify",
+			"workspaceCardLabelWebhook": "Webhook personalizado",
+			"emailChannelHintEnabled": "Enviar notificações correspondentes do espaço de trabalho por e-mail.",
+			"emailChannelHintDisabled": "Configure e ative o e-mail globalmente primeiro.",
+			"ntfyChannelHintEnabled": "Enviar notificações correspondentes do espaço de trabalho para o ntfy.",
+			"ntfyChannelHintDisabled": "Configure e ative o ntfy globalmente primeiro.",
+			"gotifyChannelHintEnabled": "Enviar notificações correspondentes do espaço de trabalho para o Gotify.",
+			"gotifyChannelHintDisabled": "Configure e ative o Gotify globalmente primeiro.",
+			"webhookChannelHintEnabled": "Enviar notificações correspondentes do espaço de trabalho para o seu webhook.",
+			"webhookChannelHintDisabled": "Configure e ative o webhook globalmente primeiro.",
+			"projectScope": "Escopo do projeto",
+			"projectScopeDescription": "Todos os projetos são incluídos por padrão. Restrinja se este espaço de trabalho deve enviar notificações apenas de projetos selecionados.",
+			"allProjects": "Todos os projetos",
+			"allProjectsDescription": "Entregar notificações de todos os projetos deste espaço de trabalho.",
+			"selectedProjects": "Projetos selecionados",
+			"selectedProjectsDescription": "Entregar notificações somente dos projetos escolhidos.",
+			"noProjectsInWorkspace": "Ainda não há projetos disponíveis para este espaço de trabalho.",
+			"createRule": "Criar regra",
+			"removeRule": "Remover regra",
+			"toastEmailSaved": "Configurações de notificação por e-mail salvas",
+			"toastEmailSaveFailed": "Falha ao salvar configurações de e-mail",
+			"toastNtfySaved": "Configurações do ntfy salvas",
+			"toastNtfySaveFailed": "Falha ao salvar configurações do ntfy",
+			"toastNtfyDisconnected": "ntfy desconectado",
+			"toastNtfyDisconnectFailed": "Falha ao desconectar o ntfy",
+			"toastGotifySaved": "Configurações do Gotify salvas",
+			"toastGotifySaveFailed": "Falha ao salvar configurações do Gotify",
+			"toastGotifyDisconnected": "Gotify desconectado",
+			"toastGotifyDisconnectFailed": "Falha ao desconectar o Gotify",
+			"toastWebhookSaved": "Configurações do webhook salvas",
+			"toastWebhookSaveFailed": "Falha ao salvar configurações do webhook",
+			"toastWebhookDisconnected": "Webhook desconectado",
+			"toastWebhookDisconnectFailed": "Falha ao desconectar o webhook",
+			"toastRuleSaved": "Regra de notificação salva para {{workspaceName}}",
+			"toastRuleSaveFailed": "Falha ao salvar regra de notificação do espaço de trabalho",
+			"toastRuleRemoved": "Regra de notificação removida para {{workspaceName}}",
+			"toastRuleRemoveFailed": "Falha ao remover regra de notificação do espaço de trabalho",
+			"toastPreferencesSaved": "Preferências de notificação salvas",
+			"toastPreferencesSaveFailed": "Falha ao salvar preferências de notificação",
+			"toastRuleSavedGeneric": "Regra de notificação do espaço de trabalho salva",
+			"toastRuleRemovedGeneric": "Regra de notificação do espaço de trabalho removida",
+			"recipientHint": "Comentários e alterações de status notificam você sobre tarefas atribuídas a você. Menções notificam o membro selecionado. Seus próprios comentários, menções e alterações de status não enviam notificações a você."
+		},
+		"preferencesPage": {
+			"title": "Preferências",
+			"subtitle": "Personalize sua experiência no Kaneo.",
+			"appearanceTitle": "Aparência",
+			"appearanceSubtitle": "Configurações visuais e preferências de layout.",
+			"theme": "Tema",
+			"themeDescription": "Escolha seu esquema de cores preferido",
+			"selectTheme": "Selecione um tema",
+			"themeLight": "Claro",
+			"themeDark": "Escuro",
+			"themeSystem": "Sistema",
+			"language": "Idioma",
+			"languageDescription": "Escolha o idioma preferido da interface",
+			"selectLanguage": "Selecione um idioma",
+			"firstDayOfWeek": "Primeiro dia da semana",
+			"firstDayOfWeekDescription": "Escolha em qual dia os calendários e intervalos semanais começam",
+			"selectFirstDayOfWeek": "Selecione o primeiro dia",
+			"weekStartsOnSunday": "Domingo",
+			"weekStartsOnMonday": "Segunda-feira",
+			"weekStartsOnSaturday": "Sábado",
+			"defaultView": "Visualização padrão",
+			"defaultViewDescription": "Escolha o modo de visualização de tarefas preferido",
+			"selectViewMode": "Selecione um modo de visualização",
+			"board": "Quadro",
+			"list": "Lista",
+			"gantt": "Gantt",
+			"sidebarDefault": "Barra lateral padrão",
+			"sidebarDefaultDescription": "Manter a barra lateral expandida ao iniciar",
+			"displayOptions": "Opções de exibição",
+			"displayOptionsDescription": "Escolha quais informações mostrar nas visualizações de tarefas",
+			"taskNumbers": "Números das tarefas",
+			"taskNumbersDescription": "Mostrar IDs e números das tarefas",
+			"assignees": "Responsáveis",
+			"assigneesDescription": "Mostrar quem está atribuído às tarefas",
+			"dueDates": "Datas de vencimento",
+			"dueDatesDescription": "Exibir prazos das tarefas",
+			"labels": "Etiquetas",
+			"labelsDescription": "Mostrar etiquetas e marcadores das tarefas",
+			"priority": "Prioridade",
+			"priorityDescription": "Exibir indicadores de prioridade",
+			"projectBackgrounds": "Project backgrounds",
+			"projectBackgroundsDescription": "Show project background images on boards"
+		},
+		"developerPage": {
+			"pageTitle": "Configurações de desenvolvedor",
+			"title": "Configurações de desenvolvedor",
+			"subtitle": "Gerencie suas chaves de API e recursos de desenvolvedor.",
+			"apiKeysCardTitle": "Chaves de API",
+			"apiKeysCardDescription": "Crie e gerencie chaves de API para acesso programático ao Kaneo.",
+			"createApiKey": "Criar chave de API",
+			"unnamedKey": "Chave sem nome"
+		},
+		"apiKey": {
+			"createdModal": {
+				"title": "Chave de API criada",
+				"description": "Sua chave de API \"{{keyName}}\" foi criada com sucesso.",
+				"yourApiKey": "Sua chave de API",
+				"copy": "Copiar",
+				"copied": "Copiado",
+				"toastCopied": "Chave de API copiada para a área de transferência",
+				"alertTitle": "Sucesso! Sua chave de API foi criada",
+				"alertDescription": "Copie esta chave agora. Você não poderá vê-la novamente.",
+				"done": "Concluído",
+				"copyToContinue": "Copie a chave para continuar"
+			},
+			"table": {
+				"loading": "Carregando chaves de API...",
+				"empty": "Ainda não há chaves de API. Crie uma para começar.",
+				"columnName": "Nome",
+				"columnKey": "Chave",
+				"columnCreated": "Criada",
+				"columnExpires": "Expira",
+				"columnActions": "Ações",
+				"unnamedKey": "Chave sem nome",
+				"expiredBadge": "Expirada {{label}}",
+				"deleteConfirmTitle": "Excluir chave de API?",
+				"deleteConfirmDescription": "Esta ação não pode ser desfeita. Isso excluirá permanentemente {{name}}.",
+				"deleteFallbackName": "esta chave de API",
+				"delete": "Excluir",
+				"deleting": "Excluindo...",
+				"deleteAria": "Excluir {{name}}",
+				"deleteAriaFallback": "chave de API",
+				"toastDeleted": "Chave de API excluída com sucesso",
+				"toastDeleteError": "Falha ao excluir chave de API"
+			},
+			"createDialog": {
+				"title": "Criar chave de API",
+				"description": "Crie uma nova chave de API para acessar a API do Kaneo de forma programática.",
+				"nameLabel": "Nome",
+				"namePlaceholder": "Minha chave de API",
+				"nameDescription": "Um nome descritivo para esta chave de API",
+				"expirationLabel": "Expiração",
+				"expirationPlaceholder": "Selecionar expiração",
+				"expirationDescription": "Escolha por quanto tempo esta chave de API deve permanecer válida. \"Nunca\" criará uma chave sem expiração automática.",
+				"expiration1d": "1 dia",
+				"expiration7d": "7 dias",
+				"expiration30d": "30 dias",
+				"expiration90d": "90 dias",
+				"expirationNever": "Nunca",
+				"create": "Criar",
+				"creating": "Criando...",
+				"failedCreate": "Falha ao criar chave de API",
+				"validation": {
+					"nameRequired": "O nome é obrigatório",
+					"nameShort": "O nome deve ter pelo menos 3 caracteres",
+					"expirationRequired": "A expiração é obrigatória"
+				}
+			}
+		},
+		"workspaceGeneral": {
+			"pageTitle": "Configurações gerais",
+			"title": "Configurações gerais",
+			"subtitle": "Gerencie o nome e a descrição do seu espaço de trabalho.",
+			"workspaceInfoTitle": "Informações do espaço de trabalho",
+			"workspaceInfoSubtitle": "Configure os detalhes e preferências do seu espaço de trabalho.",
+			"nameLabel": "Nome do espaço de trabalho",
+			"nameHint": "O nome do seu espaço de trabalho",
+			"namePlaceholder": "Digite o nome do espaço de trabalho",
+			"descriptionLabel": "Descrição",
+			"descriptionHint": "Uma breve descrição do seu espaço de trabalho",
+			"descriptionPlaceholder": "Digite a descrição do espaço de trabalho",
+			"dangerZone": "Zona de perigo",
+			"dangerZoneSubtitle": "Ações irreversíveis e destrutivas.",
+			"deleteWorkspace": "Excluir espaço de trabalho",
+			"deleteWorkspaceDescription": "Agendar exclusão permanente do espaço de trabalho",
+			"deleteModalTitle": "Excluir espaço de trabalho?",
+			"deleteModalDescription": "Isso excluirá permanentemente o espaço de trabalho \"{{name}}\" e todos os seus dados. Esta ação não pode ser desfeita.",
+			"deleteModalConfirm": "Excluir espaço de trabalho",
+			"toastUpdated": "Espaço de trabalho atualizado com sucesso",
+			"toastUpdateError": "Falha ao atualizar espaço de trabalho",
+			"toastDeleted": "Espaço de trabalho excluído com sucesso",
+			"toastDeleteError": "Falha ao excluir espaço de trabalho",
+			"validation": {
+				"nameRequired": "O nome do espaço de trabalho é obrigatório",
+				"nameShort": "O nome do espaço de trabalho deve ter pelo menos 2 caracteres"
+			},
+			"transferOwnership": {
+				"toastSuccess": "Propriedade transferida",
+				"toastError": "Falha ao transferir propriedade",
+				"title": "Transferir propriedade",
+				"subtitle": "Transfira este espaço de trabalho para outro membro. Você será rebaixado a administrador e perderá as permissões exclusivas de proprietário.",
+				"pickerLabel": "Novo proprietário",
+				"noEligibleMembers": "Convide pelo menos um outro membro antes de poder transferir a propriedade.",
+				"pickerHint": "Ele se tornará o único proprietário deste espaço de trabalho.",
+				"pickerPlaceholder": "Selecione um membro",
+				"button": "Transferir",
+				"dialogTitle": "Transferir propriedade?",
+				"dialogDescription": "{{name}} se tornará o único proprietário de {{workspace}}. Você manterá o acesso de administrador, mas perderá as permissões exclusivas de proprietário, como excluir o espaço de trabalho ou transferi-lo novamente.",
+				"transferring": "Transferindo…",
+				"confirm": "Transferir propriedade"
+			}
+		},
+		"workspaceRoles": {
+			"pageTitle": "Funções",
+			"title": "Funções",
+			"subtitle": "Defina quais ações os membros podem realizar em {{workspaceName}}.",
+			"thisWorkspace": "este espaço de trabalho",
+			"noAccess": "Você precisa de permissões de administrador ou proprietário para gerenciar funções do espaço de trabalho.",
+			"sectionTitle": "Funções do espaço de trabalho",
+			"sectionSubtitle": "Edite as funções padrão ou adicione uma personalizada. Os membros mantêm o nome da função atribuída após as edições.",
+			"newRole": "Nova função",
+			"loading": "Carregando…",
+			"loadError": "Falha ao carregar funções.",
+			"emptyTitle": "Ainda não há funções",
+			"emptyDescription": "As funções padrão aparecerão aqui assim que forem criadas para este espaço de trabalho.",
+			"defaultBadge": "Padrão",
+			"permissionCount_one": "{{count}} permissão",
+			"permissionCount_other": "{{count}} permissões",
+			"nameLabel": "Nome",
+			"nameHint": "Minúsculas. Não pode ser alterado depois.",
+			"namePlaceholder": "ex.: revisor",
+			"discard": "Descartar",
+			"createRole": "Criar função",
+			"deleteRole": "Excluir função",
+			"defaultRoleHelp": "Função padrão: o nome é reservado e a linha não pode ser excluída.",
+			"unsavedChanges": "Você tem alterações não salvas",
+			"allChangesSaved": "Todas as alterações foram salvas",
+			"saveChanges": "Salvar alterações",
+			"defaultRoleDescriptions": {
+				"viewer": "Pode visualizar e comentar em tarefas.",
+				"member": "Pode criar e gerenciar tarefas e projetos.",
+				"admin": "Tem acesso total ao espaço de trabalho."
+			},
+			"resources": {
+				"project": "Projetos",
+				"task": "Tarefas",
+				"label": "Etiquetas",
+				"workspace": "Espaço de trabalho",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Criar",
+						"description": "Pode criar novos projetos"
+					},
+					"read": {
+						"label": "Ler",
+						"description": "Pode visualizar projetos"
+					},
+					"update": {
+						"label": "Atualizar",
+						"description": "Pode editar configurações do projeto"
+					},
+					"delete": {
+						"label": "Excluir",
+						"description": "Pode excluir projetos"
+					},
+					"share": {
+						"label": "Compartilhar",
+						"description": "Pode compartilhar projetos"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Criar",
+						"description": "Pode criar tarefas"
+					},
+					"read": {
+						"label": "Ler",
+						"description": "Pode visualizar tarefas"
+					},
+					"update": {
+						"label": "Atualizar",
+						"description": "Pode editar tarefas"
+					},
+					"delete": {
+						"label": "Excluir",
+						"description": "Pode excluir tarefas"
+					},
+					"assign": {
+						"label": "Atribuir",
+						"description": "Pode atribuir tarefas a membros"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Criar",
+						"description": "Pode criar etiquetas"
+					},
+					"read": {
+						"label": "Ler",
+						"description": "Pode visualizar etiquetas"
+					},
+					"update": {
+						"label": "Atualizar",
+						"description": "Pode editar etiquetas"
+					},
+					"delete": {
+						"label": "Excluir",
+						"description": "Pode excluir etiquetas"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Ler",
+						"description": "Pode visualizar configurações do espaço de trabalho"
+					},
+					"update": {
+						"label": "Atualizar",
+						"description": "Pode atualizar configurações do espaço de trabalho"
+					},
+					"delete": {
+						"label": "Excluir",
+						"description": "Pode excluir o espaço de trabalho"
+					},
+					"manage_settings": {
+						"label": "Gerenciar configurações",
+						"description": "Pode gerenciar configurações do espaço de trabalho"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "O nome da função é obrigatório",
+				"nameExists": "Já existe uma função com esse nome",
+				"permissionRequired": "Pelo menos uma permissão deve ser selecionada"
+			},
+			"toast": {
+				"created": "Função criada",
+				"createError": "Falha ao criar função",
+				"updated": "Função atualizada",
+				"updateError": "Falha ao atualizar função",
+				"deleted": "Função excluída",
+				"deleteError": "Falha ao excluir função"
+			},
+			"deleteDialog": {
+				"title": "Excluir função",
+				"description": "Isso excluirá permanentemente a função \"{{role}}\". Os membros atribuídos a esta função perderão suas permissões."
+			},
+			"permissionCount_many": "{{count}} permissões"
+		},
+		"workspaceLabels": {
+			"pageTitle": "Configurações de etiquetas",
+			"title": "Etiquetas",
+			"subtitle": "Crie, edite e exclua etiquetas do espaço de trabalho.",
+			"cardDescription": "Gerencie as etiquetas que podem ser atribuídas às tarefas.",
+			"createLabel": "Criar etiqueta",
+			"editLabel": "Editar etiqueta",
+			"deleteLabel": "Excluir",
+			"saveLabel": "Salvar",
+			"nameLabel": "Nome da etiqueta",
+			"namePlaceholder": "Digite o nome da etiqueta",
+			"colorLabel": "Cor",
+			"createDescription": "Crie uma nova etiqueta que pode ser usada nas tarefas deste espaço de trabalho.",
+			"editDescription": "Atualize o nome ou a cor desta etiqueta.",
+			"deleteConfirmTitle": "Excluir esta etiqueta?",
+			"deleteConfirmDescription": "Isso removerá permanentemente esta etiqueta de todas as tarefas. Esta ação não pode ser desfeita.",
+			"empty": "Ainda não há etiquetas. Crie sua primeira etiqueta para começar.",
+			"createSuccess": "Etiqueta criada",
+			"updateSuccess": "Etiqueta atualizada",
+			"deleteSuccess": "Etiqueta excluída",
+			"createError": "Falha ao criar etiqueta",
+			"updateError": "Falha ao atualizar etiqueta",
+			"deleteError": "Falha ao excluir etiqueta",
+			"nameRequired": "O nome da etiqueta é obrigatório",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"projectGeneral": {
+			"pageTitle": "Configurações do projeto",
+			"title": "Configurações gerais",
+			"subtitle": "Gerencie o nome, a chave, o ícone e a descrição do seu projeto.",
+			"projectInfoTitle": "Informações do projeto",
+			"projectInfoSubtitle": "Configure os detalhes e preferências do seu projeto.",
+			"iconLabel": "Ícone",
+			"iconHint": "Exibido na barra lateral e nas superfícies do projeto.",
+			"pickIconTitle": "Escolher ícone",
+			"searchIconsPlaceholder": "Buscar ícones...",
+			"projectNameLabel": "Nome do projeto",
+			"projectNameHint": "O nome do seu projeto",
+			"projectNamePlaceholder": "Digite o nome do projeto",
+			"keyLabel": "Chave",
+			"keyHint": "Usado para IDs de tickets (ex.: {{slug}}-123)",
+			"keyPlaceholder": "PRO",
+			"descriptionLabel": "Descrição",
+			"descriptionHint": "Uma breve descrição do seu projeto",
+			"descriptionPlaceholder": "Digite a descrição do projeto",
+			"dangerZone": "Zona de perigo",
+			"dangerZoneSubtitle": "Ações irreversíveis e destrutivas.",
+			"deleteProject": "Excluir projeto",
+			"deleteProjectDescription": "Agendar exclusão permanente do projeto",
+			"deleteModalTitle": "Excluir projeto?",
+			"deleteModalDescription": "Isso excluirá permanentemente o projeto \"{{name}}\" e todos os seus dados. Esta ação não pode ser desfeita.",
+			"deleteModalConfirm": "Excluir projeto",
+			"toastUpdated": "Projeto atualizado com sucesso",
+			"toastUpdateError": "Falha ao atualizar projeto",
+			"toastDeleted": "Projeto excluído com sucesso",
+			"toastDeleteError": "Falha ao excluir projeto",
+			"validation": {
+				"nameRequired": "O nome do projeto é obrigatório",
+				"keyRequired": "A chave é obrigatória",
+				"keyMax": "A chave deve ter no máximo 8 caracteres",
+				"iconRequired": "O ícone é obrigatório"
+			},
+			"importExportTasks": "Importar/Exportar",
+			"importExportTasksDescription": "Importe e exporte tarefas.",
+			"backgroundHint": "Choose an image shown behind this project's board.",
+			"backgroundLabel": "Board background",
+			"backgroundRemove": "Remove image",
+			"backgroundRemoveError": "Failed to remove project background",
+			"backgroundRemoveSuccess": "Project background removed",
+			"backgroundReplace": "Replace image",
+			"backgroundUpload": "Upload image",
+			"backgroundUploadError": "Failed to update project background",
+			"backgroundUploadSuccess": "Project background updated",
+			"moveModalConfirm": "Mover projeto",
+			"moveModalDescription": "Isso moverá o projeto \"{{name}}\" e todas as suas tarefas para \"{{workspace}}\". As tarefas atribuídas a pessoas que não são membros desse espaço de trabalho ficarão sem responsável, e as inscrições de notificação deste projeto serão removidas.",
+			"moveModalTitle": "Mover projeto?",
+			"moveProject": "Mover para outro espaço de trabalho",
+			"moveProjectAction": "Mover",
+			"moveProjectDescription": "Mova este projeto, com todas as suas tarefas, para outro espaço de trabalho.",
+			"moveProjectPlaceholder": "Selecione um espaço de trabalho",
+			"toastMoved": "Projeto movido com sucesso",
+			"toastMovedWithUnassigned": "Projeto movido com sucesso. {{taskCount}} tarefa(s) ficaram sem responsável.",
+			"toastMoveError": "Falha ao mover o projeto",
+			"moveTargetsError": "Não foi possível verificar para quais workspaces você pode mover este projeto. Recarregue a página para tentar novamente."
+		},
+		"projectIntegrations": {
+			"pageTitle": "Integrações do projeto",
+			"title": "Integrações do projeto",
+			"subtitle": "Conecte seu projeto a ferramentas e serviços externos para otimizar seu fluxo de trabalho.",
+			"githubSectionTitle": "Integração com GitHub",
+			"githubSectionSubtitle": "Sincronize tarefas com issues do GitHub e ative a sincronização bidirecional.",
+			"giteaSectionTitle": "Integração com Gitea",
+			"giteaSectionSubtitle": "Sincronize tarefas com uma instância Gitea autogerenciada (issues, PRs, webhooks).",
+			"discordSectionTitle": "Integração com Discord",
+			"discordSectionSubtitle": "Envie atualizações de tarefas do projeto para um canal do Discord com um webhook.",
+			"genericWebhookSectionTitle": "Webhooks genéricos",
+			"genericWebhookSectionSubtitle": "Envie eventos de tarefas do projeto para qualquer endpoint HTTP como JSON.",
+			"slackSectionTitle": "Integração com Slack",
+			"slackSectionSubtitle": "Envie atualizações de tarefas do projeto para um canal do Slack com um webhook de entrada.",
+			"telegramSectionTitle": "Integração com Telegram",
+			"telegramSectionSubtitle": "Envie atualizações de tarefas do projeto para um chat ou tópico do Telegram com um bot.",
+			"mattermostSectionSubtitle": "Send project task updates into a Mattermost channel with an incoming webhook.",
+			"mattermostSectionTitle": "Mattermost Integration",
+			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
+			"gitlabSectionTitle": "GitLab Integration",
+			"codeHostingTitle": "Hospedagem de código",
+			"chatTitle": "Chat e webhooks",
+			"statusConnected": "Conectado",
+			"statusPaused": "Pausado",
+			"connect": "Conectar",
+			"configure": "Configurar",
+			"done": "Concluído"
+		},
+		"projectVisibility": {
+			"pageTitle": "Visibilidade do projeto",
+			"title": "Visibilidade",
+			"subtitle": "Controle quem pode visualizar e acessar seu projeto.",
+			"sectionTitle": "Visibilidade",
+			"sectionSubtitle": "Alterne o acesso público e compartilhe a URL pública.",
+			"publicAccess": "Acesso público",
+			"publicAccessHint": "Permitir que qualquer pessoa com a URL visualize este projeto",
+			"publicUrl": "URL pública",
+			"publicUrlHint": "Compartilhe este link se o projeto for público",
+			"copy": "Copiar",
+			"copiedToast": "Copiado",
+			"toastUpdated": "Visibilidade atualizada",
+			"toastUpdateError": "Falha ao atualizar visibilidade"
+		},
+		"projectWorkflow": {
+			"pageTitle": "Configurações de fluxo de trabalho",
+			"title": "Fluxo de trabalho",
+			"subtitle": "Configure as colunas do quadro e as regras de automação deste projeto.",
+			"columnsTitle": "Colunas",
+			"columnsDescription": "Gerencie as colunas exibidas no seu quadro. Arraste para reordenar. Ative \"Coluna de concluído\" para as etapas que representam trabalho concluído.",
+			"automationTitle": "Regras de automação",
+			"automationDescription": "Mapeie eventos de integração para colunas. Quando um evento ocorrer, a tarefa vinculada será movida para a coluna especificada.",
+			"customFieldsDescription": "Manage the custom fields for this project. Drag  to reorder.",
+			"customFieldsTitle": "Custom Fields"
+		},
+		"projectSwitcher": {
+			"selectProject": "Selecionar projeto",
+			"noProjects": "Nenhum projeto"
+		},
+		"columnEditor": {
+			"toastCreated": "Coluna criada",
+			"toastCreateError": "Falha ao criar coluna",
+			"toastRenamed": "Coluna renomeada",
+			"toastRenameError": "Falha ao atualizar coluna",
+			"toastFinalOn": "Coluna marcada como final",
+			"toastFinalOff": "Coluna desmarcada como final",
+			"toastUpdateError": "Falha ao atualizar coluna",
+			"toastIconUpdated": "Ícone da coluna atualizado",
+			"toastDeleted": "Coluna excluída",
+			"toastDeleteError": "Falha ao excluir coluna",
+			"loading": "Carregando colunas...",
+			"pickIconTitle": "Escolher ícone da coluna",
+			"searchIconsPlaceholder": "Buscar ícones...",
+			"doneColumnTooltip": "Tratar isto como uma coluna de concluído",
+			"doneColumn

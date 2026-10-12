@@ -1,0 +1,782 @@
+               "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
+ -            "description": "GitHub integration not found",
+++            "description": "Project or GitHub integration not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/github-integration/import-issues": {
++       "post": {
++         "operationId": "importGitHubIssues",
++         "tags": [
++           "GitHub"
++         ],
++         "summary": "Import GitHub issues",
++         "description": "Import open issues and link open pull requests for one repository binding (integrationId) in bounded steps. Existing tasks are updated. Continue 202 responses with the returned runId until 200; the same runId safely retries completion. Progress is saved after each page and is per binding. A projectId in the body is accepted for compat and must match the binding's project.",
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "integrationId": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 128
++                   },
++                   "projectId": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 128
++                   },
++                   "runId": {
++                     "type": "string",
++                     "minLength": 1,
++                     "maxLength": 128
++                   }
++                 },
++                 "required": [
++                   "integrationId"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "Completed import summary",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/IssueImportResult"
++                 }
++               }
++             }
++           },
++           "202": {
++             "description": "Saved import progress; continue with runId",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/IssueImportResult"
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "integrationId is required",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access, or missing task:create or task:update permission",
+++            "description": "No access to the project, or missing task:create or task:update permission",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
++             "description": "Integration not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "Integration or import changed; refresh before resuming",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "429": {
++             "description": "Import busy; retry after one second",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "502": {
++             "description": "Provider unavailable or invalid page; progress is saved",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           }
++         }
++       }
++     },
++     "/gitea-integration/repositories": {
++       "post": {
++         "operationId": "listGiteaRepositories",
++         "tags": [
++           "Gitea"
++         ],
++         "summary": "List Gitea repositories",
++         "description": "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each repository is annotated with its linked state (RFC 0001 WP3): same-project links block selection, cross-project links are informational only (decision D1).",
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "projectId": {
++                     "type": "string",
++                     "minLength": 1
++                   },
++                   "baseUrl": {
++                     "type": "string",
++                     "format": "uri"
++                   },
++                   "accessToken": {
++                     "type": "string",
++                     "minLength": 1
++                   }
++                 },
++                 "required": [
++                   "projectId",
++                   "baseUrl",
++                   "accessToken"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "Accessible repositories",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/GiteaRepositoryList"
++                 }
++               }
++             }
++           },
++           "400": {
+ -            "description": "Invalid body, unknown project, or invalid Gitea credentials",
+++            "description": "Invalid body, or invalid Gitea credentials",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
+++          },
+++          "404": {
+++            "description": "Project not found",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/gitea-integration/verify": {
++       "post": {
++         "operationId": "verifyGiteaAccess",
++         "tags": [
++           "Gitea"
++         ],
++         "summary": "Verify Gitea access",
++         "description": "Check that the base URL is a Gitea instance and that the token can reach the repository with the permissions Kaneo needs. Repository permission failures are reported in the body; invalid credentials and upstream errors return an error status. Omit accessToken to use the saved token for the unchanged base URL.",
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "projectId": {
++                     "type": "string",
++                     "minLength": 1
++                   },
++                   "baseUrl": {
++                     "type": "string",
++                     "format": "uri"
++                   },
++                   "accessToken": {
++                     "type": "string",
++                     "minLength": 1,
++                     "description": "Omit to verify with this project's saved token. The base URL must match the saved integration."
++                   },
++                   "repositoryOwner": {
++                     "type": "string",
++                     "minLength": 1
++                   },
++                   "repositoryName": {
++                     "type": "string",
++                     "minLength": 1
++                   }
++                 },
++                 "required": [
++                   "projectId",
++                   "baseUrl",
++                   "repositoryOwner",
++                   "repositoryName"
++                 ]
++               }
++             }
+            }
+-         ],
++         },
+          "responses": {
+            "200": {
+-             "description": "GitHub integration details, or null",
++             "description": "Verification result",
+              "content": {
+                "application/json": {
+                  "schema": {
+-                   "$ref": "#/components/schemas/GitHubIntegration"
++                   "$ref": "#/components/schemas/GiteaVerificationResult"
++                 }
++               }
++             }
++           },
++           "400": {
+ -            "description": "Invalid body, unknown project, or invalid Gitea credentials",
+++            "description": "Invalid body, or invalid Gitea credentials",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+            "401": {
+-             "description": "Missing or invalid credentials",
++             "description": "Kaneo authentication required",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+            "403": {
+-             "description": "No access to the project",
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+ +                }
+ +              }
+ +            }
+ +          },
+ +          "404": {
+ +            "description": "Project not found",
+ +            "content": {
+ +              "application/json": {
+ +                "schema": {
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+ +          "429": {
+ +            "$ref": "#/components/responses/ApiKeyRateLimited"
+++          },
++           "500": {
++             "description": "Gitea verification failed",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+            }
+          }
+-       },
+-       "post": {
+-         "operationId": "createGitHubIntegration",
++       }
++     },
++     "/gitea-integration/project/{projectId}/integrations": {
++       "get": {
++         "operationId": "listGiteaIntegrations",
+          "tags": [
+-           "GitHub"
++           "Gitea"
+          ],
+-         "summary": "Create GitHub integration",
+-         "description": "Link a project to a GitHub repository. Disconnect first to switch repositories; existing issue and pull request links cannot be reused for another repository.",
++         "summary": "List Gitea integrations",
++         "description": "List every Gitea repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10). Requires workspace:manage_settings, so each row includes its own webhook secret.",
+          "parameters": [
+            {
+              "schema": {
+@@@ -17398,40 -16934,38 +19097,48 @@@
+                }
+              }
+            },
+ -          "401": {
+ -            "description": "Missing or invalid credentials"
+ -          },
+            "403": {
+-             "description": "No access to the project, or missing workspace:manage_settings",
+ -            "description": "No access to the project's workspace",
+++            "description": "No access to the project",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+ +                }
+ +              }
+ +            }
+ +          },
+ +          "404": {
+-             "description": "Project or GitHub integration not found",
+++            "description": "Project not found",
+ +            "content": {
+ +              "application/json": {
+ +                "schema": {
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+ +          },
+ +          "429": {
+ +            "$ref": "#/components/responses/ApiKeyRateLimited"
+            }
+          }
+-       }
+-     },
+-     "/github-integration/import-issues": {
++       },
+        "post": {
+-         "operationId": "importGitHubIssues",
++         "operationId": "createGiteaIntegration",
+          "tags": [
+-           "GitHub"
++           "Gitea"
++         ],
++         "summary": "Create Gitea integration",
++         "description": "Link a project to one Gitea repository, generating the per-binding webhook secret for the webhook Gitea will post events to. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Use the verify route first to confirm the token really reaches the repository.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string"
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           }
+          ],
+-         "summary": "Import GitHub issues",
+-         "description": "Import open issues and link open pull requests in bounded steps. Existing tasks are updated. Continue 202 responses with the returned runId until 200; the same runId safely retries completion. Progress is saved after each page. New calls without runId resume an unfinished import or start a new one after completion.",
+          "requestBody": {
+            "required": true,
+            "content": {
+@@@ -17479,31 -17011,34 +19184,39 @@@
+              }
+            },
+            "400": {
+-             "description": "projectId is required",
+ -            "description": "Invalid body, or unknown project",
+++            "description": "Invalid body",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+            "401": {
+++<<<<<<< HEAD
+ +            "description": "Missing or invalid credentials",
+++=======
++             "description": "Missing or invalid credentials"
++           },
++           "402": {
++             "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+++<<<<<<< HEAD
+            },
+            "403": {
+-             "description": "No access to the project, or missing task:create or task:update permission",
+ -            "description": "No workspace access, or missing workspace:manage_settings",
+++            "description": "No access to the project, or missing workspace:manage_settings",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+@@@ -17517,48 -17052,18 +19230,29 @@@
+                  }
+                }
+              }
+ +          },
+-           "409": {
+-             "description": "Integration or import changed; refresh before resuming",
+-             "content": {
+-               "application/json": {
+-                 "schema": {
+-                   "$ref": "#/components/schemas/ApiError"
+-                 }
+-               }
+-             }
+-           },
+ +          "429": {
+-             "description": "Import busy; retry after one second",
+-             "content": {
+-               "application/json": {
+-                 "schema": {
+-                   "$ref": "#/components/schemas/ApiError"
+-                 }
+-               }
+-             }
+-           },
+-           "502": {
+-             "description": "Provider unavailable or invalid page; progress is saved",
+-             "content": {
+-               "application/json": {
+-                 "schema": {
+-                   "$ref": "#/components/schemas/ApiError"
+-                 }
+-               }
+-             }
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
+            }
+          }
+--      }
+--    },
+-     "/gitea-integration/repositories": {
+ -    "/gitea-integration/import-issues": {
+--      "post": {
+-         "operationId": "listGiteaRepositories",
+ -        "operationId": "importGiteaIssues",
+++      },
+++      "patch": {
+++        "operationId": "updateGiteaIntegration",
+          "tags": [
+            "Gitea"
+          ],
+-         "summary": "List Gitea repositories",
+-         "description": "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL.",
+ -        "summary": "Import Gitea issues",
+ -        "description": "Import the linked repository's issues as tasks for one repository binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
+++        "summary": "Update Gitea integration",
+++        "description": "Update the Gitea integration. Omitted fields keep their current value.",
+++        "parameters": [
+++          {
+++            "schema": {
+++              "type": "string"
+++            },
+++            "required": true,
+++            "name": "projectId",
+++            "in": "path"
+++          }
+++        ],
+          "requestBody": {
+            "required": true,
+            "content": {
+@@@ -17566,45 -17071,41 +19260,34 @@@
+                "schema": {
+                  "type": "object",
+                  "properties": {
+-                   "projectId": {
+-                     "type": "string",
+-                     "minLength": 1
+-                   },
+-                   "baseUrl": {
+ -                  "integrationId": {
+--                    "type": "string",
+-                     "format": "uri"
+ -                    "minLength": 1,
+ -                    "maxLength": 128
+++                  "isActive": {
+++                    "type": "boolean"
+                    },
+-                   "accessToken": {
+ -                  "projectId": {
+--                    "type": "string",
+-                     "minLength": 1
+ -                    "minLength": 1,
+ -                    "maxLength": 128
+++                  "commentTaskLinkOnGiteaIssue": {
+++                    "type": "boolean"
+                    }
+--                },
+--                "required": [
+-                   "projectId",
+-                   "baseUrl",
+-                   "accessToken"
+ -                  "integrationId"
+--                ]
+++                }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+-             "description": "Accessible repositories",
+ -            "description": "Import summary",
+++            "description": "The updated integration",
+              "content": {
+                "application/json": {
+                  "schema": {
+-                   "$ref": "#/components/schemas/GiteaRepositoryList"
+ -                  "$ref": "#/components/schemas/GiteaImportResult"
+++                  "$ref": "#/components/schemas/GiteaIntegration"
+                  }
+                }
+              }
+            },
+            "400": {
+-             "description": "Invalid body, or invalid Gitea credentials",
+ -            "description": "integrationId is required",
+++            "description": "The resulting config failed validation",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+@@@ -17618,288 -17122,92 +19301,275 @@@
+                  }
+                }
+              }
+++=======
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+            },
+ -          "404": {
+ -            "description": "Integration or project not found",
+ +          "403": {
+ +            "description": "No access to the project, or missing workspace:manage_settings",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+ -          }
+ -        }
+ -      }
+ -    },
+ -    "/gitlab-integration/projects": {
+ -      "post": {
+ -        "operationId": "listGitlabProjects",
+ -        "tags": [
+ -          "GitLab"
+ -        ],
+ -        "summary": "List GitLab projects",
+ -        "description": "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each project is annotated with its linked state (RFC 0001 WP4): same-project links block selection, cross-project links are informational only (decision D1).",
+ -        "requestBody": {
+ -          "required": true,
+ -          "content": {
+ -            "application/json": {
+ -              "schema": {
+ -                "type": "object",
+ -                "properties": {
+ -                  "projectId": {
+ -                    "type": "string",
+ -                    "minLength": 1
+ -                  },
+ -                  "baseUrl": {
+ -                    "type": "string",
+ -                    "format": "uri"
+ -                  },
+ -                  "accessToken": {
+ -                    "type": "string",
+ -                    "minLength": 1
+ -                  },
+ -                  "tokenType": {
+ -                    "type": "string",
+ -                    "enum": [
+ -                      "private",
+ -                      "bearer"
+ -                    ],
+ -                    "description": "`private` sends the token in PRIVATE-TOKEN, which is what personal, project and group access tokens expect. `bearer` sends it in Authorization, for an OAuth2 token you already hold. Defaults to `private`."
+ -                  }
+ -                },
+ -                "required": [
+ -                  "projectId",
+ -                  "baseUrl",
+ -                  "accessToken"
+ -                ]
+ -              }
+ -            }
+ -          }
+ -        },
+ -        "responses": {
+ -          "200": {
+ -            "description": "Accessible projects",
+ +          },
+++<<<<<<< HEAD
+ +          "404": {
+-             "description": "Project not found",
+++            "description": "Project or integration not found",
++             "content": {
++               "application/json": {
++                 "schema": {
+ -                  "$ref": "#/components/schemas/GitlabProjectList"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
+ -          "400": {
+ -            "description": "Invalid body, or unknown project",
+ -            "content": {
+ -              "text/plain": {
+++          "409": {
+++            "description": "Integration changed; refresh before updating settings",
+ +            "content": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+ +                }
+ +              }
+ +            }
+ +          },
+ +          "429": {
+ +            "$ref": "#/components/responses/ApiKeyRateLimited"
+ +          }
+ +        }
+-       }
+-     },
+-     "/gitea-integration/verify": {
+-       "post": {
+-         "operationId": "verifyGiteaAccess",
+++      },
+++      "delete": {
+++        "operationId": "deleteGiteaIntegration",
+ +  

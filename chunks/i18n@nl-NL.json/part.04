@@ -1,0 +1,826 @@
+ht thema",
+			"darkTheme": "Donker thema",
+			"systemTheme": "Systeemthema",
+			"keyboardShortcuts": "Sneltoetsen",
+			"inputPlaceholder": "Zoek naar apps en commando's...",
+			"empty": "Geen resultaten gevonden.",
+			"footer": {
+				"navigate": "Navigeren",
+				"open": "Openen",
+				"close": "Sluiten"
+			}
+		},
+		"sidebar": {
+			"projects": "Projecten",
+			"members": "Leden",
+			"invitations": "Uitnodigingen",
+			"more": "Meer",
+			"backToBoard": "Terug naar bord",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Project bekijken",
+			"shareProject": "Project delen",
+			"projectSettings": "Projectinstellingen",
+			"linkCopied": "Projectlink gekopieerd naar klembord",
+			"addProject": "Project toevoegen",
+			"deleteConfirmTitle": "Project verwijderen?",
+			"deleteConfirmDescription": "Dit zal het project en alle data permanent verwijderen. Dit kan niet ongedaan worden gemaakt.",
+			"deletedToast": "Project verwijderd",
+			"deleteProject": "Project verwijderen",
+			"switcherLabel": "Project of weergave wisselen"
+		},
+		"search": {
+			"inputPlaceholder": "Zoek taken, projecten, reacties...",
+			"minCharsHint": "Typ minimaal 3 tekens om te zoeken",
+			"groups": {
+				"task": "Taken",
+				"project": "Projecten",
+				"workspace": "Werkruimtes",
+				"comment": "Reacties",
+				"activity": "Activiteiten",
+				"fallback": "Resultaten"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Zijbalk in-/uitschakelen",
+			"back": "Terug"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Succesvol uitgelogd",
+			"signOutFailed": "Uitloggen mislukt",
+			"unnamedUser": "Gebruiker",
+			"settings": "Instellingen",
+			"signingOut": "Uitloggen...",
+			"logOut": "Uitloggen"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Werkruimtes",
+			"switching": "Wisselen...",
+			"addWorkspace": "Werkruimte toevoegen",
+			"selectWorkspace": "Werkruimte selecteren"
+		},
+		"page": {
+			"projectsTitle": "Projecten",
+			"settingsTitle": "Instellingen",
+			"backToWorkspace": "Terug naar werkruimte",
+			"settingsWorkspaceTab": "Werkruimte"
+		},
+		"projectSettings": {
+			"projectLabel": "Project"
+		},
+		"keyboardShortcuts": {
+			"title": "Sneltoetsen",
+			"subtitle": "Versnel je workflow met sneltoetsen",
+			"searchPlaceholder": "Sneltoetsen zoeken...",
+			"footer": "Druk op <kbd>Escape</kbd> om te sluiten",
+			"categories": {
+				"general": "Algemeen",
+				"create": "Aanmaken",
+				"views": "Weergaven",
+				"navigation": "Navigatie",
+				"quickSelect": "Snelkeuze (in popovers)"
+			},
+			"items": {
+				"openCommandPalette": "Opdrachtpalet openen",
+				"globalSearch": "Globaal zoeken",
+				"toggleSidebar": "Zijbalk in-/uitschakelen",
+				"showShortcuts": "Sneltoetsen tonen",
+				"closeModal": "Venster/popover sluiten",
+				"createTask": "Taak aanmaken",
+				"createProject": "Project aanmaken",
+				"createWorkspace": "Werkruimte aanmaken",
+				"boardView": "Wissel naar bordweergave",
+				"listView": "Wissel naar lijstweergave",
+				"backlogView": "Wissel naar backlog-weergave",
+				"nextTask": "Volgende taak",
+				"prevTask": "Vorige taak",
+				"openTask": "Geselecteerde taak openen",
+				"quickSelectNumber": "Selecteer optie via nummer",
+				"calendarView": "Naar kalenderweergave schakelen"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} nieuw",
+		"newCount_other": "{{count}} nieuw",
+		"emptyTitle": "Nog geen meldingen",
+		"emptySubtitle": "Updates en activiteiten verschijnen hier.",
+		"clearAll": "Alle meldingen wissen",
+		"clearDialogTitle": "Alle meldingen wissen?",
+		"clearDialogDescription": "Dit zal alle meldingen permanent verwijderen. Dit kan niet ongedaan worden gemaakt.",
+		"events": {
+			"task_created": {
+				"title": "Nieuwe taak aangemaakt",
+				"content": "Taak \"{{taskTitle}}\" is aangemaakt"
+			},
+			"workspace_created": {
+				"title": "Werkruimte aangemaakt",
+				"content": "Je werkruimte \"{{workspaceName}}\" is succesvol aangemaakt"
+			},
+			"task_status_changed": {
+				"title": "Taakstatus gewijzigd",
+				"content": "Status van taak \"{{taskTitle}}\" gewijzigd van \"{{oldStatus}}\" naar \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "Taak aan jou toegewezen",
+				"content": "Je bent toegewezen aan taak: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "Tijdregistratie gestart",
+				"contentWithTask": "Tijdregistratie gestart voor taak: {{taskTitle}}",
+				"contentWithoutTask": "Tijdregistratie gestart voor een taak"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} heeft je vermeld",
+				"content": "{{mentionerName}} heeft je vermeld in: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} heeft gereageerd op je taak",
+				"content": "Nieuwe reactie op {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Taak vervalt binnenkort",
+				"content": "{{taskTitle}} vervalt over {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Taak te laat",
+				"content": "{{taskTitle}} is over de einddatum heen"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} minuut",
+			"minutes_other": "{{count}} minuten",
+			"hours_one": "{{count}} uur",
+			"hours_other": "{{count}} uur",
+			"days_one": "{{count}} dag",
+			"days_other": "{{count}} dagen"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "heeft de taak aan zichzelf toegewezen",
+		"unassigned": "heeft de toewijzing verwijderd",
+		"assignedTo": "heeft de taak toegewezen aan {{name}}",
+		"changedStatus": "heeft de status gewijzigd van {{from}} naar {{to}}",
+		"changedPriority": "heeft de prioriteit gewijzigd van {{from}} naar {{to}}",
+		"clearedDueDate": "heeft de einddatum verwijderd",
+		"setDueDate": "heeft de einddatum ingesteld op {{date}}",
+		"changedDueDate": "heeft de einddatum gewijzigd van {{from}} naar {{to}}",
+		"changedTitle": "heeft de titel gewijzigd van \"{{from}}\" naar \"{{to}}\"",
+		"created": "heeft deze taak aangemaakt",
+		"moved": "heeft de taak van \"{{from}}\" naar \"{{to}}\" verplaatst",
+		"githubUser": "GitHub-gebruiker",
+		"comment": {
+			"viewGithubProfile": "GitHub-profiel bekijken",
+			"cannotBeEmpty": "Reactie mag niet leeg zijn",
+			"mustBeLoggedInToEdit": "Je moet ingelogd zijn om reacties te bewerken",
+			"updated": "Reactie bijgewerkt",
+			"failedToUpdate": "Bijwerken reactie mislukt",
+			"edit": "Reactie bewerken",
+			"editPlaceholder": "Bewerk reactie...",
+			"save": "Opslaan",
+			"added": "Reactie toegevoegd",
+			"failedToAdd": "Toevoegen reactie mislukt",
+			"leavePlaceholder": "Plaats een reactie...",
+			"attachFile": "Bestand bijvoegen",
+			"submitShortcut": "Reactie plaatsen",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Bestandsuploads zijn alleen beschikbaar bij opgeslagen taken.",
+				"uploadingFile": "Bestand uploaden...",
+				"imageUploaded": "Afbeelding geüpload",
+				"fileAttached": "Bestand bijgevoegd",
+				"failedToUploadFile": "Uploaden bestand mislukt",
+				"enterUrl": "URL invoeren",
+				"plaintext": "Platte tekst",
+				"autoDetect": "Automatisch detecteren",
+				"slashGroupText": "Tekst",
+				"slashGroupLists": "Lijsten",
+				"slashGroupInsert": "Invoegen",
+				"slashParagraph": "Tekst",
+				"slashHeading": "Koptekst",
+				"slashBulletList": "Opsommingslijst",
+				"slashTaskList": "Checklist",
+				"slashOrderedList": "Genummerde lijst",
+				"slashQuote": "Citaat",
+				"slashCodeBlock": "Codeblok",
+				"slashTable": "Tabel",
+				"slashFile": "Bestand",
+				"searchParagraph": "tekst paragraaf normaal",
+				"searchHeading": "kop titel h2",
+				"searchBulletList": "lijst bullet ongesorteerd",
+				"searchTaskList": "todo takenlijst checklist vinkje taak lijst",
+				"searchOrderedList": "lijst geordend genummerd",
+				"searchQuote": "citaat quote blockquote",
+				"searchCodeBlock": "code fragment snippet",
+				"searchTable": "tabel grid",
+				"searchFile": "bestand bijlage afbeelding foto plaatje upload",
+				"embedErrorInvalidUrl": "Voer een geldige URL in",
+				"embedErrorYoutubeOnly": "Alleen YouTube-links kunnen worden ingesloten.",
+				"embedVideo": "Video insluiten",
+				"keepAsLink": "Behouden als link",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "URL plakken",
+				"asLink": "Als link",
+				"embed": "Insluiten",
+				"noCommands": "Geen commando's",
+				"ariaCommentContent": "Inhoud reactie",
+				"ariaCommentEditor": "Editor voor reacties",
+				"ariaCopyCode": "Code kopiëren",
+				"ariaCopied": "Gekopieerd",
+				"copy": "Kopiëren",
+				"copied": "Gekopieerd",
+				"dropImageToUpload": "Sleep afbeelding om te uploaden",
+				"previewImageAlt": "Voorbeeld afbeelding",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Platte tekst",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Kolom links invoegen",
+					"addColumnAfter": "Kolom rechts invoegen",
+					"deleteColumn": "Kolom verwijderen",
+					"addRowBefore": "Rij erboven invoegen",
+					"addRowAfter": "Rij eronder invoegen",
+					"deleteRow": "Rij verwijderen",
+					"deleteTable": "Tabel verwijderen"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid-diagram kon niet worden weergegeven"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "heeft gereageerd op {{forge}}"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Taken",
+		"status": {
+			"label": "Status",
+			"to-do": "Te doen",
+			"in-progress": "In behandeling",
+			"in-review": "Ter beoordeling",
+			"done": "Gereed",
+			"archived": "Gearchiveerd",
+			"planned": "Gepland"
+		},
+		"priority": {
+			"label": "Prioriteit",
+			"no-priority": "Geen prioriteit",
+			"low": "Laag",
+			"medium": "Gemiddeld",
+			"high": "Hoog",
+			"urgent": "Urgent"
+		},
+		"boardSearchPlaceholder": "Tickets zoeken...",
+		"view": {
+			"board": "Bord",
+			"list": "Lijst",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Weergave"
+		},
+		"common": {
+			"selectTask": "Selecteer taak",
+			"loadingTask": "Taak laden...",
+			"taskNotFound": "Taak niet gevonden",
+			"taskNotFoundDescription": "De taak die u zoekt bestaat niet of is verwijderd.",
+			"ticketAmbiguous": "Taak-ID komt overeen met meerdere taken",
+			"ticketAmbiguousDescription": "{{ticketId}} komt overeen met taken in meerdere projecten in deze werkruimte. Geef een van die projecten een andere sleutel om de link te laten werken.",
+			"ticketNotFoundDescription": "Er bestaat geen taak met de ID {{ticketId}} in deze werkruimte, of u hebt er geen toegang toe.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Subtaak van",
+			"activity": "Activiteit",
+			"noActivity": "Geen activiteit gevonden",
+			"openInFullPage": "Openen op volledige pagina",
+			"titlePlaceholder": "Klik om een titel toe te voegen",
+			"addDescription": "Beschrijving toevoegen...",
+			"editor": {
+				"ariaLabel": "Taakbeschrijving editor",
+				"placeholder": "Schrijf een beschrijving...",
+				"previewImage": "Voorbeeld afbeelding",
+				"enterUrl": "URL invoeren",
+				"autoDetect": "Automatisch detecteren",
+				"copyCode": "Code kopiëren",
+				"copy": "Kopiëren",
+				"copied": "Gekopieerd",
+				"attachFile": "Bestand bijvoegen",
+				"dropToUpload": "Sleep afbeelding om te uploaden",
+				"checkbox": {
+					"markIncomplete": "Markeer taak als onvoltooid",
+					"markComplete": "Markeer taak als voltooid"
+				},
+				"upload": {
+					"loading": "Bestand uploaden...",
+					"failed": "Uploaden bestand mislukt",
+					"imageSuccess": "Afbeelding geüpload",
+					"fileSuccess": "Bestand bijgevoegd"
+				},
+				"slash": {
+					"groups": {
+						"text": "Tekst",
+						"lists": "Lijsten",
+						"insert": "Invoegen"
+					},
+					"empty": "Geen commando's",
+					"commands": {
+						"paragraph": "Tekst",
+						"heading-2": "Koptekst",
+						"bullet-list": "Opsommingslijst",
+						"task-list": "Checklist",
+						"ordered-list": "Genummerde lijst",
+						"blockquote": "Citaat",
+						"code-block": "Codeblok",
+						"table": "Tabel",
+						"file": "Bestand"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Platte tekst",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Video insluiten",
+						"keepAsLink": "Behouden als link"
+					},
+					"inputPlaceholder": "URL plakken",
+					"embeddedContent": "Ingesloten inhoud",
+					"asLink": "Als link",
+					"submit": "Insluiten",
+					"errors": {
+						"invalidUrl": "Voer een geldige URL in",
+						"onlyYoutube": "Alleen YouTube-links kunnen worden ingesloten."
+					},
+					"onlyYoutubeInline": "Alleen YouTube URL's kunnen worden ingesloten. Gebruik link-modus."
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid-diagram kon niet worden weergegeven"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Taak"
+		},
+		"relations": {
+			"title": "Relaties",
+			"tasksInProject": "Taken in project",
+			"linkError": "Koppelen van taak mislukt",
+			"empty": "Geen gerelateerde taken",
+			"searchPlaceholder": "Zoek taken om te koppelen...",
+			"noTasksFound": "Geen taken gevonden",
+			"openTask": "Taak openen",
+			"removeRelation": "Relatie verwijderen",
+			"related": "Gerelateerd",
+			"blocks": "Blokkeert",
+			"selectTask": "Selecteer een taak om te koppelen",
+			"types": {
+				"blocks": "blokkeert",
+				"related": "is gerelateerd aan",
+				"blocked_by": "geblokkeerd door"
+			}
+		},
+		"subtasks": {
+			"title": "Subtaken",
+			"inputPlaceholder": "Titel subtaak...",
+			"addAction": "Toevoegen",
+			"empty": "Nog geen subtaken",
+			"createError": "Aanmaken subtaak mislukt",
+			"deleteSuccess": "Taak succesvol verwijderd",
+			"deleteError": "Verwijderen taak mislukt",
+			"deleteDialogTitle": "Taak verwijderen?",
+			"deleteDialogDescription": "Dit zal de taak en alle data permanent verwijderen. Dit kan niet ongedaan worden gemaakt.",
+			"deleteAction": "Taak verwijderen",
+			"completeAria": "Markeer subtaak als voltooid",
+			"progress": "{{completed}} van {{total}} subtaken voltooid",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Eigenschappen",
+			"labels": "Labels",
+			"copyTaskLink": "Taaklink kopiëren",
+			"copyTaskBranch": "Taakbranch kopiëren",
+			"taskLinkCopied": "Taaklink gekopieerd",
+			"taskBranchCopied": "Branchnaam gekopieerd",
+			"start": "Start",
+			"startDate": "Startdatum",
+			"noDate": "Geen datum"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Niet toegewezen",
+				"updateError": "Bijwerken toegewezen persoon mislukt"
+			},
+			"status": {
+				"updateError": "Bijwerken taakstatus mislukt"
+			},
+			"priority": {
+				"updateError": "Bijwerken taakprioriteit mislukt"
+			},
+			"dueDate": {
+				"updateSuccess": "Taak-einddatum succesvol bijgewerkt",
+				"updateError": "Bijwerken einddatum mislukt",
+				"clear": "Datum wissen"
+			},
+			"startDate": {
+				"updateSuccess": "Taak-startdatum succesvol bijgewerkt",
+				"updateError": "Bijwerken startdatum mislukt",
+				"clear": "Startdatum wissen"
+			},
+			"labels": {
+				"searchPlaceholder": "Labels zoeken...",
+				"empty": "Geen labels gevonden",
+				"create": "Maak \"{{name}}\"",
+				"chooseColor": "Kleur kiezen",
+				"addSuccess": "Label toegevoegd",
+				"removeSuccess": "Label verwijderd",
+				"updateError": "Bijwerken label mislukt",
+				"createSuccess": "Label aangemaakt en toegevoegd",
+				"createError": "Aanmaken label mislukt",
+				"colors": {
+					"stone": "Steen",
+					"slate": "Leisteen",
+					"lavender": "Lavendel",
+					"sage": "Salie",
+					"forest": "Woud",
+					"amber": "Amber",
+					"terracotta": "Terracotta",
+					"rose": "Roos",
+					"crimson": "Karmozijn"
+				},
+				"editLabels": "Labels bewerken"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Backlog van {{name}}",
+			"noTasksToMove": "Geen geplande taken om te verplaatsen",
+			"moveAllConfirm": "Alle {{count}} geplande taken verplaatsen naar Te Doen?",
+			"moveAllSuccess": "{{count}} taken verplaatst naar Te Doen",
+			"plan": "Plannen",
+			"moveAllTooltip": "Alles gepland naar Te Doen verplaatsen",
+			"moveAll": "Alles verplaatsen",
+			"addTask": "Taak toevoegen",
+			"filter": "Filteren",
+			"addFilter": "Filter toevoegen...",
+			"sections": {
+				"planned": "Gepland",
+				"archived": "Gearchiveerd"
+			},
+			"noTasksInSection": "Geen {{section}} taken",
+			"filters": {
+				"priority": "Prioriteit: {{name}}",
+				"assignee": "Toegewezen aan: {{name}}",
+				"due": "Einddatum: {{date}}",
+				"label": "Label: {{name}}",
+				"dueThisWeek": "Deze week vervallen",
+				"dueNextWeek": "Volgende week vervallen",
+				"noDueDate": "Geen einddatum"
+			}
+		},
+		"sort": {
+			"label": "Sorteren",
+			"by": "Sorteren op",
+			"direction": "Richting",
+			"ascending": "Oplopend",
+			"descending": "Aflopend",
+			"fields": {
+				"position": "Handmatig (positie)",
+				"createdAt": "Aanmaakdatum",
+				"priority": "Prioriteit",
+				"dueDate": "Einddatum",
+				"title": "Titel",
+				"number": "Taaknummer"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Filteren op",
+			"allStatuses": "Alle statussen",
+			"allPriorities": "Alle prioriteiten",
+			"allAssignees": "Alle personen",
+			"allDueDates": "Alle einddatums",
+			"allLabels": "Alle labels",
+			"selectedCount": "{{count}} geselecteerd",
+			"subjects": {
+				"status": "Status",
+				"priority": "Prioriteit",
+				"assignee": "Toegewezen persoon",
+				"dueDate": "Einddatum",
+				"labels": "Labels"
+			},
+			"operators": {
+				"isAnyOf": "is een van",
+				"includeAnyOf": "bevat een van"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Gantt-tijdlijn",
+			"searchPlaceholder": "Zoek geplande tickets...",
+			"hideTasks": "Taken verbergen",
+			"showTasks": "Taken tonen",
+			"noTasks": "Geen geplande taken",
+			"noTasksSubtitle": "Voeg een startdatum en/of einddatum toe aan taken om ze op de tijdlijn te plaatsen.",
+			"noTasksFound": "Geen taken gevonden",
+			"noTasksMatch": "Geen geplande taken die overeenkomen met \"{{query}}\"",
+			"taskHeader": "Taak",
+			"updateDatesError": "Bijwerken taakdatums mislukt",
+			"resizeStart": "Startdatum wijzigen",
+			"resizeDue": "Einddatum wijzigen",
+			"taskAriaLabel": "{{title}}: openen of slepen om te verplaatsen",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Taak verwijderen?",
+			"description": "Dit zal de taak en alle data permanent verwijderen. Dit kan niet ongedaan worden gemaakt.",
+			"action": "Taak verwijderen",
+			"success": "Taak succesvol verwijderd",
+			"error": "Verwijderen taak mislukt"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (kopie)",
+			"success": "Taak succesvol gedupliceerd",
+			"error": "Dupliceren taak mislukt"
+		},
+		"archive": {
+			"success": "{{count}} taken gearchiveerd"
+		},
+		"listView": {
+			"addTask": "Taak toevoegen",
+			"archiveAllTooltip": "Alle voltooide taken archiveren",
+			"noTasks": "Geen taken"
+		},
+		"kanban": {
+			"addTask": "Taak toevoegen",
+			"automaticallySortedHint": "Automatisch gesorteerd op {{sort}}"
+		},
+		"pr": {
+			"merged": "Samengevoegd",
+			"draft": "Concept",
+			"open": "Open",
+			"label": "Pull Request",
+			"count_one": "{{count}} PR",
+			"count_other": "{{count}} PR's"
+		},
+		"assignee": {
+			"label": "Toegewezen persoon",
+			"unassigned": "Niet toegewezen"
+		},
+		"dueDate": {
+			"label": "Einddatum",
+			"clear": "Datum wissen",
+			"updateSuccess": "Einddatum taak succesvol bijgewerkt",
+			"updateError": "Bijwerken einddatum mislukt",
+			"clearSuccess": "Einddatum taak verwijderd",
+			"clearError": "Verwijderen einddatum mislukt"
+		},
+		"labels": {
+			"label": "Labels",
+			"empty": "Geen labels beschikbaar"
+		},
+		"update": {
+			"success": "Taak succesvol bijgewerkt",
+			"error": "Bijwerken taak mislukt"
+		},
+		"contextMenu": {
+			"copyLink": "Link kopiëren",
+			"copyLinkSuccess": "Taaklink gekopieerd!"
+		},
+		"actions": {
+			"duplicate": "Dupliceren",
+			"archive": "Archiveren",
+			"markAsPlanned": "Markeren als gepland",
+			"delete": "Verwijderen..."
+		},
+		"bulk": {
+			"selectedCount": "{{count}} geselecteerd",
+			"moveToBacklog": "Naar Backlog verplaatsen",
+			"moveToBacklogSuccess": "{{count}} taken naar backlog verplaatst",
+			"moveToBacklogError": "Verplaatsen naar backlog mislukt",
+			"moveToBoard": "Naar Bord verplaatsen",
+			"moveToBoardSuccess": "{{count}} taken naar bord verplaatst",
+			"moveToBoardError": "Verplaatsen naar bord mislukt",
+			"delete": "Taken verwijderen",
+			"deleteConfirm": "Verwijder {{count}} taken? Dit kan niet ongedaan worden gemaakt.",
+			"deleteSuccess": "{{count}} taken verwijderd",
+			"deleteError": "Verwijderen taken mislukt",
+			"archive": "Taken archiveren",
+			"archiveSuccess": "{{count}} taken gearchiveerd",
+			"archiveError": "Archiveren taken mislukt",
+			"updateSuccess": "{{count}} taken bijgewerkt",
+			"updateError": "Bijwerken taken mislukt",
+			"assignTo": "Toewijzen aan",
+			"assignSuccess": "{{count}} taken toegewezen",
+			"assignError": "Toewijzen taken mislukt",
+			"setPriority": "Prioriteit instellen",
+			"updatePriorityError": "Bijwerken prioriteit mislukt",
+			"addLabel": "Label toevoegen",
+			"addLabelSuccess": "Label toegevoegd aan {{count}} taken",
+			"addLabelError": "Toevoegen label mislukt",
+			"setDueDate": "Einddatum instellen",
+			"updateDueDateError": "Bijwerken einddatum mislukt",
+			"actions": "Acties",
+			"searchActions": "Acties zoeken...",
+			"noActionsFound": "Geen acties gevonden.",
+			"changeStatus": "Status wijzigen"
+		},
+		"move": {
+			"title": "Taak verplaatsen",
+			"projectLabel": "Doelproject",
+			"projectPlaceholder": "Selecteer een project",
+			"statusLabel": "Doelstatus",
+			"statusHintKeep": "De workflow van dit project ondersteunt de huidige status al.",
+			"statusHintAdjust": "Kies de status die in het doelproject gebruikt moet worden.",
+			"action": "Taak verplaatsen",
+			"success": "Taak succesvol verplaatst",
+			"error": "Verplaatsen taak mislukt"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "Kolom links invoegen",
+				"addColumnAfter": "Kolom rechts invoegen",
+				"deleteColumn": "Kolom verwijderen",
+				"addRowBefore": "Rij erboven invoegen",
+				"addRowAfter": "Rij eronder invoegen",
+				"deleteRow": "Rij verwijderen",
+				"deleteTable": "Tabel verwijderen"
+			}
+		},
+		"calendar": {
+			"dayTasksAriaLabel": "Alle taken voor {{date}} weergeven",
+			"moreTasks": "+{{count}} meer",
+			"nextMonth": "Volgende maand",
+			"noTasks": "Geen geplande taken",
+			"noTasksSubtitle": "Voeg een startdatum, einddatum of beide toe aan taken om ze in de kalender weer te geven.",
+			"pageTitle": "{{name}} – Kalender",
+			"previousMonth": "Vorige maand",
+			"taskAriaLabel": "{{title}}, {{range}}: taak openen",
+			"title": "Kalender",
+			"today": "Vandaag",
+			"loadError": "Taken konden niet worden geladen.",
+			"noTasksThisMonth": "Niets gepland deze maand"
+		},
+		"descriptionSearchLoading": "Searching full descriptions…",
+		"descriptionSearchError": "Description search failed. Results may be incomplete.",
+		"descriptionRetry": "Retry",
+		"descriptionLoading": "Loading description…",
+		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
+		"checklistProgress": "{{completed}} van {{total}} checklistitems voltooid",
+		"customFields": {
+			"ariaLabel": "Custom fields"
+		},
+		"board": {
+			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_one": "Created {{branch}} in {{count}} repository",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
+		}
+	},
+	"invitations": {
+		"email": {
+			"subject": "{{inviterName}} heeft je uitgenodigd voor {{workspaceName}} op Kaneo",
+			"preview": "Je bent uitgenodigd voor {{workspaceName}} op Kaneo",
+			"title": "Word lid van {{workspaceName}}",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) heeft je uitgenodigd om samen te werken in Kaneo.",
+			"cta": "Uitnodiging accepteren",
+			"sameEmail": "Je kunt accepteren met hetzelfde e-mailadres waarop dit bericht is ontvangen.",
+			"ignore": "Verwachtte je 

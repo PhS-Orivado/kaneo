@@ -1,0 +1,572 @@
+serverUrl": "Server URL-i",
+			"topic": "Mövzu",
+			"token": "Giriş nişanı",
+			"ntfyServerPlaceholder": "https://ntfy.example.com",
+			"ntfyTopicPlaceholder": "komanda-bildirisleri",
+			"ntfyTokenPlaceholder": "İstəyə bağlı daşıyıcı giriş nişanı",
+			"ntfyTokenHintConfigured": "Giriş nişanı artıq təyin edilib ({{masked}}). Əvəzləmək üçün yeni giriş nişanı daxil edin.",
+			"ntfyTokenHintOptional": "İstəyə bağlıdır. ntfy serveriniz kimlik doğrulaması tələb edirsə, giriş nişanı daxil edin.",
+			"connectNtfy": "ntfy-yə qoşul",
+			"gotifyTitle": "Gotify",
+			"gotifyDescription": "Hesab bildirişlərini Gotify serverinizə göndərin.",
+			"gotifyTokenLabel": "Tətbiqin giriş nişanı",
+			"gotifyServerPlaceholder": "https://gotify.example.com",
+			"gotifyTokenPlaceholder": "Gotify tətbiqinin giriş nişanı",
+			"gotifyTokenHintConfigured": "Tətbiqin giriş nişanı artıq təyin edilib ({{masked}}). Əvəzləmək üçün yeni giriş nişanı daxil edin.",
+			"gotifyTokenHintRequired": "Tələb olunur. Gotify serverinizdəki tətbiqin giriş nişanından istifadə edin.",
+			"connectGotify": "Gotify-a qoşul",
+			"webhookTitle": "Fərdi Webhook",
+			"webhookDescription": "Hesab bildirişlərini JSON kimi öz son nöqtənizə göndərin.",
+			"endpointUrl": "Son nöqtənin URL-i",
+			"signingSecret": "İmzalama sirri",
+			"webhookUrlPlaceholder": "https://example.com/webhooks/kaneo",
+			"webhookSecretPlaceholder": "İstəyə bağlı ortaq sirr",
+			"webhookSecretHintConfigured": "İmzalama sirri artıq təyin edilib ({{masked}}). Əvəzləmək üçün yenisini daxil edin.",
+			"webhookSecretHintOptional": "İstəyə bağlıdır. Sirr təyin edildikdə Kaneo sorğunun gövdəsini imzalayır.",
+			"connectWebhook": "Webhook-a qoşul",
+			"workspaceRulesTitle": "İş sahəsi üzrə çatdırılma qaydaları",
+			"workspaceRulesDescription": "Ümumi kanallarınızdan yenidən istifadə edin, sonra hansı iş sahələrinin və layihələrin hesab bildirişləri göndərə biləcəyini seçin.",
+			"workspaceCardHint": "Bu iş sahəsinin hesab bildirişləri üçün hansı kanallardan istifadə edə biləcəyini seçin.",
+			"workspaceEnabledLabel": "{{workspaceName}} üçün bildirişləri aktivləşdir",
+			"eventPreferencesTitle": "Mənə bunlar barədə bildir",
+			"eventPreferencesDescription": "Hansı tapşırıq hadisələrinin tətbiqdaxili bildiriş yaratdığını və qoşulmuş kanallarınıza çatdırıla biləcəyini seçin.",
+			"eventTaskAssignments": "Tapşırıqların təyin edilməsi",
+			"eventComments": "Şərhlər və xatırlatmalar",
+			"eventCommentsHint": "Sizə təyin olunmuş tapşırıqlara yeni şərhləri və birbaşa @xatırlatmaları əhatə edir.",
+			"eventStatusChanges": "Tapşırıq vəziyyətinin dəyişməsi",
+			"eventDueDateReminders": "Son tarix xatırlatmaları",
+			"reminderLeadTimeLabel": "Son tarixdən əvvəl mənə xatırlat",
+			"reminderLeadTimeHint": "Son tarixə 1 saatdan 30 günədək qalmış. Vaxtı keçmiş tapşırıqların bildirişləri ayrıca göndərilir.",
+			"reminderLeadTimeUnitHours": "Saat",
+			"reminderLeadTimeUnitDays": "Gün",
+			"reminderLeadTimeInvalid": "1 ilə {{max}} arasında tam ədəd daxil edin.",
+			"saveEventPreferences": "Bildiriş növlərini yadda saxla",
+			"workspaceCardLabelEmail": "E-poçt",
+			"workspaceCardLabelNtfy": "ntfy",
+			"workspaceCardLabelGotify": "Gotify",
+			"workspaceCardLabelWebhook": "Fərdi Webhook",
+			"emailChannelHintEnabled": "Uyğun iş sahəsi bildirişlərini e-poçtla göndər.",
+			"emailChannelHintDisabled": "Əvvəlcə e-poçtu ümumi səviyyədə quraşdırıb aktivləşdirin.",
+			"ntfyChannelHintEnabled": "Uyğun iş sahəsi bildirişlərini ntfy-yə göndər.",
+			"ntfyChannelHintDisabled": "Əvvəlcə ntfy-ni ümumi səviyyədə quraşdırıb aktivləşdirin.",
+			"gotifyChannelHintEnabled": "Uyğun iş sahəsi bildirişlərini Gotify-a göndər.",
+			"gotifyChannelHintDisabled": "Əvvəlcə Gotify-ı ümumi səviyyədə quraşdırıb aktivləşdirin.",
+			"webhookChannelHintEnabled": "Uyğun iş sahəsi bildirişlərini Webhook-unuza göndər.",
+			"webhookChannelHintDisabled": "Əvvəlcə Webhook-u ümumi səviyyədə quraşdırıb aktivləşdirin.",
+			"projectScope": "Layihələrin əhatə dairəsi",
+			"projectScopeDescription": "Standart olaraq bütün layihələr daxildir. Bu iş sahəsi yalnız seçilmiş layihələrdən bildiriş göndərməlidirsə, əhatəni daraldın.",
+			"allProjects": "Bütün layihələr",
+			"allProjectsDescription": "Bu iş sahəsindəki bütün layihələrin bildirişlərini çatdır.",
+			"selectedProjects": "Seçilmiş layihələr",
+			"selectedProjectsDescription": "Yalnız seçilmiş layihələrin bildirişlərini çatdır.",
+			"noProjectsInWorkspace": "Bu iş sahəsində hələ layihə yoxdur.",
+			"createRule": "Qayda yarat",
+			"removeRule": "Qaydanı çıxar",
+			"toastEmailSaved": "E-poçt bildiriş parametrləri yadda saxlanıldı",
+			"toastEmailSaveFailed": "E-poçt parametrlərini yadda saxlamaq alınmadı",
+			"toastNtfySaved": "ntfy parametrləri yadda saxlanıldı",
+			"toastNtfySaveFailed": "ntfy parametrlərini yadda saxlamaq alınmadı",
+			"toastNtfyDisconnected": "ntfy ayrıldı",
+			"toastNtfyDisconnectFailed": "ntfy-ni ayırmaq alınmadı",
+			"toastGotifySaved": "Gotify parametrləri yadda saxlanıldı",
+			"toastGotifySaveFailed": "Gotify parametrlərini yadda saxlamaq alınmadı",
+			"toastGotifyDisconnected": "Gotify ayrıldı",
+			"toastGotifyDisconnectFailed": "Gotify-ı ayırmaq alınmadı",
+			"toastWebhookSaved": "Webhook-un parametrləri yadda saxlanıldı",
+			"toastWebhookSaveFailed": "Webhook-un parametrlərini yadda saxlamaq alınmadı",
+			"toastWebhookDisconnected": "Webhook ayrıldı",
+			"toastWebhookDisconnectFailed": "Webhook-u ayırmaq alınmadı",
+			"toastRuleSaved": "{{workspaceName}} üçün bildiriş qaydası yadda saxlanıldı",
+			"toastRuleSaveFailed": "İş sahəsinin bildiriş qaydasını yadda saxlamaq alınmadı",
+			"toastRuleRemoved": "{{workspaceName}} üçün bildiriş qaydası çıxarıldı",
+			"toastRuleRemoveFailed": "İş sahəsinin bildiriş qaydasını çıxarmaq alınmadı",
+			"toastPreferencesSaved": "Bildiriş tərcihləri yadda saxlanıldı",
+			"toastPreferencesSaveFailed": "Bildiriş tərcihlərini yadda saxlamaq alınmadı",
+			"toastRuleSavedGeneric": "İş sahəsinin bildiriş qaydası yadda saxlanıldı",
+			"toastRuleRemovedGeneric": "İş sahəsinin bildiriş qaydası çıxarıldı",
+			"recipientHint": "Şərhlər və status dəyişiklikləri sizə təyin edilmiş tapşırıqlar barədə bildiriş göndərir. Qeyd etmələr seçilmiş üzvə bildiriş göndərir. Öz şərhləriniz, qeyd etmələriniz və status dəyişiklikləriniz üçün bildiriş almırsınız."
+		},
+		"preferencesPage": {
+			"title": "Tərcihlər",
+			"subtitle": "Kaneo təcrübənizi fərdiləşdirin.",
+			"appearanceTitle": "Görünüş",
+			"appearanceSubtitle": "Görünüş parametrləri və düzülüş tərcihləri.",
+			"theme": "Tema",
+			"themeDescription": "İstədiyiniz rəng sxemini seçin",
+			"selectTheme": "Tema seçin",
+			"themeLight": "Açıq",
+			"themeDark": "Tünd",
+			"themeSystem": "Sistem",
+			"language": "Dil",
+			"languageDescription": "İstədiyiniz interfeys dilini seçin",
+			"selectLanguage": "Dil seçin",
+			"firstDayOfWeek": "Həftənin ilk günü",
+			"firstDayOfWeekDescription": "Təqvimlərin və həftəlik aralıqların hansı gündən başladığını seçin",
+			"selectFirstDayOfWeek": "İlk günü seçin",
+			"weekStartsOnSunday": "Bazar",
+			"weekStartsOnMonday": "Bazar ertəsi",
+			"weekStartsOnSaturday": "Şənbə",
+			"defaultView": "Standart görünüş",
+			"defaultViewDescription": "İstədiyiniz tapşırıq görünüşünü seçin",
+			"selectViewMode": "Görünüş rejimini seçin",
+			"board": "Lövhə",
+			"list": "Siyahı",
+			"gantt": "Qant diaqramı",
+			"sidebarDefault": "Yan panelin standart vəziyyəti",
+			"sidebarDefaultDescription": "Başlanğıcda yan paneli açıq saxla",
+			"displayOptions": "Göstərmə seçimləri",
+			"displayOptionsDescription": "Tapşırıq görünüşlərində hansı məlumatların göstəriləcəyini seçin",
+			"taskNumbers": "Tapşırıq nömrələri",
+			"taskNumbersDescription": "Tapşırıq identifikatorlarını və nömrələrini göstər",
+			"assignees": "İcraçılar",
+			"assigneesDescription": "Tapşırıqların kimə təyin olunduğunu göstər",
+			"dueDates": "Son tarixlər",
+			"dueDatesDescription": "Tapşırıqların son tarixlərini göstər",
+			"labels": "Etiketlər",
+			"labelsDescription": "Tapşırıq etiketlərini göstər",
+			"priority": "Prioritet",
+			"priorityDescription": "Prioritet göstəricilərini göstər",
+			"projectBackgrounds": "Project backgrounds",
+			"projectBackgroundsDescription": "Show project background images on boards"
+		},
+		"developerPage": {
+			"pageTitle": "Proqramçı parametrləri",
+			"title": "Proqramçı parametrləri",
+			"subtitle": "API açarlarınızı və proqramçı resurslarını idarə edin.",
+			"apiKeysCardTitle": "API açarları",
+			"apiKeysCardDescription": "Kaneo-ya proqram vasitəsilə giriş üçün API açarları yaradın və idarə edin.",
+			"createApiKey": "API açarı yarat",
+			"unnamedKey": "Adsız açar"
+		},
+		"apiKey": {
+			"createdModal": {
+				"title": "API açarı yaradıldı",
+				"description": "\"{{keyName}}\" API açarınız uğurla yaradıldı.",
+				"yourApiKey": "API açarınız",
+				"copy": "Kopyala",
+				"copied": "Kopyalandı",
+				"toastCopied": "API açarı mübadilə buferinə kopyalandı",
+				"alertTitle": "Uğurludur! API açarınız yaradıldı",
+				"alertDescription": "Bu açarı indi kopyalayın. Onu bir daha görə bilməyəcəksiniz.",
+				"done": "Hazırdır",
+				"copyToContinue": "Davam etmək üçün açarı kopyalayın"
+			},
+			"table": {
+				"loading": "API açarları yüklənir...",
+				"empty": "Hələ API açarı yoxdur. Başlamaq üçün birini yaradın.",
+				"columnName": "Ad",
+				"columnKey": "Açar",
+				"columnCreated": "Yaradılıb",
+				"columnExpires": "Bitmə vaxtı",
+				"columnActions": "Əməliyyatlar",
+				"unnamedKey": "Adsız açar",
+				"expiredBadge": "Vaxtı bitib: {{label}}",
+				"deleteConfirmTitle": "API açarı silinsin?",
+				"deleteConfirmDescription": "Bu əməliyyat geri qaytarıla bilməz. {{name}} həmişəlik silinəcək.",
+				"deleteFallbackName": "bu API açarı",
+				"delete": "Sil",
+				"deleting": "Silinir...",
+				"deleteAria": "Açarı sil: {{name}}",
+				"deleteAriaFallback": "API açarı",
+				"toastDeleted": "API açarı uğurla silindi",
+				"toastDeleteError": "API açarını silmək alınmadı"
+			},
+			"createDialog": {
+				"title": "API açarı yarat",
+				"description": "Kaneo API-sinə proqram vasitəsilə giriş üçün yeni API açarı yaradın.",
+				"nameLabel": "Ad",
+				"namePlaceholder": "API açarım",
+				"nameDescription": "Bu API açarını təsvir edən ad",
+				"expirationLabel": "Vaxtın bitməsi",
+				"expirationPlaceholder": "Bitmə vaxtını seçin",
+				"expirationDescription": "Bu API açarının nə qədər etibarlı qalacağını seçin. «Heç vaxt» seçimi avtomatik bitmə vaxtı olmayan açar yaradır.",
+				"expiration1d": "1 gün",
+				"expiration7d": "7 gün",
+				"expiration30d": "30 gün",
+				"expiration90d": "90 gün",
+				"expirationNever": "Heç vaxt",
+				"create": "Yarat",
+				"creating": "Yaradılır...",
+				"failedCreate": "API açarını yaratmaq alınmadı",
+				"validation": {
+					"nameRequired": "Ad tələb olunur",
+					"nameShort": "Ad ən azı 3 simvoldan ibarət olmalıdır",
+					"expirationRequired": "Bitmə vaxtı tələb olunur"
+				}
+			}
+		},
+		"workspaceGeneral": {
+			"pageTitle": "Ümumi parametrlər",
+			"title": "Ümumi parametrlər",
+			"subtitle": "İş sahənizin adını və təsvirini idarə edin.",
+			"workspaceInfoTitle": "İş sahəsi məlumatları",
+			"workspaceInfoSubtitle": "İş sahənizin təfərrüatlarını və tərcihlərini tənzimləyin.",
+			"nameLabel": "İş sahəsinin adı",
+			"nameHint": "İş sahənizin adı",
+			"namePlaceholder": "İş sahəsinin adını daxil edin",
+			"descriptionLabel": "Təsvir",
+			"descriptionHint": "İş sahənizin qısa təsviri",
+			"descriptionPlaceholder": "İş sahəsinin təsvirini daxil edin",
+			"dangerZone": "Təhlükəli bölmə",
+			"dangerZoneSubtitle": "Geri qaytarılmayan və məlumatları məhv edən əməliyyatlar.",
+			"deleteWorkspace": "İş sahəsini sil",
+			"deleteWorkspaceDescription": "İş sahəsinin həmişəlik silinməsini planlaşdır",
+			"deleteModalTitle": "İş sahəsi silinsin?",
+			"deleteModalDescription": "Bu, \"{{name}}\" iş sahəsini və bütün məlumatlarını həmişəlik siləcək. Bu əməliyyat geri qaytarıla bilməz.",
+			"deleteModalConfirm": "İş sahəsini sil",
+			"toastUpdated": "İş sahəsi uğurla yeniləndi",
+			"toastUpdateError": "İş sahəsini yeniləmək alınmadı",
+			"toastDeleted": "İş sahəsi uğurla silindi",
+			"toastDeleteError": "İş sahəsini silmək alınmadı",
+			"validation": {
+				"nameRequired": "İş sahəsinin adı tələb olunur",
+				"nameShort": "İş sahəsinin adı ən azı 2 simvoldan ibarət olmalıdır"
+			},
+			"transferOwnership": {
+				"toastSuccess": "Sahiblik ötürüldü",
+				"toastError": "Sahibliyi ötürmək alınmadı",
+				"title": "Sahibliyi ötür",
+				"subtitle": "Bu iş sahəsini başqa üzvə verin. Rolunuz inzibatçıya dəyişəcək və yalnız sahibə aid imkanları itirəcəksiniz.",
+				"pickerLabel": "Yeni sahib",
+				"noEligibleMembers": "Sahibliyi ötürməzdən əvvəl ən azı bir üzv dəvət edin.",
+				"pickerHint": "Həmin şəxs bu iş sahəsinin yeganə sahibi olacaq.",
+				"pickerPlaceholder": "Üzv seçin",
+				"button": "Ötür",
+				"dialogTitle": "Sahiblik ötürülsün?",
+				"dialogDescription": "{{name}} adlı şəxs {{workspace}} iş sahəsinin yeganə sahibi olacaq. İnzibatçı girişiniz qalacaq, lakin iş sahəsini silmək və ya yenidən ötürmək kimi yalnız sahibə aid imkanları itirəcəksiniz.",
+				"transferring": "Ötürülür…",
+				"confirm": "Sahibliyi ötür"
+			}
+		},
+		"workspaceRoles": {
+			"pageTitle": "Rollar",
+			"title": "Rollar",
+			"subtitle": "Üzvlərin {{workspaceName}} iş sahəsində hansı əməliyyatları edə biləcəyini müəyyən edin.",
+			"thisWorkspace": "bu iş sahəsi",
+			"noAccess": "İş sahəsinin rollarını idarə etmək üçün inzibatçı və ya sahib icazələri lazımdır.",
+			"sectionTitle": "İş sahəsinin rolları",
+			"sectionSubtitle": "Standart rolları redaktə edin və ya fərdi rol əlavə edin. Redaktələr zamanı üzvlərə təyin edilmiş rol adları saxlanılır.",
+			"newRole": "Yeni rol",
+			"loading": "Yüklənir…",
+			"loadError": "Rolları yükləmək alınmadı.",
+			"emptyTitle": "Hələ rol yoxdur",
+			"emptyDescription": "Standart rollar bu iş sahəsi üçün yaradıldıqdan sonra burada görünəcək.",
+			"defaultBadge": "Standart",
+			"permissionCount_one": "{{count}} icazə",
+			"permissionCount_other": "{{count}} icazə",
+			"nameLabel": "Ad",
+			"nameHint": "Kiçik hərflərlə. Sonradan dəyişdirilə bilməz.",
+			"namePlaceholder": "Məs., yoxlayıcı",
+			"discard": "İmtina et",
+			"createRole": "Rol yarat",
+			"deleteRole": "Rolu sil",
+			"defaultRoleHelp": "Standart rol: ad qorunur və sətir silinə bilməz.",
+			"unsavedChanges": "Yadda saxlanmamış dəyişiklikləriniz var",
+			"allChangesSaved": "Bütün dəyişikliklər yadda saxlanıldı",
+			"saveChanges": "Dəyişiklikləri yadda saxla",
+			"defaultRoleDescriptions": {
+				"viewer": "Tapşırıqlara baxa və şərh yaza bilər.",
+				"member": "Tapşırıqlar və layihələr yarada, onları idarə edə bilər.",
+				"admin": "İş sahəsinə tam giriş hüququ var."
+			},
+			"resources": {
+				"project": "Layihələr",
+				"task": "Tapşırıqlar",
+				"label": "Etiketlər",
+				"workspace": "İş sahəsi",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Yarat",
+						"description": "Yeni layihələr yarada bilər"
+					},
+					"read": {
+						"label": "Oxu",
+						"description": "Layihələrə baxa bilər"
+					},
+					"update": {
+						"label": "Yenilə",
+						"description": "Layihə parametrlərini redaktə edə bilər"
+					},
+					"delete": {
+						"label": "Sil",
+						"description": "Layihələri silə bilər"
+					},
+					"share": {
+						"label": "Paylaş",
+						"description": "Layihələri paylaşa bilər"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Yarat",
+						"description": "Tapşırıqlar yarada bilər"
+					},
+					"read": {
+						"label": "Oxu",
+						"description": "Tapşırıqlara baxa bilər"
+					},
+					"update": {
+						"label": "Yenilə",
+						"description": "Tapşırıqları redaktə edə bilər"
+					},
+					"delete": {
+						"label": "Sil",
+						"description": "Tapşırıqları silə bilər"
+					},
+					"assign": {
+						"label": "Təyin et",
+						"description": "Tapşırıqları üzvlərə təyin edə bilər"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Yarat",
+						"description": "Etiketlər yarada bilər"
+					},
+					"read": {
+						"label": "Oxu",
+						"description": "Etiketlərə baxa bilər"
+					},
+					"update": {
+						"label": "Yenilə",
+						"description": "Etiketləri redaktə edə bilər"
+					},
+					"delete": {
+						"label": "Sil",
+						"description": "Etiketləri silə bilər"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Oxu",
+						"description": "İş sahəsinin parametrlərinə baxa bilər"
+					},
+					"update": {
+						"label": "Yenilə",
+						"description": "İş sahəsinin parametrlərini yeniləyə bilər"
+					},
+					"delete": {
+						"label": "Sil",
+						"description": "İş sahəsini silə bilər"
+					},
+					"manage_settings": {
+						"label": "Parametrləri idarə et",
+						"description": "İş sahəsinin parametrlərini idarə edə bilər"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "Rolun adı tələb olunur",
+				"nameExists": "Bu adda rol artıq mövcuddur",
+				"permissionRequired": "Ən azı bir icazə seçilməlidir"
+			},
+			"toast": {
+				"created": "Rol yaradıldı",
+				"createError": "Rolu yaratmaq alınmadı",
+				"updated": "Rol yeniləndi",
+				"updateError": "Rolu yeniləmək alınmadı",
+				"deleted": "Rol silindi",
+				"deleteError": "Rolu silmək alınmadı"
+			},
+			"deleteDialog": {
+				"title": "Rolu sil",
+				"description": "Bu, \"{{role}}\" rolunu həmişəlik siləcək. Bu rolun təyin olunduğu üzvlər onun icazələrini itirəcək."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "Etiket parametrləri",
+			"title": "Etiketlər",
+			"subtitle": "İş sahəsi səviyyəsində etiketlər yaradın, onları redaktə edin və silin.",
+			"cardDescription": "Tapşırıqlara təyin edilə bilən etiketləri idarə edin.",
+			"createLabel": "Etiket yarat",
+			"editLabel": "Etiketi redaktə et",
+			"deleteLabel": "Sil",
+			"saveLabel": "Yadda saxla",
+			"nameLabel": "Etiketin adı",
+			"namePlaceholder": "Etiketin adını daxil edin",
+			"colorLabel": "Rəng",
+			"createDescription": "Bu iş sahəsindəki tapşırıqlarda istifadə oluna bilən yeni etiket yaradın.",
+			"editDescription": "Bu etiketin adını və ya rəngini yeniləyin.",
+			"deleteConfirmTitle": "Bu etiket silinsin?",
+			"deleteConfirmDescription": "Bu, etiketi bütün tapşırıqlardan həmişəlik çıxaracaq. Bu əməliyyat geri qaytarıla bilməz.",
+			"empty": "Hələ etiket yoxdur. Başlamaq üçün ilk etiketinizi yaradın.",
+			"createSuccess": "Etiket yaradıldı",
+			"updateSuccess": "Etiket yeniləndi",
+			"deleteSuccess": "Etiket silindi",
+			"createError": "Etiketi yaratmaq alınmadı",
+			"updateError": "Etiketi yeniləmək alınmadı",
+			"deleteError": "Etiketi silmək alınmadı",
+			"nameRequired": "Etiketin adı tələb olunur",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"projectGeneral": {
+			"pageTitle": "Layihə parametrləri",
+			"title": "Ümumi parametrlər",
+			"subtitle": "Layihənizin adını, açarını, nişanını və təsvirini idarə edin.",
+			"projectInfoTitle": "Layihə məlumatları",
+			"projectInfoSubtitle": "Layihənizin təfərrüatlarını və tərcihlərini tənzimləyin.",
+			"iconLabel": "Nişan",
+			"iconHint": "Yan paneldə və layihə görünüşlərində göstərilir.",
+			"pickIconTitle": "Nişan seç",
+			"searchIconsPlaceholder": "Nişanları axtar...",
+			"projectNameLabel": "Layihənin adı",
+			"projectNameHint": "Layihənizin adı",
+			"projectNamePlaceholder": "Layihənin adını daxil edin",
+			"keyLabel": "Açar",
+			"keyHint": "Tapşırıq identifikatorları üçün istifadə olunur (məs., {{slug}}-123)",
+			"keyPlaceholder": "LAY",
+			"descriptionLabel": "Təsvir",
+			"descriptionHint": "Layihənizin qısa təsviri",
+			"descriptionPlaceholder": "Layihənin təsvirini daxil edin",
+			"dangerZone": "Təhlükəli bölmə",
+			"dangerZoneSubtitle": "Geri qaytarılmayan və məlumatları məhv edən əməliyyatlar.",
+			"deleteProject": "Layihəni sil",
+			"deleteProjectDescription": "Layihənin həmişəlik silinməsini planlaşdır",
+			"deleteModalTitle": "Layihə silinsin?",
+			"deleteModalDescription": "Bu, \"{{name}}\" layihəsini və bütün məlumatlarını həmişəlik siləcək. Bu əməliyyat geri qaytarıla bilməz.",
+			"deleteModalConfirm": "Layihəni sil",
+			"toastUpdated": "Layihə uğurla yeniləndi",
+			"toastUpdateError": "Layihəni yeniləmək alınmadı",
+			"toastDeleted": "Layihə uğurla silindi",
+			"toastDeleteError": "Layihəni silmək alınmadı",
+			"validation": {
+				"nameRequired": "Layihənin adı tələb olunur",
+				"keyRequired": "Açar tələb olunur",
+				"keyMax": "Açar ən çox 8 simvoldan ibarət olmalıdır",
+				"iconRequired": "Nişan tələb olunur"
+			},
+			"importExportTasks": "İdxal/ixrac",
+			"importExportTasksDescription": "Tapşırıqları idxal və ixrac edin.",
+			"backgroundHint": "Choose an image shown behind this project's board.",
+			"backgroundLabel": "Board background",
+			"backgroundRemove": "Remove image",
+			"backgroundRemoveError": "Failed to remove project background",
+			"backgroundRemoveSuccess": "Project background removed",
+			"backgroundReplace": "Replace image",
+			"backgroundUpload": "Upload image",
+			"backgroundUploadError": "Failed to update project background",
+			"backgroundUploadSuccess": "Project background updated",
+			"moveModalConfirm": "Move Project",
+			"moveModalDescription": "This will move the project \"{{name}}\" and all of its tasks to \"{{workspace}}\". Tasks assigned to people who aren't members of that workspace will be unassigned, and notification subscriptions for this project will be cleared.",
+			"moveModalTitle": "Move Project?",
+			"moveProject": "Move to workspace",
+			"moveProjectAction": "Move",
+			"moveProjectDescription": "Move this project, with all of its tasks, to another workspace.",
+			"moveProjectPlaceholder": "Select workspace",
+			"moveTargetsError": "Couldn't check which workspaces you can move this project to. Reload to try again.",
+			"toastMoved": "Project moved successfully",
+			"toastMovedWithUnassigned": "Project moved successfully. {{taskCount}} task(s) were unassigned.",
+			"toastMoveError": "Failed to move project"
+		},
+		"projectIntegrations": {
+			"pageTitle": "Layihə inteqrasiyaları",
+			"title": "Layihə inteqrasiyaları",
+			"subtitle": "İş axınınızı asanlaşdırmaq üçün layihənizi xarici alət və xidmətlərə qoşun.",
+			"githubSectionTitle": "GitHub inteqrasiyası",
+			"githubSectionSubtitle": "Tapşırıqları GitHub məsələləri ilə sinxronlaşdırın və ikitərəfli sinxronlaşdırmanı aktivləşdirin.",
+			"giteaSectionTitle": "Gitea inteqrasiyası",
+			"giteaSectionSubtitle": "Tapşırıqları öz serverinizdəki Gitea ilə sinxronlaşdırın (məsələlər, birləşdirmə sorğuları, Webhook-lar).",
+			"discordSectionTitle": "Discord inteqrasiyası",
+			"discordSectionSubtitle": "Layihənin tapşırıq yeniləmələrini Webhook ilə Discord kanalına göndərin.",
+			"genericWebhookSectionTitle": "Ümumi Webhook-lar",
+			"genericWebhookSectionSubtitle": "Layihənin tapşırıq hadisələrini JSON kimi istənilən HTTP son nöqtəsinə göndərin.",
+			"slackSectionTitle": "Slack inteqrasiyası",
+			"slackSectionSubtitle": "Layihənin tapşırıq yeniləmələrini daxil olan Webhook ilə Slack kanalına göndərin.",
+			"mattermostSectionTitle": "Mattermost inteqrasiyası",
+			"mattermostSectionSubtitle": "Layihənin tapşırıq yeniləmələrini daxil olan Webhook ilə Mattermost kanalına göndərin.",
+			"telegramSectionTitle": "Telegram inteqrasiyası",
+			"telegramSectionSubtitle": "Layihənin tapşırıq yeniləmələrini bot ilə Telegram söhbətinə və ya mövzusuna göndərin.",
+			"gitlabSectionSubtitle": "Synchronize tasks with GitLab.com or a self-managed instance (issues, merge requests, webhooks).",
+			"gitlabSectionTitle": "GitLab Integration",
+			"codeHostingTitle": "Kod hostinqi",
+			"chatTitle": "Çat və vebhuklar",
+			"statusConnected": "Qoşulub",
+			"statusPaused": "Dayandırılıb",
+			"connect": "Qoş",
+			"configure": "Tənzimlə",
+			"done": "Hazır"
+		},
+		"projectVisibility": {
+			"pageTitle": "Layihənin görünürlüğü",
+			"title": "Görünürlük",
+			"subtitle": "Layihənizi kimin görə və ona daxil ola biləcəyini idarə edin.",
+			"sectionTitle": "Görünürlük",
+			"sectionSubtitle": "İctimai girişi açıb-bağlayın və ictimai URL-i paylaşın.",
+			"publicAccess": "İctimai giriş",
+			"publicAccessHint": "URL-i olan hər kəsin bu layihəyə baxmasına icazə ver",
+			"publicUrl": "İctimai URL",
+			"publicUrlHint": "Layihə ictimaidirsə, bu keçidi payl

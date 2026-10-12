@@ -1,9 +1,16 @@
 import { z } from "../openapi";
+import { integrationIdParam } from "../integrations/schema";
 import { syncProviders, syncRulesSchema } from "../plugins/sync/rules";
 
 export const syncParams = z.object({
   projectId: z.string().min(1),
   provider: z.enum(syncProviders),
+});
+
+// RFC 0001 WP5: id-keyed route params for the binding-keyed sync routes.
+export const syncBindingParams = integrationIdParam;
+export const resumeBindingParams = integrationIdParam.extend({
+  linkId: z.string().min(1),
 });
 export const rulesBody = z.object({ rules: syncRulesSchema });
 export const saveRulesBody = rulesBody.extend({

@@ -1,0 +1,787 @@
+ound. Each one you pick becomes a new project in {{workspace}}.",
+					"found_one": "{{count}} team found. If you pick it, it becomes a new project in {{workspace}}.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_many": "Import {{count}} teams",
+					"importButton_one": "Import {{count}} team",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_many": "{{done}} of {{count}} teams imported",
+					"progress_one": "{{done}} of {{count}} team imported",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_many": "{{source}}, {{count}} teams",
+					"runTitle_one": "{{source}}, {{count}} team",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_many": "{{done}} of {{count}} teams imported.",
+					"someImported_one": "{{done}} of {{count}} team imported.",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Sugestões",
+			"commands": "Comandos",
+			"projects": "Projetos",
+			"search": "Buscar",
+			"members": "Membros",
+			"createTask": "Criar tarefa",
+			"createProject": "Criar projeto",
+			"createWorkspace": "Criar espaço de trabalho",
+			"lightTheme": "Tema claro",
+			"darkTheme": "Tema escuro",
+			"systemTheme": "Tema do sistema",
+			"keyboardShortcuts": "Atalhos de teclado",
+			"inputPlaceholder": "Buscar aplicativos e comandos...",
+			"empty": "Nenhum resultado encontrado.",
+			"footer": {
+				"navigate": "Navegar",
+				"open": "Abrir",
+				"close": "Fechar"
+			}
+		},
+		"sidebar": {
+			"projects": "Projetos",
+			"members": "Membros",
+			"invitations": "Convites",
+			"more": "Mais",
+			"backToBoard": "Voltar ao quadro",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Ver projeto",
+			"shareProject": "Compartilhar projeto",
+			"projectSettings": "Configurações do projeto",
+			"linkCopied": "Link do projeto copiado para a área de transferência",
+			"addProject": "Adicionar projeto",
+			"deleteConfirmTitle": "Excluir projeto?",
+			"deleteConfirmDescription": "Isso removerá permanentemente o projeto e todos os seus dados. Você não pode desfazer esta ação.",
+			"deletedToast": "Projeto excluído",
+			"deleteProject": "Excluir projeto",
+			"switcherLabel": "Trocar de projeto ou visualização"
+		},
+		"search": {
+			"inputPlaceholder": "Buscar tarefas, projetos, comentários...",
+			"minCharsHint": "Digite pelo menos 3 caracteres para buscar",
+			"groups": {
+				"task": "Tarefas",
+				"project": "Projetos",
+				"workspace": "Espaços de trabalho",
+				"comment": "Comentários",
+				"activity": "Atividades",
+				"fallback": "Resultados"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Alternar barra lateral",
+			"back": "Voltar"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Logout realizado com sucesso",
+			"signOutFailed": "Falha ao sair",
+			"unnamedUser": "Usuário",
+			"settings": "Configurações",
+			"signingOut": "Saindo...",
+			"logOut": "Sair"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Espaços de trabalho",
+			"switching": "Alternando...",
+			"addWorkspace": "Adicionar espaço de trabalho",
+			"selectWorkspace": "Selecionar espaço de trabalho"
+		},
+		"page": {
+			"projectsTitle": "Projetos",
+			"settingsTitle": "Configurações",
+			"backToWorkspace": "Voltar ao espaço de trabalho",
+			"settingsWorkspaceTab": "Espaço de trabalho"
+		},
+		"projectSettings": {
+			"projectLabel": "Projeto"
+		},
+		"keyboardShortcuts": {
+			"title": "Atalhos de teclado",
+			"subtitle": "Acelere seu fluxo de trabalho com atalhos de teclado",
+			"searchPlaceholder": "Buscar atalhos...",
+			"footer": "Pressione <kbd>Escape</kbd> para fechar",
+			"categories": {
+				"general": "Geral",
+				"create": "Criar",
+				"views": "Visualizações",
+				"navigation": "Navegação",
+				"quickSelect": "Seleção rápida (em pop-ups)"
+			},
+			"items": {
+				"openCommandPalette": "Abrir paleta de comandos",
+				"globalSearch": "Busca global",
+				"toggleSidebar": "Alternar barra lateral",
+				"showShortcuts": "Mostrar atalhos de teclado",
+				"closeModal": "Fechar modal/pop-up",
+				"createTask": "Criar tarefa",
+				"createProject": "Criar projeto",
+				"createWorkspace": "Criar espaço de trabalho",
+				"boardView": "Mudar para visualização em quadro",
+				"listView": "Mudar para visualização em lista",
+				"backlogView": "Mudar para visualização de backlog",
+				"nextTask": "Próxima tarefa",
+				"prevTask": "Tarefa anterior",
+				"openTask": "Abrir tarefa selecionada",
+				"quickSelectNumber": "Selecionar opção por número",
+				"calendarView": "Mudar para visualização de calendário"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} nova",
+		"newCount_other": "{{count}} novas",
+		"emptyTitle": "Ainda não há notificações",
+		"emptySubtitle": "Você verá atualizações e atividades aqui.",
+		"clearAll": "Limpar todas as notificações",
+		"clearDialogTitle": "Limpar todas as notificações?",
+		"clearDialogDescription": "Isso removerá permanentemente todas as notificações. Você não pode desfazer esta ação.",
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} minuto",
+			"minutes_other": "{{count}} minutos",
+			"hours_one": "{{count}} hora",
+			"hours_other": "{{count}} horas",
+			"days_one": "{{count}} dia",
+			"days_other": "{{count}} dias",
+			"days_many": "{{count}} dias",
+			"hours_many": "{{count}} horas",
+			"minutes_many": "{{count}} minutos"
+		},
+		"events": {
+			"task_created": {
+				"title": "Nova tarefa criada",
+				"content": "A tarefa \"{{taskTitle}}\" foi criada"
+			},
+			"workspace_created": {
+				"title": "Espaço de trabalho criado",
+				"content": "Seu espaço de trabalho \"{{workspaceName}}\" foi criado com sucesso"
+			},
+			"task_status_changed": {
+				"title": "Status da tarefa alterado",
+				"content": "O status da tarefa \"{{taskTitle}}\" mudou de \"{{oldStatus}}\" para \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "Tarefa atribuída a você",
+				"content": "Você foi atribuído à tarefa: {{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} mencionou você",
+				"content": "{{mentionerName}} mencionou você em: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} comentou na sua tarefa",
+				"content": "Novo comentário em {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Tarefa vence em breve",
+				"content": "{{taskTitle}} vence em {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Tarefa atrasada",
+				"content": "{{taskTitle}} está com o prazo vencido"
+			},
+			"time_entry_created": {
+				"title": "Registro de tempo iniciado",
+				"contentWithTask": "Registro de tempo iniciado na tarefa: {{taskTitle}}",
+				"contentWithoutTask": "Registro de tempo iniciado em uma tarefa"
+			}
+		},
+		"newCount_many": "{{count}} novas",
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "atribuiu a tarefa a si mesmo",
+		"unassigned": "removeu o responsável da tarefa",
+		"assignedTo": "atribuiu a tarefa a {{name}}",
+		"changedStatus": "mudou o status de {{from}} para {{to}}",
+		"changedPriority": "mudou a prioridade de {{from}} para {{to}}",
+		"clearedDueDate": "limpou a data de vencimento",
+		"setDueDate": "definiu a data de vencimento para {{date}}",
+		"changedDueDate": "mudou a data de vencimento de {{from}} para {{to}}",
+		"changedTitle": "mudou o título de \"{{from}}\" para \"{{to}}\"",
+		"moved": "moveu a tarefa de \"{{from}}\" para \"{{to}}\"",
+		"created": "criou esta tarefa",
+		"githubUser": "Usuário do GitHub",
+		"comment": {
+			"viewGithubProfile": "Ver perfil no GitHub",
+			"cannotBeEmpty": "O comentário não pode estar vazio",
+			"mustBeLoggedInToEdit": "Você precisa estar conectado para editar comentários",
+			"updated": "Comentário atualizado",
+			"failedToUpdate": "Falha ao atualizar comentário",
+			"edit": "Editar comentário",
+			"editPlaceholder": "Editar comentário...",
+			"save": "Salvar",
+			"added": "Comentário adicionado",
+			"failedToAdd": "Falha ao adicionar comentário",
+			"leavePlaceholder": "Deixe um comentário...",
+			"attachFile": "Anexar arquivo",
+			"submitShortcut": "Enviar comentário",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "O envio de arquivos está disponível apenas em tarefas salvas.",
+				"uploadingFile": "Enviando arquivo...",
+				"imageUploaded": "Imagem enviada",
+				"fileAttached": "Arquivo anexado",
+				"failedToUploadFile": "Falha ao enviar arquivo",
+				"enterUrl": "Digite a URL",
+				"plaintext": "Texto simples",
+				"autoDetect": "Detecção automática",
+				"slashGroupText": "Texto",
+				"slashGroupLists": "Listas",
+				"slashGroupInsert": "Inserir",
+				"slashParagraph": "Texto",
+				"slashHeading": "Título",
+				"slashBulletList": "Lista com marcadores",
+				"slashTaskList": "Lista de tarefas",
+				"slashOrderedList": "Lista numerada",
+				"slashQuote": "Citação",
+				"slashCodeBlock": "Bloco de código",
+				"slashTable": "Tabela",
+				"slashFile": "Arquivo",
+				"searchParagraph": "texto parágrafo normal",
+				"searchHeading": "título cabeçalho h2",
+				"searchBulletList": "lista marcadores não ordenada",
+				"searchTaskList": "to-do tarefa lista de verificação caixa de seleção",
+				"searchOrderedList": "lista ordenada numerada",
+				"searchQuote": "citação bloco de citação",
+				"searchCodeBlock": "código trecho",
+				"searchTable": "tabela grade",
+				"searchFile": "arquivo anexo imagem foto figura enviar",
+				"embedErrorInvalidUrl": "Digite uma URL válida",
+				"embedErrorYoutubeOnly": "Somente links do YouTube podem ser incorporados.",
+				"embedVideo": "Incorporar vídeo",
+				"keepAsLink": "Manter como link",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Colar URL",
+				"asLink": "Como link",
+				"embed": "Incorporar",
+				"noCommands": "Nenhum comando",
+				"ariaCommentContent": "Conteúdo do comentário",
+				"ariaCommentEditor": "Editor de comentário",
+				"ariaCopyCode": "Copiar código",
+				"ariaCopied": "Copiado",
+				"copy": "Copiar",
+				"copied": "Copiado",
+				"dropImageToUpload": "Solte a imagem para enviar",
+				"previewImageAlt": "Pré-visualizar imagem",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"plaintext": "Texto simples",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"table": {
+					"addColumnBefore": "Inserir coluna à esquerda",
+					"addColumnAfter": "Inserir coluna à direita",
+					"deleteColumn": "Excluir coluna",
+					"addRowBefore": "Inserir linha acima",
+					"addRowAfter": "Inserir linha abaixo",
+					"deleteRow": "Excluir linha",
+					"deleteTable": "Excluir tabela"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diagram couldn't be rendered"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "comentou no {{forge}}"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Tarefas",
+		"status": {
+			"label": "Status",
+			"to-do": "A Fazer",
+			"in-progress": "Em Andamento",
+			"in-review": "Em Revisão",
+			"done": "Concluído",
+			"archived": "Arquivado",
+			"planned": "Planejado"
+		},
+		"priority": {
+			"label": "Prioridade",
+			"no-priority": "Sem prioridade",
+			"low": "Baixa",
+			"medium": "Média",
+			"high": "Alta",
+			"urgent": "Urgente"
+		},
+		"boardSearchPlaceholder": "Buscar tickets...",
+		"view": {
+			"board": "Quadro",
+			"list": "Lista",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Visualização"
+		},
+		"common": {
+			"selectTask": "Selecionar tarefa",
+			"loadingTask": "Carregando tarefa...",
+			"taskNotFound": "Tarefa não encontrada",
+			"taskNotFoundDescription": "A tarefa que você está procurando não existe ou foi excluída.",
+			"ticketAmbiguous": "O ID corresponde a mais de uma tarefa",
+			"ticketAmbiguousDescription": "{{ticketId}} corresponde a tarefas em mais de um projeto neste espaço de trabalho. Dê uma chave diferente a um desses projetos para que o link funcione.",
+			"ticketNotFoundDescription": "Nenhuma tarefa com o ID {{ticketId}} existe neste espaço de trabalho, ou você não tem acesso a ela.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Subtarefa de",
+			"activity": "Atividade",
+			"noActivity": "Nenhuma atividade encontrada",
+			"openInFullPage": "Abrir em página inteira",
+			"titlePlaceholder": "Clique para adicionar um título",
+			"addDescription": "Adicionar uma descrição...",
+			"editor": {
+				"ariaLabel": "Editor de descrição da tarefa",
+				"placeholder": "Escreva uma descrição...",
+				"previewImage": "Pré-visualizar imagem",
+				"enterUrl": "Digite a URL",
+				"autoDetect": "Detecção automática",
+				"copyCode": "Copiar código",
+				"copy": "Copiar",
+				"copied": "Copiado",
+				"attachFile": "Anexar arquivo",
+				"dropToUpload": "Solte a imagem para enviar",
+				"checkbox": {
+					"markIncomplete": "Marcar tarefa como incompleta",
+					"markComplete": "Marcar tarefa como concluída"
+				},
+				"upload": {
+					"loading": "Enviando arquivo...",
+					"failed": "Falha ao enviar arquivo",
+					"imageSuccess": "Imagem enviada",
+					"fileSuccess": "Arquivo anexado"
+				},
+				"slash": {
+					"groups": {
+						"text": "Texto",
+						"lists": "Listas",
+						"insert": "Inserir"
+					},
+					"empty": "Nenhum comando",
+					"commands": {
+						"paragraph": "Texto",
+						"heading-2": "Título",
+						"bullet-list": "Lista com marcadores",
+						"task-list": "Lista de tarefas",
+						"ordered-list": "Lista numerada",
+						"blockquote": "Citação",
+						"code-block": "Bloco de código",
+						"table": "Tabela",
+						"file": "Arquivo"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Texto simples",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Incorporar vídeo",
+						"keepAsLink": "Manter como link"
+					},
+					"inputPlaceholder": "Colar URL",
+					"embeddedContent": "Conteúdo incorporado",
+					"asLink": "Como link",
+					"submit": "Incorporar",
+					"errors": {
+						"invalidUrl": "Digite uma URL válida",
+						"onlyYoutube": "Somente links do YouTube podem ser incorporados."
+					},
+					"onlyYoutubeInline": "Somente URLs do YouTube podem ser incorporadas. Use o modo de link."
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diagram couldn't be rendered"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Tarefa"
+		},
+		"relations": {
+			"title": "Relações",
+			"tasksInProject": "Tarefas no projeto",
+			"linkError": "Falha ao vincular tarefa",
+			"empty": "Nenhuma tarefa relacionada",
+			"searchPlaceholder": "Buscar tarefas para vincular...",
+			"noTasksFound": "Nenhuma tarefa encontrada",
+			"openTask": "Abrir tarefa",
+			"removeRelation": "Remover relação",
+			"related": "Relacionado",
+			"blocks": "Bloqueia",
+			"selectTask": "Selecione uma tarefa para vincular",
+			"types": {
+				"blocks": "bloqueia",
+				"blocked_by": "bloqueado por",
+				"related": "relaciona-se a"
+			}
+		},
+		"subtasks": {
+			"title": "Subtarefas",
+			"inputPlaceholder": "Título da subtarefa...",
+			"addAction": "Adicionar",
+			"empty": "Ainda não há subtarefas",
+			"createError": "Falha ao criar subtarefa",
+			"deleteSuccess": "Tarefa excluída com sucesso",
+			"deleteError": "Falha ao excluir tarefa",
+			"deleteDialogTitle": "Excluir tarefa?",
+			"deleteDialogDescription": "Isso removerá permanentemente a tarefa e todos os seus dados. Você não pode desfazer esta ação.",
+			"deleteAction": "Excluir tarefa",
+			"completeAria": "Marcar subtarefa como concluída",
+			"progress": "{{completed}} de {{total}} subtarefas concluídas",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Propriedades",
+			"labels": "Etiquetas",
+			"copyTaskLink": "Copiar link da tarefa",
+			"copyTaskBranch": "Copiar branch da tarefa",
+			"taskLinkCopied": "Link da tarefa copiado",
+			"taskBranchCopied": "Nome da branch copiado",
+			"start": "Início",
+			"startDate": "Data de início",
+			"noDate": "Sem data"
+		},
+		"move": {
+			"title": "Mover tarefa",
+			"projectLabel": "Projeto de destino",
+			"projectPlaceholder": "Selecione um projeto",
+			"statusLabel": "Status de destino",
+			"statusHintKeep": "O fluxo de trabalho deste projeto já suporta o status atual.",
+			"statusHintAdjust": "Escolha o status a ser usado no projeto de destino.",
+			"action": "Mover tarefa",
+			"success": "Tarefa movida com sucesso",
+			"error": "Falha ao mover tarefa"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Não atribuído",
+				"updateError": "Falha ao atualizar o responsável pela tarefa"
+			},
+			"status": {
+				"updateError": "Falha ao atualizar o status da tarefa"
+			},
+			"priority": {
+				"updateError": "Falha ao atualizar a prioridade da tarefa"
+			},
+			"dueDate": {
+				"updateSuccess": "Data de vencimento da tarefa atualizada com sucesso",
+				"updateError": "Falha ao atualizar a data de vencimento da tarefa",
+				"clear": "Limpar data"
+			},
+			"startDate": {
+				"updateSuccess": "Data de início da tarefa atualizada com sucesso",
+				"updateError": "Falha ao atualizar a data de início da tarefa",
+				"clear": "Limpar data de início"
+			},
+			"labels": {
+				"searchPlaceholder": "Buscar etiquetas...",
+				"empty": "Nenhuma etiqueta encontrada",
+				"create": "Criar \"{{name}}\"",
+				"chooseColor": "Escolher cor",
+				"addSuccess": "Etiqueta adicionada",
+				"removeSuccess": "Etiqueta removida",
+				"updateError": "Falha ao atualizar etiqueta",
+				"createSuccess": "Etiqueta criada e adicionada",
+				"createError": "Falha ao criar etiqueta",
+				"colors": {
+					"stone": "Pedra",
+					"slate": "Ardósia",
+					"lavender": "Lavanda",
+					"sage": "Sálvia",
+					"forest": "Floresta",
+					"amber": "Âmbar",
+					"terracotta": "Terracota",
+					"rose": "Rosa",
+					"crimson": "Carmesim"
+				},
+				"editLabels": "Editar etiquetas"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Backlog de {{name}}",
+			"noTasksToMove": "Nenhuma tarefa planejada para mover",
+			"moveAllConfirm": "Mover todas as {{count}} tarefas planejadas para A Fazer?",
+			"moveAllSuccess": "{{count}} tarefas movidas para A Fazer",
+			"plan": "Planejar",
+			"moveAllTooltip": "Mover todas as planejadas para A Fazer",
+			"moveAll": "Mover todas",
+			"addTask": "Adicionar tarefa",
+			"filter": "Filtrar",
+			"addFilter": "Adicionar filtro...",
+			"sections": {
+				"planned": "Planejado",
+				"archived": "Arquivado"
+			},
+			"noTasksInSection": "Nenhuma tarefa em {{section}}",
+			"filters": {
+				"priority": "Prioridade: {{name}}",
+				"assignee": "Responsável: {{name}}",
+				"due": "Vencimento: {{date}}",
+				"label": "Etiqueta: {{name}}",
+				"dueThisWeek": "Vence esta semana",
+				"dueNextWeek": "Vence na próxima semana",
+				"noDueDate": "Sem data de vencimento"
+			}
+		},
+		"sort": {
+			"label": "Ordenar",
+			"by": "Ordenar por",
+			"direction": "Direção",
+			"ascending": "Crescente",
+			"descending": "Decrescente",
+			"fields": {
+				"position": "Manual (posição)",
+				"createdAt": "Data de criação",
+				"priority": "Prioridade",
+				"dueDate": "Data de vencimento",
+				"title": "Título",
+				"number": "Número da tarefa"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Filtrar por",
+			"allStatuses": "Todos os status",
+			"allPriorities": "Todas as prioridades",
+			"allAssignees": "Todos os responsáveis",
+			"allDueDates": "Todas as datas de vencimento",
+			"allLabels": "Todas as etiquetas",
+			"selectedCount": "{{count}} selecionado(s)",
+			"subjects": {
+				"status": "Status",
+				"priority": "Prioridade",
+				"assignee": "Responsável",
+				"dueDate": "Data de vencimento",
+				"labels": "Etiquetas"
+			},
+			"operators": {
+				"isAnyOf": "é qualquer um de",
+				"includeAnyOf": "inclui qualquer um de"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Linha do tempo Gantt",
+			"searchPlaceholder": "Buscar tickets agendados...",
+			"hideTasks": "Ocultar tarefas",
+			"showTasks": "Mostrar tarefas",
+			"noTasks": "Nenhuma tarefa agendada",
+			"noTasksSubtitle": "Adicione uma data de início, data de vencimento ou ambas às tarefas para posicioná-las na linha do tempo do projeto.",
+			"noTasksFound": "Nenhuma tarefa encontrada",
+			"noTasksMatch": "Nenhuma tarefa agendada corresponde a \"{{query}}\"",
+			"taskHeader": "Tarefa",
+			"updateDatesError": "Falha ao atualizar as datas da tarefa",
+			"resizeStart": "Redimensionar data de início",
+			"resizeDue": "Redimensionar data de vencimento",
+			"taskAriaLabel": "{{title}}: abrir ou arrastar para mover",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Excluir tarefa?",
+			"description": "Isso removerá permanentemente a tarefa e todos os seus dados. Você não pode desfazer esta ação.",
+			"action": "Excluir tarefa",
+			"success": "Tarefa excluída com sucesso",
+			"error": "Falha ao excluir tarefa"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (cópia)",
+			"success": "Tarefa duplicada com sucesso",
+			"error": "Falha ao duplicar tarefa"
+		},
+		"archive": {
+			"success": "{{count}} tarefas arquivadas"
+		},
+		"listView": {
+			"addTask": "Adicionar tarefa",
+			"archiveAllTooltip": "Arquivar todas as tarefas concluídas",
+			"noTasks": "Nenhuma tarefa"
+		},
+		"kanban": {
+			"addTask": "Adicionar tarefa",
+			"automaticallySortedHint": "Ordenado automaticamente por {{sort}}"
+		},
+		"pr": {
+			"merged": "Mesclado",
+			"draft": "Rascunho",
+			"open": "Aberto",
+			"label": "Pull Request",
+			"count_one": "{{count}} PR",
+			"count_other": "{{count}} PRs",
+			"count_many": "{{count}} PRs"
+		},
+		"assignee": {
+			"label": "Responsável",
+			"unassigned": "Não atribuído"
+		},
+		"dueDate": {
+			"label": "Data de vencimento",
+			"clear": "Limpar data",
+			"updateSuccess": "Data de vencimento da tarefa atualizada com sucesso",

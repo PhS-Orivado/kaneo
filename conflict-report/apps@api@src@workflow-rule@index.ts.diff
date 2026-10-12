@@ -1,0 +1,27 @@
+diff --cc apps/api/src/workflow-rule/index.ts
+index a9a9d2c8,a014ad0c..00000000
+--- a/apps/api/src/workflow-rule/index.ts
++++ b/apps/api/src/workflow-rule/index.ts
+@@@ -54,11 -71,13 +69,21 @@@ const upsertWorkflowRuleRoute = createR
+    },
+    responses: {
+      200: jsonResponse("The created or updated rule", workflowRuleRowSchema),
+++<<<<<<< HEAD
+ +    400: errorResponse("Invalid body"),
+++=======
++     400: errorResponse(
++       "Invalid body, unknown project, or the integration does not belong to the project or its type does not match",
++     ),
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+      403: errorResponse(
+ -      "No workspace access, or missing project:update permission",
+ +      "No access to the project, or missing project:update permission",
+      ),
+++<<<<<<< HEAD
+ +    404: errorResponse("Project not found"),
+++=======
++     404: errorResponse("Integration not found"),
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    },
+  });
+  

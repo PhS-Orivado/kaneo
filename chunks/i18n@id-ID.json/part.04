@@ -1,0 +1,826 @@
+enjadi \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "Tugas ditugaskan kepada Anda",
+				"content": "Anda ditugaskan ke tugas: {{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} menyebut Anda",
+				"content": "{{mentionerName}} menyebut Anda di: {{taskTitle}}"
+			},
+			"time_entry_created": {
+				"title": "Pelacakan waktu dimulai",
+				"contentWithTask": "Pelacakan waktu dimulai pada tugas: {{taskTitle}}",
+				"contentWithoutTask": "Pelacakan waktu dimulai pada sebuah tugas"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} mengomentari tugas Anda",
+				"content": "Komentar baru pada {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Tenggat tugas segera tiba",
+				"content": "{{taskTitle}} jatuh tempo dalam {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Tugas terlambat",
+				"content": "{{taskTitle}} telah melewati tenggatnya"
+			}
+		},
+		"reminderLeadTime": {
+			"minutes_other": "{{count}} menit",
+			"hours_other": "{{count}} jam",
+			"days_other": "{{count}} hari"
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "menugaskan tugas kepada dirinya sendiri",
+		"unassigned": "menghapus penugasan tugas",
+		"assignedTo": "menugaskan tugas kepada {{name}}",
+		"changedStatus": "mengubah status dari {{from}} menjadi {{to}}",
+		"changedPriority": "mengubah prioritas dari {{from}} menjadi {{to}}",
+		"clearedDueDate": "menghapus tenggat",
+		"setDueDate": "mengatur tenggat ke {{date}}",
+		"changedDueDate": "mengubah tenggat dari {{from}} menjadi {{to}}",
+		"changedTitle": "mengubah judul dari \"{{from}}\" menjadi \"{{to}}\"",
+		"moved": "memindahkan tugas dari \"{{from}}\" ke \"{{to}}\"",
+		"created": "membuat tugas ini",
+		"githubUser": "Pengguna GitHub",
+		"comment": {
+			"viewGithubProfile": "Lihat Profil GitHub",
+			"cannotBeEmpty": "Komentar tidak boleh kosong",
+			"mustBeLoggedInToEdit": "Anda harus masuk untuk mengedit komentar",
+			"updated": "Komentar diperbarui",
+			"failedToUpdate": "Gagal memperbarui komentar",
+			"edit": "Edit komentar",
+			"editPlaceholder": "Edit komentar...",
+			"save": "Simpan",
+			"added": "Komentar ditambahkan",
+			"failedToAdd": "Gagal menambahkan komentar",
+			"leavePlaceholder": "Tinggalkan komentar...",
+			"attachFile": "Lampirkan file",
+			"submitShortcut": "Kirim komentar",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Unggahan file hanya tersedia pada tugas yang sudah disimpan.",
+				"uploadingFile": "Mengunggah file...",
+				"imageUploaded": "Gambar diunggah",
+				"fileAttached": "File dilampirkan",
+				"failedToUploadFile": "Gagal mengunggah file",
+				"enterUrl": "Masukkan URL",
+				"plaintext": "Teks biasa",
+				"autoDetect": "Deteksi otomatis",
+				"slashGroupText": "Teks",
+				"slashGroupLists": "Daftar",
+				"slashGroupInsert": "Sisipkan",
+				"slashParagraph": "Teks",
+				"slashHeading": "Heading",
+				"slashBulletList": "Daftar berpoin",
+				"slashTaskList": "Daftar tugas",
+				"slashOrderedList": "Daftar bernomor",
+				"slashQuote": "Kutipan",
+				"slashCodeBlock": "Blok kode",
+				"slashTable": "Tabel",
+				"slashFile": "File",
+				"searchParagraph": "paragraf teks normal",
+				"searchHeading": "heading judul h2",
+				"searchBulletList": "daftar bullet tidak berurutan",
+				"searchTaskList": "todo to-do checklist checkbox daftar tugas",
+				"searchOrderedList": "daftar berurutan bernomor",
+				"searchQuote": "kutipan blockquote",
+				"searchCodeBlock": "cuplikan kode",
+				"searchTable": "tabel grid",
+				"searchFile": "file lampiran gambar foto unggah",
+				"embedErrorInvalidUrl": "Masukkan URL yang valid",
+				"embedErrorYoutubeOnly": "Hanya tautan YouTube yang dapat disematkan.",
+				"embedVideo": "Sematkan video",
+				"keepAsLink": "Biarkan sebagai tautan",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Tempel URL",
+				"asLink": "Sebagai tautan",
+				"embed": "Sematkan",
+				"noCommands": "Tidak ada perintah",
+				"ariaCommentContent": "Konten komentar",
+				"ariaCommentEditor": "Editor komentar",
+				"ariaCopyCode": "Salin kode",
+				"ariaCopied": "Disalin",
+				"copy": "Salin",
+				"copied": "Disalin",
+				"dropImageToUpload": "Lepaskan gambar untuk mengunggah",
+				"previewImageAlt": "Pratinjau gambar",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"plaintext": "Teks biasa",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML"
+				},
+				"table": {
+					"addColumnBefore": "Sisipkan kolom di kiri",
+					"addColumnAfter": "Sisipkan kolom di kanan",
+					"deleteColumn": "Hapus kolom",
+					"addRowBefore": "Sisipkan baris di atas",
+					"addRowAfter": "Sisipkan baris di bawah",
+					"deleteRow": "Hapus baris",
+					"deleteTable": "Hapus tabel"
+				},
+				"mermaid": {
+					"renderFailed": "Diagram Mermaid tidak dapat dirender"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "berkomentar di {{forge}}"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Tugas",
+		"status": {
+			"label": "Status",
+			"to-do": "Perlu Dikerjakan",
+			"in-progress": "Sedang Berjalan",
+			"in-review": "Dalam Review",
+			"done": "Selesai",
+			"archived": "Diarsipkan",
+			"planned": "Direncanakan"
+		},
+		"priority": {
+			"label": "Prioritas",
+			"no-priority": "Tanpa prioritas",
+			"low": "Rendah",
+			"medium": "Sedang",
+			"high": "Tinggi",
+			"urgent": "Mendesak"
+		},
+		"boardSearchPlaceholder": "Cari tiket...",
+		"view": {
+			"board": "Papan",
+			"list": "Daftar",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Tampilan"
+		},
+		"common": {
+			"selectTask": "Pilih tugas",
+			"loadingTask": "Memuat tugas...",
+			"taskNotFound": "Tugas tidak ditemukan",
+			"taskNotFoundDescription": "Tugas yang Anda cari tidak ada atau telah dihapus.",
+			"ticketAmbiguous": "ID tugas cocok dengan lebih dari satu tugas",
+			"ticketAmbiguousDescription": "{{ticketId}} cocok dengan tugas di lebih dari satu proyek di ruang kerja ini. Berikan kunci yang berbeda ke salah satu proyek tersebut agar tautan berfungsi.",
+			"ticketNotFoundDescription": "Tidak ada tugas dengan ID {{ticketId}} di ruang kerja ini, atau Anda tidak memiliki akses ke tugas tersebut.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Subtugas dari",
+			"activity": "Aktivitas",
+			"noActivity": "Tidak ada aktivitas ditemukan",
+			"openInFullPage": "Buka di halaman penuh",
+			"titlePlaceholder": "Klik untuk menambahkan judul",
+			"addDescription": "Tambahkan deskripsi...",
+			"editor": {
+				"ariaLabel": "Editor deskripsi tugas",
+				"placeholder": "Tulis deskripsi...",
+				"previewImage": "Pratinjau gambar",
+				"enterUrl": "Masukkan URL",
+				"autoDetect": "Deteksi otomatis",
+				"copyCode": "Salin kode",
+				"copy": "Salin",
+				"copied": "Disalin",
+				"attachFile": "Lampirkan file",
+				"dropToUpload": "Lepaskan gambar untuk mengunggah",
+				"checkbox": {
+					"markIncomplete": "Tandai tugas belum selesai",
+					"markComplete": "Tandai tugas selesai"
+				},
+				"upload": {
+					"loading": "Mengunggah file...",
+					"failed": "Gagal mengunggah file",
+					"imageSuccess": "Gambar diunggah",
+					"fileSuccess": "File dilampirkan"
+				},
+				"slash": {
+					"groups": {
+						"text": "Teks",
+						"lists": "Daftar",
+						"insert": "Sisipkan"
+					},
+					"empty": "Tidak ada perintah",
+					"commands": {
+						"paragraph": "Teks",
+						"heading-2": "Heading",
+						"bullet-list": "Daftar berpoin",
+						"task-list": "Daftar tugas",
+						"ordered-list": "Daftar bernomor",
+						"blockquote": "Kutipan",
+						"code-block": "Blok kode",
+						"table": "Tabel",
+						"file": "File"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"mermaid": "Mermaid",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Plaintext",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Sematkan video",
+						"keepAsLink": "Biarkan sebagai tautan"
+					},
+					"inputPlaceholder": "Tempel URL",
+					"embeddedContent": "Konten disematkan",
+					"asLink": "Sebagai tautan",
+					"submit": "Sematkan",
+					"errors": {
+						"invalidUrl": "Masukkan URL yang valid",
+						"onlyYoutube": "Hanya tautan YouTube yang dapat disematkan."
+					},
+					"onlyYoutubeInline": "Hanya URL YouTube yang dapat disematkan. Gunakan mode tautan."
+				},
+				"mermaid": {
+					"renderFailed": "Diagram Mermaid tidak dapat dirender"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Tugas"
+		},
+		"relations": {
+			"title": "Relasi",
+			"tasksInProject": "Tugas dalam proyek",
+			"linkError": "Gagal menautkan tugas",
+			"empty": "Tidak ada tugas terkait",
+			"searchPlaceholder": "Cari tugas untuk ditautkan...",
+			"noTasksFound": "Tugas tidak ditemukan",
+			"openTask": "Buka tugas",
+			"removeRelation": "Hapus relasi",
+			"related": "Terkait",
+			"blocks": "Memblokir",
+			"selectTask": "Pilih tugas untuk ditautkan",
+			"types": {
+				"blocks": "memblokir",
+				"blocked_by": "diblokir oleh",
+				"related": "terkait dengan"
+			}
+		},
+		"subtasks": {
+			"title": "Subtugas",
+			"inputPlaceholder": "Judul subtugas...",
+			"addAction": "Tambah",
+			"empty": "Belum ada subtugas",
+			"createError": "Gagal membuat subtugas",
+			"deleteSuccess": "Tugas berhasil dihapus",
+			"deleteError": "Gagal menghapus tugas",
+			"deleteDialogTitle": "Hapus Tugas?",
+			"deleteDialogDescription": "Ini akan menghapus tugas dan semua datanya secara permanen. Anda tidak dapat membatalkan tindakan ini.",
+			"deleteAction": "Hapus Tugas",
+			"completeAria": "Tandai subtugas selesai",
+			"progress": "{{completed}} dari {{total}} subtugas selesai",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Properti",
+			"labels": "Label",
+			"copyTaskLink": "Salin tautan tugas",
+			"copyTaskBranch": "Salin branch tugas",
+			"taskLinkCopied": "Tautan tugas disalin",
+			"taskBranchCopied": "Nama branch disalin",
+			"start": "Mulai",
+			"startDate": "Tanggal mulai",
+			"noDate": "Tanpa tanggal"
+		},
+		"move": {
+			"title": "Pindahkan tugas",
+			"projectLabel": "Proyek tujuan",
+			"projectPlaceholder": "Pilih proyek",
+			"statusLabel": "Status tujuan",
+			"statusHintKeep": "Alur kerja proyek ini sudah mendukung status saat ini.",
+			"statusHintAdjust": "Pilih status yang akan digunakan di proyek tujuan.",
+			"action": "Pindahkan tugas",
+			"success": "Tugas berhasil dipindahkan",
+			"error": "Gagal memindahkan tugas"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Belum ditugaskan",
+				"updateError": "Gagal memperbarui penanggung jawab tugas"
+			},
+			"status": {
+				"updateError": "Gagal memperbarui status tugas"
+			},
+			"priority": {
+				"updateError": "Gagal memperbarui prioritas tugas"
+			},
+			"dueDate": {
+				"updateSuccess": "Tenggat tugas berhasil diperbarui",
+				"updateError": "Gagal memperbarui tenggat tugas",
+				"clear": "Hapus tanggal"
+			},
+			"startDate": {
+				"updateSuccess": "Tanggal mulai tugas berhasil diperbarui",
+				"updateError": "Gagal memperbarui tanggal mulai tugas",
+				"clear": "Hapus tanggal mulai"
+			},
+			"labels": {
+				"searchPlaceholder": "Cari label...",
+				"empty": "Label tidak ditemukan",
+				"create": "Buat \"{{name}}\"",
+				"chooseColor": "Pilih warna",
+				"addSuccess": "Label ditambahkan",
+				"removeSuccess": "Label dihapus",
+				"updateError": "Gagal memperbarui label",
+				"createSuccess": "Label dibuat dan ditambahkan",
+				"createError": "Gagal membuat label",
+				"colors": {
+					"stone": "Batu",
+					"slate": "Slate",
+					"lavender": "Lavender",
+					"sage": "Sage",
+					"forest": "Forest",
+					"amber": "Amber",
+					"terracotta": "Terracotta",
+					"rose": "Rose",
+					"crimson": "Crimson"
+				},
+				"editLabels": "Edit label"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Backlog {{name}}",
+			"noTasksToMove": "Tidak ada tugas terencana untuk dipindahkan",
+			"moveAllConfirm": "Pindahkan semua {{count}} tugas terencana ke Perlu Dikerjakan?",
+			"moveAllSuccess": "Memindahkan {{count}} tugas ke Perlu Dikerjakan",
+			"plan": "Rencanakan",
+			"moveAllTooltip": "Pindahkan Semua yang Direncanakan ke Perlu Dikerjakan",
+			"moveAll": "Pindahkan Semua",
+			"addTask": "Tambah tugas",
+			"filter": "Filter",
+			"addFilter": "Tambah filter...",
+			"sections": {
+				"planned": "Direncanakan",
+				"archived": "Diarsipkan"
+			},
+			"noTasksInSection": "Tidak ada tugas {{section}}",
+			"filters": {
+				"priority": "Prioritas: {{name}}",
+				"assignee": "Penanggung jawab: {{name}}",
+				"due": "Tenggat: {{date}}",
+				"label": "Label: {{name}}",
+				"dueThisWeek": "Tenggat minggu ini",
+				"dueNextWeek": "Tenggat minggu depan",
+				"noDueDate": "Tanpa tenggat"
+			}
+		},
+		"sort": {
+			"label": "Urutkan",
+			"by": "Urutkan Berdasarkan",
+			"direction": "Arah",
+			"ascending": "Naik",
+			"descending": "Turun",
+			"fields": {
+				"position": "Manual (posisi)",
+				"createdAt": "Tanggal dibuat",
+				"priority": "Prioritas",
+				"dueDate": "Tenggat",
+				"title": "Judul",
+				"number": "Nomor tugas"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Filter Berdasarkan",
+			"allStatuses": "Semua status",
+			"allPriorities": "Semua prioritas",
+			"allAssignees": "Semua penanggung jawab",
+			"allDueDates": "Semua tenggat",
+			"allLabels": "Semua label",
+			"selectedCount": "{{count}} dipilih",
+			"subjects": {
+				"status": "Status",
+				"priority": "Prioritas",
+				"assignee": "Penanggung jawab",
+				"dueDate": "Tenggat",
+				"labels": "Label"
+			},
+			"operators": {
+				"isAnyOf": "adalah salah satu dari",
+				"includeAnyOf": "menyertakan salah satu dari"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Linimasa Gantt",
+			"searchPlaceholder": "Cari tiket terjadwal...",
+			"hideTasks": "Sembunyikan tugas",
+			"showTasks": "Tampilkan tugas",
+			"noTasks": "Tidak ada tugas terjadwal",
+			"noTasksSubtitle": "Tambahkan tanggal mulai, tenggat, atau keduanya ke tugas untuk menempatkannya di linimasa proyek.",
+			"noTasksFound": "Tugas tidak ditemukan",
+			"noTasksMatch": "Tidak ada tugas terjadwal yang cocok dengan \"{{query}}\"",
+			"taskHeader": "Tugas",
+			"updateDatesError": "Gagal memperbarui tanggal tugas",
+			"resizeStart": "Ubah ukuran tanggal mulai",
+			"resizeDue": "Ubah ukuran tenggat",
+			"taskAriaLabel": "{{title}}: buka atau seret untuk memindahkan",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Hapus Tugas?",
+			"description": "Ini akan menghapus tugas dan semua datanya secara permanen. Anda tidak dapat membatalkan tindakan ini.",
+			"action": "Hapus Tugas",
+			"success": "Tugas berhasil dihapus",
+			"error": "Gagal menghapus tugas"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (salinan)",
+			"success": "Tugas berhasil diduplikasi",
+			"error": "Gagal menduplikasi tugas"
+		},
+		"archive": {
+			"success": "{{count}} tugas diarsipkan"
+		},
+		"listView": {
+			"addTask": "Tambah tugas",
+			"archiveAllTooltip": "Arsipkan semua tugas yang selesai",
+			"noTasks": "Tidak ada tugas"
+		},
+		"kanban": {
+			"addTask": "Tambah tugas",
+			"automaticallySortedHint": "Diurutkan otomatis berdasarkan {{sort}}"
+		},
+		"pr": {
+			"merged": "Digabung",
+			"draft": "Draf",
+			"open": "Terbuka",
+			"label": "Pull Request",
+			"count_other": "{{count}} PR"
+		},
+		"assignee": {
+			"label": "Penanggung jawab",
+			"unassigned": "Belum ditugaskan"
+		},
+		"dueDate": {
+			"label": "Tenggat",
+			"clear": "Hapus tanggal",
+			"updateSuccess": "Tenggat tugas berhasil diperbarui",
+			"updateError": "Gagal memperbarui tenggat tugas",
+			"clearSuccess": "Tenggat tugas dihapus",
+			"clearError": "Gagal menghapus tenggat"
+		},
+		"labels": {
+			"label": "Label",
+			"empty": "Tidak ada label tersedia"
+		},
+		"update": {
+			"success": "Tugas berhasil diperbarui",
+			"error": "Gagal memperbarui tugas"
+		},
+		"contextMenu": {
+			"copyLink": "Salin tautan",
+			"copyLinkSuccess": "Tautan tugas disalin!"
+		},
+		"actions": {
+			"duplicate": "Duplikat",
+			"archive": "Arsipkan",
+			"markAsPlanned": "Tandai sebagai direncanakan",
+			"delete": "Hapus..."
+		},
+		"bulk": {
+			"selectedCount": "{{count}} dipilih",
+			"moveToBacklog": "Pindahkan ke Backlog",
+			"moveToBacklogSuccess": "{{count}} tugas dipindahkan ke backlog",
+			"moveToBacklogError": "Gagal memindahkan tugas ke backlog",
+			"moveToBoard": "Pindahkan ke Papan",
+			"moveToBoardSuccess": "{{count}} tugas dipindahkan ke papan",
+			"moveToBoardError": "Gagal memindahkan tugas ke papan",
+			"delete": "Hapus tugas",
+			"deleteConfirm": "Hapus {{count}} tugas? Tindakan ini tidak dapat dibatalkan.",
+			"deleteSuccess": "{{count}} tugas dihapus",
+			"deleteError": "Gagal menghapus tugas",
+			"archive": "Arsipkan tugas",
+			"archiveSuccess": "{{count}} tugas diarsipkan",
+			"archiveError": "Gagal mengarsipkan tugas",
+			"updateSuccess": "{{count}} tugas diperbarui",
+			"updateError": "Gagal memperbarui tugas",
+			"assignTo": "Tugaskan ke",
+			"assignSuccess": "{{count}} tugas ditugaskan",
+			"assignError": "Gagal menugaskan tugas",
+			"setPriority": "Atur Prioritas",
+			"updatePriorityError": "Gagal memperbarui prioritas",
+			"addLabel": "Tambah Label",
+			"addLabelSuccess": "Label ditambahkan ke {{count}} tugas",
+			"addLabelError": "Gagal menambahkan label",
+			"setDueDate": "Atur Tenggat",
+			"updateDueDateError": "Gagal memperbarui tenggat",
+			"actions": "Aksi",
+			"searchActions": "Cari aksi...",
+			"noActionsFound": "Tidak ada aksi ditemukan.",
+			"changeStatus": "Ubah Status"
+		},
+		"editor": {
+			"table": {
+				"addColumnBefore": "Sisipkan kolom di kiri",
+				"addColumnAfter": "Sisipkan kolom di kanan",
+				"deleteColumn": "Hapus kolom",
+				"addRowBefore": "Sisipkan baris di atas",
+				"addRowAfter": "Sisipkan baris di bawah",
+				"deleteRow": "Hapus baris",
+				"deleteTable": "Hapus tabel"
+			}
+		},
+		"calendar": {
+			"dayTasksAriaLabel": "Tampilkan semua tugas untuk {{date}}",
+			"moreTasks": "+{{count}} lainnya",
+			"nextMonth": "Bulan berikutnya",
+			"noTasks": "Tidak ada tugas terjadwal",
+			"noTasksSubtitle": "Tambahkan tanggal mulai, tenggat, atau keduanya ke tugas untuk menampilkannya di kalender.",
+			"pageTitle": "{{name}} – Kalender",
+			"previousMonth": "Bulan sebelumnya",
+			"taskAriaLabel": "{{title}}, {{range}}: buka tugas",
+			"title": "Kalender",
+			"today": "Hari ini",
+			"loadError": "Gagal memuat tugas.",
+			"noTasksThisMonth": "Tidak ada yang terjadwal bulan ini"
+		},
+		"descriptionSearchLoading": "Searching full descriptions…",
+		"descriptionSearchError": "Description search failed. Results may be incomplete.",
+		"descriptionRetry": "Retry",
+		"descriptionLoading": "Loading description…",
+		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
+		"checklistProgress": "{{completed}} dari {{total}} item daftar periksa selesai",
+		"customFields": {
+			"ariaLabel": "Custom fields"
+		},
+		"board": {
+			"reorderFailed": "Could not move task. Please try again."
+		},
+		"branches": {
+			"create": "Create branch",
+			"createButton": "Create branch",
+			"createdIn_other": "Created {{branch}} in {{count}} repositories",
+			"createError": "Failed to create the branch.",
+			"createRepoError": "Failed to create {{branch}} in at least one repository.",
+			"createTitle": "Create task branch",
+			"creating": "Creating...",
+			"empty": "No branches linked to this task.",
+			"find": "Find branch",
+			"findDescription": "Search branch names in the project's linked repositories and link them to the task.",
+			"findTitle": "Find a branch",
+			"link": "Link",
+			"linked": "Linked",
+			"linking": "Linking...",
+			"moreResults": "More branches exist than are shown; refine the search.",
+			"nameHint": "The branch is created from the default branch in every selected repository.",
+			"nameLabel": "Branch name",
+			"namePlaceholder": "Pick a type to build the branch name",
+			"noGithubRepos": "No GitHub repositories are linked to this project.",
+			"noMatches": "No matching branches.",
+			"pastePr": "Add pull request",
+			"pastePrButton": "Link pull request",
+			"pastePrDescription": "Paste the URL of a GitHub, Gitea, or GitLab pull request.",
+			"pastePrTitle": "Link a pull request",
+			"pasting": "Adding...",
+			"remove": "Remove {{name}}",
+			"repositories": "Repositories",
+			"searchError": "Failed to load branches.",
+			"searchPlaceholder": "Search branches, e.g. EC-123",
+			"title": "Branches",
+			"typeLabel": "Branch type"
+		},
+		"branchTypes": {
+			"chore": "Chore",
+			"docs": "Documentation",
+			"feature": "Feature",
+			"fix": "Fix",
+			"refactor": "Refactor",
+			"release": "Release",
+			"test": "Test"
+		}
+	},
+	"invitations": {
+		"email": {
+			"subject": "{{inviterName}} mengundang Anda bergabung ke {{workspaceName}} di Kaneo",
+			"preview": "Anda diundang ke {{workspaceName}} di Kaneo",
+			"title": "Bergabung ke {{workspaceName}}",
+			"subtitle": "{{inviterName}} ({{inviterEmail}}) mengundang Anda untuk berkolaborasi di Kaneo.",
+			"cta": "Terima undangan",
+			"sameEmail": "Anda dapat menerima undangan menggunakan alamat email yang menerima pesan ini.",
+			"ignore": "Jika ini tidak Anda harapkan, Anda dapat mengabaikan email ini dengan aman.",
+			"footer": "Undangan ruang kerja Kaneo",
+			"details": {
+				"title": "Detail undangan",
+				"sentTo": "Dikirim ke",
+				"instance": "Instans",
+				"role": "Peran",
+				"expires": "Kedaluwarsa"
+			}
+		},
+		"pageTitle": "Undangan",
+		"pendingInvitations": "Undangan Tertunda",
+		"acceptSubtitle": "Terima undangan untuk bergabung ke ruang kerja",
+		"noPendingTitle": "Tidak ada undangan tertunda",
+		"noPendingDescription": "Saat ini Anda tidak memiliki undangan ruang kerja yang tertunda.",
+		"continueToSetup": "Lanjutkan ke Penyiapan",
+		"skipForNow": "Lewati dulu",
+		"table": {
+			"workspace": "Ruang kerja",
+			"invitedBy": "Diundang Oleh",
+			"expires": "Kedaluwarsa"
+		},
+		"toast": {
+			"acceptError": "Gagal menerima undangan",
+			"acceptSuccess": "Undangan diterima! Selamat bergabung dengan tim.",
+			"rejectError": "Gagal menolak undangan",
+			"rejectSuccess": "Undangan ditolak"
+		}
+	},
+	"workspace": {
+		"projects": {
+			"pageTitle": "Proyek",
+			"createProject": "Buat proyek",
+			"title": "Judul",
+			"progress": "Progres",
+			"targetDate": "Tanggal target",
+			"dueDate": "Tenggat",
+			"status": "Status",
+			"emptyTitle": "Belum ada proyek",
+			"emptyDescription": "Mulai dengan membuat proyek pertama Anda.",
+			"emptyDescriptionReadOnly": "Belum ada proyek di ruang kerja ini. Minta admin untuk membuatnya.",
+			"projectStatus": {
+				"notStarted": "Belum dimulai",
+				"complete": "Selesai",
+				"inProgress": "Sedang berjalan"
+			},
+			"noDueDate": "Tanpa tenggat",
+			"reorderHandle": "Ubah urutan proyek",
+			"reorderError": "Gagal mengubah urutan proyek",
+			"unavailable": {
+				"backToWorkspace": "Back to workspace",
+				"noAccessDescription": "Ask a workspace admin to give you access.",
+				"noAccessTitle": "You don't have access to this project",
+				"notFoundDescription": "This project doesn't exist or has been deleted.",
+				"notFoundTitle": "Project not found"
+			}
+		},
+		"search": {
+			"pageTitle": "Cari",
+			"backToDashboard": "Kembali ke Dasbor",
+			"placeholder": "Cari tugas berdasarkan judul atau ID pendek (mis. DEP-23)...",
+			"hint": "Cari di semua proyek dalam ruang kerja ini. Gunakan ID pendek seperti DEP-23 untuk menemukan tugas tertentu.",
+			"searching": "Mencari...",
+			"resultsFound_other": "{{count}} hasil ditemukan",
+			"noResultsTitle": "Tidak ada hasil ditemukan",
+			"noResultsDescription": "Coba sesuaikan kata pencarian atau cari hal lain",
+			"startTitle": "Mulai Mencari",
+			"startDescription": "Masukkan kata pencarian untuk menemukan tugas di semua proyek",
+			"quickSearchesLabel": "Pencarian cepat:",
+			"suggestionHighPriority": "Prioritas tinggi",
+			"suggestionBug": "Bug",
+			"suggestionFeature": "Fitur",
+			"suggestionInProgress": "Sedang berjalan",
+			"suggestionCompleted": "Selesai"
+		},
+		"create": {
+			"pageTitle": "Buat Ruang Kerja",
+			"heading": "Buat ruang kerja baru",
+			"subtitle": "Ruang kerja adalah lingkungan bersama tempat tim dapat bekerja pada proyek, siklus, dan issue.",
+			"nameLabel": "Nama Ruang Kerja",
+			"namePlaceholder": "Masukkan nama ruang kerja",
+			"descriptionLabel": "Deskripsi (opsional)",
+			"descriptionPlaceholder": "Tambahkan deskripsi untuk ruang kerja Anda",
+			"required": "Wajib",
+			"creating": "Membuat...",
+			"submit": "Buat ruang kerja",
+			"success": "Ruang kerja berhasil dibuat",
+			"error": "Gagal membuat ruang kerja"
+		},
+		"home": {
+			"activity": {
+				"commented": "commented",
+				"empty": "Nothing has happened in the last 30 days.",
+				"loadError": "Activity couldn't be loaded.",
+				"title": "Activity",
+				"updated": "updated the task"
+			},
+			"greeting": {
+				"afternoon": "Good afternoon",
+				"evening": "Good evening",
+				"morning": "Good morning"
+			},
+			"newTask": "New task",
+			"pageTitle": "Home",
+			"projects": {
+				"all": "All projects",
+				"tasks_other": "{{count}} tasks",
+				"title": "Your projects",
+				"loadError": "Projects couldn't be loaded."
+			},
+			"upNext": {
+				"assigned_other": "{{count}} assigned to you",
+				"title": "Up next",
+				"viewAll": "View all"
+			},
+			"week": {
+				"more_other": "+{{count}} more",
+				"truncated": "The week preview includes only the first {{shown}} of {{total}} assigned tasks."
+			}
+		},
+		"myTasks": {
+			"emptyDescription": "Tasks assigned to you across this workspace show up here.",
+			"groupBy": {
+				"dueDate": "Due date",
+				"label": "Group by",
+				"project": "Project"
+			},
+			"pageTitle": "My tasks",
+			"truncated": "Showing the first {{shown}} of {{total}} tasks."
+		},
+		"myWork

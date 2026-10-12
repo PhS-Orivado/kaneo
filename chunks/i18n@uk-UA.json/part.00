@@ -1,0 +1,479 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Скасувати",
+			"close": "Закрити",
+			"clearAll": "Очистити все",
+			"delete": "Видалити",
+			"deleting": "Видалення...",
+			"markAllRead": "Позначити все як прочитане",
+			"remove": "Прибрати",
+			"reset": "Скинути",
+			"filter": "Фільтр",
+			"clearAllFilters": "Очистити всі фільтри"
+		},
+		"a11y": {
+			"toggleSidebar": "Перемикач бічної панелі"
+		},
+		"sidebar": {
+			"title": "Бічна панель",
+			"mobileDescription": "Відображає мобільну бічну панель."
+		},
+		"empty": {
+			"loading": "Завантаження..."
+		},
+		"pagination": {
+			"label": "Пагінація",
+			"previous": "Попередня",
+			"next": "Наступна",
+			"previousPage": "Перейти до попередньої сторінки",
+			"nextPage": "Перейти до наступної сторінки",
+			"morePages": "Більше сторінок"
+		},
+		"breadcrumb": {
+			"label": "Навігаційна стежка",
+			"more": "Більше"
+		},
+		"language": {
+			"english": "Англійська",
+			"german": "Німецька",
+			"greek": "Грецька",
+			"macedonian": "Македонська",
+			"french": "Французька",
+			"spanish": "Іспанська",
+			"dutch": "Нідерландська",
+			"korean": "Корейська",
+			"chinese": "Китайська",
+			"italian": "Італійська"
+		},
+		"people": {
+			"someone": "Хтось",
+			"unknown": "Невідомо"
+		},
+		"error": {
+			"title": "Щось пішло не так",
+			"troubleshooting": "Кроки для усунення проблеми:",
+			"tryAgain": "Спробувати ще раз",
+			"viewDeploymentGuide": "Переглянути інструкцію з розгортання",
+			"refreshPage": "Оновити сторінку",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Ніколи"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Створити новий проєкт",
+				"breadcrumbNew": "Створити новий проєкт",
+				"workspaceFallback": "РОБОЧИЙ ПРОСТІР",
+				"description": "Створіть новий проєкт у вашому робочому просторі, вказавши назву, ключ та обравши іконку.",
+				"pickIcon": "Обрати іконку",
+				"searchIcons": "Пошук іконок...",
+				"projectName": "Назва проєкту",
+				"keyLabel": "Ключ:",
+				"keyHint": "Використовується для ID тікетів (напр., {{example}}-123)",
+				"createButton": "Створити проєкт",
+				"successToast": "Проєкт успішно створено",
+				"errorToast": "Не вдалося створити проєкт"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Створити новий робочий простір",
+				"description": "Створіть новий робочий простір, вказавши його назву.",
+				"namePlaceholder": "Назва робочого простору",
+				"descriptionPlaceholder": "Додати опис...",
+				"createButton": "Створити робочий простір",
+				"successToast": "Робочий простір успішно створено",
+				"errorToast": "Не вдалося створити робочий простір"
+			},
+			"createTask": {
+				"breadcrumbTask": "ЗАВДАННЯ",
+				"selectProject": "Виберіть проєкт",
+				"title": "Нове завдання",
+				"description": "Створіть нове завдання, вказавши назву, опис та інші деталі.",
+				"taskTitlePlaceholder": "Назва завдання",
+				"descriptionPlaceholder": "Додайте опис до вашого завдання...",
+				"chooseProjectForImages": "Оберіть проєкт перед завантаженням зображень.",
+				"prepareTaskError": "Не вдалося підготувати завдання",
+				"successCreated": "Завдання успішно створено",
+				"successUpdated": "Завдання успішно оновлено",
+				"createError": "Не вдалося створити завдання",
+				"priority": "Пріоритет",
+				"statusFallback": "В роботі",
+				"startDate": "Дата початку",
+				"dueDate": "Дата завершення",
+				"clearStartDate": "Очистити дату початку",
+				"clearDueDate": "Очистити дату завершення",
+				"assign": "Призначити",
+				"assignUnassigned": "Не призначено",
+				"assignUnassignedTitle": "Не призначено",
+				"labels": "Мітки",
+				"searchLabels": "Пошук міток...",
+				"noLabelsFound": "Мітки не знайдено",
+				"createLabel": "Створити «{{name}}»",
+				"chooseColor": "Оберіть колір",
+				"labelCreated": "Мітку створено",
+				"labelCreateError": "Не вдалося створити мітку",
+				"createMore": "Створити ще",
+				"createButton": "Створити завдання",
+				"discardTitle": "Відхилити завдання?",
+				"discardDescription": "Незбережені дані завдання буде втрачено.",
+				"discardButton": "Відхилити завдання",
+				"untitledTask": "Завдання без назви",
+				"labelColors": {
+					"stone": "Камінь",
+					"slate": "Сланець",
+					"lavender": "Лаванда",
+					"sage": "Шавлія",
+					"forest": "Ліс",
+					"amber": "Бурштин",
+					"terracotta": "Теракота",
+					"rose": "Троянда",
+					"crimson": "Багряний"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_few": "Issues in {{count}} repos",
+				"issuesIn_many": "Issues in {{count}} repos",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Вхід",
+			"subtitle": {
+				"emailOrProvider": "Увійдіть через електронну пошту або підключений обліковий запис.",
+				"email": "Введіть адресу електронної пошти, і ми надішлемо вам код для входу.",
+				"password": "Увійдіть за допомогою електронної пошти та пароля.",
+				"passwordOrProvider": "Увійдіть за допомогою пароля або підключеного облікового запису.",
+				"providers": "Оберіть спосіб входу.",
+				"sso": "Входом тут керує ваша організація."
+			},
+			"lastUsed": "Останній використаний",
+			"guestError": "Не вдалося увійти як гість",
+			"errors": {
+				"account_not_linked": "Не вдалося пов'язати цей ідентифікатор з наявним обліковим записом. Увійдіть за допомогою електронної пошти, щоб підтвердити обліковий запис, а потім спробуйте SSO знову. Якщо вхід через пошту недоступний, зверніться до свого адміністратора.",
+				"oauth_code_verification_failed": "Не вдалося пройти перевірку OAuth. Спробуйте ще раз.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Реєстрацію наразі вимкнено. Для створення облікового запису потрібне дійсне запрошення.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Використовуйте постійну адресу електронної пошти. З одноразовими адресами не можна створити обліковий запис."
+			},
+			"instanceStatusError": "Не вдалося зв'язатися із сервером. Повторіть спробу за мить.",
+			"heading": "Вхід у Kaneo",
+			"submitPassword": "Увійти",
+			"invitation": {
+				"title": "{{inviterName}} запрошує вас до {{workspaceName}}",
+				"fallbackTitle": "Вас запрошено",
+				"description": "Увійдіть з адресою електронної пошти, на яку надійшло запрошення. Одразу після цього ви приєднаєтеся до робочого простору."
+			},
+			"footer": {
+				"newHere": "Вперше в Kaneo?",
+				"createAccount": "Створити обліковий запис",
+				"inviteOnly": "Облікові записи тут створюються лише за запрошенням. Попросіть запрошення в адміністратора.",
+				"providerSignUp": "Вперше тут? Увійдіть через одного з провайдерів вище, щоб створити обліковий запис.",
+				"anyProvider": "Вперше тут? Будь-який варіант вище створить ваш обліковий запис.",
+				"contactAdmin": "Не вдається увійти? Зверніться до адміністратора.",
+				"justLooking": "Просто хочете роздивитися?"
+			},
+			"autoLogin": {
+				"title": "Виконується вхід",
+				"subtitle": "Перенаправляємо вас на сторінку входу вашої організації.",
+				"opening": "Відкриваємо {{provider}}…",
+				"stuck": "Нічого не відбувається?",
+				"continue": "Перейти до {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Продовжити через {{provider}}",
+			"error": "Не вдалося увійти через {{provider}}. Спробуйте ще раз."
+		},
+		"forms": {
+			"or": "або",
+			"email": "Електронна пошта",
+			"password": "Пароль",
+			"emailPlaceholder": "me@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Показати пароль",
+			"hidePassword": "Сховати пароль",
+			"name": "Ім'я",
+			"namePlaceholder": "Олена Петренко",
+			"invalidEmail": "Введіть повну адресу електронної пошти, наприклад name@company.com.",
+			"nameRequired": "Введіть ім'я.",
+			"passwordRequired": "Введіть пароль.",
+			"passwordTooShort": "Використовуйте щонайменше 8 символів.",
+			"disposableEmail": "Використовуйте постійну адресу електронної пошти. З одноразовими адресами не можна створити обліковий запис.",
+			"continueWithEmail": "Продовжити через електронну пошту"
+		},
+		"checkEmail": {
+			"pageTitle": "Перевірте пошту",
+			"title": "Перевірте вашу пошту",
+			"inboxMessage": "Ми надіслали вам тимчасове посилання для входу. Перевірте вхідні за адресою <email>{{email}}</email>.",
+			"emailFallback": "вашу адресу електронної пошти",
+			"backToLogin": "Повернутися до входу"
+		},
+		"signUp": {
+			"pageTitle": "Створення облікового запису",
+			"registrationDisabledAlert": "Реєстрацію наразі вимкнено. Якщо вас запросили, введіть адресу електронної пошти, на яку було надіслано запрошення.",
+			"continueAsGuest": "Продовжити як гість",
+			"toggleMessage": "Вже маєте обліковий запис?",
+			"toggleLink": "Увійти",
+			"instanceStatusError": "Не вдалося зв'язатися із сервером. Повторіть спробу за мить.",
+			"instanceAdminTitle": "Налаштуйте ваш інстанс Kaneo",
+			"instanceAdminSubtitle": "Цей обліковий запис стане адміністратором інстансу з повним доступом.",
+			"heading": "Створіть обліковий запис",
+			"submitPassword": "Створити обліковий запис",
+			"failed": "Не вдалося створити обліковий запис. Спробуйте ще раз.",
+			"subtitle": {
+				"email": "Почніть з електронної пошти. Ми надішлемо код, пароль не потрібен.",
+				"password": "Вкажіть ім'я, адресу електронної пошти та пароль, щоб почати.",
+				"providers": "Скористайтеся підключеним обліковим записом, щоб створити свій."
+			},
+			"invitation": {
+				"description": "Використайте адресу електронної пошти, на яку надійшло запрошення. Одразу після цього ви приєднаєтеся до робочого простору."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Підтвердження коду",
+			"validation": {
+				"codeLength": "Код має містити 6 цифр"
+			},
+			"toast": {
+				"invalidCode": "Невірний код підтвердження",
+				"verifyFailed": "Не вдалося підтвердити код",
+				"resendFailed": "Не вдалося надіслати код повторно",
+				"resendSuccess": "Новий код підтвердження надіслано!"
+			},
+			"heading": "Перевірте пошту",
+			"description": "Ми надіслали 6-значний код на {{email}}. Він дійсний {{minutes}} хв.",
+			"label": "Код підтвердження",
+			"submit": "Підтвердити й продовжити",
+			"didntGetIt": "Код не надійшов?",
+			"resendCode": "Надіслати код повторно",
+			"useDifferentEmail": "Використати іншу адресу",
+			"expired": "Термін дії коду минув. Запросіть новий.",
+			"tooManyAttempts": "Забагато спроб. Запросіть новий код."
+		},
+		"otpSignIn": {
+			"sendFailed": "Не вдалося надіслати код підтвердження"
+		},
+		"signInForm": {
+			"failedSignIn": "Не вдалося увійти"
+		},
+		"invitation": {
+			"pageTitleAccept": "Прийняти запрошення",
+			"pageTitleError": "Помилка запрошення",
+			"pageTitleInvalid": "Недійсне запрошення",
+			"joinWorkspace": "Приєднатися до {{workspaceName}}",
+			"createAccount": "Створити обліковий запис",
+			"signIn": "Увійти",
+			"toast": {
+				"acceptFailed": "Не вдалося прийняти запрошення",
+				"acceptSuccess": "Запрошення прийнято! Ласкаво просимо до команди."
+			},
+			"description": "{{inviterName}} запрошує вас до цього робочого простору в Kaneo.",
+			"invitedBy": "Запрошення від",
+			"sentTo": "Надіслано на",
+			"signedInAs": "Ви увійшли як",
+			"expires": "Дійсне до",
+			"notNow": "Не зараз",
+			"join": "Приєднатися до робочого простору",
+			"switchAccount": "Змінити обліковий запис",
+			"goToKaneo": "Перейти до Kaneo",
+			"mismatch": {
+				"title": "Ви увійшли з іншою адресою",
+				"description": "Це запрошення надіслано на {{invitedEmail}}. Ви увійшли як {{email}}."
+			},
+			"expired": {
+				"title": "Термін дії запрошення минув",
+				"description": "Попросіть користувача {{inviterName}} надіслати вам нове запрошення до {{workspaceName}}."
+			},
+			"invalid": {
+				"title": "Запрошення більше не дійсне",
+				"description": "Можливо, його вже прийняли або скасували. Попросіть нове в адміністратора робочого простору."
+			},
+			"loadFailed": {
+				"title": "Не вдалося завантажити запрошення",
+				"description": "Перевірте з'єднання та перезавантажте сторінку."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Ласкаво просимо до Kaneo",
+			"workspaceName": "Назва робочого простору",
+			"workspaceNamePlaceholder": "напр. Acme Inc, Моя команда",
+			"toast": {
+				"createFailed": "Не вдалося створити робочий простір"
+			},
+			"validation": {
+				"workspaceNameRequired": "Назва робочого простору є обов'язковою",
+				"projectNameRequired": "Назвіть ваш перший проєкт"
+			},
+			"restrictedSubtitle": "Тут створювати робочі простори може лише адміністратор інстансу. Попросіть запрошення й оновіть цю сторінку.",
+			"restrictedCheckInvitations": "Переглянути запрошення",
+			"restrictedTitle": "Потрібне запрошення",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_few": "{{count}} invitations sent",
+					"sent_many": "{{count}} invitations sent",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Мій перший проєкт",
+			"starterTasks": {
+				"drag": {
+					"title": "Перетягніть цю картку до наступної колонки",
+					"description": "Картки переходять з колонки в колонку в міру того, як просувається робота. Перетягніть цю до наступної колонки або відкрийте її та змініть статус."
+				},
+				"details": {
+					"title": "Відкрийте це завдання й додайте підзавдання",
+					"description": "Завдання може мати опис, підзавдання, мітки, виконавця та термін. Додайте підзавдання до цього, щоб спробувати."
+				},
+				"invite": {
+					"title": "Запросіть команду",
+					"description": "Kaneo найкраще працює, коли в ньому вся команда. Відкрийте **Учасники** на бічній панелі, щоб запросити людей електронною поштою."
+				},
+				"integrations": {
+					"title": "Підключіть GitHub, GitLab або Gitea",
+					"description": "Синхронізуйте issues і автоматично переміщуйте завдання, коли pull request відкривається й зливається. Налаштуйте це в розділі **Налаштування проєкту**."
+				},
+				"create": {
+					"title": "Створіть власне завдання",
+					"description": "Скористайтеся **+** біля назви колонки або натисніть **T**, а потім **C**. Видаліть ці стартові завдання, коли будете готові."
+				}
+			},
+			"progress": "Крок {{current}} з {{total}}",
+			"welcome": "Вітаємо, {{name}}",
+			"settingUp": "Налаштування: {{name}}",
+			"continue": "Продовжити",
+			"signedInAs": "Ви увійшли як {{email}}",
+			"signOut": "Вийти",
+			"workspace": {
+				"title": "Назвіть робочий простір",
+				"description": "Тут будуть ваші проєкти. Використайте назву команди чи компанії, її можна змінити пізніше."
+			},
+			"usage": {
+				"title": "Хто ним користуватиметься?",
+				"description": "Ми налаштуємо робочий простір {{name}} відповідно. Запросити людей можна й пізніше."
+			},
+			"project": {
+				"title": "Створіть перший проєкт",
+				"description": "Ми додамо кілька стартових завдань, щоб допомогти вам зорієнтуватися. Їх можна будь-коли перейменувати або видалити.",
+				"label": "Назва проєкту",
+				"numbered": "Завдання нумеруватимуться так:"
+			},
+			"invite": {
+				"title": "Запросіть команду",
+				"description": "Вони отримають лист із запрошенням до {{name}}. Пропустіть цей крок, якщо хочете спершу роздивитися.",
+				"label": "Адреси електронної пошти колег",
+				"send_few": "Надіслати {{count}} запрошення",
+				"send_many": "Надіслати {{count}} запрошень",
+				"send_one": "Надіслати {{count}} запрошення",
+				"send_other": "Надіслати {{count}} запрошення",
+				"sendNone": "Надіслати запрошення"
+			},
+			"plan": {
+				"title": "З чого хочете почати?",
+				"descriptionTrial_few": "Кожен тариф містить необмежену кількість проєктів і завдань. Спробуйте {{name}} безкоштовно протягом {{count}} днів або оформіть підписку зараз.",
+				"descriptionTrial_many": "Кожен тариф містить необмежену кількість проєктів і завдань. Спробуйте {{name}} безкоштовно протягом {{count}} днів або оформіть підписку зараз.",
+				"descriptionTrial_one": "Кожен тариф містить необмежену кількість проєктів і завдань. Спробуйте {{name}} безкоштовно протягом {{count}} дня або оформіть підписку зараз.",
+				"descriptionTrial_other": "Кожен тариф містить необмежену кількість проєктів і завдань. Спробуйте {{name}} безкоштовно протягом {{count}} дня або оформіть підписку зараз.",
+				"choose": "Оберіть тариф",
+				"description": {
+					"team": "Необмежена кількість учасників, ролі та дозволи",
+					"personal": "Для однієї людини"
+				},
+				"perUserMonth": "за користувача / місяць",
+				"perMonth": "на місяць",
+				"subscribe": "Оформити тариф {{plan}}",
+				"checkout": "Перейти до оплати",
+				"trialNote": "Для пробного періоду картка не потрібна. Платежі обробляє Creem.",
+				"paymentNote": "Платежі обробляє Creem."
+			},
+			"ready": {
+				"eyebrow": "Усе готово",
+				"title": "Робочий простір {{name}} готовий",
+				"description": "Ось що ми налаштували. Усе це можна змінити пізніше.",
+				"workspace": "Робочий простір",
+				"project": "Перший проєкт",
+				"projectValue_few": "{{name}}, {{count}} стартові завдання",
+				"projectValue_many": "{{name}}, {{count}} стартових завдань",
+				"projectValue_one": "{{name}}, {{count}} стартове завдання",
+				"projectValue_other": "{{name}}, {{count}} стартового завдання",
+				"invitations": "Запрошення",
+				"invitationsValue_few": "Надіслано {{count}} запрошення",
+				"invitationsValue_many": "Надіслано {{count}} запрошень",
+				"invitationsValue_one": "Надіслано {{count}} запрошення",
+				"invitationsValue_other": "Надіслано {{count}} запрошення",
+				"open": "Відкрити {{name}}"
+			},
+			"preview": {
+				"live": "Попередній перегляд: {{name}}",
+				"liveNoName": "Попередній перегляд",
+				"ready": "Робочий простір {{name}} готовий",
+				"untitled": "Ваш робочий простір"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Заповнення профілю",
+			"completeTitle": "Заповніть ваш профіль",
+			"subtitle": "Будь ласка, введіть ваше ім'я, щоб почати",
+			"yourName": "Ваше ім'я",
+			"namePlaceholder": "напр. Іван Петренко",
+			"saving": "Збереження...",
+			"continue": "Продовжити",
+			"welcome": "Ласкаво просимо, {{name}}!",
+			"redirecting": "Переходимо до вашої панелі керуван�

@@ -1,0 +1,975 @@
+diff --cc apps/api/drizzle/meta/0062_snapshot.json
+index 5ba4bbae,f44e05cc..00000000
+--- a/apps/api/drizzle/meta/0062_snapshot.json
++++ b/apps/api/drizzle/meta/0062_snapshot.json
+@@@ -1,5 -1,5 +1,9 @@@
+  {
+++<<<<<<< HEAD
+ +  "id": "0466239b-b8ab-4220-a847-dde109ec6508",
+++=======
++   "id": "2bc377c0-dc6d-4bab-9642-34581d46ab15",
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    "prevId": "57657924-5578-41e7-99bd-b2e744037c44",
+    "version": "7",
+    "dialect": "postgresql",
+@@@ -79,7 -79,7 +83,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+@@@ -153,14 -153,14 +161,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "user_id": {
+            "name": "user_id",
+@@@ -624,7 -624,7 +640,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -828,7 -828,7 +848,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {},
+@@@ -878,14 -878,14 +902,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1003,7 -1003,7 +1035,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1111,14 -1111,14 +1147,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1192,14 -1192,14 +1236,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1327,14 -1327,14 +1379,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1408,14 -1408,14 +1468,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1508,7 -1508,7 +1576,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {},
+@@@ -1552,14 -1552,14 +1624,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "expires_at": {
+            "name": "expires_at",
+@@@ -1723,14 -1723,14 +1803,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -1872,7 -1872,7 +1960,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {},
+@@@ -2023,14 -2023,44 +2115,52 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
++         },
++         "repository_key": {
++           "name": "repository_key",
++           "type": "text",
++           "primaryKey": false,
++           "notNull": false
++         },
++         "repository_owner": {
++           "name": "repository_owner",
++           "type": "text",
++           "primaryKey": false,
++           "notNull": false
++         },
++         "repository_name": {
++           "name": "repository_name",
++           "type": "text",
++           "primaryKey": false,
++           "notNull": false
++         },
++         "repository_id": {
++           "name": "repository_id",
++           "type": "integer",
++           "primaryKey": false,
++           "notNull": false
++         },
++         "base_url": {
++           "name": "base_url",
++           "type": "text",
++           "primaryKey": false,
++           "notNull": false
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -2063,6 -2093,49 +2193,52 @@@
+            "concurrently": false,
+            "method": "btree",
+            "with": {}
+++<<<<<<< HEAD
+++=======
++         },
++         "integration_type_repository_key_idx": {
++           "name": "integration_type_repository_key_idx",
++           "columns": [
++             {
++               "expression": "type",
++               "isExpression": false,
++               "asc": true,
++               "nulls": "last"
++             },
++             {
++               "expression": "repository_key",
++               "isExpression": false,
++               "asc": true,
++               "nulls": "last"
++             }
++           ],
++           "isUnique": false,
++           "concurrently": false,
++           "method": "btree",
++           "with": {}
++         },
++         "integration_project_type_null_repo_unique": {
++           "name": "integration_project_type_null_repo_unique",
++           "columns": [
++             {
++               "expression": "project_id",
++               "isExpression": false,
++               "asc": true,
++               "nulls": "last"
++             },
++             {
++               "expression": "type",
++               "isExpression": false,
++               "asc": true,
++               "nulls": "last"
++             }
++           ],
++           "isUnique": true,
++           "where": "\"integration\".\"repository_key\" is null",
++           "concurrently": false,
++           "method": "btree",
++           "with": {}
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "foreignKeys": {
+@@@ -2082,12 -2155,13 +2258,22 @@@
+        },
+        "compositePrimaryKeys": {},
+        "uniqueConstraints": {
+++<<<<<<< HEAD
+ +        "integration_project_type_unique": {
+ +          "name": "integration_project_type_unique",
+ +          "nullsNotDistinct": false,
+ +          "columns": [
+ +            "project_id",
+ +            "type"
+++=======
++         "integration_project_type_repo_unique": {
++           "name": "integration_project_type_repo_unique",
++           "nullsNotDistinct": false,
++           "columns": [
++             "project_id",
++             "type",
++             "repository_key"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+            ]
+          }
+        },
+@@@ -2147,7 -2221,7 +2333,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "inviter_id": {
+            "name": "inviter_id",
+@@@ -2309,14 -2383,14 +2499,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "deletion_started_at": {
+            "name": "deletion_started_at",
+@@@ -2507,14 -2581,14 +2705,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -2675,102 -2749,6 +2881,105 @@@
+        "checkConstraints": {},
+        "isRLSEnabled": false
+      },
+++<<<<<<< HEAD
+ +    "public.workspace_role": {
+ +      "name": "workspace_role",
+ +      "schema": "",
+ +      "columns": {
+ +        "id": {
+ +          "name": "id",
+ +          "type": "text",
+ +          "primaryKey": true,
+ +          "notNull": true
+ +        },
+ +        "workspace_id": {
+ +          "name": "workspace_id",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "role": {
+ +          "name": "role",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "permission": {
+ +          "name": "permission",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "created_at": {
+ +          "name": "created_at",
+ +          "type": "timestamp",
+ +          "primaryKey": false,
+ +          "notNull": true,
+ +          "default": "(now() AT TIME ZONE 'utc')"
+ +        },
+ +        "updated_at": {
+ +          "name": "updated_at",
+ +          "type": "timestamp",
+ +          "primaryKey": false,
+ +          "notNull": true,
+ +          "default": "(now() AT TIME ZONE 'utc')"
+ +        }
+ +      },
+ +      "indexes": {
+ +        "workspace_role_workspaceId_idx": {
+ +          "name": "workspace_role_workspaceId_idx",
+ +          "columns": [
+ +            {
+ +              "expression": "workspace_id",
+ +              "isExpression": false,
+ +              "asc": true,
+ +              "nulls": "last"
+ +            }
+ +          ],
+ +          "isUnique": false,
+ +          "concurrently": false,
+ +          "method": "btree",
+ +          "with": {}
+ +        },
+ +        "workspace_role_role_idx": {
+ +          "name": "workspace_role_role_idx",
+ +          "columns": [
+ +            {
+ +              "expression": "role",
+ +              "isExpression": false,
+ +              "asc": true,
+ +              "nulls": "last"
+ +            }
+ +          ],
+ +          "isUnique": false,
+ +          "concurrently": false,
+ +          "method": "btree",
+ +          "with": {}
+ +        }
+ +      },
+ +      "foreignKeys": {
+ +        "workspace_role_workspace_id_workspace_id_fk": {
+ +          "name": "workspace_role_workspace_id_workspace_id_fk",
+ +          "tableFrom": "workspace_role",
+ +          "tableTo": "workspace",
+ +          "columnsFrom": [
+ +            "workspace_id"
+ +          ],
+ +          "columnsTo": [
+ +            "id"
+ +          ],
+ +          "onDelete": "cascade",
+ +          "onUpdate": "cascade"
+ +        }
+ +      },
+ +      "compositePrimaryKeys": {},
+ +      "uniqueConstraints": {},
+ +      "policies": {},
+ +      "checkConstraints": {},
+ +      "isRLSEnabled": false
+ +    },
+++=======
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+      "public.project": {
+        "name": "project",
+        "schema": "",
+@@@ -2817,7 -2795,7 +3026,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "is_public": {
+            "name": "is_public",
+@@@ -2961,7 -2939,7 +3174,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+@@@ -3073,7 -3051,7 +3290,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {},
+@@@ -3084,192 -3062,6 +3305,195 @@@
+        "checkConstraints": {},
+        "isRLSEnabled": false
+      },
+++<<<<<<< HEAD
+ +    "public.task_relation": {
+ +      "name": "task_relation",
+ +      "schema": "",
+ +      "columns": {
+ +        "id": {
+ +          "name": "id",
+ +          "type": "text",
+ +          "primaryKey": true,
+ +          "notNull": true
+ +        },
+ +        "source_task_id": {
+ +          "name": "source_task_id",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "target_task_id": {
+ +          "name": "target_task_id",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "relation_type": {
+ +          "name": "relation_type",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "created_at": {
+ +          "name": "created_at",
+ +          "type": "timestamp",
+ +          "primaryKey": false,
+ +          "notNull": true,
+ +          "default": "(now() AT TIME ZONE 'utc')"
+ +        }
+ +      },
+ +      "indexes": {
+ +        "task_relation_source_idx": {
+ +          "name": "task_relation_source_idx",
+ +          "columns": [
+ +            {
+ +              "expression": "source_task_id",
+ +              "isExpression": false,
+ +              "asc": true,
+ +              "nulls": "last"
+ +            }
+ +          ],
+ +          "isUnique": false,
+ +          "concurrently": false,
+ +          "method": "btree",
+ +          "with": {}
+ +        },
+ +        "task_relation_target_idx": {
+ +          "name": "task_relation_target_idx",
+ +          "columns": [
+ +            {
+ +              "expression": "target_task_id",
+ +              "isExpression": false,
+ +              "asc": true,
+ +              "nulls": "last"
+ +            }
+ +          ],
+ +          "isUnique": false,
+ +          "concurrently": false,
+ +          "method": "btree",
+ +          "with": {}
+ +        }
+ +      },
+ +      "foreignKeys": {
+ +        "task_relation_source_task_id_task_id_fk": {
+ +          "name": "task_relation_source_task_id_task_id_fk",
+ +          "tableFrom": "task_relation",
+ +          "tableTo": "task",
+ +          "columnsFrom": [
+ +            "source_task_id"
+ +          ],
+ +          "columnsTo": [
+ +            "id"
+ +          ],
+ +          "onDelete": "cascade",
+ +          "onUpdate": "cascade"
+ +        },
+ +        "task_relation_target_task_id_task_id_fk": {
+ +          "name": "task_relation_target_task_id_task_id_fk",
+ +          "tableFrom": "task_relation",
+ +          "tableTo": "task",
+ +          "columnsFrom": [
+ +            "target_task_id"
+ +          ],
+ +          "columnsTo": [
+ +            "id"
+ +          ],
+ +          "onDelete": "cascade",
+ +          "onUpdate": "cascade"
+ +        }
+ +      },
+ +      "compositePrimaryKeys": {},
+ +      "uniqueConstraints": {},
+ +      "policies": {},
+ +      "checkConstraints": {},
+ +      "isRLSEnabled": false
+ +    },
+ +    "public.task_reminder_sent": {
+ +      "name": "task_reminder_sent",
+ +      "schema": "",
+ +      "columns": {
+ +        "id": {
+ +          "name": "id",
+ +          "type": "text",
+ +          "primaryKey": true,
+ +          "notNull": true
+ +        },
+ +        "task_id": {
+ +          "name": "task_id",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "reminder_type": {
+ +          "name": "reminder_type",
+ +          "type": "text",
+ +          "primaryKey": false,
+ +          "notNull": true
+ +        },
+ +        "created_at": {
+ +          "name": "created_at",
+ +          "type": "timestamp",
+ +          "primaryKey": false,
+ +          "notNull": true,
+ +          "default": "(now() AT TIME ZONE 'utc')"
+ +        },
+ +        "updated_at": {
+ +          "name": "updated_at",
+ +          "type": "timestamp",
+ +          "primaryKey": false,
+ +          "notNull": true,
+ +          "default": "(now() AT TIME ZONE 'utc')"
+ +        }
+ +      },
+ +      "indexes": {
+ +        "task_reminder_sent_taskId_idx": {
+ +          "name": "task_reminder_sent_taskId_idx",
+ +          "columns": [
+ +            {
+ +              "expression": "task_id",
+ +              "isExpression": false,
+ +              "asc": true,
+ +              "nulls": "last"
+ +            }
+ +          ],
+ +          "isUnique": false,
+ +          "concurrently": false,
+ +          "method": "btree",
+ +          "with": {}
+ +        }
+ +      },
+ +      "foreignKeys": {
+ +        "task_reminder_sent_task_id_task_id_fk": {
+ +          "name": "task_reminder_sent_task_id_task_id_fk",
+ +          "tableFrom": "task_reminder_sent",
+ +          "tableTo": "task",
+ +          "columnsFrom": [
+ +            "task_id"
+ +          ],
+ +          "columnsTo": [
+ +            "id"
+ +          ],
+ +          "onDelete": "cascade",
+ +          "onUpdate": "cascade"
+ +        }
+ +      },
+ +      "compositePrimaryKeys": {},
+ +      "uniqueConstraints": {
+ +        "task_reminder_sent_task_type_unique": {
+ +          "name": "task_reminder_sent_task_type_unique",
+ +          "nullsNotDistinct": false,
+ +          "columns": [
+ +            "task_id",
+ +            "reminder_type"
+ +          ]
+ +        }
+ +      },
+ +      "policies": {},
+ +      "checkConstraints": {},
+ +      "isRLSEnabled": false
+ +    },
+++=======
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+      "public.task": {
+        "name": "task",
+        "schema": "",
+@@@ -3355,14 -3147,14 +3579,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -3505,8 -3297,8 +3737,10 @@@
+        "checkConstraints": {},
+        "isRLSEnabled": false
+      },
+-     "public.team": {
+-       "name": "team",
+++<<<<<<< HEAD
+++=======
++     "public.task_relation": {
++       "name": "task_relation",
+        "schema": "",
+        "columns": {
+          "id": {
+@@@ -3673,8 -3483,8 +3925,9 @@@
+        "checkConstraints": {},
+        "isRLSEnabled": false
+      },
+-     "public.time_entry": {
+-       "name": "time_entry",
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
++     "public.team": {
++       "name": "team",
+        "schema": "",
+        "columns": {
+          "id": {
+@@@ -3725,14 -3703,14 +4146,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -3822,7 -3800,7 +4251,11 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {},
+@@@ -3878,14 -3856,14 +4311,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "is_anonymous": {
+            "name": "is_anonymous",
+@@@ -3975,14 -3953,14 +4416,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -4157,14 -4135,14 +4606,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {},
+@@@ -4230,14 -4208,14 +4687,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          },
+          "updated_at": {
+            "name": "updated_at",
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
+++<<<<<<< HEAD
+ +          "default": "(now() AT TIME ZONE 'utc')"
+++=======
++           "default": "now()"
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+          }
+        },
+        "indexes": {
+@@@ -4443,14 -4421,14 +4908,22 @@@
+            "type": "timestamp",
+            "primaryKey": false,
+            "notNull": true,
++

@@ -1,0 +1,599 @@
+skCreated": "Новые задачи",
+				"taskStatusChanged": "Изменения статуса",
+				"taskPriorityChanged": "Изменения приоритета",
+				"taskTitleChanged": "Изменения названия",
+				"taskDescriptionChanged": "Изменения описания",
+				"taskCommentCreated": "Новые комментарии",
+				"taskDeleted": "Задача удалена",
+				"taskMoved": "Задача перемещена",
+				"taskDueDateChanged": "Изменен срок выполнения",
+				"taskAssigneeChanged": "Изменен исполнитель",
+				"taskUnassigned": "Назначение снято",
+				"dueDateReminder": "Напоминания о сроках"
+			},
+			"connect": "Подключить вебхук",
+			"saveChanges": "Сохранить изменения",
+			"disconnect": "Отключить",
+			"reminderLeadTimeLabel": "Отправлять вебхук за указанное число часов до срока"
+		},
+		"telegramIntegration": {
+			"validation": {
+				"botTokenInvalid": "Введите корректный токен Telegram-бота",
+				"chatIdRequired": "ID чата обязателен",
+				"threadIdInvalid": "Введите корректный ID темы Telegram"
+			},
+			"toast": {
+				"saved": "Интеграция с Telegram успешно сохранена",
+				"saveError": "Не удалось сохранить интеграцию с Telegram",
+				"enabled": "Уведомления Telegram включены",
+				"disabled": "Уведомления Telegram приостановлены",
+				"updateError": "Не удалось обновить интеграцию с Telegram",
+				"removed": "Интеграция с Telegram успешно удалена",
+				"removeError": "Не удалось удалить интеграцию с Telegram"
+			},
+			"connectionTitle": "Подключение Telegram-бота",
+			"connectionHint": "Используйте токен Telegram-бота и ID чата для отправки обновлений по задачам в чат или тему.",
+			"connected": "Подключён",
+			"paused": "Приостановлен",
+			"botTokenLabel": "Токен бота",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"botTokenHint": "Создайте бота через BotFather и вставьте его токен сюда.",
+			"botTokenHintConfigured": "Токен бота уже настроен ({{token}}). Введите новый для замены.",
+			"chatIdLabel": "ID чата",
+			"chatIdPlaceholder": "-1001234567890 или @team_updates",
+			"chatIdHint": "Введите ID чата Telegram или имя пользователя канала, куда будут отправляться обновления.",
+			"threadIdLabel": "ID темы",
+			"threadIdPlaceholder": "Необязательный ID темы",
+			"threadIdHint": "Необязательно. Используйте для форумных тем внутри Telegram-групп.",
+			"chatLabelLabel": "Метка чата",
+			"chatLabelPlaceholder": "Обновления разработки",
+			"chatLabelHint": "Необязательная метка для справки внутри Kaneo.",
+			"eventsTitle": "Уведомления о событиях",
+			"eventsHint": "Выберите, какие изменения проекта отправлять в Telegram.",
+			"events": {
+				"taskCreated": "Новые задачи",
+				"taskStatusChanged": "Изменения статуса",
+				"taskPriorityChanged": "Изменения приоритета",
+				"taskTitleChanged": "Изменения названия",
+				"taskDescriptionChanged": "Изменения описания",
+				"taskCommentCreated": "Новые комментарии"
+			},
+			"connect": "Подключить Telegram",
+			"saveChanges": "Сохранить изменения",
+			"disconnect": "Отключить"
+		},
+		"repositoryBrowser": {
+			"title": "Выберите репозиторий",
+			"description": "Выберите репозиторий, на котором установлен ваш GitHub App, для включения синхронизации issues.",
+			"searchPlaceholder": "Поиск репозиториев...",
+			"loadError": "Не удалось загрузить репозитории",
+			"tryAgain": "Попробовать снова",
+			"emptyTitle": "Репозитории не найдены",
+			"emptyHint": "Установите GitHub App на ваши репозитории, чтобы они появились здесь.",
+			"installGithubApp": "Установить GitHub App",
+			"noSearchMatchTitle": "Репозитории по вашему запросу не найдены",
+			"noSearchMatchHint": "Попробуйте изменить поисковый запрос или очистите поиск, чтобы увидеть все репозитории.",
+			"footerSummary": "{{repoCount}} репозиториев в {{installationCount}} установках",
+			"manageInstallations": "Управление установками",
+			"updatedPrefix": "Обновлён",
+			"relativeJustNow": "только что",
+			"relativeMinutesAgo": "{{count}} мин. назад",
+			"relativeHoursAgo": "{{count}} ч. назад",
+			"relativeDaysAgo": "{{count}} дн. назад"
+		},
+		"tasksImportExport": {
+			"exportTasks": "Экспорт задач",
+			"importTasks": "Импорт задач",
+			"dialogTitle": "Импорт задач",
+			"dialogDescription": "Загрузите JSON-файл с задачами для импорта в этот проект.",
+			"expectedFormat": "Ожидаемый формат:",
+			"dropHint": "Перетащите JSON-файл сюда",
+			"selectFile": "Выбрать файл",
+			"exporting": "Экспорт задач...",
+			"exportSuccess": "Задачи успешно экспортированы",
+			"exportError": "Не удалось экспортировать задачи",
+			"importing": "Импорт задач...",
+			"importSuccess_one": "Успешно импортирована {{count}} задача",
+			"importSuccess_few": "Успешно импортировано {{count}} задачи",
+			"importSuccess_many": "Успешно импортировано {{count}} задач",
+			"importSuccess_other": "Успешно импортировано {{count}} задач",
+			"importPartialError_one": "Не удалось импортировать {{count}} задачу",
+			"importPartialError_few": "Не удалось импортировать {{count}} задачи",
+			"importPartialError_many": "Не удалось импортировать {{count}} задач",
+			"importPartialError_other": "Не удалось импортировать {{count}} задач",
+			"importError": "Не удалось импортировать задачи",
+			"invalidFormat": "Некорректный формат файла импорта",
+			"noFileDropped": "Файл не был перетащен",
+			"notJsonFile": "Пожалуйста, загрузите JSON-файл",
+			"importSuccess": "Успешно импортировано {{count}} задач",
+			"importPartialError": "Не удалось импортировать {{count}} задач"
+		},
+		"workflowEditor": {
+			"loading": "Загрузка...",
+			"createColumnsFirst": "Сначала создайте колонки для настройки правил автоматизации.",
+			"githubHeading": "GitHub",
+			"githubHint": "Когда происходит событие GitHub, перемещать связанную задачу в колонку.",
+			"giteaHeading": "Gitea",
+			"giteaHint": "Когда происходит событие вебхука Gitea, перемещать связанную задачу в колонку.",
+			"selectColumnPlaceholder": "Выберите колонку...",
+			"toastUpdated": "Правило рабочего процесса обновлено",
+			"toastError": "Не удалось обновить правило",
+			"events": {
+				"branch_push": "Push ветки",
+				"pr_opened": "PR открыт",
+				"pr_merged": "PR влит",
+				"issue_opened": "Issue открыт",
+				"issue_closed": "Issue закрыт"
+			},
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "Когда происходит событие вебхука GitLab, перевести связанную задачу в колонку.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"externalLinks": {
+			"resources": "Ресурсы",
+			"issue": "Issue",
+			"branch": "Ветка",
+			"merged": "Влит",
+			"draft": "Черновик",
+			"open": "Открыт",
+			"adding": "Adding...",
+			"addResource": "Add resource",
+			"cancel": "Cancel",
+			"empty": "No resources linked to this task.",
+			"titleOptional": "Title (optional)",
+			"url": "URL",
+			"remove": "Remove {{title}}",
+			"removeError": "Failed to remove the resource link."
+		},
+		"workspaceRoles": {
+			"pageTitle": "Роли",
+			"title": "Роли",
+			"subtitle": "Определите, какие действия участники могут выполнять в {{workspaceName}}.",
+			"thisWorkspace": "этой рабочей области",
+			"noAccess": "Для управления ролями рабочей области нужны права администратора или владельца.",
+			"sectionTitle": "Роли рабочей области",
+			"sectionSubtitle": "Отредактируйте роли по умолчанию или добавьте собственную. Назначенные участникам роли сохраняются при изменениях.",
+			"newRole": "Новая роль",
+			"loading": "Загрузка…",
+			"loadError": "Не удалось загрузить роли.",
+			"emptyTitle": "Ролей пока нет",
+			"emptyDescription": "Роли по умолчанию появятся здесь, когда они будут созданы для этой рабочей области.",
+			"defaultBadge": "По умолчанию",
+			"permissionCount_one": "{{count}} право",
+			"permissionCount_few": "{{count}} права",
+			"permissionCount_many": "{{count}} прав",
+			"permissionCount_other": "{{count}} прав",
+			"nameLabel": "Название",
+			"nameHint": "Строчными буквами. Нельзя изменить позже.",
+			"namePlaceholder": "например, reviewer",
+			"discard": "Отменить",
+			"createRole": "Создать роль",
+			"deleteRole": "Удалить роль",
+			"defaultRoleHelp": "Роль по умолчанию: название зарезервировано, и строку нельзя удалить.",
+			"unsavedChanges": "Есть несохранённые изменения",
+			"allChangesSaved": "Все изменения сохранены",
+			"saveChanges": "Сохранить изменения",
+			"defaultRoleDescriptions": {
+				"viewer": "Может просматривать задачи и оставлять комментарии.",
+				"member": "Может создавать задачи и проекты и управлять ими.",
+				"admin": "Имеет полный доступ к рабочей области."
+			},
+			"resources": {
+				"project": "Проекты",
+				"task": "Задачи",
+				"label": "Метки",
+				"workspace": "Рабочая область",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Создание",
+						"description": "Может создавать новые проекты"
+					},
+					"read": {
+						"label": "Просмотр",
+						"description": "Может просматривать проекты"
+					},
+					"update": {
+						"label": "Изменение",
+						"description": "Может изменять настройки проекта"
+					},
+					"delete": {
+						"label": "Удаление",
+						"description": "Может удалять проекты"
+					},
+					"share": {
+						"label": "Общий доступ",
+						"description": "Может делиться проектами"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Создание",
+						"description": "Может создавать задачи"
+					},
+					"read": {
+						"label": "Просмотр",
+						"description": "Может просматривать задачи"
+					},
+					"update": {
+						"label": "Изменение",
+						"description": "Может редактировать задачи"
+					},
+					"delete": {
+						"label": "Удаление",
+						"description": "Может удалять задачи"
+					},
+					"assign": {
+						"label": "Назначение",
+						"description": "Может назначать задачи участникам"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Создание",
+						"description": "Может создавать метки"
+					},
+					"read": {
+						"label": "Просмотр",
+						"description": "Может просматривать метки"
+					},
+					"update": {
+						"label": "Изменение",
+						"description": "Может редактировать метки"
+					},
+					"delete": {
+						"label": "Удаление",
+						"description": "Может удалять метки"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Просмотр",
+						"description": "Может просматривать настройки рабочей области"
+					},
+					"update": {
+						"label": "Изменение",
+						"description": "Может изменять настройки рабочей области"
+					},
+					"delete": {
+						"label": "Удаление",
+						"description": "Может удалить рабочую область"
+					},
+					"manage_settings": {
+						"label": "Управление настройками",
+						"description": "Может управлять настройками рабочей области"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "Название роли обязательно",
+				"nameExists": "Роль с таким названием уже существует",
+				"permissionRequired": "Необходимо выбрать хотя бы одно право"
+			},
+			"toast": {
+				"created": "Роль создана",
+				"createError": "Не удалось создать роль",
+				"updated": "Роль обновлена",
+				"updateError": "Не удалось обновить роль",
+				"deleted": "Роль удалена",
+				"deleteError": "Не удалось удалить роль"
+			},
+			"deleteDialog": {
+				"title": "Удалить роль",
+				"description": "Роль «{{role}}» будет безвозвратно удалена. Участники с этой ролью потеряют её права."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "Настройки меток",
+			"title": "Метки",
+			"subtitle": "Создавайте, редактируйте и удаляйте метки уровня рабочей области.",
+			"cardDescription": "Управляйте метками, которые можно назначать задачам.",
+			"createLabel": "Создать метку",
+			"editLabel": "Редактировать метку",
+			"deleteLabel": "Удалить",
+			"saveLabel": "Сохранить",
+			"nameLabel": "Название метки",
+			"namePlaceholder": "Введите название метки",
+			"colorLabel": "Цвет",
+			"createDescription": "Создайте новую метку, которую можно использовать в задачах этой рабочей области.",
+			"editDescription": "Обновите название или цвет этой метки.",
+			"deleteConfirmTitle": "Удалить эту метку?",
+			"deleteConfirmDescription": "Метка будет безвозвратно удалена из всех задач. Это действие нельзя отменить.",
+			"empty": "Меток пока нет. Создайте первую метку, чтобы начать.",
+			"createSuccess": "Метка создана",
+			"updateSuccess": "Метка обновлена",
+			"deleteSuccess": "Метка удалена",
+			"createError": "Не удалось создать метку",
+			"updateError": "Не удалось обновить метку",
+			"deleteError": "Не удалось удалить метку",
+			"nameRequired": "Название метки обязательно",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"administration": "Administration",
+		"adminUsers": {
+			"actions": {
+				"deactivate": "Deactivate account",
+				"edit": "Edit account",
+				"open": "Actions for {{name}}",
+				"reactivate": "Reactivate account"
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"joined": "Joined",
+				"role": "Global role",
+				"status": "Status",
+				"user": "User"
+			},
+			"confirm": {
+				"deactivate": {
+					"action": "Deactivate account",
+					"description": "{{name}} will be signed out and unable to sign in until an administrator reactivates the account.",
+					"title": "Deactivate this account?"
+				},
+				"delete": {
+					"action": "Delete permanently",
+					"description": "This permanently deletes {{name}}, their sessions, memberships, and associated data. This cannot be undone.",
+					"title": "Permanently delete this account?"
+				},
+				"reactivate": {
+					"action": "Reactivate account",
+					"description": "{{name}} will be able to sign in and access their workspaces again.",
+					"title": "Reactivate this account?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "User directory",
+			"edit": {
+				"description": "Update this account's identity and instance-wide access.",
+				"email": "Email address",
+				"name": "Full name",
+				"role": "Global role",
+				"save": "Save changes",
+				"saving": "Saving…",
+				"selfRoleHint": "You cannot change your own global role.",
+				"title": "Edit user"
+			},
+			"emptyDescription": "Try another name or email address.",
+			"emptyTitle": "No users found",
+			"instanceBadge": "Instance",
+			"loadError": "Users could not be loaded.",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing users",
+			"retry": "Retry",
+			"roles": {
+				"admin": "Instance admin",
+				"user": "User"
+			},
+			"searchCount_few": "{{count}} matching users",
+			"searchCount_many": "{{count}} matching users",
+			"searchCount_one": "{{count}} matching user",
+			"searchCount_other": "{{count}} matching users",
+			"searchLabel": "Search users",
+			"searchPlaceholder": "Search name or email…",
+			"status": {
+				"active": "Active",
+				"deactivated": "Deactivated"
+			},
+			"subtitle": "Manage every account registered on this Kaneo instance.",
+			"title": "User management",
+			"toast": {
+				"actionError": "Failed to update user status",
+				"deactivated": "User deactivated",
+				"deleted": "User deleted",
+				"reactivated": "User reactivated",
+				"updated": "User updated",
+				"updateError": "Failed to update user"
+			},
+			"userCount_few": "{{count}} registered users",
+			"userCount_many": "{{count}} registered users",
+			"userCount_one": "{{count}} registered user",
+			"userCount_other": "{{count}} registered users",
+			"you": "(you)"
+		},
+		"security": "Security",
+		"securityPage": {
+			"confirmPassword": "Confirm new password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"currentPassword": "Current password",
+			"currentPasswordPlaceholder": "Enter your current password",
+			"newPassword": "New password",
+			"newPasswordPlaceholder": "Enter a new password",
+			"noPassword": {
+				"description": "Your account signs in with a different method, so there is no password to change.",
+				"title": "Password change isn't available"
+			},
+			"pageTitle": "Security",
+			"sectionSubtitle": "Change the password you use to sign in.",
+			"sectionTitle": "Password",
+			"submit": "Update password",
+			"submitting": "Updating...",
+			"subtitle": "Manage your password and account security.",
+			"title": "Security",
+			"updateError": "Failed to update password.",
+			"updateSuccess": "Password updated.",
+			"validation": {
+				"confirmRequired": "Confirm your new password.",
+				"currentRequired": "Enter your current password.",
+				"mismatch": "Passwords do not match.",
+				"tooShort": "New password must be at least 8 characters.",
+				"sameAsCurrent": "New password must be different from your current password."
+			}
+		},
+		"gitlabIntegration": {
+			"actionsHint": "Проверьте доступ и подключите",
+			"actionsTitle": "Действия",
+			"badgeConnected": "Подключено",
+			"badgeNotConnected": "Не подключено",
+			"baseUrlHint": "https://gitlab.com или корневой URL вашего экземпляра",
+			"baseUrlLabel": "URL GitLab",
+			"browse": "Обзор",
+			"browseModalHint": "Проекты, участником которых является владелец токена",
+			"browseModalTitle": "Ваши проекты",
+			"browseNeedsCredentials": "Введите URL GitLab и токен для просмотра",
+			"commentTaskLinkHint": "Когда включено, Kaneo оставляет ссылку на задачу в каждом issue, созданном в GitLab.",
+			"commentTaskLinkTitle": "Комментировать ссылкой Kaneo issues, созданные в GitLab",
+			"connect": "Подключить",
+			"connectedActive": "Проект подключён и активен",
+			"connectionStatus": "Статус подключения",
+			"currentToken": "сохранён",
+			"disconnect": "Отключить",
+			"importDisabledHint": "Проверьте проект выше, чтобы включить импорт",
+			"importing": "Импорт…",
+			"importIssues": "Импортировать issues",
+			"importSectionHint": "Импортировать открытые issues и merge requests из проекта",
+			"importSectionTitle": "Импорт issues из GitLab",
+			"loadingProjects": "Загрузка проектов…",
+			"loadProjectsError": "Не удалось загрузить проекты",
+			"notConnectedHint": "Проект GitLab не подкл

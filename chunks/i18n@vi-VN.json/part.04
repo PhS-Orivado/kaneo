@@ -1,0 +1,736 @@
+boards imported",
+					"runTitle_other": "{{source}}, {{count}} boards",
+					"section": "Boards",
+					"someImported_other": "{{done}} of {{count}} boards imported.",
+					"step": "Choose boards"
+				},
+				"project": {
+					"allImported_other": "All {{count}} projects imported.",
+					"empty": "No projects found. Check that this key can see the projects you want to import.",
+					"found_other": "{{count}} projects found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_other": "Import {{count}} projects",
+					"limit": "Pick up to {{max}} projects per import.",
+					"pick": "Pick the projects to bring over.",
+					"progress_other": "{{done}} of {{count}} projects imported",
+					"runTitle_other": "{{source}}, {{count}} projects",
+					"section": "Projects",
+					"someImported_other": "{{done}} of {{count}} projects imported.",
+					"step": "Choose projects"
+				},
+				"team": {
+					"allImported_other": "All {{count}} teams imported.",
+					"empty": "No teams found. Check that this key can see the teams you want to import.",
+					"found_other": "{{count}} teams found. Each one you pick becomes a new project in {{workspace}}.",
+					"importButton_other": "Import {{count}} teams",
+					"limit": "Pick up to {{max}} teams per import.",
+					"pick": "Pick the teams to bring over.",
+					"progress_other": "{{done}} of {{count}} teams imported",
+					"runTitle_other": "{{source}}, {{count}} teams",
+					"section": "Teams",
+					"someImported_other": "{{done}} of {{count}} teams imported.",
+					"step": "Choose teams"
+				}
+			},
+			"jira": {
+				"emailDescription": "The email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Gợi ý",
+			"commands": "Lệnh",
+			"projects": "Dự án",
+			"search": "Tìm kiếm",
+			"members": "Thành viên",
+			"createTask": "Tạo công việc",
+			"createProject": "Tạo dự án",
+			"createWorkspace": "Tạo không gian làm việc",
+			"lightTheme": "Chủ đề sáng",
+			"darkTheme": "Chủ đề tối",
+			"systemTheme": "Chủ đề hệ thống",
+			"keyboardShortcuts": "Phím tắt",
+			"inputPlaceholder": "Tìm ứng dụng và lệnh...",
+			"empty": "Không tìm thấy kết quả nào.",
+			"footer": {
+				"navigate": "Điều hướng",
+				"open": "Mở",
+				"close": "Đóng"
+			}
+		},
+		"sidebar": {
+			"projects": "Dự án",
+			"members": "Thành viên",
+			"invitations": "Lời mời",
+			"more": "Thêm",
+			"backToBoard": "Quay lại bảng",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Xem dự án",
+			"shareProject": "Chia sẻ dự án",
+			"projectSettings": "Cài đặt dự án",
+			"linkCopied": "Đã sao chép liên kết dự án vào clipboard",
+			"addProject": "Thêm dự án",
+			"deleteConfirmTitle": "Xóa dự án?",
+			"deleteConfirmDescription": "Thao tác này sẽ xóa vĩnh viễn dự án và toàn bộ dữ liệu của nó. Bạn không thể hoàn tác hành động này.",
+			"deletedToast": "Đã xóa dự án",
+			"deleteProject": "Xóa dự án",
+			"switcherLabel": "Chuyển dự án hoặc chế độ xem"
+		},
+		"search": {
+			"inputPlaceholder": "Tìm công việc, dự án, bình luận...",
+			"minCharsHint": "Nhập ít nhất 3 ký tự để tìm kiếm",
+			"groups": {
+				"task": "Công việc",
+				"project": "Dự án",
+				"workspace": "Không gian làm việc",
+				"comment": "Bình luận",
+				"activity": "Hoạt động",
+				"fallback": "Kết quả"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Bật/tắt thanh bên",
+			"back": "Quay lại"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Đăng xuất thành công",
+			"signOutFailed": "Không thể đăng xuất",
+			"unnamedUser": "Người dùng",
+			"settings": "Cài đặt",
+			"signingOut": "Đang đăng xuất...",
+			"logOut": "Đăng xuất"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Không gian làm việc",
+			"switching": "Đang chuyển...",
+			"addWorkspace": "Thêm không gian làm việc",
+			"selectWorkspace": "Chọn không gian làm việc"
+		},
+		"page": {
+			"projectsTitle": "Dự án",
+			"settingsTitle": "Cài đặt",
+			"backToWorkspace": "Quay lại không gian làm việc",
+			"settingsWorkspaceTab": "Không gian làm việc"
+		},
+		"projectSettings": {
+			"projectLabel": "Dự án"
+		},
+		"keyboardShortcuts": {
+			"title": "Phím tắt",
+			"subtitle": "Tăng tốc quy trình làm việc của bạn với phím tắt",
+			"searchPlaceholder": "Tìm phím tắt...",
+			"footer": "Nhấn <kbd>Escape</kbd> để đóng",
+			"categories": {
+				"general": "Chung",
+				"create": "Tạo",
+				"views": "Chế độ xem",
+				"navigation": "Điều hướng",
+				"quickSelect": "Chọn nhanh (trong popover)"
+			},
+			"items": {
+				"openCommandPalette": "Mở bảng lệnh",
+				"globalSearch": "Tìm kiếm toàn cục",
+				"toggleSidebar": "Bật/tắt thanh bên",
+				"showShortcuts": "Hiện phím tắt",
+				"closeModal": "Đóng modal/popover",
+				"createTask": "Tạo công việc",
+				"createProject": "Tạo dự án",
+				"createWorkspace": "Tạo không gian làm việc",
+				"boardView": "Chuyển sang chế độ xem bảng",
+				"listView": "Chuyển sang chế độ xem danh sách",
+				"backlogView": "Chuyển sang chế độ xem backlog",
+				"nextTask": "Công việc tiếp theo",
+				"prevTask": "Công việc trước đó",
+				"openTask": "Mở công việc đã chọn",
+				"quickSelectNumber": "Chọn tùy chọn theo số",
+				"calendarView": "Chuyển sang chế độ xem lịch"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_other": "{{count}} mới",
+		"emptyTitle": "Chưa có thông báo nào",
+		"emptySubtitle": "Bạn sẽ thấy các cập nhật và hoạt động ở đây.",
+		"clearAll": "Xóa tất cả thông báo",
+		"clearDialogTitle": "Xóa tất cả thông báo?",
+		"clearDialogDescription": "Thao tác này sẽ xóa vĩnh viễn tất cả thông báo. Bạn không thể hoàn tác hành động này.",
+		"reminderLeadTime": {
+			"minutes_other": "{{count}} phút",
+			"hours_other": "{{count}} giờ",
+			"days_other": "{{count}} ngày"
+		},
+		"events": {
+			"task_created": {
+				"title": "Công việc mới được tạo",
+				"content": "Công việc \"{{taskTitle}}\" đã được tạo"
+			},
+			"workspace_created": {
+				"title": "Đã tạo không gian làm việc",
+				"content": "Không gian làm việc \"{{workspaceName}}\" của bạn đã được tạo thành công"
+			},
+			"task_status_changed": {
+				"title": "Trạng thái công việc đã thay đổi",
+				"content": "Trạng thái công việc \"{{taskTitle}}\" đã thay đổi từ \"{{oldStatus}}\" sang \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "Công việc được giao cho bạn",
+				"content": "Bạn đã được giao công việc: {{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} đã nhắc đến bạn",
+				"content": "{{mentionerName}} đã nhắc đến bạn trong: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} đã bình luận công việc của bạn",
+				"content": "Bình luận mới trên {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Công việc sắp đến hạn",
+				"content": "{{taskTitle}} sẽ đến hạn trong {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Công việc quá hạn",
+				"content": "{{taskTitle}} đã quá ngày đến hạn"
+			},
+			"time_entry_created": {
+				"title": "Đã bắt đầu theo dõi thời gian",
+				"contentWithTask": "Đã bắt đầu theo dõi thời gian trên công việc: {{taskTitle}}",
+				"contentWithoutTask": "Đã bắt đầu theo dõi thời gian trên một công việc"
+			}
+		},
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "đã tự giao công việc này cho mình",
+		"unassigned": "đã hủy giao công việc",
+		"assignedTo": "đã giao công việc cho {{name}}",
+		"changedStatus": "đã thay đổi trạng thái từ {{from}} sang {{to}}",
+		"changedPriority": "đã thay đổi mức ưu tiên từ {{from}} sang {{to}}",
+		"clearedDueDate": "đã xóa ngày đến hạn",
+		"setDueDate": "đã đặt ngày đến hạn thành {{date}}",
+		"changedDueDate": "đã thay đổi ngày đến hạn từ {{from}} sang {{to}}",
+		"changedTitle": "đã thay đổi tiêu đề từ \"{{from}}\" sang \"{{to}}\"",
+		"moved": "đã di chuyển công việc từ \"{{from}}\" sang \"{{to}}\"",
+		"created": "đã tạo công việc này",
+		"githubUser": "Người dùng GitHub",
+		"comment": {
+			"viewGithubProfile": "Xem hồ sơ GitHub",
+			"cannotBeEmpty": "Bình luận không được để trống",
+			"mustBeLoggedInToEdit": "Bạn phải đăng nhập để chỉnh sửa bình luận",
+			"updated": "Đã cập nhật bình luận",
+			"failedToUpdate": "Không thể cập nhật bình luận",
+			"edit": "Chỉnh sửa bình luận",
+			"editPlaceholder": "Chỉnh sửa bình luận...",
+			"save": "Lưu",
+			"added": "Đã thêm bình luận",
+			"failedToAdd": "Không thể thêm bình luận",
+			"leavePlaceholder": "Để lại bình luận...",
+			"attachFile": "Đính kèm file",
+			"submitShortcut": "Gửi bình luận",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Chỉ có thể tải file lên các công việc đã lưu.",
+				"uploadingFile": "Đang tải file lên...",
+				"imageUploaded": "Đã tải ảnh lên",
+				"fileAttached": "Đã đính kèm file",
+				"failedToUploadFile": "Không thể tải file lên",
+				"enterUrl": "Nhập URL",
+				"plaintext": "Văn bản thuần",
+				"autoDetect": "Tự động nhận diện",
+				"slashGroupText": "Văn bản",
+				"slashGroupLists": "Danh sách",
+				"slashGroupInsert": "Chèn",
+				"slashParagraph": "Văn bản",
+				"slashHeading": "Tiêu đề",
+				"slashBulletList": "Danh sách dấu đầu dòng",
+				"slashTaskList": "Danh sách việc cần làm",
+				"slashOrderedList": "Danh sách đánh số",
+				"slashQuote": "Trích dẫn",
+				"slashCodeBlock": "Khối mã",
+				"slashTable": "Bảng",
+				"slashFile": "File",
+				"searchParagraph": "văn bản đoạn văn bình thường",
+				"searchHeading": "tiêu đề heading h2",
+				"searchBulletList": "danh sách dấu đầu dòng không thứ tự",
+				"searchTaskList": "việc cần làm checklist checkbox danh sách công việc",
+				"searchOrderedList": "danh sách có thứ tự đánh số",
+				"searchQuote": "trích dẫn blockquote",
+				"searchCodeBlock": "mã đoạn mã code",
+				"searchTable": "bảng lưới grid",
+				"searchFile": "file đính kèm ảnh hình ảnh tải lên",
+				"embedErrorInvalidUrl": "Nhập một URL hợp lệ",
+				"embedErrorYoutubeOnly": "Chỉ có thể nhúng liên kết YouTube.",
+				"embedVideo": "Nhúng video",
+				"keepAsLink": "Giữ dạng liên kết",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Dán URL",
+				"asLink": "Dạng liên kết",
+				"embed": "Nhúng",
+				"noCommands": "Không có lệnh nào",
+				"ariaCommentContent": "Nội dung bình luận",
+				"ariaCommentEditor": "Trình soạn thảo bình luận",
+				"ariaCopyCode": "Sao chép mã",
+				"ariaCopied": "Đã sao chép",
+				"copy": "Sao chép",
+				"copied": "Đã sao chép",
+				"dropImageToUpload": "Thả ảnh để tải lên",
+				"previewImageAlt": "Xem trước ảnh",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"plaintext": "Văn bản thuần",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"table": {
+					"addColumnBefore": "Chèn cột bên trái",
+					"addColumnAfter": "Chèn cột bên phải",
+					"deleteColumn": "Xóa cột",
+					"addRowBefore": "Chèn hàng phía trên",
+					"addRowAfter": "Chèn hàng phía dưới",
+					"deleteRow": "Xóa hàng",
+					"deleteTable": "Xóa bảng"
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diagram couldn't be rendered"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "đã bình luận trên {{forge}}"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Nhiệm vụ",
+		"status": {
+			"label": "Trạng thái",
+			"to-do": "Cần làm",
+			"in-progress": "Đang thực hiện",
+			"in-review": "Đang xem xét",
+			"done": "Hoàn thành",
+			"archived": "Đã lưu trữ",
+			"planned": "Đã lên kế hoạch"
+		},
+		"priority": {
+			"label": "Mức ưu tiên",
+			"no-priority": "Không ưu tiên",
+			"low": "Thấp",
+			"medium": "Trung bình",
+			"high": "Cao",
+			"urgent": "Khẩn cấp"
+		},
+		"boardSearchPlaceholder": "Tìm phiếu...",
+		"view": {
+			"board": "Bảng",
+			"list": "Danh sách",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Chế độ xem"
+		},
+		"common": {
+			"selectTask": "Chọn công việc",
+			"loadingTask": "Đang tải công việc...",
+			"taskNotFound": "Không tìm thấy công việc",
+			"taskNotFoundDescription": "Công việc bạn đang tìm không tồn tại hoặc đã bị xóa.",
+			"ticketAmbiguous": "Mã công việc khớp với nhiều công việc",
+			"ticketAmbiguousDescription": "{{ticketId}} khớp với công việc trong nhiều dự án của không gian làm việc này. Hãy đặt khóa khác cho một trong các dự án đó để liên kết hoạt động.",
+			"ticketNotFoundDescription": "Không có công việc nào có mã {{ticketId}} trong không gian làm việc này, hoặc bạn không có quyền truy cập.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Công việc con của",
+			"activity": "Hoạt động",
+			"noActivity": "Không tìm thấy hoạt động nào",
+			"openInFullPage": "Mở ở trang đầy đủ",
+			"titlePlaceholder": "Nhấp để thêm tiêu đề",
+			"addDescription": "Thêm mô tả...",
+			"editor": {
+				"ariaLabel": "Trình soạn thảo mô tả công việc",
+				"placeholder": "Viết mô tả...",
+				"previewImage": "Xem trước ảnh",
+				"enterUrl": "Nhập URL",
+				"autoDetect": "Tự động nhận diện",
+				"copyCode": "Sao chép mã",
+				"copy": "Sao chép",
+				"copied": "Đã sao chép",
+				"attachFile": "Đính kèm file",
+				"dropToUpload": "Thả ảnh để tải lên",
+				"checkbox": {
+					"markIncomplete": "Đánh dấu công việc chưa hoàn thành",
+					"markComplete": "Đánh dấu công việc đã hoàn thành"
+				},
+				"upload": {
+					"loading": "Đang tải file lên...",
+					"failed": "Không thể tải file lên",
+					"imageSuccess": "Đã tải ảnh lên",
+					"fileSuccess": "Đã đính kèm file"
+				},
+				"slash": {
+					"groups": {
+						"text": "Văn bản",
+						"lists": "Danh sách",
+						"insert": "Chèn"
+					},
+					"empty": "Không có lệnh nào",
+					"commands": {
+						"paragraph": "Văn bản",
+						"heading-2": "Tiêu đề",
+						"bullet-list": "Danh sách dấu đầu dòng",
+						"task-list": "Danh sách việc cần làm",
+						"ordered-list": "Danh sách đánh số",
+						"blockquote": "Trích dẫn",
+						"code-block": "Khối mã",
+						"table": "Bảng",
+						"file": "File"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Văn bản thuần",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Nhúng video",
+						"keepAsLink": "Giữ dạng liên kết"
+					},
+					"inputPlaceholder": "Dán URL",
+					"embeddedContent": "Nội dung đã nhúng",
+					"asLink": "Dạng liên kết",
+					"submit": "Nhúng",
+					"errors": {
+						"invalidUrl": "Nhập một URL hợp lệ",
+						"onlyYoutube": "Chỉ có thể nhúng liên kết YouTube."
+					},
+					"onlyYoutubeInline": "Chỉ có thể nhúng URL YouTube. Hãy dùng chế độ liên kết thay thế."
+				},
+				"mermaid": {
+					"renderFailed": "Mermaid diagram couldn't be rendered"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Công việc"
+		},
+		"relations": {
+			"title": "Liên kết",
+			"tasksInProject": "Công việc trong dự án",
+			"linkError": "Không thể liên kết công việc",
+			"empty": "Không có công việc liên kết",
+			"searchPlaceholder": "Tìm công việc để liên kết...",
+			"noTasksFound": "Không tìm thấy công việc nào",
+			"openTask": "Mở công việc",
+			"removeRelation": "Gỡ liên kết",
+			"related": "Liên quan",
+			"blocks": "Chặn",
+			"selectTask": "Chọn một công việc để liên kết",
+			"types": {
+				"blocks": "chặn",
+				"blocked_by": "bị chặn bởi",
+				"related": "liên quan đến"
+			}
+		},
+		"subtasks": {
+			"title": "Công việc con",
+			"inputPlaceholder": "Tiêu đề công việc con...",
+			"addAction": "Thêm",
+			"empty": "Chưa có công việc con nào",
+			"createError": "Không thể tạo công việc con",
+			"deleteSuccess": "Xóa công việc thành công",
+			"deleteError": "Không thể xóa công việc",
+			"deleteDialogTitle": "Xóa công việc?",
+			"deleteDialogDescription": "Thao tác này sẽ xóa vĩnh viễn công việc và toàn bộ dữ liệu của nó. Bạn không thể hoàn tác hành động này.",
+			"deleteAction": "Xóa công việc",
+			"completeAria": "Đánh dấu hoàn thành công việc con",
+			"progress": "Đã hoàn thành {{completed}} trên {{total}} công việc con",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Thuộc tính",
+			"labels": "Nhãn",
+			"copyTaskLink": "Sao chép liên kết công việc",
+			"copyTaskBranch": "Sao chép nhánh công việc",
+			"taskLinkCopied": "Đã sao chép liên kết công việc",
+			"taskBranchCopied": "Đã sao chép tên nhánh",
+			"start": "Bắt đầu",
+			"startDate": "Ngày bắt đầu",
+			"noDate": "Không có ngày"
+		},
+		"move": {
+			"title": "Di chuyển công việc",
+			"projectLabel": "Dự án đích",
+			"projectPlaceholder": "Chọn một dự án",
+			"statusLabel": "Trạng thái đích",
+			"statusHintKeep": "Quy trình làm việc của dự án này đã hỗ trợ trạng thái hiện tại.",
+			"statusHintAdjust": "Chọn trạng thái để dùng ở dự án đích.",
+			"action": "Di chuyển công việc",
+			"success": "Di chuyển công việc thành công",
+			"error": "Không thể di chuyển công việc"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Chưa giao",
+				"updateError": "Không thể cập nhật người được giao công việc"
+			},
+			"status": {
+				"updateError": "Không thể cập nhật trạng thái công việc"
+			},
+			"priority": {
+				"updateError": "Không thể cập nhật mức ưu tiên công việc"
+			},
+			"dueDate": {
+				"updateSuccess": "Cập nhật ngày đến hạn công việc thành công",
+				"updateError": "Không thể cập nhật ngày đến hạn công việc",
+				"clear": "Xóa ngày"
+			},
+			"startDate": {
+				"updateSuccess": "Cập nhật ngày bắt đầu công việc thành công",
+				"updateError": "Không thể cập nhật ngày bắt đầu công việc",
+				"clear": "Xóa ngày bắt đầu"
+			},
+			"labels": {
+				"searchPlaceholder": "Tìm nhãn...",
+				"empty": "Không tìm thấy nhãn",
+				"create": "Tạo \"{{name}}\"",
+				"chooseColor": "Chọn màu",
+				"addSuccess": "Đã thêm nhãn",
+				"removeSuccess": "Đã gỡ nhãn",
+				"updateError": "Không thể cập nhật nhãn",
+				"createSuccess": "Đã tạo và thêm nhãn",
+				"createError": "Không thể tạo nhãn",
+				"colors": {
+					"stone": "Đá",
+					"slate": "Xám đá phiến",
+					"lavender": "Oải hương",
+					"sage": "Xanh xô thơm",
+					"forest": "Xanh rừng",
+					"amber": "Hổ phách",
+					"terracotta": "Đất nung",
+					"rose": "Hồng",
+					"crimson": "Đỏ thẫm"
+				},
+				"editLabels": "Chỉnh sửa nhãn"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Backlog của {{name}}",
+			"noTasksToMove": "Không có công việc đã lên kế hoạch để di chuyển",
+			"moveAllConfirm": "Di chuyển tất cả {{count}} công việc đã lên kế hoạch sang Cần làm?",
+			"moveAllSuccess": "Đã di chuyển {{count}} công việc sang Cần làm",
+			"plan": "Lên kế hoạch",
+			"moveAllTooltip": "Di chuyển tất cả công việc đã lên kế hoạch sang Cần làm",
+			"moveAll": "Di chuyển tất cả",
+			"addTask": "Thêm công việc",
+			"filter": "Lọc",
+			"addFilter": "Thêm bộ lọc...",
+			"sections": {
+				"planned": "Đã lên kế hoạch",
+				"archived": "Đã lưu trữ"
+			},
+			"noTasksInSection": "Không có công việc {{section}}",
+			"filters": {
+				"priority": "Mức ưu tiên: {{name}}",
+				"assignee": "Người được giao: {{name}}",
+				"due": "Đến hạn: {{date}}",
+				"label": "Nhãn: {{name}}",
+				"dueThisWeek": "Đến hạn tuần này",
+				"dueNextWeek": "Đến hạn tuần sau",
+				"noDueDate": "Không có ngày đến hạn"
+			}
+		},
+		"sort": {
+			"label": "Sắp xếp",
+			"by": "Sắp xếp theo",
+			"direction": "Chiều",
+			"ascending": "Tăng dần",
+			"descending": "Giảm dần",
+			"fields": {
+				"position": "Thủ công (vị trí)",
+				"createdAt": "Ngày tạo",
+				"priority": "Mức ưu tiên",
+				"dueDate": "Ngày đến hạn",
+				"title": "Tiêu đề",
+				"number": "Số công việc"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Lọc theo",
+			"allStatuses": "Tất cả trạng thái",
+			"allPriorities": "Tất cả mức ưu tiên",
+			"allAssignees": "Tất cả người được giao",
+			"allDueDates": "Tất cả ngày đến hạn",
+			"allLabels": "Tất cả nhãn",
+			"selectedCount": "Đã chọn {{count}}",
+			"subjects": {
+				"status": "Trạng thái",
+				"priority": "Mức ưu tiên",
+				"assignee": "Người được giao",
+				"dueDate": "Ngày đến hạn",
+				"labels": "Nhãn"
+			},
+			"operators": {
+				"isAnyOf": "là một trong",
+				"includeAnyOf": "bao gồm một trong"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Dòng thời gian Gantt",
+			"searchPlaceholder": "Tìm phiếu đã lên lịch...",
+			"hideTasks": "Ẩn công việc",
+			"showTasks": "Hiện công việc",
+			"noTa

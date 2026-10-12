@@ -1,0 +1,1101 @@
+bled",
+          "webhookEnabled",
+          "projectMode",
+          "selectedProjectIds",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "SearchResponse": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchResult"
+            }
+          },
+          "totalCount": {
+            "type": "number",
+            "description": "Total matches found before the `limit` slice, so a caller can tell that more exist."
+          },
+          "searchQuery": {
+            "type": "string",
+            "description": "The query that was run."
+          }
+        },
+        "required": [
+          "results",
+          "totalCount",
+          "searchQuery"
+        ]
+      },
+      "SearchResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "task",
+              "project",
+              "workspace",
+              "comment",
+              "activity"
+            ]
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string",
+            "description": "Matched body text, for comment and activity results. Activities get a rendered summary such as `changed status from Todo to In Progress`."
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "projectName": {
+            "type": "string"
+          },
+          "projectSlug": {
+            "type": "string"
+          },
+          "workspaceId": {
+            "type": "string"
+          },
+          "workspaceName": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "userName": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "relevanceScore": {
+            "type": "number",
+            "description": "Higher is a better match. Results are sorted by score, then by createdAt descending."
+          },
+          "taskNumber": {
+            "type": "number"
+          },
+          "priority": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "title",
+          "createdAt",
+          "relevanceScore"
+        ]
+      },
+      "IntegrationSyncPreview": {
+        "type": "object",
+        "properties": {
+          "isActive": {
+            "type": "boolean"
+          },
+          "rules": {
+            "type": "object",
+            "properties": {
+              "outgoing": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "all"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "mode"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "labels"
+                        ]
+                      },
+                      "match": {
+                        "type": "string",
+                        "enum": [
+                          "any",
+                          "all"
+                        ]
+                      },
+                      "labels": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 128
+                        },
+                        "minItems": 1,
+                        "maxItems": 50
+                      }
+                    },
+                    "required": [
+                      "mode",
+                      "match",
+                      "labels"
+                    ]
+                  }
+                ],
+                "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
+              },
+              "incoming": {
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "all"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "mode"
+                    ]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "mode": {
+                        "type": "string",
+                        "enum": [
+                          "labels"
+                        ]
+                      },
+                      "match": {
+                        "type": "string",
+                        "enum": [
+                          "any",
+                          "all"
+                        ]
+                      },
+                      "labels": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 128
+                        },
+                        "minItems": 1,
+                        "maxItems": 50
+                      }
+                    },
+                    "required": [
+                      "mode",
+                      "match",
+                      "labels"
+                    ]
+                  }
+                ],
+                "description": "Exact repository label names controlling which issues can be imported."
+              }
+            },
+            "required": [
+              "outgoing",
+              "incoming"
+            ]
+          },
+          "labels": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "color": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "name",
+                "color"
+              ]
+            }
+          },
+          "missingLabels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "total": {
+            "type": "number"
+          },
+          "matching": {
+            "type": "number"
+          },
+          "willCreate": {
+            "type": "number"
+          },
+          "willPause": {
+            "type": "number"
+          },
+          "needsReview": {
+            "type": "number"
+          },
+          "paused": {
+            "type": "number"
+          },
+          "matchingTasks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "number",
+                "title"
+              ]
+            }
+          },
+          "pausedNextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pausedTasks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "title": {
+                  "type": "string"
+                },
+                "linkId": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "eligible": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "id",
+                "number",
+                "title",
+                "linkId",
+                "url",
+                "eligible"
+              ]
+            }
+          },
+          "previewToken": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "isActive",
+          "rules",
+          "labels",
+          "missingLabels",
+          "total",
+          "matching",
+          "willCreate",
+          "willPause",
+          "needsReview",
+          "paused",
+          "matchingTasks",
+          "pausedNextCursor",
+          "pausedTasks",
+          "previewToken"
+        ]
+      },
+      "IntegrationSyncResumePreview": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "number": {
+                "type": [
+                  "number",
+                  "null"
+                ]
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "id",
+              "number",
+              "title"
+            ]
+          },
+          "local": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "closed"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "description",
+              "state"
+            ]
+          },
+          "remote": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "closed"
+                ]
+              }
+            },
+            "required": [
+              "title",
+              "description",
+              "state"
+            ]
+          },
+          "token": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task",
+          "local",
+          "remote",
+          "token"
+        ]
+      },
+      "GitHubAppInfo": {
+        "type": "object",
+        "properties": {
+          "accountConnected": {
+            "type": "boolean"
+          },
+          "accountLinkingAvailable": {
+            "type": "boolean"
+          },
+          "appName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The configured GitHub App slug, or null when this instance has no App set up."
+          }
+        },
+        "required": [
+          "accountConnected",
+          "accountLinkingAvailable",
+          "appName"
+        ]
+      },
+      "GitHubRepositoryList": {
+        "type": "object",
+        "properties": {
+          "repositories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GitHubRepository"
+            },
+            "description": "Deduplicated across installations, most recently updated first."
+          },
+          "installations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GitHubInstallation"
+            }
+          },
+          "total": {
+            "type": "number"
+          },
+          "nextPage": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "installationPage": {
+                "type": "number"
+              },
+              "repositoryPage": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "installationPage",
+              "repositoryPage"
+            ]
+          }
+        },
+        "required": [
+          "repositories",
+          "installations",
+          "total",
+          "nextPage"
+        ]
+      },
+      "GitHubRepository": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "private": {
+            "type": "boolean"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/GitHubRepositoryOwner"
+          },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "html_url": {
+            "type": "string"
+          },
+          "permissions": {
+            "$ref": "#/components/schemas/GitHubRepositoryPermissions"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "installation_id": {
+            "type": "number",
+            "description": "Which App installation this repository came through."
+          },
+          "linkedTo": {
+            "$ref": "#/components/schemas/RepositoryLinkedTo"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "full_name",
+          "private",
+          "owner",
+          "description",
+          "html_url",
+          "updated_at",
+          "installation_id",
+          "linkedTo"
+        ]
+      },
+      "GitHubRepositoryOwner": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "avatar_url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "login",
+          "avatar_url",
+          "type"
+        ]
+      },
+      "GitHubRepositoryPermissions": {
+        "type": "object",
+        "properties": {
+          "admin": {
+            "type": "boolean"
+          },
+          "push": {
+            "type": "boolean"
+          },
+          "pull": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "admin",
+          "push",
+          "pull"
+        ]
+      },
+      "RepositoryLinkedTo": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "integrationId": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "projectName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "integrationId",
+          "projectId",
+          "projectName"
+        ],
+        "description": "The binding that already links this repository, or null. Same-project links block selection in the picker; cross-project links (decision D1) are informational only."
+      },
+      "GitHubInstallation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "account": {
+            "$ref": "#/components/schemas/GitHubInstallationAccount"
+          },
+          "repositories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Full names of the repositories under this installation. Empty when listing them failed."
+          }
+        },
+        "required": [
+          "id",
+          "account",
+          "repositories"
+        ]
+      },
+      "GitHubInstallationAccount": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "login": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "login",
+          "type"
+        ]
+      },
+      "GitHubVerificationResult": {
+        "type": "object",
+        "properties": {
+          "isInstalled": {
+            "type": "boolean"
+          },
+          "installationId": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "repositoryExists": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "repositoryPrivate": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "permissions": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "The permissions the installation currently grants."
+          },
+          "hasRequiredPermissions": {
+            "type": "boolean"
+          },
+          "missingPermissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Permissions that must be granted before the link will work."
+          },
+          "message": {
+            "type": "string",
+            "description": "A human-readable summary to show the user."
+          },
+          "settingsUrl": {
+            "type": "string",
+            "description": "Where to adjust the installation, when one exists."
+          },
+          "installationUrl": {
+            "type": "string",
+            "description": "Where to install the App, when it is not installed yet."
+          }
+        },
+        "required": [
+          "isInstalled",
+          "installationId",
+          "repositoryExists",
+          "repositoryPrivate",
+          "permissions",
+          "hasRequiredPermissions",
+          "missingPermissions",
+          "message"
+        ]
+      },
+      "GitHubIntegration": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "repositoryOwner": {
+            "type": "string"
+          },
+          "repositoryName": {
+            "type": "string"
+          },
+          "installationId": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The GitHub App installation that grants access to the repository."
+          },
+          "requiresVerification": {
+            "type": "boolean"
+          },
+          "importProgress": {
+            "$ref": "#/components/schemas/IssueImportResult"
+          },
+          "branchPattern": {
+            "type": "string",
+            "description": "Template used to name branches created for a task."
+          },
+          "commentTaskLinkOnGitHubIssue": {
+            "type": "boolean",
+            "description": "When on, Kaneo comments a link back to the task on the linked GitHub issue."
+          },
+          "isActive": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "projectId",
+          "repositoryOwner",
+          "repositoryName",
+          "installationId",
+          "requiresVerification",
+          "isActive",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "IssueImportResult": {
+        "type": "object",
+        "properties": {
+          "runId": {
+            "type": "string"
+          },
+          "pending": {
+            "type": "boolean"
+          },
+          "imported": {
+            "type": "number"
+          },
+          "updated": {
+            "type": "number"
+          },
+          "skipped": {
+            "type": "number",
+            "description": "Issues whose linked task or source disappeared or belongs to another project."
+          }
+        },
+        "required": [
+          "runId",
+          "pending",
+          "imported",
+          "updated",
+          "skipped"
+        ]
+      },
+      "GitHubIntegrationList": {
+        "type": "object",
+        "properties": {
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GitHubIntegration"
+            },
+            "description": "Every GitHub binding of the project, oldest first."
+          },
+          "usage": {
+            "$ref": "#/components/schemas/RepositoryBindingUsage"
+          }
+        },
+        "required": [
+          "integrations",
+          "usage"
+        ]
+      },
+      "RepositoryBindingUsage": {
+        "type": "object",
+        "properties": {
+          "used": {
+            "type": "number"
+          },
+          "limit": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "used",
+          "limit"
+        ]
+      },
+      "CreatedGitHubIntegration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "repositoryOwner": {
+            "type": "string"
+          },
+          "repositoryName": {
+            "type": "string"
+          },
+          "installationId": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "The GitHub App installation that grants access to the repository."
+          },
+          "requiresVerification": {
+            "type": "boolean"
+          },
+          "importProgress": {
+            "$ref": "#/components/schemas/IssueImportResult"
+          },
+          "branchPattern": {
+            "type": "string",
+            "description": "Template used to name branches created for a task."
+          },
+          "commentTaskLinkOnGitHubIssue": {
+            "type": "boolean",
+            "description": "When on, Kaneo comments a link back to the task on the linked GitHub issue."
+          },
+          "isActive": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "repositoryOwner",
+          "repositoryName",
+          "installationId",
+          "requiresVerification"
+        ]
+      },
+      "GitHubDeleteResult": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "success",
+          "message"
+        ]
+      },
+      "GiteaRepositoryList": {
+        "type": "object",
+        "properties": {
+          "repositories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GiteaRepository"
+            }
+          }
+        },
+        "required": [
+          "repositories"
+        ]
+      },
+      "GiteaRepository": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "name": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/GiteaRepositoryOwner"
+          },
+          "private": {
+            "type": "boolean"
+          },
+          "html_url": {
+            "type": "string"
+          },
+          "linkedTo": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RepositoryLinkedTo"
+              },
+              {
+                "description": "The binding this repository is already linked to, if any."
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "full_name",
+          "owner",
+          "private",
+          "html_url",
+          "linkedTo"
+        ]
+      },
+      "GiteaRepositoryOwner": {
+        "type": "object",
+        "properties": {
+          "login": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "login"
+        ]
+      },
+      "GiteaVerificationResult": {
+        "type": "object",
+        "properties": {
+          "isInstalled": {
+            "type": "boolean"
+          },
+          "hasRequiredPermissions": {
+            "type": "boolean"
+          },
+          "repositoryExists": {
+            "type": "boolean"
+          },
+          "repositoryPrivate": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "missingPermissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "message": {
+            "type": "string",
+            "description": "A human-readable summary to show the user."
+          },
+          "failureReason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "not_a_gitea_instance",
+              "redirected",
+              "repository_not_found",
+              null
+            ],
+            "description": "Why verification failed, when it did. `redirected` usually means the base URL is behind a proxy that rewrites it."
+          }
+        },
+        "required": [
+          "isInstalled",
+          "hasRequiredPermissions",
+          "repositoryExists",
+          "repositoryPrivate",
+          "missingPermissions",
+          "message",
+          "failureReason"
+        ]
+      },
+      "GiteaIntegrationList": {
+        "type": "object",
+        "properties": {
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GiteaIntegration"
+            },
+            "description": "Every Gitea binding of the project, oldest first."
+          },
+          "usage": {
+            "$ref": "#/components/schemas/RepositoryBindingUsage"
+          }
+        },
+        "required": [
+          "integrations",
+          "usage"
+        ]
+      },
+      "GiteaIntegration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "baseUrl": {
+            "type": "string",
+            "description": "Root URL of the Gitea instance."
+          },
+          "repositoryOwner": {
+            "type": "string"
+          },
+          "repositoryName": {
+            "type": "string"
+          },
+          "maskedAccessToken": {
+            "type": "string"
+     

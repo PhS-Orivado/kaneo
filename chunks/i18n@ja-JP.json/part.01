@@ -1,0 +1,553 @@
+��、もう一度接続してください。"
+			},
+			"signIn": {
+				"title": "サインインしてこのクライアントを承認",
+				"description": "サインイン後すぐにこのページに戻り、内容を確認できます。",
+				"submit": "サインイン"
+			}
+		}
+	},
+	"settings": {
+		"advancedSettings": "詳細設定",
+		"account": "アカウント",
+		"developer": "開発者",
+		"information": "基本情報",
+		"notifications": "通知",
+		"preferences": "環境設定",
+		"apiKeys": "APIキー",
+		"informationPage": {
+			"pageTitle": "基本情報",
+			"title": "基本情報",
+			"subtitle": "個人情報およびアカウント情報を管理します。",
+			"sectionTitle": "アカウント情報",
+			"sectionSubtitle": "プロフィールおよびアカウントの詳細を管理します。",
+			"profilePicture": "プロフィール画像",
+			"fullName": "氏名",
+			"fullNamePlaceholder": "名前を入力",
+			"email": "メールアドレス",
+			"emailPlaceholder": "メールアドレスを入力",
+			"updateSuccess": "プロフィールを更新しました",
+			"updateError": "プロフィールの更新に失敗しました",
+			"validation": {
+				"nameRequired": "名前は必須です",
+				"nameShort": "名前は2文字以上で入力してください",
+				"invalidEmail": "有効なメールアドレスを入力してください"
+			},
+			"avatar": {
+				"hint": "画像をクリックして変更または削除できます。正方形にトリミングされ、256x256にリサイズされます。",
+				"remove": "プロフィール画像を削除",
+				"updateSuccess": "プロフィール画像を更新しました",
+				"updateError": "プロフィール画像の更新に失敗しました",
+				"removeSuccess": "プロフィール画像を削除しました",
+				"removeError": "プロフィール画像の削除に失敗しました",
+				"edit": "プロフィール画像を変更",
+				"change": "プロフィール画像を変更"
+			},
+			"deleteAccount": {
+				"sectionTitle": "危険な操作",
+				"sectionSubtitle": "アカウント全体に影響する取り消し不可能な操作です。",
+				"title": "アカウントを削除",
+				"description": "あなただけが所属するワークスペースはアカウントとともに削除されます。その他のワークスペースでは、タスクは未割り当てのまま残り、コメントは削除されます。",
+				"modalTitle": "アカウントを削除しますか？",
+				"modalDescription": "これによりアカウントは完全に削除され、元に戻すことはできません。",
+				"confirmLabel": "確認のため {{email}} と入力してください",
+				"confirm": "アカウントを削除",
+				"success": "アカウントを削除しました",
+				"error": "アカウントの削除に失敗しました",
+				"sessionTooOld": "セキュリティのため、アカウントを削除する前に一度サインアウトして再サインインしてください。"
+			}
+		},
+		"notificationsPage": {
+			"pageTitle": "通知",
+			"title": "通知",
+			"subtitle": "Kaneo からのアカウント通知の配信方法と使用するチャンネルを選択します。",
+			"statusConnected": "接続済み",
+			"statusPaused": "一時停止中",
+			"emailTitle": "メール",
+			"emailDescription": "アカウントのメールアドレスを通知の送信先として使用します。",
+			"accountEmailLabel": "アカウントのメールアドレス",
+			"accountEmailNoAddress": "登録されているメールアドレスがありません",
+			"accountEmailHint": "メール通知は常にサインイン中のアカウントのメールアドレスに送信されます。",
+			"saveChanges": "変更を保存",
+			"disconnect": "接続を解除",
+			"ntfyTitle": "ntfy",
+			"ntfyDescription": "アカウント通知を ntfy トピックに配信します。",
+			"serverUrl": "サーバーURL",
+			"topic": "トピック",
+			"token": "トークン",
+			"ntfyServerPlaceholder": "https://ntfy.example.com",
+			"ntfyTopicPlaceholder": "team-alerts",
+			"ntfyTokenPlaceholder": "ベアラートークン（任意）",
+			"ntfyTokenHintConfigured": "トークンはすでに設定されています ({{masked}})。変更する場合は新しいトークンを入力してください。",
+			"ntfyTokenHintOptional": "任意。ntfy サーバーで認証が必要な場合はトークンを指定してください。",
+			"connectNtfy": "ntfy を接続",
+			"gotifyTitle": "Gotify",
+			"gotifyDescription": "Gotify サーバーにアカウント通知を送信します。",
+			"gotifyTokenLabel": "アプリトークン",
+			"gotifyServerPlaceholder": "https://gotify.example.com",
+			"gotifyTokenPlaceholder": "Gotify アプリトークン",
+			"gotifyTokenHintConfigured": "アプリトークンはすでに設定されています ({{masked}})。変更する場合は新しいトークンを入力してください。",
+			"gotifyTokenHintRequired": "必須。Gotify サーバーのアプリケーショントークンを使用してください。",
+			"connectGotify": "Gotify を接続",
+			"webhookTitle": "カスタム Webhook",
+			"webhookDescription": "アカウント通知を独自のエンドポイントに JSON 形式で送信します。",
+			"endpointUrl": "エンドポイントURL",
+			"signingSecret": "署名シークレット",
+			"webhookUrlPlaceholder": "https://example.com/webhooks/kaneo",
+			"webhookSecretPlaceholder": "共有シークレット（任意）",
+			"webhookSecretHintConfigured": "署名シークレットはすでに設定されています ({{masked}})。変更する場合は新しいシークレットを入力してください。",
+			"webhookSecretHintOptional": "任意。シークレットを設定すると、Kaneo はリクエスト本文に署名を付与します。",
+			"connectWebhook": "Webhook を接続",
+			"workspaceRulesTitle": "ワークスペースの配信ルール",
+			"workspaceRulesDescription": "全体設定のチャンネルを使用し、ワークスペースやプロジェクトごとに通知の送信条件を設定します。",
+			"workspaceCardHint": "このワークスペースのアカウント通知で使用するチャンネルを選択します。",
+			"workspaceEnabledLabel": "{{workspaceName}} の通知を有効にする",
+			"eventPreferencesTitle": "通知を受け取るイベント",
+			"eventPreferencesDescription": "アプリ内通知を生成し、接続中のチャンネルに配信するタスクイベントを選択します。",
+			"eventTaskAssignments": "タスクの割り当て",
+			"eventComments": "コメントとメンション",
+			"eventCommentsHint": "自分に割り当てられたタスクへの新規コメントや、自分宛ての @メンションが含まれます。",
+			"eventStatusChanges": "タスクのステータス変更",
+			"eventDueDateReminders": "期限のリマインダー",
+			"reminderLeadTimeLabel": "期限前にリマインド",
+			"reminderLeadTimeHint": "期限の1時間前から30日前までの間で設定できます。期限切れ通知は個別に送信されます。",
+			"reminderLeadTimeUnitHours": "時間",
+			"reminderLeadTimeUnitDays": "日",
+			"reminderLeadTimeInvalid": "1 から {{max}} までの整数を入力してください。",
+			"saveEventPreferences": "通知タイプを保存",
+			"workspaceCardLabelEmail": "メール",
+			"workspaceCardLabelNtfy": "ntfy",
+			"workspaceCardLabelGotify": "Gotify",
+			"workspaceCardLabelWebhook": "カスタム Webhook",
+			"emailChannelHintEnabled": "該当するワークスペースの通知をメールで送信します。",
+			"emailChannelHintDisabled": "最初に全体設定でメールを設定して有効にしてください。",
+			"ntfyChannelHintEnabled": "該当するワークスペースの通知を ntfy に送信します。",
+			"ntfyChannelHintDisabled": "最初に全体設定で ntfy を設定して有効にしてください。",
+			"gotifyChannelHintEnabled": "該当するワークスペースの通知を Gotify に送信します。",
+			"gotifyChannelHintDisabled": "最初に全体設定で Gotify を設定して有効にしてください。",
+			"webhookChannelHintEnabled": "該当するワークスペースの通知を Webhook に送信します。",
+			"webhookChannelHintDisabled": "最初に全体設定で Webhook を設定して有効にしてください。",
+			"projectScope": "プロジェクトの対象範囲",
+			"projectScopeDescription": "デフォルトではすべてのプロジェクトが含まれます。特定のプロジェクトからの通知のみを受信したい場合は絞り込んでください。",
+			"allProjects": "すべてのプロジェクト",
+			"allProjectsDescription": "このワークスペース内のすべてのプロジェクトから通知を配信します。",
+			"selectedProjects": "選択したプロジェクト",
+			"selectedProjectsDescription": "選択したプロジェクトからの通知のみを配信します。",
+			"noProjectsInWorkspace": "このワークスペースにはまだプロジェクトがありません。",
+			"createRule": "ルールを作成",
+			"removeRule": "ルールを削除",
+			"toastEmailSaved": "メール通知設定を保存しました",
+			"toastEmailSaveFailed": "メール通知設定の保存に失敗しました",
+			"toastNtfySaved": "ntfy 設定を保存しました",
+			"toastNtfySaveFailed": "ntfy 設定の保存に失敗しました",
+			"toastNtfyDisconnected": "ntfy の接続を解除しました",
+			"toastNtfyDisconnectFailed": "ntfy の接続解除に失敗しました",
+			"toastGotifySaved": "Gotify 設定を保存しました",
+			"toastGotifySaveFailed": "Gotify 設定の保存に失敗しました",
+			"toastGotifyDisconnected": "Gotify の接続を解除しました",
+			"toastGotifyDisconnectFailed": "Gotify の接続解除に失敗しました",
+			"toastWebhookSaved": "Webhook 設定を保存しました",
+			"toastWebhookSaveFailed": "Webhook 設定の保存に失敗しました",
+			"toastWebhookDisconnected": "Webhook の接続を解除しました",
+			"toastWebhookDisconnectFailed": "Webhook の接続解除に失敗しました",
+			"toastRuleSaved": "{{workspaceName}} の通知ルールを保存しました",
+			"toastRuleSaveFailed": "ワークスペースの通知ルールの保存に失敗しました",
+			"toastRuleRemoved": "{{workspaceName}} の通知ルールを削除しました",
+			"toastRuleRemoveFailed": "ワークスペースの通知ルールの削除に失敗しました",
+			"toastPreferencesSaved": "通知設定を保存しました",
+			"toastPreferencesSaveFailed": "通知設定の保存に失敗しました",
+			"toastRuleSavedGeneric": "ワークスペースの通知ルールを保存しました",
+			"toastRuleRemovedGeneric": "ワークスペースの通知ルールを削除しました",
+			"recipientHint": "自分に割り当てられたタスクへのコメントやステータスの変更が通知されます。メンションは選択したメンバーに通知されます。自分のコメント、メンション、ステータスの変更は自分には通知されません。"
+		},
+		"preferencesPage": {
+			"title": "環境設定",
+			"subtitle": "Kaneo の利用環境をカスタマイズします。",
+			"appearanceTitle": "外観",
+			"appearanceSubtitle": "外観とレイアウトの設定を行います。",
+			"theme": "テーマ",
+			"themeDescription": "お好みのカラースキームを選択してください",
+			"selectTheme": "テーマを選択",
+			"themeLight": "ライト",
+			"themeDark": "ダーク",
+			"themeSystem": "システム",
+			"language": "言語",
+			"languageDescription": "表示言語を選択してください",
+			"selectLanguage": "言語を選択",
+			"firstDayOfWeek": "週の始まりの曜日",
+			"firstDayOfWeekDescription": "カレンダーや週の表示を開始する曜日を選択してください",
+			"selectFirstDayOfWeek": "開始曜日を選択",
+			"weekStartsOnSunday": "日曜日",
+			"weekStartsOnMonday": "月曜日",
+			"weekStartsOnSaturday": "土曜日",
+			"defaultView": "デフォルトのビュー",
+			"defaultViewDescription": "デフォルトのタスク表示モードを選択してください",
+			"selectViewMode": "ビューモードを選択",
+			"board": "ボード",
+			"list": "リスト",
+			"gantt": "ガント",
+			"sidebarDefault": "サイドバーのデフォルト状態",
+			"sidebarDefaultDescription": "起動時にサイドバーを展開した状態に保ちます",
+			"displayOptions": "表示オプション",
+			"displayOptionsDescription": "タスクビューに表示する情報を選択します",
+			"taskNumbers": "タスク番号",
+			"taskNumbersDescription": "タスク ID と番号を表示します",
+			"assignees": "担当者",
+			"assigneesDescription": "タスクの担当者を表示します",
+			"dueDates": "期限",
+			"dueDatesDescription": "タスクの期限を表示します",
+			"labels": "ラベル",
+			"labelsDescription": "タスクのラベルとタグを表示します",
+			"priority": "優先度",
+			"priorityDescription": "優先度インジケーターを表示します",
+			"projectBackgrounds": "Project backgrounds",
+			"projectBackgroundsDescription": "Show project background images on boards"
+		},
+		"developerPage": {
+			"pageTitle": "開発者設定",
+			"title": "開発者設定",
+			"subtitle": "APIキーと開発者向けリソースを管理します。",
+			"apiKeysCardTitle": "APIキー",
+			"apiKeysCardDescription": "Kaneo にプログラムからアクセスするための API キーを作成・管理します。",
+			"createApiKey": "APIキーを作成",
+			"unnamedKey": "名称未設定のキー"
+		},
+		"apiKey": {
+			"createdModal": {
+				"title": "APIキーを作成しました",
+				"description": "APIキー「{{keyName}}」を作成しました。",
+				"yourApiKey": "APIキー",
+				"copy": "コピー",
+				"copied": "コピー完了",
+				"toastCopied": "APIキーをクリップボードにコピーしました",
+				"alertTitle": "APIキーを作成しました",
+				"alertDescription": "このキーを今すぐコピーしてください。再度表示することはできません。",
+				"done": "完了",
+				"copyToContinue": "キーをコピーして続行"
+			},
+			"table": {
+				"loading": "APIキーを読み込み中...",
+				"empty": "APIキーはまだありません。作成して始めましょう。",
+				"columnName": "名前",
+				"columnKey": "キー",
+				"columnCreated": "作成日時",
+				"columnExpires": "有効期限",
+				"columnActions": "操作",
+				"unnamedKey": "名称未設定のキー",
+				"expiredBadge": "期限切れ {{label}}",
+				"deleteConfirmTitle": "APIキーを削除しますか？",
+				"deleteConfirmDescription": "この操作は取り消せません。これにより {{name}} は完全に削除されます。",
+				"deleteFallbackName": "このAPIキー",
+				"delete": "削除",
+				"deleting": "削除中...",
+				"deleteAria": "{{name}} を削除",
+				"deleteAriaFallback": "APIキー",
+				"toastDeleted": "APIキーを削除しました",
+				"toastDeleteError": "APIキーの削除に失敗しました"
+			},
+			"createDialog": {
+				"title": "APIキーを作成",
+				"description": "Kaneo API にプログラムからアクセスするための新しい API キーを作成します。",
+				"nameLabel": "名前",
+				"namePlaceholder": "マイAPIキー",
+				"nameDescription": "この API キーのわかりやすい名前",
+				"expirationLabel": "有効期限",
+				"expirationPlaceholder": "有効期限を選択",
+				"expirationDescription": "この API キーの有効期間を選択してください。「無期限」を選択すると、自動失効しないキーが作成されます。",
+				"expiration1d": "1日",
+				"expiration7d": "7日",
+				"expiration30d": "30日",
+				"expiration90d": "90日",
+				"expirationNever": "無期限",
+				"create": "作成",
+				"creating": "作成中...",
+				"failedCreate": "APIキーの作成に失敗しました",
+				"validation": {
+					"nameRequired": "名前は必須です",
+					"nameShort": "名前は3文字以上で入力してください",
+					"expirationRequired": "有効期限を選択してください"
+				}
+			}
+		},
+		"workspaceGeneral": {
+			"pageTitle": "一般設定",
+			"title": "一般設定",
+			"subtitle": "ワークスペースの名前と説明を管理します。",
+			"workspaceInfoTitle": "ワークスペース情報",
+			"workspaceInfoSubtitle": "ワークスペースの詳細と基本設定を管理します。",
+			"nameLabel": "ワークスペース名",
+			"nameHint": "ワークスペースの名前",
+			"namePlaceholder": "ワークスペース名を入力",
+			"descriptionLabel": "説明",
+			"descriptionHint": "ワークスペースの簡単な説明",
+			"descriptionPlaceholder": "ワークスペースの説明を入力",
+			"dangerZone": "危険な操作",
+			"dangerZoneSubtitle": "取り消し不可能な破壊的操作です。",
+			"deleteWorkspace": "ワークスペースを削除",
+			"deleteWorkspaceDescription": "ワークスペースの完全削除を予約します",
+			"deleteModalTitle": "ワークスペースを削除しますか？",
+			"deleteModalDescription": "これによりワークスペース「{{name}}」とそのすべてのデータが完全に削除されます。この操作は取り消せません。",
+			"deleteModalConfirm": "ワークスペースを削除",
+			"toastUpdated": "ワークスペースを更新しました",
+			"toastUpdateError": "ワークスペースの更新に失敗しました",
+			"toastDeleted": "ワークスペースを削除しました",
+			"toastDeleteError": "ワークスペースの削除に失敗しました",
+			"validation": {
+				"nameRequired": "ワークスペース名は必須です",
+				"nameShort": "ワークスペース名は2文字以上で入力してください"
+			},
+			"transferOwnership": {
+				"toastSuccess": "所有権を譲渡しました",
+				"toastError": "所有権の譲渡に失敗しました",
+				"title": "所有権を譲渡",
+				"subtitle": "このワークスペースを他のメンバーに引き継ぎます。あなたの権限は管理者に変更され、オーナー専用の操作権限を失います。",
+				"pickerLabel": "新しいオーナー",
+				"noEligibleMembers": "所有権を譲渡するには、事前に他のメンバーを1人以上招待してください。",
+				"pickerHint": "そのメンバーがこのワークスペースの唯一のオーナーになります。",
+				"pickerPlaceholder": "メンバーを選択",
+				"button": "譲渡",
+				"dialogTitle": "所有権を譲渡しますか？",
+				"dialogDescription": "{{name}} が {{workspace}} の唯一のオーナーになります。管理者権限は維持されますが、ワークスペースの削除や再度の譲渡などオーナー限定の権限は失われます。",
+				"transferring": "譲渡中...",
+				"confirm": "所有権を譲渡"
+			}
+		},
+		"workspaceRoles": {
+			"pageTitle": "ロール",
+			"title": "ロール",
+			"subtitle": "{{workspaceName}} 内でメンバーが実行できる操作を定義します。",
+			"thisWorkspace": "このワークスペース",
+			"noAccess": "ワークスペースのロールを管理するには管理者またはオーナーの権限が必要です。",
+			"sectionTitle": "ワークスペースのロール",
+			"sectionSubtitle": "デフォルトのロールを編集するか、カスタムロールを追加します。メンバーに割り当てられたロール名は編集後も維持されます。",
+			"newRole": "新規ロール",
+			"loading": "読み込み中...",
+			"loadError": "ロールの読み込みに失敗しました。",
+			"emptyTitle": "ロールがまだありません",
+			"emptyDescription": "このワークスペースに初期ロールが設定されると、ここに表示されます。",
+			"defaultBadge": "デフォルト",
+			"permissionCount_other": "{{count}} 個の権限",
+			"nameLabel": "名前",
+			"nameHint": "半角小文字のみ。後から変更することはできません。",
+			"namePlaceholder": "例: reviewer",
+			"discard": "破棄",
+			"createRole": "ロールを作成",
+			"deleteRole": "ロールを削除",
+			"defaultRoleHelp": "デフォルトロール: 名前は予約されており、削除することはできません。",
+			"unsavedChanges": "未保存の変更があります",
+			"allChangesSaved": "すべての変更を保存しました",
+			"saveChanges": "変更を保存",
+			"defaultRoleDescriptions": {
+				"viewer": "タスクの閲覧とコメントができます。",
+				"member": "タスクとプロジェクトの作成・管理ができます。",
+				"admin": "ワークスペースへのフルアクセス権を持ちます。"
+			},
+			"resources": {
+				"project": "プロジェクト",
+				"task": "タスク",
+				"label": "ラベル",
+				"workspace": "ワークスペース",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "作成",
+						"description": "新規プロジェクトを作成できます"
+					},
+					"read": {
+						"label": "閲覧",
+						"description": "プロジェクトを閲覧できます"
+					},
+					"update": {
+						"label": "更新",
+						"description": "プロジェクト設定を編集できます"
+					},
+					"delete": {
+						"label": "削除",
+						"description": "プロジェクトを削除できます"
+					},
+					"share": {
+						"label": "共有",
+						"description": "プロジェクトを共有できます"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "作成",
+						"description": "タスクを作成できます"
+					},
+					"read": {
+						"label": "閲覧",
+						"description": "タスクを閲覧できます"
+					},
+					"update": {
+						"label": "更新",
+						"description": "タスクを編集できます"
+					},
+					"delete": {
+						"label": "削除",
+						"description": "タスクを削除できます"
+					},
+					"assign": {
+						"label": "割り当て",
+						"description": "メンバーにタスクを割り当てることができます"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "作成",
+						"description": "ラベルを作成できます"
+					},
+					"read": {
+						"label": "閲覧",
+						"description": "ラベルを閲覧できます"
+					},
+					"update": {
+						"label": "更新",
+						"description": "ラベルを編集できます"
+					},
+					"delete": {
+						"label": "削除",
+						"description": "ラベルを削除できます"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "閲覧",
+						"description": "ワークスペース設定を閲覧できます"
+					},
+					"update": {
+						"label": "更新",
+						"description": "ワークスペース設定を更新できます"
+					},
+					"delete": {
+						"label": "削除",
+						"description": "ワークスペースを削除できます"
+					},
+					"manage_settings": {
+						"label": "設定の管理",
+						"description": "ワークスペース設定を管理できます"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "ロール名は必須です",
+				"nameExists": "この名前のロールは既に存在します",
+				"permissionRequired": "権限を1つ以上選択してください"
+			},
+			"toast": {
+				"created": "ロールを作成しました",
+				"createError": "ロールの作成に失敗しました",
+				"updated": "ロールを更新しました",
+				"updateError": "ロールの更新に失敗しました",
+				"deleted": "ロールを削除しました",
+				"deleteError": "ロールの削除に失敗しました"
+			},
+			"deleteDialog": {
+				"title": "ロールを削除",
+				"description": "これによりロール「{{role}}」は完全に削除されます。このロールが割り当てられていたメンバーは権限を失います。"
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "ラベル設定",
+			"title": "ラベル",
+			"subtitle": "ワークスペース共通のラベルを作成・編集・削除します。",
+			"cardDescription": "タスクに割り当て可能なラベルを管理します。",
+			"createLabel": "ラベルを作成",
+			"editLabel": "ラベルを編集",
+			"deleteLabel": "削除",
+			"saveLabel": "保存",
+			"nameLabel": "ラベル名",
+			"namePlaceholder": "ラベル名を入力",
+			"colorLabel": "カラー",
+			"createDescription": "このワークスペース内のタスク全体で使用できる新しいラベルを作成します。",
+			"editDescription": "このラベルの名前またはカラーを変更します。",
+			"deleteConfirmTitle": "このラベルを削除しますか？",
+			"deleteConfirmDescription": "これにより、すべてのタスクからこのラベルが完全に削除されます。この操作は取り消せません。",
+			"empty": "ラベルはまだありません。最初のラベルを作成して始めましょう。",
+			"createSuccess": "ラベルを作成しました",
+			"updateSuccess": "ラベルを更新しました",
+			"deleteSuccess": "ラベルを削除しました",
+			"createError": "ラベルの作成に失敗しました",
+			"updateError": "ラベルの更新に失敗しました",
+			"deleteError": "ラベルの削除に失敗しました",
+			"nameRequired": "ラベル名は必須です",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"projectGeneral": {
+			"pageTitle": "プロジェクト設定",
+			"title": "一般設定",
+			"subtitle": "プロジェクトの名前、キー、アイコン、説明を管理します。",
+			"projectInfoTitl

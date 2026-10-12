@@ -1,0 +1,790 @@
+diff --cc apps/docs/openapi.json
+index 6b49a240,f89c27ee..00000000
+--- a/apps/docs/openapi.json
++++ b/apps/docs/openapi.json
+@@@ -16974,189 -14969,1650 +16948,1834 @@@
+                }
+              }
+            },
+-           "404": {
+-             "description": "Project not found",
++           "400": {
++             "description": "Invalid rule or workspace label",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+-           "429": {
+-             "$ref": "#/components/responses/ApiKeyRateLimited"
+-           }
+-         }
+-       }
+-     },
+-     "/github-integration/verify": {
+-       "post": {
+-         "operationId": "verifyGitHubInstallation",
+-         "tags": [
+-           "GitHub"
+-         ],
+-         "summary": "Verify GitHub installation",
+-         "description": "Check that the GitHub App is installed on a repository and holds the permissions Kaneo needs. Always 200 -- problems are reported in the body so the client can guide the user.",
+-         "requestBody": {
+-           "required": true,
+-           "content": {
+-             "application/json": {
+-               "schema": {
+-                 "type": "object",
+-                 "properties": {
+-                   "projectId": {
+-                     "type": "string",
+-                     "minLength": 1
+-                   },
+-                   "repositoryOwner": {
+-                     "type": "string",
+-                     "minLength": 1,
+-                     "maxLength": 100
+-                   },
+-                   "repositoryName": {
+-                     "type": "string",
+-                     "minLength": 1,
+-                     "maxLength": 100
+-                   }
+-                 },
+-                 "required": [
+-                   "projectId",
+-                   "repositoryOwner",
+-                   "repositoryName"
+-                 ]
+-               }
+-             }
+-           }
+-         },
+-         "responses": {
+-           "200": {
+-             "description": "Verification result",
+-             "content": {
+-               "application/json": {
+-                 "schema": {
+-                   "$ref": "#/components/schemas/GitHubVerificationResult"
+-                 }
+-               }
+-             }
+-           },
+-           "400": {
+-             "description": "Invalid body",
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+ +            "content": {
+ +              "application/json": {
+ +                "schema": {
+ +                  "$ref": "#/components/schemas/ApiError"
+ +                }
+ +              }
+ +            }
+            },
+-           "401": {
+-             "description": "Missing or invalid credentials",
++           "403": {
+ -            "description": "No workspace access or required permission",
+++            "description": "No access to the project, or missing required permission",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+-           "403": {
+-             "description": "No access to the project, or missing workspace:manage_settings",
++           "404": {
+ -            "description": "Integration or linked task not found",
+++            "description": "Project, integration, or linked task not found",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+            },
+-           "404": {
+-             "description": "Project not found",
++           "409": {
++             "description": "Configuration, impact or comparison changed; review again",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+ +          },
+ +          "429": {
+ +            "$ref": "#/components/responses/ApiKeyRateLimited"
+            }
+          }
+-       }
+-     },
+-     "/github-integration/project/{projectId}": {
+-       "get": {
+-         "operationId": "getGitHubIntegration",
++       },
++       "patch": {
++         "operationId": "saveIntegrationSyncRules",
+          "tags": [
+-           "GitHub"
++           "Integration sync"
+          ],
+-         "summary": "Get GitHub integration",
+-         "description": "Get the GitHub integration for a project, or null when none is configured.",
++         "summary": "Apply a previewed sync rule",
++         "description": "Compatibility shim (RFC 0001 WP5): saves to the project's first binding of the provider until the new web client ships. Use PATCH /integration/{integrationId}; this route is removed in the cleanup PR.",
+          "parameters": [
+            {
+              "schema": {
+-               "type": "string"
++               "type": "string",
++               "minLength": 1
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "enum": [
++                 "github",
++                 "gitea",
++                 "gitlab"
++               ]
++             },
++             "required": true,
++             "name": "provider",
++             "in": "path"
++           }
++         ],
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "rules": {
++                     "type": "object",
++                     "properties": {
++                       "outgoing": {
++                         "oneOf": [
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "all"
++                                 ]
++                               }
++                             },
++                             "required": [
++                               "mode"
++                             ]
++                           },
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "labels"
++                                 ]
++                               },
++                               "match": {
++                                 "type": "string",
++                                 "enum": [
++                                   "any",
++                                   "all"
++                                 ]
++                               },
++                               "labels": {
++                                 "type": "array",
++                                 "items": {
++                                   "type": "string",
++                                   "minLength": 1,
++                                   "maxLength": 128
++                                 },
++                                 "minItems": 1,
++                                 "maxItems": 50
++                               }
++                             },
++                             "required": [
++                               "mode",
++                               "match",
++                               "labels"
++                             ]
++                           }
++                         ],
++                         "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
++                       },
++                       "incoming": {
++                         "oneOf": [
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "all"
++                                 ]
++                               }
++                             },
++                             "required": [
++                               "mode"
++                             ]
++                           },
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "labels"
++                                 ]
++                               },
++                               "match": {
++                                 "type": "string",
++                                 "enum": [
++                                   "any",
++                                   "all"
++                                 ]
++                               },
++                               "labels": {
++                                 "type": "array",
++                                 "items": {
++                                   "type": "string",
++                                   "minLength": 1,
++                                   "maxLength": 128
++                                 },
++                                 "minItems": 1,
++                                 "maxItems": 50
++                               }
++                             },
++                             "required": [
++                               "mode",
++                               "match",
++                               "labels"
++                             ]
++                           }
++                         ],
++                         "description": "Exact repository label names controlling which issues can be imported."
++                       }
++                     },
++                     "required": [
++                       "outgoing",
++                       "incoming"
++                     ]
++                   },
++                   "previewToken": {
++                     "type": "string",
++                     "minLength": 64,
++                     "maxLength": 64
++                   }
++                 },
++                 "required": [
++                   "rules",
++                   "previewToken"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "Saved rules and current scope",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/IntegrationSyncPreview"
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "Invalid rule or workspace label",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access or required permission",
+++            "description": "No access to the project, or missing required permission",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
+ -            "description": "Integration or linked task not found",
+++            "description": "Project, integration, or linked task not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "Configuration, impact or comparison changed; review again",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/integration-sync/project/{projectId}/{provider}/preview": {
++       "post": {
++         "operationId": "previewIntegrationSyncRules",
++         "tags": [
++           "Integration sync"
++         ],
++         "summary": "Preview a sync rule change",
++         "description": "Compatibility shim (RFC 0001 WP5): previews the project's first binding of the provider until the new web client ships. Use POST /integration/{integrationId}/preview; this route is removed in the cleanup PR.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1
+              },
+              "required": true,
+              "name": "projectId",
+              "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "enum": [
++                 "github",
++                 "gitea",
++                 "gitlab"
++               ]
++             },
++             "required": true,
++             "name": "provider",
++             "in": "path"
++           }
++         ],
++         "requestBody": {
++           "required": true,
++           "content": {
++             "application/json": {
++               "schema": {
++                 "type": "object",
++                 "properties": {
++                   "rules": {
++                     "type": "object",
++                     "properties": {
++                       "outgoing": {
++                         "oneOf": [
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "all"
++                                 ]
++                               }
++                             },
++                             "required": [
++                               "mode"
++                             ]
++                           },
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "labels"
++                                 ]
++                               },
++                               "match": {
++                                 "type": "string",
++                                 "enum": [
++                                   "any",
++                                   "all"
++                                 ]
++                               },
++                               "labels": {
++                                 "type": "array",
++                                 "items": {
++                                   "type": "string",
++                                   "minLength": 1,
++                                   "maxLength": 128
++                                 },
++                                 "minItems": 1,
++                                 "maxItems": 50
++                               }
++                             },
++                             "required": [
++                               "mode",
++                               "match",
++                               "labels"
++                             ]
++                           }
++                         ],
++                         "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
++                       },
++                       "incoming": {
++                         "oneOf": [
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "all"
++                                 ]
++                               }
++                             },
++                             "required": [
++                               "mode"
++                             ]
++                           },
++                           {
++                             "type": "object",
++                             "properties": {
++                               "mode": {
++                                 "type": "string",
++                                 "enum": [
++                                   "labels"
++                                 ]
++                               },
++                               "match": {
++                                 "type": "string",
++                                 "enum": [
++                                   "any",
++                                   "all"
++                                 ]
++                               },
++                               "labels": {
++                                 "type": "array",
++                                 "items": {
++                                   "type": "string",
++                                   "minLength": 1,
++                                   "maxLength": 128
++                                 },
++                                 "minItems": 1,
++                                 "maxItems": 50
++                               }
++                             },
++                             "required": [
++                               "mode",
++                               "match",
++                               "labels"
++                             ]
++                           }
++                         ],
++                         "description": "Exact repository label names controlling which issues can be imported."
++                       }
++                     },
++                     "required": [
++                       "outgoing",
++                       "incoming"
++                     ]
++                   }
++                 },
++                 "required": [
++                   "rules"
++                 ]
++               }
++             }
++           }
++         },
++         "responses": {
++           "200": {
++             "description": "Proposed rule impact",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/IntegrationSyncPreview"
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "Invalid rule or workspace label",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access or required permission",
+++            "description": "No access to the project, or missing required permission",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
+ -            "description": "Integration or linked task not found",
+++            "description": "Project, integration, or linked task not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "Configuration, impact or comparison changed; review again",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
+++          },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
++           }
++         }
++       }
++     },
++     "/integration-sync/project/{projectId}/{provider}/links/{linkId}/review": {
++       "get": {
++         "operationId": "reviewIntegrationSyncResume",
++         "tags": [
++           "Integration sync"
++         ],
++         "summary": "Compare a paused task with its external issue",
++         "description": "Compatibility shim (RFC 0001 WP5): reviews a link of the project's first binding of the provider until the new web client ships. Use GET /integration/{integrationId}/links/{linkId}/review; this route is removed in the cleanup PR.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "enum": [
++                 "github",
++                 "gitea",
++                 "gitlab"
++               ]
++             },
++             "required": true,
++             "name": "provider",
++             "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1
++             },
++             "required": true,
++             "name": "linkId",
++             "in": "path"
++           }
++         ],
++         "responses": {
++           "200": {
++             "description": "Current values and comparison token",
++             "content": {
++               "application/json": {
++                 "schema": {
++                   "$ref": "#/components/schemas/IntegrationSyncResumePreview"
++                 }
++               }
++             }
++           },
++           "400": {
++             "description": "Invalid rule or workspace label",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "401": {
+ -            "description": "Missing or invalid credentials"
+++            "description": "Missing or invalid credentials",
+++            "content": {
+++              "application/json": {
+++                "schema": {
+++                  "$ref": "#/components/schemas/ApiError"
+++                }
+++              }
+++            }
++           },
++           "403": {
+ -            "description": "No workspace access or required permission",
+++            "description": "No access to the project, or missing required permission",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "404": {
+ -            "description": "Integration or linked task not found",
+++            "description": "Project, integration, or linked task not found",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
++           "409": {
++             "description": "Configuration, impact or comparison changed; review again",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           },
+++          "429": {
+++            "$ref": "#/components/responses/ApiKeyRateLimited"
+++          },
++           "502": {
++             "description": "External issue unavailable; sync remains paused",
++             "content": {
+ -              "text/plain": {
+++              "application/json": {
++                 "schema": {
+ -                  "type": "string"
+++                  "$ref": "#/components/schemas/ApiError"
++                 }
++               }
++             }
++           }
++         }
++       }
++     },
++     "/integration-sync/project/{projectId}/{provider}/links/{linkId}/resume": {
++       "post": {
++         "operationId": "resumeIntegrationSync",
++         "tags": [
++           "Integration sync"
++         ],
++         "summary": "Resume a reviewed issue link",
++         "description": "Compatibility shim (RFC 0001 WP5): resumes a link of the project's first binding of the provider until the new web client ships. Use POST /integration/{integrationId}/links/{linkId}/resume; this route is removed in the cleanup PR.",
++         "parameters": [
++           {
++             "schema": {
++               "type": "string",
++               "minLength": 1
++             },
++             "required": true,
++             "name": "projectId",
++             "in": "path"
++           },
++           {
++             "schema": {
++               "type": "string",
++               "enum": [
++                 "github",
++                 "gitea",
++                 "gitlab"
++               ]
++             },
++             "required": true,
++             "name": "p

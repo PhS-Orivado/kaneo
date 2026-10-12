@@ -1,0 +1,654 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "İptal",
+			"close": "Kapat",
+			"clearAll": "Tümünü temizle",
+			"delete": "Sil",
+			"deleting": "Siliniyor...",
+			"markAllRead": "Tümünü okundu işaretle",
+			"remove": "Kaldır",
+			"reset": "Sıfırla",
+			"filter": "Filtrele",
+			"clearAllFilters": "Tüm filtreleri temizle"
+		},
+		"a11y": {
+			"toggleSidebar": "Kenar çubuğunu aç/kapat"
+		},
+		"sidebar": {
+			"title": "Kenar çubuğu",
+			"mobileDescription": "Mobil kenar çubuğunu görüntüler."
+		},
+		"empty": {
+			"loading": "Yükleniyor..."
+		},
+		"pagination": {
+			"label": "Sayfalama",
+			"previous": "Önceki",
+			"next": "Sonraki",
+			"previousPage": "Önceki sayfaya git",
+			"nextPage": "Sonraki sayfaya git",
+			"morePages": "Daha fazla sayfa"
+		},
+		"breadcrumb": {
+			"label": "Navigasyon",
+			"more": "Daha fazla"
+		},
+		"language": {
+			"english": "İngilizce",
+			"german": "Almanca",
+			"greek": "Yunanca",
+			"macedonian": "Makedonca",
+			"french": "Fransızca",
+			"spanish": "İspanyolca",
+			"dutch": "Hollandaca",
+			"korean": "Korece",
+			"chinese": "Çince",
+			"italian": "İtalyanca"
+		},
+		"people": {
+			"someone": "Biri",
+			"unknown": "Bilinmiyor"
+		},
+		"error": {
+			"title": "Bir şeyler ters gitti",
+			"troubleshooting": "Sorun giderme adımları:",
+			"tryAgain": "Tekrar dene",
+			"viewDeploymentGuide": "Dağıtım Kılavuzunu Görüntüle",
+			"refreshPage": "Sayfayı Yenile",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Asla"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Yeni proje oluştur",
+				"breadcrumbNew": "Yeni proje oluştur",
+				"workspaceFallback": "ÇALIŞMA ALANI",
+				"description": "Bir ad, anahtar ve simge girerek çalışma alanınızda yeni bir proje oluşturun.",
+				"pickIcon": "Simge seç",
+				"searchIcons": "Simge ara...",
+				"projectName": "Proje adı",
+				"keyLabel": "Anahtar:",
+				"keyHint": "Talep kimlikleri için kullanılır (örn. {{example}}-123)",
+				"createButton": "Proje Oluştur",
+				"successToast": "Proje başarıyla oluşturuldu",
+				"errorToast": "Proje oluşturulamadı"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Yeni çalışma alanı oluştur",
+				"description": "Çalışma alanınız için bir ad girerek yeni bir çalışma alanı oluşturun.",
+				"namePlaceholder": "Çalışma alanı adı",
+				"descriptionPlaceholder": "Açıklama ekle...",
+				"createButton": "Çalışma Alanı Oluştur",
+				"successToast": "Çalışma alanı başarıyla oluşturuldu",
+				"errorToast": "Çalışma alanı oluşturulamadı"
+			},
+			"createTask": {
+				"breadcrumbTask": "TALEP",
+				"selectProject": "Proje seçin",
+				"title": "Yeni Talep",
+				"description": "Bir başlık, açıklama ve diğer ayrıntıları girerek yeni bir talep oluşturun.",
+				"taskTitlePlaceholder": "Talep başlığı",
+				"descriptionPlaceholder": "Talebiniz için bir açıklama ekleyin...",
+				"chooseProjectForImages": "Görsel yüklemeden önce bir proje seçin.",
+				"prepareTaskError": "Talep hazırlanamadı",
+				"successCreated": "Talep başarıyla oluşturuldu",
+				"successUpdated": "Talep başarıyla güncellendi",
+				"createError": "Talep oluşturulamadı",
+				"priority": "Öncelik",
+				"statusFallback": "Devam Ediyor",
+				"startDate": "Başlangıç tarihi",
+				"dueDate": "Bitiş tarihi",
+				"clearStartDate": "Başlangıç tarihini temizle",
+				"clearDueDate": "Bitiş tarihini temizle",
+				"assign": "Ata",
+				"assignUnassigned": "Atanmamış",
+				"assignUnassignedTitle": "Atanmamış",
+				"labels": "Etiketler",
+				"searchLabels": "Etiket ara...",
+				"noLabelsFound": "Etiket bulunamadı",
+				"createLabel": "\"{{name}}\" oluştur",
+				"chooseColor": "Renk seç",
+				"labelCreated": "Etiket oluşturuldu",
+				"labelCreateError": "Etiket oluşturulamadı",
+				"createMore": "Daha fazla oluştur",
+				"createButton": "Talep Oluştur",
+				"discardTitle": "Kaydedilmemiş talep taslağı silinsin mi?",
+				"discardDescription": "Kaydedilmemiş talep ayrıntıları kaybolacak.",
+				"discardButton": "Talep taslağını sil",
+				"untitledTask": "Başlıksız talep",
+				"labelColors": {
+					"stone": "Taş",
+					"slate": "Arduvaz",
+					"lavender": "Lavanta",
+					"sage": "Adaçayı",
+					"forest": "Orman",
+					"amber": "Kehribar",
+					"terracotta": "Terakota",
+					"rose": "Gül Kurusu",
+					"crimson": "Koyu Kırmızı"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Giriş Yap",
+			"subtitle": {
+				"emailOrProvider": "E-postanızı veya bağlı bir hesabı kullanın.",
+				"email": "E-postanızı girin, size bir giriş kodu gönderelim.",
+				"password": "E-postanızı ve parolanızı kullanın.",
+				"passwordOrProvider": "Parolanızı veya bağlı bir hesabı kullanın.",
+				"providers": "Nasıl giriş yapmak istediğinizi seçin.",
+				"sso": "Buradaki girişi kuruluşunuz yönetir."
+			},
+			"lastUsed": "Son kullanılan",
+			"guestError": "Misafir olarak giriş yapılamadı",
+			"errors": {
+				"account_not_linked": "Bu kimlik mevcut hesapla ilişkilendirilemedi. Hesabı doğrulamak için e-posta ile giriş yapın, ardından SSO'yu tekrar deneyin. E-posta ile giriş kullanılamıyorsa yöneticinizle iletişime geçin.",
+				"oauth_code_verification_failed": "OAuth doğrulaması başarısız. Lütfen tekrar deneyin.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Kayıt şu anda devre dışı. Hesap oluşturmak için geçerli bir davet gereklidir.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Kalıcı bir e-posta adresi kullanın. Geçici adreslerle hesap oluşturulamaz."
+			},
+			"instanceStatusError": "Sunucuya ulaşılamadı. Lütfen birazdan tekrar deneyin.",
+			"heading": "Kaneo'ya giriş yapın",
+			"submitPassword": "Giriş yap",
+			"invitation": {
+				"title": "{{inviterName}} sizi {{workspaceName}} çalışma alanına davet etti",
+				"fallbackTitle": "Davet edildiniz",
+				"description": "Davetin gönderildiği e-posta adresiyle giriş yapın. Hemen ardından çalışma alanına katılacaksınız."
+			},
+			"footer": {
+				"newHere": "Kaneo'da yeni misiniz?",
+				"createAccount": "Hesap oluştur",
+				"inviteOnly": "Burada hesaplar yalnızca davetle oluşturulur. Bir yöneticiden davet isteyin.",
+				"providerSignUp": "Yeni misiniz? Hesap oluşturmak için yukarıdaki sağlayıcılardan biriyle giriş yapın.",
+				"anyProvider": "Yeni misiniz? Yukarıdaki seçeneklerden herhangi biri hesabınızı oluşturur.",
+				"contactAdmin": "Giriş yapamıyor musunuz? Yöneticinizle iletişime geçin.",
+				"justLooking": "Sadece göz mü atıyorsunuz?"
+			},
+			"autoLogin": {
+				"title": "Giriş yapılıyor",
+				"subtitle": "Kuruluşunuzun giriş sayfasına yönlendiriliyorsunuz.",
+				"opening": "{{provider}} açılıyor…",
+				"stuck": "İlerlemiyor mu?",
+				"continue": "{{provider}} sayfasına git"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "{{provider}} ile devam et",
+			"error": "{{provider}} ile giriş yapılamadı. Tekrar deneyin."
+		},
+		"forms": {
+			"or": "veya",
+			"email": "E-posta",
+			"password": "Parola",
+			"emailPlaceholder": "ben@example.com",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Parolayı göster",
+			"hidePassword": "Parolayı gizle",
+			"name": "Ad Soyad",
+			"namePlaceholder": "Ayşe Yılmaz",
+			"invalidEmail": "Tam bir e-posta adresi girin, örneğin ad@sirket.com.",
+			"nameRequired": "Adınızı girin.",
+			"passwordRequired": "Parolanızı girin.",
+			"passwordTooShort": "En az 8 karakter kullanın.",
+			"disposableEmail": "Kalıcı bir e-posta adresi kullanın. Geçici adreslerle hesap oluşturulamaz.",
+			"continueWithEmail": "E-posta ile devam et"
+		},
+		"checkEmail": {
+			"pageTitle": "E-postanızı Kontrol Edin",
+			"title": "E-postanızı kontrol edin",
+			"inboxMessage": "Size geçici bir giriş bağlantısı gönderdik. Lütfen <email>{{email}}</email> adresindeki gelen kutunuzu kontrol edin.",
+			"emailFallback": "e-posta adresiniz",
+			"backToLogin": "Girişe dön"
+		},
+		"signUp": {
+			"pageTitle": "Hesap Oluştur",
+			"registrationDisabledAlert": "Kayıt şu anda devre dışı. Davet edildiyseniz, hesap oluşturmak için davetin gönderildiği e-posta adresini girin.",
+			"continueAsGuest": "Misafir olarak devam et",
+			"toggleMessage": "Zaten hesabınız var mı?",
+			"toggleLink": "Giriş yap",
+			"instanceStatusError": "Sunucuya ulaşılamadı. Lütfen birazdan tekrar deneyin.",
+			"instanceAdminTitle": "Kaneo örneğinizi kurun",
+			"instanceAdminSubtitle": "Bu hesap, tam erişime sahip örnek yöneticisi olur.",
+			"heading": "Hesabınızı oluşturun",
+			"submitPassword": "Hesap oluştur",
+			"failed": "Hesabınız oluşturulamadı. Tekrar deneyin.",
+			"subtitle": {
+				"email": "E-postanızla başlayın. Size bir kod göndereceğiz, parola gerekmez.",
+				"password": "Başlamak için adınızı, e-postanızı ve bir parola girin.",
+				"providers": "Hesabınızı oluşturmak için bağlı bir hesap kullanın."
+			},
+			"invitation": {
+				"description": "Davetin gönderildiği e-posta adresini kullanın. Hemen ardından çalışma alanına katılacaksınız."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Kodu Doğrula",
+			"validation": {
+				"codeLength": "Kod 6 haneli olmalıdır"
+			},
+			"toast": {
+				"invalidCode": "Geçersiz doğrulama kodu",
+				"verifyFailed": "Kod doğrulanamadı",
+				"resendFailed": "Kod yeniden gönderilemedi",
+				"resendSuccess": "Yeni doğrulama kodu gönderildi!"
+			},
+			"heading": "E-postanızı kontrol edin",
+			"description": "{{email}} adresine 6 haneli bir kod gönderdik. Kodun süresi {{minutes}} dakika içinde dolacak.",
+			"label": "Doğrulama kodu",
+			"submit": "Doğrula ve devam et",
+			"didntGetIt": "Kod gelmedi mi?",
+			"resendCode": "Kodu yeniden gönder",
+			"useDifferentEmail": "Farklı bir e-posta kullan",
+			"expired": "Bu kodun süresi doldu. Yeni bir kod isteyin.",
+			"tooManyAttempts": "Çok fazla deneme yapıldı. Yeni bir kod isteyin."
+		},
+		"otpSignIn": {
+			"sendFailed": "Doğrulama kodu gönderilemedi"
+		},
+		"signInForm": {
+			"failedSignIn": "Giriş başarısız"
+		},
+		"invitation": {
+			"pageTitleAccept": "Daveti Kabul Et",
+			"pageTitleError": "Davet Hatası",
+			"pageTitleInvalid": "Geçersiz Davet",
+			"joinWorkspace": "{{workspaceName}} çalışma alanına katıl",
+			"createAccount": "Hesap oluştur",
+			"signIn": "Giriş yap",
+			"toast": {
+				"acceptFailed": "Davet kabul edilemedi",
+				"acceptSuccess": "Davet kabul edildi! Aramıza hoş geldiniz."
+			},
+			"description": "{{inviterName}} sizi Kaneo'daki bu çalışma alanına davet etti.",
+			"invitedBy": "Davet eden",
+			"sentTo": "Gönderildiği adres",
+			"signedInAs": "Giriş yapılan hesap",
+			"expires": "Son geçerlilik",
+			"notNow": "Şimdi değil",
+			"join": "Çalışma alanına katıl",
+			"switchAccount": "Hesap değiştir",
+			"goToKaneo": "Kaneo'ya git",
+			"mismatch": {
+				"title": "Farklı bir e-postayla giriş yaptınız",
+				"description": "Bu davet {{invitedEmail}} adresine gönderildi. {{email}} hesabıyla giriş yaptınız."
+			},
+			"expired": {
+				"title": "Bu davetin süresi doldu",
+				"description": "{{inviterName}} ile iletişime geçin ve {{workspaceName}} çalışma alanı için yeni bir davet isteyin."
+			},
+			"invalid": {
+				"title": "Bu davet artık geçerli değil",
+				"description": "Kabul edilmiş veya iptal edilmiş olabilir. Bir çalışma alanı yöneticisinden yeni bir davet isteyin."
+			},
+			"loadFailed": {
+				"title": "Bu davet yüklenemedi",
+				"description": "Bağlantınızı kontrol edip sayfayı yeniden yükleyin."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Kaneo'ya Hoş Geldiniz",
+			"workspaceName": "Çalışma alanı adı",
+			"workspaceNamePlaceholder": "örn. Acme Inc, Ekibim",
+			"toast": {
+				"createFailed": "Çalışma alanı oluşturulamadı"
+			},
+			"validation": {
+				"workspaceNameRequired": "Çalışma alanı adı gereklidir",
+				"projectNameRequired": "İlk projenize bir ad verin"
+			},
+			"restrictedSubtitle": "Burada yalnızca örnek yöneticisi çalışma alanı oluşturabilir. Davet isteyin, ardından bu sayfayı yenileyin.",
+			"restrictedCheckInvitations": "Davetleri görüntüle",
+			"restrictedTitle": "Davet gerekiyor",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "İlk projem",
+			"starterTasks": {
+				"drag": {
+					"title": "Bu kartı bir sonraki sütuna sürükleyin",
+					"description": "İş ilerledikçe kartlar sütundan sütuna geçer. Bu kartı bir sonraki sütuna sürükleyin ya da açıp durumunu değiştirin."
+				},
+				"details": {
+					"title": "Bu görevi açın ve bir alt görev ekleyin",
+					"description": "Bir görevde açıklama, alt görevler, etiketler, atanan kişi ve bitiş tarihi olabilir. Denemek için bu göreve bir alt görev ekleyin."
+				},
+				"invite": {
+					"title": "Ekibinizi davet edin",
+					"description": "Kaneo herkes dahil olduğunda en iyi şekilde çalışır. İnsanları e-postayla davet etmek için kenar çubuğunda **Üyeler** bölümünü açın."
+				},
+				"integrations": {
+					"title": "GitHub, GitLab veya Gitea bağlayın",
+					"description": "Issue'ları senkronize edin ve pull request'ler açılıp birleştirildiğinde görevleri otomatik taşıyın. **Proje ayarları** bölümünden kurun."
+				},
+				"create": {
+					"title": "Kendi görevinizi oluşturun",
+					"description": "Bir sütun adının yanındaki **+** düğmesini kullanın ya da önce **T**, sonra **C** tuşuna basın. Hazır olduğunuzda bu başlangıç görevlerini silin."
+				}
+			},
+			"progress": "Adım {{current}} / {{total}}",
+			"welcome": "Hoş geldiniz, {{name}}",
+			"settingUp": "{{name}} hazırlanıyor",
+			"continue": "Devam et",
+			"signedInAs": "{{email}} olarak giriş yapıldı",
+			"signOut": "Çıkış yap",
+			"workspace": {
+				"title": "Çalışma alanınıza bir ad verin",
+				"description": "Projeleriniz burada yer alır. Ekibinizin veya şirketinizin adını kullanın, daha sonra değiştirebilirsiniz."
+			},
+			"usage": {
+				"title": "Kimler kullanacak?",
+				"description": "{{name}} çalışma alanını buna göre ayarlayacağız. İnsanları daha sonra da davet edebilirsiniz."
+			},
+			"project": {
+				"title": "İlk projenizi başlatın",
+				"description": "Size yol göstermesi için birkaç başlangıç görevi ekleyeceğiz. Bunları istediğiniz zaman yeniden adlandırabilir veya silebilirsiniz.",
+				"label": "Proje adı",
+				"numbered": "Görevler şöyle numaralandırılacak:"
+			},
+			"invite": {
+				"title": "Ekibinizi getirin",
+				"description": "{{name}} çalışma alanına katılmaları için bir e-posta alacaklar. Önce etrafa göz atmak isterseniz bu adımı atlayın.",
+				"label": "Ekip arkadaşlarının e-postaları",
+				"send_one": "{{count}} davet gönder",
+				"send_other": "{{count}} davet gönder",
+				"sendNone": "Davet gönder"
+			},
+			"plan": {
+				"title": "Nasıl başlamak istersiniz?",
+				"descriptionTrial_one": "Her plan sınırsız proje ve görev içerir. {{name}} çalışma alanını {{count}} gün ücretsiz deneyin veya hemen abone olun.",
+				"descriptionTrial_other": "Her plan sınırsız proje ve görev içerir. {{name}} çalışma alanını {{count}} gün ücretsiz deneyin veya hemen abone olun.",
+				"choose": "Bir plan seçin",
+				"description": {
+					"team": "Sınırsız üye, rol ve izin",
+					"personal": "Tek kişi için"
+				},
+				"perUserMonth": "kullanıcı başına / ay",
+				"perMonth": "aylık",
+				"subscribe": "{{plan}} planına abone ol",
+				"checkout": "Ödemeye geç",
+				"trialNote": "Deneme için kart gerekmez. Ödemeler Creem tarafından işlenir.",
+				"paymentNote": "Ödemeler Creem tarafından işlenir."
+			},
+			"ready": {
+				"eyebrow": "Her şey hazır",
+				"title": "{{name}} hazır",
+				"description": "Kurduklarımız burada. Hepsini daha sonra değiştirebilirsiniz.",
+				"workspace": "Çalışma alanı",
+				"project": "İlk proje",
+				"projectValue_one": "{{name}}, {{count}} başlangıç göreviyle",
+				"projectValue_other": "{{name}}, {{count}} başlangıç göreviyle",
+				"invitations": "Davetler",
+				"invitationsValue_one": "{{count}} kişiye gönderildi",
+				"invitationsValue_other": "{{count}} kişiye gönderildi",
+				"open": "{{name}} çalışma alanını aç"
+			},
+			"preview": {
+				"live": "Canlı önizleme: {{name}}",
+				"liveNoName": "Canlı önizleme",
+				"ready": "{{name}} hazır",
+				"untitled": "Çalışma alanınız"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Profili Tamamla",
+			"completeTitle": "Profilinizi tamamlayın",
+			"subtitle": "Başlamak için lütfen adınızı girin",
+			"yourName": "Adınız",
+			"namePlaceholder": "örn. John Doe",
+			"saving": "Kaydediliyor...",
+			"continue": "Devam et",
+			"welcome": "Hoş geldiniz, {{name}}!",
+			"redirecting": "Sizi panelinize götürüyorum...",
+			"toast": {
+				"updateSuccess": "Profil başarıyla güncellendi",
+				"updateFailed": "Profil güncellenemedi"
+			},
+			"validation": {
+				"nameRequired": "Ad gereklidir",
+				"nameShort": "Ad en az 2 karakter olmalıdır"
+			}
+		},
+		"passwordReset": {
+			"forgotPassword": "Forgot password?",
+			"requestTitle": "Reset your password",
+			"requestSubtitle": "Enter your email and we’ll send you a password reset link.",
+			"sendLink": "Send reset link",
+			"requestError": "Could not request a reset link. Please try again.",
+			"unavailable": "Password reset is unavailable. Contact your instance administrator.",
+			"configError": "Could not reach the server. Please reload the page to try again.",
+			"resetTitle": "Choose a new password",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm new password",
+			"passwordMismatch": "The passwords do not match.",
+			"passwordLength": "Use between 8 and 128 characters.",
+			"invalidLink": "This reset link is invalid or has expired. Request a new link to continue.",
+			"requestNewLink": "Request a new link",
+			"resetError": "Could not reset your password. Please try again.",
+			"success": "Your password has been reset. Sign in with your new password.",
+			"backToSignIn": "Back to sign in",
+			"sentTitle": "Gelen kutunuzu kontrol edin",
+			"sentDescription": "{{email}} için bir hesap varsa, parola sıfırlama bağlantısı yolda. Bağlantının süresi 1 saat içinde dolacak.",
+			"sentHelpTitle": "E-posta gelmedi mi?",
+			"sentHelpDescription": "Spam klasörünüzü kontrol edin veya bir dakika sonra yeni bir bağlantı isteyin.",
+			"rememberedIt": "Hatırladınız mı?",
+			"resetDescription": "8 ile 128 arasında karakter kullanın. Diğer cihazlarda oturum kapatılacak.",
+			"updatePassword": "Parolayı güncelle",
+			"changedMind": "Vazgeçtiniz mi?",
+			"invalidLinkTitle": "Bu bağlantının süresi doldu",
+			"successTitle": "Parola güncellendi"
+		},
+		"page": {
+			"terms": "Koşullar",
+			"privacy": "Gizlilik"
+		},
+		"device": {
+			"connect": {
+				"title": "Cihaz bağlayın",
+				"description": "Kaneo hesabınıza bağlamak için terminalinizde veya uygulamanızda gösterilen kodu girin.",
+				"label": "Cihaz kodu",
+				"submit": "Devam et",
+				"noCode": "Henüz kodunuz yok mu? Önce uygulamanızdan giriş yapmaya başlayın.",
+				"codeRequired": "Cihazınızda gösterilen kodu girin.",
+				"invalidCode": "Bu kod geçersiz veya süresi dolmuş."
+			},
+			"approve": {
+				"pageTitle": "Cihazı onayla",
+				"title": "Bu cihaz bağlansın mı?",
+				"description": "Bir cihaz {{email}} olarak giriş yapmak istiyor. Yalnızca bu işlemi siz başlattıysanız onaylayın.",
+				"matchCode": "Bunun cihazınızdaki kodla eşleştiğini kontrol edin",
+				"deny": "Reddet",
+				"approve": "Onayla",
+				"failed": "İstek güncellenemedi. Tekrar deneyin."
+			},
+			"approved": {
+				"title": "Cihaz bağlandı",
+				"description": "Terminalinize veya uygulamanıza geri dönün. Bu sekmeyi kapatabilirsiniz."
+			},
+			"denied": {
+				"title": "İstek reddedildi",
+				"description": "Hiçbir şey bağlanmadı. Bu sekmeyi kapatabilirsiniz."
+			},
+			"missing": {
+				"title": "Cihaz kodu yok",
+				"description": "Bu sayfayı cihazınızdan açın veya kodu kendiniz girin.",
+				"enterCode": "Kod gir"
+			},
+			"signIn": {
+				"title": "Cihazınızı bağlamak için giriş yapın",
+				"description": "Onaylamak için hemen buraya geri döneceksiniz.",
+				"submit": "Giriş yap"
+			}
+		},
+		"mcp": {
+			"authorize": {
+				"title": "Bir MCP istemcisini yetkilendirin",
+				"description": "Erişiminiz olan her çalışma alanında sizin adınıza işlem yapabilir. Yalnızca bu bağlantıyı siz başlattıysanız devam edin.",
+				"client": "İstemci",
+				"unknownClient": "MCP istemcisi",
+				"selfReported": "İstemci beyanı",
+				"redirect": "Geri yönlendirileceğiniz adres",
+				"signedInAs": "Giriş yapılan hesap",
+				"deny": "Reddet",
+				"allow": "Erişime izin ver"
+			},
+			"expired": {
+				"title": "Bu isteğin süresi doldu",
+				"description": "MCP istemcinize geri dönün ve yeniden bağlanın."
+			},
+			"signIn": {
+				"title": "Bu istemciyi yetkilendirmek için giriş yapın",
+				"description": "İncelemek için hemen buraya geri döneceksiniz.",
+				"submit": "Giriş yap"
+			}
+		}
+	},
+	"settings": {
+		"advancedSettings": "Gelişmiş ayarlar",
+		"account": "Hesap",
+		"developer": "Geliştirici",
+		"information": "Bilgiler",
+		"notifications": "Bildirimler",
+		"preferences": "Tercihler",
+		"apiKeys": "API Anahtarları",
+		"informationPage": {
+			"pageTitle": "Kişisel Bilgiler",
+			"title": "Kişisel Bilgiler",
+			"subtitle": "Kişisel ayrıntılarınızı ve hesap bilgilerinizi yönetin.",
+			"sectionTitle": "Hesap Bilgileri",
+			"sectionSubtitle": "Profilinizi ve hesap ayrıntılarınızı yönetin.",
+			"profilePicture": "Profil fotoğrafı",
+			"fullName": "Ad Soyad",
+			"fullNamePlaceholder": "Adınızı girin",
+			"email": "E-posta",
+			"emailPlaceholder": "E-postanızı girin",
+			"updateSuccess": "Profil başarıyla güncellendi",
+			"updateError": "Profil güncellenemedi",
+			"validation": {
+				"nameRequired": "Ad gereklidir",
+				"nameShort": "Ad en az 2 karakter olmalıdır",
+				"invalidEmail": "Geçersiz e-posta adresi"
+			},
+			"avatar": {
+				"hint": "PNG, JPEG, or WebP. Cropped to a square and resized to 256x256.",
+				"remove": "Remove",
+				"removeError": "Failed to remove profile picture",
+				"removeSuccess": "Profile picture removed",
+				"updateError": "Failed to update profile picture",
+				"updateSuccess": "Profile picture updated",
+				"change": "Change avatar",
+				"edit": "Change your profile picture"
+			},
+			"deleteAccount": {
+				"confirm": "Delete account",
+				"confirmLabel": "Confirm your email address",
+				"description": "Workspaces only you belong to are deleted with your account. Elsewhere, your tasks stay and become unassigned, and your comments are removed.",
+				"error": "Failed to delete account",
+				"modalDescription": "This cannot be undone. Type {{email}} to confirm.",
+				"modalTitle": "Delete your account?",
+				"sectionSubtitle": "Permanent actions that affect your whole account.",
+				"sectionTitle": "Danger zone",
+				"success": "Your account has been deleted",
+				"title": "Delete account",
+				"sessionTooOld": "For security, sign out and sign back in before deleting your account."
+			}
+		},
+		"notificationsPage": {
+			"pageTitle": "Bildirimler",
+			"title": "Bildirimler",
+			"subtitle": "Kaneo'nun hesap bildirimlerinizi nasıl ileteceğini ve hangi kanalları kullanacağını seçin.",
+			"statusConnected": "Bağlı",
+			"statusPaused": "Duraklatıldı",
+			"emailTitle": "E-posta",
+			"emailDescription": "Bildirimleriniz için hedef olarak hesap e-postanızı kullanın.",
+			"accountEmailLabel": "Hesap e-postası",
+			"accountEmailNoAddress": "Kullanılabilir hesap e-postası yok",
+			"accountEmailHint": "E-posta bildirimleri her zaman giriş yapılan hesap e-postasına gönderilir.",
+			"saveChanges": "Değişiklikleri kaydet",
+			"disconnect": "Bağlantıyı kes",
+			"ntfyTitle": "ntfy",
+			"ntfyDescription": "Hesap bildirimlerini bir ntfy konusuna yayınlayın.",
+			"serverUrl": "Sunucu URL'si",
+			"topic": "Konu",
+			"token": "Belirteç",
+			"ntfyServerPlaceholder": "https://ntfy.example.com",
+			"ntfyTopicPlaceholder": "takim-uyarilari",
+			"ntfyTokenPlaceholder": "İsteğe bağlı bearer belirteç",
+			"ntfyTokenHintConfigured": "Bir belirteç zaten yapılandırılmış ({{masked}}). Değiştirmek için yeni bir belirteç girin.",
+			"ntfyTokenHintOptional": "İsteğe bağlı. ntfy sunucunuz kimlik doğrulaması gerektiriyorsa bir belirteç sağlayın.",
+			"connectNtfy": "ntfy bağla",
+			"gotifyTitle": "Gotify",
+			"gotifyDescription": "Hesap bildirimlerinizi Gotify sunucunuza gönderin.",
+			"gotifyTokenLabel": "Uygulama belirteci",
+			"gotifyServerPlaceholder": "https://gotify.example.com",
+			"gotifyTokenPlaceholder": "Gotify uygulama belirteci",
+			"gotifyTokenHintConfigured": "Bir uygulama belirteci zaten yapılandırılmış ({{masked}}). Değiştirmek için yeni bir belirteç girin.",
+			"gotifyTokenHintRequired": "Gereklidir. Gotify sunucunuzdan bir uygulama belirteci kullanın.",
+			"connectGotify": "Gotify bağla",
+			"webhookTitle": "Özel webhook",
+			"webhookDescription": "Hesap bildirimlerini k

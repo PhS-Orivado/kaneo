@@ -44,6 +44,7 @@ export function initializeEventSubscriptions(): void {
     status: string;
     number: number;
     projectId: string;
+    syncIntegrationIds?: string[];
   }>("task.created", async (data) => {
     await broadcastTaskCreated({
       taskId: data.taskId,
@@ -54,6 +55,7 @@ export function initializeEventSubscriptions(): void {
       priority: data.priority,
       status: data.status,
       number: data.number,
+      syncIntegrationIds: data.syncIntegrationIds,
     });
   });
 
@@ -302,6 +304,15 @@ export async function broadcastTaskCreated(
   const integrations = await getActiveIntegrations(event.projectId);
 
   for (const integration of integrations) {
+    // The caller picked the repositories to create an issue in (an empty
+    // selection means none). Only those bindings run onTaskCreated.
+    if (
+      event.syncIntegrationIds !== undefined &&
+      !event.syncIntegrationIds.includes(integration.id)
+    ) {
+      continue;
+    }
+
     const plugin = getPlugin(integration.type);
     if (!plugin?.onTaskCreated) continue;
 

@@ -1,0 +1,646 @@
+ses Repository geprüft werden können.",
+			"enableGithubSignInHint": "Bitte die Administration deiner Instanz, die GitHub-Anmeldung zu aktivieren.",
+			"reverifyHint": "Verbinde dieses Repository erneut, um den Zugriff zu bestätigen und die Synchronisierung fortzusetzen.",
+			"resumeImport": "Import fortsetzen",
+			"importPaused": "Der Fortschritt dieses Imports ist gespeichert. Du kannst ihn fortsetzen.",
+			"importSummary": "Erstellt: {{imported}} · Aktualisiert: {{updated}} · Übersprungen: {{skipped}}",
+			"providerName": "GitHub"
+		},
+		"giteaIntegration": {
+			"validation": {
+				"baseUrlRequired": "Gitea-Basis-URL ist erforderlich",
+				"baseUrlInvalid": "Gib eine gültige URL ein (z. B. https://gitea.example.com)",
+				"ownerRequired": "Repository-Eigentümer ist erforderlich",
+				"ownerInvalid": "Ungültiges Format für den Repository-Eigentümer",
+				"nameRequired": "Repository-Name ist erforderlich",
+				"nameInvalid": "Ungültiges Format für den Repository-Namen"
+			},
+			"toast": {
+				"verifyOk": "Der Gitea-Token kann auf dieses Repository zugreifen",
+				"verifyWarning": "Prüfe die Token-Berechtigungen oder den Repository-Zugriff",
+				"repoNotFound": "Repository nicht gefunden oder nicht zugänglich",
+				"verifyError": "Gitea-Zugriff konnte nicht überprüft werden",
+				"tokenRequired": "Persönlicher Zugriffstoken ist erforderlich",
+				"tokenRequiredVerify": "Gib einen Token ein, um ihn zu prüfen",
+				"verifyFirst": "Zugriffsprüfung fehlgeschlagen. Prüfe URL, Token und Repository",
+				"updated": "Gitea-Integration gespeichert",
+				"updateError": "Gitea-Integration konnte nicht gespeichert werden",
+				"removed": "Gitea-Integration entfernt",
+				"removeError": "Gitea-Integration konnte nicht entfernt werden",
+				"issuesImported": "Issues erfolgreich importiert",
+				"importError": "Issues konnten nicht importiert werden",
+				"commentOnEnabled": "Kaneo kommentiert bei neuen Issues mit einem Aufgabenlink",
+				"commentOnDisabled": "Aufgabenlink-Kommentare bei neuen Issues sind deaktiviert",
+				"settingsUpdateError": "Gitea-Integration konnte nicht aktualisiert werden",
+				"secretCopied": "Kopiert",
+				"unableToCopySecret": "Geheimnis konnte nicht kopiert werden",
+				"notGiteaInstance": "Die URL verweist nicht auf eine Gitea-Instanz",
+				"redirected": "Gitea-URL wurde weitergeleitet (normalerweise zu HTTPS). Verwende die endgültige URL direkt."
+			},
+			"webhookShow": "Anzeigen",
+			"webhookHide": "Ausblenden",
+			"webhookCopy": "Kopieren",
+			"connectionStatus": "Verbindungsstatus",
+			"connectedActive": "Repository verbunden und aktiv",
+			"notConnectedHint": "Kein Gitea-Repository verbunden",
+			"badgeConnected": "Connected",
+			"badgeNotConnected": "Nicht verbunden",
+			"repository": "Repository",
+			"repositoryHint": "Verbundenes Gitea-Repository",
+			"commentTaskLinkTitle": "Kaneo-Link bei neuen Issues kommentieren",
+			"commentTaskLinkHint": "Wenn aktiviert, veröffentlicht Kaneo bei jedem neuen Issue einen Kommentar mit einem Link zur Aufgabe.",
+			"webhookTitle": "Webhook",
+			"webhookHint": "Füge in deinem Gitea-Repository einen Webhook mit dieser URL und diesem Geheimnis hinzu. Aktiviere Push, Pull Request, Issues, Issue-Kommentare und Create (für Labels).",
+			"webhookSecretLabel": "Geheimnis (muss mit dem Webhook-Geheimnis in Gitea übereinstimmen)",
+			"baseUrlLabel": "Gitea URL",
+			"baseUrlHint": "Basis-URL deiner Gitea-Instanz",
+			"tokenLabel": "Persönlicher Zugriffstoken",
+			"tokenHint": "Token mit Zugriff auf Repositorys und Issues",
+			"tokenPlaceholder": "Paste token",
+			"tokenPlaceholderUpdate": "Neuen Token einfügen, um ihn zu ersetzen",
+			"currentToken": "stored",
+			"ownerLabel": "Owner",
+			"ownerHint": "Benutzer- oder Organisationsname",
+			"repoNameLabel": "Repository-Name",
+			"repoNameHint": "Nur der Repository-Name (ohne Eigentümer)",
+			"actionsTitle": "Actions",
+			"actionsHint": "Zugriff prüfen und verbinden",
+			"browse": "Browse",
+			"verify": "Verify",
+			"update": "Update",
+			"connect": "Connect",
+			"disconnect": "Disconnect",
+			"importSectionTitle": "Gitea-Issues importieren",
+			"importSectionHint": "Importiere offene Issues und Pull Requests aus dem Repository",
+			"importing": "Importing…",
+			"importIssues": "Issues importieren",
+			"importDisabledHint": "Prüfe das Repository oben, um den Import zu aktivieren",
+			"browseModalTitle": "Deine Repositorys",
+			"browseModalHint": "Repositorys, auf die dein Token zugreifen kann",
+			"searchRepos": "Search…",
+			"browseNeedsCredentials": "Gib Gitea-URL und Token ein, um zu durchsuchen",
+			"loadingRepos": "Repositorys werden geladen…",
+			"retry": "Retry",
+			"providerName": "Gitea"
+		},
+		"slackIntegration": {
+			"validation": {
+				"webhookInvalid": "Gib eine gültige Slack-Webhook-URL ein"
+			},
+			"toast": {
+				"saved": "Slack-Integration erfolgreich gespeichert",
+				"saveError": "Slack-Integration konnte nicht gespeichert werden",
+				"enabled": "Slack-Benachrichtigungen aktiviert",
+				"disabled": "Slack-Benachrichtigungen pausiert",
+				"updateError": "Slack-Integration konnte nicht aktualisiert werden",
+				"removed": "Slack-Integration erfolgreich entfernt",
+				"removeError": "Slack-Integration konnte nicht entfernt werden"
+			},
+			"connectionTitle": "Slack-Webhook-Verbindung",
+			"connectionHint": "Füge eine Slack-Incoming-Webhook-URL ein und wähle aus, welche Aufgabenereignisse gesendet werden sollen.",
+			"connected": "Verbunden",
+			"paused": "Pausiert",
+			"webhookLabel": "Incoming-Webhook-URL",
+			"webhookPlaceholder": "https://hooks.slack.com/services/...",
+			"webhookHint": "Erstelle in Slack einen Incoming Webhook und füge die erzeugte URL hier ein.",
+			"channelLabel": "Kanalname",
+			"channelPlaceholder": "#team-updates",
+			"channelHint": "Optionales Label für dich. Der tatsächliche Zielkanal wird in Slack über den Webhook festgelegt.",
+			"eventsTitle": "Ereignisbenachrichtigungen",
+			"eventsHint": "Wähle aus, welche Projektänderungen an Slack gesendet werden sollen.",
+			"events": {
+				"taskCreated": "Neue Aufgaben",
+				"taskStatusChanged": "Statusänderungen",
+				"taskPriorityChanged": "Prioritätsänderungen",
+				"taskTitleChanged": "Titeländerungen",
+				"taskDescriptionChanged": "Beschreibungsänderungen",
+				"taskCommentCreated": "Neue Kommentare"
+			},
+			"connect": "Slack verbinden",
+			"saveChanges": "Änderungen speichern",
+			"update": "Slack aktualisieren",
+			"disconnect": "Trennen"
+		},
+		"discordIntegration": {
+			"validation": {
+				"webhookInvalid": "Gib eine gültige Discord-Webhook-URL ein"
+			},
+			"toast": {
+				"saved": "Discord-Integration erfolgreich gespeichert",
+				"saveError": "Discord-Integration konnte nicht gespeichert werden",
+				"enabled": "Discord-Benachrichtigungen aktiviert",
+				"disabled": "Discord-Benachrichtigungen pausiert",
+				"updateError": "Discord-Integration konnte nicht aktualisiert werden",
+				"removed": "Discord-Integration erfolgreich entfernt",
+				"removeError": "Discord-Integration konnte nicht entfernt werden"
+			},
+			"connectionTitle": "Discord-Webhook-Verbindung",
+			"connectionHint": "Füge eine Discord-Webhook-URL ein und wähle aus, welche Aufgabenereignisse gesendet werden sollen.",
+			"connected": "Verbunden",
+			"paused": "Pausiert",
+			"webhookLabel": "Webhook-URL",
+			"webhookPlaceholder": "https://discord.com/api/webhooks/...",
+			"webhookHint": "Erstelle in Discord einen Kanal-Webhook und füge die erzeugte URL hier ein.",
+			"channelLabel": "Kanalname",
+			"channelPlaceholder": "#team-updates",
+			"channelHint": "Optionales Label für dich. Der tatsächliche Zielkanal wird in Discord über den Webhook festgelegt.",
+			"eventsTitle": "Ereignisbenachrichtigungen",
+			"eventsHint": "Wähle aus, welche Projektänderungen an Discord gesendet werden sollen.",
+			"events": {
+				"taskCreated": "Neue Aufgaben",
+				"taskStatusChanged": "Statusänderungen",
+				"taskPriorityChanged": "Prioritätsänderungen",
+				"taskTitleChanged": "Titeländerungen",
+				"taskDescriptionChanged": "Beschreibungsänderungen",
+				"taskCommentCreated": "Neue Kommentare"
+			},
+			"connect": "Discord verbinden",
+			"saveChanges": "Änderungen speichern",
+			"update": "Discord aktualisieren",
+			"disconnect": "Trennen"
+		},
+		"genericWebhookIntegration": {
+			"validation": {
+				"webhookInvalid": "Gib eine gültige Webhook-URL ein"
+			},
+			"toast": {
+				"saved": "Generische Webhook-Integration erfolgreich gespeichert",
+				"saveError": "Generische Webhook-Integration konnte nicht gespeichert werden",
+				"enabled": "Generische Webhook-Benachrichtigungen aktiviert",
+				"disabled": "Generische Webhook-Benachrichtigungen pausiert",
+				"updateError": "Generische Webhook-Integration konnte nicht aktualisiert werden",
+				"removed": "Generische Webhook-Integration erfolgreich entfernt",
+				"removeError": "Generische Webhook-Integration konnte nicht entfernt werden"
+			},
+			"connectionTitle": "Ausgehende Webhook-Verbindung",
+			"connectionHint": "Sende Aufgabenereignisse als JSON an deinen eigenen Endpunkt. Wenn ein Secret konfiguriert ist, wird ein signierter X-Kaneo-Signature-Header mitgesendet.",
+			"connected": "Verbunden",
+			"paused": "Pausiert",
+			"webhookLabel": "Endpunkt-URL",
+			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
+			"webhookHint": "Kaneo sendet POST-Anfragen mit einer JSON-Nutzlast für jedes aktivierte Ereignis.",
+			"secretLabel": "Signatur-Secret",
+			"secretPlaceholder": "Optionales gemeinsames Secret",
+			"secretHint": "Optional. Wenn gesetzt, signiert Kaneo den Request-Body und sendet den Hex-Digest im Header X-Kaneo-Signature.",
+			"secretHintConfigured": "Ein Signatur-Secret ist bereits konfiguriert ({{secret}}). Gib ein neues ein, um es zu ersetzen.",
+			"eventsTitle": "Ereignisbenachrichtigungen",
+			"eventsHint": "Wähle aus, welche Projektänderungen ausgehende Webhooks auslösen sollen.",
+			"events": {
+				"taskCreated": "Neue Aufgaben",
+				"taskStatusChanged": "Statusänderungen",
+				"taskPriorityChanged": "Prioritätsänderungen",
+				"taskTitleChanged": "Titeländerungen",
+				"taskDescriptionChanged": "Beschreibungsänderungen",
+				"taskCommentCreated": "Neue Kommentare",
+				"taskDeleted": "Aufgabe gelöscht",
+				"taskMoved": "Aufgabe verschoben",
+				"taskDueDateChanged": "Fälligkeitsdatum geändert",
+				"taskAssigneeChanged": "Zuweisung geändert",
+				"taskUnassigned": "Zuweisung entfernt",
+				"dueDateReminder": "Erinnerungen an Fälligkeitstermine"
+			},
+			"reminderLeadTimeLabel": "Webhook so viele Stunden vorher senden",
+			"connect": "Webhook verbinden",
+			"saveChanges": "Änderungen speichern",
+			"disconnect": "Trennen"
+		},
+		"telegramIntegration": {
+			"validation": {
+				"botTokenInvalid": "Gib einen gültigen Telegram-Bot-Token ein",
+				"chatIdRequired": "Chat-ID ist erforderlich",
+				"threadIdInvalid": "Gib eine gültige Telegram-Themen-ID ein"
+			},
+			"toast": {
+				"saved": "Telegram-Integration erfolgreich gespeichert",
+				"saveError": "Telegram-Integration konnte nicht gespeichert werden",
+				"enabled": "Telegram-Benachrichtigungen aktiviert",
+				"disabled": "Telegram-Benachrichtigungen pausiert",
+				"updateError": "Telegram-Integration konnte nicht aktualisiert werden",
+				"removed": "Telegram-Integration erfolgreich entfernt",
+				"removeError": "Telegram-Integration konnte nicht entfernt werden"
+			},
+			"connectionTitle": "Telegram-Bot-Verbindung",
+			"connectionHint": "Verwende einen Telegram-Bot-Token und eine Chat-ID, um Projektaktualisierungen in einen Chat oder ein Thema zu senden.",
+			"connected": "Verbunden",
+			"paused": "Pausiert",
+			"botTokenLabel": "Bot-Token",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"botTokenHint": "Erstelle mit BotFather einen Bot und füge seinen Token hier ein.",
+			"botTokenHintConfigured": "Ein Bot-Token ist bereits konfiguriert ({{token}}). Gib einen neuen ein, um ihn zu ersetzen.",
+			"chatIdLabel": "Chat-ID",
+			"chatIdPlaceholder": "-1001234567890 oder @team_updates",
+			"chatIdHint": "Gib die Telegram-Chat-ID oder den Kanalnamen ein, in dem Updates gepostet werden sollen.",
+			"threadIdLabel": "Themen-ID",
+			"threadIdPlaceholder": "Optionale Themen-ID",
+			"threadIdHint": "Optional. Verwende dies für Forenthemen in Telegram-Gruppen.",
+			"chatLabelLabel": "Chat-Label",
+			"chatLabelPlaceholder": "Engineering Updates",
+			"chatLabelHint": "Optionales Label für deine Referenz in Kaneo.",
+			"eventsTitle": "Ereignisbenachrichtigungen",
+			"eventsHint": "Wähle aus, welche Projektänderungen an Telegram gesendet werden sollen.",
+			"events": {
+				"taskCreated": "Neue Aufgaben",
+				"taskStatusChanged": "Statusänderungen",
+				"taskPriorityChanged": "Prioritätsänderungen",
+				"taskTitleChanged": "Titeländerungen",
+				"taskDescriptionChanged": "Beschreibungsänderungen",
+				"taskCommentCreated": "Neue Kommentare"
+			},
+			"connect": "Telegram verbinden",
+			"saveChanges": "Änderungen speichern",
+			"disconnect": "Trennen"
+		},
+		"repositoryBrowser": {
+			"title": "Repository auswählen",
+			"description": "Wähle ein Repository aus, in dem deine GitHub-App installiert ist, um die Issue-Synchronisierung zu aktivieren.",
+			"searchPlaceholder": "Repositories suchen...",
+			"loadError": "Repositories konnten nicht geladen werden",
+			"tryAgain": "Erneut versuchen",
+			"emptyTitle": "Keine Repositories gefunden",
+			"emptyHint": "Installiere die GitHub-App in deinen Repositories, damit sie hier angezeigt werden.",
+			"installGithubApp": "GitHub-App installieren",
+			"noSearchMatchTitle": "Keine Repositories entsprechen deiner Suche",
+			"noSearchMatchHint": "Passe deine Suchbegriffe an oder lösche die Suche, um alle Repositories zu sehen.",
+			"footerSummary": "{{repoCount}} Repositories über {{installationCount}} Installationen",
+			"manageInstallations": "Installationen verwalten",
+			"updatedPrefix": "Aktualisiert",
+			"relativeJustNow": "gerade eben",
+			"relativeMinutesAgo": "vor {{count}} Min.",
+			"relativeHoursAgo": "vor {{count}} Std.",
+			"relativeDaysAgo": "vor {{count}} Tg."
+		},
+		"tasksImportExport": {
+			"exportTasks": "Aufgaben exportieren",
+			"importTasks": "Aufgaben importieren",
+			"dialogTitle": "Aufgaben importieren",
+			"dialogDescription": "Lade eine JSON-Datei mit Aufgaben hoch, die in dieses Projekt importiert werden sollen.",
+			"expectedFormat": "Erwartetes Format:",
+			"dropHint": "Ziehe deine JSON-Datei hierher",
+			"selectFile": "Datei auswählen",
+			"exporting": "Aufgaben werden exportiert...",
+			"exportSuccess": "Aufgaben erfolgreich exportiert",
+			"exportError": "Aufgaben konnten nicht exportiert werden",
+			"importing": "Aufgaben werden importiert...",
+			"importSuccess": "{{count}} Aufgaben erfolgreich importiert",
+			"importPartialError": "{{count}} Aufgaben konnten nicht importiert werden",
+			"importError": "Aufgaben konnten nicht importiert werden",
+			"invalidFormat": "Ungültiges Importdateiformat",
+			"noFileDropped": "Keine Datei abgelegt",
+			"notJsonFile": "Bitte lade eine JSON-Datei hoch"
+		},
+		"workflowEditor": {
+			"loading": "Lädt...",
+			"createColumnsFirst": "Erstelle zuerst Spalten, um Automatisierungsregeln zu konfigurieren.",
+			"githubHeading": "GitHub",
+			"githubHint": "Wenn ein GitHub-Ereignis eintritt, verschiebe die verknüpfte Aufgabe in eine Spalte.",
+			"giteaHeading": "Gitea",
+			"giteaHint": "Wenn ein Gitea-Webhook-Ereignis eintritt, verschiebe die verknüpfte Aufgabe in eine Spalte.",
+			"selectColumnPlaceholder": "Spalte auswählen...",
+			"toastUpdated": "Workflow-Regel aktualisiert",
+			"toastError": "Workflow-Regel konnte nicht aktualisiert werden",
+			"events": {
+				"branch_push": "Branch-Push",
+				"pr_opened": "PR geöffnet",
+				"pr_merged": "PR zusammengeführt",
+				"issue_opened": "Issue geöffnet",
+				"issue_closed": "Issue geschlossen"
+			},
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "When a GitLab webhook event occurs, move the linked task to a column.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"externalLinks": {
+			"resources": "Ressourcen",
+			"issue": "Issue",
+			"branch": "Branch",
+			"merged": "Zusammengeführt",
+			"draft": "Entwurf",
+			"open": "Offen",
+			"adding": "Adding...",
+			"addResource": "Add resource",
+			"cancel": "Cancel",
+			"empty": "No resources linked to this task.",
+			"titleOptional": "Title (optional)",
+			"url": "URL",
+			"remove": "Remove {{title}}",
+			"removeError": "Failed to remove the resource link."
+		},
+		"workspaceRoles": {
+			"pageTitle": "Rollen",
+			"title": "Rollen",
+			"subtitle": "Lege fest, welche Aktionen Mitglieder in {{workspaceName}} ausführen können.",
+			"thisWorkspace": "diesem Workspace",
+			"noAccess": "Du benötigst Admin- oder Eigentümerrechte, um Workspace-Rollen zu verwalten.",
+			"sectionTitle": "Workspace-Rollen",
+			"sectionSubtitle": "Bearbeite die Standardrollen oder füge eine maßgeschneiderte hinzu. Mitglieder behalten ihren zugewiesenen Rollennamen über Änderungen hinweg.",
+			"newRole": "Neue Rolle",
+			"loading": "Lädt…",
+			"loadError": "Rollen konnten nicht geladen werden.",
+			"emptyTitle": "Noch keine Rollen",
+			"emptyDescription": "Standardrollen erscheinen hier, sobald sie für diesen Workspace angelegt wurden.",
+			"defaultBadge": "Standard",
+			"permissionCount_one": "{{count}} Berechtigung",
+			"permissionCount_other": "{{count}} Berechtigungen",
+			"nameLabel": "Name",
+			"nameHint": "Kleinbuchstaben. Kann später nicht geändert werden.",
+			"namePlaceholder": "z. B. reviewer",
+			"discard": "Verwerfen",
+			"createRole": "Rolle erstellen",
+			"deleteRole": "Rolle löschen",
+			"defaultRoleHelp": "Standardrolle: Der Name ist reserviert und die Zeile kann nicht gelöscht werden.",
+			"unsavedChanges": "Du hast ungespeicherte Änderungen",
+			"allChangesSaved": "Alle Änderungen gespeichert",
+			"saveChanges": "Änderungen speichern",
+			"defaultRoleDescriptions": {
+				"viewer": "Kann Aufgaben ansehen und kommentieren.",
+				"member": "Kann Aufgaben und Projekte erstellen und verwalten.",
+				"admin": "Hat vollen Zugriff auf den Workspace."
+			},
+			"resources": {
+				"project": "Projekte",
+				"task": "Aufgaben",
+				"label": "Labels",
+				"workspace": "Workspace",
+				"organization": "Workspace-Verwaltung",
+				"member": "Mitglieder",
+				"invitation": "Einladungen",
+				"team": "Teams",
+				"ac": "Rollen und Berechtigungen"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Erstellen",
+						"description": "Kann neue Projekte erstellen"
+					},
+					"read": {
+						"label": "Lesen",
+						"description": "Kann Projekte ansehen"
+					},
+					"update": {
+						"label": "Aktualisieren",
+						"description": "Kann Projekteinstellungen bearbeiten"
+					},
+					"delete": {
+						"label": "Löschen",
+						"description": "Kann Projekte löschen"
+					},
+					"share": {
+						"label": "Teilen",
+						"description": "Kann Projekte teilen"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Erstellen",
+						"description": "Kann Aufgaben erstellen"
+					},
+					"read": {
+						"label": "Lesen",
+						"description": "Kann Aufgaben ansehen"
+					},
+					"update": {
+						"label": "Aktualisieren",
+						"description": "Kann Aufgaben bearbeiten"
+					},
+					"delete": {
+						"label": "Löschen",
+						"description": "Kann Aufgaben löschen"
+					},
+					"assign": {
+						"label": "Zuweisen",
+						"description": "Kann Aufgaben Mitgliedern zuweisen"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Erstellen",
+						"description": "Kann Labels erstellen"
+					},
+					"read": {
+						"label": "Lesen",
+						"description": "Kann Labels ansehen"
+					},
+					"update": {
+						"label": "Aktualisieren",
+						"description": "Kann Labels bearbeiten"
+					},
+					"delete": {
+						"label": "Löschen",
+						"description": "Kann Labels löschen"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Lesen",
+						"description": "Kann Workspace-Einstellungen ansehen"
+					},
+					"update": {
+						"label": "Aktualisieren",
+						"description": "Kann Workspace-Einstellungen aktualisieren"
+					},
+					"delete": {
+						"label": "Löschen",
+						"description": "Kann den Workspace löschen"
+					},
+					"manage_settings": {
+						"label": "Einstellungen verwalten",
+						"description": "Kann Workspace-Einstellungen verwalten"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Workspace-Verwaltung bearbeiten",
+						"description": "Workspace-Einstellungen über den Kontodienst ändern."
+					},
+					"delete": {
+						"label": "Workspace löschen",
+						"description": "Den Workspace über den Kontodienst dauerhaft löschen."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Mitglieder hinzufügen",
+						"description": "Benutzer zu diesem Workspace hinzufügen."
+					},
+					"update": {
+						"label": "Mitgliederrollen ändern",
+						"description": "Die zugewiesenen Rollen von Workspace-Mitgliedern ändern."
+					},
+					"delete": {
+						"label": "Mitglieder entfernen",
+						"description": "Benutzer aus diesem Workspace entfernen."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Mitglieder einladen",
+						"description": "Einladungen zu diesem Workspace senden."
+					},
+					"cancel": {
+						"label": "Einladungen widerrufen",
+						"description": "Ausstehende Workspace-Einladungen widerrufen."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Teams erstellen",
+						"description": "Teams in diesem Workspace erstellen."
+					},
+					"update": {
+						"label": "Teams bearbeiten",
+						"description": "Teams und Teammitgliedschaften ändern."
+					},
+					"delete": {
+						"label": "Teams löschen",
+						"description": "Teams in diesem Workspace löschen."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Rollen erstellen",
+						"description": "Workspace-Rollen erstellen und ihnen Berechtigungen zuweisen."
+					},
+					"read": {
+						"label": "Rollen anzeigen",
+						"description": "Workspace-Rollen und ihre Berechtigungen anzeigen."
+					},
+					"update": {
+						"label": "Rollenberechtigungen ändern",
+						"description": "Rollenberechtigungen einschließlich administrativer Rechte ändern."
+					},
+					"delete": {
+						"label": "Rollen löschen",
+						"description": "Benutzerdefinierte Workspace-Rollen löschen."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "Rollenname ist erforderlich",
+				"nameExists": "Eine Rolle mit diesem Namen existiert bereits",
+				"permissionRequired": "Mindestens eine Berechtigung muss ausgewählt werden"
+			},
+			"toast": {
+				"created": "Rolle erstellt",
+				"createError": "Rolle konnte nicht erstellt werden",
+				"updated": "Rolle aktualisiert",
+				"updateError": "Rolle konnte nicht aktualisiert werden",
+				"deleted": "Rolle gelöscht",
+				"deleteError": "Rolle konnte nicht gelöscht werden"
+			},
+			"deleteDialog": {
+				"title": "Rolle löschen",
+				"description": "Dadurch wird die Rolle \"{{role}}\" dauerhaft gelöscht. Mitglieder mit dieser Rolle verlieren deren Berechtigungen."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "Label-Einstellungen",
+			"title": "Labels",
+			"subtitle": "Erstelle, bearbeite und lösche Labels auf Workspace-Ebene.",
+			"cardDescription": "Verwalte Labels, die Aufgaben zugewiesen werden können.",
+			"createLabel": "Label erstellen",
+			"editLabel": "Label bearbeiten",
+			"deleteLabel": "Löschen",
+			"saveLabel": "Speichern",
+			"nameLabel": "Label-Name",
+			"namePlaceholder": "Label-Namen eingeben",
+			"colorLabel": "Farbe",
+			"createDescription": "Erstelle ein neues Label, das für Aufgaben in diesem Workspace verwendet werden kann.",
+			"editDescription": "Aktualisiere den Namen oder die Farbe dieses Labels.",
+			"deleteConfirmTitle": "Dieses Label löschen?",
+			"deleteConfirmDescription": "Dadurch wird dieses Label dauerhaft von allen Aufgaben entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
+			"empty": "Noch keine Labels. Erstelle dein erstes Label, um loszulegen.",
+			"createSuccess": "Label erstellt",
+			"updateSuccess": "Label aktualisiert",
+			"deleteSuccess": "Label gelöscht",
+			"createError": "Label konnte nicht erstellt werden",
+			"updateError": "Label konnte nicht aktualisiert werden",
+			"deleteError": "Label konnte nicht gelöscht werden",
+			"nameRequired": "Label-Name ist erforderlich",
+			"deletionPending": "Löschung ausstehend",
+			"resumeDeletion": "Löschung fortsetzen"
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"security": "Security",
+		"securityPage": {
+			"confirmPassword": "Confirm new password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"currentPassword": "Current password",
+			"currentPasswordPlaceholder": "Enter your current password",
+			"newPassword": "New password",
+			"newPasswordPlaceholder":

@@ -1,0 +1,678 @@
+{
+	"common": {
+		"appName": "Kaneo",
+		"actions": {
+			"cancel": "Annuleren",
+			"close": "Sluiten",
+			"clearAll": "Alles wissen",
+			"delete": "Verwijderen",
+			"deleting": "Verwijderen...",
+			"markAllRead": "Alles als gelezen markeren",
+			"remove": "Verwijderen",
+			"reset": "Herstellen",
+			"filter": "Filteren",
+			"clearAllFilters": "Alle filters wissen"
+		},
+		"a11y": {
+			"toggleSidebar": "Zijbalk in-/uitschakelen"
+		},
+		"sidebar": {
+			"title": "Zijbalk",
+			"mobileDescription": "Toont de mobiele zijbalk."
+		},
+		"empty": {
+			"loading": "Laden..."
+		},
+		"pagination": {
+			"label": "Paginering",
+			"previous": "Vorige",
+			"next": "Volgende",
+			"previousPage": "Ga naar vorige pagina",
+			"nextPage": "Ga naar volgende pagina",
+			"morePages": "Meer pagina's"
+		},
+		"breadcrumb": {
+			"label": "Broodkruimelpad",
+			"more": "Meer"
+		},
+		"language": {
+			"dutch": "Nederlands",
+			"english": "Engels",
+			"german": "Duits",
+			"greek": "Grieks",
+			"macedonian": "Macedonisch",
+			"french": "Frans",
+			"korean": "Koreaans",
+			"chinese": "Chinees",
+			"italian": "Italiaans",
+			"spanish": "Spaans"
+		},
+		"people": {
+			"someone": "Iemand",
+			"unknown": "Onbekend"
+		},
+		"error": {
+			"title": "Er is iets misgegaan",
+			"troubleshooting": "Stappen voor probleemoplossing:",
+			"tryAgain": "Opnieuw proberen",
+			"viewDeploymentGuide": "Implementatiehandleiding bekijken",
+			"refreshPage": "Pagina vernieuwen",
+			"description": "The page crashed unexpectedly. Refreshing usually fixes it.",
+			"messages": {
+				"auth": "Authentication failed. Please sign in again.",
+				"cors": "Unable to connect to the server. This might be due to CORS configuration issues.",
+				"network": "Network error. Please check your internet connection and try again.",
+				"server": "Server error. Please try again later.",
+				"unknown": "An unexpected error occurred."
+			},
+			"troubleshootingSteps": {
+				"cors": {
+					"checkAccessibility": "Check that your API server is accessible from your browser",
+					"checkApiRunning": "Make sure your API server is running",
+					"checkApiUrl": "Check that VITE_API_URL in your frontend .env matches your API server URL",
+					"checkProtocol": "Ensure both frontend and API are using the same protocol (http/https)",
+					"verifyCorsOrigins": "Verify CORS_ORIGINS in your API .env includes your frontend URL"
+				},
+				"network": {
+					"checkConnection": "Check your internet connection",
+					"checkFirewall": "Check if there are any firewall or proxy issues",
+					"tryRefresh": "Try refreshing the page",
+					"verifyApiRunning": "Verify the API server is running and accessible"
+				}
+			}
+		},
+		"formats": {
+			"never": "Nooit"
+		},
+		"modals": {
+			"createProject": {
+				"title": "Een nieuw project aanmaken",
+				"breadcrumbNew": "Een nieuw project aanmaken",
+				"workspaceFallback": "WERKRUIMTE",
+				"description": "Maak een nieuw project aan in uw werkruimte door een naam en sleutel op te geven en een pictogram te kiezen.",
+				"pickIcon": "Pictogram kiezen",
+				"searchIcons": "Pictogrammen zoeken...",
+				"projectName": "Projectnaam",
+				"keyLabel": "Sleutel:",
+				"keyHint": "Gebruikt voor ticket-ID's (bijv. {{example}}-123)",
+				"createButton": "Project aanmaken",
+				"successToast": "Project succesvol aangemaakt",
+				"errorToast": "Aanmaken van project mislukt"
+			},
+			"createWorkspace": {
+				"breadcrumbKaneo": "KANEO",
+				"title": "Een nieuwe werkruimte aanmaken",
+				"description": "Maak een nieuwe werkruimte aan door een naam op te geven.",
+				"namePlaceholder": "Naam werkruimte",
+				"descriptionPlaceholder": "Beschrijving toevoegen...",
+				"createButton": "Werkruimte aanmaken",
+				"successToast": "Werkruimte succesvol aangemaakt",
+				"errorToast": "Aanmaken van werkruimte mislukt"
+			},
+			"createTask": {
+				"breadcrumbTask": "TAAK",
+				"selectProject": "Project selecteren",
+				"title": "Nieuwe taak",
+				"description": "Maak een nieuwe taak aan door een titel, beschrijving en andere details op te geven.",
+				"taskTitlePlaceholder": "Taaknaam",
+				"descriptionPlaceholder": "Voeg een beschrijving toe voor uw taak...",
+				"chooseProjectForImages": "Kies een project voordat u afbeeldingen uploadt.",
+				"prepareTaskError": "Voorbereiden van taak mislukt",
+				"successCreated": "Taak succesvol aangemaakt",
+				"successUpdated": "Taak succesvol bijgewerkt",
+				"createError": "Aanmaken van taak mislukt",
+				"priority": "Prioriteit",
+				"statusFallback": "In uitvoering",
+				"startDate": "Startdatum",
+				"dueDate": "Einddatum",
+				"clearStartDate": "Startdatum wissen",
+				"clearDueDate": "Einddatum wissen",
+				"assign": "Toewijzen",
+				"assignUnassigned": "Niet toegewezen",
+				"assignUnassignedTitle": "Niet toegewezen",
+				"labels": "Labels",
+				"searchLabels": "Labels zoeken...",
+				"noLabelsFound": "Geen labels gevonden",
+				"createLabel": "\"{{name}}\" aanmaken",
+				"chooseColor": "Kleur kiezen",
+				"labelCreated": "Label aangemaakt",
+				"labelCreateError": "Aanmaken van label mislukt",
+				"createMore": "Meer aanmaken",
+				"createButton": "Taak aanmaken",
+				"discardTitle": "Taak verwerpen?",
+				"discardDescription": "Je niet-opgeslagen taakgegevens gaan verloren.",
+				"discardButton": "Taak verwerpen",
+				"untitledTask": "Naamloze taak",
+				"labelColors": {
+					"stone": "Steen",
+					"slate": "Leisteen",
+					"lavender": "Lavendel",
+					"sage": "Salie",
+					"forest": "Bos",
+					"amber": "Amber",
+					"terracotta": "Terracotta",
+					"rose": "Roos",
+					"crimson": "Karmozijn"
+				},
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"issuesIn_one": "Issue in {{count}} repo",
+				"issuesIn_other": "Issues in {{count}} repos",
+				"repositories": "Issues",
+				"repositoriesAll": "Select all",
+				"repositoriesHint": "Create issues in the selected repositories. Leave empty for none.",
+				"repositoriesNone": "Clear"
+			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
+		}
+	},
+	"auth": {
+		"signIn": {
+			"pageTitle": "Inloggen",
+			"subtitle": {
+				"emailOrProvider": "Gebruik je e-mailadres of een gekoppeld account.",
+				"email": "Vul je e-mailadres in, dan sturen we je een inlogcode.",
+				"password": "Gebruik je e-mailadres en wachtwoord.",
+				"passwordOrProvider": "Gebruik je wachtwoord of een gekoppeld account.",
+				"providers": "Kies hoe je wilt inloggen.",
+				"sso": "Je organisatie beheert hier het inloggen."
+			},
+			"lastUsed": "Laatst gebruikt",
+			"guestError": "Inloggen als gast mislukt",
+			"errors": {
+				"account_not_linked": "Deze identiteit kon niet aan het bestaande account worden gekoppeld. Log in met e-mail om het account te verifiëren en probeer SSO daarna opnieuw. Als inloggen met e-mail niet beschikbaar is, neem dan contact op met je beheerder.",
+				"oauth_code_verification_failed": "OAuth-verificatie mislukt. Probeer het opnieuw.",
+				"registration_is_currently_disabled_you_need_a_valid_invitation_to_create_an_account_": "Registratie is momenteel uitgeschakeld. Je hebt een geldige uitnodiging nodig om een account aan te maken.",
+				"use_a_permanent_email_address_disposable_addresses_cannot_create_accounts_": "Gebruik een permanent e-mailadres. Met wegwerpadressen kun je geen account aanmaken."
+			},
+			"instanceStatusError": "Kan de server niet bereiken. Probeer het over een moment opnieuw.",
+			"heading": "Inloggen bij Kaneo",
+			"submitPassword": "Inloggen",
+			"invitation": {
+				"title": "{{inviterName}} heeft je uitgenodigd voor {{workspaceName}}",
+				"fallbackTitle": "Je bent uitgenodigd",
+				"description": "Log in met het e-mailadres waarop je de uitnodiging hebt ontvangen. Daarna word je meteen lid van de werkruimte."
+			},
+			"footer": {
+				"newHere": "Nieuw bij Kaneo?",
+				"createAccount": "Account aanmaken",
+				"inviteOnly": "Accounts zijn hier alleen op uitnodiging. Vraag een beheerder om een uitnodiging.",
+				"providerSignUp": "Nieuw hier? Log in met een van de providers hierboven om een account aan te maken.",
+				"anyProvider": "Nieuw hier? Met elke optie hierboven maak je je account aan.",
+				"contactAdmin": "Problemen met inloggen? Neem contact op met je beheerder.",
+				"justLooking": "Even rondkijken?"
+			},
+			"autoLogin": {
+				"title": "Je wordt ingelogd",
+				"subtitle": "We sturen je door naar de inlogpagina van je organisatie.",
+				"opening": "{{provider}} wordt geopend…",
+				"stuck": "Gebeurt er niets?",
+				"continue": "Doorgaan naar {{provider}}"
+			}
+		},
+		"providers": {
+			"google": "Google",
+			"discord": "Discord",
+			"github": "GitHub",
+			"sso": "SSO",
+			"continueWith": "Doorgaan met {{provider}}",
+			"error": "Inloggen met {{provider}} is mislukt. Probeer het opnieuw."
+		},
+		"forms": {
+			"or": "of",
+			"email": "E-mailadres",
+			"password": "Wachtwoord",
+			"emailPlaceholder": "naam@voorbeeld.nl",
+			"passwordPlaceholder": "••••••••",
+			"showPassword": "Wachtwoord weergeven",
+			"hidePassword": "Wachtwoord verbergen",
+			"name": "Naam",
+			"namePlaceholder": "Anna de Vries",
+			"invalidEmail": "Vul een volledig e-mailadres in, zoals naam@bedrijf.nl.",
+			"nameRequired": "Vul je naam in.",
+			"passwordRequired": "Vul je wachtwoord in.",
+			"passwordTooShort": "Gebruik minimaal 8 tekens.",
+			"disposableEmail": "Gebruik een permanent e-mailadres. Met wegwerpadressen kun je geen account aanmaken.",
+			"continueWithEmail": "Doorgaan met e-mail"
+		},
+		"checkEmail": {
+			"pageTitle": "Controleer je e-mail",
+			"title": "Controleer je mailbox",
+			"inboxMessage": "We hebben je een tijdelijke inloglink gestuurd. Controleer je inbox op <email>{{email}}</email>.",
+			"emailFallback": "je e-mailadres",
+			"backToLogin": "Terug naar inloggen"
+		},
+		"signUp": {
+			"pageTitle": "Account aanmaken",
+			"registrationDisabledAlert": "Registratie is momenteel uitgeschakeld. Als je bent uitgenodigd, voer dan het e-mailadres in waarop je de uitnodiging hebt ontvangen.",
+			"continueAsGuest": "Doorgaan als gast",
+			"toggleMessage": "Heb je al een account?",
+			"toggleLink": "Inloggen",
+			"instanceStatusError": "Kan de server niet bereiken. Probeer het over een moment opnieuw.",
+			"instanceAdminTitle": "Stel je Kaneo-instantie in",
+			"instanceAdminSubtitle": "Dit account wordt de instantiebeheerder met volledige toegang.",
+			"heading": "Maak je account aan",
+			"submitPassword": "Account aanmaken",
+			"failed": "Je account kon niet worden aangemaakt. Probeer het opnieuw.",
+			"subtitle": {
+				"email": "Begin met je e-mailadres. We sturen je een code, geen wachtwoord nodig.",
+				"password": "Vul je naam, e-mailadres en een wachtwoord in om te beginnen.",
+				"providers": "Gebruik een gekoppeld account om je eigen account aan te maken."
+			},
+			"invitation": {
+				"description": "Gebruik het e-mailadres waarop je de uitnodiging hebt ontvangen. Daarna word je meteen lid van de werkruimte."
+			}
+		},
+		"verifyOtp": {
+			"pageTitle": "Code verifiëren",
+			"validation": {
+				"codeLength": "Code moet uit 6 cijfers bestaan"
+			},
+			"toast": {
+				"invalidCode": "Ongeldige verificatiecode",
+				"verifyFailed": "Verificatie mislukt",
+				"resendFailed": "Opnieuw versturen mislukt",
+				"resendSuccess": "Nieuwe verificatiecode verzonden!"
+			},
+			"heading": "Controleer je e-mail",
+			"description": "We hebben een 6-cijferige code naar {{email}} gestuurd. Deze verloopt over {{minutes}} minuten.",
+			"label": "Verificatiecode",
+			"submit": "Verifiëren en doorgaan",
+			"didntGetIt": "Niets ontvangen?",
+			"resendCode": "Code opnieuw sturen",
+			"useDifferentEmail": "Ander e-mailadres gebruiken",
+			"expired": "Deze code is verlopen. Vraag een nieuwe aan.",
+			"tooManyAttempts": "Te veel pogingen. Vraag een nieuwe code aan."
+		},
+		"otpSignIn": {
+			"sendFailed": "Versturen verificatiecode mislukt"
+		},
+		"signInForm": {
+			"failedSignIn": "Inloggen mislukt"
+		},
+		"invitation": {
+			"pageTitleAccept": "Uitnodiging accepteren",
+			"pageTitleError": "Uitnodigingsfout",
+			"pageTitleInvalid": "Ongeldige uitnodiging",
+			"joinWorkspace": "Deelnemen aan {{workspaceName}}",
+			"createAccount": "Account aanmaken",
+			"signIn": "Inloggen",
+			"toast": {
+				"acceptFailed": "Accepteren van uitnodiging mislukt",
+				"acceptSuccess": "Uitnodiging geaccepteerd! Welkom bij het team."
+			},
+			"description": "{{inviterName}} heeft je uitgenodigd voor deze werkruimte op Kaneo.",
+			"invitedBy": "Uitgenodigd door",
+			"sentTo": "Verzonden naar",
+			"signedInAs": "Ingelogd als",
+			"expires": "Verloopt op",
+			"notNow": "Niet nu",
+			"join": "Deelnemen aan werkruimte",
+			"switchAccount": "Account wisselen",
+			"goToKaneo": "Naar Kaneo",
+			"mismatch": {
+				"title": "Ingelogd met een ander e-mailadres",
+				"description": "Deze uitnodiging is verzonden naar {{invitedEmail}}. Je bent ingelogd als {{email}}."
+			},
+			"expired": {
+				"title": "Deze uitnodiging is verlopen",
+				"description": "Vraag {{inviterName}} om je een nieuwe uitnodiging voor {{workspaceName}} te sturen."
+			},
+			"invalid": {
+				"title": "Deze uitnodiging is niet meer geldig",
+				"description": "Mogelijk is ze al geaccepteerd of geannuleerd. Vraag een werkruimtebeheerder om een nieuwe."
+			},
+			"loadFailed": {
+				"title": "Kan deze uitnodiging niet laden",
+				"description": "Controleer je verbinding en laad de pagina opnieuw."
+			}
+		},
+		"onboarding": {
+			"pageTitle": "Welkom bij Kaneo",
+			"workspaceName": "Werkruimtenaam",
+			"workspaceNamePlaceholder": "bijv. Acme Inc, Mijn Team",
+			"toast": {
+				"createFailed": "Aanmaken werkruimte mislukt"
+			},
+			"validation": {
+				"workspaceNameRequired": "Werkruimtenaam is verplicht",
+				"projectNameRequired": "Geef je eerste project een naam"
+			},
+			"restrictedSubtitle": "Alleen een instantiebeheerder kan hier workspaces aanmaken. Vraag om een uitnodiging en laad deze pagina opnieuw.",
+			"restrictedCheckInvitations": "Uitnodigingen bekijken",
+			"restrictedTitle": "Je hebt een uitnodiging nodig",
+			"cloud": {
+				"invite": {
+					"addAnother": "Add another",
+					"emailLabel": "Teammate email {{index}}",
+					"emailPlaceholder": "teammate@company.com",
+					"failed": "Couldn't invite {{email}}: {{message}}",
+					"invalidEmail": "Enter a valid email address",
+					"remove": "Remove email {{index}}",
+					"sent_one": "Invitation sent",
+					"sent_other": "{{count}} invitations sent",
+					"skip": "Skip for now"
+				},
+				"plan": {
+					"continueTrial": "Start free trial",
+					"recommended": "Recommended",
+					"trialUsed": "You've already used your free trial. Pick a plan to start creating projects and tasks."
+				},
+				"usageLabel": "Who will use this workspace?",
+				"usageSolo": "Just me",
+				"usageSoloDescription": "Keep track of your own work",
+				"usageTeam": "My team",
+				"usageTeamDescription": "Plan and ship work together"
+			},
+			"projectNameDefault": "Mijn eerste project",
+			"starterTasks": {
+				"drag": {
+					"title": "Sleep deze kaart naar de volgende kolom",
+					"description": "Kaarten schuiven van kolom naar kolom naarmate het werk vordert. Sleep deze naar de volgende kolom, of open hem en wijzig de status."
+				},
+				"details": {
+					"title": "Open deze taak en voeg een subtaak toe",
+					"description": "Een taak kan een beschrijving, subtaken, labels, een toegewezen persoon en een deadline hebben. Voeg een subtaak toe aan deze taak om het te proberen."
+				},
+				"invite": {
+					"title": "Nodig je team uit",
+					"description": "Kaneo werkt het best als iedereen meedoet. Open **Leden** in de zijbalk om mensen per e-mail uit te nodigen."
+				},
+				"integrations": {
+					"title": "Koppel GitHub, GitLab of Gitea",
+					"description": "Synchroniseer issues en verplaats taken automatisch wanneer pull requests worden geopend en gemerged. Stel het in onder **Projectinstellingen**."
+				},
+				"create": {
+					"title": "Maak je eigen taak",
+					"description": "Gebruik de **+** naast een kolomnaam, of druk op **T** en dan **C**. Verwijder deze starttaken wanneer je er klaar voor bent."
+				}
+			},
+			"progress": "Stap {{current}} van {{total}}",
+			"welcome": "Welkom, {{name}}",
+			"settingUp": "{{name}} instellen",
+			"continue": "Doorgaan",
+			"signedInAs": "Ingelogd als {{email}}",
+			"signOut": "Uitloggen",
+			"workspace": {
+				"title": "Geef je werkruimte een naam",
+				"description": "Hier staan je projecten. Gebruik de naam van je team of bedrijf, je kunt die later nog wijzigen."
+			},
+			"usage": {
+				"title": "Voor wie is het?",
+				"description": "We stemmen {{name}} hierop af. Je kunt later altijd mensen uitnodigen."
+			},
+			"project": {
+				"title": "Start je eerste project",
+				"description": "We voegen een paar starttaken toe om je wegwijs te maken. Je kunt ze altijd hernoemen of verwijderen.",
+				"label": "Projectnaam",
+				"numbered": "Taken worden genummerd als"
+			},
+			"invite": {
+				"title": "Haal je team erbij",
+				"description": "Ze krijgen een e-mail om lid te worden van {{name}}. Sla dit over als je eerst wilt rondkijken.",
+				"label": "E-mailadressen van teamgenoten",
+				"send_one": "{{count}} uitnodiging versturen",
+				"send_other": "{{count}} uitnodigingen versturen",
+				"sendNone": "Uitnodigingen versturen"
+			},
+			"plan": {
+				"title": "Hoe wil je beginnen?",
+				"descriptionTrial_one": "Elk abonnement bevat onbeperkt projecten en taken. Probeer {{name}} {{count}} dag gratis, of neem nu een abonnement.",
+				"descriptionTrial_other": "Elk abonnement bevat onbeperkt projecten en taken. Probeer {{name}} {{count}} dagen gratis, of neem nu een abonnement.",
+				"choose": "Kies een abonnement",
+				"description": {
+					"team": "Onbeperkt leden, rollen en rechten",
+					"personal": "Voor één persoon"
+				},
+				"perUserMonth": "per gebruiker / maand",
+				"perMonth": "per maand",
+				"subscribe": "Abonneren op {{plan}}",
+				"checkout": "Doorgaan naar afrekenen",
+				"trialNote": "Geen kaart nodig voor de proefperiode. Betalingen worden verwerkt door Creem.",
+				"paymentNote": "Betalingen worden verwerkt door Creem."
+			},
+			"ready": {
+				"eyebrow": "Klaar",
+				"title": "{{name}} is klaar",
+				"description": "Dit hebben we ingesteld. Je kunt alles later nog wijzigen.",
+				"workspace": "Werkruimte",
+				"project": "Eerste project",
+				"projectValue_one": "{{name}}, met {{count}} starttaak",
+				"projectValue_other": "{{name}}, met {{count}} starttaken",
+				"invitations": "Uitnodigingen",
+				"invitationsValue_one": "Verstuurd naar {{count}} persoon",
+				"invitationsValue_other": "Verstuurd naar {{count}} personen",
+				"open": "{{name}} openen"
+			},
+			"preview": {
+				"live": "Livevoorbeeld van {{name}}",
+				"liveNoName": "Livevoorbeeld",
+				"ready": "{{name}} is klaar",
+				"untitled": "Je werkruimte"
+			}
+		},
+		"profileSetup": {
+			"pageTitle": "Profiel Voltooien",
+			"completeTitle": "Voltooi je profiel",
+			"subtitle": "Voer je naam in om aan de slag te gaan",
+			"yourName": "Je naam",
+			"namePlaceholder": "bijv. Jan Janssen",
+			"saving": "Opslaan...",
+			"continue": "Doorgaan",
+			"welcome": "Welkom, {{name}}!",
+			"redirecting": "Je wordt doorverbonden naar je dashboard...",
+			"toast": {
+				"updateSuccess": "Profiel succesvol bijgewerkt",
+				"updateFailed": "Bijwerken profiel mislukt"
+			},
+			"validation": {
+				"nameRequired": "Naam is verplicht",
+				"nameShort": "Naam moet minimaal 2 tekens bevatten"
+			}
+		},
+		"passwordReset": {
+			"forgotPassword": "Forgot password?",
+			"requestTitle": "Reset your password",
+			"requestSubtitle": "Enter your email and we’ll send you a password reset link.",
+			"sendLink": "Send reset link",
+			"requestError": "Could not request a reset link. Please try again.",
+			"unavailable": "Password reset is unavailable. Contact your instance administrator.",
+			"configError": "Could not reach the server. Please reload the page to try again.",
+			"resetTitle": "Choose a new password",
+			"newPassword": "New password",
+			"confirmPassword": "Confirm new password",
+			"passwordMismatch": "The passwords do not match.",
+			"passwordLength": "Use between 8 and 128 characters.",
+			"invalidLink": "This reset link is invalid or has expired. Request a new link to continue.",
+			"requestNewLink": "Request a new link",
+			"resetError": "Could not reset your password. Please try again.",
+			"success": "Your password has been reset. Sign in with your new password.",
+			"backToSignIn": "Back to sign in",
+			"sentTitle": "Controleer je inbox",
+			"sentDescription": "Als er een account bestaat voor {{email}}, is er een link onderweg om je wachtwoord opnieuw in te stellen. Deze verloopt over 1 uur.",
+			"sentHelpTitle": "Niets ontvangen?",
+			"sentHelpDescription": "Kijk in je spammap, of vraag over een minuut een nieuwe link aan.",
+			"rememberedIt": "Weet je het weer?",
+			"resetDescription": "Gebruik 8 tot 128 tekens. Andere apparaten worden uitgelogd.",
+			"updatePassword": "Wachtwoord bijwerken",
+			"changedMind": "Van gedachten veranderd?",
+			"invalidLinkTitle": "Deze link is verlopen",
+			"successTitle": "Wachtwoord bijgewerkt"
+		},
+		"page": {
+			"terms": "Voorwaarden",
+			"privacy": "Privacy"
+		},
+		"device": {
+			"connect": {
+				"title": "Apparaat koppelen",
+				"description": "Vul de code in die in je terminal of app wordt getoond om deze aan je Kaneo-account te koppelen.",
+				"label": "Apparaatcode",
+				"submit": "Doorgaan",
+				"noCode": "Nog geen code? Begin eerst met inloggen vanuit je app.",
+				"codeRequired": "Vul de code in die op je apparaat wordt getoond.",
+				"invalidCode": "Die code is ongeldig of verlopen."
+			},
+			"approve": {
+				"pageTitle": "Apparaat goedkeuren",
+				"title": "Dit apparaat koppelen?",
+				"description": "Een apparaat wil inloggen als {{email}}. Keur het alleen goed als je dit zelf hebt gestart.",
+				"matchCode": "Controleer of dit overeenkomt met de code op je apparaat",
+				"deny": "Weigeren",
+				"approve": "Goedkeuren",
+				"failed": "Het verzoek kon niet worden bijgewerkt. Probeer het opnieuw."
+			},
+			"approved": {
+				"title": "Apparaat gekoppeld",
+				"description": "Ga terug naar je terminal of app. Je kunt dit tabblad sluiten."
+			},
+			"denied": {
+				"title": "Verzoek geweigerd",
+				"description": "Er is niets gekoppeld. Je kunt dit tabblad sluiten."
+			},
+			"missing": {
+				"title": "Geen apparaatcode",
+				"description": "Open deze pagina vanaf je apparaat, of vul de code zelf in.",
+				"enterCode": "Code invullen"
+			},
+			"signIn": {
+				"title": "Log in om je apparaat te koppelen",
+				"description": "Daarna kom je meteen hier terug om het goed te keuren.",
+				"submit": "Inloggen"
+			}
+		},
+		"mcp": {
+			"authorize": {
+				"title": "Een MCP-client autoriseren",
+				"description": "Deze kan namens jou handelen in elke werkruimte waartoe je toegang hebt. Ga alleen door als je deze verbinding zelf hebt gestart.",
+				"client": "Client",
+				"unknownClient": "MCP-client",
+				"selfReported": "Door de client opgegeven",
+				"redirect": "Stuurt je terug naar",
+				"signedInAs": "Ingelogd als",
+				"deny": "Weigeren",
+				"allow": "Toegang toestaan"
+			},
+			"expired": {
+				"title": "Dit verzoek is verlopen",
+				"description": "Ga terug naar je MCP-client en maak opnieuw verbinding."
+			},
+			"signIn": {
+				"title": "Log in om deze client te autoriseren",
+				"description": "Daarna kom je meteen hier terug om het te controleren.",
+				"submit": "Inloggen"
+			}
+		}
+	},
+	"settings": {
+		"advancedSettings": "Geavanceerde instellingen",
+		"account": "Account",
+		"developer": "Ontwikkelaar",
+		"information": "Informatie",
+		"preferences": "Voorkeuren",
+		"apiKeys": "API-sleutels",
+		"informationPage": {
+			"pageTitle": "Persoonlijke Informatie",
+			"title": "Persoonlijke Informatie",
+			"subtitle": "Beheer je persoonlijke gegevens en accountinformatie.",
+			"sectionTitle": "Accountinformatie",
+			"sectionSubtitle": "Beheer je profiel- en accountgegevens.",
+			"profilePicture": "Profielfoto",
+			"fullName": "Volledige naam",
+			"fullNamePlaceholder": "Voer je naam in",
+			"email": "E-mail",
+			"emailPlaceholder": "Voer je e-mailadres in",
+			"updateSuccess": "Profiel succesvol bijgewerkt",
+			"updateError": "Bijwerken profiel mislukt",
+			"validation": {
+				"nameRequired": "Naam is verplicht",
+				"nameShort": "Naam moet minimaal 2 tekens bevatten",
+				"invalidEmail": "Ongeldig e-mailadres"
+			},
+			"avatar": {
+				"hint": "PNG, JPEG, or WebP. Cropped to a square and resized to 256x256.",
+				"remove": "Remove",
+				"removeError": "Failed to remove profile picture",
+				"removeSuccess": "Profile picture removed",
+				"updateError": "Failed to update profile picture",
+				"updateSuccess": "Profile picture updated",
+				"change": "Change avatar",
+				"edit": "Change your profile picture"
+			},
+			"deleteAccount": {
+				"confirm": "Delete account",
+				"confirmLabel": "Confirm your email address",
+				"description": "Workspaces only you belong to are deleted with your account. Elsewhere, your tasks stay and become unassigned, and your comments are removed.",
+				"error": "Failed to delete account",
+				"modalDescription": "This cannot be undone. Type {{email}} to confirm.",
+				"modalTitle": "Delete your account?",
+				"sectionSubtitle": "Permanent actions that affect your whole account.",
+				"sectionTitle": "Danger zone",
+				"success": "Your account has been deleted",
+				"title": "Delete account",
+				"sessionTooOld": "For security, sign out and sign back in before deleting your account."
+			}
+		},
+		"preferencesPage": {
+			"title": "Voorkeuren",
+			"subtitle": "Pas je Kaneo-ervaring aan.",
+			"appearanceTitle": "Uiterlijk",
+			"appearanceSubtitle": "Visuele instellingen en lay-outvoorkeuren.",
+			"theme": "Thema",
+			"themeDescription": "Kies je gewenste kleurenschema",
+			"selectTheme": "Selecteer een thema",
+			"themeLight": "Licht",
+			"themeDark": "Donker",
+			"themeSystem": "Systeem",
+			"language": "Taal",
+			"languageDescription": "Kies je gewenste taal voor de interface",
+			"selectLanguage": "Selecteer een taal",
+			"firstDayOfWeek": "Eerste dag van de week",
+			"firstDayOfWeekDescription": "Kies op welke dag kalenders en weekoverzichten beginnen",
+			"selectFirstDayOfWeek": "Selecteer de eerste dag",
+			"weekStartsOnSunday": "Zondag",
+			"weekStartsOnMonday": "Maandag",
+			"weekStartsOnSaturday": "Zaterdag",
+			"defaultView": "Standaardweergave",
+			"defaultViewDescription": "Kies de weergavemodus voor taken",
+			"selectViewMode": "Selecteer een weergavemodus",
+			"board": "Bord",
+			"list": "Lijst",
+			"gantt": "Gantt",
+			"sidebarDefault": "Zijbalk standaard",
+			"sidebarDefaultDescription": "Houd de zijbalk uitgeklapt bij het opstarten",
+			"displayOptions": "Weergaveopties",
+			"displayOptionsDescription": "Kies welke informatie getoond wordt in taakoverzichten",
+			"taskNumbers": "Taaknummers",
+			"taskNumbersDescription": "Toon taak-ID's en nummers",
+			"assignees": "Toegewezen personen",
+			"assigneesDescription": "Toon wie er aan taken is toegewezen",
+			"dueDates": "Einddatums",
+			"dueDatesDescription": "Toon deadlines van taken",
+			"labels": "Labels",
+			"labelsDescription": "Toon taaklabels en tags",
+			"priority": "Prioriteit",
+			"priorityDescription": "Toon prioriteitsindicatoren",
+			"projectBackgrounds": "Project backgrounds",
+			"projectBackgroundsDescription": "Show project background images on boards"
+		},
+		"developerPage": {
+			"pageTitle": "Ontwikkelaarsinstellingen",
+			"title": "Ontwikkelaarsinstellingen",
+			"subtitle": "Beheer je API-sleutels en ontwikkelaarsbronnen.",
+			"apiKeysCardTitle": "API-sleutels",
+			"apiKeysCardDescription": "Maak en beheer API-sleutels voor programmatische toegang tot Kaneo.",
+			"createApiKey": "API-sleutel maken",
+			"unnamedKey": "Naamloze sleutel"
+		},
+		"apiKey": {
+			"createdModal": {
+				"title": "API-sleutel aangemaakt",
+				"description": "Je API-sleutel \"{{keyName}}\" is succesvol aangemaakt.",
+				"yourApiKey": "Je API-sleutel",
+				"copy": "Kopiëren",
+				"copied": "Gekopieer

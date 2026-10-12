@@ -1,0 +1,178 @@
+  "description": "No access to the project, or missing workspace:manage_settings",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+@@@ -21243,14 -19240,14 +22875,14 @@@
+          }
+        }
+      },
+ -    "/telegram-integration/project/{projectId}": {
+ +    "/workflow-rule/{projectId}": {
+        "get": {
+ -        "operationId": "getTelegramIntegration",
+ +        "operationId": "getWorkflowRules",
+          "tags": [
+ -          "Telegram"
+ +          "Workflow Rules"
+          ],
+ -        "summary": "Get Telegram integration",
+ -        "description": "Get the Telegram integration for a project, or null when none is configured.",
+ +        "summary": "Get workflow rules",
+-         "description": "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires.",
+++        "description": "Get every workflow rule for a project, including each rule's scope: a rule with an integrationId targets one repository binding, a rule without one applies to every repository of that integration type (RFC 0001 WP6).",
+          "parameters": [
+            {
+              "schema": {
+@@@ -21310,13 -19294,13 +22942,13 @@@
+            }
+          }
+        },
+ -      "post": {
+ -        "operationId": "createTelegramIntegration",
+ +      "put": {
+ +        "operationId": "upsertWorkflowRule",
+          "tags": [
+ -          "Telegram"
+ +          "Workflow Rules"
+          ],
+ -        "summary": "Create Telegram integration",
+ -        "description": "Create or replace the Telegram integration for a project. The bot token and chat are checked for shape only, not against Telegram.",
+ +        "summary": "Upsert workflow rule",
+-         "description": "Create a workflow rule, or update the target column of the existing rule for the same integration and event.",
+++        "description": "Create a workflow rule, or update the target column of the existing rule for the same integration and event. An optional integrationId scopes the rule to one repository binding; without it the rule stays type-wide and applies to every repository of that integration type in the project. A repository-specific rule and a type-wide rule for the same event coexist; resolution prefers the repository-specific one.",
+          "parameters": [
+            {
+              "schema": {
+@@@ -21334,14 -19318,43 +22966,19 @@@
+                "schema": {
+                  "type": "object",
+                  "properties": {
+ -                  "botToken": {
+ -                    "type": "string",
+ -                    "minLength": 1,
+ -                    "description": "A Telegram bot token, in the form 123456789:AA..."
+ +                  "integrationType": {
+ +                    "type": "string"
+                    },
+ -                  "chatId": {
+++                  "integrationId": {
++                     "type": "string",
+ -                    "minLength": 1
+ -                  },
+ -                  "threadId": {
+ -                    "type": "number"
+++                    "minLength": 1,
+++                    "maxLength": 128
++                   },
+ -                  "chatLabel": {
+ +                  "eventType": {
+                      "type": "string"
+                    },
+ -                  "events": {
+ -                    "type": "object",
+ -                    "properties": {
+ -                      "taskCreated": {
+ -                        "type": "boolean"
+ -                      },
+ -                      "taskStatusChanged": {
+ -                        "type": "boolean"
+ -                      },
+ -                      "taskPriorityChanged": {
+ -                        "type": "boolean"
+ -                      },
+ -                      "taskTitleChanged": {
+ -                        "type": "boolean"
+ -                      },
+ -                      "taskDescriptionChanged": {
+ -                        "type": "boolean"
+ -                      },
+ -                      "taskCommentCreated": {
+ -                        "type": "boolean"
+ -                      }
+ -                    }
+ +                  "columnId": {
+ +                    "type": "string"
+                    }
+                  },
+                  "required": [
+@@@ -21365,11 -19377,11 +23002,15 @@@
+              }
+            },
+            "400": {
+ -            "description": "The bot token or chat failed validation",
+++<<<<<<< HEAD
+ +            "description": "Invalid body",
+++=======
+++            "description": "Invalid body, unknown project, or the integration does not belong to the project or its type does not match",
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+@@@ -21384,12 -19485,12 +23025,13 @@@
+                }
+              }
+            },
+ -          "400": {
+ -            "description": "The resulting config failed validation",
+++<<<<<<< HEAD
+ +          "403": {
+ +            "description": "No access to the project, or missing project:update permission",
+              "content": {
+ -              "text/plain": {
+ +              "application/json": {
+                  "schema": {
+ -                  "type": "string"
+ +                  "$ref": "#/components/schemas/ApiError"
+                  }
+                }
+              }
+@@@ -21404,20 -19508,25 +23046,31 @@@
+                }
+              }
+            },
+ +          "429": {
+ +            "$ref": "#/components/responses/ApiKeyRateLimited"
+++=======
++           "404": {
+ -            "description": "Telegram integration not found",
+++            "description": "Integration not found",
++             "content": {
++               "text/plain": {
++                 "schema": {
++                   "type": "string"
++                 }
++               }
++             }
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+            }
+          }
+ -      },
+ +      }
+ +    },
+ +    "/workflow-rule/{id}": {
+        "delete": {
+ -        "operationId": "deleteTelegramIntegration",
+ +        "operationId": "deleteWorkflowRule",
+          "tags": [
+ -          "Telegram"
+ +          "Workflow Rules"
+          ],
+ -        "summary": "Delete Telegram integration",
+ -        "description": "Remove the Telegram integration from a project.",
+ +        "summary": "Delete workflow rule",
+ +        "description": "Delete a workflow rule. Returns the rule that was removed.",
+          "parameters": [
+            {
+              "schema": {

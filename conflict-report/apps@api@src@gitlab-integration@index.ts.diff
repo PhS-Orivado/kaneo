@@ -1,0 +1,87 @@
+diff --cc apps/api/src/gitlab-integration/index.ts
+index d55c2898,4797b677..00000000
+--- a/apps/api/src/gitlab-integration/index.ts
++++ b/apps/api/src/gitlab-integration/index.ts
+@@@ -141,14 -205,16 +204,27 @@@ const createIntegrationRoute = createRo
+    },
+    responses: {
+      200: jsonResponse("The stored integration", gitlabIntegrationSchema),
+++<<<<<<< HEAD
+ +    400: errorResponse("Invalid body"),
+++=======
++     409: errorResponse(
++       "The GitLab project is already linked to this project (repository_already_linked)",
++     ),
++     402: errorResponse(
++       "The plan's repository binding limit is reached (binding_limit_exceeded)",
++     ),
++     400: errorResponse("Invalid body, or unknown project"),
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+      403: errorResponse(
+ -      "No workspace access, or missing workspace:manage_settings",
+ +      "No access to the project, or missing workspace:manage_settings",
+ +    ),
+++<<<<<<< HEAD
+ +    409: errorResponse(
+ +      "That GitLab project is already linked to another Kaneo project",
+      ),
+ +    404: errorResponse("Project not found"),
+++=======
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    },
+  });
+  
+@@@ -170,12 -239,15 +249,20 @@@ const updateIntegrationRoute = createRo
+    },
+    responses: {
+      200: jsonResponse("The updated integration", gitlabIntegrationSchema),
++     409: errorResponse("Integration changed; refresh before updating settings"),
++     402: errorResponse(
++       "The plan's repository binding limit is reached (binding_limit_exceeded)",
++     ),
+      400: errorResponse("The resulting config failed validation"),
+      403: errorResponse(
+ -      "No workspace access, or missing workspace:manage_settings",
+ +      "No access to the project, or missing workspace:manage_settings",
+      ),
+++<<<<<<< HEAD
+ +    404: errorResponse("Project or integration not found"),
+ +    409: errorResponse("Integration changed; refresh before updating settings"),
+++=======
++     404: jsonResponse("Integration not found", integrationNotFoundSchema),
+++>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+    },
+  });
+  
+@@@ -217,11 -293,11 +308,11 @@@ const importIssuesRoute = createRoute(
+    },
+    responses: {
+      200: jsonResponse("Import summary", gitlabImportResultSchema),
+-     400: errorResponse("projectId is required"),
++     400: errorResponse("integrationId is required"),
+      403: errorResponse(
+ -      "No workspace access, or missing task:create or task:update permission",
+ +      "No access to the project, or missing task:create or task:update permission",
+      ),
+-     404: errorResponse("Project not found"),
++     404: errorResponse("Integration or project not found"),
+    },
+  });
+  
+@@@ -287,9 -376,15 +391,15 @@@ const gitlabIntegration = apiRouter<Bas
+      });
+  
+      if (!row) {
+ -      return c.json({ error: "Integration not found" }, 404);
+ +      throw new HTTPException(404, { message: "Integration not found" });
+      }
+  
++     // WP10: reactivation re-enters the binding count, so the quota guard runs
++     // before the update writes isActive=true.
++     if (body.isActive === true && !row.isActive) {
++       await assertRepositoryBindingQuota(row.projectId, c.get("workspaceId"));
++     }
++ 
+      let config: GitlabConfig;
+      try {
+        config = JSON.parse(row.config) as GitlabConfig;

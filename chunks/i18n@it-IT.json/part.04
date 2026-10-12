@@ -1,0 +1,797 @@
+email of your Atlassian account. Leave it empty for Jira Data Center.",
+				"emailLabel": "Email",
+				"nameMatchTip": "Jira often hides email addresses, so assignees may be matched to people here by full name.",
+				"openSettings": "Open Atlassian API tokens",
+				"stepCreate": "Create an API token and copy it.",
+				"stepOpen": "Open id.atlassian.com, then Security, then API tokens.",
+				"stepPaste": "Paste it with the email you sign in to Jira with.",
+				"tokenDescription": "Cloud: create one at id.atlassian.com. Data Center: use a personal access token.",
+				"tokenLabel": "API token",
+				"tokenPlaceholder": "Paste token",
+				"urlDescription": "Copy it from your browser. Data Center works too.",
+				"urlLabel": "Jira site URL",
+				"urlPlaceholder": "https://your-site.atlassian.net"
+			}
+=======
+		"repositoryBindings": {
+			"actionDisconnect": "Disconnect",
+			"actionImportIssues": "Import issues",
+			"actionSettings": "Binding settings",
+			"actionSyncRules": "Sync rules",
+			"actionWorkflowRules": "Workflow rules",
+			"addFirstHint": "Bind a repository to sync its issues and pull requests into this project.",
+			"addFirstTitle": "Connect your first repository",
+			"addMore": "Add repository",
+			"addRepositoryHint": "Enter the instance URL and an access token, or pick a repository you can access.",
+			"addRepositoryTitle": "Add repository",
+			"browseRepositories": "Browse repositories",
+			"commentTaskLinkHint": "Post a comment with a link to the task on every synced issue.",
+			"commentTaskLinkTitle": "Comment task link",
+			"disconnectConfirm": "Disconnect",
+			"disconnectDescription": "{{provider}} stops syncing {{repository}} with this project. Already synced tasks stay.",
+			"disconnectTitle": "Disconnect repository",
+			"disconnectWorking": "Disconnecting...",
+			"dismissError": "Dismiss",
+			"importMeta": "{{imported}} imported, {{updated}} updated, {{skipped}} skipped",
+			"linkedInOtherProject": "Linked in {{project}}",
+			"linkedInProject": "Linked in this project",
+			"linkedInUnknownProject": "Linked in another project",
+			"listEmpty": "No repository is connected yet.",
+			"listError": "The repository bindings could not be loaded.",
+			"listTitle": "Connected repositories",
+			"openRepository": "Open {{repository}}",
+			"rowMenuLabel": "Actions for {{repository}}",
+			"settingsTitle": "Binding settings",
+			"statusActive": "Active",
+			"statusNeedsVerification": "Needs verification",
+			"statusPaused": "Paused",
+			"syncRulesHint": "These sync rules apply to {{repository}} only.",
+			"syncRulesTitle": "Sync rules",
+			"toast": {
+				"added": "Repository connected.",
+				"secretCopied": "Webhook secret copied to the clipboard.",
+				"unableToCopySecret": "The webhook secret could not be copied."
+			},
+			"upgrade": "Upgrade plan",
+			"usageLimited": "{{used}} of {{limit}} repositories",
+			"usageUnlimited": "{{used}} repositories",
+			"webhookCopy": "Copy secret",
+			"webhookHide": "Hide secret",
+			"webhookHint": "Kaneo signs every webhook event it sends with this secret so the provider can verify the source.",
+			"webhookSecretLabel": "Webhook secret",
+			"webhookShow": "Show secret",
+			"webhookTitle": "Webhook",
+			"workflowRulesHint": "These workflow rules apply to {{repository}} only.",
+			"workflowRulesTitle": "Workflow rules"
+>>>>>>> 0d3149e38b9ca5b66b6f032dce0422cc354a3250
+		}
+	},
+	"navigation": {
+		"commandPalette": {
+			"suggestions": "Suggerimenti",
+			"commands": "Comandi",
+			"projects": "Progetti",
+			"search": "Cerca",
+			"members": "Membri",
+			"createTask": "Crea attività",
+			"createProject": "Crea progetto",
+			"createWorkspace": "Crea workspace",
+			"lightTheme": "Tema chiaro",
+			"darkTheme": "Tema scuro",
+			"systemTheme": "Tema di sistema",
+			"keyboardShortcuts": "Scorciatoie da tastiera",
+			"inputPlaceholder": "Cerca app e comandi...",
+			"empty": "Nessun risultato trovato.",
+			"footer": {
+				"navigate": "Naviga",
+				"open": "Apri",
+				"close": "Chiudi"
+			}
+		},
+		"sidebar": {
+			"projects": "Progetti",
+			"members": "Membri",
+			"invitations": "Inviti",
+			"more": "Altro",
+			"backToBoard": "Torna alla board",
+			"home": "Home",
+			"inbox": "Inbox",
+			"invitePeople": "Invite people",
+			"myTasks": "My tasks"
+		},
+		"projectList": {
+			"viewProject": "Vedi Progetto",
+			"shareProject": "Condividi Progetto",
+			"projectSettings": "Impostazioni progetto",
+			"linkCopied": "Link del progetto copiato negli appunti",
+			"addProject": "Aggiungi progetto",
+			"deleteConfirmTitle": "Eliminare il Progetto?",
+			"deleteConfirmDescription": "Questo rimuoverà permanentemente il progetto e tutti i suoi dati. Non puoi annullare questa azione.",
+			"deletedToast": "Progetto eliminato",
+			"deleteProject": "Elimina Progetto",
+			"switcherLabel": "Cambia progetto o vista"
+		},
+		"search": {
+			"inputPlaceholder": "Cerca attività, progetti, commenti...",
+			"minCharsHint": "Digita almeno 3 caratteri per cercare",
+			"groups": {
+				"task": "Attività",
+				"project": "Progetti",
+				"workspace": "Workspace",
+				"comment": "Commenti",
+				"activity": "Attività",
+				"fallback": "Risultati"
+			}
+		},
+		"settingsLayout": {
+			"toggleSidebar": "Attiva/disattiva barra laterale",
+			"back": "Indietro"
+		},
+		"userMenu": {
+			"signedOutSuccess": "Disconnessione effettuata con successo",
+			"signOutFailed": "Disconnessione fallita",
+			"unnamedUser": "Utente",
+			"settings": "Impostazioni",
+			"signingOut": "Disconnessione in corso...",
+			"logOut": "Esci"
+		},
+		"workspaceSwitcher": {
+			"workspaces": "Workspace",
+			"switching": "Cambiamento in corso...",
+			"addWorkspace": "Aggiungi workspace",
+			"selectWorkspace": "Seleziona workspace"
+		},
+		"page": {
+			"projectsTitle": "Progetti",
+			"settingsTitle": "Impostazioni",
+			"backToWorkspace": "Torna al Workspace",
+			"settingsWorkspaceTab": "Workspace"
+		},
+		"projectSettings": {
+			"projectLabel": "Progetto"
+		},
+		"keyboardShortcuts": {
+			"title": "Scorciatoie da Tastiera",
+			"subtitle": "Accelera il tuo flusso di lavoro con le scorciatoie da tastiera",
+			"searchPlaceholder": "Cerca scorciatoie...",
+			"footer": "Premi <kbd>Escape</kbd> per chiudere",
+			"categories": {
+				"general": "Generale",
+				"create": "Crea",
+				"views": "Viste",
+				"navigation": "Navigazione",
+				"quickSelect": "Selezione Rapida (nei popover)"
+			},
+			"items": {
+				"openCommandPalette": "Apri la palette comandi",
+				"globalSearch": "Ricerca globale",
+				"toggleSidebar": "Attiva/disattiva barra laterale",
+				"showShortcuts": "Mostra scorciatoie da tastiera",
+				"closeModal": "Chiudi modale/popover",
+				"createTask": "Crea attività",
+				"createProject": "Crea progetto",
+				"createWorkspace": "Crea workspace",
+				"boardView": "Passa a vista board",
+				"listView": "Passa a vista elenco",
+				"backlogView": "Passa a vista backlog",
+				"nextTask": "Attività successiva",
+				"prevTask": "Attività precedente",
+				"openTask": "Apri attività selezionata",
+				"quickSelectNumber": "Seleziona opzione per numero",
+				"calendarView": "Passa alla vista calendario"
+			}
+		}
+	},
+	"notifications": {
+		"newCount_one": "{{count}} nuova",
+		"newCount_other": "{{count}} nuove",
+		"emptyTitle": "Nessuna notifica ancora",
+		"emptySubtitle": "Vedrai aggiornamenti e attività qui.",
+		"clearAll": "Cancella tutte le notifiche",
+		"clearDialogTitle": "Cancellare tutte le notifiche?",
+		"clearDialogDescription": "Questo rimuoverà permanentemente tutte le notifiche. Non puoi annullare questa azione.",
+		"reminderLeadTime": {
+			"minutes_one": "{{count}} minuto",
+			"minutes_other": "{{count}} minuti",
+			"hours_one": "{{count}} ora",
+			"hours_other": "{{count}} ore",
+			"days_one": "{{count}} giorno",
+			"days_other": "{{count}} giorni",
+			"days_many": "{{count}} giorni",
+			"hours_many": "{{count}} ore",
+			"minutes_many": "{{count}} minuti"
+		},
+		"events": {
+			"task_created": {
+				"title": "Nuova attività creata",
+				"content": "L'attività \"{{taskTitle}}\" è stata creata"
+			},
+			"workspace_created": {
+				"title": "Workspace creato",
+				"content": "Il tuo workspace \"{{workspaceName}}\" è stato creato con successo"
+			},
+			"task_status_changed": {
+				"title": "Stato attività cambiato",
+				"content": "Lo stato dell'attività \"{{taskTitle}}\" è cambiato da \"{{oldStatus}}\" a \"{{newStatus}}\""
+			},
+			"task_assignee_changed": {
+				"title": "Attività a te assegnata",
+				"content": "Sei stato assegnato all'attività: {{taskTitle}}"
+			},
+			"task_mention": {
+				"title": "{{mentionerName}} ti ha menzionato",
+				"content": "{{mentionerName}} ti ha menzionato in: {{taskTitle}}"
+			},
+			"task_comment": {
+				"title": "{{commenterName}} ha commentato la tua attività",
+				"content": "Nuovo commento su {{taskTitle}}: {{commentPreview}}"
+			},
+			"due_date_reminder": {
+				"title": "Attività in scadenza",
+				"content": "{{taskTitle}} scade tra {{leadTime}}"
+			},
+			"task_overdue": {
+				"title": "Attività scaduta",
+				"content": "{{taskTitle}} è oltre la data di scadenza"
+			},
+			"time_entry_created": {
+				"title": "Tracciamento tempo iniziato",
+				"contentWithTask": "Tracciamento tempo iniziato sull'attività: {{taskTitle}}",
+				"contentWithoutTask": "Tracciamento tempo iniziato su un'attività"
+			}
+		},
+		"newCount_many": "{{count}} nuove",
+		"inbox": {
+			"back": "Inbox",
+			"earlier": "Earlier",
+			"emptyFilter": "Nothing here",
+			"filters": {
+				"all": "All",
+				"label": "Filter notifications",
+				"mentions": "Mentions",
+				"unread": "Unread"
+			},
+			"openTask": "Open task",
+			"pageTitle": "Inbox",
+			"recentActivity": "Recent activity",
+			"selectPrompt": "Select a notification to read it",
+			"taskUnavailable": "This task is no longer available.",
+			"today": "Today",
+			"unread": "Unread",
+			"loadError": "Notifications couldn't be loaded.",
+			"taskLoadError": "This task couldn’t be loaded."
+		}
+	},
+	"activity": {
+		"assignedToSelf": "ha assegnato l'attività a sé stesso",
+		"unassigned": "ha rimosso l'assegnazione dell'attività",
+		"assignedTo": "ha assegnato l'attività a {{name}}",
+		"changedStatus": "ha cambiato lo stato da {{from}} a {{to}}",
+		"changedPriority": "ha cambiato la priorità da {{from}} a {{to}}",
+		"clearedDueDate": "ha rimosso la data di scadenza",
+		"setDueDate": "ha impostato la scadenza al {{date}}",
+		"changedDueDate": "ha cambiato la scadenza da {{from}} a {{to}}",
+		"changedTitle": "ha cambiato il titolo da \"{{from}}\" a \"{{to}}\"",
+		"moved": "ha spostato l'attività da \"{{from}}\" a \"{{to}}\"",
+		"created": "ha creato questa attività",
+		"githubUser": "Utente GitHub",
+		"comment": {
+			"viewGithubProfile": "Vedi Profilo GitHub",
+			"cannotBeEmpty": "Il commento non può essere vuoto",
+			"mustBeLoggedInToEdit": "Devi aver effettuato l'accesso per modificare i commenti",
+			"updated": "Commento aggiornato",
+			"failedToUpdate": "Aggiornamento commento fallito",
+			"edit": "Modifica commento",
+			"editPlaceholder": "Modifica commento...",
+			"save": "Salva",
+			"added": "Commento aggiunto",
+			"failedToAdd": "Aggiunta commento fallita",
+			"leavePlaceholder": "Lascia un commento...",
+			"attachFile": "Allega file",
+			"submitShortcut": "Invia commento",
+			"editor": {
+				"uploadsOnlyOnSavedTasks": "Il caricamento di file è disponibile solo su attività salvate.",
+				"uploadingFile": "Caricamento file in corso...",
+				"imageUploaded": "Immagine caricata",
+				"fileAttached": "File allegato",
+				"failedToUploadFile": "Caricamento file fallito",
+				"enterUrl": "Inserisci URL",
+				"plaintext": "Testo semplice",
+				"autoDetect": "Rilevamento automatico",
+				"slashGroupText": "Testo",
+				"slashGroupLists": "Elenchi",
+				"slashGroupInsert": "Inserisci",
+				"slashParagraph": "Testo",
+				"slashHeading": "Intestazione",
+				"slashBulletList": "Elenco puntato",
+				"slashTaskList": "Elenco attività",
+				"slashOrderedList": "Elenco numerato",
+				"slashQuote": "Citazione",
+				"slashCodeBlock": "Blocco di codice",
+				"slashTable": "Tabella",
+				"slashFile": "File",
+				"searchParagraph": "testo paragrafo normale",
+				"searchHeading": "intestazione titolo h2",
+				"searchBulletList": "elenco puntato non ordinato",
+				"searchTaskList": "todo da-fare checklist elenco attività",
+				"searchOrderedList": "elenco ordinato numerato",
+				"searchQuote": "citazione blockquote",
+				"searchCodeBlock": "codice snippet",
+				"searchTable": "tabella griglia",
+				"searchFile": "file allegato immagine foto foto caricamento",
+				"embedErrorInvalidUrl": "Inserisci un URL valido",
+				"embedErrorYoutubeOnly": "Solo i link YouTube possono essere incorporati.",
+				"embedVideo": "Incorpora video",
+				"keepAsLink": "Mantieni come link",
+				"hintTab": "Tab",
+				"hintEsc": "Esc",
+				"pasteUrl": "Incolla URL",
+				"asLink": "Come link",
+				"embed": "Incorpora",
+				"noCommands": "Nessun comando",
+				"ariaCommentContent": "Contenuto commento",
+				"ariaCommentEditor": "Editor commento",
+				"ariaCopyCode": "Copia codice",
+				"ariaCopied": "Copiato",
+				"copy": "Copia",
+				"copied": "Copiato",
+				"dropImageToUpload": "Trascina immagine per caricarla",
+				"previewImageAlt": "Anteprima immagine",
+				"codeLang": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"markdown": "Markdown",
+					"plaintext": "Testo semplice",
+					"python": "Python",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"typescript": "TypeScript",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"table": {
+					"addColumnBefore": "Inserisci colonna a sinistra",
+					"addColumnAfter": "Inserisci colonna a destra",
+					"deleteColumn": "Elimina colonna",
+					"addRowBefore": "Inserisci riga sopra",
+					"addRowAfter": "Inserisci riga sotto",
+					"deleteRow": "Elimina riga",
+					"deleteTable": "Elimina tabella"
+				},
+				"mermaid": {
+					"renderFailed": "Impossibile eseguire il rendering del diagramma Mermaid"
+				}
+			},
+			"importedFrom": "Imported from {{source}}",
+			"importedBy": "Imported by {{name}}",
+			"commentedOnForge": "ha commentato su {{forge}}"
+		},
+		"movedFromOtherProject": "moved task from another project to \"{{to}}\""
+	},
+	"tasks": {
+		"title": "Attività",
+		"status": {
+			"label": "Stato",
+			"to-do": "Da Fare",
+			"in-progress": "In Corso",
+			"in-review": "In Revisione",
+			"done": "Completato",
+			"archived": "Archiviato",
+			"planned": "Pianificato"
+		},
+		"priority": {
+			"label": "Priorità",
+			"no-priority": "Nessuna priorità",
+			"low": "Bassa",
+			"medium": "Media",
+			"high": "Alta",
+			"urgent": "Urgente"
+		},
+		"boardSearchPlaceholder": "Cerca ticket...",
+		"view": {
+			"board": "Board",
+			"list": "Elenco",
+			"backlog": "Backlog",
+			"gantt": "Gantt",
+			"heading": "Vista"
+		},
+		"common": {
+			"selectTask": "Seleziona attività",
+			"loadingTask": "Caricamento attività...",
+			"taskNotFound": "Attività non trovata",
+			"taskNotFoundDescription": "L'attività che stai cercando non esiste o è stata eliminata.",
+			"ticketAmbiguous": "L'ID corrisponde a più attività",
+			"ticketAmbiguousDescription": "{{ticketId}} corrisponde ad attività in più progetti di questo workspace. Assegna una chiave diversa a uno di questi progetti per far funzionare il link.",
+			"ticketNotFoundDescription": "In questo workspace non esiste un'attività con ID {{ticketId}}, oppure non hai accesso a essa.",
+			"customFields": "Custom Fields"
+		},
+		"detail": {
+			"subtaskOf": "Sotto-attività di",
+			"activity": "Attività",
+			"noActivity": "Nessuna attività trovata",
+			"openInFullPage": "Apri a pagina intera",
+			"titlePlaceholder": "Clicca per aggiungere un titolo",
+			"addDescription": "Aggiungi una descrizione...",
+			"editor": {
+				"ariaLabel": "Editor descrizione attività",
+				"placeholder": "Scrivi una descrizione...",
+				"previewImage": "Anteprima immagine",
+				"enterUrl": "Inserisci URL",
+				"autoDetect": "Rilevamento automatico",
+				"copyCode": "Copia codice",
+				"copy": "Copia",
+				"copied": "Copiato",
+				"attachFile": "Allega file",
+				"dropToUpload": "Trascina immagine per caricarla",
+				"checkbox": {
+					"markIncomplete": "Segna attività come non completata",
+					"markComplete": "Segna attività come completata"
+				},
+				"upload": {
+					"loading": "Caricamento file in corso...",
+					"failed": "Caricamento file fallito",
+					"imageSuccess": "Immagine caricata",
+					"fileSuccess": "File allegato"
+				},
+				"slash": {
+					"groups": {
+						"text": "Testo",
+						"lists": "Elenchi",
+						"insert": "Inserisci"
+					},
+					"empty": "Nessun comando",
+					"commands": {
+						"paragraph": "Testo",
+						"heading-2": "Intestazione",
+						"bullet-list": "Elenco puntato",
+						"task-list": "Elenco attività",
+						"ordered-list": "Elenco numerato",
+						"blockquote": "Citazione",
+						"code-block": "Blocco di codice",
+						"table": "Tabella",
+						"file": "File"
+					}
+				},
+				"languages": {
+					"bash": "Bash",
+					"csharp": "C#",
+					"cpp": "C++",
+					"css": "CSS",
+					"clojure": "Clojure",
+					"cypher": "Cypher",
+					"dart": "Dart",
+					"diff": "Diff",
+					"elixir": "Elixir",
+					"excel": "Excel",
+					"go": "Golang",
+					"graphql": "GraphQL",
+					"html": "HTML",
+					"haskell": "Haskell",
+					"json": "JSON",
+					"java": "Java",
+					"javascript": "JavaScript",
+					"kotlin": "Kotlin",
+					"makefile": "Makefile",
+					"markdown": "Markdown",
+					"ocaml": "OCaml",
+					"php": "PHP",
+					"perl": "Perl",
+					"plaintext": "Testo semplice",
+					"python": "Python",
+					"r": "R",
+					"reasonml": "ReasonML",
+					"ruby": "Ruby",
+					"rust": "Rust",
+					"sql": "SQL",
+					"swift": "Swift",
+					"toml": "TOML",
+					"terraform": "Terraform",
+					"typescript": "TypeScript",
+					"xml": "XML",
+					"yaml": "YAML",
+					"mermaid": "Mermaid"
+				},
+				"embed": {
+					"choice": {
+						"embedVideo": "Incorpora video",
+						"keepAsLink": "Mantieni come link"
+					},
+					"inputPlaceholder": "Incolla URL",
+					"embeddedContent": "Contenuto incorporato",
+					"asLink": "Come link",
+					"submit": "Incorpora",
+					"errors": {
+						"invalidUrl": "Inserisci un URL valido",
+						"onlyYoutube": "Solo i link YouTube possono essere incorporati."
+					},
+					"onlyYoutubeInline": "Solo gli URL YouTube possono essere incorporati. Usa invece la modalità link."
+				},
+				"mermaid": {
+					"renderFailed": "Impossibile eseguire il rendering del diagramma Mermaid"
+				},
+				"image": {
+					"large": "Large",
+					"medium": "Medium",
+					"reset": "Reset size",
+					"resizeHandle": "Resize image",
+					"small": "Small"
+				},
+				"saved": "Saved",
+				"saving": "Saving…",
+				"saveFailed": "Changes could not be saved",
+				"retrySave": "Retry"
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
+		},
+		"entity": {
+			"task": "Attività"
+		},
+		"relations": {
+			"title": "Relazioni",
+			"tasksInProject": "Attività nel progetto",
+			"linkError": "Collegamento attività fallito",
+			"empty": "Nessuna attività correlata",
+			"searchPlaceholder": "Cerca attività da collegare...",
+			"noTasksFound": "Nessuna attività trovata",
+			"openTask": "Apri attività",
+			"removeRelation": "Rimuovi relazione",
+			"related": "Correlata",
+			"blocks": "Blocca",
+			"selectTask": "Seleziona un'attività da collegare",
+			"types": {
+				"blocks": "blocca",
+				"blocked_by": "bloccata da",
+				"related": "correlata a"
+			}
+		},
+		"subtasks": {
+			"title": "Sotto-attività",
+			"inputPlaceholder": "Titolo sotto-attività...",
+			"addAction": "Aggiungi",
+			"empty": "Nessuna sotto-attività ancora",
+			"createError": "Creazione sotto-attività fallita",
+			"deleteSuccess": "Attività eliminata con successo",
+			"deleteError": "Eliminazione attività fallita",
+			"deleteDialogTitle": "Eliminare l'Attività?",
+			"deleteDialogDescription": "Questo rimuoverà permanentemente l'attività e tutti i suoi dati. Non puoi annullare questa azione.",
+			"deleteAction": "Elimina Attività",
+			"completeAria": "Segna sotto-attività come completata",
+			"progress": "{{completed}} di {{total}} sottoattività completate",
+			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
+		},
+		"properties": {
+			"title": "Proprietà",
+			"labels": "Etichette",
+			"copyTaskLink": "Copia link attività",
+			"copyTaskBranch": "Copia ramo attività",
+			"taskLinkCopied": "Link dell'attività copiato",
+			"taskBranchCopied": "Nome del branch copiato",
+			"start": "Inizio",
+			"startDate": "Data inizio",
+			"noDate": "Nessuna data"
+		},
+		"move": {
+			"title": "Sposta attività",
+			"projectLabel": "Progetto di destinazione",
+			"projectPlaceholder": "Seleziona un progetto",
+			"statusLabel": "Stato di destinazione",
+			"statusHintKeep": "Il flusso di lavoro di questo progetto supporta già lo stato corrente.",
+			"statusHintAdjust": "Scegli lo stato da usare nel progetto di destinazione.",
+			"action": "Sposta attività",
+			"success": "Attività spostata con successo",
+			"error": "Spostamento attività fallito"
+		},
+		"popover": {
+			"assignee": {
+				"unassigned": "Non assegnato",
+				"updateError": "Aggiornamento assegnatario attività fallito"
+			},
+			"status": {
+				"updateError": "Aggiornamento stato attività fallito"
+			},
+			"priority": {
+				"updateError": "Aggiornamento priorità attività fallito"
+			},
+			"dueDate": {
+				"updateSuccess": "Data scadenza attività aggiornata con successo",
+				"updateError": "Aggiornamento data scadenza attività fallito",
+				"clear": "Cancella data"
+			},
+			"startDate": {
+				"updateSuccess": "Data inizio attività aggiornata con successo",
+				"updateError": "Aggiornamento data inizio attività fallito",
+				"clear": "Cancella data inizio"
+			},
+			"labels": {
+				"searchPlaceholder": "Cerca etichette...",
+				"empty": "Nessuna etichetta trovata",
+				"create": "Crea \"{{name}}\"",
+				"chooseColor": "Scegli colore",
+				"addSuccess": "Etichetta aggiunta",
+				"removeSuccess": "Etichetta rimossa",
+				"updateError": "Aggiornamento etichetta fallito",
+				"createSuccess": "Etichetta creata e aggiunta",
+				"createError": "Creazione etichetta fallita",
+				"colors": {
+					"stone": "Pietra",
+					"slate": "Ardesia",
+					"lavender": "Lavanda",
+					"sage": "Salvia",
+					"forest": "Foresta",
+					"amber": "Ambra",
+					"terracotta": "Terracotta",
+					"rose": "Rosa",
+					"crimson": "Cremisi"
+				},
+				"editLabels": "Modifica etichette"
+			}
+		},
+		"backlog": {
+			"pageTitle": "Backlog di {{name}}",
+			"noTasksToMove": "Nessuna attività pianificata da spostare",
+			"moveAllConfirm": "Spostare tutte le {{count}} attività pianificate in Da Fare?",
+			"moveAllSuccess": "{{count}} attività spostate in Da Fare",
+			"plan": "Pianifica",
+			"moveAllTooltip": "Sposta Tutte le Pianificate in Da Fare",
+			"moveAll": "Sposta Tutte",
+			"addTask": "Aggiungi attività",
+			"filter": "Filtra",
+			"addFilter": "Aggiungi filtro...",
+			"sections": {
+				"planned": "Pianificate",
+				"archived": "Archiviate"
+			},
+			"noTasksInSection": "Nessuna attività {{section}}",
+			"filters": {
+				"priority": "Priorità: {{name}}",
+				"assignee": "Assegnatario: {{name}}",
+				"due": "Scadenza: {{date}}",
+				"label": "Etichetta: {{name}}",
+				"dueThisWeek": "Scade questa settimana",
+				"dueNextWeek": "Scade la prossima settimana",
+				"noDueDate": "Nessuna scadenza"
+			}
+		},
+		"sort": {
+			"label": "Ordina",
+			"by": "Ordina Per",
+			"direction": "Direzione",
+			"ascending": "Crescente",
+			"descending": "Decrescente",
+			"fields": {
+				"position": "Manuale (posizione)",
+				"createdAt": "Data creazione",
+				"priority": "Priorità",
+				"dueDate": "Data scadenza",
+				"title": "Titolo",
+				"number": "Numero attività"
+			}
+		},
+		"boardFilters": {
+			"filterBy": "Filtra Per",
+			"allStatuses": "Tutti gli stati",
+			"allPriorities": "Tutte le priorità",
+			"allAssignees": "Tutti gli assegnatari",
+			"allDueDates": "Tutte le scadenze",
+			"allLabels": "Tutte le etichette",
+			"selectedCount": "{{count}} selezionati",
+			"subjects": {
+				"status": "Stato",
+				"priority": "Priorità",
+				"assignee": "Assegnatario",
+				"dueDate": "Data scadenza",
+				"labels": "Etichette"
+			},
+			"operators": {
+				"isAnyOf": "è uno di",
+				"includeAnyOf": "include uno di"
+			},
+			"all": "All",
+			"allCustomFieldValues": "All values",
+			"noCustomFieldValues": "No custom field values",
+			"noValuesUsedYet": "No values used yet"
+		},
+		"gantt": {
+			"pageTitle": "{{name}} – Gantt",
+			"title": "Cronologia Gantt",
+			"searchPlaceholder": "Cerca ticket programmati...",
+			"hideTasks": "Nascondi attività",
+			"showTasks": "Mostra attività",
+			"noTasks": "Nessuna attività programmata",
+			"noTasksSubtitle": "Aggiungi una data di inizio, scadenza, o entrambe alle attività per posizionarle sulla cronologia del progetto.",
+			"noTasksFound": "Nessuna attività trovata",
+			"noTasksMatch": "Nessuna attività programmata corrisponde a \"{{query}}\"",
+			"taskHeader": "Attività",
+			"updateDatesError": "Aggiornamento date attività fallito",
+			"resizeStart": "Ridimensiona data inizio",
+			"resizeDue": "Ridimensiona data scadenza",
+			"taskAriaLabel": "{{title}}: apri o trascina per spostare",
+			"jumpToToday": "Jump to today",
+			"previousPeriod": "Previous period",
+			"nextPeriod": "Next period",
+			"periodStart": "Timeline start date",
+			"showTaskDates": "Show task dates"
+		},
+		"delete": {
+			"title": "Eliminare l'Attività?",
+			"description": "Questo rimuoverà permanentemente l'attività e tutti i suoi dati. Non puoi annullare questa azione.",
+			"action": "Elimina Attività",
+			"success": "Attività eliminata con successo",
+			"error": "Eliminazione attività fallita"
+		},
+		"duplicate": {
+			"titleSuffix": "{{title}} (copia)",
+			"success": "Attività duplicata con successo",
+			"error": "Duplicazione attività fallita"
+		},
+		"archive": {
+			"success": "{{count}} attività archiviate"
+		},
+		"listView": {
+			"addTask": "Aggiungi attività",
+			"archiveAllTooltip": "Archivia tutte le attività completate",
+			"noTasks": "Nessuna attività"
+		},
+		"kanban": {
+			"addTask": "Aggiungi attività",
+			"automaticallySortedHint": "Ordinamento automatico per {{sort}}"
+		},
+		"pr": {
+			"merged": "Unito",
+			"draft": "Bozza",
+			"open": "Aperto",
+			"label": "Pull Request",
+			"count_one": "{{count}} PR",
+			"count_other": "{{count}} PR",
+			"count_many": "{{count}} PR"
+		},
+		"assignee": {
+			"label": "Assegnatario",
+			"unassigned": "Non assegnato"
+		},
+		"dueDate": {
+			"label": "Data scadenza",
+			"clear": "Cancella data",
+			"updateSuccess": "Data scadenza attività aggiornata con successo",
+			"updateError": "Aggiornamento data scadenza attività fallito",
+			"clearSuccess": "Data scadenza attività cancellata",
+			"clearError": "Cancellazione data scadenza fallita"
+		},
+		"labels": {
+			"label": "Etichette",
+			"empty": "Nessuna etichetta disponibile"
+		},
+		"update": {
+			"success": "Attività aggiornata con successo",
+			"error": "Aggiornamento attività fallito"
+		},
+		"contextMenu": {
+			"copyLink": "Copia link",
+			"copyLinkSuccess": "Link attività copiato!"
+		},
+		"actions": {
+			"duplicate": "Duplica",
+			"archive": "Archivia",
+			"markAsPlanned": "Segna come pianificata",
+			"delete": "Elimina..."
+		},
+		"bulk": {
+			"selectedCount": "{{count}} selezionate",
+			"moveToBacklog": "Sposta in Backlog",
+			"moveToBacklogSuccess": "{{count}} attività spostate in backlog",
+			"moveToBacklogError": "Spostamento attività in backlog fallito",
+			"moveToBoard": "Sposta nella Board",
+			"moveToBoardSuccess": "{{count}} attività spostate nella board",
+			"moveToBoardError": "Spostamento attività nella board fallito",
+			"delete": "Elimina attività",
+			"deleteConfirm": "Eliminare {{count}} attività? Questa azione non può e

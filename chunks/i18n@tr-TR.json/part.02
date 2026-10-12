@@ -1,0 +1,696 @@
+"validation": {
+				"webhookInvalid": "Geçerli bir Slack webhook URL'si girin"
+			},
+			"toast": {
+				"saved": "Slack entegrasyonu başarıyla kaydedildi",
+				"saveError": "Slack entegrasyonu kaydedilemedi",
+				"enabled": "Slack bildirimleri etkinleştirildi",
+				"disabled": "Slack bildirimleri duraklatıldı",
+				"updateError": "Slack entegrasyonu güncellenemedi",
+				"removed": "Slack entegrasyonu başarıyla kaldırıldı",
+				"removeError": "Slack entegrasyonu kaldırılamadı"
+			},
+			"connectionTitle": "Slack webhook bağlantısı",
+			"connectionHint": "Bir Slack gelen webhook URL'si yapıştırın ve hangi talep olaylarının gönderileceğini seçin.",
+			"connected": "Bağlı",
+			"paused": "Duraklatıldı",
+			"webhookLabel": "Gelen webhook URL'si",
+			"webhookPlaceholder": "https://hooks.slack.com/services/...",
+			"webhookHint": "Slack'te bir Gelen Webhook oluşturun ve oluşturulan URL'yi buraya yapıştırın.",
+			"channelLabel": "Kanal adı",
+			"channelPlaceholder": "#takim-guncellemeleri",
+			"channelHint": "Referansınız için isteğe bağlı etiket. Slack, gerçek hedef kanalı webhook kurulumundan kontrol eder.",
+			"eventsTitle": "Olay bildirimleri",
+			"eventsHint": "Hangi proje değişikliklerinin Slack'e gönderileceğini seçin.",
+			"events": {
+				"taskCreated": "Yeni talepler",
+				"taskStatusChanged": "Durum değişiklikleri",
+				"taskPriorityChanged": "Öncelik değişiklikleri",
+				"taskTitleChanged": "Başlık değişiklikleri",
+				"taskDescriptionChanged": "Açıklama değişiklikleri",
+				"taskCommentCreated": "Yeni yorumlar"
+			},
+			"connect": "Slack bağla",
+			"saveChanges": "Değişiklikleri kaydet",
+			"update": "Slack'i güncelle",
+			"disconnect": "Bağlantıyı kes"
+		},
+		"discordIntegration": {
+			"validation": {
+				"webhookInvalid": "Geçerli bir Discord webhook URL'si girin"
+			},
+			"toast": {
+				"saved": "Discord entegrasyonu başarıyla kaydedildi",
+				"saveError": "Discord entegrasyonu kaydedilemedi",
+				"enabled": "Discord bildirimleri etkinleştirildi",
+				"disabled": "Discord bildirimleri duraklatıldı",
+				"updateError": "Discord entegrasyonu güncellenemedi",
+				"removed": "Discord entegrasyonu başarıyla kaldırıldı",
+				"removeError": "Discord entegrasyonu kaldırılamadı"
+			},
+			"connectionTitle": "Discord webhook bağlantısı",
+			"connectionHint": "Bir Discord webhook URL'si yapıştırın ve hangi talep olaylarının gönderileceğini seçin.",
+			"connected": "Bağlı",
+			"paused": "Duraklatıldı",
+			"webhookLabel": "Webhook URL'si",
+			"webhookPlaceholder": "https://discord.com/api/webhooks/...",
+			"webhookHint": "Bir Discord kanal webhook'u oluşturun ve oluşturulan URL'yi buraya yapıştırın.",
+			"channelLabel": "Kanal adı",
+			"channelPlaceholder": "#takim-guncellemeleri",
+			"channelHint": "Referansınız için isteğe bağlı etiket. Discord, gerçek hedef kanalı webhook kurulumundan kontrol eder.",
+			"eventsTitle": "Olay bildirimleri",
+			"eventsHint": "Hangi proje değişikliklerinin Discord'a gönderileceğini seçin.",
+			"events": {
+				"taskCreated": "Yeni talepler",
+				"taskStatusChanged": "Durum değişiklikleri",
+				"taskPriorityChanged": "Öncelik değişiklikleri",
+				"taskTitleChanged": "Başlık değişiklikleri",
+				"taskDescriptionChanged": "Açıklama değişiklikleri",
+				"taskCommentCreated": "Yeni yorumlar"
+			},
+			"connect": "Discord bağla",
+			"saveChanges": "Değişiklikleri kaydet",
+			"update": "Discord'u güncelle",
+			"disconnect": "Bağlantıyı kes"
+		},
+		"genericWebhookIntegration": {
+			"validation": {
+				"webhookInvalid": "Geçerli bir webhook URL'si girin"
+			},
+			"toast": {
+				"saved": "Genel webhook entegrasyonu başarıyla kaydedildi",
+				"saveError": "Genel webhook entegrasyonu kaydedilemedi",
+				"enabled": "Genel webhook bildirimleri etkinleştirildi",
+				"disabled": "Genel webhook bildirimleri duraklatıldı",
+				"updateError": "Genel webhook entegrasyonu güncellenemedi",
+				"removed": "Genel webhook entegrasyonu başarıyla kaldırıldı",
+				"removeError": "Genel webhook entegrasyonu kaldırılamadı"
+			},
+			"connectionTitle": "Giden webhook bağlantısı",
+			"connectionHint": "Talep olaylarını kendi uç noktanıza JSON olarak gönderin. Bir gizli anahtar yapılandırıldığında imzalı bir X-Kaneo-Signature başlığı dahil edilir.",
+			"connected": "Bağlı",
+			"paused": "Duraklatıldı",
+			"webhookLabel": "Uç nokta URL'si",
+			"webhookPlaceholder": "https://example.com/webhooks/kaneo",
+			"webhookHint": "Kaneo, etkinleştirilen her olay için JSON yükü ile POST istekleri gönderir.",
+			"secretLabel": "İmzalama gizli anahtarı",
+			"secretPlaceholder": "İsteğe bağlı paylaşılan gizli anahtar",
+			"secretHint": "İsteğe bağlı. Sağlanırsa, Kaneo istek gövdesini imzalar ve hex özetini X-Kaneo-Signature başlığında gönderir.",
+			"secretHintConfigured": "Bir imzalama gizli anahtarı zaten yapılandırılmış ({{secret}}). Değiştirmek için yeni bir tane girin.",
+			"eventsTitle": "Olay bildirimleri",
+			"eventsHint": "Hangi proje değişikliklerinin giden webhook'ları tetikleyeceğini seçin.",
+			"events": {
+				"taskCreated": "Yeni talepler",
+				"taskStatusChanged": "Durum değişiklikleri",
+				"taskPriorityChanged": "Öncelik değişiklikleri",
+				"taskTitleChanged": "Başlık değişiklikleri",
+				"taskDescriptionChanged": "Açıklama değişiklikleri",
+				"taskCommentCreated": "Yeni yorumlar",
+				"taskDeleted": "Talep silindi",
+				"taskMoved": "Talep taşındı",
+				"taskDueDateChanged": "Bitiş tarihi değişti",
+				"taskAssigneeChanged": "Atanan kişi değişti",
+				"taskUnassigned": "Atama kaldırıldı",
+				"dueDateReminder": "Bitiş tarihi hatırlatmaları"
+			},
+			"connect": "Webhook bağla",
+			"saveChanges": "Değişiklikleri kaydet",
+			"disconnect": "Bağlantıyı kes",
+			"reminderLeadTimeLabel": "Webhook'u bitiş tarihinden bu kadar saat önce gönder"
+		},
+		"telegramIntegration": {
+			"validation": {
+				"botTokenInvalid": "Geçerli bir Telegram bot belirteci girin",
+				"chatIdRequired": "Sohbet kimliği gereklidir",
+				"threadIdInvalid": "Geçerli bir Telegram konu kimliği girin"
+			},
+			"toast": {
+				"saved": "Telegram entegrasyonu başarıyla kaydedildi",
+				"saveError": "Telegram entegrasyonu kaydedilemedi",
+				"enabled": "Telegram bildirimleri etkinleştirildi",
+				"disabled": "Telegram bildirimleri duraklatıldı",
+				"updateError": "Telegram entegrasyonu güncellenemedi",
+				"removed": "Telegram entegrasyonu başarıyla kaldırıldı",
+				"removeError": "Telegram entegrasyonu kaldırılamadı"
+			},
+			"connectionTitle": "Telegram bot bağlantısı",
+			"connectionHint": "Proje talep güncellemelerini bir sohbete veya konuya göndermek için bir Telegram bot belirteci ve sohbet kimliği kullanın.",
+			"connected": "Bağlı",
+			"paused": "Duraklatıldı",
+			"botTokenLabel": "Bot belirteci",
+			"botTokenPlaceholder": "123456789:AAExampleBotToken",
+			"botTokenHint": "BotFather ile bir bot oluşturun ve belirtecini buraya yapıştırın.",
+			"botTokenHintConfigured": "Bir bot belirteci zaten yapılandırılmış ({{token}}). Değiştirmek için yeni bir tane girin.",
+			"chatIdLabel": "Sohbet kimliği",
+			"chatIdPlaceholder": "-1001234567890 veya @takim_guncellemeleri",
+			"chatIdHint": "Güncellemelerin gönderileceği Telegram sohbet kimliğini veya kanal kullanıcı adını girin.",
+			"threadIdLabel": "Konu kimliği",
+			"threadIdPlaceholder": "İsteğe bağlı konu kimliği",
+			"threadIdHint": "İsteğe bağlı. Telegram gruplarındaki forum konuları için kullanın.",
+			"chatLabelLabel": "Sohbet etiketi",
+			"chatLabelPlaceholder": "Mühendislik Güncellemeleri",
+			"chatLabelHint": "Kaneo içinde referansınız için isteğe bağlı etiket.",
+			"eventsTitle": "Olay bildirimleri",
+			"eventsHint": "Hangi proje değişikliklerinin Telegram'a gönderileceğini seçin.",
+			"events": {
+				"taskCreated": "Yeni talepler",
+				"taskStatusChanged": "Durum değişiklikleri",
+				"taskPriorityChanged": "Öncelik değişiklikleri",
+				"taskTitleChanged": "Başlık değişiklikleri",
+				"taskDescriptionChanged": "Açıklama değişiklikleri",
+				"taskCommentCreated": "Yeni yorumlar"
+			},
+			"connect": "Telegram bağla",
+			"saveChanges": "Değişiklikleri kaydet",
+			"disconnect": "Bağlantıyı kes"
+		},
+		"repositoryBrowser": {
+			"title": "Depo Seç",
+			"description": "Sorun senkronizasyonunu etkinleştirmek için GitHub Uygulamanızın kurulu olduğu bir depo seçin.",
+			"searchPlaceholder": "Depo ara...",
+			"loadError": "Depolar yüklenemedi",
+			"tryAgain": "Tekrar Dene",
+			"emptyTitle": "Depo bulunamadı",
+			"emptyHint": "Depolarınızı burada görmek için GitHub Uygulamasını kurun.",
+			"installGithubApp": "GitHub Uygulamasını Kur",
+			"noSearchMatchTitle": "Aramanızla eşleşen depo yok",
+			"noSearchMatchHint": "Arama terimlerinizi ayarlayın veya tüm depoları görmek için aramayı temizleyin.",
+			"footerSummary": "{{installationCount}} kurulum arasında {{repoCount}} depo",
+			"manageInstallations": "Kurulumları Yönet",
+			"updatedPrefix": "Güncellendi",
+			"relativeJustNow": "az önce",
+			"relativeMinutesAgo": "{{count}} dk önce",
+			"relativeHoursAgo": "{{count}} saat önce",
+			"relativeDaysAgo": "{{count}} gün önce"
+		},
+		"tasksImportExport": {
+			"exportTasks": "Talepleri Dışa Aktar",
+			"importTasks": "Talepleri İçe Aktar",
+			"dialogTitle": "Talepleri İçe Aktar",
+			"dialogDescription": "Bu projeye içe aktarmak için talepler içeren bir JSON dosyası yükleyin.",
+			"expectedFormat": "Beklenen biçim:",
+			"dropHint": "JSON dosyanızı buraya sürükleyip bırakın",
+			"selectFile": "Dosya Seç",
+			"exporting": "Talepler dışa aktarılıyor...",
+			"exportSuccess": "Talepler başarıyla dışa aktarıldı",
+			"exportError": "Talepler dışa aktarılamadı",
+			"importing": "Talepler içe aktarılıyor...",
+			"importSuccess": "{{count}} talep başarıyla içe aktarıldı",
+			"importPartialError": "{{count}} talep içe aktarılamadı",
+			"importError": "Talepler içe aktarılamadı",
+			"invalidFormat": "Geçersiz içe aktarma dosyası biçimi",
+			"noFileDropped": "Hiç dosya bırakılmadı",
+			"notJsonFile": "Lütfen bir JSON dosyası yükleyin"
+		},
+		"workflowEditor": {
+			"loading": "Yükleniyor...",
+			"createColumnsFirst": "Otomasyon kurallarını yapılandırmak için önce sütunlar oluşturun.",
+			"githubHeading": "GitHub",
+			"githubHint": "Bir GitHub olayı gerçekleştiğinde, bağlı talebi bir sütuna taşıyın.",
+			"giteaHeading": "Gitea",
+			"giteaHint": "Bir Gitea webhook olayı gerçekleştiğinde, bağlı talebi bir sütuna taşıyın.",
+			"selectColumnPlaceholder": "Sütun seç...",
+			"toastUpdated": "İş akışı kuralı güncellendi",
+			"toastError": "Kural güncellenemedi",
+			"events": {
+				"branch_push": "Dal Push",
+				"pr_opened": "PR Açıldı",
+				"pr_merged": "PR Birleştirildi",
+				"issue_opened": "Sorun Açıldı",
+				"issue_closed": "Sorun Kapatıldı"
+			},
+			"gitlabHeading": "GitLab",
+			"gitlabHint": "When a GitLab webhook event occurs, move the linked task to a column.",
+			"bindingScopeHint": "This rule applies to {{repository}} only.",
+			"scopeLabel": "Repository scope",
+			"scopeTypeWide": "Every repository",
+			"typeWideScopeHint": "This rule applies to every repository of this provider. A rule scoped to a repository takes precedence."
+		},
+		"externalLinks": {
+			"resources": "Kaynaklar",
+			"issue": "Sorun",
+			"branch": "Dal",
+			"merged": "Birleştirildi",
+			"draft": "Taslak",
+			"open": "Açık",
+			"adding": "Adding...",
+			"addResource": "Add resource",
+			"cancel": "Cancel",
+			"empty": "No resources linked to this task.",
+			"titleOptional": "Title (optional)",
+			"url": "URL",
+			"remove": "Remove {{title}}",
+			"removeError": "Failed to remove the resource link."
+		},
+		"workspaceRoles": {
+			"pageTitle": "Roller",
+			"title": "Roller",
+			"subtitle": "{{workspaceName}} içinde üyelerin hangi işlemleri yapabileceğini tanımlayın.",
+			"thisWorkspace": "bu çalışma alanı",
+			"noAccess": "Çalışma alanı rollerini yönetmek için yönetici veya sahip izinleri gereklidir.",
+			"sectionTitle": "Çalışma alanı rolleri",
+			"sectionSubtitle": "Varsayılan rolleri düzenleyin veya özel bir rol ekleyin. Üyeler, düzenlemeler boyunca atanmış rol adlarını korur.",
+			"newRole": "Yeni rol",
+			"loading": "Yükleniyor…",
+			"loadError": "Roller yüklenemedi.",
+			"emptyTitle": "Henüz rol yok",
+			"emptyDescription": "Varsayılan roller, bu çalışma alanı için oluşturulduktan sonra burada görünecek.",
+			"defaultBadge": "Varsayılan",
+			"permissionCount_one": "{{count}} izin",
+			"permissionCount_other": "{{count}} izin",
+			"nameLabel": "Ad",
+			"nameHint": "Küçük harf. Daha sonra değiştirilemez.",
+			"namePlaceholder": "örn. inceleyici",
+			"discard": "Vazgeç",
+			"createRole": "Rol oluştur",
+			"deleteRole": "Rolü sil",
+			"defaultRoleHelp": "Varsayılan rol: adı ayrılmıştır ve bu satır silinemez.",
+			"unsavedChanges": "Kaydedilmemiş değişiklikleriniz var",
+			"allChangesSaved": "Tüm değişiklikler kaydedildi",
+			"saveChanges": "Değişiklikleri kaydet",
+			"defaultRoleDescriptions": {
+				"viewer": "Talepleri görüntüleyebilir ve yorum yapabilir.",
+				"member": "Talep ve proje oluşturabilir ve yönetebilir.",
+				"admin": "Çalışma alanına tam erişimi vardır."
+			},
+			"resources": {
+				"project": "Projeler",
+				"task": "Talepler",
+				"label": "Etiketler",
+				"workspace": "Çalışma alanı",
+				"organization": "Workspace administration",
+				"member": "Members",
+				"invitation": "Invitations",
+				"team": "Teams",
+				"ac": "Roles and permissions"
+			},
+			"permissions": {
+				"project": {
+					"create": {
+						"label": "Oluşturma",
+						"description": "Yeni proje oluşturabilir"
+					},
+					"read": {
+						"label": "Okuma",
+						"description": "Projeleri görüntüleyebilir"
+					},
+					"update": {
+						"label": "Güncelleme",
+						"description": "Proje ayarlarını düzenleyebilir"
+					},
+					"delete": {
+						"label": "Silme",
+						"description": "Projeleri silebilir"
+					},
+					"share": {
+						"label": "Paylaşma",
+						"description": "Projeleri paylaşabilir"
+					}
+				},
+				"task": {
+					"create": {
+						"label": "Oluşturma",
+						"description": "Talep oluşturabilir"
+					},
+					"read": {
+						"label": "Okuma",
+						"description": "Talepleri görüntüleyebilir"
+					},
+					"update": {
+						"label": "Güncelleme",
+						"description": "Talepleri düzenleyebilir"
+					},
+					"delete": {
+						"label": "Silme",
+						"description": "Talepleri silebilir"
+					},
+					"assign": {
+						"label": "Atama",
+						"description": "Talepleri üyelere atayabilir"
+					}
+				},
+				"label": {
+					"create": {
+						"label": "Oluşturma",
+						"description": "Etiket oluşturabilir"
+					},
+					"read": {
+						"label": "Okuma",
+						"description": "Etiketleri görüntüleyebilir"
+					},
+					"update": {
+						"label": "Güncelleme",
+						"description": "Etiketleri düzenleyebilir"
+					},
+					"delete": {
+						"label": "Silme",
+						"description": "Etiketleri silebilir"
+					}
+				},
+				"workspace": {
+					"read": {
+						"label": "Okuma",
+						"description": "Çalışma alanı ayarlarını görüntüleyebilir"
+					},
+					"update": {
+						"label": "Güncelleme",
+						"description": "Çalışma alanı ayarlarını güncelleyebilir"
+					},
+					"delete": {
+						"label": "Silme",
+						"description": "Çalışma alanını silebilir"
+					},
+					"manage_settings": {
+						"label": "Ayarları Yönetme",
+						"description": "Çalışma alanı ayarlarını yönetebilir"
+					}
+				},
+				"organization": {
+					"update": {
+						"label": "Edit workspace administration",
+						"description": "Change workspace settings through the account service."
+					},
+					"delete": {
+						"label": "Delete workspace",
+						"description": "Permanently delete the workspace through the account service."
+					}
+				},
+				"member": {
+					"create": {
+						"label": "Add members",
+						"description": "Add users to this workspace."
+					},
+					"update": {
+						"label": "Change member roles",
+						"description": "Change the roles assigned to workspace members."
+					},
+					"delete": {
+						"label": "Remove members",
+						"description": "Remove users from this workspace."
+					}
+				},
+				"invitation": {
+					"create": {
+						"label": "Invite members",
+						"description": "Send workspace invitations."
+					},
+					"cancel": {
+						"label": "Cancel invitations",
+						"description": "Revoke pending workspace invitations."
+					}
+				},
+				"team": {
+					"create": {
+						"label": "Create teams",
+						"description": "Create teams in this workspace."
+					},
+					"update": {
+						"label": "Edit teams",
+						"description": "Change teams and team membership."
+					},
+					"delete": {
+						"label": "Delete teams",
+						"description": "Delete teams in this workspace."
+					}
+				},
+				"ac": {
+					"create": {
+						"label": "Create roles",
+						"description": "Create workspace roles and assign their permissions."
+					},
+					"read": {
+						"label": "View roles",
+						"description": "Read the workspace roles and their permissions."
+					},
+					"update": {
+						"label": "Change role permissions",
+						"description": "Change role permissions, including administrative access."
+					},
+					"delete": {
+						"label": "Delete roles",
+						"description": "Delete custom workspace roles."
+					}
+				}
+			},
+			"validation": {
+				"nameRequired": "Rol adı gereklidir",
+				"nameExists": "Bu ada sahip bir rol zaten var",
+				"permissionRequired": "En az bir izin seçilmelidir"
+			},
+			"toast": {
+				"created": "Rol oluşturuldu",
+				"createError": "Rol oluşturulamadı",
+				"updated": "Rol güncellendi",
+				"updateError": "Rol güncellenemedi",
+				"deleted": "Rol silindi",
+				"deleteError": "Rol silinemedi"
+			},
+			"deleteDialog": {
+				"title": "Rolü sil",
+				"description": "Bu, \"{{role}}\" rolünü kalıcı olarak silecek. Bu role atanmış üyeler rolün izinlerini kaybedecek."
+			}
+		},
+		"workspaceLabels": {
+			"pageTitle": "Etiket Ayarları",
+			"title": "Etiketler",
+			"subtitle": "Çalışma alanı düzeyinde etiketler oluşturun, düzenleyin ve silin.",
+			"cardDescription": "Taleplere atanabilecek etiketleri yönetin.",
+			"createLabel": "Etiket Oluştur",
+			"editLabel": "Etiketi Düzenle",
+			"deleteLabel": "Sil",
+			"saveLabel": "Kaydet",
+			"nameLabel": "Etiket adı",
+			"namePlaceholder": "Etiket adını girin",
+			"colorLabel": "Renk",
+			"createDescription": "Bu çalışma alanındaki taleplerde kullanılabilecek yeni bir etiket oluşturun.",
+			"editDescription": "Bu etiketin adını veya rengini güncelleyin.",
+			"deleteConfirmTitle": "Bu etiket silinsin mi?",
+			"deleteConfirmDescription": "Bu, etiketi tüm taleplerden kalıcı olarak kaldıracak. Bu işlem geri alınamaz.",
+			"empty": "Henüz etiket yok. Başlamak için ilk etiketinizi oluşturun.",
+			"createSuccess": "Etiket oluşturuldu",
+			"updateSuccess": "Etiket güncellendi",
+			"deleteSuccess": "Etiket silindi",
+			"createError": "Etiket oluşturulamadı",
+			"updateError": "Etiket güncellenemedi",
+			"deleteError": "Etiket silinemedi",
+			"nameRequired": "Etiket adı gereklidir",
+			"deletionPending": "Deletion pending",
+			"resumeDeletion": "Resume deletion"
+		},
+		"mattermostIntegration": {
+			"channelHint": "Optional label for your reference. Mattermost controls the actual destination channel from the webhook setup.",
+			"channelLabel": "Channel name",
+			"channelPlaceholder": "#team-updates",
+			"connect": "Connect Mattermost",
+			"connected": "Connected",
+			"connectionHint": "Paste a Mattermost incoming webhook URL and choose which task events should be posted.",
+			"connectionTitle": "Mattermost webhook connection",
+			"disconnect": "Disconnect",
+			"events": {
+				"taskCommentCreated": "New comments",
+				"taskCreated": "New tasks",
+				"taskDescriptionChanged": "Description changes",
+				"taskPriorityChanged": "Priority changes",
+				"taskStatusChanged": "Status changes",
+				"taskTitleChanged": "Title changes"
+			},
+			"eventsHint": "Choose which project changes should post to Mattermost.",
+			"eventsTitle": "Event notifications",
+			"paused": "Paused",
+			"saveChanges": "Save changes",
+			"toast": {
+				"disabled": "Mattermost notifications paused",
+				"enabled": "Mattermost notifications enabled",
+				"removed": "Mattermost integration removed successfully",
+				"removeError": "Failed to remove Mattermost integration",
+				"saved": "Mattermost integration saved successfully",
+				"saveError": "Failed to save Mattermost integration",
+				"updateError": "Failed to update Mattermost integration"
+			},
+			"update": "Update Mattermost",
+			"validation": {
+				"webhookInvalid": "Enter a valid Mattermost webhook URL"
+			},
+			"webhookHint": "Create an Incoming Webhook in Mattermost and paste the generated URL here.",
+			"webhookLabel": "Incoming webhook URL",
+			"webhookPlaceholder": "https://your-mattermost-server.com/hooks/..."
+		},
+		"customFields": {
+			"addButton": "Add",
+			"createError": "Failed to create custom field.",
+			"createSuccess": "Custom field created.",
+			"creating": "Creating...",
+			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
+			"deleteButton": "Delete",
+			"deleteError": "Failed to delete custom field.",
+			"deleteSuccess": "Custom field deleted.",
+			"deleting": "Deleting...",
+			"empty": "No custom fields configured yet.",
+			"loading": "Loading custom fields...",
+			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
+			"optionsPlaceholder": "Options separated by commas",
+			"required": "Required",
+			"typePlaceholder": "Select field type",
+			"types": {
+				"boolean": "Boolean",
+				"date": "Date",
+				"dropdown": "Dropdown",
+				"number": "Number",
+				"text": "Text",
+				"multiselect": "Multi-Select"
+			},
+			"availableOptions": "Available options",
+			"clearDefault": "Clear",
+			"defaultValues": "{{count}} default(s)",
+			"moreOptions": "+{{hiddenCount}} more",
+			"multiple": "Multiple",
+			"options": "{{count}} option(s)",
+			"reorderError": "Failed to reorder fields",
+			"selectPlaceholder": "Select option(s)"
+		},
+		"administration": "Administration",
+		"adminUsers": {
+			"actions": {
+				"deactivate": "Deactivate account",
+				"edit": "Edit account",
+				"open": "Actions for {{name}}",
+				"reactivate": "Reactivate account"
+			},
+			"clearSearch": "Clear search",
+			"columns": {
+				"actions": "Actions",
+				"joined": "Joined",
+				"role": "Global role",
+				"status": "Status",
+				"user": "User"
+			},
+			"confirm": {
+				"deactivate": {
+					"action": "Deactivate account",
+					"description": "{{name}} will be signed out and unable to sign in until an administrator reactivates the account.",
+					"title": "Deactivate this account?"
+				},
+				"delete": {
+					"action": "Delete permanently",
+					"description": "This permanently deletes {{name}}, their sessions, memberships, and associated data. This cannot be undone.",
+					"title": "Permanently delete this account?"
+				},
+				"reactivate": {
+					"action": "Reactivate account",
+					"description": "{{name}} will be able to sign in and access their workspaces again.",
+					"title": "Reactivate this account?"
+				},
+				"working": "Working…"
+			},
+			"directoryTitle": "User directory",
+			"edit": {
+				"description": "Update this account's identity and instance-wide access.",
+				"email": "Email address",
+				"name": "Full name",
+				"role": "Global role",
+				"save": "Save changes",
+				"saving": "Saving…",
+				"selfRoleHint": "You cannot change your own global role.",
+				"title": "Edit user"
+			},
+			"emptyDescription": "Try another name or email address.",
+			"emptyTitle": "No users found",
+			"instanceBadge": "Instance",
+			"loadError": "Users could not be loaded.",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing users",
+			"retry": "Retry",
+			"roles": {
+				"admin": "Instance admin",
+				"user": "User"
+			},
+			"searchCount_one": "{{count}} matching user",
+			"searchCount_other": "{{count}} matching users",
+			"searchLabel": "Search users",
+			"searchPlaceholder": "Search name or email…",
+			"status": {
+				"active": "Active",
+				"deactivated": "Deactivated"
+			},
+			"subtitle": "Manage every account registered on this Kaneo instance.",
+			"title": "User management",
+			"toast": {
+				"actionError": "Failed to update user status",
+				"deactivated": "User deactivated",
+				"deleted": "User deleted",
+				"reactivated": "User reactivated",
+				"updated": "User updated",
+				"updateError": "Failed to update user"
+			},
+			"userCount_one": "{{count}} registered user",
+			"userCount_other": "{{count}} registered users",
+			"you": "(you)"
+		},
+		"security": "Security",
+		"securityPage": {
+			"confirmPassword": "Confirm new password",
+			"confirmPasswordPlaceholder": "Re-enter your new password",
+			"currentPassword": "Current password",
+			"currentPasswordPlaceholder": "Enter your current password",
+			"newPassword": "New password",
+			"newPasswordPlaceholder": "Enter a new password",
+			"noPassword": {
+				"description": "Your account signs in with a different method, so there is no password to change.",
+				"title": "Password change isn't available"
+			},
+			"pageTitle": "Security",
+			"sectionSubtitle": "Change the password you use to sign in.",
+			"sectionTitle": "Password",
+			"submit": "Update password",
+			"submitting": "Updating...",
+			"subtitle": "Manage your password and account security.",
+			"title": "Security",
+			"updateError": "Failed to update password.",
+			"updateSuccess": "Password updated.",
+			"validation": {
+				"confirmRequired": "Confirm your new password.",
+				"currentRequired": "Enter your current password.",
+				"mismatch": "Passwords do not match.",
+				"tooShort": "New password must be at least 8 characters.",
+				"sameAsCurrent": "New password must be different from your current password."
+			}
+		},
+		"gitlabIntegration": {
+			"actionsHint": "Verify access and connect",
+			"actionsTitle": "Actions",
+			"badgeConnected": "Connected",
+			"badgeNotConnected": "Not connected",
+			"baseUrlHint": "https://gitlab.com, or the root URL of your instance",
+			"baseUrlLabel": "GitLab URL",
+			"browse": "Browse",
+			"browseModalHint": "Projects your token is a member of",
+			"browseModalTitle": "Your projects",
+			"browseNeedsCredentials": "Enter GitLab URL and token to browse",
+			"commentTaskLinkHint": "When enabled, Kaneo comments with a link to the task on each issue opened in GitLab.",
+			"commentTaskLinkTitle": "Comment a Kaneo link on issues opened in GitLab",
+			"connect": "Connect",
+			"connectedActive": "Project connected and active",
+			"connectionStatus": "Connection status",
+			"currentToken": "stored",
+			"disconnect": "Disconnect",
+			"importDisabledHint": "Verify the project above to enable importing",
+			"importing": "Importing…",
+			"importIssues": "Import issues",
+			"importSectionHint": "Import open issues and merge requests from the project",
+			"importSectionTitle": "Import GitLab issues",
+			"loadingProjects": "Loading projects…",
+			"notConnectedHint": "No GitLab project connected",
+			"openInGitlab": "Open {{project}} in GitLab",
+			"project": "Project",
+			"projectHint": "Linked GitLab project",
+			"projectPathHint": "Full path including any groups, e.g. group/subgroup/project",
+			"projectPathLabel": "Project path",
+			"retry": "Retry",
+			"searchProjects": "Search…",
+			"toast": {
+				"commentOnDisabled": "Task link comments on issues opened in GitLab are turned off",
+				"commentOnEnabled": "Kaneo will comment with a task link on issues o
