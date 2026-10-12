@@ -1040,29 +1040,8 @@ export const userNotificationWorkspaceProjectTable = pgTable(
   ],
 );
 
-// Legacy table: the GitHub plugin migration drops it at startup on existing
-// installs, so SQL migrations must not touch it.
-export const githubIntegrationTable = pgTable("github_integration", {
-  id: text("id")
-    .$defaultFn(() => createId())
-    .primaryKey(),
-  projectId: text("project_id")
-    .notNull()
-    .references(() => projectTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    })
-    .unique(),
-  repositoryOwner: text("repository_owner").notNull(),
-  repositoryName: text("repository_name").notNull(),
-  installationId: integer("installation_id"),
-  isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { mode: "date" })
-    .defaultNow()
-    .$onUpdate(() => new Date())
-    .notNull(),
-});
+// RFC 0001 (cleanup): the legacy github_integration table is retired from
+// the schema; the startup migration reads and drops it through raw SQL.
 
 export const integrationTable = pgTable(
   "integration",
