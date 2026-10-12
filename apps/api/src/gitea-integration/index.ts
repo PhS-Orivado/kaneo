@@ -212,7 +212,7 @@ const updateIntegrationRoute = createRoute({
     403: errorResponse(
       "No access to the project, or missing workspace:manage_settings",
     ),
-    404: jsonResponse("Integration not found", integrationNotFoundSchema),
+    404: errorResponse("Integration not found"),
   },
 });
 
