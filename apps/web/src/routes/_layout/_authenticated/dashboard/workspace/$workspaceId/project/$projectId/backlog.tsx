@@ -8,6 +8,7 @@ import BacklogListView from "@/components/backlog-list-view";
 import ProjectLayout from "@/components/common/project-layout";
 import SortControl from "@/components/common/sort-control";
 import PageTitle from "@/components/page-title";
+import SprintPlanningView from "@/components/sprint-planning/sprint-planning-view";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -315,7 +316,12 @@ function RouteComponent() {
 
     return {
       ...project,
-      plannedTasks: filterTasks(project.plannedTasks || []),
+      // Tasks scheduled into a sprint are planned in the sprint sections of
+      // the SprintPlanningView above, so the backlog list below only shows
+      // unscheduled tasks (the Jira model).
+      plannedTasks: filterTasks(project.plannedTasks || []).filter(
+        (task) => !task.sprintId,
+      ),
       archivedTasks: filterTasks(project.archivedTasks || []),
     };
   }, [project, filters, getTaskLabels, getValuesForTask]);
@@ -632,16 +638,19 @@ function RouteComponent() {
                   );
                 })}
 
+                <SortControl sort={sort} onSortChange={setSort} />
+
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={
-                      <button
-                        type="button"
-                        className="inline-flex h-7 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-foreground text-xs font-medium outline-none ring-0 hover:bg-accent/60"
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-7 gap-2 px-2.5 text-xs font-medium text-foreground"
                       />
                     }
                   >
-                    <Filter className="h-3 w-3" />
+                    <Filter className="h-3.5 w-3.5" />
                     {t("tasks:backlog.filter")}
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="w-80" align="start">
@@ -881,30 +890,31 @@ function RouteComponent() {
                     )}
                   </DropdownMenuContent>
                 </DropdownMenu>
-
-                <SortControl sort={sort} onSortChange={setSort} />
               </div>
             </div>
           </div>
         </div>
 
-        <div className="flex-1 overflow-hidden bg-card h-full">
-          {sortedProject ? (
-            <BacklogListView
-              project={sortedProject}
-              disableDragDrop={sort.field !== "position"}
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-muted rounded-lg animate-pulse mx-auto" />
-                <div className="space-y-2">
-                  <div className="w-48 h-4 bg-muted rounded animate-pulse mx-auto" />
-                  <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
+        <div className="flex flex-1 flex-col overflow-hidden bg-card h-full">
+          <SprintPlanningView projectId={projectId} />
+          <div className="flex-1 min-h-0">
+            {sortedProject ? (
+              <BacklogListView
+                project={sortedProject}
+                disableDragDrop={sort.field !== "position"}
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 bg-muted rounded-lg animate-pulse mx-auto" />
+                  <div className="space-y-2">
+                    <div className="w-48 h-4 bg-muted rounded animate-pulse mx-auto" />
+                    <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <CreateTaskModal

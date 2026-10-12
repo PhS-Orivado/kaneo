@@ -3,7 +3,9 @@ import {
   ArrowUpToLine,
   CalendarIcon,
   ChevronDown,
+  Inbox,
   Menu,
+  Rocket,
   Trash2,
   X,
 } from "lucide-react";
@@ -45,6 +47,7 @@ import {
 } from "@/components/ui/popover";
 import { useBulkOperations } from "@/hooks/mutations/task/use-bulk-operations";
 import useGetLabelsByWorkspace from "@/hooks/queries/label/use-get-labels-by-workspace";
+import { useGetSprints } from "@/hooks/queries/sprint/use-get-sprints";
 import useActiveWorkspace from "@/hooks/queries/workspace/use-active-workspace";
 import useGetProjectMembers from "@/hooks/queries/workspace-users/use-get-project-members";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
@@ -96,8 +99,10 @@ function BacklogBulkToolbar() {
     bulkPriority,
     bulkAddLabel,
     bulkDueDate,
+    bulkSprint,
   } = useBulkOperations();
   const { data: workspace } = useActiveWorkspace();
+  const { data: sprints = [] } = useGetSprints(project?.id ?? "");
   const { data: projectMembers } = useGetProjectMembers({
     workspaceId: workspace?.id ?? "",
     projectId: project?.id ?? "",
@@ -263,6 +268,23 @@ function BacklogBulkToolbar() {
     [bulkDueDate, selectedTaskIds, selectedCount, clearSelection, t],
   );
 
+  const handleBulkSprint = useCallback(
+    async (sprintId: string | null) => {
+      try {
+        await bulkSprint({
+          taskIds: Array.from(selectedTaskIds),
+          sprintId,
+        });
+        toast.success(t("tasks:bulk.updateSuccess", { count: selectedCount }));
+        clearSelection();
+        setIsActionsOpen(false);
+      } catch (_error) {
+        toast.error(t("tasks:bulk.updateSprintError"));
+      }
+    },
+    [bulkSprint, selectedTaskIds, selectedCount, clearSelection, t],
+  );
+
   const groupedItems = useMemo<BacklogActionGroup[]>(() => {
     const groups: BacklogActionGroup[] = [];
     if (canEdit || canDelete) {
@@ -331,6 +353,30 @@ function BacklogBulkToolbar() {
           },
         })),
       });
+      groups.push({
+        value: "sprint",
+        label: t("tasks:bulk.moveToSprint"),
+        items: [
+          {
+            value: "sprint-backlog",
+            label: t("tasks:sprints.backlog"),
+            icon: <Inbox className="h-4 w-4 text-muted-foreground" />,
+            onRun: () => {
+              void handleBulkSprint(null);
+            },
+          },
+          ...sprints
+            .filter((sprint) => sprint.status !== "closed")
+            .map((sprint) => ({
+              value: `sprint-${sprint.id}`,
+              label: sprint.name,
+              icon: <Rocket className="h-4 w-4 text-muted-foreground" />,
+              onRun: () => {
+                void handleBulkSprint(sprint.id);
+              },
+            })),
+        ],
+      });
     }
     if (canEditLabels) {
       groups.push({
@@ -361,11 +407,13 @@ function BacklogBulkToolbar() {
     canEditLabels,
     projectMembers,
     uniqueLabels,
+    sprints,
     handleBulkDelete,
     handleBulkArchive,
     handleBulkAssign,
     handleBulkPriority,
     handleBulkAddLabel,
+    handleBulkSprint,
     priorityOptions,
     t,
   ]);
