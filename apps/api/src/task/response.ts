@@ -26,6 +26,17 @@ export const taskSchema = z
       description: "The slug of the column the task sits in.",
     }),
     priority: z.string().openapi({ description: priorityDescription }),
+    sprintId: z
+      .string()
+      .nullable()
+      .openapi({
+        description:
+          "The sprint this task belongs to; null means the task sits in the backlog.",
+      }),
+    type: z
+      .string()
+      .nullable()
+      .openapi({ description: "Task type, e.g. task or bug." }),
     startDate: nullableResponseTimestamp,
     dueDate: nullableResponseTimestamp,
     createdAt: responseTimestamp,
@@ -104,6 +115,17 @@ export const boardTaskSchema = z
     }),
     status: z.string(),
     priority: z.string().openapi({ description: priorityDescription }),
+    sprintId: z
+      .string()
+      .nullable()
+      .openapi({
+        description:
+          "The sprint this task belongs to; null means the task sits in the backlog.",
+      }),
+    type: z
+      .string()
+      .nullable()
+      .openapi({ description: "Task type, e.g. task or bug." }),
     startDate: nullableResponseTimestamp,
     dueDate: nullableResponseTimestamp,
     position: z.number().nullable(),
