@@ -10,8 +10,7 @@
 			"markAllRead": "Marcar tudo como lido",
 			"remove": "Remover",
 			"reset": "Redefinir",
-			"filter": "Filtrar",
-			"clearAllFilters": "Limpar todos os filtros"
+			"filter": "Filtrar"
 		},
 		"a11y": {
 			"toggleSidebar": "Alternar barra lateral"
@@ -154,11 +153,13 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"boolean": {
-			"false": "False",
-			"notSet": "Not Set",
-			"true": "True",
-			"undefined": "Undefined"
+		"editor": {
+			"link": {
+				"label": "URL do link",
+				"placeholder": "Cole ou digite um link…",
+				"apply": "Aplicar link",
+				"remove": "Remover link"
+			}
 		}
 	},
 	"auth": {
@@ -1526,12 +1527,10 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
-			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
-			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Caixa de seleção",
@@ -1541,7 +1540,6 @@
 				"text": "Text",
 				"multiselect": "Lista suspensa, várias opções"
 			},
-			"availableOptions": "Available options",
 			"clearDefault": "Limpar padrão",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1878,7 +1876,11 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace"
+			"openFailed": "Couldn't open billing for this workspace",
+			"checkoutSuccess": {
+				"title": "Obrigado pela assinatura",
+				"description": "Pagamento recebido. O plano abaixo será atualizado assim que for confirmado."
+			}
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2510,7 +2512,8 @@
 				"prevTask": "Tarefa anterior",
 				"openTask": "Abrir tarefa selecionada",
 				"quickSelectNumber": "Selecionar opção por número",
-				"calendarView": "Mudar para visualização de calendário"
+				"calendarView": "Mudar para visualização de calendário",
+				"ganttView": "Mudar para visualização Gantt"
 			}
 		}
 	},
@@ -2627,7 +2630,6 @@
 				"imageUploaded": "Imagem enviada",
 				"fileAttached": "Arquivo anexado",
 				"failedToUploadFile": "Falha ao enviar arquivo",
-				"enterUrl": "Digite a URL",
 				"plaintext": "Texto simples",
 				"autoDetect": "Detecção automática",
 				"slashGroupText": "Texto",
@@ -2728,7 +2730,6 @@
 			"high": "Alta",
 			"urgent": "Urgente"
 		},
-		"boardSearchPlaceholder": "Buscar tickets...",
 		"view": {
 			"board": "Quadro",
 			"list": "Lista",
@@ -2757,7 +2758,6 @@
 				"ariaLabel": "Editor de descrição da tarefa",
 				"placeholder": "Escreva uma descrição...",
 				"previewImage": "Pré-visualizar imagem",
-				"enterUrl": "Digite a URL",
 				"autoDetect": "Detecção automática",
 				"copyCode": "Copiar código",
 				"copy": "Copiar",
@@ -2861,9 +2861,7 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			},
-			"customFieldUpdated": "Field updated",
-			"selectOption": "Select option"
+			}
 		},
 		"entity": {
 			"task": "Tarefa"
@@ -2935,12 +2933,10 @@
 				"updateError": "Falha ao atualizar a prioridade da tarefa"
 			},
 			"dueDate": {
-				"updateSuccess": "Data de vencimento da tarefa atualizada com sucesso",
 				"updateError": "Falha ao atualizar a data de vencimento da tarefa",
 				"clear": "Limpar data"
 			},
 			"startDate": {
-				"updateSuccess": "Data de início da tarefa atualizada com sucesso",
 				"updateError": "Falha ao atualizar a data de início da tarefa",
 				"clear": "Limpar data de início"
 			},
@@ -2949,8 +2945,6 @@
 				"empty": "Nenhuma etiqueta encontrada",
 				"create": "Criar \"{{name}}\"",
 				"chooseColor": "Escolher cor",
-				"addSuccess": "Etiqueta adicionada",
-				"removeSuccess": "Etiqueta removida",
 				"updateError": "Falha ao atualizar etiqueta",
 				"createSuccess": "Etiqueta criada e adicionada",
 				"createError": "Falha ao criar etiqueta",
@@ -2977,26 +2971,18 @@
 			"moveAllTooltip": "Mover todas as planejadas para A Fazer",
 			"moveAll": "Mover todas",
 			"addTask": "Adicionar tarefa",
-			"filter": "Filtrar",
-			"addFilter": "Adicionar filtro...",
 			"sections": {
 				"planned": "Planejado",
 				"archived": "Arquivado"
 			},
 			"noTasksInSection": "Nenhuma tarefa em {{section}}",
 			"filters": {
-				"priority": "Prioridade: {{name}}",
-				"assignee": "Responsável: {{name}}",
-				"due": "Vencimento: {{date}}",
-				"label": "Etiqueta: {{name}}",
 				"dueThisWeek": "Vence esta semana",
 				"dueNextWeek": "Vence na próxima semana",
 				"noDueDate": "Sem data de vencimento"
 			}
 		},
 		"sort": {
-			"label": "Ordenar",
-			"by": "Ordenar por",
 			"direction": "Direção",
 			"ascending": "Crescente",
 			"descending": "Decrescente",
@@ -3010,12 +2996,6 @@
 			}
 		},
 		"boardFilters": {
-			"filterBy": "Filtrar por",
-			"allStatuses": "Todos os status",
-			"allPriorities": "Todas as prioridades",
-			"allAssignees": "Todos os responsáveis",
-			"allDueDates": "Todas as datas de vencimento",
-			"allLabels": "Todas as etiquetas",
 			"selectedCount": "{{count}} selecionado(s)",
 			"subjects": {
 				"status": "Status",
@@ -3026,23 +3006,26 @@
 			},
 			"operators": {
 				"isAnyOf": "é qualquer um de",
-				"includeAnyOf": "inclui qualquer um de"
+				"includeAnyOf": "inclui qualquer um de",
+				"is": "é",
+				"isNot": "não é",
+				"isNoneOf": "não é nenhum de",
+				"include": "inclui",
+				"exclude": "exclui"
 			},
-			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
 			"noValuesUsedYet": "No values used yet"
 		},
 		"gantt": {
+			"searchPlaceholder": "Buscar tickets agendados...",
 			"pageTitle": "{{name}} – Gantt",
 			"title": "Linha do tempo Gantt",
-			"searchPlaceholder": "Buscar tickets agendados...",
 			"hideTasks": "Ocultar tarefas",
 			"showTasks": "Mostrar tarefas",
 			"noTasks": "Nenhuma tarefa agendada",
 			"noTasksSubtitle": "Adicione uma data de início, data de vencimento ou ambas às tarefas para posicioná-las na linha do tempo do projeto.",
 			"noTasksFound": "Nenhuma tarefa encontrada",
-			"noTasksMatch": "Nenhuma tarefa agendada corresponde a \"{{query}}\"",
 			"taskHeader": "Tarefa",
 			"updateDatesError": "Falha ao atualizar as datas da tarefa",
 			"resizeStart": "Redimensionar data de início",
@@ -3067,7 +3050,11 @@
 			"error": "Falha ao duplicar tarefa"
 		},
 		"archive": {
-			"success": "{{count}} tarefas arquivadas"
+			"success": "{{count}} tarefas arquivadas",
+			"confirmTitle_one": "Arquivar {{count}} tarefa concluída?",
+			"confirmTitle_many": "Arquivar {{count}} tarefas concluídas?",
+			"confirmTitle_other": "Arquivar {{count}} tarefas concluídas?",
+			"confirmDescription": "Elas saem do quadro e vão para a seção \"Arquivado\" do backlog."
 		},
 		"listView": {
 			"addTask": "Adicionar tarefa",
@@ -3094,17 +3081,13 @@
 		"dueDate": {
 			"label": "Data de vencimento",
 			"clear": "Limpar data",
-			"updateSuccess": "Data de vencimento da tarefa atualizada com sucesso",
 			"updateError": "Falha ao atualizar a data de vencimento da tarefa",
-			"clearSuccess": "Data de vencimento da tarefa removida",
 			"clearError": "Falha ao limpar a data de vencimento"
 		},
 		"labels": {
-			"label": "Etiquetas",
 			"empty": "Nenhuma etiqueta disponível"
 		},
 		"update": {
-			"success": "Tarefa atualizada com sucesso",
 			"error": "Falha ao atualizar tarefa"
 		},
 		"contextMenu": {
@@ -3126,7 +3109,10 @@
 			"moveToBoardSuccess": "{{count}} tarefas movidas para o quadro",
 			"moveToBoardError": "Falha ao mover tarefas para o quadro",
 			"delete": "Excluir tarefas",
-			"deleteConfirm": "Excluir {{count}} tarefas? Esta ação não pode ser desfeita.",
+			"deleteConfirmTitle_one": "Excluir {{count}} tarefa?",
+			"deleteConfirmTitle_many": "Excluir {{count}} tarefas?",
+			"deleteConfirmTitle_other": "Excluir {{count}} tarefas?",
+			"deleteConfirmDescription": "Isso removerá permanentemente as tarefas selecionadas e todos os seus dados. Você não pode desfazer esta ação.",
 			"deleteSuccess": "{{count}} tarefas excluídas",
 			"deleteError": "Falha ao excluir tarefas",
 			"archive": "Arquivar tarefas",
@@ -3142,12 +3128,19 @@
 			"addLabel": "Adicionar etiqueta",
 			"addLabelSuccess": "Etiqueta adicionada a {{count}} tarefas",
 			"addLabelError": "Falha ao adicionar etiqueta",
-			"setDueDate": "Definir data de vencimento",
 			"updateDueDateError": "Falha ao atualizar data de vencimento",
 			"actions": "Ações",
 			"searchActions": "Buscar ações...",
 			"noActionsFound": "Nenhuma ação encontrada.",
-			"changeStatus": "Mudar status"
+			"changeStatus": "Mudar status",
+			"clearSelection": "Limpar seleção",
+			"selectAll": "Selecionar tudo",
+			"moreActions": "Mais ações",
+			"statusPlaceholder": "Alterar status…",
+			"priorityPlaceholder": "Definir prioridade…",
+			"assigneePlaceholder": "Atribuir a…",
+			"labelPlaceholder": "Adicionar etiqueta…",
+			"columnPlaceholder": "Mover para a coluna…"
 		},
 		"editor": {
 			"table": {
@@ -3181,10 +3174,54 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"checklistProgress": "{{completed}} de {{total}} itens da lista concluídos",
 		"customFields": {
-			"ariaLabel": "Custom fields"
+			"fields": "Campos",
+			"empty": "Vazio",
+			"required": "Obrigatório",
+			"enterKey": "Enter",
+			"toSave": "para salvar",
+			"today": "Hoje",
+			"clear": "Limpar",
+			"setValue": "Definir {{field}}…",
+			"noMatches": "Nenhuma opção correspondente",
+			"missingRequired_one": "{{count}} campo obrigatório está vazio",
+			"missingRequired_many": "{{count}} campos obrigatórios estão vazios",
+			"missingRequired_other": "{{count}} campos obrigatórios estão vazios",
+			"saveError": "Não foi possível salvar {{field}}",
+			"moreFields_one": "Mais {{count}} campo",
+			"moreFields_many": "Mais {{count}} campos",
+			"moreFields_other": "Mais {{count}} campos"
 		},
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"toolbar": {
+			"search": "Buscar tarefas",
+			"clearSearch": "Limpar busca",
+			"taskCount_one": "{{count}} tarefa",
+			"taskCount_many": "{{count}} tarefas",
+			"taskCount_other": "{{count}} tarefas",
+			"shownCount_one": "{{shown}} de {{count}} tarefa",
+			"shownCount_many": "{{shown}} de {{count}} tarefas",
+			"shownCount_other": "{{shown}} de {{count}} tarefas"
+		},
+		"display": {
+			"title": "Exibição",
+			"sortBy": "Ordenar por",
+			"showOnCards": "Mostrar nos cartões",
+			"showOnRows": "Mostrar nas linhas",
+			"checklistProgress": "Progresso da checklist",
+			"projectBackground": "Fundo do projeto",
+			"layout": "Layout"
+		},
+		"filterBar": {
+			"label": "Filtros ativos",
+			"removeFilter": "Remover filtro {{name}}",
+			"noMatches": "Nenhuma tarefa corresponde à sua busca ou aos seus filtros."
+		},
+		"filterMenu": {
+			"addFilter": "Adicionar filtro…",
+			"searchSubject": "{{name}}…",
+			"noResults": "Nenhum resultado"
 		}
 	},
 	"invitations": {
