@@ -184,6 +184,8 @@ async function getTasksPage(
     descriptionDeferred,
     status: taskTable.status,
     priority: taskTable.priority,
+    sprintId: taskTable.sprintId,
+    type: taskTable.type,
     startDate: taskTable.startDate,
     dueDate: taskTable.dueDate,
     position: taskTable.position,

@@ -886,6 +886,8 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       dueDate,
       priority,
       status,
+      type,
+      sprintId,
       userId,
       customFields,
       draftAssetIds,
@@ -912,6 +914,8 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       dueDate: parsedDueDate,
       priority,
       status,
+      type,
+      sprintId,
       customFields,
       draftAssetIds,
     });

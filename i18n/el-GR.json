@@ -912,7 +912,14 @@
 			"moveDialogTitle": "Μετακίνηση σε άλλο χώρο εργασίας;",
 			"moveTargetLabel": "Χώρος εργασίας",
 			"moving": "Γίνεται μετακίνηση...",
-			"tasksTitle": "Εργασίες"
+			"tasksTitle": "Εργασίες",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Σχεδιάστε την επερχόμενη εργασία σε επαναλήψεις σταθερής διάρκειας.",
+			"sprintLength": "Προεπιλεγμένη διάρκεια sprint",
+			"sprintLengthDescription": "Αριθμός ημερών που καλύπτει ένα νέο sprint από προεπιλογή.",
+			"sprintLengthSave": "Αποθήκευση διάρκειας sprint",
+			"sprintLengthSaved": "Η διάρκεια του sprint αποθηκεύτηκε",
+			"sprintLengthError": "Αποτυχία αποθήκευσης της διάρκειας του sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Ενσωματώσεις",
@@ -3007,7 +3014,8 @@
 				"priority": "Προτεραιότητα",
 				"assignee": "Ανατεθειμένος",
 				"dueDate": "Ημερομηνία λήξης",
-				"labels": "Ετικέτες"
+				"labels": "Ετικέτες",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "είναι ένα από",
@@ -3016,7 +3024,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Όλα τα sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -3131,7 +3140,9 @@
 			"actions": "Ενέργειες",
 			"searchActions": "Αναζήτηση ενεργειών...",
 			"noActionsFound": "Δεν βρέθηκαν ενέργειες.",
-			"changeStatus": "Αλλαγή κατάστασης"
+			"changeStatus": "Αλλαγή κατάστασης",
+			"moveToSprint": "Μετακίνηση σε sprint",
+			"updateSprintError": "Απέτυχε η μετακίνηση των εργασιών στο sprint"
 		},
 		"editor": {
 			"table": {
@@ -3169,6 +3180,47 @@
 		},
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Δημιουργία sprint",
+			"createTitle": "Δημιουργία sprint",
+			"createDescription": "Σχεδιάστε ένα επερχόμενο sprint με όνομα, στόχο και ημερομηνίες.",
+			"editTitle": "Επεξεργασία sprint",
+			"editDescription": "Ενημερώστε όνομα, στόχο και ημερομηνίες του sprint.",
+			"edit": "Επεξεργασία sprint",
+			"name": "Όνομα sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Στόχος sprint",
+			"goalPlaceholder": "Τι πρέπει να πετύχει αυτό το sprint;",
+			"save": "Αποθήκευση αλλαγών",
+			"start": "Έναρξη sprint",
+			"startSuccess": "Το sprint {{name}} ξεκίνησε",
+			"close": "Κλείσιμο sprint",
+			"closeTitle": "Κλείσιμο sprint",
+			"closeSummary": "Το {{name}} έχει {{total}} εργασίες, από τις οποίες ολοκληρώθηκαν {{completed}}.",
+			"closeTarget": "Μετακίνηση {{count}} μη ολοκληρωμένων εργασιών σε",
+			"closeConfirm": "Κλείσιμο sprint και μετακίνηση μη ολοκληρωμένων εργασιών",
+			"closeSuccess": "Το sprint έκλεισε, μετακινήθηκαν {{count}} μη ολοκληρωμένες εργασίες",
+			"backlog": "Backlog",
+			"activeBadge": "Ενεργό",
+			"noActive": "Κανένα sprint δεν είναι ενεργό. Ξεκινήστε ένα επερχόμενο sprint.",
+			"upcoming": "Επερχόμενο sprint",
+			"unscheduled": "Χωρίς προγραμματισμό",
+			"taskCounts": "{{completed}} από {{total}} ολοκληρώθηκαν",
+			"history": "Κλειστά sprints ({{count}})",
+			"completedCount": "{{count}} ολοκληρώθηκαν",
+			"moveUp": "Μετακίνηση πάνω",
+			"moveDown": "Μετακίνηση κάτω",
+			"closedLocked": "Αυτή η εργασία ανήκει σε κλειστό sprint και παραμένει εκεί ως ιστορικό",
+			"error": "Η ενέργεια sprint απέτυχε",
+			"daysRemaining": "Απομένουν {{remaining}} ημέρες",
+			"endsToday": "Τελειώνει σήμερα",
+			"daysOverdue": "{{remaining}} ημέρες καθυστέρηση",
+			"noTasks": "Δεν υπάρχουν ακόμα εργασίες σε αυτό το sprint",
+			"toggleTasks": "Εμφάνιση εργασιών sprint",
+			"reportSummary": "Προγραμματισμένες {{planned}}, ολοκληρωμένες {{completed}}, μεταφέρθηκαν {{carriedOver}}",
+			"carriedOver": "Μεταφέρθηκαν"
 		}
 	},
 	"invitations": {
