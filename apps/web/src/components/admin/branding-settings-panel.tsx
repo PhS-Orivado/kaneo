@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Switch } from "@/components/ui/switch";
 import type { BrandingSettings } from "@/fetchers/admin/get-branding";
@@ -210,9 +211,9 @@ function BrandingSettingsPanel() {
             </Field>
             <div className="flex items-center justify-between gap-4">
               <div className="space-y-1">
-                <FieldLabel htmlFor="branding-show-powered-by">
+                <Label htmlFor="branding-show-powered-by">
                   {t("settings:adminBranding.form.showPoweredBy")}
-                </FieldLabel>
+                </Label>
                 <p className="text-xs text-muted-foreground">
                   {t("settings:adminBranding.form.showPoweredByDescription")}
                 </p>
