@@ -28,7 +28,7 @@ import { requireWorkspacePermission } from "../utils/require-workspace-permissio
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import createGithubIntegration from "./controllers/create-github-integration";
 import deleteGithubIntegration from "./controllers/delete-github-integration";
-import getGithubIntegration, {
+import {
   getGithubIntegrationById,
   listGithubIntegrations,
 } from "./controllers/get-github-integration";
@@ -46,8 +46,7 @@ import {
   githubRepositoryListSchema,
   importResultSchema,
   verificationResultSchema,
-} from "./respon
-se";
+} from "./response";
 import {
   createGitHubBody,
   importGitHubBody,
@@ -103,8 +102,7 @@ const verifyRoute = createRoute({
   tags: ["GitHub"],
   summary: "Verify GitHub installation",
   description:
-    "Check that the GitHub App is installed on a repository and holds the permissions Kaneo needs. Always 200 -- problems are 
-reported in the body so the client can guide the user.",
+    "Check that the GitHub App is installed on a repository and holds the permissions Kaneo needs. Always 200 -- problems are reported in the body so the client can guide the user.",
   middleware: [
     requireUserSession,
     scopeToProjectFromBody,
@@ -163,34 +161,13 @@ const getIntegrationByIdRoute = createRoute({
     requireWorkspacePermission({ workspace: ["manage_settings"] }),
   ] as const,
   request: { params: integrationIdParam },
-  response
-s: {
+  responses: {
     200: jsonResponse(
       "GitHub integration details, or null",
       githubIntegrationSchema.nullable(),
     ),
     403: errorResponse("No access to the integration's workspace"),
     404: errorResponse("Integration not found"),
-  },
-});
-
-const getIntegrationRoute = createRoute({
-  method: "get",
-  operationId: "getGitHubIntegration",
-  path: "/project/{projectId}",
-  tags: ["GitHub"],
-  summary: "Get GitHub integration",
-  description:
-    "Compatibility shim: returns the project's first GitHub binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
-  middleware: [workspaceAccess.fromProject("projectId")] as const,
-  request: { params: projectIdParam },
-  responses: {
-    200: jsonResponse(
-      "GitHub integration details, or null",
-      githubIntegrationSchema.nullable(),
-    ),
-    403: errorResponse("No access to the project"),
-    404: errorResponse("Project not found"),
   },
 });
 
@@ -216,8 +193,7 @@ const createIntegrationRoute = createRoute({
       "The repository is already linked to this project (repository_already_linked)",
     ),
     402: errorResponse(
-      "The plan's repository bind
-ing limit is reached (binding_limit_exceeded)",
+      "The plan's repository binding limit is reached (binding_limit_exceeded)",
     ),
     400: errorResponse("Invalid body"),
     403: errorResponse(
@@ -274,8 +250,7 @@ const deleteIntegrationRoute = createRoute({
   description:
     "Unlink one GitHub repository binding. Its issue and pull request links and import state are removed with it; tasks created from its issues remain in the project.",
   middleware: [
-    workspaceAccess.fromIntegration("integrationI
-d"),
+    workspaceAccess.fromIntegration("integrationId"),
     requireWorkspacePermission({ workspace: ["manage_settings"] }),
   ] as const,
   request: { params: integrationIdParam },
@@ -327,8 +302,7 @@ const importIssuesRoute = createRoute({
   },
 });
 
-const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>(
-)
+const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getAppInfoRoute, async (c) => {
     const account = await db.query.accountTable.findFirst({
       where: and(
@@ -371,11 +345,6 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>(
 
     return c.json(verification, 200);
   })
-  .openapi(getIntegrationRoute, async (c) => {
-    const { projectId } = c.req.valid("param");
-    const integration = await getGithubIntegration(projectId);
-    return c.json(integration, 200);
-  })
   .openapi(listIntegrationsRoute, async (c) => {
     const { projectId } = c.req.valid("param");
     const integrations = await listGithubIntegrations(projectId);
@@ -391,8 +360,7 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>(
     return c.json(integration, 200);
   })
   .openapi(createIntegrationRoute, async (c) => {
-    const { projectId } = c.req.v
-alid("param");
+    const { projectId } = c.req.valid("param");
     const { repositoryOwner, repositoryName } = c.req.valid("json");
 
     const integration = await createGithubIntegration({
@@ -459,8 +427,7 @@ alid("param");
       .where(
         and(
           eq(integrationTable.id, row.id),
-          eq(integrationTable.c
-onfig, row.config),
+          eq(integrationTable.config, row.config),
         ),
       )
       .returning({ id: integrationTable.id });

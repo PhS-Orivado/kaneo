@@ -1,7 +1,4 @@
-import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
-import db from "../../database";
-import { integrationTable } from "../../database/schema";
 import { getGithubApp } from "../../plugins/github/utils/github-app";
 import {
   nextRepositoryPage,

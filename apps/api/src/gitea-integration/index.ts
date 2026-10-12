@@ -18,14 +18,11 @@ import {
 } from "../openapi";
 import { type GiteaConfig, validateGiteaConfig } from "../plugins/gitea/config";
 import { handleGiteaWebhookRequest } from "../plugins/gitea/webhook-handler";
-import {
-  hasWorkspacePermission,
-  requireWorkspacePermission,
-} from "../utils/require-workspace-permission";
+import { requireWorkspacePermission } from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import createGiteaIntegration from "./controllers/create-gitea-integration";
 import deleteGiteaIntegration from "./controllers/delete-gitea-integration";
-import getGiteaIntegration, {
+import {
   getGiteaIntegrationById,
   listGiteaIntegrations,
 } from "./controllers/get-gitea-integration";
@@ -55,8 +52,7 @@ const manageAccess = [
 ];
 
 const manageBindingAccess = [
- 
- workspaceAccess.fromIntegration("integrationId"),
+  workspaceAccess.fromIntegration("integrationId"),
   requireWorkspacePermission({ workspace: ["manage_settings"] }),
 ];
 
@@ -104,8 +100,7 @@ const verifyRoute = createRoute({
     200: jsonResponse("Verification result", giteaVerificationResultSchema),
     401: errorResponse("Kaneo authentication required"),
     500: errorResponse("Gitea verification failed"),
-    400: errorResponse("Invalid
- body, or invalid Gitea credentials"),
+    400: errorResponse("Invalid body, or invalid Gitea credentials"),
     403: errorResponse(
       "No access to the project, or missing workspace:manage_settings",
     ),
@@ -159,27 +154,6 @@ const getIntegrationByIdRoute = createRoute({
   },
 });
 
-const getIntegrationRoute = createRoute({
-  method: "get",
-  operationId: "getGiteaIntegration",
-  path: "/project/{projectId}",
-  tags: ["Gitea"],
-  summary: "Get Gitea integration",
-  d
-escription:
-    "Compatibility shim: returns the project's first Gitea binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
-  middleware: [workspaceAccess.fromProject("projectId")] as const,
-  request: { params: projectIdParam },
-  responses: {
-    200: jsonResponse(
-      "Gitea integration details, or null",
-      giteaIntegrationSchema.nullable(),
-    ),
-    403: errorResponse("No access to the project"),
-    404: errorResponse("Project not found"),
-  },
-});
-
 const createIntegrationRoute = createRoute({
   method: "post",
   operationId: "createGiteaIntegration",
@@ -218,8 +192,7 @@ const updateIntegrationRoute = createRoute({
   path: "/integration/{integrationId}",
   tags: ["Gitea"],
   summary: "Update Gitea integration",
-  de
-scription:
+  description:
     "Update one Gitea repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
   middleware: manageBindingAccess,
   request: {
@@ -269,8 +242,7 @@ const importIssuesRoute = createRoute({
   tags: ["Gitea"],
   summary: "Import Gitea issues",
   description:
-    "Import the linked repository's issues as tasks for one binding (integrationId). Issues that already have a task are refreshed rathe
-r than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
+    "Import the linked repository's issues as tasks for one binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
   middleware: [
     workspaceAccess.fromIntegration("integrationId"),
     requireWorkspacePermission({ task: ["create", "update"] }),
@@ -319,18 +291,6 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getIntegrationByIdRoute, async (c) => {
     const { integrationId } = c.req.valid("param");
     const integration = await getGiteaIntegrationById(integrationId, true);
-    return c.json(integration, 200);
-  })
-  .openapi(getIntegrationRoute, async (c) => {
-    const { projectId } = c.req.valid("param");
-    const includeWebhookSecret = await hasWorkspace
-Permission(c, {
-      workspace: ["manage_settings"],
-    });
-    const integration = await getGiteaIntegration(
-      projectId,
-      includeWebhookSecret,
-    );
     return c.json(integration, 200);
   })
   .openapi(createIntegrationRoute, async (c) => {
@@ -386,8 +346,7 @@ Permission(c, {
     }
 
     const validation = await validateGiteaConfig(config);
-    if (!validation.valid) 
-{
+    if (!validation.valid) {
       throw new HTTPException(400, {
         message: validation.errors?.join(", ") ?? "Invalid config",
       });
@@ -449,8 +408,7 @@ export async function handleGiteaWebhookRoute(c: Context) {
   const body = Buffer.from(arrayBuffer).toString("utf8");
 
   const signature =
-    c.req.header("x-gitea-signature") || 
-c.req.header("X-Gitea-Signature");
+    c.req.header("x-gitea-signature") || c.req.header("X-Gitea-Signature");
 
   const eventName =
     c.req.header("x-gitea-event") ||

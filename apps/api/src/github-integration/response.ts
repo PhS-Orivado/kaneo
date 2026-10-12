@@ -61,8 +61,7 @@ export const githubAppInfoSchema = z
     accountLinkingAvailable: z.boolean(),
     appName: z.string().nullable().openapi({
       description:
-        "The confi
-gured GitHub App slug, or null when this instance has no App set up.",
+        "The configured GitHub App slug, or null when this instance has no App set up.",
     }),
   })
   .openapi("GitHubAppInfo");
@@ -125,8 +124,7 @@ export const githubRepositoryListSchema = z
     total: z.number(),
     nextPage: z
       .object({ installationPage: z.number(), repositoryPage: z.number() })
-      .nullable(
-)
+      .nullable()
       .openapi({
         description:
           "Where to continue listing, or null when every installation has been read.",
