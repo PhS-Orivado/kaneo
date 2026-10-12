@@ -2820,6 +2820,11 @@
 			"high": "Высокий",
 			"urgent": "Срочный"
 		},
+		"type": {
+			"label": "Тип",
+			"task": "Задача",
+			"bug": "Баг"
+		},
 		"boardSearchPlaceholder": "Поиск задач...",
 		"view": {
 			"board": "Доска",
