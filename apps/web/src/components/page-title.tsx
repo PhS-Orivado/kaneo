@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import useGetConfig from "@/hooks/queries/config/use-get-config";
 
 type PageTitleProps = {
   title: string;
@@ -8,17 +9,20 @@ type PageTitleProps = {
 
 export default function PageTitle({
   title,
-  suffix = "Kaneo",
+  suffix,
   hideAppName = false,
 }: PageTitleProps) {
+  const { data: config } = useGetConfig();
+  const resolvedSuffix = suffix ?? config?.branding?.appName ?? "Kaneo";
+
   useEffect(() => {
     const formattedTitle = hideAppName
       ? title
-      : suffix
-        ? `${title} · ${suffix}`
+      : resolvedSuffix
+        ? `${title} · ${resolvedSuffix}`
         : title;
     document.title = formattedTitle;
-  }, [title, suffix, hideAppName]);
+  }, [title, resolvedSuffix, hideAppName]);
 
   return null;
 }
