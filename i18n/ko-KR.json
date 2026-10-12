@@ -904,7 +904,14 @@
 			"moveDialogTitle": "다른 워크스페이스로 이동할까요?",
 			"moveTargetLabel": "워크스페이스",
 			"moving": "이동 중...",
-			"tasksTitle": "작업"
+			"tasksTitle": "작업",
+			"sprints": "스프린트",
+			"sprintsSubtitle": "다가오는 작업을 고정 길이 반복 주기로 계획합니다.",
+			"sprintLength": "기본 스프린트 기간",
+			"sprintLengthDescription": "새 스프린트가 기본적으로 포함하는 일수입니다.",
+			"sprintLengthSave": "스프린트 기간 저장",
+			"sprintLengthSaved": "스프린트 기간이 저장되었습니다",
+			"sprintLengthError": "스프린트 기간을 저장할 수 없습니다"
 		},
 		"projectIntegrations": {
 			"pageTitle": "연동",
@@ -1997,6 +2004,37 @@
 				"transferError": "Failed to transfer ownership"
 			}
 		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
+		},
 		"workspaceImport": {
 			"back": {
 				"allSources": "All sources",
@@ -2930,7 +2968,8 @@
 				"priority": "우선순위",
 				"assignee": "담당자",
 				"dueDate": "마감일",
-				"labels": "라벨"
+				"labels": "라벨",
+				"sprint": "스프린트"
 			},
 			"operators": {
 				"isAnyOf": "다음 중 하나",
@@ -2939,7 +2978,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "모든 스프린트"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – 캘린더",
@@ -3067,7 +3107,9 @@
 			"actions": "작업",
 			"searchActions": "작업 검색...",
 			"noActionsFound": "작업을 찾을 수 없습니다.",
-			"changeStatus": "상태 변경"
+			"changeStatus": "상태 변경",
+			"moveToSprint": "스프린트로 이동",
+			"updateSprintError": "작업을 스프린트로 이동하지 못했습니다"
 		},
 		"editor": {
 			"table": {
@@ -3091,6 +3133,47 @@
 		},
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"sprints": {
+			"title": "스프린트",
+			"create": "스프린트 만들기",
+			"createTitle": "스프린트 만들기",
+			"createDescription": "이름, 목표, 날짜로 다가오는 스프린트를 계획합니다.",
+			"editTitle": "스프린트 편집",
+			"editDescription": "스프린트의 이름, 목표, 날짜를 업데이트합니다.",
+			"edit": "스프린트 편집",
+			"name": "스프린트 이름",
+			"namePlaceholder": "스프린트 1",
+			"goal": "스프린트 목표",
+			"goalPlaceholder": "이 스프린트에서 무엇을 달성해야 하나요?",
+			"save": "변경 사항 저장",
+			"start": "스프린트 시작",
+			"startSuccess": "스프린트 {{name}} 시작됨",
+			"close": "스프린트 종료",
+			"closeTitle": "스프린트 종료",
+			"closeSummary": "{{name}}에 {{total}}개의 작업이 있으며 {{completed}}개가 완료되었습니다.",
+			"closeTarget": "완료되지 않은 작업 {{count}}개를 이동할 위치",
+			"closeConfirm": "스프린트를 종료하고 완료되지 않은 작업 이동",
+			"closeSuccess": "스프린트가 종료되었으며 완료되지 않은 작업 {{count}}개가 이동했습니다",
+			"backlog": "백로그",
+			"activeBadge": "진행 중",
+			"noActive": "진행 중인 스프린트가 없습니다. 다가오는 스프린트를 시작하세요.",
+			"upcoming": "다가오는 스프린트",
+			"unscheduled": "일정 없음",
+			"taskCounts": "{{total}}개 중 {{completed}}개 완료",
+			"history": "종료된 스프린트 ({{count}})",
+			"completedCount": "{{count}}개 완료",
+			"moveUp": "위로 이동",
+			"moveDown": "아래로 이동",
+			"closedLocked": "이 작업은 종료된 스프린트의 일부로 기록에 남습니다",
+			"error": "스프린트 작업이 실패했습니다",
+			"daysRemaining": "{{remaining}}일 남음",
+			"endsToday": "오늘 종료",
+			"daysOverdue": "{{remaining}}일 지연",
+			"noTasks": "이 스프린트에는 아직 작업이 없습니다",
+			"toggleTasks": "스프린트 작업 표시",
+			"reportSummary": "계획 {{planned}}, 완료 {{completed}}, 이월 {{carriedOver}}",
+			"carriedOver": "이월됨"
 		}
 	},
 	"invitations": {
