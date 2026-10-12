@@ -2,7 +2,7 @@ import { sql } from "drizzle-orm";
 import db from "../database";
 import getBranding, { type Branding } from "./get-branding";
 
-export default async function updateBranding(
+export async function updateBranding(
   branding: Branding,
 ): Promise<Branding> {
   await db.execute(sql`
@@ -31,3 +31,5 @@ export default async function updateBranding(
 
   return getBranding();
 }
+
+export default updateBranding;
