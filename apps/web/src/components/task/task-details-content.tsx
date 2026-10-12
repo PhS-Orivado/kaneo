@@ -8,7 +8,6 @@ import CommentInput from "@/components/activity/comment-input";
 import { isCommentActivity } from "@/components/activity/utils";
 import { ExternalLinksAccordion } from "@/components/external-links/external-links-accordion";
 import useAuth from "@/components/providers/auth-provider/hooks/use-auth";
-import { TaskBranches } from "@/components/task/task-branches";
 import {
   Accordion,
   AccordionContent,
@@ -652,16 +651,6 @@ export default function TaskDetailsContent({
           isLoading={isLoadingExternalLinks}
         />
       </div>
-      {taskId && (
-        <TaskBranches
-          taskId={taskId}
-          taskNumber={task?.number}
-          projectSlug={project?.slug}
-          labelNames={(task?.labels ?? []).map((label) => label.name)}
-          externalLinks={externalLinks as ExternalLink[]}
-          projectId={projectId}
-        />
-      )}
       <div className="mt-4">
         {task && (
           <TaskSubtasks
