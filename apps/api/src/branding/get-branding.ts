@@ -58,7 +58,7 @@ function toBranding(row: BrandingRow | null): Branding {
 // Reads the single 'default' row. The table is created by the startup
 // migration (migrateBrandingSchema), so a missing table falls back to the
 // defaults instead of failing the public config endpoint.
-export default async function getBranding(): Promise<Branding> {
+export async function getBranding(): Promise<Branding> {
   try {
     const result = (await db.execute(sql`
       SELECT app_name, logo_light_url, logo_dark_url, accent_color,
@@ -73,3 +73,5 @@ export default async function getBranding(): Promise<Branding> {
     return DEFAULT_BRANDING;
   }
 }
+
+export default getBranding;
