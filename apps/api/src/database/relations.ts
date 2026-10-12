@@ -9,7 +9,6 @@ import {
   customFieldDefinitionTable,
   customFieldValueTable,
   externalLinkTable,
-  githubIntegrationTable,
   integrationTable,
   invitationTable,
   labelTable,
@@ -107,7 +106,6 @@ export const projectTableRelations = relations(
     assets: many(assetTable),
     columns: many(columnTable),
     workflowRules: many(workflowRuleTable),
-    githubIntegration: many(githubIntegrationTable),
     integrations: many(integrationTable),
     sprints: many(sprintTable),
     notificationWorkspaceProjects: many(userNotificationWorkspaceProjectTable),
@@ -280,16 +278,6 @@ export const userNotificationWorkspaceProjectTableRelations = relations(
         userNotificationWorkspaceProjectTable.projectId,
       ],
       references: [projectTable.workspaceId, projectTable.id],
-    }),
-  }),
-);
-
-export const githubIntegrationTableRelations = relations(
-  githubIntegrationTable,
-  ({ one }) => ({
-    project: one(projectTable, {
-      fields: [githubIntegrationTable.projectId],
-      references: [projectTable.id],
     }),
   }),
 );
