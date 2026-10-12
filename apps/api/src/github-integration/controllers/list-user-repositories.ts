@@ -1,14 +1,10 @@
-import { and, eq, inArray } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
-import db from "../../database";
-import { integrationTable } from "../../database/schema";
 import { getGithubApp } from "../../plugins/github/utils/github-app";
 import {
   nextRepositoryPage,
   type RepositoryPage,
   searchRepositoryPages,
 } from "../repository-search";
-import { githubRepositoryKey } from "./create-github-integration";
 import { getGithubAccount } from "./verify-repository-owner";
 
 export type { RepositoryPage } from "../repository-search";
@@ -34,17 +30,6 @@ type CandidateRepository = {
   updated_at?: string | null;
 };
 type PermissionLookup = (owner: string, repo: string) => Promise<string>;
-type ListedRepository = {
-  id: number;
-  name: string;
-  full_name: string;
-  private: boolean;
-  owner: { login: string; avatar_url: string; type: string };
-  description: string | null;
-  html_url: string;
-  updated_at: string;
-  installation_id: number;
-};
 
 const request = { timeout: 10_000 };
 
@@ -163,64 +148,6 @@ function describeInstallation(
   };
 }
 
-/** Legacy pre-re-keying key form: `github:<owner>/<name>` lowercased. */
-function legacyGithubRepositoryKey(
-  ownerLogin: string,
-  repositoryName: string,
-): string {
-  return `github:${ownerLogin}/${repositoryName}`.toLowerCase();
-}
-
-// RFC 0001 WP2: annotate each listed repository with its linked state using
-// a single query on repository_key (numeric keys for verified bindings plus
-// the legacy owner/name form). Per decision D1 the annotation is
-// informational for cross-project links; only the picker UI blocks
-// same-project duplicates.
-type AnnotatableRepository = {
-  id: number;
-  name: string;
-  owner: { login: string };
-};
-async function annotateLinkedState<T extends AnnotatableRepository>(
-  repositories: T[],
-) {
-  if (repositories.length === 0) return [];
-  const keys = new Set<string>();
-  for (const repository of repositories) {
-    keys.add(githubRepositoryKey(repository.id));
-    keys.add(
-      legacyGithubRepositoryKey(repository.owner.login, repository.name),
-    );
-  }
-  const links = await db.query.integrationTable.findMany({
-    where: and(
-      eq(integrationTable.type, "github"),
-      inArray(integrationTable.repositoryKey, [...keys]),
-    ),
-    columns: { id: true, projectId: true, repositoryKey: true },
-    with: { project: { columns: { name: true } } },
-  });
-  const linksByKey = new Map(
-    links.map((link) => [
-      link.repositoryKey,
-      {
-        integrationId: link.id,
-        projectId: link.projectId,
-        projectName: link.project?.name ?? null,
-      },
-    ]),
-  );
-  return repositories.map((repository) => ({
-    ...repository,
-    linkedTo:
-      linksByKey.get(githubRepositoryKey(repository.id)) ??
-      linksByKey.get(
-        legacyGithubRepositoryKey(repository.owner.login, repository.name),
-      ) ??
-      null,
-  }));
-}
-
 async function listUserRepositories(
   userId: string,
   page: RepositoryPage,
@@ -256,13 +183,12 @@ async function listUserRepositories(
       },
     });
     const repositories = groups.flatMap((group) => group.repositories);
-    const annotated = await annotateLinkedState(repositories);
     return {
-      repositories: annotated,
+      repositories,
       installations: groups.map((group) =>
         describeInstallation(group.installation, group.repositories),
       ),
-      total: annotated.length,
+      total: repositories.length,
       nextPage,
     };
   }
@@ -276,13 +202,12 @@ async function listUserRepositories(
     return { repositories: [], installations: [], total: 0, nextPage: null };
   const fetched = await source.listRepositories(page.repositoryPage, PAGE_SIZE);
   const repositories = await source.authorize(fetched);
-  const annotated = await annotateLinkedState(repositories);
   return {
-    repositories: annotated,
-    installations: annotated.length
-      ? [describeInstallation(source.installation, annotated)]
+    repositories,
+    installations: repositories.length
+      ? [describeInstallation(source.installation, repositories)]
       : [],
-    total: annotated.length,
+    total: repositories.length,
     nextPage: nextRepositoryPage(page, fetched.length, PAGE_SIZE),
   };
 }

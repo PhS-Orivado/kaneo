@@ -81,9 +81,9 @@ beforeEach(() => {
     data: { id: 20, owner: { login: "Victim" }, name: "Private" },
   });
   m.integrations.mockReset().mockResolvedValue([]);
-  m.insertReturning
-    .mockReset()
-    .mockResolvedValue([{ id: "integration", projectId: "project" }]);
+  m.insertReturning.mockReset().mockResolvedValue([
+    { id: "integration", projectId: "project" },
+  ]);
 });
 
 describe("GitHub repository linking", () => {
@@ -212,11 +212,7 @@ describe("GitHub webhook binding (repository_key lookup)", () => {
   };
   it("delivers to every verified binding of the repository through the same installation", async () => {
     const entries = [
-      {
-        id: "legitimate",
-        config: JSON.stringify(binding),
-        project: { id: "a" },
-      },
+      { id: "legitimate", config: JSON.stringify(binding), project: { id: "a" } },
       {
         // Decision D1: the same repository may be bound in several projects.
         id: "fan-out-second-project",
@@ -249,7 +245,9 @@ describe("GitHub webhook binding (repository_key lookup)", () => {
   });
   it("falls back to the legacy owner/name key when the numeric key has no bindings", async () => {
     const legacy = { id: "legacy", config: JSON.stringify(binding) };
-    m.integrations.mockResolvedValueOnce([]).mockResolvedValueOnce([legacy]);
+    m.integrations
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([legacy]);
     expect(await findAllIntegrationsByRepo(source)).toEqual([legacy]);
     expect(m.integrations).toHaveBeenCalledTimes(2);
   });
@@ -273,6 +271,8 @@ describe("GitHub webhook binding (repository_key lookup)", () => {
 
 const { default: listUserRepositories } =
   await import("../../../apps/api/src/github-integration/controllers/list-user-repositories");
+const { annotateLinkedState } =
+  await import("../../../apps/api/src/github-integration/controllers/annotate-linked-state");
 describe("authorized bounded repository listing", () => {
   const candidate = (id: number) => ({
     id,
@@ -322,13 +322,14 @@ describe("authorized bounded repository listing", () => {
       installationPage: 1,
       repositoryPage: 1,
     });
+    const annotated = await annotateLinkedState(page.repositories);
     expect(m.integrations).toHaveBeenCalledTimes(1);
-    expect(page.repositories[0].linkedTo).toEqual({
+    expect(annotated[0].linkedTo).toEqual({
       integrationId: "integration",
       projectId: "project",
       projectName: "Kaneo",
     });
-    expect(page.repositories[1].linkedTo).toBeNull();
+    expect(annotated[1].linkedTo).toBeNull();
   });
   it("does not expose an unauthorized installation's metadata", async () => {
     m.permission.mockResolvedValue({ data: { permission: "read" } });

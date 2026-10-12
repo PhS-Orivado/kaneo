@@ -33,6 +33,7 @@ import getGithubIntegration, {
   listGithubIntegrations,
 } from "./controllers/get-github-integration";
 import { importIssues } from "./controllers/import-issues";
+import { annotateLinkedState } from "./controllers/annotate-linked-state";
 import listUserRepositories from "./controllers/list-user-repositories";
 import verifyGithubInstallation from "./controllers/verify-github-installation";
 import { verifyRepositoryOwner } from "./controllers/verify-repository-owner";
@@ -246,7 +247,9 @@ const updateIntegrationRoute = createRoute({
       "The updated integration",
       githubIntegrationSchema.nullable(),
     ),
-    409: errorResponse("Integration changed; refresh before updating"),
+    409: errorResponse(
+      "Integration changed; refresh before updating",
+    ),
     402: errorResponse(
       "The plan's repository binding limit is reached (binding_limit_exceeded)",
     ),
@@ -344,7 +347,8 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       page,
       search || undefined,
     );
-    return c.json(repositories, 200);
+    const annotated = await annotateLinkedState(repositories);
+    return c.json(annotated, 200);
   })
   .openapi(verifyRoute, async (c) => {
     const { repositoryOwner, repositoryName } = c.req.valid("json");
