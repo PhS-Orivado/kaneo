@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import useGetConfig from "@/hooks/queries/config/use-get-config";
 import useProjectStore from "@/store/project";
 
 type LogoProps = {
@@ -7,6 +8,11 @@ type LogoProps = {
 
 export function Logo({ className = "" }: LogoProps) {
   const { setProject } = useProjectStore();
+  const { data: config } = useGetConfig();
+  const branding = config?.branding;
+  const lightThemeLogo = branding?.logoLightUrl ?? "/logo-dark.svg";
+  const darkThemeLogo = branding?.logoDarkUrl ?? "/logo-light.svg";
+  const appName = branding?.appName ?? "Kaneo";
 
   return (
     <Link
@@ -17,13 +23,13 @@ export function Logo({ className = "" }: LogoProps) {
       className={`w-auto ${className}`}
     >
       <img
-        src="/logo-dark.svg"
-        alt="Kaneo"
+        src={lightThemeLogo}
+        alt={appName}
         className="h-6 w-auto dark:hidden"
       />
       <img
-        src="/logo-light.svg"
-        alt="Kaneo"
+        src={darkThemeLogo}
+        alt={appName}
         className="hidden h-6 w-auto dark:block"
       />
     </Link>
