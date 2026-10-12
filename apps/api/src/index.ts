@@ -1,7 +1,6 @@
 import integrationSync from "./integration-sync";
 import { syncWorkspaceAccess } from "./ws/workspace-access";
 import { drainPasswordResetDeliveries } from "./utils/password-reset-delivery";
-import jiraIntegration, { handleJiraWebhookRoute } from "./jira-integration";
 import "./instrument";
 
 import { dirname } from "node:path";
@@ -57,7 +56,6 @@ import { stopActiveImports } from "./import/runs/stop-active-imports";
 import getInstanceStatus from "./instance/controllers/get-instance-status";
 import invitation from "./invitation";
 import label from "./label";
-import matrixIntegration from "./matrix-integration";
 import mattermostIntegration from "./mattermost-integration";
 import mcpRoutes, { mcpWellKnownRoutes } from "./mcp";
 import { migrateColumns } from "./migrations/column-migration";
@@ -70,7 +68,6 @@ import { migrateGitHubIntegration } from "./plugins/github/migration";
 import project from "./project";
 import { assertProjectAccess } from "./project-access/assert-project-access";
 import { getPublicProject } from "./project/controllers/get-public-project";
-import repositoryBindings from "./repository-bindings";
 import { initializeScheduler, shutdownScheduler } from "./scheduler";
 import search from "./search";
 import slackIntegration from "./slack-integration";
@@ -448,8 +445,6 @@ export function createApp() {
     "/gitlab-integration/webhook/:integrationId",
     handleGitlabWebhookRoute,
   );
-
-  api.post("/jira-integration/webhook/:integrationId", handleJiraWebhookRoute);
 
   const invitationPublicApi = api.get("/invitation/public/:id", async (c) => {
     const { id } = c.req.param();
@@ -858,7 +853,6 @@ export function createApp() {
     "/gitlab-integration",
     gitlabIntegration,
   );
-  const jiraIntegrationApi = api.route("/jira-integration", jiraIntegration);
   const genericWebhookIntegrationApi = api.route(
     "/generic-webhook-integration",
     genericWebhookIntegration,
@@ -871,10 +865,6 @@ export function createApp() {
     "/mattermost-integration",
     mattermostIntegration,
   );
-  const matrixIntegrationApi = api.route(
-    "/matrix-integration",
-    matrixIntegration,
-  );
   const slackIntegrationApi = api.route("/slack-integration", slackIntegration);
   const telegramIntegrationApi = api.route(
     "/telegram-integration",
@@ -882,10 +872,6 @@ export function createApp() {
   );
   const taskRelationApi = api.route("/task-relation", taskRelation);
   const externalLinkApi = api.route("/external-link", externalLink);
-  const repositoryBindingsApi = api.route(
-    "/repository-bindings",
-    repositoryBindings,
-  );
   const workflowRuleApi = api.route("/workflow-rule", workflowRule);
   const invitationApi = api.route("/invitation", invitation);
   const workspaceApi = api.route("/workspace", workspace);
@@ -998,12 +984,10 @@ export function createApp() {
     discordIntegrationApi,
     externalLinkApi,
     genericWebhookIntegrationApi,
-    repositoryBindingsApi,
     integrationSyncApi,
     githubIntegrationApi,
     giteaIntegrationApi,
     gitlabIntegrationApi,
-    jiraIntegrationApi,
     invitationApi,
     invitationPublicApi,
     labelApi,
@@ -1014,7 +998,6 @@ export function createApp() {
     publicProjectApi,
     searchApi,
     mattermostIntegrationApi,
-    matrixIntegrationApi,
     slackIntegrationApi,
     taskApi,
     taskRelationApi,
@@ -1136,17 +1119,14 @@ const {
   discordIntegrationApi,
   externalLinkApi,
   genericWebhookIntegrationApi,
-  repositoryBindingsApi,
   integrationSyncApi,
   githubIntegrationApi,
   giteaIntegrationApi,
   gitlabIntegrationApi,
-  jiraIntegrationApi,
   invitationApi,
   invitationPublicApi,
   labelApi,
   mattermostIntegrationApi,
-  matrixIntegrationApi,
   notificationApi,
   notificationPreferencesApi,
   projectApi,
@@ -1197,12 +1177,9 @@ export type AppType =
   | typeof githubIntegrationApi
   | typeof giteaIntegrationApi
   | typeof gitlabIntegrationApi
-  | typeof jiraIntegrationApi
   | typeof genericWebhookIntegrationApi
-  | typeof repositoryBindingsApi
   | typeof discordIntegrationApi
   | typeof mattermostIntegrationApi
-  | typeof matrixIntegrationApi
   | typeof slackIntegrationApi
   | typeof telegramIntegrationApi
   | typeof taskRelationApi
