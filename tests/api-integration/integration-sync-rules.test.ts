@@ -102,7 +102,7 @@ async function setup(role = "owner") {
     .returning();
   mockAuthenticatedSession(member.user);
   const { app } = createApp();
-  const path = `/api/integration-sync/project/${project.id}/gitea`;
+  const path = `/api/integration-sync/integration/${integration.id}`;
   const rules: SyncRules = {
     outgoing: { mode: "labels", match: "any", labels: [label.id] },
     incoming: { mode: "labels", match: "any", labels: ["sync"] },
@@ -153,7 +153,7 @@ async function setup(role = "owner") {
       })
       .where(eq(schema.integrationTable.id, integration.id));
   const preview = async (selected = rules) =>
-    previewSyncRules(await getSyncIntegration(project.id, "gitea"), selected);
+    previewSyncRules(await getSyncIntegration(integration.id), selected);
   return {
     ...member,
     project,
@@ -295,7 +295,7 @@ describe("integration label policies", () => {
     });
     expect(response.status).toBe(409);
     expect(
-      readSyncRules((await getSyncIntegration(f.project.id, "gitea")).config),
+      readSyncRules((await getSyncIntegration(f.integration.id)).config),
     ).toEqual(defaultSyncRules);
   });
 
@@ -335,7 +335,7 @@ describe("integration label policies", () => {
         ).status,
       ).toBe(200);
       expect(
-        readSyncRules((await getSyncIntegration(f.project.id, "gitea")).config),
+        readSyncRules((await getSyncIntegration(f.integration.id)).config),
       ).toEqual(f.rules);
     },
   );
@@ -493,8 +493,7 @@ describe("integration label policies", () => {
     const preview = await f.preview();
     expect(preview).toMatchObject({ willPause: 1, matching: 0 });
     await saveSyncRules(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.rules,
       preview.previewToken,
       f.workspace.id,
@@ -561,7 +560,7 @@ describe("integration label policies", () => {
     const f = await setup();
     await f.assign();
     await f.setRules();
-    const binding = await getSyncIntegration(f.project.id, "gitea");
+    const binding = await getSyncIntegration(f.integration.id);
     const event = {
       taskId: f.task.id,
       projectId: f.project.id,
@@ -635,8 +634,7 @@ it("pages a large paused scope and preserves metadata across batched rule saves"
   expect(preview.pausedTasks).toHaveLength(25);
   expect(preview.pausedNextCursor).toBeTruthy();
   await saveSyncRules(
-    f.project.id,
-    "gitea",
+    f.integration.id,
     f.rules,
     preview.previewToken,
     f.workspace.id,
@@ -648,7 +646,7 @@ it("pages a large paused scope and preserves metadata across batched rule saves"
       (link) => JSON.parse(link.metadata!).deferredIssueEdit?.id === "old-job",
     ),
   ).toHaveLength(205);
-  const binding = await getSyncIntegration(f.project.id, "gitea");
+  const binding = await getSyncIntegration(f.integration.id);
   const first = await previewSyncRules(binding, f.rules);
   const second = await previewSyncRules(
     binding,
@@ -688,8 +686,7 @@ describe("reviewed sync resume", () => {
           },
         );
         await lockResumeScope(
-          f.project.id,
-          "gitea",
+          f.integration.id,
           f.link.id,
           f.workspace.id,
           tx,
@@ -905,8 +902,7 @@ describe("reviewed sync resume", () => {
   it("rejects a stale local comparison before writing to the provider", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -916,8 +912,7 @@ describe("reviewed sync resume", () => {
       .where(eq(schema.taskTable.id, f.task.id));
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "kaneo",
@@ -934,8 +929,7 @@ describe("reviewed sync resume", () => {
       const target =
         change === "project" ? await createWorkspaceMember() : undefined;
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -948,8 +942,7 @@ describe("reviewed sync resume", () => {
         return { updatedAt: "2026-01-02T00:00:00Z" };
       });
       const resume = resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "kaneo",
@@ -1032,8 +1025,7 @@ describe("reviewed sync resume", () => {
         })
         .where(eq(schema.integrationTable.id, f.integration.id));
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -1086,8 +1078,7 @@ describe("reviewed sync resume", () => {
         })
         .where(eq(schema.integrationTable.id, f.integration.id));
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -1131,8 +1122,7 @@ describe("reviewed sync resume", () => {
   it("allows task edits during the provider read and rejects the stale comparison before dispatch", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1146,8 +1136,7 @@ describe("reviewed sync resume", () => {
     });
     provider.read.mockClear();
     const resume = resumeSync(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       review.token,
       "kaneo",
@@ -1176,8 +1165,7 @@ describe("reviewed sync resume", () => {
   it("pauses again when a repository edit's webhook was discarded during resume", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1204,8 +1192,7 @@ describe("reviewed sync resume", () => {
     });
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "provider",
@@ -1220,8 +1207,7 @@ describe("reviewed sync resume", () => {
       expect.objectContaining({ taskId: f.task.id }),
     );
     const followUp = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1241,8 +1227,7 @@ describe("reviewed sync resume", () => {
     async ({ field, cause }) => {
       const f = await paused();
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -1274,8 +1259,7 @@ describe("reviewed sync resume", () => {
       });
       await expect(
         resumeSync(
-          f.project.id,
-          "gitea",
+          f.integration.id,
           f.link.id,
           review.token,
           "kaneo",
@@ -1286,8 +1270,7 @@ describe("reviewed sync resume", () => {
       expect(webhook).not.toHaveBeenCalled();
       expect(await canSyncTask(f.task.id, f.integration.id)).toBe(false);
       const followUp = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -1306,8 +1289,7 @@ describe("reviewed sync resume", () => {
       labels: ["priority:low", "custom"],
     });
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1327,8 +1309,7 @@ describe("reviewed sync resume", () => {
     });
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "provider",
@@ -1363,8 +1344,7 @@ describe("reviewed sync resume", () => {
         labels,
       });
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -1375,8 +1355,7 @@ describe("reviewed sync resume", () => {
       });
       await expect(
         resumeSync(
-          f.project.id,
-          "gitea",
+          f.integration.id,
           f.link.id,
           review.token,
           source as "kaneo" | "provider",
@@ -1400,8 +1379,7 @@ describe("reviewed sync resume", () => {
   it("keeps adoption paused if the verification read fails without exposing provider secrets", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1412,8 +1390,7 @@ describe("reviewed sync resume", () => {
     );
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "provider",
@@ -1429,8 +1406,7 @@ describe("reviewed sync resume", () => {
   it("records an uncertain provider write when the dispatch transaction fails", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1444,8 +1420,7 @@ describe("reviewed sync resume", () => {
     );
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "kaneo",
@@ -1480,15 +1455,13 @@ describe("reviewed sync resume", () => {
         .spyOn(events, "publishEvent")
         .mockResolvedValue(undefined);
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
       expect(review.local.state).toBe("open");
       await resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "provider",
@@ -1519,15 +1492,13 @@ describe("reviewed sync resume", () => {
       .set({ userId: f.user.id })
       .where(eq(schema.taskTable.id, f.task.id));
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
     expect(review.local.title).toBe("Kaneo title");
     await resumeSync(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       review.token,
       "provider",
@@ -1595,14 +1566,12 @@ describe("reviewed sync resume", () => {
   it("keeps Kaneo values only after the repository update succeeds", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
     await resumeSync(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       review.token,
       "kaneo",
@@ -1644,14 +1613,12 @@ describe("reviewed sync resume", () => {
       })
       .where(eq(schema.taskTable.id, f.task.id));
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitlab",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
     await resumeSync(
-      f.project.id,
-      "gitlab",
+      f.integration.id,
       f.link.id,
       review.token,
       "kaneo",
@@ -1700,14 +1667,12 @@ describe("reviewed sync resume", () => {
       updatedAt: "2026-01-01T00:00:00Z",
     });
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
     await resumeSync(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       review.token,
       "provider",
@@ -1730,8 +1695,7 @@ describe("reviewed sync resume", () => {
   it("requires a fresh comparison after either side changes", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1742,8 +1706,7 @@ describe("reviewed sync resume", () => {
     });
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "kaneo",
@@ -1756,8 +1719,7 @@ describe("reviewed sync resume", () => {
   it("records an uncertain resume and refreshes clients if local commit fails after the provider write", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
@@ -1767,8 +1729,7 @@ describe("reviewed sync resume", () => {
     const publish = vi.spyOn(events, "publishEvent");
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "kaneo",
@@ -1795,16 +1756,14 @@ describe("reviewed sync resume", () => {
   it("keeps the link paused when a provider request fails", async () => {
     const f = await paused();
     const review = await reviewSyncResume(
-      f.project.id,
-      "gitea",
+      f.integration.id,
       f.link.id,
       f.workspace.id,
     );
     provider.write.mockRejectedValue(new Error("offline"));
     await expect(
       resumeSync(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         review.token,
         "kaneo",
@@ -1818,8 +1777,7 @@ describe("reviewed sync resume", () => {
     async (stage) => {
       const f = await paused();
       const review = await reviewSyncResume(
-        f.project.id,
-        "gitea",
+        f.integration.id,
         f.link.id,
         f.workspace.id,
       );
@@ -1865,13 +1823,12 @@ describe("reviewed sync resume", () => {
       .delete(schema.labelTable)
       .where(eq(schema.labelTable.taskId, f.task.id));
     await expect(
-      reviewSyncResume(f.project.id, "gitea", f.link.id, f.workspace.id),
+      reviewSyncResume(f.integration.id, f.link.id, f.workspace.id),
     ).rejects.toMatchObject({ status: 409 });
     const other = await setup();
     await expect(
       reviewSyncResume(
-        other.project.id,
-        "gitea",
+        other.integration.id,
         f.link.id,
         other.workspace.id,
       ),
