@@ -71,6 +71,7 @@ import { getPublicProject } from "./project/controllers/get-public-project";
 import { initializeScheduler, shutdownScheduler } from "./scheduler";
 import search from "./search";
 import slackIntegration from "./slack-integration";
+import sprint from "./sprint";
 import { getPrivateObject } from "./storage/s3";
 import task from "./task";
 import {
@@ -831,6 +832,7 @@ export function createApp() {
   const calendarFeedApi = api.route("/calendar-feed", calendarFeed);
   const taskApi = api.route("/task", task);
   const columnApi = api.route("/column", column);
+  const sprintApi = api.route("/sprint", sprint);
   const activityApi = api.route("/activity", activity);
   const commentApi = api.route("/comment", comment);
   const timeEntryApi = api.route("/time-entry", timeEntry);
@@ -999,6 +1001,7 @@ export function createApp() {
     slackIntegrationApi,
     taskApi,
     taskRelationApi,
+    sprintApi,
     telegramIntegrationApi,
     timeEntryApi,
     userApi,
@@ -1133,6 +1136,7 @@ const {
   slackIntegrationApi,
   taskApi,
   taskRelationApi,
+  sprintApi,
   telegramIntegrationApi,
   timeEntryApi,
   userApi,
@@ -1161,6 +1165,7 @@ export type AppType =
   | typeof calendarFeedApi
   | typeof taskApi
   | typeof columnApi
+  | typeof sprintApi
   | typeof activityApi
   | typeof commentApi
   | typeof timeEntryApi
