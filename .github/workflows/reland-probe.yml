@@ -1,0 +1,106 @@
+name: reland-probe
+
+on:
+  push:
+    branches:
+      - feat/reland-multi-repo
+    paths:
+      - ".github/workflows/reland-probe.yml"
+      - "resolutions/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: reland-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Fetch the pre-reset fork state
+        run: git fetch --no-tags origin backup/fork-main-before-upstream-reset
+      - name: Guard against re-running an already merged state
+        id: guard
+        run: |
+          if git merge-base --is-ancestor 0d3149e3face90b246951adb6f580ed1580cbe4 HEAD; then
+            echo "done=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "done=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Attempt the multi-repository merge
+        id: attempt
+        if: steps.guard.outputs.done == 'false'
+        run: |
+          set +e
+          git merge --no-ff --no-commit 0d3149e3face90b246951adb6f580ed1580cbe4 > merge.log 2>&1
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          cat merge.log
+          exit 0
+      - name: Apply resolutions
+        if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
+        run: |
+          if [ -d resolutions ]; then
+            cp -a resolutions/. ./
+          fi
+      - name: Record the conflict report
+        if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
+        run: |
+          mkdir -p conflict-report
+          cp merge.log conflict-report/MERGE.LOG || true
+          git rev-parse HEAD > conflict-report/HEAD.txt
+          git merge-base HEAD 0d3149e3face90b246951adb6f580ed1580cbe4 > conflict-report/MERGE-BASE.txt || true
+          git diff --name-only --diff-filter=U > conflict-report/UNMERGED.txt || true
+          mb=$(cat conflict-report/MERGE-BASE.txt)
+          git diff --stat "$mb" 0d3149e3face90b246951adb6f580ed1580cbe4 > conflict-report/FORK-DELTA-STAT.txt || true
+          git diff --stat "$mb" HEAD > conflict-report/UPSTREAM-DELTA-STAT.txt || true
+          : > conflict-report/SIZES.txt
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            if [ -e "$f" ]; then
+              printf '%s %s\n' "$(wc -c < "$f")" "$f" >> conflict-report/SIZES.txt
+            fi
+          done < conflict-report/UNMERGED.txt
+          while IFS= read -r f; do
+            [ -n "$f" ] || continue
+            safe=$(printf '%s' "$f" | tr '/' '@')
+            git diff -- "$f" > "conflict-report/$safe.diff" 2>/dev/null || true
+            if [ -e "$f" ]; then
+              size=$(wc -c < "$f")
+              if [ "$size" -gt 28000 ]; then
+                mkdir -p "chunks/$safe"
+                split -b 28000 -d -e "$f" "chunks/$safe/part."
+              fi
+            fi
+          done < conflict-report/UNMERGED.txt
+          cd conflict-report
+          for f in *.diff; do
+            [ -f "$f" ] || continue
+            if [ "$(wc -c < "$f")" -gt 28000 ]; then
+              split -b 28000 -d "$f" "$f.part."
+              rm "$f"
+            fi
+          done
+      - name: Push the conflicted probe state
+        if: steps.attempt.outputs.code != '0' && steps.attempt.outputs.code != ''
+        run: |
+          git add -A
+          git commit -m "probe: conflicted merge state of the multi-repository re-land"
+          git push --force origin HEAD:refs/heads/probe/reland-multi-repo
+      - name: Complete the merge
+        if: steps.attempt.outputs.code == '0'
+        run: |
+          rm -rf resolutions
+          git rm -r --cached resolutions >/dev/null 2>&1 || true
+          git rm .github/workflows/reland-probe.yml >/dev/null 2>&1 || true
+          git commit -m "Merge the completed multi-repository state (RFC 0001, PRs #15-#20) onto upstream v2.41.1"
+          git push origin HEAD:refs/heads/feat/reland-multi-repo
