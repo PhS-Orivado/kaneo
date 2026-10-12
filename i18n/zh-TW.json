@@ -2674,6 +2674,11 @@
 			"high": "高",
 			"urgent": "緊急"
 		},
+		"type": {
+			"label": "類型",
+			"task": "任務",
+			"bug": "錯誤"
+		},
 		"boardSearchPlaceholder": "搜尋任務…",
 		"view": {
 			"board": "看板",
