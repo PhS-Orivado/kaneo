@@ -790,7 +790,14 @@
 			"moveDialogTitle": "Naar een andere werkruimte verplaatsen?",
 			"moveTargetLabel": "Werkruimte",
 			"moving": "Verplaatsen...",
-			"tasksTitle": "Taken"
+			"tasksTitle": "Taken",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Plan aankomend werk in iteraties met vaste lengte.",
+			"sprintLength": "Standaard sprintlengte",
+			"sprintLengthDescription": "Aantal dagen dat een nieuwe sprint standaard omvat.",
+			"sprintLengthSave": "Sprintlengte opslaan",
+			"sprintLengthSaved": "Sprintlengte opgeslagen",
+			"sprintLengthError": "Kon de sprintlengte niet opslaan"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integraties",
@@ -2996,7 +3003,8 @@
 				"priority": "Prioriteit",
 				"assignee": "Toegewezen persoon",
 				"dueDate": "Einddatum",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "is een van",
@@ -3005,7 +3013,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Alle sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -3120,7 +3129,9 @@
 			"actions": "Acties",
 			"searchActions": "Acties zoeken...",
 			"noActionsFound": "Geen acties gevonden.",
-			"changeStatus": "Status wijzigen"
+			"changeStatus": "Status wijzigen",
+			"moveToSprint": "Naar sprint verplaatsen",
+			"updateSprintError": "Kan de taken niet naar de sprint verplaatsen"
 		},
 		"move": {
 			"title": "Taak verplaatsen",
@@ -3169,6 +3180,47 @@
 		},
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Sprint aanmaken",
+			"createTitle": "Sprint aanmaken",
+			"createDescription": "Plan een aankomende sprint met naam, doel en datums.",
+			"editTitle": "Sprint bewerken",
+			"editDescription": "Werk naam, doel en datums van de sprint bij.",
+			"edit": "Sprint bewerken",
+			"name": "Sprintnaam",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprintdoel",
+			"goalPlaceholder": "Wat moet deze sprint bereiken?",
+			"save": "Wijzigingen opslaan",
+			"start": "Sprint starten",
+			"startSuccess": "Sprint {{name}} gestart",
+			"close": "Sprint afsluiten",
+			"closeTitle": "Sprint afsluiten",
+			"closeSummary": "{{name}} heeft {{total}} taken, waarvan {{completed}} voltooid.",
+			"closeTarget": "Verplaats {{count}} onvoltooide taken naar",
+			"closeConfirm": "Sprint afsluiten en onvoltooide taken verplaatsen",
+			"closeSuccess": "Sprint afgesloten, {{count}} onvoltooide taken verplaatst",
+			"backlog": "Backlog",
+			"activeBadge": "Actief",
+			"noActive": "Er is geen actieve sprint. Start een aankomende sprint om te itereren.",
+			"upcoming": "Aankomende sprint",
+			"unscheduled": "Niet gepland",
+			"taskCounts": "{{completed}} van {{total}} voltooid",
+			"history": "Afgesloten sprints ({{count}})",
+			"completedCount": "{{count}} voltooid",
+			"moveUp": "Omhoog",
+			"moveDown": "Omlaag",
+			"closedLocked": "Deze taak hoort bij een afgesloten sprint en blijft daar als geschiedenis",
+			"error": "Sprintactie mislukt",
+			"daysRemaining": "{{remaining}} dagen resterend",
+			"endsToday": "Eindigt vandaag",
+			"daysOverdue": "{{remaining}} dagen te laat",
+			"noTasks": "Nog geen taken in deze sprint",
+			"toggleTasks": "Sprinttaken weergeven",
+			"reportSummary": "Gepland {{planned}}, voltooid {{completed}}, doorgeschoven {{carriedOver}}",
+			"carriedOver": "Doorgeschoven"
 		}
 	},
 	"invitations": {
