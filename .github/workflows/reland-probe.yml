@@ -27,18 +27,22 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
       - name: Fetch the pre-reset fork state
-        run: git fetch --no-tags origin backup/fork-main-before-upstream-reset
-      - name: Guard against re-running an already merged state
-        id: guard
         run: |
-          if git merge-base --is-ancestor 0d3149e3face90b246951adb6f580ed1580cbe4 HEAD; then
-            echo "done=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "done=false" >> "$GITHUB_OUTPUT"
-          fi
+          set -x
+          git remote -v
+          git config --get-all remote.origin.fetch || true
+          git fetch --no-tags origin backup/fork-main-before-upstream-reset > fetch1.log 2>&1
+          cat fetch1.log
+          git log --oneline -1 FETCH_HEAD >> fetch1.log 2>&1 || true
+          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >> fetch1.log 2>&1 || true
+          git fetch --no-tags origin 0d3149e3face90b246951adb6f580ed1580cbe4 > fetch2.log 2>&1
+          cat fetch2.log || true
+          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >> fetch2.log 2>&1 || true
+          git fetch --no-tags origin +refs/pull/29/merge:refs/remotes/pull29 > fetch3.log 2>&1
+          cat fetch3.log || true
+          git cat-file -t 0d3149e3face90b246951adb6f580ed1580cbe4 >> fetch3.log 2>&1 || true
       - name: Attempt the multi-repository merge
         id: attempt
-        if: steps.guard.outputs.done == 'false'
         run: |
           set +e
           git merge --no-ff --no-commit 0d3149e3face90b246951adb6f580ed1580cbe4 > merge.log 2>&1
@@ -57,6 +61,9 @@ jobs:
         run: |
           mkdir -p conflict-report
           cp merge.log conflict-report/MERGE.LOG || true
+          cp fetch1.log conflict-report/FETCH1.LOG || true
+          cp fetch2.log conflict-report/FETCH2.LOG || true
+          cp fetch3.log conflict-report/FETCH3.LOG || true
           git rev-parse HEAD > conflict-report/HEAD.txt
           git merge-base HEAD 0d3149e3face90b246951adb6f580ed1580cbe4 > conflict-report/MERGE-BASE.txt || true
           git diff --name-only --diff-filter=U > conflict-report/UNMERGED.txt || true
