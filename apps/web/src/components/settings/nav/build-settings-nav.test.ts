@@ -58,7 +58,6 @@ describe("buildSettingsNav", () => {
     ).toEqual([
       "/dashboard/settings/admin/users",
       "/dashboard/settings/admin/workspaces",
-      "/dashboard/settings/admin/branding",
     ]);
   });
 

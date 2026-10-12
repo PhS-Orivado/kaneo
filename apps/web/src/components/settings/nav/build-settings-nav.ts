@@ -5,7 +5,6 @@ import {
   CreditCard,
   Import,
   KeyRound,
-  Palette,
   Server,
   Settings,
   Shield,
@@ -165,12 +164,6 @@ export function buildSettingsNav({
               label: t("settings:adminWorkspaces.title"),
               to: "/dashboard/settings/admin/workspaces",
               icon: Building2,
-            },
-            {
-              id: "admin-branding",
-              label: t("settings:adminBranding.title"),
-              to: "/dashboard/settings/admin/branding",
-              icon: Palette,
             },
           ],
         }
