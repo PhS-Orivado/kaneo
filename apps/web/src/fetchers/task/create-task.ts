@@ -18,7 +18,6 @@ async function createTask(
   priority: CreateTaskRequest["priority"],
   customFields?: { fieldId: string; value: string }[],
   draftAssetIds?: string[],
-  syncIntegrationIds?: string[],
   type?: CreateTaskRequest["type"],
   sprintId?: string,
 ) {
@@ -37,7 +36,6 @@ async function createTask(
       priority,
       customFields,
       draftAssetIds,
-      syncIntegrationIds,
       ...(type ? { type } : {}),
       ...(sprintId ? { sprintId } : {}),
     },
@@ -45,7 +43,7 @@ async function createTask(
   });
 
   if (!response.ok) {
-    throw new HttpError(response.status, await response.text());
+    throw await HttpError.fromResponse(response);
   }
 
   const data = await response.json();

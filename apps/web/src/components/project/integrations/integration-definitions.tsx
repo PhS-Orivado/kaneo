@@ -11,13 +11,13 @@ import { SlackIcon } from "@/components/icons/slack-icon";
 import { TelegramIcon } from "@/components/icons/telegram-icon";
 import { DiscordIntegrationSettings } from "@/components/project/discord-integration-settings";
 import { GenericWebhookIntegrationSettings } from "@/components/project/generic-webhook-integration-settings";
-import { GiteaIntegrationSettings } from "@/components/project/gitea-integration-settings";
-import { GitHubIntegrationSettings } from "@/components/project/github-integration-settings";
-import { GitlabIntegrationSettings } from "@/components/project/gitlab-integration-settings";
-import { JiraIntegrationSettings } from "@/components/project/jira-integration-settings";
-import { MatrixIntegrationSettings } from "@/components/project/matrix-integration-settings";
+import { GiteaIntegrationSettings } from "@/components/project/gitea-integration/gitea-integration-settings";
+import { GitHubIntegrationSettings } from "@/components/project/github-integration/github-integration-settings";
+import { GitlabIntegrationSettings } from "@/components/project/gitlab-integration/gitlab-integration-settings";
 import { MattermostIntegrationSettings } from "@/components/project/mattermost-integration-settings";
 import { SlackIntegrationSettings } from "@/components/project/slack-integration-settings";
+import { JiraIntegrationSettings } from "@/components/project/jira-integration-settings";
+import { MatrixIntegrationSettings } from "@/components/project/matrix-integration-settings";
 import { TelegramIntegrationSettings } from "@/components/project/telegram-integration-settings";
 
 export type IntegrationId =
@@ -35,7 +35,6 @@ export type IntegrationId =
 export type IntegrationDefinition = {
   id: IntegrationId;
   category: "code" | "chat";
-  // Product names stay untranslated; only the generic webhook needs a key.
   name: string | { key: string };
   descriptionKey: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;

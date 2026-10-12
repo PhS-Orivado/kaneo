@@ -17,10 +17,9 @@ export function useUpsertWorkflowRule() {
         columnId: string;
       };
     }) => upsertWorkflowRule(projectId, data),
-    onSuccess: (_, variables) => {
+    onSuccess: (_, variables) =>
       queryClient.invalidateQueries({
         queryKey: ["workflow-rules", variables.projectId],
-      });
-    },
+      }),
   });
 }

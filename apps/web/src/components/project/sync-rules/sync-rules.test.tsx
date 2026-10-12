@@ -98,7 +98,12 @@ beforeEach(() => {
   });
 });
 afterEach(cleanup);
-function mount(node = <SyncRulesSection scope={param} />) {
+async function openEditor() {
+  fireEvent.click(
+    await screen.findByRole("button", { name: "settings:syncRules.edit" }),
+  );
+}
+function mount(node = <SyncRulesSection {...param} />) {
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
   });
@@ -135,11 +140,15 @@ describe("advanced sync settings", () => {
     });
     mocks.save.mockResolvedValue(initial);
     mount();
+    await openEditor();
     fireEvent.click(await screen.findByRole("checkbox", { name: "later" }));
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: "settings:syncRules.apply" }),
       ).toBeEnabled(),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:syncRules.reviewPaused" }),
     );
     fireEvent.click(
       screen.getByRole("button", { name: "settings:syncRules.next" }),
@@ -211,6 +220,7 @@ describe("advanced sync settings", () => {
         return saved;
       });
       const { client, rerender } = mount();
+      await openEditor();
       await screen.findByRole("checkbox", { name: "sync" });
       rerender(
         <QueryClientProvider client={client}>
@@ -246,6 +256,7 @@ describe("advanced sync settings", () => {
       };
       mocks.get.mockResolvedValue(initial);
       const { client } = mount();
+      await openEditor();
       fireEvent.click(await screen.findByRole("checkbox", { name: "later" }));
       const draft = {
         ...saved.rules,
@@ -295,6 +306,7 @@ describe("advanced sync settings", () => {
   it("adopts refreshed shared rules when the editor has no draft changes", async () => {
     useUserPreferencesStore.setState({ advancedSettings: true });
     const { client } = mount();
+    await openEditor();
     await screen.findByRole("checkbox", { name: "sync" });
     act(() =>
       client.setQueryData(
@@ -352,6 +364,7 @@ describe("advanced sync settings", () => {
       },
     });
     mount();
+    await openEditor();
     fireEvent.click(
       await screen.findByRole("button", {
         name: "settings:syncRules.removeMissingLabels",
@@ -424,6 +437,7 @@ describe("advanced sync settings", () => {
     mocks.get.mockResolvedValue({ ...saved, willCreate: 1 });
     const { client } = mount();
     client.setQueryData(["external-links", "task-1"], [{ metadata: "{}" }]);
+    await openEditor();
     const apply = await screen.findByRole("button", {
       name: "settings:syncRules.exportPending",
     });
@@ -438,20 +452,20 @@ describe("advanced sync settings", () => {
 
   it("shows a retry after a failed refresh even when rules were cached", async () => {
     const { client } = mount();
-    await screen.findByText("settings:syncRules.anySummary");
+    await screen.findByText("settings:syncRules.tasksLabelled");
     mocks.get.mockRejectedValueOnce(new Error("Unavailable"));
     await act(async () => {
       await client.invalidateQueries({ queryKey: ["integration-sync"] });
     });
-    expect(await screen.findByRole("alert")).toHaveTextContent(
-      "settings:syncRules.loadError",
-    );
-    expect(screen.queryByText("settings:syncRules.anySummary")).toBeNull();
+    expect(
+      await screen.findByText("settings:syncRules.loadError"),
+    ).toBeVisible();
+    expect(screen.queryByText("settings:syncRules.tasksLabelled")).toBeNull();
     fireEvent.click(
-      screen.getByRole("button", { name: "common:error.tryAgain" }),
+      screen.getByRole("button", { name: "settings:codeHosting.retry" }),
     );
     expect(
-      await screen.findByText("settings:syncRules.anySummary"),
+      await screen.findByText("settings:syncRules.tasksLabelled"),
     ).toBeVisible();
   });
 
@@ -475,6 +489,7 @@ describe("advanced sync settings", () => {
       },
     });
     mount();
+    await openEditor();
     const extra = await screen.findByRole("checkbox", { name: "Label 51" });
     expect(extra).toHaveAttribute("aria-disabled", "true");
     fireEvent.click(extra);
@@ -492,6 +507,7 @@ describe("advanced sync settings", () => {
     useUserPreferencesStore.setState({ advancedSettings: true });
     mocks.get.mockResolvedValue({ ...saved, willCreate: 1 });
     mount();
+    await openEditor();
     const retry = await screen.findByRole("button", {
       name: "settings:syncRules.exportPending",
     });
@@ -508,11 +524,16 @@ describe("advanced sync settings", () => {
   it("shows the active rule while advanced mode is off and preserves it when toggled", async () => {
     mount();
     await screen.findByText("settings:syncRules.advancedHint");
-    expect(screen.getByText("settings:syncRules.anySummary")).toBeVisible();
+    expect(screen.getByText("settings:syncRules.tasksLabelled")).toBeVisible();
+    expect(screen.getByText("sync")).toBeVisible();
+    expect(
+      screen.queryByRole("button", { name: "settings:syncRules.edit" }),
+    ).toBeNull();
     expect(
       screen.queryByRole("button", { name: "settings:syncRules.apply" }),
     ).toBeNull();
     act(() => useUserPreferencesStore.getState().setAdvancedSettings(true));
+    await openEditor();
     expect(await screen.findByRole("checkbox", { name: "sync" })).toBeChecked();
     act(() => useUserPreferencesStore.getState().setAdvancedSettings(false));
     expect(screen.queryByRole("checkbox", { name: "sync" })).toBeNull();
@@ -522,6 +543,7 @@ describe("advanced sync settings", () => {
   it("requires a selected label and a current impact preview before saving", async () => {
     useUserPreferencesStore.setState({ advancedSettings: true });
     mount();
+    await openEditor();
     const checkbox = await screen.findByRole("checkbox", { name: "sync" });
     const apply = screen.getByRole("button", {
       name: "settings:syncRules.apply",
@@ -529,7 +551,6 @@ describe("advanced sync settings", () => {
     fireEvent.click(checkbox);
     expect(apply).toBeDisabled();
     expect(mocks.preview).not.toHaveBeenCalled();
-    // Restore the saved rule, then add a repository-side filter to create a valid draft.
     fireEvent.click(checkbox);
     fireEvent.click(
       screen.getByRole("combobox", { name: "settings:syncRules.incoming" }),
@@ -583,9 +604,17 @@ describe("advanced sync settings", () => {
       ],
     });
     mount();
+    fireEvent.click(
+      await screen.findByRole("button", {
+        name: "settings:syncRules.reviewPaused",
+      }),
+    );
     await screen.findByText("Paused task");
     expect(
       screen.queryByRole("button", { name: "settings:syncRules.review" }),
+    ).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: "settings:syncRules.edit" }),
     ).toBeNull();
     expect(screen.queryByRole("checkbox")).toBeNull();
   });
@@ -616,5 +645,70 @@ describe("advanced sync settings", () => {
     );
     await waitFor(() => expect(keepLocal).toBeEnabled());
     expect(mocks.review).toHaveBeenCalledTimes(2);
+  });
+
+  it("summarizes both directions with label pills", async () => {
+    mocks.get.mockResolvedValue({
+      ...saved,
+      rules: {
+        outgoing: { mode: "labels", match: "all", labels: ["label-1"] },
+        incoming: { mode: "labels", match: "any", labels: ["bug", "design"] },
+      },
+    });
+    mount();
+    expect(
+      await screen.findByText("settings:syncRules.kaneoToProvider"),
+    ).toBeVisible();
+    expect(
+      screen.getByText("settings:syncRules.providerToKaneo"),
+    ).toBeVisible();
+    expect(screen.getByText("sync")).toBeVisible();
+    expect(screen.getByText("bug")).toBeVisible();
+    expect(screen.getByText("design")).toBeVisible();
+    expect(screen.getByText("settings:syncRules.joinOr")).toBeVisible();
+  });
+
+  it("collapses paused links into one callout until reviewed", async () => {
+    mocks.get.mockResolvedValue({
+      ...saved,
+      paused: 2,
+      pausedTasks: [
+        {
+          id: "task-1",
+          number: 1,
+          title: "Paused task",
+          linkId: "link-1",
+          url: "https://git.example/1",
+          eligible: true,
+        },
+      ],
+    });
+    mount();
+    const review = await screen.findByRole("button", {
+      name: "settings:syncRules.reviewPaused",
+    });
+    expect(screen.getByText("settings:syncRules.pausedSummary")).toBeVisible();
+    expect(screen.queryByText("Paused task")).toBeNull();
+    fireEvent.click(review);
+    expect(screen.getByText("Paused task")).toBeVisible();
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:syncRules.review" }),
+    );
+    expect(await screen.findByRole("dialog")).toBeVisible();
+  });
+
+  it("closes the editor on cancel without saving", async () => {
+    useUserPreferencesStore.setState({ advancedSettings: true });
+    mount();
+    await openEditor();
+    fireEvent.click(await screen.findByRole("checkbox", { name: "sync" }));
+    fireEvent.click(
+      screen.getByRole("button", { name: "common:actions.cancel" }),
+    );
+    expect(screen.queryByRole("checkbox")).toBeNull();
+    expect(
+      screen.getByRole("button", { name: "settings:syncRules.edit" }),
+    ).toBeVisible();
+    expect(mocks.save).not.toHaveBeenCalled();
   });
 });

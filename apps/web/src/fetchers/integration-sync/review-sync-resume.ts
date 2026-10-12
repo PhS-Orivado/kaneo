@@ -7,28 +7,12 @@ export default async function reviewSyncResume(
   linkId: string,
   signal?: AbortSignal,
 ) {
-  const response =
-    scope.kind === "binding"
-      ? await client["integration-sync"].integration[":integrationId"].links[
-          ":linkId"
-        ].review.$get(
-          {
-            param: { integrationId: scope.integrationId, linkId },
-          },
-          { init: { signal } },
-        )
-      : await client["integration-sync"].project[":projectId"][
-          ":provider"
-        ].links[":linkId"].review.$get(
-          {
-            param: {
-              projectId: scope.projectId,
-              provider: scope.provider,
-              linkId,
-            },
-          },
-          { init: { signal } },
-        );
-  if (!response.ok) throw new HttpError(response.status, await response.text());
+  const response = await client["integration-sync"].project[":projectId"][
+    ":provider"
+  ].links[":linkId"].review.$get(
+    { param: { ...param, linkId } },
+    { init: { signal } },
+  );
+  if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }

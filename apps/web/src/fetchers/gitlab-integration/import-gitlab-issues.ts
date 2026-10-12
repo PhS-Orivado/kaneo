@@ -1,6 +1,6 @@
 import { client } from "@kaneo/libs";
-import type { InferRequestType, InferResponseType } from "hono";
 import { HttpError } from "@/lib/http-error";
+import type { InferRequestType, InferResponseType } from "hono";
 
 export type ImportGitlabIssuesRequest = InferRequestType<
   (typeof client)["gitlab-integration"]["import-issues"]["$post"]
@@ -19,7 +19,7 @@ async function importGitlabIssues(data: ImportGitlabIssuesRequest) {
   });
 
   if (!response.ok) {
-    throw new HttpError(response.status, await response.text());
+    throw await HttpError.fromResponse(response);
   }
 
   return response.json();

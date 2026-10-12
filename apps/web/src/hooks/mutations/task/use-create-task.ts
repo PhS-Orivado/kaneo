@@ -20,7 +20,6 @@ function useCreateTask() {
       priority,
       customFields,
       draftAssetIds,
-      syncIntegrationIds,
       type,
       sprintId,
     }: CreateTaskRequest) =>
@@ -35,7 +34,6 @@ function useCreateTask() {
         priority,
         customFields,
         draftAssetIds,
-        syncIntegrationIds,
         type,
         sprintId,
       ),

@@ -8,24 +8,12 @@ export default async function resumeSync(
   token: string,
   source: "kaneo" | "provider",
 ) {
-  const response =
-    scope.kind === "binding"
-      ? await client["integration-sync"].integration[":integrationId"].links[
-          ":linkId"
-        ].resume.$post({
-          param: { integrationId: scope.integrationId, linkId },
-          json: { token, source },
-        })
-      : await client["integration-sync"].project[":projectId"][
-          ":provider"
-        ].links[":linkId"].resume.$post({
-          param: {
-            projectId: scope.projectId,
-            provider: scope.provider,
-            linkId,
-          },
-          json: { token, source },
-        });
-  if (!response.ok) throw new HttpError(response.status, await response.text());
+  const response = await client["integration-sync"].project[":projectId"][
+    ":provider"
+  ].links[":linkId"].resume.$post({
+    param: { ...param, linkId },
+    json: { token, source },
+  });
+  if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }
