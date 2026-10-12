@@ -94,6 +94,7 @@ import {
 import { getInvitationDetails } from "./utils/check-registration-allowed";
 import { clientIpMiddleware } from "./utils/client-ip";
 import { migrateApiKeyReferenceId } from "./utils/migrate-apikey-reference-id";
+import { migrateBrandingSchema } from "./utils/migrate-branding-schema";
 import { migrateNotificationPreferencesSchema } from "./utils/migrate-notification-preferences-schema";
 import { migrateSessionColumn } from "./utils/migrate-session-column";
 import { migrateWorkspaceUserEmail } from "./utils/migrate-workspace-user-email";
@@ -1038,6 +1039,7 @@ export async function runStartupTasks() {
   await migrateApiKeyReferenceId();
 
   await migrateNotificationPreferencesSchema();
+  await migrateBrandingSchema();
   await migrateGitHubIntegration();
   await migrateColumns();
   await seedDefaultWorkspaceRoles();
