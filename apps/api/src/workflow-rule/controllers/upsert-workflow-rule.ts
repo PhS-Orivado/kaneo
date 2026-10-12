@@ -105,7 +105,6 @@ async function upsertWorkflowRule({
     .values({
       projectId,
       integrationType,
-      integrationId: integrationId ?? null,
       eventType,
       columnId,
       integrationId: scopedIntegrationId,

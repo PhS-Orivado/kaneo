@@ -55,8 +55,7 @@ const getWorkspaceRoute = createRoute({
   tags: ["Workspaces"],
   summary: "Get workspace",
   description:
-    "Get a workspace where one of the caller's r
-oles grants workspace:read, with the caller's role. Instance admins can get any workspace, with a null role when they are not a member.",
+    "Get a workspace where one of the caller's roles grants workspace:read, with the caller's role. Instance admins can get any workspace, with a null role when they are not a member.",
   middleware: [requireApiKeyScope({ workspace: ["read"] })] as const,
   request: { params: workspaceIdParam },
   responses: {
@@ -103,8 +102,7 @@ const getWorkspaceProjectAccessRoute = createRoute({
   responses: {
     200: jsonResponse(
       "Members limited to selected projects",
-      memberPr
-ojectAccessListSchema,
+      memberProjectAccessListSchema,
     ),
     403: errorResponse("Missing member:update permission"),
     404: errorResponse("Workspace not found"),
@@ -154,8 +152,7 @@ const updateMemberProjectAccessRoute = createRoute({
   summary: "Update member project access",
   description:
     "Give a member access to every project, or limit them to selected projects. Owners always access every project, and you can't change your own access or give access to projects you can't access yourself.",
-  middl
-eware: [
+  middleware: [
     workspaceAccess.fromParam("workspaceId"),
     requireWorkspacePermission({ member: ["update"] }),
   ] as const,
@@ -220,8 +217,7 @@ const workspace = apiRouter<BaseVariables & { workspaceId: string }>()
     const body = c.req.valid("json");
     return c.json(
       await updateMemberProjectAccessCtrl({
-        wo
-rkspaceId: c.get("workspaceId"),
+        workspaceId: c.get("workspaceId"),
         actorId: c.get("userId"),
         userId,
         projectAccess: body.projectAccess,

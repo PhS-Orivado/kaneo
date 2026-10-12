@@ -19,18 +19,6 @@ import {
   workflowRuleParam,
 } from "./schema";
 
-// RFC 0001 WP6: when the body targets a repository binding, the binding is
-// the addressed resource and authorizes the request (WP1: 404 for an
-// unknown integration id, 403 for a binding of a foreign workspace) before
-// the project-keyed fallback authorizes type-wide rules, whose body carries
-// no integrationId.
-const ruleAccess = workspaceAccessMiddleware({
-  sources: [
-    { type: "lookup", resource: "integration", idKey: "integrationId" },
-    { type: "lookup", resource: "project", idKey: "projectId" },
-  ],
-});
-
 const getWorkflowRulesRoute = createRoute({
   method: "get",
   operationId: "getWorkflowRules",
@@ -120,7 +108,6 @@ const workflowRule = apiRouter()
       await upsertWorkflowRule({
         projectId,
         integrationType,
-        integrationId: integrationId ?? null,
         eventType,
         columnId,
         integrationId: integrationId ?? null,
