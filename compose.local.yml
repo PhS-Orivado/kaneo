@@ -33,6 +33,9 @@ services:
 #    ports:
 #      - "6379:6379"
 
+  # Split deployment note: the web container proxies /api/ to the api service.
+  # Set KANEO_API_PROXY_TARGET=api:1337 in .env.local so browser requests to
+  # the web container reach the API instead of the SPA fallback.
   web:
     build:
       context: .

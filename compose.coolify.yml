@@ -4,14 +4,13 @@
 #   Public Repository -> https://github.com/usekaneo/kaneo
 #   Build Pack: Docker Compose | Base Directory: / | Compose Location: compose.coolify.yml
 #
-# Assign a domain to the "kaneo" service using its container port, e.g. https://kaneo.example.com:5173
+# Assign a domain to the "web" service using its container port, e.g. https://kaneo.example.com:5173
 # (visitors use the normal HTTPS URL; the port only tells Coolify where to route traffic).
 #
 # The only required environment variable is KANEO_CLIENT_URL (your public URL, without :5173).
 # AUTH_SECRET and the PostgreSQL password are auto-generated via Coolify magic variables.
-# Do NOT set KANEO_API_URL — the entrypoint derives it from KANEO_CLIENT_URL (public URL + /api).
-# The Kaneo image tracks the latest release by default. Set KANEO_IMAGE_TAG to a
-# release tag to hold a deployment on a known version.
+# Do NOT set KANEO_API_URL — it is derived from KANEO_CLIENT_URL (public URL + /api).
+# Images are built from source code using the Dockerfiles in apps/api and apps/web.
 
 services:
   postgres:
@@ -29,28 +28,44 @@ services:
       timeout: 5s
       retries: 5
 
-  kaneo:
-    # Tracks the latest release. The API runs database migrations on startup, so
-    # set KANEO_IMAGE_TAG to a release tag if a redeploy should stay on a known
-    # version rather than pick up whatever is newest.
-    image: ghcr.io/usekaneo/kaneo:${KANEO_IMAGE_TAG:-latest}
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
     environment:
       - KANEO_CLIENT_URL=${KANEO_CLIENT_URL:?}
       - AUTH_SECRET=${SERVICE_HEX_64_KANEO:?}
-      # The image derives DATABASE_URL from these POSTGRES_* variables at startup.
-      # POSTGRES_PASSWORD is the same generated value shared with the postgres service.
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=kaneo
       - POSTGRES_USER=kaneo
       - POSTGRES_PASSWORD=${SERVICE_PASSWORD_POSTGRES}
-      # Optional: SMTP_*, SSO providers, GitHub integration, Sentry, Redis...
-      # add them here or in the Coolify UI for the kaneo service.
+      - DATABASE_URL=postgresql://kaneo:${SERVICE_PASSWORD_POSTGRES}@postgres:5432/kaneo
     depends_on:
       postgres:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:5173/api/health"]
+      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:1337/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "5173:5173"
+    environment:
+      - KANEO_CLIENT_URL=${KANEO_CLIENT_URL:?}
+      - NEXT_PUBLIC_APP_URL=${KANEO_CLIENT_URL:?}
+      - NEXT_PUBLIC_API_URL=${KANEO_CLIENT_URL:?}/api
+    depends_on:
+      - api
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:5173"]
       interval: 30s
       timeout: 5s
       start_period: 60s
