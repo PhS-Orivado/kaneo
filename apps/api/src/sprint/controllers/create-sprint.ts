@@ -2,6 +2,7 @@ import { eq, sql } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { sprintTable } from "../../database/schema";
+import { isDatabaseUniqueViolation } from "../../integrations/map-unique-violation";
 import { publishEvent } from "../../events";
 import { getSprint } from "./get-sprints";
 import { nextSprintName } from "../sprint-defaults";
@@ -46,18 +47,33 @@ async function createSprint({
     .from(sprintTable)
     .where(eq(sprintTable.projectId, projectId));
 
-  const [created] = await db
-    .insert(sprintTable)
-    .values({
-      projectId,
-      name: sprintName,
-      goal: goal ?? null,
-      status: "future",
-      startDate: start,
-      endDate: end,
-      position: (maxPosition?.maxPosition ?? -1) + 1,
-    })
-    .returning();
+  let created: typeof sprintTable.$inferSelect | undefined;
+  try {
+    [created] = await db
+      .insert(sprintTable)
+      .values({
+        projectId,
+        name: sprintName,
+        goal: goal ?? null,
+        status: "future",
+        startDate: start,
+        endDate: end,
+        position: (maxPosition?.maxPosition ?? -1) + 1,
+      })
+      .returning();
+  } catch (error) {
+    // The name check above races a concurrent create; the unique constraint is
+    // the final authority and must surface as a 409, not a 500.
+    if (
+      isDatabaseUniqueViolation(error) &&
+      error.constraint === "sprint_project_name_unique"
+    ) {
+      throw new HTTPException(409, {
+        message: `Sprint "${sprintName}" already exists in this project`,
+      });
+    }
+    throw error;
+  }
 
   if (!created) {
     throw new HTTPException(500, { message: "Failed to create sprint" });
