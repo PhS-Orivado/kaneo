@@ -27,7 +27,6 @@ import {
   workspaceSchema,
 } from "./response";
 import {
-  createWorkspaceInvitationsBody,
   updateMemberProjectAccessBody,
   workspaceIdParam,
   workspaceMemberParam,
@@ -56,7 +55,8 @@ const getWorkspaceRoute = createRoute({
   tags: ["Workspaces"],
   summary: "Get workspace",
   description:
-    "Get a workspace where one of the caller's roles grants workspace:read, with the caller's role. Instance admins can get any workspace, with a null role when they are not a member.",
+    "Get a workspace where one of the caller's r
+oles grants workspace:read, with the caller's role. Instance admins can get any workspace, with a null role when they are not a member.",
   middleware: [requireApiKeyScope({ workspace: ["read"] })] as const,
   request: { params: workspaceIdParam },
   responses: {
@@ -103,7 +103,8 @@ const getWorkspaceProjectAccessRoute = createRoute({
   responses: {
     200: jsonResponse(
       "Members limited to selected projects",
-      memberProjectAccessListSchema,
+      memberPr
+ojectAccessListSchema,
     ),
     403: errorResponse("Missing member:update permission"),
     404: errorResponse("Workspace not found"),
@@ -153,7 +154,8 @@ const updateMemberProjectAccessRoute = createRoute({
   summary: "Update member project access",
   description:
     "Give a member access to every project, or limit them to selected projects. Owners always access every project, and you can't change your own access or give access to projects you can't access yourself.",
-  middleware: [
+  middl
+eware: [
     workspaceAccess.fromParam("workspaceId"),
     requireWorkspacePermission({ member: ["update"] }),
   ] as const,
@@ -175,37 +177,6 @@ const updateMemberProjectAccessRoute = createRoute({
       "Missing member:update permission, changing your own access, or granting a project you can't access",
     ),
     404: errorResponse("Workspace or member not found"),
-  },
-});
-
-const createWorkspaceInvitationsRoute = createRoute({
-  method: "post",
-  operationId: "createWorkspaceInvitations",
-  path: "/{workspaceId}/invitations",
-  tags: ["Workspaces"],
-  summary: "Invite users without sending emails",
-  description:
-    "Create pending workspace invitations in bulk, for example when migrating from another tool. No email is sent unless an address is marked sendEmail, so the caller decides who is notified; every result includes the invitation id so the link can be shared manually. Members and existing unexpired invitations are not duplicated, matching the app's invite flow.",
-  middleware: [
-    workspaceAccess.fromParam("workspaceId"),
-    requireWorkspacePermission({ invitation: ["create"] }),
-  ] as const,
-  request: {
-    params: workspaceIdParam,
-    body: {
-      required: true,
-      content: {
-        "application/json": { schema: createWorkspaceInvitationsBody },
-      },
-    },
-  },
-  responses: {
-    200: jsonResponse("Invitation results", workspaceInvitationListSchema),
-    400: errorResponse("Invalid body or unknown role"),
-    403: errorResponse(
-      "No workspace access, or missing invitation:create permission",
-    ),
-    404: errorResponse("Workspace not found"),
   },
 });
 
@@ -249,23 +220,12 @@ const workspace = apiRouter<BaseVariables & { workspaceId: string }>()
     const body = c.req.valid("json");
     return c.json(
       await updateMemberProjectAccessCtrl({
-        workspaceId: c.get("workspaceId"),
+        wo
+rkspaceId: c.get("workspaceId"),
         actorId: c.get("userId"),
         userId,
         projectAccess: body.projectAccess,
         projectIds: body.projectIds,
-      }),
-      200,
-    );
-  })
-  .openapi(createWorkspaceInvitationsRoute, async (c) => {
-    const body = c.req.valid("json");
-    return c.json(
-      await createWorkspaceInvitationsCtrl({
-        workspaceId: c.get("workspaceId"),
-        actorId: c.get("userId"),
-        role: body.role,
-        invitations: body.invitations,
       }),
       200,
     );

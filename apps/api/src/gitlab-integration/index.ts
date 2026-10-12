@@ -52,20 +52,13 @@ import {
   verifyGitlabBody,
 } from "./schema";
 
-// RFC 0001 WP4: the GitLab surface is re-keyed from the project to the
-// integration id. List and link keep the project-keyed composition; detail,
-// update and delete resolve integration -> project -> workspace (WP1) via
-// workspaceAccess.fromIntegration and require manage_settings for
-// mutations. Per decision D1 the same GitLab project may be bound in several
-// projects; each binding has its own webhook secret and its own webhook
-// route (/webhook/:integrationId, registered in GitLab with that binding's
-// secret).
 const manageAccess = [
   workspaceAccess.fromProject("projectId"),
   requireWorkspacePermission({ workspace: ["manage_settings"] }),
 ];
 
 const manageBindingAccess = [
+
   workspaceAccess.fromIntegration("integrationId"),
   requireWorkspacePermission({ workspace: ["manage_settings"] }),
 ];
@@ -117,7 +110,8 @@ const verifyRoute = createRoute({
     200: jsonResponse("Verification result", gitlabVerificationResultSchema),
     400: errorResponse("Invalid body"),
     401: errorResponse("GitLab rejected the token"),
-    403: errorResponse(
+    403: errorRes
+ponse(
       "No access to the project, or missing workspace:manage_settings",
     ),
     404: errorResponse("Project not found"),
@@ -170,53 +164,6 @@ const getIntegrationByIdRoute = createRoute({
   },
 });
 
-const listIntegrationsRoute = createRoute({
-  method: "get",
-  operationId: "listGitlabIntegrations",
-  path: "/project/{projectId}/integrations",
-  tags: ["GitLab"],
-  summary: "List GitLab integrations",
-  description:
-    "List every GitLab project bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10). Requires workspace:manage_settings, so each row includes its own webhook secret.",
-  middleware: manageAccess,
-  request: { params: projectIdParam },
-  responses: {
-    200: jsonResponse(
-      "The project's GitLab bindings and the repository binding usage",
-      gitlabIntegrationListSchema,
-    ),
-    400: errorResponse(
-      "Unknown project, or its workspace could not be determined",
-    ),
-    403: errorResponse(
-      "No workspace access, or missing workspace:manage_settings",
-    ),
-  },
-});
-
-const getIntegrationByIdRoute = createRoute({
-  method: "get",
-  operationId: "getGitlabIntegrationById",
-  path: "/integration/{integrationId}",
-  tags: ["GitLab"],
-  summary: "Get a GitLab integration by id",
-  description:
-    "Get one GitLab project binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1); the webhook secret is per row, so a caller never sees another binding's secret.",
-  middleware: [
-    workspaceAccess.fromIntegration("integrationId"),
-    requireWorkspacePermission({ workspace: ["manage_settings"] }),
-  ] as const,
-  request: { params: integrationIdParam },
-  responses: {
-    200: jsonResponse(
-      "GitLab integration details, or null",
-      gitlabIntegrationSchema.nullable(),
-    ),
-    403: errorResponse("No access to the integration's workspace"),
-    404: errorResponse("Integration not found"),
-  },
-});
-
 const getIntegrationRoute = createRoute({
   method: "get",
   operationId: "getGitlabIntegration",
@@ -224,7 +171,8 @@ const getIntegrationRoute = createRoute({
   tags: ["GitLab"],
   summary: "Get GitLab integration",
   description:
-    "Compatibility shim: returns the project's first GitLab binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+    "Compatibility shim: returns t
+he project's first GitLab binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
   middleware: [workspaceAccess.fromProject("projectId")] as const,
   request: { params: projectIdParam },
   responses: {
@@ -274,7 +222,8 @@ const createIntegrationRoute = createRoute({
 
 const updateIntegrationRoute = createRoute({
   method: "patch",
-  operationId: "updateGitlabIntegration",
+  operationId: "upd
+ateGitlabIntegration",
   path: "/integration/{integrationId}",
   tags: ["GitLab"],
   summary: "Update GitLab integration",
@@ -325,7 +274,8 @@ const deleteIntegrationRoute = createRoute({
 const importIssuesRoute = createRoute({
   method: "post",
   operationId: "importGitlabIssues",
-  path: "/import-issues",
+  path:
+ "/import-issues",
   tags: ["GitLab"],
   summary: "Import GitLab issues",
   description:
@@ -380,12 +330,13 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   })
   .openapi(getIntegrationByIdRoute, async (c) => {
     const { integrationId } = c.req.valid("param");
-    const integration = await getGitlabIntegrationById(integrationId, true);
+    const i
+ntegration = await getGitlabIntegrationById(integrationId, true);
     return c.json(integration, 200);
   })
   .openapi(getIntegrationRoute, async (c) => {
     const { projectId } = c.req.valid("param");
-    const includeWebhookSecret = await hasWorkspacePermission(c, {
+    const includeSecrets = await hasWorkspacePermission(c, {
       workspace: ["manage_settings"],
     });
     const integration = await getGitlabIntegration(projectId, includeSecrets);
@@ -436,7 +387,8 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
       throw new HTTPException(500, { message: "Invalid integration config" });
     }
 
-    if (body.commentTaskLinkOnGitlabIssue !== undefined) {
+    if (body.commentTaskLinkOnGitlabIssue !== undefin
+ed) {
       config = {
         ...config,
         commentTaskLinkOnGitlabIssue: body.commentTaskLinkOnGitlabIssue,
@@ -499,7 +451,8 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
 export async function handleGitlabWebhookRoute(c: Context) {
   const integrationId = c.req.param("integrationId");
   if (!integrationId) {
-    return c.json({ error: "Missing integration id" }, 400);
+    return c.j
+son({ error: "Missing integration id" }, 400);
   }
 
   const arrayBuffer = await c.req.arrayBuffer();

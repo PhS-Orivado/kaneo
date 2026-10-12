@@ -62,25 +62,10 @@ export async function importGitlabIssues({
   projectId?: string;
 }): Promise<ImportResult> {
   const errors: string[] = [];
-  let imported = 0;
+  le
+t imported = 0;
   let updated = 0;
   let skipped = 0;
-
-  const integration = await db.query.integrationTable.findFirst({
-    where: and(
-      eq(integrationTable.id, integrationId),
-      eq(integrationTable.type, "gitlab"),
-    ),
-  });
-
-  if (!integration) {
-    throw new HTTPException(404, { message: "GitLab integration not found" });
-  }
-
-  const projectId = integration.projectId;
-  if (expectedProjectId && expectedProjectId !== projectId) {
-    throw new HTTPException(404, { message: "GitLab integration not found" });
-  }
 
   const integration = await db.query.integrationTable.findFirst({
     where: eq(integrationTable.id, integrationId),
@@ -150,7 +135,8 @@ export async function importGitlabIssues({
     }
 
     try {
-      const result = await importSingleIssue(
+      const result = await import
+SingleIssue(
         issue,
         integration.id,
         projectIdResolved,
@@ -230,7 +216,8 @@ async function importSingleIssue(
 
   if (existingLink) {
     const result = await withIntegrationTask(
-      existingLink.taskId,
+      
+existingLink.taskId,
       { id: integrationId, projectId, project: { workspaceId } },
       async (database, afterCommit) => {
         const [linked] = await database
@@ -296,7 +283,8 @@ async function importSingleIssue(
         where: eq(integrationTable.id, integrationId),
       });
       if (
-        !binding ||
+  
+      !binding ||
         !sameConfig(binding.config, JSON.stringify(config)) ||
         !acceptsIssue(binding.config, issue.labels) ||
         (await findExternalLink(integrationId, "issue", String(issue.iid), tx))
@@ -369,7 +357,8 @@ async function importLabelsForTask(
   workspaceId: string,
   database: IntegrationDatabase = db,
 ): Promise<void> {
-  const names = issueLabels.filter((name) => name && !isSystemLabelName(name));
+  const names = issueLabels.filter((name) => name && !
+isSystemLabelName(name));
 
   // GitLab issue, so its absence there is not a reason to remove labels.
   if (names.length === 0) {
@@ -449,7 +438,8 @@ async function importNotesForTask(
         type: "comment",
         content: note.body,
         externalUserName: username || "Unknown",
-        externalUserAvatar: note.author?.avatar_url ?? null,
+        externalUserAvatar: note.author?.avatar_url ?? 
+null,
         externalSource: "gitlab",
         // The notes API has no URL, so link to the anchor on the issue page.
         externalUrl: `${issue.web_url}#note_${note.id}`,

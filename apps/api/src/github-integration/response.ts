@@ -61,7 +61,8 @@ export const githubAppInfoSchema = z
     accountLinkingAvailable: z.boolean(),
     appName: z.string().nullable().openapi({
       description:
-        "The configured GitHub App slug, or null when this instance has no App set up.",
+        "The confi
+gured GitHub App slug, or null when this instance has no App set up.",
     }),
   })
   .openapi("GitHubAppInfo");
@@ -97,10 +98,6 @@ export const githubRepositorySchema = z
       description:
         "The binding that already links this repository, or null. Same-project links block selection in the picker; cross-project links (decision D1) are informational only.",
     }),
-    linkedTo: repositoryLinkedToSchema.nullable().openapi({
-      description:
-        "The binding that already links this repository, or null. Same-project links block selection in the picker; cross-project links (decision D1) are informational only.",
-    }),
   })
   .openapi("GitHubRepository");
 
@@ -128,7 +125,8 @@ export const githubRepositoryListSchema = z
     total: z.number(),
     nextPage: z
       .object({ installationPage: z.number(), repositoryPage: z.number() })
-      .nullable()
+      .nullable(
+)
       .openapi({
         description:
           "Where to continue listing, or null when every installation has been read.",

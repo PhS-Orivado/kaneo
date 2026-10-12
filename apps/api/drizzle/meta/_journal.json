@@ -95,7 +95,8 @@
     },
     {
       "idx": 13,
-      "version": "7",
+      
+"version": "7",
       "when": 1772660160328,
       "tag": "0013_quiet_gladiator",
       "breakpoints": true
@@ -188,7 +189,8 @@
       "idx": 26,
       "version": "7",
       "when": 1775102400000,
-      "tag": "0026_encrypt_notification_preference_secrets",
+      "tag": "0026_encrypt_notification_preference_secret
+s",
       "breakpoints": true
     },
     {
@@ -286,7 +288,8 @@
       "idx": 40,
       "version": "7",
       "when": 1786555508802,
-      "tag": "0040_clear_eternals",
+      
+"tag": "0040_clear_eternals",
       "breakpoints": true
     },
     {
@@ -378,7 +381,8 @@
       "version": "7",
       "when": 1790406015959,
       "tag": "0053_calendar_feeds",
-      "breakpoints": true
+      "breakpoints": tru
+e
     },
     {
       "idx": 54,
@@ -462,13 +466,6 @@
       "version": "7",
       "when": 1791800000001,
       "tag": "0065_sprint_carry_over",
-      "breakpoints": true
-    },
-    {
-      "idx": 66,
-      "version": "7",
-      "when": 1791391300000,
-      "tag": "0066_repository_binding_identity",
       "breakpoints": true
     }
   ]
