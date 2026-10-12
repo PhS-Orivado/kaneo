@@ -904,7 +904,14 @@
 			"moveDialogTitle": "Pindahkan ke ruang kerja lain?",
 			"moveTargetLabel": "Ruang kerja",
 			"moving": "Memindahkan...",
-			"tasksTitle": "Tugas"
+			"tasksTitle": "Tugas",
+			"sprints": "Sprint",
+			"sprintsSubtitle": "Rencanakan pekerjaan mendatang dalam iterasi dengan durasi tetap.",
+			"sprintLength": "Durasi sprint bawaan",
+			"sprintLengthDescription": "Jumlah hari yang dicakup sprint baru secara bawaan.",
+			"sprintLengthSave": "Simpan durasi sprint",
+			"sprintLengthSaved": "Durasi sprint disimpan",
+			"sprintLengthError": "Tidak dapat menyimpan durasi sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrasi",
@@ -1997,6 +2004,37 @@
 				"transferError": "Failed to transfer ownership"
 			}
 		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
+		},
 		"workspaceImport": {
 			"back": {
 				"allSources": "All sources",
@@ -2930,7 +2968,8 @@
 				"priority": "Prioritas",
 				"assignee": "Penanggung jawab",
 				"dueDate": "Tenggat",
-				"labels": "Label"
+				"labels": "Label",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "adalah salah satu dari",
@@ -2939,7 +2978,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Semua sprint"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -3053,7 +3093,9 @@
 			"actions": "Aksi",
 			"searchActions": "Cari aksi...",
 			"noActionsFound": "Tidak ada aksi ditemukan.",
-			"changeStatus": "Ubah Status"
+			"changeStatus": "Ubah Status",
+			"moveToSprint": "Pindahkan ke sprint",
+			"updateSprintError": "Gagal memindahkan tugas ke sprint"
 		},
 		"editor": {
 			"table": {
@@ -3091,6 +3133,47 @@
 		},
 		"board": {
 			"reorderFailed": "Could not move task. Please try again."
+		},
+		"sprints": {
+			"title": "Sprint",
+			"create": "Buat sprint",
+			"createTitle": "Buat sprint",
+			"createDescription": "Rencanakan sprint mendatang dengan nama, tujuan, dan tanggal.",
+			"editTitle": "Edit sprint",
+			"editDescription": "Perbarui nama, tujuan, dan tanggal sprint.",
+			"edit": "Edit sprint",
+			"name": "Nama sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Tujuan sprint",
+			"goalPlaceholder": "Apa yang ingin dicapai sprint ini?",
+			"save": "Simpan perubahan",
+			"start": "Mulai sprint",
+			"startSuccess": "Sprint {{name}} dimulai",
+			"close": "Tutup sprint",
+			"closeTitle": "Tutup sprint",
+			"closeSummary": "{{name}} memiliki {{total}} tugas, {{completed}} di antaranya selesai.",
+			"closeTarget": "Pindahkan {{count}} tugas yang belum selesai ke",
+			"closeConfirm": "Tutup sprint dan pindahkan tugas yang belum selesai",
+			"closeSuccess": "Sprint ditutup, {{count}} tugas yang belum selesai dipindahkan",
+			"backlog": "Backlog",
+			"activeBadge": "Aktif",
+			"noActive": "Tidak ada sprint yang aktif. Mulai sprint mendatang untuk beriterasi.",
+			"upcoming": "Sprint mendatang",
+			"unscheduled": "Belum dijadwalkan",
+			"taskCounts": "{{completed}} dari {{total}} selesai",
+			"history": "Sprint yang ditutup ({{count}})",
+			"completedCount": "{{count}} selesai",
+			"moveUp": "Naikkan",
+			"moveDown": "Turunkan",
+			"closedLocked": "Tugas ini bagian dari sprint yang ditutup dan tetap di sana sebagai riwayat",
+			"error": "Tindakan sprint gagal",
+			"daysRemaining": "{{remaining}} hari tersisa",
+			"endsToday": "Berakhir hari ini",
+			"daysOverdue": "Terlambat {{remaining}} hari",
+			"noTasks": "Belum ada tugas dalam sprint ini",
+			"toggleTasks": "Tampilkan tugas sprint",
+			"reportSummary": "Direncanakan {{planned}}, selesai {{completed}}, dipindahkan {{carriedOver}}",
+			"carriedOver": "Dipindahkan"
 		}
 	},
 	"invitations": {
