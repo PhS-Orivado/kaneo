@@ -2812,6 +2812,11 @@
 			"high": "Високий",
 			"urgent": "Терміновий"
 		},
+		"type": {
+			"label": "Тип",
+			"task": "Завдання",
+			"bug": "Помилка"
+		},
 		"boardSearchPlaceholder": "Пошук тікетів...",
 		"view": {
 			"board": "Дошка",

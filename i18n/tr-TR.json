@@ -2720,6 +2720,11 @@
 			"high": "Yüksek",
 			"urgent": "Acil"
 		},
+		"type": {
+			"label": "Tür",
+			"task": "Görev",
+			"bug": "Hata"
+		},
 		"boardSearchPlaceholder": "Talep ara...",
 		"view": {
 			"board": "Pano",

@@ -2674,6 +2674,11 @@
 			"high": "높음",
 			"urgent": "긴급"
 		},
+		"type": {
+			"label": "유형",
+			"task": "작업",
+			"bug": "버그"
+		},
 		"boardSearchPlaceholder": "티켓 검색...",
 		"view": {
 			"board": "보드",

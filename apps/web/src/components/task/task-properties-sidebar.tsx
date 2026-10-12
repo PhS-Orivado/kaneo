@@ -42,6 +42,7 @@ import TaskLabelsPopover from "./task-labels-popover";
 import TaskPriorityPopover from "./task-priority-popover";
 import TaskStartDatePopover from "./task-start-date-popover";
 import TaskSprintPopover from "./task-sprint-popover";
+import TaskTypeBadge from "./task-type-badge";
 import TaskStatusPopover from "./task-status-popover";
 
 function slugify(text: string | undefined): string {
@@ -211,6 +212,7 @@ export default function TaskPropertiesSidebar({
                 </TaskPriorityPopover>
               )}
               {task && <TaskSprintPopover task={task} />}
+              {task && <TaskTypeBadge task={task} />}
               {task && (
                 <TaskAssigneePopover task={task} workspaceId={workspaceId}>
                   <Button
@@ -361,6 +363,7 @@ export default function TaskPropertiesSidebar({
                   </TaskPriorityPopover>
                 )}
                 {task && <TaskSprintPopover task={task} />}
+                {task && <TaskTypeBadge task={task} />}
                 {task && (
                   <TaskAssigneePopover task={task} workspaceId={workspaceId}>
                     <Button
@@ -511,6 +514,7 @@ export default function TaskPropertiesSidebar({
                   </TaskPriorityPopover>
                 )}
                 {task && <TaskSprintPopover task={task} className="w-full" />}
+                {task && <TaskTypeBadge task={task} className="w-full" />}
                 {task && (
                   <TaskAssigneePopover task={task} workspaceId={workspaceId}>
                     <Button

@@ -2720,6 +2720,11 @@
 			"high": "Hoog",
 			"urgent": "Urgent"
 		},
+		"type": {
+			"label": "Type",
+			"task": "Taak",
+			"bug": "Bug"
+		},
 		"boardSearchPlaceholder": "Tickets zoeken...",
 		"view": {
 			"board": "Bord",

@@ -2721,6 +2721,11 @@
 			"high": "High",
 			"urgent": "Urgent"
 		},
+		"type": {
+			"label": "Type",
+			"task": "Task",
+			"bug": "Bug"
+		},
 		"boardSearchPlaceholder": "Search tickets...",
 		"view": {
 			"board": "Board",

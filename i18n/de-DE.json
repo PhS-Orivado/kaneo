@@ -2720,6 +2720,11 @@
 			"high": "Hoch",
 			"urgent": "Dringend"
 		},
+		"type": {
+			"label": "Typ",
+			"task": "Aufgabe",
+			"bug": "Bug"
+		},
 		"boardSearchPlaceholder": "Tickets suchen...",
 		"view": {
 			"board": "Board",

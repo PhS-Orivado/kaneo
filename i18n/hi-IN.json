@@ -2720,6 +2720,11 @@
 			"high": "उच्च",
 			"urgent": "अत्यावश्यक"
 		},
+		"type": {
+			"label": "प्रकार",
+			"task": "कार्य",
+			"bug": "बग"
+		},
 		"boardSearchPlaceholder": "टिकट खोजें...",
 		"view": {
 			"board": "बोर्ड",
