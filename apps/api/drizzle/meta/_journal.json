@@ -463,13 +463,6 @@
       "when": 1791800000001,
       "tag": "0065_sprint_carry_over",
       "breakpoints": true
-    },
-    {
-      "idx": 66,
-      "version": "7",
-      "when": 1791817861615,
-      "tag": "0066_multi_repo_integrations",
-      "breakpoints": true
     }
   ]
 }

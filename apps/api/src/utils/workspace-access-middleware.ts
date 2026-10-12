@@ -15,8 +15,7 @@ type LookupResource =
   | "column"
   | "sprint"
   | "workflowRule"
-  | "customField"
-  | "integration";
+  | "customField";
 
 type WorkspaceIdSource =
   | { type: "query"; key: string }
@@ -47,7 +46,6 @@ const RESOURCE_NOT_FOUND: Record<LookupResource, string> = {
   sprint: "Sprint not found",
   workflowRule: "Workflow rule not found",
   customField: "Custom field not found",
-  integration: "Integration not found",
 };
 
 type WorkspaceAccessMiddlewareConfig = {
