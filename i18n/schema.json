@@ -11508,6 +11508,26 @@
 						"urgent"
 					]
 				},
+				"type": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"label": {
+							"type": "string"
+						},
+						"task": {
+							"type": "string"
+						},
+						"bug": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"label",
+						"task",
+						"bug"
+					]
+				},
 				"boardSearchPlaceholder": {
 					"type": "string"
 				},
