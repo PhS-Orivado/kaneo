@@ -35,28 +35,6 @@ function enrichGitlabIntegration(
   const apiBase = normalizeApiServerUrl(
     process.env.KANEO_API_URL || "http://localhost:1337",
   );
-  return `${apiBase.replace(/\/$/, "")}/gitlab-integration/webhook/${integrationId}`;
-}
-
-// RFC 0001 WP4: the GitLab surface is keyed by integration id; the identity
-// columns written at create time are authoritative, with the config JSON as
-// a fallback for legacy rows. The webhook secret goes only to callers with
-// workspace:manage_settings, and it is per row, so each project owner sees
-// only their own binding's secret.
-function enrichGitlabIntegration(
-  integration: IntegrationRow,
-  includeWebhookSecret: boolean,
-) {
-  let config: GitlabConfig;
-  try {
-    config = JSON.parse(integration.config) as GitlabConfig;
-  } catch {
-    config = {
-      baseUrl: "",
-      accessToken: "",
-      projectPath: "",
-    } as GitlabConfig;
-  }
 
   return {
     id: integration.id,
@@ -107,28 +85,4 @@ async function getGitlabIntegrationById(
   return enrichGitlabIntegration(integration, includeSecrets);
 }
 
-/**
- * Compat shim (RFC section 8): the old project-keyed GET returns the first
- * binding (lowest createdAt) until the new web client ships; removed in the
- * cleanup PR.
- */
-async function getGitlabIntegration(projectId: string, includeSecrets = false) {
-  const integration = await db.query.integrationTable.findFirst({
-    where: and(
-      eq(integrationTable.projectId, projectId),
-      eq(integrationTable.type, "gitlab"),
-    ),
-    orderBy: (table, { asc }) => [asc(table.createdAt)],
-  });
-  if (!integration) {
-    return null;
-  }
-  return enrichGitlabIntegration(integration, includeSecrets);
-}
-
-export default getGitlabIntegration;
-export {
-  getGitlabIntegration,
-  getGitlabIntegrationById,
-  listGitlabIntegrations,
-};
+export { getGitlabIntegrationById, listGitlabIntegrations };

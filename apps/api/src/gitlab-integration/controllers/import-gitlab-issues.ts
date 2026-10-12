@@ -62,8 +62,7 @@ export async function importGitlabIssues({
   projectId?: string;
 }): Promise<ImportResult> {
   const errors: string[] = [];
-  le
-t imported = 0;
+  let imported = 0;
   let updated = 0;
   let skipped = 0;
 
@@ -135,8 +134,7 @@ t imported = 0;
     }
 
     try {
-      const result = await import
-SingleIssue(
+      const result = await importSingleIssue(
         issue,
         integration.id,
         projectIdResolved,
@@ -216,8 +214,7 @@ async function importSingleIssue(
 
   if (existingLink) {
     const result = await withIntegrationTask(
-      
-existingLink.taskId,
+      existingLink.taskId,
       { id: integrationId, projectId, project: { workspaceId } },
       async (database, afterCommit) => {
         const [linked] = await database
@@ -283,8 +280,7 @@ existingLink.taskId,
         where: eq(integrationTable.id, integrationId),
       });
       if (
-  
-      !binding ||
+        !binding ||
         !sameConfig(binding.config, JSON.stringify(config)) ||
         !acceptsIssue(binding.config, issue.labels) ||
         (await findExternalLink(integrationId, "issue", String(issue.iid), tx))
@@ -357,8 +353,7 @@ async function importLabelsForTask(
   workspaceId: string,
   database: IntegrationDatabase = db,
 ): Promise<void> {
-  const names = issueLabels.filter((name) => name && !
-isSystemLabelName(name));
+  const names = issueLabels.filter((name) => name && !isSystemLabelName(name));
 
   // GitLab issue, so its absence there is not a reason to remove labels.
   if (names.length === 0) {
@@ -438,8 +433,7 @@ async function importNotesForTask(
         type: "comment",
         content: note.body,
         externalUserName: username || "Unknown",
-        externalUserAvatar: note.author?.avatar_url ?? 
-null,
+        externalUserAvatar: note.author?.avatar_url ?? null,
         externalSource: "gitlab",
         // The notes API has no URL, so link to the anchor on the issue page.
         externalUrl: `${issue.web_url}#note_${note.id}`,

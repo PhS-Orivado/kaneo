@@ -8,7 +8,7 @@ import {
 } from "../../database/schema";
 import type { IntegrationDatabase } from "../../plugins/github/services/integration-task-scope";
 import { readSyncRules } from "../../plugins/sync/rules";
-import { getSyncIntegration, getSyncIntegrationById } from "./get-integration";
+import { getSyncIntegration } from "./get-integration";
 import { getAuthorizedSyncProject } from "./authorized-project";
 
 // RFC 0001 WP5: keyed by integration id; the lock scope derives from the
@@ -40,10 +40,7 @@ export async function lockResumeScope(
     .select({ id: taskTable.id })
     .from(taskTable)
     .where(
-      and(
-        eq(taskTable.id, link.taskId),
-        eq(taskTable.projectId, integration.projectId),
-      ),
+      and(eq(taskTable.id, link.taskId), eq(taskTable.projectId, projectId)),
     )
     .for("no key update");
   const rule = readSyncRules(binding!.config)?.outgoing;

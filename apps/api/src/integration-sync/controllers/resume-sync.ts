@@ -6,9 +6,8 @@ import { withSyncLease } from "../../plugins/sync/lease";
 import { SyncLeaseBusyError } from "../../plugins/sync/lease-busy-error";
 import { publishTaskMutation } from "../../task/controllers/task-mutation-effects";
 import { applySyncResume } from "./apply-resume";
-import { getSyncIntegration } from "./get-integration";
-import { lockResumeScopeById } from "./lock-resume-scope";
-import { reviewSyncResumeById } from "./review-resume";
+import { lockResumeScope } from "./lock-resume-scope";
+import { reviewSyncResume } from "./review-resume";
 import { verifyResumeProvider } from "./verify-resume-provider";
 import type { ResumeProviderSnapshot } from "./resume-provider-snapshot";
 
@@ -111,13 +110,7 @@ async function resumeWithLease(
     }
     await db.transaction(async (tx) => {
       const review = await validate(tx);
-      adoption = await applySyncResume(
-        review,
-        review.integration.type,
-        source,
-        updatedAt,
-        tx,
-      );
+      adoption = await applySyncResume(review, provider, source, updatedAt, tx);
     });
   } catch (error) {
     // Dispatch can outlive a failed scope transaction. Observe its result before
