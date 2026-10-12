@@ -28,8 +28,7 @@ function enrichGithubIntegration(integration: IntegrationRow) {
     projectId: integration.projectId,
     repositoryOwner:
       integration.repositoryOwner ?? config.repositoryOwner ?? "",
-    repositoryName:
-      integration.repositoryName ?? config.repositoryName ?? "",
+    repositoryName: integration.repositoryName ?? config.repositoryName ?? "",
     installationId: config.installationId ?? null,
     branchPattern: config.branchPattern || defaultGitHubConfig.branchPattern,
     commentTaskLinkOnGitHubIssue: config.commentTaskLinkOnGitHubIssue !== false,
@@ -103,4 +102,8 @@ async function getGithubIntegration(projectId: string) {
 }
 
 export default getGithubIntegration;
-export { getGithubIntegration, getGithubIntegrationById, listGithubIntegrations };
+export {
+  getGithubIntegration,
+  getGithubIntegrationById,
+  listGithubIntegrations,
+};

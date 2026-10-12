@@ -151,4 +151,3 @@ export async function handlePullRequestOpened(payload: PROpenedPayload) {
     },
   );
 }
-

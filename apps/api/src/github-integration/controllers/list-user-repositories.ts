@@ -188,7 +188,9 @@ async function annotateLinkedState<T extends AnnotatableRepository>(
   const keys = new Set<string>();
   for (const repository of repositories) {
     keys.add(githubRepositoryKey(repository.id));
-    keys.add(legacyGithubRepositoryKey(repository.owner.login, repository.name));
+    keys.add(
+      legacyGithubRepositoryKey(repository.owner.login, repository.name),
+    );
   }
   const links = await db.query.integrationTable.findMany({
     where: and(

@@ -51,13 +51,10 @@ export const giteaRepositorySchema = z
     owner: z.object({ login: z.string() }).openapi("GiteaRepositoryOwner"),
     private: z.boolean(),
     html_url: z.string(),
-    linkedTo: repositoryLinkedToSchema
-      .nullable()
-      .optional()
-      .openapi({
-        description:
-          "The binding this repository is already linked to, when any. Same-project links block selection; cross-project links (allowed per RFC decision D1) are informational only.",
-      }),
+    linkedTo: repositoryLinkedToSchema.nullable().optional().openapi({
+      description:
+        "The binding this repository is already linked to, when any. Same-project links block selection; cross-project links (allowed per RFC decision D1) are informational only.",
+    }),
   })
   .openapi("GiteaRepository");
 

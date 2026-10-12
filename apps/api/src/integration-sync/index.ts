@@ -280,10 +280,7 @@ const resumeRoute = createRoute({
   },
 });
 
-async function compatIntegrationId(
-  projectId: string,
-  provider: string,
-) {
+async function compatIntegrationId(projectId: string, provider: string) {
   const integration = await getSyncIntegrationByProject(projectId, provider);
   return integration.id;
 }
@@ -340,7 +337,13 @@ export default apiRouter<BaseVariables & { workspaceId: string }>()
     const { integrationId, linkId } = c.req.valid("param");
     const { source, token } = c.req.valid("json");
     return c.json(
-      await resumeSync(integrationId, linkId, token, source, c.get("workspaceId")),
+      await resumeSync(
+        integrationId,
+        linkId,
+        token,
+        source,
+        c.get("workspaceId"),
+      ),
       200,
     );
   })

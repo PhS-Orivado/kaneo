@@ -55,13 +55,10 @@ export const gitlabProjectSchema = z
     name_with_namespace: z.string(),
     visibility: z.string(),
     web_url: z.string(),
-    linkedTo: repositoryLinkedToSchema
-      .nullable()
-      .optional()
-      .openapi({
-        description:
-          "The binding this GitLab project is already linked to, when any. Same-project links block selection; cross-project links (allowed per RFC decision D1) are informational only.",
-      }),
+    linkedTo: repositoryLinkedToSchema.nullable().optional().openapi({
+      description:
+        "The binding this GitLab project is already linked to, when any. Same-project links block selection; cross-project links (allowed per RFC decision D1) are informational only.",
+    }),
   })
   .openapi("GitlabProject");
 

@@ -144,4 +144,3 @@ export async function handlePullRequestClosed(payload: PRClosedPayload) {
     return;
   }
 }
-

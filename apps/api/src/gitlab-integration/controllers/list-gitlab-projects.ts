@@ -9,7 +9,10 @@ import {
   verifyGitlabToken,
 } from "../../plugins/gitlab/utils/gitlab-api";
 import { gitlabRepositoryKey } from "./create-gitlab-integration";
-import { parseGitlabBaseUrl, parseGitlabProjectPath } from "../utils/normalize-input";
+import {
+  parseGitlabBaseUrl,
+  parseGitlabProjectPath,
+} from "../utils/normalize-input";
 
 type LinkedTo = {
   integrationId: string;
@@ -119,10 +122,7 @@ async function listGitlabProjects({
       // Same-project annotation wins; cross-project is informational only.
       if (!bindingByKey.has(binding.repositoryKey)) {
         bindingByKey.set(binding.repositoryKey, binding);
-      } else if (
-        projectId !== undefined &&
-        binding.projectId === projectId
-      ) {
+      } else if (projectId !== undefined && binding.projectId === projectId) {
         bindingByKey.set(binding.repositoryKey, binding);
       }
     }

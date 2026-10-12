@@ -205,4 +205,3 @@ export async function handlePush(payload: PushPayload) {
     `[Push] No matching task found in any integrated project for branch: ${branchName}`,
   );
 }
-

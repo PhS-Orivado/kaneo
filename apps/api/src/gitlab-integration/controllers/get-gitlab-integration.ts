@@ -90,10 +90,7 @@ async function getGitlabIntegrationById(
  * binding (lowest createdAt) until the new web client ships; removed in the
  * cleanup PR.
  */
-async function getGitlabIntegration(
-  projectId: string,
-  includeSecrets = false,
-) {
+async function getGitlabIntegration(projectId: string, includeSecrets = false) {
   const integration = await db.query.integrationTable.findFirst({
     where: and(
       eq(integrationTable.projectId, projectId),

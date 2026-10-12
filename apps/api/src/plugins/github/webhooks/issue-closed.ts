@@ -173,4 +173,3 @@ export async function handleIssueClosed(payload: IssueClosedPayload) {
     );
   }
 }
-

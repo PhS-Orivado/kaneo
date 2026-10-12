@@ -44,9 +44,7 @@ function enrichGiteaIntegration(
     repositoryOwner:
       integration.repositoryOwner ?? config.repositoryOwner ?? "",
     repositoryName: integration.repositoryName ?? config.repositoryName ?? "",
-    maskedAccessToken: config.accessToken
-      ? maskToken(config.accessToken)
-      : "",
+    maskedAccessToken: config.accessToken ? maskToken(config.accessToken) : "",
     webhookUrl: `${apiBase.replace(/\/$/, "")}/gitea-integration/webhook/${integration.id}`,
     webhookSecret: includeWebhookSecret ? (config.webhookSecret ?? "") : "",
     branchPattern: config.branchPattern || defaultGiteaConfig.branchPattern,
@@ -111,8 +109,4 @@ async function getGiteaIntegration(
 }
 
 export default getGiteaIntegration;
-export {
-  getGiteaIntegration,
-  getGiteaIntegrationById,
-  listGiteaIntegrations,
-};
+export { getGiteaIntegration, getGiteaIntegrationById, listGiteaIntegrations };

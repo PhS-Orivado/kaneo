@@ -111,10 +111,7 @@ async function listGiteaRepositories({
       // Same-project annotation wins; cross-project is informational only.
       if (!bindingByKey.has(binding.repositoryKey)) {
         bindingByKey.set(binding.repositoryKey, binding);
-      } else if (
-        projectId !== undefined &&
-        binding.projectId === projectId
-      ) {
+      } else if (projectId !== undefined && binding.projectId === projectId) {
         bindingByKey.set(binding.repositoryKey, binding);
       }
     }

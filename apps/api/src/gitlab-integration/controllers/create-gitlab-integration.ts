@@ -156,7 +156,8 @@ async function createGitlabIntegration({
   // Display-convenience identity columns (RFC WP4 section 2): the final path
   // segment as name, the top-level group as owner; repositoryId stays NULL.
   const pathSegments = normalizedPath.split("/");
-  const repositoryName = pathSegments[pathSegments.length - 1] ?? normalizedPath;
+  const repositoryName =
+    pathSegments[pathSegments.length - 1] ?? normalizedPath;
   const repositoryOwner = pathSegments[0] ?? "";
 
   try {

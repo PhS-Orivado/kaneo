@@ -16,10 +16,7 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
-import {
-  type GiteaConfig,
-  validateGiteaConfig,
-} from "../plugins/gitea/config";
+import { type GiteaConfig, validateGiteaConfig } from "../plugins/gitea/config";
 import { handleGiteaWebhookRequest } from "../plugins/gitea/webhook-handler";
 import {
   hasWorkspacePermission,

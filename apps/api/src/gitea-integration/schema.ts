@@ -37,12 +37,8 @@ export const updateGiteaBody = z.object({
 // accepted for compat and must match the binding's project.
 export const importGiteaIssuesBody = z.object({
   integrationId: z.string().min(1),
-  projectId: z
-    .string()
-    .min(1)
-    .optional()
-    .openapi({
-      description:
-        "Compat only; when present it must match the binding's project.",
-    }),
+  projectId: z.string().min(1).optional().openapi({
+    description:
+      "Compat only; when present it must match the binding's project.",
+  }),
 });

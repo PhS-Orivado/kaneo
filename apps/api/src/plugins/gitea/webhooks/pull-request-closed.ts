@@ -154,4 +154,3 @@ export async function handleGiteaPullRequestClosed(
     return;
   }
 }
-

@@ -193,4 +193,3 @@ export async function handleGitlabPush(
     );
   }
 }
-
