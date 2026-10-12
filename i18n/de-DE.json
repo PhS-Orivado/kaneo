@@ -989,7 +989,14 @@
 			"moveDialogTitle": "In anderen Workspace verschieben?",
 			"moveTargetLabel": "Workspace",
 			"moving": "Wird verschoben...",
-			"tasksTitle": "Aufgaben"
+			"tasksTitle": "Aufgaben",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Plane anstehende Arbeit in Iterationen fester Länge.",
+			"sprintLength": "Standard-Sprint-Länge",
+			"sprintLengthDescription": "Anzahl der Tage, die ein neuer Sprint standardmäßig umfasst.",
+			"sprintLengthSave": "Sprint-Länge speichern",
+			"sprintLengthSaved": "Sprint-Länge gespeichert",
+			"sprintLengthError": "Sprint-Länge konnte nicht gespeichert werden"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrationen",
@@ -2013,6 +2020,37 @@
 				"transferError": "Failed to transfer ownership"
 			}
 		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
+		},
 		"workspaceImport": {
 			"back": {
 				"allSources": "All sources",
@@ -2976,7 +3014,8 @@
 				"priority": "Priorität",
 				"assignee": "Zugewiesen",
 				"dueDate": "Fälligkeitsdatum",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "ist einer von",
@@ -2985,7 +3024,8 @@
 			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Alle Sprints"
 		},
 		"gantt": {
 			"pageTitle": "{{name}} – Gantt",
@@ -3100,7 +3140,9 @@
 			"actions": "Aktionen",
 			"searchActions": "Aktionen suchen...",
 			"noActionsFound": "Keine Aktionen gefunden.",
-			"changeStatus": "Status ändern"
+			"changeStatus": "Status ändern",
+			"moveToSprint": "In Sprint verschieben",
+			"updateSprintError": "Aufgaben konnten nicht in den Sprint verschoben werden"
 		},
 		"editor": {
 			"table": {
@@ -3138,6 +3180,47 @@
 		},
 		"board": {
 			"reorderFailed": "Die Reihenfolge konnte nicht gespeichert werden."
+		},
+		"sprints": {
+			"title": "Sprints",
+			"create": "Sprint erstellen",
+			"createTitle": "Sprint erstellen",
+			"createDescription": "Plane einen kommenden Sprint mit Name, Ziel und Terminen.",
+			"editTitle": "Sprint bearbeiten",
+			"editDescription": "Aktualisiere Name, Ziel und Termine des Sprints.",
+			"edit": "Sprint bearbeiten",
+			"name": "Sprint-Name",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint-Ziel",
+			"goalPlaceholder": "Was soll dieser Sprint erreichen?",
+			"save": "Änderungen speichern",
+			"start": "Sprint starten",
+			"startSuccess": "Sprint {{name}} gestartet",
+			"close": "Sprint abschließen",
+			"closeTitle": "Sprint abschließen",
+			"closeSummary": "{{name}} hat {{total}} Aufgaben, davon {{completed}} abgeschlossen.",
+			"closeTarget": "{{count}} offene Aufgaben verschieben nach",
+			"closeConfirm": "Sprint abschließen und offene Aufgaben verschieben",
+			"closeSuccess": "Sprint abgeschlossen, {{count}} offene Aufgaben verschoben",
+			"backlog": "Backlog",
+			"activeBadge": "Aktiv",
+			"noActive": "Kein Sprint ist aktiv. Starte einen kommenden Sprint, um zu iterieren.",
+			"upcoming": "Kommender Sprint",
+			"unscheduled": "Nicht terminiert",
+			"taskCounts": "{{completed}} von {{total}} abgeschlossen",
+			"history": "Abgeschlossene Sprints ({{count}})",
+			"completedCount": "{{count}} abgeschlossen",
+			"moveUp": "Nach oben",
+			"moveDown": "Nach unten",
+			"closedLocked": "Diese Aufgabe gehört zu einem abgeschlossenen Sprint und bleibt dort als Verlauf",
+			"error": "Sprint-Aktion fehlgeschlagen",
+			"daysRemaining": "{{remaining}} Tage verbleibend",
+			"endsToday": "Endet heute",
+			"daysOverdue": "{{remaining}} Tage überfällig",
+			"noTasks": "Noch keine Aufgaben in diesem Sprint",
+			"toggleTasks": "Sprint-Aufgaben anzeigen",
+			"reportSummary": "Geplant {{planned}}, abgeschlossen {{completed}}, übertragen {{carriedOver}}",
+			"carriedOver": "Übertragen"
 		}
 	},
 	"invitations": {
