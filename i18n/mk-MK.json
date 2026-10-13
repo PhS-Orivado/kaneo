@@ -10,7 +10,8 @@
 			"markAllRead": "Означи ги сите како прочитани",
 			"remove": "Отстрани",
 			"reset": "Ресетирај",
-			"filter": "Филтрирај"
+			"filter": "Филтрирај",
+			"clearAllFilters": "Исчисти ги сите филтри"
 		},
 		"a11y": {
 			"toggleSidebar": "Вклучи/исклучи странична лента"
@@ -153,13 +154,11 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "URL на врската",
-				"placeholder": "Залепете или внесете врска…",
-				"apply": "Примени врска",
-				"remove": "Отстрани врска"
-			}
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -913,7 +912,14 @@
 			"moveDialogTitle": "Да се премести во друг работен простор?",
 			"moveTargetLabel": "Работен простор",
 			"moving": "Се преместува...",
-			"tasksTitle": "Задачи"
+			"tasksTitle": "Задачи",
+			"sprints": "Спринтови",
+			"sprintsSubtitle": "Планирајте ја претстојната работа во итерации со фиксна должина.",
+			"sprintLength": "Стандардна должина на спринтот",
+			"sprintLengthDescription": "Број на денови што ги покрива новиот спринт по стандард.",
+			"sprintLengthSave": "Зачувај должина на спринт",
+			"sprintLengthSaved": "Должината на спринтот е зачувана",
+			"sprintLengthError": "Не успеа зачувувањето на должината на спринтот"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции",
@@ -1518,10 +1524,12 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Поле за штиклирање",
@@ -1531,6 +1539,7 @@
 				"text": "Text",
 				"multiselect": "Паѓачко мени, повеќе избори"
 			},
+			"availableOptions": "Available options",
 			"clearDefault": "Исчисти ја стандардната вредност",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1863,11 +1872,7 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace",
-			"checkoutSuccess": {
-				"title": "Ви благодариме за претплатата",
-				"description": "Плаќањето е примено. Планот подолу ќе се ажурира штом биде потврдено."
-			}
+			"openFailed": "Couldn't open billing for this workspace"
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2013,6 +2018,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2343,7 +2379,8 @@
 			"tokenTitle": "Токен за пристап",
 			"webhookSecret": "Тајна",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Повлечи за да го смениш редоследот по кој се прикажуваат на задачата.",
@@ -2442,122 +2479,36 @@
 		"projectSettings": {
 			"projectLabel": "Проект"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "Кратенки на тастатура",
+			"subtitle": "Забрзај го работниот тек со кратенки на тастатура",
+			"searchPlaceholder": "Пребарај кратенки...",
+			"footer": "Притисни <kbd>Escape</kbd> за затворање",
 			"categories": {
 				"general": "Општо",
-				"navigation": "Навигација",
 				"create": "Креирај",
 				"views": "Прикази",
-				"tasks": "Задачи",
-				"list": "Табла и листа",
-				"inbox": "Сандаче",
-				"filters": "Филтри",
-				"editor": "Уредувач"
+				"navigation": "Навигација",
+				"quickSelect": "Брз избор (во менија)"
 			},
 			"items": {
-				"openCommandMenu": "Отвори палета на команди",
-				"openSearch": "Глобално пребарување",
-				"openShortcuts": "Прикажи кратенки на тастатура",
-				"submit": "Зачувај или испрати",
-				"back": "Затвори модал/мени",
-				"switchWorkspace": "Смени работен простор",
-				"logOut": "Одјави се",
-				"showDisplayOptions": "Опции за приказ",
-				"dismissToasts": "Затвори ги сите известувања",
+				"openCommandPalette": "Отвори палета на команди",
+				"globalSearch": "Глобално пребарување",
 				"toggleSidebar": "Вклучи/исклучи странична лента",
-				"goToHome": "Оди на почетна",
-				"goToInbox": "Оди во сандаче",
-				"goToMyTasks": "Оди на моите задачи",
-				"goToProjects": "Оди на проекти",
-				"goToSettings": "Оди на поставки",
-				"goToTasks": "Оди на задачи",
-				"goToBacklog": "Оди на заостанати",
-				"goToProject": "Оди на проект 1–9",
-				"openTask": "Отвори задача",
-				"openProject": "Отвори проект",
+				"showShortcuts": "Прикажи кратенки на тастатура",
+				"closeModal": "Затвори модал/мени",
 				"createTask": "Креирај задача",
 				"createProject": "Креирај проект",
-				"toggleLayout": "Префрли меѓу табла и листа",
-				"deleteTask": "Избриши задача",
-				"copyTaskUrl": "Копирај линк на задача",
-				"copyBranchName": "Копирај гранка на задача",
-				"nextTask": "Следна ставка",
-				"previousTask": "Претходна ставка",
-				"openFocusedTask": "Отвори ја фокусираната ставка",
-				"selectAll": "Избери сè",
-				"clearSelection": "Исчисти избор",
-				"changeStatus": "Промени статус",
-				"changePriority": "Промени приоритет",
-				"assignTask": "Додели",
-				"assignToMe": "Додели ми",
-				"changeLabels": "Промени ознаки",
-				"setDueDate": "Постави рок",
-				"removeDueDate": "Отстрани рок",
-				"renameTask": "Преименувај",
-				"editDescription": "Уреди опис",
-				"commentOnTask": "Коментирај",
-				"moveToProject": "Премести во друг проект",
-				"createSubtask": "Креирај подзадача",
-				"setParent": "Постави матична задача",
-				"openParent": "Отвори матична задача",
-				"openSubtask": "Отвори подзадача",
-				"markBlockedBy": "Означи како блокирана од",
-				"markBlocking": "Означи како блокирачка",
-				"markRelated": "Означи како поврзана",
-				"addLink": "Додај врска",
-				"toggleResources": "Прикажи или скриј ресурси",
-				"copyTaskId": "Копирај ID на задача",
-				"copyTaskTitle": "Копирај наслов на задача",
-				"copyAsMarkdown": "Копирај како Markdown",
-				"peekTask": "Преглед на фокусираната задача",
-				"selectTask": "Избери задача",
-				"selectGroup": "Избери сè во групата",
-				"copyPageUrl": "Копирај URL на страницата",
-				"focusRight": "Следна колона",
-				"focusLeft": "Претходна колона",
-				"moveTaskTop": "Премести на врвот на групата",
-				"moveTaskUp": "Помести една позиција нагоре",
-				"moveTaskDown": "Помести една позиција надолу",
-				"moveTaskBottom": "Премести на дното на групата",
-				"moveTaskLeft": "Премести во претходната колона",
-				"moveTaskRight": "Премести во следната колона",
-				"toggleGroup": "Собери или прошири група",
-				"toggleAllGroups": "Собери или прошири ги сите групи",
-				"deleteNotification": "Избриши известување",
-				"deleteReadNotifications": "Избриши ги сите прочитани известувања",
-				"toggleNotificationRead": "Означи како прочитано или непрочитано",
-				"markAllNotificationsRead": "Означи ги сите како прочитани",
-				"addFilter": "Додај филтер",
-				"clearAllFilters": "Исчисти ги сите филтри",
-				"clearLastFilter": "Исчисти го последниот филтер",
-				"editorBold": "Задебелено",
-				"editorItalic": "Закосено",
-				"editorUnderline": "Подвлечено",
-				"editorStrike": "Прецртано",
-				"editorAttach": "Прикачи слика или датотека",
-				"editorInlineCode": "Вграден код",
-				"editorLink": "Претвори текст во врска",
-				"editorQuote": "Цитат",
-				"editorParagraph": "Обичен текст",
-				"editorHeading1": "Наслов 1",
-				"editorHeading2": "Наслов 2",
-				"editorHeading3": "Наслов 3",
-				"editorChecklist": "Листа за проверка",
-				"editorToggleChecklist": "Штиклирај ставка",
-				"editorBulletList": "Листа со точки",
-				"editorNumberedList": "Нумерирана листа",
-				"editorCodeBlock": "Блок со код",
-				"editorUndo": "Врати",
-				"editorRedo": "Повтори"
-			},
-			"title": "Кратенки на тастатура",
-			"searchPlaceholder": "Пребарај по дејство или копче",
-			"results_one": "{{count}} резултат",
-			"results_other": "{{count}} резултати",
-			"noResults": "Нема соодветни кратенки",
-			"then": "потоа",
-			"or": "или",
-			"thenEllipsis": "потоа…"
+				"createWorkspace": "Креирај работен простор",
+				"boardView": "Премини на приказ табла",
+				"listView": "Премини на приказ листа",
+				"backlogView": "Премини на приказ заостанати",
+				"nextTask": "Следна задача",
+				"prevTask": "Претходна задача",
+				"openTask": "Отвори избрана задача",
+				"quickSelectNumber": "Избери опција по број",
+				"calendarView": "Префрли на календарски приказ"
+			}
 		}
 	},
 	"notifications": {
@@ -2633,9 +2584,7 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded.",
-			"actionError": "Сандачето не можеше да се ажурира. Обидете се повторно.",
-			"readCleared": "Прочитаните известувања се избришани"
+			"taskLoadError": "This task couldn’t be loaded."
 		}
 	},
 	"activity": {
@@ -2671,6 +2620,7 @@
 				"imageUploaded": "Сликата е прикачена",
 				"fileAttached": "Датотеката е прикачена",
 				"failedToUploadFile": "Неуспешно прикачување на датотека",
+				"enterUrl": "Внеси URL",
 				"plaintext": "Обичен текст",
 				"autoDetect": "Автоматско откривање",
 				"slashGroupText": "Текст",
@@ -2771,6 +2721,12 @@
 			"high": "Висок",
 			"urgent": "Итен"
 		},
+		"type": {
+			"label": "Тип",
+			"task": "Задача",
+			"bug": "Грешка"
+		},
+		"boardSearchPlaceholder": "Пребарај тикети...",
 		"view": {
 			"board": "Табла",
 			"list": "Листа",
@@ -2799,6 +2755,7 @@
 				"ariaLabel": "Уредувач на опис на задача",
 				"placeholder": "Напиши опис...",
 				"previewImage": "Преглед на слика",
+				"enterUrl": "Внеси URL",
 				"autoDetect": "Автоматско откривање",
 				"copyCode": "Копирај код",
 				"copy": "Копирај",
@@ -2902,7 +2859,9 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			}
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
 		},
 		"entity": {
 			"task": "Задача"
@@ -2923,9 +2882,7 @@
 				"blocks": "блокира",
 				"related": "е поврзана со",
 				"blocked_by": "блокирана од"
-			},
-			"blockedBy": "Блокирана од",
-			"parentPlaceholder": "Постави матична задача…"
+			}
 		},
 		"subtasks": {
 			"title": "Подзадачи",
@@ -2945,16 +2902,13 @@
 		"properties": {
 			"title": "Својства",
 			"labels": "Етикети",
-			"addLabels": "Додај ознаки",
 			"copyTaskLink": "Копирај линк на задача",
 			"copyTaskBranch": "Копирај гранка на задача",
 			"taskLinkCopied": "Врската до задачата е копирана",
 			"taskBranchCopied": "Името на гранката е копирано",
 			"start": "Почеток",
 			"startDate": "Почетен датум",
-			"noDate": "Без датум",
-			"dates": "Датуми",
-			"project": "Проект"
+			"noDate": "Без датум"
 		},
 		"move": {
 			"title": "Премести задача",
@@ -2979,10 +2933,12 @@
 				"updateError": "Неуспешно ажурирање на приоритет на задача"
 			},
 			"dueDate": {
+				"updateSuccess": "Краениот рок на задачата е успешно ажуриран",
 				"updateError": "Неуспешно ажурирање на краен рок на задача",
 				"clear": "Исчисти датум"
 			},
 			"startDate": {
+				"updateSuccess": "Почетниот датум на задачата е успешно ажуриран",
 				"updateError": "Неуспешно ажурирање на почетен датум на задача",
 				"clear": "Исчисти почетен датум"
 			},
@@ -2991,6 +2947,8 @@
 				"empty": "Не се пронајдени етикети",
 				"create": "Креирај \"{{name}}\"",
 				"chooseColor": "Избери боја",
+				"addSuccess": "Етикетата е додадена",
+				"removeSuccess": "Етикетата е отстранета",
 				"updateError": "Неуспешно ажурирање на етикета",
 				"createSuccess": "Етикетата е креирана и додадена",
 				"createError": "Неуспешно креирање на етикета",
@@ -3017,18 +2975,26 @@
 			"moveAllTooltip": "Премести ги сите планирани во За правење",
 			"moveAll": "Премести ги сите",
 			"addTask": "Додади задача",
+			"filter": "Филтрирај",
+			"addFilter": "Додади филтер...",
 			"sections": {
 				"planned": "Планирано",
 				"archived": "Архивирано"
 			},
 			"noTasksInSection": "Нема {{section}} задачи",
 			"filters": {
+				"priority": "Приоритет: {{name}}",
+				"assignee": "Доделен: {{name}}",
+				"due": "Рок: {{date}}",
+				"label": "Етикета: {{name}}",
 				"dueThisWeek": "Рок оваа недела",
 				"dueNextWeek": "Рок следна недела",
 				"noDueDate": "Без краен рок"
 			}
 		},
 		"sort": {
+			"label": "Подреди",
+			"by": "Подреди по",
 			"direction": "Насока",
 			"ascending": "Растечки",
 			"descending": "Опаѓачки",
@@ -3042,36 +3008,41 @@
 			}
 		},
 		"boardFilters": {
+			"filterBy": "Филтрирај по",
+			"allStatuses": "Сите статуси",
+			"allPriorities": "Сите приоритети",
+			"allAssignees": "Сите доделени",
+			"allDueDates": "Сите крајни рокови",
+			"allLabels": "Сите етикети",
 			"selectedCount": "{{count}} избрани",
 			"subjects": {
 				"status": "Статус",
 				"priority": "Приоритет",
 				"assignee": "Доделен",
 				"dueDate": "Краен рок",
-				"labels": "Етикети"
+				"labels": "Етикети",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "е било кој од",
-				"includeAnyOf": "вклучува било кој од",
-				"is": "е",
-				"isNot": "не е",
-				"isNoneOf": "не е ниту еден од",
-				"include": "вклучува",
-				"exclude": "исклучува"
+				"includeAnyOf": "вклучува било кој од"
 			},
+			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Сите спринтови"
 		},
 		"gantt": {
-			"searchPlaceholder": "Пребарај закажани тикети...",
 			"pageTitle": "{{name}} – Gantt",
 			"title": "Gantt временска линија",
+			"searchPlaceholder": "Пребарај закажани тикети...",
 			"hideTasks": "Сокриј задачи",
 			"showTasks": "Прикажи задачи",
 			"noTasks": "Нема закажани задачи",
 			"noTasksSubtitle": "Додади почетен датум, краен рок, или двете на задачите за да ги поставиш на временската линија на проектот.",
 			"noTasksFound": "Не се пронајдени задачи",
+			"noTasksMatch": "Нема закажани задачи што одговараат на \"{{query}}\"",
 			"taskHeader": "Задача",
 			"updateDatesError": "Неуспешно ажурирање на датуми на задача",
 			"resizeStart": "Промени почетен датум",
@@ -3096,10 +3067,7 @@
 			"error": "Неуспешно дуплирање на задача"
 		},
 		"archive": {
-			"success": "Архивирани {{count}} задачи",
-			"confirmTitle_one": "Архивирај {{count}} завршена задача?",
-			"confirmTitle_other": "Архивирај {{count}} завршени задачи?",
-			"confirmDescription": "Ќе ја напуштат таблата и ќе преминат во делот „Архивирано“ во заостанатите."
+			"success": "Архивирани {{count}} задачи"
 		},
 		"listView": {
 			"addTask": "Додади задача",
@@ -3125,13 +3093,17 @@
 		"dueDate": {
 			"label": "Краен рок",
 			"clear": "Исчисти датум",
+			"updateSuccess": "Краениот рок на задачата е успешно ажуриран",
 			"updateError": "Неуспешно ажурирање на краен рок на задача",
+			"clearSuccess": "Краениот рок на задачата е исчистен",
 			"clearError": "Неуспешно чистење на краен рок"
 		},
 		"labels": {
+			"label": "Етикети",
 			"empty": "Нема достапни етикети"
 		},
 		"update": {
+			"success": "Задачата е успешно ажурирана",
 			"error": "Неуспешно ажурирање на задача"
 		},
 		"contextMenu": {
@@ -3145,14 +3117,6 @@
 			"delete": "Избриши..."
 		},
 		"bulk": {
-			"clearSelection": "Исчисти избор",
-			"selectAll": "Избери сè",
-			"moreActions": "Повеќе дејства",
-			"statusPlaceholder": "Промени статус…",
-			"priorityPlaceholder": "Постави приоритет…",
-			"assigneePlaceholder": "Додели на…",
-			"labelPlaceholder": "Додај ознака…",
-			"columnPlaceholder": "Премести во колона…",
 			"selectedCount": "{{count}} избрани",
 			"moveToBacklog": "Премести во заостанати",
 			"moveToBacklogSuccess": "{{count}} задачи се преместени во заостанати",
@@ -3161,9 +3125,7 @@
 			"moveToBoardSuccess": "{{count}} задачи се преместени на табла",
 			"moveToBoardError": "Неуспешно преместување на задачи на табла",
 			"delete": "Избриши задачи",
-			"deleteConfirmTitle_one": "Избриши {{count}} задача?",
-			"deleteConfirmTitle_other": "Избриши {{count}} задачи?",
-			"deleteConfirmDescription": "Ова трајно ќе ги отстрани избраните задачи и сите нивни податоци. Не можеш да ја вратиш оваа акција.",
+			"deleteConfirm": "Избриши {{count}} задачи? Оваа акција не може да се врати.",
 			"deleteSuccess": "{{count}} задачи се избришани",
 			"deleteError": "Неуспешно бришење на задачи",
 			"archive": "Архивирај задачи",
@@ -3179,11 +3141,14 @@
 			"addLabel": "Додади етикета",
 			"addLabelSuccess": "Етикетата е додадена на {{count}} задачи",
 			"addLabelError": "Неуспешно додавање на етикета",
+			"setDueDate": "Постави краен рок",
 			"updateDueDateError": "Неуспешно ажурирање на краен рок",
 			"actions": "Акции",
 			"searchActions": "Пребарај акции...",
 			"noActionsFound": "Не се пронајдени акции.",
-			"changeStatus": "Промени статус"
+			"changeStatus": "Промени статус",
+			"moveToSprint": "Премести во спринт",
+			"updateSprintError": "Не успеа преместувањето на задачите во спринтот"
 		},
 		"editor": {
 			"table": {
@@ -3217,60 +3182,51 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"checklistProgress": "Завршени се {{completed}} од {{total}} ставки од списокот",
 		"customFields": {
-			"fields": "Полиња",
-			"empty": "Празно",
-			"required": "Задолжително",
-			"enterKey": "Enter",
-			"toSave": "за зачувување",
-			"today": "Денес",
-			"clear": "Исчисти",
-			"setValue": "Постави {{field}}…",
-			"noMatches": "Нема соодветни опции",
-			"missingRequired_one": "{{count}} задолжително поле е празно",
-			"missingRequired_other": "{{count}} задолжителни полиња се празни",
-			"saveError": "{{field}} не може да се зачува",
-			"moreFields_one": "Уште {{count}} поле",
-			"moreFields_other": "Уште {{count}} полиња",
-			"manage": "Управувај со полиња"
+			"ariaLabel": "Custom fields"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again.",
-			"keyboardInstructions": "Притиснете Space за преглед и Enter за да ја отворите оваа задача. Користете Alt или Option со стрелките за да ја преместите."
+			"reorderFailed": "Could not move task. Please try again."
 		},
-		"toolbar": {
-			"search": "Пребарај задачи",
-			"clearSearch": "Исчисти пребарување",
-			"taskCount_one": "{{count}} задача",
-			"taskCount_other": "{{count}} задачи",
-			"shownCount_one": "{{shown}} од {{count}} задача",
-			"shownCount_other": "{{shown}} од {{count}} задачи"
-		},
-		"display": {
-			"title": "Приказ",
-			"sortBy": "Подреди по",
-			"showOnCards": "Прикажи на картичките",
-			"showOnRows": "Прикажи во редовите",
-			"checklistProgress": "Напредок на списокот",
-			"projectBackground": "Позадина на проектот",
-			"layout": "Распоред"
-		},
-		"filterBar": {
-			"label": "Активни филтри",
-			"removeFilter": "Отстрани го филтерот {{name}}",
-			"noMatches": "Ниту една задача не одговара на пребарувањето или филтрите."
-		},
-		"filterMenu": {
-			"addFilter": "Додај филтер…",
-			"searchSubject": "{{name}}…",
-			"noResults": "Нема резултати"
-		},
-		"shortcuts": {
-			"assignedToMe": "Доделено на вас",
-			"idCopied": "ID на задачата е копиран",
-			"titleCopied": "Насловот на задачата е копиран",
-			"markdownCopied": "Копирано како Markdown",
-			"copyFailed": "Не може да се копира во клипбордот.",
-			"pageUrlCopied": "URL на страницата е копиран"
+		"sprints": {
+			"title": "Спринтови",
+			"create": "Создај спринт",
+			"createTitle": "Создај спринт",
+			"createDescription": "Планирајте претстоен спринт со име, цел и датуми.",
+			"editTitle": "Уреди спринт",
+			"editDescription": "Ажурирајте име, цел и датуми на спринтот.",
+			"edit": "Уреди спринт",
+			"name": "Име на спринтот",
+			"namePlaceholder": "Спринт 1",
+			"goal": "Цел на спринтот",
+			"goalPlaceholder": "Што треба да постигне овој спринт?",
+			"save": "Зачувај промени",
+			"start": "Започни спринт",
+			"startSuccess": "Спринтот {{name}} започна",
+			"close": "Затвори спринт",
+			"closeTitle": "Затвори спринт",
+			"closeSummary": "{{name}} има {{total}} задачи, од кои {{completed}} се завршени.",
+			"closeTarget": "Премести {{count}} незавршени задачи во",
+			"closeConfirm": "Затвори спринт и премести незавршени задачи",
+			"closeSuccess": "Спринтот е затворен, преместени се {{count}} незавршени задачи",
+			"backlog": "Backlog",
+			"activeBadge": "Активен",
+			"noActive": "Нема активен спринт. Започнете претстоен спринт за да итерирате.",
+			"upcoming": "Претстоен спринт",
+			"unscheduled": "Без рок",
+			"taskCounts": "{{completed}} од {{total}} завршени",
+			"history": "Затворени спринтови ({{count}})",
+			"completedCount": "{{count}} завршени",
+			"moveUp": "Помести нагоре",
+			"moveDown": "Помести надолу",
+			"closedLocked": "Оваа задача припаѓа на затворен спринт и останува таму како историја",
+			"error": "Дејството за спринтот не успеа",
+			"daysRemaining": "Остануваат {{remaining}} дена",
+			"endsToday": "Завршува денес",
+			"daysOverdue": "{{remaining}} дена доцни",
+			"noTasks": "Уште нема задачи во овој спринт",
+			"toggleTasks": "Прикажи задачи во спринтот",
+			"reportSummary": "Планирани {{planned}}, завршени {{completed}}, пренесени {{carriedOver}}",
+			"carriedOver": "Пренесени"
 		}
 	},
 	"invitations": {

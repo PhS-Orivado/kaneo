@@ -10,7 +10,8 @@
 			"markAllRead": "すべて既読にする",
 			"remove": "削除",
 			"reset": "リセット",
-			"filter": "フィルター"
+			"filter": "フィルター",
+			"clearAllFilters": "すべてのフィルターをクリア"
 		},
 		"a11y": {
 			"toggleSidebar": "サイドバーを切り替え"
@@ -153,13 +154,11 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "リンク URL",
-				"placeholder": "リンクを貼り付けるか入力…",
-				"apply": "リンクを適用",
-				"remove": "リンクを削除"
-			}
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -1149,7 +1148,14 @@
 			"moveDialogTitle": "別のワークスペースに移動しますか？",
 			"moveTargetLabel": "ワークスペース",
 			"moving": "移動しています...",
-			"tasksTitle": "タスク"
+			"tasksTitle": "タスク",
+			"sprints": "スプリント",
+			"sprintsSubtitle": "今後の作業を固定長のイテレーションで計画します。",
+			"sprintLength": "既定のスプリント期間",
+			"sprintLengthDescription": "新しいスプリントが既定でカバーする日数。",
+			"sprintLengthSave": "スプリント期間を保存",
+			"sprintLengthSaved": "スプリント期間を保存しました",
+			"sprintLengthError": "スプリント期間を保存できませんでした"
 		},
 		"projectIntegrations": {
 			"pageTitle": "連携",
@@ -1509,10 +1515,12 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "チェックボックス",
@@ -1522,6 +1530,7 @@
 				"text": "Text",
 				"multiselect": "ドロップダウン（複数選択）"
 			},
+			"availableOptions": "Available options",
 			"clearDefault": "デフォルトをクリア",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1850,11 +1859,7 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace",
-			"checkoutSuccess": {
-				"title": "ご登録ありがとうございます",
-				"description": "お支払いを受け付けました。確認され次第、下のプランが更新されます。"
-			}
+			"openFailed": "Couldn't open billing for this workspace"
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -1997,6 +2002,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2301,7 +2337,8 @@
 			"tokenTitle": "アクセストークン",
 			"webhookSecret": "シークレット",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "ドラッグして、タスク上での表示順を変更します。",
@@ -2400,121 +2437,36 @@
 		"projectSettings": {
 			"projectLabel": "プロジェクト"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "キーボードショートカット",
+			"subtitle": "キーボードショートカットで作業を効率化",
+			"searchPlaceholder": "ショートカットを検索...",
+			"footer": "<kbd>Escape</kbd> で閉じる",
 			"categories": {
 				"general": "一般",
-				"navigation": "ナビゲーション",
 				"create": "作成",
 				"views": "ビュー",
-				"tasks": "タスク",
-				"list": "ボードとリスト",
-				"inbox": "受信トレイ",
-				"filters": "フィルター",
-				"editor": "エディター"
+				"navigation": "ナビゲーション",
+				"quickSelect": "クイック選択 (ポップオーバー内)"
 			},
 			"items": {
-				"openCommandMenu": "コマンドパレットを開く",
-				"openSearch": "全体検索",
-				"openShortcuts": "キーボードショートカットを表示",
-				"submit": "保存または送信",
-				"back": "モーダル/ポップオーバーを閉じる",
-				"switchWorkspace": "ワークスペースを切り替え",
-				"logOut": "ログアウト",
-				"showDisplayOptions": "表示オプション",
-				"dismissToasts": "すべての通知を閉じる",
+				"openCommandPalette": "コマンドパレットを開く",
+				"globalSearch": "全体検索",
 				"toggleSidebar": "サイドバーを切り替え",
-				"goToHome": "ホームへ移動",
-				"goToInbox": "受信トレイへ移動",
-				"goToMyTasks": "マイタスクへ移動",
-				"goToProjects": "プロジェクトへ移動",
-				"goToSettings": "設定へ移動",
-				"goToTasks": "タスクへ移動",
-				"goToBacklog": "バックログへ移動",
-				"goToProject": "プロジェクト 1–9 へ移動",
-				"openTask": "タスクを開く",
-				"openProject": "プロジェクトを開く",
+				"showShortcuts": "キーボードショートカットを表示",
+				"closeModal": "モーダル/ポップオーバーを閉じる",
 				"createTask": "タスクを作成",
 				"createProject": "プロジェクトを作成",
-				"toggleLayout": "ボードとリストを切り替え",
-				"deleteTask": "タスクを削除",
-				"copyTaskUrl": "タスクのリンクをコピー",
-				"copyBranchName": "タスクのブランチ名をコピー",
-				"nextTask": "次の項目",
-				"previousTask": "前の項目",
-				"openFocusedTask": "フォーカス中の項目を開く",
-				"selectAll": "すべて選択",
-				"clearSelection": "選択を解除",
-				"changeStatus": "ステータスを変更",
-				"changePriority": "優先度を変更",
-				"assignTask": "担当者を割り当て",
-				"assignToMe": "自分に割り当て",
-				"changeLabels": "ラベルを変更",
-				"setDueDate": "期日を設定",
-				"removeDueDate": "期日を削除",
-				"renameTask": "名前を変更",
-				"editDescription": "説明を編集",
-				"commentOnTask": "コメント",
-				"moveToProject": "別のプロジェクトに移動",
-				"createSubtask": "サブタスクを作成",
-				"setParent": "親タスクを設定",
-				"openParent": "親タスクを開く",
-				"openSubtask": "サブタスクを開く",
-				"markBlockedBy": "ブロックされている状態にする",
-				"markBlocking": "ブロックしている状態にする",
-				"markRelated": "関連としてマーク",
-				"addLink": "リンクを追加",
-				"toggleResources": "リソースの表示を切り替え",
-				"copyTaskId": "タスク ID をコピー",
-				"copyTaskTitle": "タスクのタイトルをコピー",
-				"copyAsMarkdown": "Markdown としてコピー",
-				"peekTask": "フォーカス中のタスクをプレビュー",
-				"selectTask": "タスクを選択",
-				"selectGroup": "グループ内をすべて選択",
-				"copyPageUrl": "ページの URL をコピー",
-				"focusRight": "次の列",
-				"focusLeft": "前の列",
-				"moveTaskTop": "グループの先頭へ移動",
-				"moveTaskUp": "1 つ上へ移動",
-				"moveTaskDown": "1 つ下へ移動",
-				"moveTaskBottom": "グループの末尾へ移動",
-				"moveTaskLeft": "前の列へ移動",
-				"moveTaskRight": "次の列へ移動",
-				"toggleGroup": "グループを折りたたむ／展開",
-				"toggleAllGroups": "すべてのグループを折りたたむ／展開",
-				"deleteNotification": "通知を削除",
-				"deleteReadNotifications": "既読の通知をすべて削除",
-				"toggleNotificationRead": "既読または未読にする",
-				"markAllNotificationsRead": "すべて既読にする",
-				"addFilter": "フィルターを追加",
-				"clearAllFilters": "すべてのフィルターをクリア",
-				"clearLastFilter": "最後のフィルターをクリア",
-				"editorBold": "太字",
-				"editorItalic": "斜体",
-				"editorUnderline": "下線",
-				"editorStrike": "取り消し線",
-				"editorAttach": "画像やファイルを添付",
-				"editorInlineCode": "インラインコード",
-				"editorLink": "テキストをリンクにする",
-				"editorQuote": "引用",
-				"editorParagraph": "標準テキスト",
-				"editorHeading1": "見出し 1",
-				"editorHeading2": "見出し 2",
-				"editorHeading3": "見出し 3",
-				"editorChecklist": "チェックリスト",
-				"editorToggleChecklist": "チェック項目を切り替え",
-				"editorBulletList": "箇条書きリスト",
-				"editorNumberedList": "番号付きリスト",
-				"editorCodeBlock": "コードブロック",
-				"editorUndo": "元に戻す",
-				"editorRedo": "やり直す"
-			},
-			"title": "キーボードショートカット",
-			"searchPlaceholder": "操作またはキーで検索",
-			"results_other": "{{count}} 件",
-			"noResults": "一致するショートカットはありません",
-			"then": "次に",
-			"or": "または",
-			"thenEllipsis": "次に…"
+				"createWorkspace": "ワークスペースを作成",
+				"boardView": "ボードビューに切り替え",
+				"listView": "リストビューに切り替え",
+				"backlogView": "バックログビューに切り替え",
+				"calendarView": "カレンダービューに切り替え",
+				"nextTask": "次のタスク",
+				"prevTask": "前のタスク",
+				"openTask": "選択したタスクを開く",
+				"quickSelectNumber": "番号で項目を選択"
+			}
 		}
 	},
 	"notifications": {
@@ -2586,9 +2538,7 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded.",
-			"actionError": "受信トレイを更新できませんでした。もう一度お試しください。",
-			"readCleared": "既読の通知を削除しました"
+			"taskLoadError": "This task couldn’t be loaded."
 		}
 	},
 	"activity": {
@@ -2624,6 +2574,7 @@
 				"imageUploaded": "画像をアップロードしました",
 				"fileAttached": "ファイルを添付しました",
 				"failedToUploadFile": "ファイルのアップロードに失敗しました",
+				"enterUrl": "URLを入力",
 				"plaintext": "プレーンテキスト",
 				"autoDetect": "自動検出",
 				"slashGroupText": "テキスト",
@@ -2724,6 +2675,12 @@
 			"high": "高",
 			"urgent": "緊急"
 		},
+		"type": {
+			"label": "種類",
+			"task": "タスク",
+			"bug": "バグ"
+		},
+		"boardSearchPlaceholder": "チケットを検索...",
 		"view": {
 			"board": "ボード",
 			"list": "リスト",
@@ -2752,6 +2709,7 @@
 				"ariaLabel": "タスク説明エディター",
 				"placeholder": "説明を入力...",
 				"previewImage": "画像をプレビュー",
+				"enterUrl": "URLを入力",
 				"autoDetect": "自動検出",
 				"copyCode": "コードをコピー",
 				"copy": "コピー",
@@ -2855,7 +2813,9 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			}
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
 		},
 		"entity": {
 			"task": "タスク"
@@ -2876,9 +2836,7 @@
 				"blocks": "ブロック中",
 				"blocked_by": "ブロックされている",
 				"related": "関連"
-			},
-			"blockedBy": "ブロック元",
-			"parentPlaceholder": "親タスクを設定…"
+			}
 		},
 		"subtasks": {
 			"title": "サブタスク",
@@ -2898,16 +2856,13 @@
 		"properties": {
 			"title": "プロパティ",
 			"labels": "ラベル",
-			"addLabels": "ラベルを追加",
 			"copyTaskLink": "タスクのリンクをコピー",
 			"copyTaskBranch": "タスクのブランチ名をコピー",
 			"taskLinkCopied": "タスクのリンクをコピーしました",
 			"taskBranchCopied": "ブランチ名をコピーしました",
 			"start": "開始",
 			"startDate": "開始日",
-			"noDate": "日付なし",
-			"dates": "日付",
-			"project": "プロジェクト"
+			"noDate": "日付なし"
 		},
 		"move": {
 			"title": "タスクを移動",
@@ -2932,10 +2887,12 @@
 				"updateError": "優先度の更新に失敗しました"
 			},
 			"dueDate": {
+				"updateSuccess": "期限を更新しました",
 				"updateError": "期限の更新に失敗しました",
 				"clear": "日付をクリア"
 			},
 			"startDate": {
+				"updateSuccess": "開始日を更新しました",
 				"updateError": "開始日の更新に失敗しました",
 				"clear": "開始日をクリア"
 			},
@@ -2944,6 +2901,8 @@
 				"empty": "ラベルが見つかりません",
 				"create": "「{{name}}」を作成",
 				"chooseColor": "色を選択",
+				"addSuccess": "ラベルを追加しました",
+				"removeSuccess": "ラベルを削除しました",
 				"updateError": "ラベルの更新に失敗しました",
 				"createSuccess": "ラベルを作成して追加しました",
 				"createError": "ラベルの作成に失敗しました",
@@ -2970,18 +2929,26 @@
 			"moveAllTooltip": "計画中のタスクをすべて To Do に移動",
 			"moveAll": "すべて移動",
 			"addTask": "タスクを追加",
+			"filter": "フィルター",
+			"addFilter": "フィルターを追加...",
 			"sections": {
 				"planned": "計画中",
 				"archived": "アーカイブ済み"
 			},
 			"noTasksInSection": "{{section}} のタスクはありません",
 			"filters": {
+				"priority": "優先度: {{name}}",
+				"assignee": "担当者: {{name}}",
+				"due": "期限: {{date}}",
+				"label": "ラベル: {{name}}",
 				"dueThisWeek": "今週が期限",
 				"dueNextWeek": "来週が期限",
 				"noDueDate": "期限なし"
 			}
 		},
 		"sort": {
+			"label": "並び替え",
+			"by": "並び替え基準",
 			"direction": "順序",
 			"ascending": "昇順",
 			"descending": "降順",
@@ -2995,26 +2962,30 @@
 			}
 		},
 		"boardFilters": {
+			"filterBy": "フィルター条件",
+			"allStatuses": "すべてのステータス",
+			"allPriorities": "すべての優先度",
+			"allAssignees": "すべての担当者",
+			"allDueDates": "すべての期限",
+			"allLabels": "すべてのラベル",
 			"selectedCount": "{{count}} 件選択中",
 			"subjects": {
 				"status": "ステータス",
 				"priority": "優先度",
 				"assignee": "担当者",
 				"dueDate": "期限",
-				"labels": "ラベル"
+				"labels": "ラベル",
+				"sprint": "スプリント"
 			},
 			"operators": {
 				"isAnyOf": "次のいずれか",
-				"includeAnyOf": "次のいずれかを含む",
-				"is": "が次と一致",
-				"isNot": "が次と一致しない",
-				"isNoneOf": "次のいずれでもない",
-				"include": "を含む",
-				"exclude": "を含まない"
+				"includeAnyOf": "次のいずれかを含む"
 			},
+			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "すべてのスプリント"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – カレンダー",
@@ -3031,14 +3002,15 @@
 			"noTasksThisMonth": "今月の予定はありません"
 		},
 		"gantt": {
-			"searchPlaceholder": "スケジュール済みのチケットを検索...",
 			"pageTitle": "{{name}} – ガントチャート",
 			"title": "ガントタイムライン",
+			"searchPlaceholder": "スケジュール済みのチケットを検索...",
 			"hideTasks": "タスクを非表示",
 			"showTasks": "タスクを表示",
 			"noTasks": "スケジュール済みのタスクはありません",
 			"noTasksSubtitle": "タスクに開始日や期限を設定して、プロジェクトのタイムラインに配置します。",
 			"noTasksFound": "タスクが見つかりません",
+			"noTasksMatch": "「{{query}}」に一致するスケジュール済みタスクはありません",
 			"taskHeader": "タスク",
 			"updateDatesError": "タスクの日程の更新に失敗しました",
 			"resizeStart": "開始日を変更",
@@ -3058,9 +3030,7 @@
 			"error": "タスクの削除に失敗しました"
 		},
 		"archive": {
-			"success": "{{count}} 件のタスクをアーカイブしました",
-			"confirmTitle_other": "完了したタスク {{count}} 件をアーカイブしますか？",
-			"confirmDescription": "ボードから外れ、バックログの「アーカイブ済み」セクションに移動します。"
+			"success": "{{count}} 件のタスクをアーカイブしました"
 		},
 		"listView": {
 			"addTask": "タスクを追加",
@@ -3085,13 +3055,17 @@
 		"dueDate": {
 			"label": "期限",
 			"clear": "日付をクリア",
+			"updateSuccess": "期限を更新しました",
 			"updateError": "期限の更新に失敗しました",
+			"clearSuccess": "期限をクリアしました",
 			"clearError": "期限のクリアに失敗しました"
 		},
 		"labels": {
+			"label": "ラベル",
 			"empty": "利用可能なラベルがありません"
 		},
 		"update": {
+			"success": "タスクを更新しました",
 			"error": "タスクの更新に失敗しました"
 		},
 		"contextMenu": {
@@ -3105,14 +3079,6 @@
 			"duplicate": "Duplicate"
 		},
 		"bulk": {
-			"clearSelection": "選択を解除",
-			"selectAll": "すべて選択",
-			"moreActions": "その他の操作",
-			"statusPlaceholder": "ステータスを変更…",
-			"priorityPlaceholder": "優先度を設定…",
-			"assigneePlaceholder": "担当者を割り当て…",
-			"labelPlaceholder": "ラベルを追加…",
-			"columnPlaceholder": "列に移動…",
 			"selectedCount": "{{count}} 件選択中",
 			"moveToBacklog": "バックログに移動",
 			"moveToBacklogSuccess": "{{count}} 件のタスクをバックログに移動しました",
@@ -3121,8 +3087,7 @@
 			"moveToBoardSuccess": "{{count}} 件のタスクをボードに移動しました",
 			"moveToBoardError": "ボードへの移動に失敗しました",
 			"delete": "タスクを削除",
-			"deleteConfirmTitle_other": "{{count}} 件のタスクを削除しますか？",
-			"deleteConfirmDescription": "選択したタスクとそのすべてのデータが完全に削除されます。この操作は取り消せません。",
+			"deleteConfirm": "{{count}} 件のタスクを削除しますか？この操作は取り消せません。",
 			"deleteSuccess": "{{count}} 件のタスクを削除しました",
 			"deleteError": "タスクの削除に失敗しました",
 			"archive": "タスクをアーカイブ",
@@ -3138,11 +3103,14 @@
 			"addLabel": "ラベルを追加",
 			"addLabelSuccess": "{{count}} 件のタスクにラベルを追加しました",
 			"addLabelError": "ラベルの追加に失敗しました",
+			"setDueDate": "期限を設定",
 			"updateDueDateError": "期限の更新に失敗しました",
 			"actions": "操作",
 			"searchActions": "操作を検索...",
 			"noActionsFound": "操作が見つかりません。",
-			"changeStatus": "ステータスを変更"
+			"changeStatus": "ステータスを変更",
+			"moveToSprint": "スプリントに移動",
+			"updateSprintError": "スプリントへのタスクの移動に失敗しました"
 		},
 		"editor": {
 			"table": {
@@ -3167,56 +3135,51 @@
 		},
 		"checklistProgress": "チェックリスト {{total}} 項目中 {{completed}} 項目完了",
 		"customFields": {
-			"fields": "フィールド",
-			"empty": "未設定",
-			"required": "必須",
-			"enterKey": "Enter",
-			"toSave": "で保存",
-			"today": "今日",
-			"clear": "クリア",
-			"setValue": "{{field}}を設定…",
-			"noMatches": "一致するオプションがありません",
-			"missingRequired_other": "必須フィールドが {{count}} 件未入力です",
-			"saveError": "{{field}}を保存できませんでした",
-			"moreFields_other": "ほか {{count}} 件のフィールド",
-			"manage": "フィールドを管理"
+			"ariaLabel": "Custom fields"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again.",
-			"keyboardInstructions": "Space でプレビュー、Enter でこのタスクを開きます。Alt または Option と矢印キーで移動できます。"
+			"reorderFailed": "Could not move task. Please try again."
 		},
-		"toolbar": {
-			"search": "タスクを検索",
-			"clearSearch": "検索をクリア",
-			"taskCount_other": "{{count}} 件のタスク",
-			"shownCount_other": "{{count}} 件中 {{shown}} 件"
-		},
-		"display": {
-			"title": "表示",
-			"sortBy": "並び替え",
-			"showOnCards": "カードに表示",
-			"showOnRows": "行に表示",
-			"checklistProgress": "チェックリストの進捗",
-			"projectBackground": "プロジェクトの背景",
-			"layout": "レイアウト"
-		},
-		"filterBar": {
-			"label": "適用中のフィルター",
-			"removeFilter": "{{name}} フィルターを削除",
-			"noMatches": "検索またはフィルターに一致するタスクはありません。"
-		},
-		"filterMenu": {
-			"addFilter": "フィルターを追加…",
-			"searchSubject": "{{name}}…",
-			"noResults": "結果がありません"
-		},
-		"shortcuts": {
-			"assignedToMe": "自分に割り当てました",
-			"idCopied": "タスク ID をコピーしました",
-			"titleCopied": "タスクのタイトルをコピーしました",
-			"markdownCopied": "Markdown としてコピーしました",
-			"copyFailed": "クリップボードにコピーできませんでした。",
-			"pageUrlCopied": "ページの URL をコピーしました"
+		"sprints": {
+			"title": "スプリント",
+			"create": "スプリントを作成",
+			"createTitle": "スプリントを作成",
+			"createDescription": "名前・目標・日付を指定して今後のスプリントを計画します。",
+			"editTitle": "スプリントを編集",
+			"editDescription": "スプリントの名前・目標・日付を更新します。",
+			"edit": "スプリントを編集",
+			"name": "スプリント名",
+			"namePlaceholder": "スプリント 1",
+			"goal": "スプリントの目標",
+			"goalPlaceholder": "このスプリントで何を達成しますか？",
+			"save": "変更を保存",
+			"start": "スプリントを開始",
+			"startSuccess": "スプリント {{name}} を開始しました",
+			"close": "スプリントを完了",
+			"closeTitle": "スプリントを完了",
+			"closeSummary": "{{name}} には {{total}} 件のタスクがあり、うち {{completed}} 件が完了しました。",
+			"closeTarget": "未完了のタスク {{count}} 件の移動先",
+			"closeConfirm": "スプリントを完了して未完了タスクを移動",
+			"closeSuccess": "スプリントを完了し、未完了タスク {{count}} 件を移動しました",
+			"backlog": "バックログ",
+			"activeBadge": "進行中",
+			"noActive": "進行中のスプリントはありません。今後のスプリントを開始してください。",
+			"upcoming": "今後のスプリント",
+			"unscheduled": "未設定",
+			"taskCounts": "{{total}} 件中 {{completed}} 件完了",
+			"history": "完了したスプリント ({{count}})",
+			"completedCount": "{{count}} 件完了",
+			"moveUp": "上へ移動",
+			"moveDown": "下へ移動",
+			"closedLocked": "このタスクは完了したスプリントの一部であり、履歴として残ります",
+			"error": "スプリントの操作に失敗しました",
+			"daysRemaining": "残り{{remaining}}日",
+			"endsToday": "本日終了",
+			"daysOverdue": "{{remaining}}日超過",
+			"noTasks": "このスプリントにはまだタスクがありません",
+			"toggleTasks": "スプリントのタスクを表示",
+			"reportSummary": "計画 {{planned}}、完了 {{completed}}、繰り越し {{carriedOver}}",
+			"carriedOver": "繰り越されたタスク"
 		}
 	},
 	"invitations": {
