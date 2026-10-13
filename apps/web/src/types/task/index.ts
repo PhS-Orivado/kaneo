@@ -28,6 +28,8 @@ type Task = {
   descriptionDeferred?: boolean;
   status: string;
   priority: string | null;
+  sprintId: string | null;
+  type: string | null;
   startDate: string | null;
   dueDate: string | null;
   position: number | null;

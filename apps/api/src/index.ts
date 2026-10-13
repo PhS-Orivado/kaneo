@@ -71,6 +71,7 @@ import { getPublicProject } from "./project/controllers/get-public-project";
 import { initializeScheduler, shutdownScheduler } from "./scheduler";
 import search from "./search";
 import slackIntegration from "./slack-integration";
+import sprint from "./sprint";
 import { getPrivateObject } from "./storage/s3";
 import task from "./task";
 import {
@@ -94,6 +95,7 @@ import {
 import { getInvitationDetails } from "./utils/check-registration-allowed";
 import { clientIpMiddleware } from "./utils/client-ip";
 import { migrateApiKeyReferenceId } from "./utils/migrate-apikey-reference-id";
+import { migrateBrandingSchema } from "./utils/migrate-branding-schema";
 import { migrateNotificationPreferencesSchema } from "./utils/migrate-notification-preferences-schema";
 import { migrateSessionColumn } from "./utils/migrate-session-column";
 import { migrateWorkspaceUserEmail } from "./utils/migrate-workspace-user-email";
@@ -830,6 +832,7 @@ export function createApp() {
   const calendarFeedApi = api.route("/calendar-feed", calendarFeed);
   const taskApi = api.route("/task", task);
   const columnApi = api.route("/column", column);
+  const sprintApi = api.route("/sprint", sprint);
   const activityApi = api.route("/activity", activity);
   const commentApi = api.route("/comment", comment);
   const timeEntryApi = api.route("/time-entry", timeEntry);
@@ -998,6 +1001,7 @@ export function createApp() {
     slackIntegrationApi,
     taskApi,
     taskRelationApi,
+    sprintApi,
     telegramIntegrationApi,
     timeEntryApi,
     userApi,
@@ -1038,6 +1042,7 @@ export async function runStartupTasks() {
   await migrateApiKeyReferenceId();
 
   await migrateNotificationPreferencesSchema();
+  await migrateBrandingSchema();
   await migrateGitHubIntegration();
   await migrateColumns();
   await seedDefaultWorkspaceRoles();
@@ -1131,6 +1136,7 @@ const {
   slackIntegrationApi,
   taskApi,
   taskRelationApi,
+  sprintApi,
   telegramIntegrationApi,
   timeEntryApi,
   userApi,
@@ -1159,6 +1165,7 @@ export type AppType =
   | typeof calendarFeedApi
   | typeof taskApi
   | typeof columnApi
+  | typeof sprintApi
   | typeof activityApi
   | typeof commentApi
   | typeof timeEntryApi

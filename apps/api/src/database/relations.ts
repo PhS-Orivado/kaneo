@@ -9,13 +9,13 @@ import {
   customFieldDefinitionTable,
   customFieldValueTable,
   externalLinkTable,
-  githubIntegrationTable,
   integrationTable,
   invitationTable,
   labelTable,
   notificationTable,
   projectTable,
   sessionTable,
+  sprintTable,
   taskRelationTable,
   taskReminderSentTable,
   taskTable,
@@ -106,8 +106,8 @@ export const projectTableRelations = relations(
     assets: many(assetTable),
     columns: many(columnTable),
     workflowRules: many(workflowRuleTable),
-    githubIntegration: many(githubIntegrationTable),
     integrations: many(integrationTable),
+    sprints: many(sprintTable),
     notificationWorkspaceProjects: many(userNotificationWorkspaceProjectTable),
   }),
 );
@@ -119,6 +119,14 @@ export const columnTableRelations = relations(columnTable, ({ one, many }) => ({
   }),
   tasks: many(taskTable),
   workflowRules: many(workflowRuleTable),
+}));
+
+export const sprintTableRelations = relations(sprintTable, ({ one, many }) => ({
+  project: one(projectTable, {
+    fields: [sprintTable.projectId],
+    references: [projectTable.id],
+  }),
+  tasks: many(taskTable),
 }));
 
 export const workflowRuleTableRelations = relations(
@@ -147,6 +155,10 @@ export const taskTableRelations = relations(taskTable, ({ one, many }) => ({
   column: one(columnTable, {
     fields: [taskTable.columnId],
     references: [columnTable.id],
+  }),
+  sprint: one(sprintTable, {
+    fields: [taskTable.sprintId],
+    references: [sprintTable.id],
   }),
   timeEntries: many(timeEntryTable),
   activities: many(activityTable),
@@ -266,16 +278,6 @@ export const userNotificationWorkspaceProjectTableRelations = relations(
         userNotificationWorkspaceProjectTable.projectId,
       ],
       references: [projectTable.workspaceId, projectTable.id],
-    }),
-  }),
-);
-
-export const githubIntegrationTableRelations = relations(
-  githubIntegrationTable,
-  ({ one }) => ({
-    project: one(projectTable, {
-      fields: [githubIntegrationTable.projectId],
-      references: [projectTable.id],
     }),
   }),
 );

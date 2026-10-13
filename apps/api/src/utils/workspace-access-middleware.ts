@@ -13,8 +13,10 @@ type LookupResource =
   | "activity"
   | "comment"
   | "column"
+  | "sprint"
   | "workflowRule"
-  | "customField";
+  | "customField"
+  | "integration";
 
 type WorkspaceIdSource =
   | { type: "query"; key: string }
@@ -42,8 +44,10 @@ const RESOURCE_NOT_FOUND: Record<LookupResource, string> = {
   activity: "Activity not found",
   comment: "Comment not found",
   column: "Column not found",
+  sprint: "Sprint not found",
   workflowRule: "Workflow rule not found",
   customField: "Custom field not found",
+  integration: "Integration not found",
 };
 
 type WorkspaceAccessMiddlewareConfig = {
@@ -307,6 +311,22 @@ async function lookupScope(
       return column ?? null;
     }
 
+    case "sprint": {
+      const [sprint] = await db
+        .select({
+          workspaceId: schema.projectTable.workspaceId,
+          projectId: schema.projectTable.id,
+        })
+        .from(schema.sprintTable)
+        .innerJoin(
+          schema.projectTable,
+          eq(schema.sprintTable.projectId, schema.projectTable.id),
+        )
+        .where(eq(schema.sprintTable.id, id))
+        .limit(1);
+      return sprint ?? null;
+    }
+
     case "workflowRule": {
       const [workflowRule] = await db
         .select({
@@ -445,6 +465,14 @@ export const workspaceAccess = {
     workspaceAccessMiddleware({
       sources: [
         { type: "lookup", resource: "column", idKey },
+        { type: "query", key: "workspaceId" },
+      ],
+    }),
+
+  fromSprint: (idKey = "id") =>
+    workspaceAccessMiddleware({
+      sources: [
+        { type: "lookup", resource: "sprint", idKey },
         { type: "query", key: "workspaceId" },
       ],
     }),
