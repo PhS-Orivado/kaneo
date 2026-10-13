@@ -2337,7 +2337,8 @@
 			"tokenTitle": "存取 Token",
 			"webhookSecret": "密鑰",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "拖曳以調整它們在任務中的顯示順序。",
