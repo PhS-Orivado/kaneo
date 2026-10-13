@@ -1282,6 +1282,7 @@ function CreateTaskModalContent({
                 type="button"
                 role="switch"
                 aria-checked={taskType === "bug"}
+                aria-label={t("tasks:type.label")}
                 title={t("tasks:type.label")}
                 className={cn(
                   "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors border border-border hover:bg-accent/50",
