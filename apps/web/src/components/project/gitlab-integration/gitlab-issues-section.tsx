@@ -6,11 +6,13 @@ import { toast } from "@/lib/toast";
 
 type GitlabIssuesSectionProps = {
   projectId: string;
+  integrationId: string;
   isConnected: boolean;
 };
 
 export function GitlabIssuesSection({
   projectId,
+  integrationId,
   isConnected,
 }: GitlabIssuesSectionProps) {
   const { t } = useTranslation();
@@ -22,7 +24,7 @@ export function GitlabIssuesSection({
   const handleImport = async () => {
     if (!canImport) return;
     try {
-      await importIssues(projectId);
+      await importIssues({ projectId, integrationId });
       toast.success(t("settings:gitlabIntegration.toast.issuesImported"));
     } catch (error) {
       toast.error(

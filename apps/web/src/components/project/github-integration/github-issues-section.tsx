@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ImportIssuesSection } from "@/components/project/code-hosting/import-issues-section";
-import type { GithubIntegration } from "@/fetchers/github-integration/get-github-integration";
+import type { GithubIntegration } from "@/fetchers/github-integration/get-github-integrations";
 import useImportGithubIssues from "@/hooks/mutations/github-integration/use-import-github-issues";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
 import { toast } from "@/lib/toast";
@@ -29,6 +29,7 @@ export function GithubIssuesSection({
     try {
       const result = await importIssues({
         projectId,
+        integrationId: integration.id,
         ...(progress?.pending ? { runId: progress.runId } : {}),
       });
       toast.success(t("settings:githubIntegration.toast.issuesImported"), {

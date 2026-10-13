@@ -1,5 +1,6 @@
 import { and, eq } from "drizzle-orm";
 import type { Context } from "hono";
+import type { ContentfulStatusCode } from "hono/utils/http-status";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
 import { publishEvent } from "../events";
@@ -18,9 +19,15 @@ import {
 } from "../openapi";
 import {
   type GitlabConfig,
+  normalizeGitlabBaseUrl,
   validateGitlabConfig,
 } from "../plugins/gitlab/config";
-import { tokenTypeOf } from "../plugins/gitlab/utils/gitlab-api";
+import {
+  createGitlabClient,
+  GitlabApiError,
+  tokenTypeOf,
+  verifyGitlabToken,
+} from "../plugins/gitlab/utils/gitlab-api";
 import { handleGitlabWebhookRequest } from "../plugins/gitlab/webhook-handler";
 import {
   hasWorkspacePermission,
@@ -36,6 +43,7 @@ import getGitlabIntegration, {
 import { importGitlabIssues } from "./controllers/import-gitlab-issues";
 import listGitlabProjects from "./controllers/list-gitlab-projects";
 import verifyGitlabAccess from "./controllers/verify-gitlab-access";
+import { parseGitlabProjectPath } from "./utils/normalize-input";
 import {
   gitlabDeleteResultSchema,
   gitlabImportResultSchema,
@@ -316,7 +324,9 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   })
   .openapi(listIntegrationsRoute, async (c) => {
     const { projectId } = c.req.valid("param");
-    const integrations = await listGitlabIntegrations(projectId);
+    // The route already requires workspace:manage_settings, and each panel
+    // needs its own secret to paste into GitLab, so every row is enriched.
+    const integrations = await listGitlabIntegrations(projectId, true);
     const usage = await getRepositoryBindingUsage(
       projectId,
       c.get("workspaceId"),
@@ -386,6 +396,37 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
         ...config,
         commentTaskLinkOnGitlabIssue: body.commentTaskLinkOnGitlabIssue,
       };
+    }
+
+    // The token belongs to one binding (RFC 0001 WP4), so replacing it is a
+    // per-binding update, not a re-create; it is verified against the
+    // instance and the project before it is stored.
+    if (body.accessToken !== undefined) {
+      const trimmed = body.accessToken.trim();
+      if (!trimmed) {
+        throw new HTTPException(400, { message: "Access token is required" });
+      }
+      const normalizedBase = normalizeGitlabBaseUrl(
+        config.baseUrl ?? row.baseUrl ?? "",
+      );
+      const nextTokenType = body.tokenType ?? tokenTypeOf(config);
+      try {
+        await verifyGitlabToken(normalizedBase, trimmed, nextTokenType);
+        const gitlabClient = createGitlabClient({
+          baseUrl: normalizedBase,
+          accessToken: trimmed,
+          tokenType: nextTokenType,
+        });
+        await gitlabClient.getProject(parseGitlabProjectPath(config.projectPath ?? ""));
+      } catch (error) {
+        if (error instanceof GitlabApiError) {
+          throw new HTTPException((error.status || 400) as ContentfulStatusCode, {
+            message: error.message,
+          });
+        }
+        throw error;
+      }
+      config = { ...config, accessToken: trimmed, tokenType: nextTokenType };
     }
 
     const validation = await validateGitlabConfig(config);
