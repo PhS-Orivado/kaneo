@@ -1,4 +1,3 @@
-import { ImportIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ImportIssuesSection } from "@/components/project/code-hosting/import-issues-section";
 import useImportGiteaIssues from "@/hooks/mutations/gitea-integration/use-import-gitea-issues";
@@ -7,6 +6,7 @@ import { toast } from "@/lib/toast";
 
 type GiteaIssuesSectionProps = {
   projectId: string;
+  integrationId: string;
   isConnected: boolean;
   verified: boolean;
   checking: boolean;
@@ -14,6 +14,7 @@ type GiteaIssuesSectionProps = {
 
 export function GiteaIssuesSection({
   projectId,
+  integrationId,
   isConnected,
   verified,
   checking,
@@ -27,10 +28,8 @@ export function GiteaIssuesSection({
   const handleImport = async () => {
     if (!canImport) return;
     try {
-      await importIssues(projectId);
-      toast.success(t("settings:giteaIntegration.toast.issuesImported"), {
-        icon: ImportIcon,
-      });
+      await importIssues({ projectId, integrationId });
+      toast.success(t("settings:giteaIntegration.toast.issuesImported"));
     } catch (error) {
       toast.error(
         error instanceof Error

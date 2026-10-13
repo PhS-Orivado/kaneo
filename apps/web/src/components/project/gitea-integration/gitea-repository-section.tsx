@@ -1,4 +1,3 @@
-import { MessageSquareIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { AccessStatusLine } from "@/components/project/code-hosting/access-status-line";
 import type { AccessVerificationResult } from "@/components/project/code-hosting/access-verification-tone";
@@ -9,12 +8,13 @@ import { GiteaChangeToken } from "@/components/project/gitea-integration/gitea-c
 import { IntegrationCheckLine } from "@/components/project/integrations/panel/integration-check-line";
 import { IntegrationPanelSection } from "@/components/project/integrations/panel/integration-panel-section";
 import { Button } from "@/components/ui/button";
-import type { GiteaIntegration } from "@/fetchers/gitea-integration/get-gitea-integration";
+import type { GiteaIntegration } from "@/fetchers/gitea-integration/get-gitea-integrations";
 import { useUpdateGiteaIntegration } from "@/hooks/mutations/gitea-integration/use-update-gitea-integration";
 import { toast } from "@/lib/toast";
 
 type GiteaRepositorySectionProps = {
   projectId: string;
+  integrationId: string;
   integration: GiteaIntegration;
   status: {
     checking: boolean;
@@ -29,6 +29,7 @@ type GiteaRepositorySectionProps = {
 
 export function GiteaRepositorySection({
   projectId,
+  integrationId,
   integration,
   status,
   editingToken,
@@ -46,13 +47,13 @@ export function GiteaRepositorySection({
     try {
       await update({
         projectId,
+        integrationId,
         json: { commentTaskLinkOnGiteaIssue: next },
       });
       toast.success(
         next
           ? t("settings:giteaIntegration.toast.commentOnEnabled")
           : t("settings:giteaIntegration.toast.commentOnDisabled"),
-        { icon: MessageSquareIcon },
       );
     } catch (error) {
       toast.error(
@@ -111,6 +112,7 @@ export function GiteaRepositorySection({
       {editingToken ? (
         <GiteaChangeToken
           projectId={projectId}
+          integrationId={integrationId}
           integration={integration}
           onDone={() => onEditingTokenChange(false)}
         />
