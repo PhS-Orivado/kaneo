@@ -3194,6 +3194,14 @@
 			"delete": "Elimina..."
 		},
 		"bulk": {
+			"clearSelection": "Cancella selezione",
+			"selectAll": "Seleziona tutto",
+			"moreActions": "Altre azioni",
+			"statusPlaceholder": "Cambia stato…",
+			"priorityPlaceholder": "Imposta priorità…",
+			"assigneePlaceholder": "Assegna a…",
+			"labelPlaceholder": "Aggiungi etichetta…",
+			"columnPlaceholder": "Sposta nella colonna…",
 			"selectedCount": "{{count}} selezionate",
 			"moveToBacklog": "Sposta in Backlog",
 			"moveToBacklogSuccess": "{{count}} attività spostate in backlog",
@@ -3225,15 +3233,7 @@
 			"actions": "Azioni",
 			"searchActions": "Cerca azioni...",
 			"noActionsFound": "Nessuna azione trovata.",
-			"changeStatus": "Cambia Stato",
-			"clearSelection": "Cancella selezione",
-			"selectAll": "Seleziona tutto",
-			"moreActions": "Altre azioni",
-			"statusPlaceholder": "Cambia stato…",
-			"priorityPlaceholder": "Imposta priorità…",
-			"assigneePlaceholder": "Assegna a…",
-			"labelPlaceholder": "Aggiungi etichetta…",
-			"columnPlaceholder": "Sposta nella colonna…"
+			"changeStatus": "Cambia Stato"
 		},
 		"editor": {
 			"table": {

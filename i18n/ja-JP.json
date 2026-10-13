@@ -3105,6 +3105,14 @@
 			"duplicate": "Duplicate"
 		},
 		"bulk": {
+			"clearSelection": "選択を解除",
+			"selectAll": "すべて選択",
+			"moreActions": "その他の操作",
+			"statusPlaceholder": "ステータスを変更…",
+			"priorityPlaceholder": "優先度を設定…",
+			"assigneePlaceholder": "担当者を割り当て…",
+			"labelPlaceholder": "ラベルを追加…",
+			"columnPlaceholder": "列に移動…",
 			"selectedCount": "{{count}} 件選択中",
 			"moveToBacklog": "バックログに移動",
 			"moveToBacklogSuccess": "{{count}} 件のタスクをバックログに移動しました",
@@ -3134,15 +3142,7 @@
 			"actions": "操作",
 			"searchActions": "操作を検索...",
 			"noActionsFound": "操作が見つかりません。",
-			"changeStatus": "ステータスを変更",
-			"clearSelection": "選択を解除",
-			"selectAll": "すべて選択",
-			"moreActions": "その他の操作",
-			"statusPlaceholder": "ステータスを変更…",
-			"priorityPlaceholder": "優先度を設定…",
-			"assigneePlaceholder": "担当者を割り当て…",
-			"labelPlaceholder": "ラベルを追加…",
-			"columnPlaceholder": "列に移動…"
+			"changeStatus": "ステータスを変更"
 		},
 		"editor": {
 			"table": {

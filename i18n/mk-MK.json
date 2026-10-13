@@ -3145,6 +3145,14 @@
 			"delete": "Избриши..."
 		},
 		"bulk": {
+			"clearSelection": "Исчисти избор",
+			"selectAll": "Избери сè",
+			"moreActions": "Повеќе дејства",
+			"statusPlaceholder": "Промени статус…",
+			"priorityPlaceholder": "Постави приоритет…",
+			"assigneePlaceholder": "Додели на…",
+			"labelPlaceholder": "Додај ознака…",
+			"columnPlaceholder": "Премести во колона…",
 			"selectedCount": "{{count}} избрани",
 			"moveToBacklog": "Премести во заостанати",
 			"moveToBacklogSuccess": "{{count}} задачи се преместени во заостанати",
@@ -3175,15 +3183,7 @@
 			"actions": "Акции",
 			"searchActions": "Пребарај акции...",
 			"noActionsFound": "Не се пронајдени акции.",
-			"changeStatus": "Промени статус",
-			"clearSelection": "Исчисти избор",
-			"selectAll": "Избери сè",
-			"moreActions": "Повеќе дејства",
-			"statusPlaceholder": "Промени статус…",
-			"priorityPlaceholder": "Постави приоритет…",
-			"assigneePlaceholder": "Додели на…",
-			"labelPlaceholder": "Додај ознака…",
-			"columnPlaceholder": "Премести во колона…"
+			"changeStatus": "Промени статус"
 		},
 		"editor": {
 			"table": {
