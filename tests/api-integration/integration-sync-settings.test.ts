@@ -54,9 +54,7 @@ it.each(["gitea", "gitlab"] as const)(
         ? "commentTaskLinkOnGiteaIssue"
         : "commentTaskLinkOnGitlabIssue";
     const patch = () =>
-      // RFC 0001 WP3/WP4: settings updates are keyed by integration id; the
-      // old project-keyed PATCH route is gone.
-      app.request(`/api/${type}-integration/integration/${integration!.id}`, {
+      app.request(`/api/${type}-integration/integration/${integration.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ [property]: false }),
@@ -81,61 +79,12 @@ it.each(["gitea", "gitlab"] as const)(
     try {
       await vi.waitFor(() => expect(validation).toHaveBeenCalledOnce());
       const preview = await previewSyncRules(
-        await getSyncIntegration(project.id, type),
+        await getSyncIntegration(integration.id),
         rules,
       );
       await saveSyncRules(
-        project.id,
-        type,
+        integration.id,
         rules,
-        preview.previewToken,
-        member.workspace.id,
-      );
-    } finally {
-      release();
-    }
-    expect((await pending).status).toBe(409);
-    const readConfig = async () =>
-      JSON.parse(
-        (await db.query.integrationTable.findFirst({
-          where: eq(schema.integrationTable.id, integration!.id),
-        }))!.config,
-      );
-    expect((await readConfig()).syncRules).toEqual(rules);
-    expect((await patch()).status).toBe(200);
-    expect(await readConfig()).toMatchObject({
-      syncRules: rules,
-      [property]: false,
-    });
-  },
-);
-      const preview = await previewSyncRules(
-        await getSyncIntegration(project.id, type),
-        rules,
-      );
-      await saveSyncRules(
-        project.id,
-        type,
-        rules,
-        preview.previewToken,
-        member.workspace.id,
-      );
-    } finally {
-      release();
-    }
-    expect((await pending).status).toBe(409);
-    const readConfig = async () =>
-      JSON.parse(
-        (await db.query.integrationTable.findFirst({
-          where: eq(schema.integrationTable.id, integration!.id),
-        }))!.config,
-      );
-    expect((await readConfig()).syncRules).toEqual(rules);
-    expect((await patch()).status).toBe(200);
-    expect(await readConfig()).toMatchObject({
-      await saveSyncRules(
-        project.id,
-        type,
         preview.previewToken,
         member.workspace.id,
       );
