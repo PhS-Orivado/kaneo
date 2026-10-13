@@ -10,7 +10,8 @@
 			"markAllRead": "全部标为已读",
 			"remove": "移除",
 			"reset": "重置",
-			"filter": "筛选"
+			"filter": "筛选",
+			"clearAllFilters": "清除全部筛选"
 		},
 		"a11y": {
 			"toggleSidebar": "切换侧边栏"
@@ -153,13 +154,11 @@
 				"statusLoadError": "项目状态加载失败。"
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "链接 URL",
-				"placeholder": "粘贴或输入链接…",
-				"apply": "应用链接",
-				"remove": "移除链接"
-			}
+		"boolean": {
+			"false": "否",
+			"notSet": "未设置",
+			"true": "是",
+			"undefined": "未定义"
 		}
 	},
 	"auth": {
@@ -1149,7 +1148,14 @@
 			"moveDialogTitle": "移动到其他工作区？",
 			"moveTargetLabel": "工作区",
 			"moving": "正在移动...",
-			"tasksTitle": "任务"
+			"tasksTitle": "任务",
+			"sprints": "冲刺",
+			"sprintsSubtitle": "以固定长度的迭代来规划接下来的工作。",
+			"sprintLength": "默认冲刺长度",
+			"sprintLengthDescription": "新冲刺默认涵盖的天数。",
+			"sprintLengthSave": "保存冲刺长度",
+			"sprintLengthSaved": "冲刺长度已保存",
+			"sprintLengthError": "无法保存冲刺长度"
 		},
 		"projectIntegrations": {
 			"pageTitle": "集成",
@@ -1509,10 +1515,12 @@
 			"createSuccess": "自定义字段已创建。",
 			"creating": "正在创建…",
 			"defaultLabel": "默认",
+			"defaultValuePlaceholder": "默认值",
 			"deleteError": "删除自定义字段失败。",
 			"deleteSuccess": "自定义字段已删除。",
 			"deleting": "正在删除…",
 			"namePlaceholder": "字段名称",
+			"noOptionsPlaceholder": "暂无选项",
 			"required": "必填",
 			"types": {
 				"boolean": "复选框",
@@ -1522,6 +1530,7 @@
 				"text": "文本",
 				"multiselect": "下拉选择（多选）"
 			},
+			"availableOptions": "可选项",
 			"clearDefault": "清除默认值",
 			"moreOptions": "还有 {{hiddenCount}} 项",
 			"reorderError": "字段排序失败",
@@ -1850,11 +1859,7 @@
 				"expiredDescription": "订阅后即可继续创建和编辑。",
 				"viewPlans": "查看套餐"
 			},
-			"openFailed": "无法打开此工作区的账单页面",
-			"checkoutSuccess": {
-				"title": "感谢订阅",
-				"description": "已收到付款。确认后，下方的方案会随即更新。"
-			}
+			"openFailed": "无法打开此工作区的账单页面"
 		},
 		"syncRules": {
 			"addLabel": "添加标签",
@@ -1997,6 +2002,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2301,7 +2337,8 @@
 			"tokenTitle": "访问令牌",
 			"webhookSecret": "密钥",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "拖动以调整它们在任务中的显示顺序。",
@@ -2400,121 +2437,36 @@
 		"projectSettings": {
 			"projectLabel": "项目"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "键盘快捷键",
+			"subtitle": "使用键盘快捷键提升效率",
+			"searchPlaceholder": "搜索快捷键…",
+			"footer": "按 <kbd>Esc</kbd> 关闭",
 			"categories": {
 				"general": "通用",
-				"navigation": "导航",
 				"create": "创建",
 				"views": "视图",
-				"tasks": "任务",
-				"list": "看板和列表",
-				"inbox": "收件箱",
-				"filters": "筛选",
-				"editor": "编辑器"
+				"navigation": "导航",
+				"quickSelect": "快速选择（在弹层中）"
 			},
 			"items": {
-				"openCommandMenu": "打开命令面板",
-				"openSearch": "全局搜索",
-				"openShortcuts": "显示键盘快捷键",
-				"submit": "保存或提交",
-				"back": "关闭弹窗/弹层",
-				"switchWorkspace": "切换工作区",
-				"logOut": "退出登录",
-				"showDisplayOptions": "显示选项",
-				"dismissToasts": "关闭所有通知",
+				"openCommandPalette": "打开命令面板",
+				"globalSearch": "全局搜索",
 				"toggleSidebar": "切换侧边栏",
-				"goToHome": "前往首页",
-				"goToInbox": "前往收件箱",
-				"goToMyTasks": "前往我的任务",
-				"goToProjects": "前往项目",
-				"goToSettings": "前往设置",
-				"goToTasks": "前往任务",
-				"goToBacklog": "前往待办",
-				"goToProject": "前往项目 1–9",
-				"openTask": "打开任务",
-				"openProject": "打开项目",
+				"showShortcuts": "显示键盘快捷键",
+				"closeModal": "关闭弹窗/弹层",
 				"createTask": "创建任务",
 				"createProject": "创建项目",
-				"toggleLayout": "在看板和列表之间切换",
-				"deleteTask": "删除任务",
-				"copyTaskUrl": "复制任务链接",
-				"copyBranchName": "复制任务分支",
-				"nextTask": "下一项",
-				"previousTask": "上一项",
-				"openFocusedTask": "打开当前项",
-				"selectAll": "全选",
-				"clearSelection": "清除选择",
-				"changeStatus": "更改状态",
-				"changePriority": "更改优先级",
-				"assignTask": "分配",
-				"assignToMe": "分配给我",
-				"changeLabels": "更改标签",
-				"setDueDate": "设置截止日期",
-				"removeDueDate": "移除截止日期",
-				"renameTask": "重命名",
-				"editDescription": "编辑描述",
-				"commentOnTask": "评论",
-				"moveToProject": "移至其他项目",
-				"createSubtask": "创建子任务",
-				"setParent": "设置父任务",
-				"openParent": "打开父任务",
-				"openSubtask": "打开子任务",
-				"markBlockedBy": "标记为被阻塞",
-				"markBlocking": "标记为阻塞",
-				"markRelated": "标记为相关",
-				"addLink": "添加链接",
-				"toggleResources": "显示或隐藏资源",
-				"copyTaskId": "复制任务 ID",
-				"copyTaskTitle": "复制任务标题",
-				"copyAsMarkdown": "复制为 Markdown",
-				"peekTask": "预览当前任务",
-				"selectTask": "选择任务",
-				"selectGroup": "选择组内全部",
-				"copyPageUrl": "复制页面 URL",
-				"focusRight": "下一列",
-				"focusLeft": "上一列",
-				"moveTaskTop": "移到组顶部",
-				"moveTaskUp": "上移一位",
-				"moveTaskDown": "下移一位",
-				"moveTaskBottom": "移到组底部",
-				"moveTaskLeft": "移到上一列",
-				"moveTaskRight": "移到下一列",
-				"toggleGroup": "折叠或展开分组",
-				"toggleAllGroups": "折叠或展开所有分组",
-				"deleteNotification": "删除通知",
-				"deleteReadNotifications": "删除所有已读通知",
-				"toggleNotificationRead": "标记为已读或未读",
-				"markAllNotificationsRead": "全部标记为已读",
-				"addFilter": "添加筛选",
-				"clearAllFilters": "清除所有筛选",
-				"clearLastFilter": "清除最后一个筛选",
-				"editorBold": "粗体",
-				"editorItalic": "斜体",
-				"editorUnderline": "下划线",
-				"editorStrike": "删除线",
-				"editorAttach": "附加图片或文件",
-				"editorInlineCode": "行内代码",
-				"editorLink": "将文本转为链接",
-				"editorQuote": "引用",
-				"editorParagraph": "正文",
-				"editorHeading1": "标题 1",
-				"editorHeading2": "标题 2",
-				"editorHeading3": "标题 3",
-				"editorChecklist": "待办清单",
-				"editorToggleChecklist": "切换清单项",
-				"editorBulletList": "无序列表",
-				"editorNumberedList": "有序列表",
-				"editorCodeBlock": "代码块",
-				"editorUndo": "撤销",
-				"editorRedo": "重做"
-			},
-			"title": "键盘快捷键",
-			"searchPlaceholder": "按操作或按键搜索",
-			"results_other": "{{count}} 个结果",
-			"noResults": "没有匹配的快捷键",
-			"then": "然后",
-			"or": "或",
-			"thenEllipsis": "然后…"
+				"createWorkspace": "创建工作区",
+				"boardView": "切换到看板视图",
+				"listView": "切换到列表视图",
+				"backlogView": "切换到待办视图",
+				"calendarView": "切换到日历视图",
+				"nextTask": "下一任务",
+				"prevTask": "上一任务",
+				"openTask": "打开所选任务",
+				"quickSelectNumber": "按数字选择选项"
+			}
 		}
 	},
 	"notifications": {
@@ -2586,9 +2538,7 @@
 			"today": "今天",
 			"unread": "未读",
 			"loadError": "通知加载失败。",
-			"taskLoadError": "该任务加载失败。",
-			"actionError": "无法更新收件箱，请重试。",
-			"readCleared": "已删除已读通知"
+			"taskLoadError": "该任务加载失败。"
 		}
 	},
 	"activity": {
@@ -2624,6 +2574,7 @@
 				"imageUploaded": "图片已上传",
 				"fileAttached": "文件已附加",
 				"failedToUploadFile": "上传文件失败",
+				"enterUrl": "输入 URL",
 				"plaintext": "纯文本",
 				"autoDetect": "自动检测",
 				"slashGroupText": "文本",
@@ -2724,6 +2675,12 @@
 			"high": "高",
 			"urgent": "紧急"
 		},
+		"type": {
+			"label": "类型",
+			"task": "任务",
+			"bug": "缺陷"
+		},
+		"boardSearchPlaceholder": "搜索工单…",
 		"view": {
 			"board": "看板",
 			"list": "列表",
@@ -2752,6 +2709,7 @@
 				"ariaLabel": "任务描述编辑器",
 				"placeholder": "编写描述…",
 				"previewImage": "预览图片",
+				"enterUrl": "输入 URL",
 				"autoDetect": "自动检测",
 				"copyCode": "复制代码",
 				"copy": "复制",
@@ -2855,7 +2813,9 @@
 				"saving": "正在保存…",
 				"saveFailed": "更改保存失败",
 				"retrySave": "重试"
-			}
+			},
+			"customFieldUpdated": "字段已更新",
+			"selectOption": "选择选项"
 		},
 		"entity": {
 			"task": "任务"
@@ -2876,9 +2836,7 @@
 				"blocks": "阻塞",
 				"blocked_by": "被阻塞",
 				"related": "关联"
-			},
-			"blockedBy": "被阻塞于",
-			"parentPlaceholder": "设置父任务…"
+			}
 		},
 		"subtasks": {
 			"title": "子任务",
@@ -2898,16 +2856,13 @@
 		"properties": {
 			"title": "属性",
 			"labels": "标签",
-			"addLabels": "添加标签",
 			"copyTaskLink": "复制任务链接",
 			"copyTaskBranch": "复制任务分支",
 			"taskLinkCopied": "已复制任务链接",
 			"taskBranchCopied": "已复制分支名称",
 			"start": "开始",
 			"startDate": "开始日期",
-			"noDate": "无日期",
-			"dates": "日期",
-			"project": "项目"
+			"noDate": "无日期"
 		},
 		"move": {
 			"title": "移动任务",
@@ -2932,10 +2887,12 @@
 				"updateError": "更新任务优先级失败"
 			},
 			"dueDate": {
+				"updateSuccess": "任务截止日期更新成功",
 				"updateError": "更新任务截止日期失败",
 				"clear": "清除日期"
 			},
 			"startDate": {
+				"updateSuccess": "任务开始日期更新成功",
 				"updateError": "更新任务开始日期失败",
 				"clear": "清除开始日期"
 			},
@@ -2944,6 +2901,8 @@
 				"empty": "未找到标签",
 				"create": "创建 \"{{name}}\"",
 				"chooseColor": "选择颜色",
+				"addSuccess": "标签已添加",
+				"removeSuccess": "标签已移除",
 				"updateError": "更新标签失败",
 				"createSuccess": "标签已创建并添加",
 				"createError": "创建标签失败",
@@ -2970,18 +2929,26 @@
 			"moveAllTooltip": "将所有已计划任务移至待办",
 			"moveAll": "全部移动",
 			"addTask": "添加任务",
+			"filter": "筛选",
+			"addFilter": "添加筛选…",
 			"sections": {
 				"planned": "已计划",
 				"archived": "已归档"
 			},
 			"noTasksInSection": "无 {{section}} 任务",
 			"filters": {
+				"priority": "优先级：{{name}}",
+				"assignee": "负责人：{{name}}",
+				"due": "截止：{{date}}",
+				"label": "标签：{{name}}",
 				"dueThisWeek": "本周到期",
 				"dueNextWeek": "下周到期",
 				"noDueDate": "无截止日期"
 			}
 		},
 		"sort": {
+			"label": "排序",
+			"by": "排序方式",
 			"direction": "方向",
 			"ascending": "升序",
 			"descending": "降序",
@@ -2995,26 +2962,30 @@
 			}
 		},
 		"boardFilters": {
+			"filterBy": "筛选条件",
+			"allStatuses": "所有状态",
+			"allPriorities": "所有优先级",
+			"allAssignees": "所有负责人",
+			"allDueDates": "所有截止日期",
+			"allLabels": "所有标签",
 			"selectedCount": "已选 {{count}} 个",
 			"subjects": {
 				"status": "状态",
 				"priority": "优先级",
 				"assignee": "负责人",
 				"dueDate": "截止日期",
-				"labels": "标签"
+				"labels": "标签",
+				"sprint": "冲刺"
 			},
 			"operators": {
 				"isAnyOf": "为以下任一",
-				"includeAnyOf": "包含以下任一",
-				"is": "为",
-				"isNot": "不为",
-				"isNoneOf": "不为以下任一",
-				"include": "包含",
-				"exclude": "不包含"
+				"includeAnyOf": "包含以下任一"
 			},
+			"all": "全部",
 			"allCustomFieldValues": "所有值",
 			"noCustomFieldValues": "没有自定义字段的值",
-			"noValuesUsedYet": "还没有使用过任何值"
+			"noValuesUsedYet": "还没有使用过任何值",
+			"allSprints": "所有冲刺"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – 日历",
@@ -3031,15 +3002,16 @@
 			"noTasksThisMonth": "本月没有安排"
 		},
 		"gantt": {
-			"searchPlaceholder": "搜索已排期工单…",
 			"pageTitle": "{{name}} – 甘特图",
 			"title": "甘特图时间线",
 			"jumpToToday": "回到今天",
+			"searchPlaceholder": "搜索已排期工单…",
 			"hideTasks": "隐藏任务",
 			"showTasks": "显示任务",
 			"noTasks": "无已排期任务",
 			"noTasksSubtitle": "为任务添加开始日期、截止日期或两者，以将其放入项目时间线。",
 			"noTasksFound": "未找到任务",
+			"noTasksMatch": "没有匹配 \"{{query}}\" 的已排期任务",
 			"taskHeader": "任务",
 			"updateDatesError": "更新任务日期失败",
 			"resizeStart": "调整开始日期",
@@ -3063,9 +3035,7 @@
 			"error": "创建任务副本失败"
 		},
 		"archive": {
-			"success": "已归档 {{count}} 个任务",
-			"confirmTitle_other": "归档 {{count}} 个已完成的任务？",
-			"confirmDescription": "这些任务将离开看板，移至待办中的“已归档”分区。"
+			"success": "已归档 {{count}} 个任务"
 		},
 		"listView": {
 			"addTask": "添加任务",
@@ -3090,13 +3060,17 @@
 		"dueDate": {
 			"label": "截止日期",
 			"clear": "清除日期",
+			"updateSuccess": "任务截止日期更新成功",
 			"updateError": "更新任务截止日期失败",
+			"clearSuccess": "任务截止日期已清除",
 			"clearError": "清除截止日期失败"
 		},
 		"labels": {
+			"label": "标签",
 			"empty": "无可用标签"
 		},
 		"update": {
+			"success": "任务更新成功",
 			"error": "更新任务失败"
 		},
 		"contextMenu": {
@@ -3110,14 +3084,6 @@
 			"delete": "删除…"
 		},
 		"bulk": {
-			"clearSelection": "清除选择",
-			"selectAll": "全选",
-			"moreActions": "更多操作",
-			"statusPlaceholder": "更改状态…",
-			"priorityPlaceholder": "设置优先级…",
-			"assigneePlaceholder": "分配给…",
-			"labelPlaceholder": "添加标签…",
-			"columnPlaceholder": "移至列…",
 			"selectedCount": "已选 {{count}} 个",
 			"moveToBacklog": "移至待办",
 			"moveToBacklogSuccess": "{{count}} 个任务已移至待办",
@@ -3126,8 +3092,7 @@
 			"moveToBoardSuccess": "{{count}} 个任务已移至看板",
 			"moveToBoardError": "将任务移至看板失败",
 			"delete": "删除任务",
-			"deleteConfirmTitle_other": "删除 {{count}} 个任务？",
-			"deleteConfirmDescription": "这将永久删除所选任务及其所有数据，此操作不可撤销。",
+			"deleteConfirm": "删除 {{count}} 个任务？此操作不可撤销。",
 			"deleteSuccess": "已删除 {{count}} 个任务",
 			"deleteError": "删除任务失败",
 			"archive": "归档任务",
@@ -3143,11 +3108,14 @@
 			"addLabel": "添加标签",
 			"addLabelSuccess": "已为 {{count}} 个任务添加标签",
 			"addLabelError": "添加标签失败",
+			"setDueDate": "设置截止日期",
 			"updateDueDateError": "更新截止日期失败",
 			"actions": "操作",
 			"searchActions": "搜索操作…",
 			"noActionsFound": "未找到操作。",
-			"changeStatus": "更改状态"
+			"changeStatus": "更改状态",
+			"moveToSprint": "移至冲刺",
+			"updateSprintError": "无法将任务移至冲刺"
 		},
 		"editor": {
 			"table": {
@@ -3167,56 +3135,51 @@
 		"descriptionLoadError": "描述加载失败，请重试载入当前版本。",
 		"checklistProgress": "已完成 {{completed}}/{{total}} 个清单项",
 		"customFields": {
-			"fields": "字段",
-			"empty": "空",
-			"required": "必填",
-			"enterKey": "Enter",
-			"toSave": "保存",
-			"today": "今天",
-			"clear": "清除",
-			"setValue": "设置{{field}}…",
-			"noMatches": "没有匹配的选项",
-			"missingRequired_other": "有 {{count}} 个必填字段为空",
-			"saveError": "无法保存{{field}}",
-			"moreFields_other": "另外 {{count}} 个字段",
-			"manage": "管理字段"
+			"ariaLabel": "自定义字段"
 		},
 		"board": {
-			"reorderFailed": "无法移动任务，请重试。",
-			"keyboardInstructions": "按空格键预览，按 Enter 打开此任务。按住 Alt 或 Option 并使用方向键移动任务。"
+			"reorderFailed": "无法移动任务，请重试。"
 		},
-		"toolbar": {
-			"search": "搜索任务",
-			"clearSearch": "清除搜索",
-			"taskCount_other": "{{count}} 个任务",
-			"shownCount_other": "{{shown}} / {{count}} 个任务"
-		},
-		"display": {
-			"title": "显示",
-			"sortBy": "排序方式",
-			"showOnCards": "在卡片上显示",
-			"showOnRows": "在行中显示",
-			"checklistProgress": "清单进度",
-			"projectBackground": "项目背景",
-			"layout": "布局"
-		},
-		"filterBar": {
-			"label": "已应用的筛选",
-			"removeFilter": "移除“{{name}}”筛选",
-			"noMatches": "没有任务符合你的搜索或筛选条件。"
-		},
-		"filterMenu": {
-			"addFilter": "添加筛选…",
-			"searchSubject": "{{name}}…",
-			"noResults": "无结果"
-		},
-		"shortcuts": {
-			"assignedToMe": "已分配给你",
-			"idCopied": "已复制任务 ID",
-			"titleCopied": "已复制任务标题",
-			"markdownCopied": "已复制为 Markdown",
-			"copyFailed": "无法复制到剪贴板。",
-			"pageUrlCopied": "已复制页面 URL"
+		"sprints": {
+			"title": "冲刺",
+			"create": "创建冲刺",
+			"createTitle": "创建冲刺",
+			"createDescription": "为即将开始的冲刺设置名称、目标和日期。",
+			"editTitle": "编辑冲刺",
+			"editDescription": "更新冲刺的名称、目标和日期。",
+			"edit": "编辑冲刺",
+			"name": "冲刺名称",
+			"namePlaceholder": "冲刺 1",
+			"goal": "冲刺目标",
+			"goalPlaceholder": "这个冲刺要达成什么？",
+			"save": "保存更改",
+			"start": "开始冲刺",
+			"startSuccess": "冲刺 {{name}} 已开始",
+			"close": "关闭冲刺",
+			"closeTitle": "关闭冲刺",
+			"closeSummary": "{{name}} 共有 {{total}} 个任务，其中 {{completed}} 个已完成。",
+			"closeTarget": "将 {{count}} 个未完成的任务移动到",
+			"closeConfirm": "关闭冲刺并移动未完成的任务",
+			"closeSuccess": "冲刺已关闭，已移动 {{count}} 个未完成的任务",
+			"backlog": "待办列表",
+			"activeBadge": "进行中",
+			"noActive": "当前没有进行中的冲刺。请开始一个即将进行的冲刺以进入迭代。",
+			"upcoming": "即将开始的冲刺",
+			"unscheduled": "未安排",
+			"taskCounts": "已完成 {{completed}} / {{total}}",
+			"history": "已关闭的冲刺（{{count}}）",
+			"completedCount": "{{count}} 个已完成",
+			"moveUp": "上移",
+			"moveDown": "下移",
+			"closedLocked": "此任务属于已关闭的冲刺，将作为历史保留在其中",
+			"error": "冲刺操作失败",
+			"daysRemaining": "剩余 {{remaining}} 天",
+			"endsToday": "今天结束",
+			"daysOverdue": "已逾期 {{remaining}} 天",
+			"noTasks": "此冲刺中尚无任务",
+			"toggleTasks": "显示冲刺任务",
+			"reportSummary": "已计划 {{planned}}，已完成 {{completed}}，已结转 {{carriedOver}}",
+			"carriedOver": "结转的任务"
 		}
 	},
 	"invitations": {
