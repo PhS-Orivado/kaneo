@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+successfully downloaded text file (SHA: 83f3fea152bfb25eb31ff5e8a499e3e07fddb3b4)import { and, eq } from "drizzle-orm";
 import db from "../../database";
 import { integrationTable } from "../../database/schema";
 import {
@@ -86,4 +86,27 @@ async function getGiteaIntegrationById(
   return enrichGiteaIntegration(integration, includeWebhookSecret);
 }
 
-export { getGiteaIntegrationById, listGiteaIntegrations };
+/**
+ * Compat shim (RFC section 8): the old project-keyed GET returns the first
+ * binding (lowest createdAt) until the new web client ships; removed in the
+ * cleanup PR.
+ */
+async function getGiteaIntegration(
+  projectId: string,
+  includeWebhookSecret = false,
+) {
+  const integration = await db.query.integrationTable.findFirst({
+    where: and(
+      eq(integrationTable.projectId, projectId),
+      eq(integrationTable.type, "gitea"),
+    ),
+    orderBy: (table, { asc }) => [asc(table.createdAt)],
+  });
+  if (!integration) {
+    return null;
+  }
+  return enrichGiteaIntegration(integration, includeWebhookSecret);
+}
+
+export default getGiteaIntegration;
+export { getGiteaIntegration, getGiteaIntegrationById, listGiteaIntegrations };

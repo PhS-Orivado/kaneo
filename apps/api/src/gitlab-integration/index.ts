@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+successfully downloaded text file (SHA: f8a044038402024a333947ed97e21287031f6989)import { and, eq } from "drizzle-orm";
 import type { Context } from "hono";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
@@ -22,11 +22,14 @@ import {
 } from "../plugins/gitlab/config";
 import { tokenTypeOf } from "../plugins/gitlab/utils/gitlab-api";
 import { handleGitlabWebhookRequest } from "../plugins/gitlab/webhook-handler";
-import { requireWorkspacePermission } from "../utils/require-workspace-permission";
+import {
+  hasWorkspacePermission,
+  requireWorkspacePermission,
+} from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import createGitlabIntegration from "./controllers/create-gitlab-integration";
 import deleteGitlabIntegration from "./controllers/delete-gitlab-integration";
-import {
+import getGitlabIntegration, {
   getGitlabIntegrationById,
   listGitlabIntegrations,
 } from "./controllers/get-gitlab-integration";
@@ -156,6 +159,26 @@ const getIntegrationByIdRoute = createRoute({
     ),
     403: errorResponse("No access to the integration's workspace"),
     404: errorResponse("Integration not found"),
+  },
+});
+
+const getIntegrationRoute = createRoute({
+  method: "get",
+  operationId: "getGitlabIntegration",
+  path: "/project/{projectId}",
+  tags: ["GitLab"],
+  summary: "Get GitLab integration",
+  description:
+    "Compatibility shim: returns the project's first GitLab binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+  middleware: [workspaceAccess.fromProject("projectId")] as const,
+  request: { params: projectIdParam },
+  responses: {
+    200: jsonResponse(
+      "GitLab integration details, or null",
+      gitlabIntegrationSchema.nullable(),
+    ),
+    403: errorResponse("No access to the project"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -303,6 +326,14 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getIntegrationByIdRoute, async (c) => {
     const { integrationId } = c.req.valid("param");
     const integration = await getGitlabIntegrationById(integrationId, true);
+    return c.json(integration, 200);
+  })
+  .openapi(getIntegrationRoute, async (c) => {
+    const { projectId } = c.req.valid("param");
+    const includeSecrets = await hasWorkspacePermission(c, {
+      workspace: ["manage_settings"],
+    });
+    const integration = await getGitlabIntegration(projectId, includeSecrets);
     return c.json(integration, 200);
   })
   .openapi(createIntegrationRoute, async (c) => {

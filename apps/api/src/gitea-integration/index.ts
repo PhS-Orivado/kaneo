@@ -1,4 +1,4 @@
-import { and, eq } from "drizzle-orm";
+successfully downloaded text file (SHA: c95492ffe2104857d922670c5588f10386bb5c76)import { and, eq } from "drizzle-orm";
 import type { Context } from "hono";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
@@ -18,11 +18,14 @@ import {
 } from "../openapi";
 import { type GiteaConfig, validateGiteaConfig } from "../plugins/gitea/config";
 import { handleGiteaWebhookRequest } from "../plugins/gitea/webhook-handler";
-import { requireWorkspacePermission } from "../utils/require-workspace-permission";
+import {
+  hasWorkspacePermission,
+  requireWorkspacePermission,
+} from "../utils/require-workspace-permission";
 import { workspaceAccess } from "../utils/workspace-access-middleware";
 import createGiteaIntegration from "./controllers/create-gitea-integration";
 import deleteGiteaIntegration from "./controllers/delete-gitea-integration";
-import {
+import getGiteaIntegration, {
   getGiteaIntegrationById,
   listGiteaIntegrations,
 } from "./controllers/get-gitea-integration";
@@ -151,6 +154,26 @@ const getIntegrationByIdRoute = createRoute({
     ),
     403: errorResponse("No access to the integration's workspace"),
     404: errorResponse("Integration not found"),
+  },
+});
+
+const getIntegrationRoute = createRoute({
+  method: "get",
+  operationId: "getGiteaIntegration",
+  path: "/project/{projectId}",
+  tags: ["Gitea"],
+  summary: "Get Gitea integration",
+  description:
+    "Compatibility shim: returns the project's first Gitea binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
+  middleware: [workspaceAccess.fromProject("projectId")] as const,
+  request: { params: projectIdParam },
+  responses: {
+    200: jsonResponse(
+      "Gitea integration details, or null",
+      giteaIntegrationSchema.nullable(),
+    ),
+    403: errorResponse("No access to the project"),
+    404: errorResponse("Project not found"),
   },
 });
 
@@ -291,6 +314,17 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getIntegrationByIdRoute, async (c) => {
     const { integrationId } = c.req.valid("param");
     const integration = await getGiteaIntegrationById(integrationId, true);
+    return c.json(integration, 200);
+  })
+  .openapi(getIntegrationRoute, async (c) => {
+    const { projectId } = c.req.valid("param");
+    const includeWebhookSecret = await hasWorkspacePermission(c, {
+      workspace: ["manage_settings"],
+    });
+    const integration = await getGiteaIntegration(
+      projectId,
+      includeWebhookSecret,
+    );
     return c.json(integration, 200);
   })
   .openapi(createIntegrationRoute, async (c) => {
