@@ -10,7 +10,8 @@
 			"markAllRead": "Oznacz wszystko jako przeczytane",
 			"remove": "Usuń",
 			"reset": "Resetuj",
-			"filter": "Filtruj"
+			"filter": "Filtruj",
+			"clearAllFilters": "Wyczyść wszystkie filtry"
 		},
 		"a11y": {
 			"toggleSidebar": "Przełącz pasek boczny"
@@ -153,13 +154,11 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "Adres URL linku",
-				"placeholder": "Wklej lub wpisz link…",
-				"apply": "Zastosuj link",
-				"remove": "Usuń link"
-			}
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -654,124 +653,36 @@
 		"projectSettings": {
 			"projectLabel": "Projekt"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "Skróty klawiszowe",
+			"subtitle": "Przyspiesz pracę dzięki skrótom klawiszowym",
+			"searchPlaceholder": "Szukaj skrótów...",
+			"footer": "Naciśnij <kbd>Escape</kbd>, aby zamknąć",
 			"categories": {
 				"general": "Ogólne",
-				"navigation": "Nawigacja",
 				"create": "Tworzenie",
 				"views": "Widoki",
-				"tasks": "Zadania",
-				"list": "Tablica i lista",
-				"inbox": "Skrzynka odbiorcza",
-				"filters": "Filtry",
-				"editor": "Edytor"
+				"navigation": "Nawigacja",
+				"quickSelect": "Szybki wybór (w oknach podręcznych)"
 			},
 			"items": {
-				"openCommandMenu": "Otwórz paletę poleceń",
-				"openSearch": "Globalne wyszukiwanie",
-				"openShortcuts": "Pokaż skróty klawiszowe",
-				"submit": "Zapisz lub wyślij",
-				"back": "Zamknij okno lub menu",
-				"switchWorkspace": "Zmień obszar roboczy",
-				"logOut": "Wyloguj się",
-				"showDisplayOptions": "Opcje wyświetlania",
-				"dismissToasts": "Zamknij wszystkie powiadomienia",
+				"openCommandPalette": "Otwórz paletę poleceń",
+				"globalSearch": "Globalne wyszukiwanie",
 				"toggleSidebar": "Przełącz pasek boczny",
-				"goToHome": "Przejdź do strony głównej",
-				"goToInbox": "Przejdź do skrzynki odbiorczej",
-				"goToMyTasks": "Przejdź do moich zadań",
-				"goToProjects": "Przejdź do projektów",
-				"goToSettings": "Przejdź do ustawień",
-				"goToTasks": "Przejdź do zadań",
-				"goToBacklog": "Przejdź do backlogu",
-				"goToProject": "Przejdź do projektu 1–9",
-				"openTask": "Otwórz zadanie",
-				"openProject": "Otwórz projekt",
+				"showShortcuts": "Pokaż skróty klawiszowe",
+				"closeModal": "Zamknij okno lub menu",
 				"createTask": "Utwórz zadanie",
 				"createProject": "Utwórz projekt",
-				"toggleLayout": "Przełącz między tablicą a listą",
-				"deleteTask": "Usuń zadanie",
-				"copyTaskUrl": "Kopiuj link do zadania",
-				"copyBranchName": "Kopiuj gałąź zadania",
-				"nextTask": "Następny element",
-				"previousTask": "Poprzedni element",
-				"openFocusedTask": "Otwórz zaznaczony element",
-				"selectAll": "Zaznacz wszystko",
-				"clearSelection": "Wyczyść zaznaczenie",
-				"changeStatus": "Zmień status",
-				"changePriority": "Zmień priorytet",
-				"assignTask": "Przypisz",
-				"assignToMe": "Przypisz do mnie",
-				"changeLabels": "Zmień etykiety",
-				"setDueDate": "Ustaw termin",
-				"removeDueDate": "Usuń termin",
-				"renameTask": "Zmień nazwę",
-				"editDescription": "Edytuj opis",
-				"commentOnTask": "Skomentuj",
-				"moveToProject": "Przenieś do innego projektu",
-				"createSubtask": "Utwórz podzadanie",
-				"setParent": "Ustaw zadanie nadrzędne",
-				"openParent": "Otwórz zadanie nadrzędne",
-				"openSubtask": "Otwórz podzadanie",
-				"markBlockedBy": "Oznacz jako zablokowane przez",
-				"markBlocking": "Oznacz jako blokujące",
-				"markRelated": "Oznacz jako powiązane",
-				"addLink": "Dodaj link",
-				"toggleResources": "Pokaż lub ukryj zasoby",
-				"copyTaskId": "Kopiuj ID zadania",
-				"copyTaskTitle": "Kopiuj tytuł zadania",
-				"copyAsMarkdown": "Kopiuj jako Markdown",
-				"peekTask": "Podgląd zaznaczonego zadania",
-				"selectTask": "Zaznacz zadanie",
-				"selectGroup": "Zaznacz wszystko w grupie",
-				"copyPageUrl": "Kopiuj URL strony",
-				"focusRight": "Następna kolumna",
-				"focusLeft": "Poprzednia kolumna",
-				"moveTaskTop": "Przenieś na początek grupy",
-				"moveTaskUp": "Przesuń o jedną pozycję w górę",
-				"moveTaskDown": "Przesuń o jedną pozycję w dół",
-				"moveTaskBottom": "Przenieś na koniec grupy",
-				"moveTaskLeft": "Przenieś do poprzedniej kolumny",
-				"moveTaskRight": "Przenieś do następnej kolumny",
-				"toggleGroup": "Zwiń lub rozwiń grupę",
-				"toggleAllGroups": "Zwiń lub rozwiń wszystkie grupy",
-				"deleteNotification": "Usuń powiadomienie",
-				"deleteReadNotifications": "Usuń wszystkie przeczytane powiadomienia",
-				"toggleNotificationRead": "Oznacz jako przeczytane lub nieprzeczytane",
-				"markAllNotificationsRead": "Oznacz wszystkie jako przeczytane",
-				"addFilter": "Dodaj filtr",
-				"clearAllFilters": "Wyczyść wszystkie filtry",
-				"clearLastFilter": "Wyczyść ostatni filtr",
-				"editorBold": "Pogrubienie",
-				"editorItalic": "Kursywa",
-				"editorUnderline": "Podkreślenie",
-				"editorStrike": "Przekreślenie",
-				"editorAttach": "Załącz obraz lub plik",
-				"editorInlineCode": "Kod w linii",
-				"editorLink": "Zamień tekst w link",
-				"editorQuote": "Cytat",
-				"editorParagraph": "Zwykły tekst",
-				"editorHeading1": "Nagłówek 1",
-				"editorHeading2": "Nagłówek 2",
-				"editorHeading3": "Nagłówek 3",
-				"editorChecklist": "Lista kontrolna",
-				"editorToggleChecklist": "Zaznacz lub odznacz element",
-				"editorBulletList": "Lista punktowana",
-				"editorNumberedList": "Lista numerowana",
-				"editorCodeBlock": "Blok kodu",
-				"editorUndo": "Cofnij",
-				"editorRedo": "Ponów"
-			},
-			"title": "Skróty klawiszowe",
-			"searchPlaceholder": "Szukaj po akcji lub klawiszu",
-			"results_one": "{{count}} wynik",
-			"results_few": "{{count}} wyniki",
-			"results_many": "{{count}} wyników",
-			"results_other": "{{count}} wyniku",
-			"noResults": "Brak pasujących skrótów",
-			"then": "potem",
-			"or": "lub",
-			"thenEllipsis": "potem…"
+				"createWorkspace": "Utwórz obszar roboczy",
+				"boardView": "Przełącz na widok tablicy",
+				"listView": "Przełącz na widok listy",
+				"backlogView": "Przełącz na backlog",
+				"calendarView": "Przełącz na widok kalendarza",
+				"nextTask": "Następne zadanie",
+				"prevTask": "Poprzednie zadanie",
+				"openTask": "Otwórz zaznaczone zadanie",
+				"quickSelectNumber": "Wybierz opcję numerem"
+			}
 		}
 	},
 	"notifications": {
@@ -855,9 +766,7 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded.",
-			"actionError": "Nie udało się zaktualizować skrzynki odbiorczej. Spróbuj ponownie.",
-			"readCleared": "Usunięto przeczytane powiadomienia"
+			"taskLoadError": "This task couldn’t be loaded."
 		}
 	},
 	"workspace": {
@@ -1190,6 +1099,7 @@
 				"embedErrorInvalidUrl": "Wprowadź prawidłowy adres URL",
 				"embedErrorYoutubeOnly": "Można osadzać tylko linki YouTube.",
 				"embedVideo": "Osadź wideo",
+				"enterUrl": "Wprowadź adres URL",
 				"failedToUploadFile": "Nie udało się przesłać pliku",
 				"fileAttached": "Dołączono plik",
 				"hintEsc": "Esc",
@@ -1745,7 +1655,14 @@
 			"moveDialogTitle": "Przenieść do innego obszaru roboczego?",
 			"moveTargetLabel": "Obszar roboczy",
 			"moving": "Przenoszenie...",
-			"tasksTitle": "Zadania"
+			"tasksTitle": "Zadania",
+			"sprints": "Sprinty",
+			"sprintsSubtitle": "Planuj nadchodzącą pracę w iteracjach o stałej długości.",
+			"sprintLength": "Domyślna długość sprintu",
+			"sprintLengthDescription": "Liczba dni, które domyślnie obejmuje nowy sprint.",
+			"sprintLengthSave": "Zapisz długość sprintu",
+			"sprintLengthSaved": "Długość sprintu zapisana",
+			"sprintLengthError": "Nie udało się zapisać długości sprintu"
 		},
 		"projectIntegrations": {
 			"discordSectionSubtitle": "Wysyłaj aktualizacje zadań projektu na kanał Discord za pomocą webhooka.",
@@ -2222,10 +2139,12 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Pole wyboru",
@@ -2235,6 +2154,7 @@
 				"text": "Text",
 				"multiselect": "Lista rozwijana, wiele opcji"
 			},
+			"availableOptions": "Available options",
 			"clearDefault": "Wyczyść wartość domyślną",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -2575,11 +2495,7 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace",
-			"checkoutSuccess": {
-				"title": "Dziękujemy za subskrypcję",
-				"description": "Płatność otrzymana. Plan poniżej zaktualizuje się po jej potwierdzeniu."
-			}
+			"openFailed": "Couldn't open billing for this workspace"
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2731,6 +2647,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -3113,7 +3060,8 @@
 			"tokenTitle": "Token dostępu",
 			"webhookSecret": "Sekret",
 			"webhookSection": "Webhook",
-			"webhookUrl": "Adres URL"
+			"webhookUrl": "Adres URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Przeciągnij, aby zmienić kolejność wyświetlania w zadaniu.",
@@ -3137,23 +3085,24 @@
 			"duplicate": "Duplicate"
 		},
 		"archive": {
-			"success": "Zarchiwizowano zadań: {{count}}",
-			"confirmTitle_one": "Zarchiwizować {{count}} ukończone zadanie?",
-			"confirmTitle_few": "Zarchiwizować {{count}} ukończone zadania?",
-			"confirmTitle_many": "Zarchiwizować {{count}} ukończonych zadań?",
-			"confirmTitle_other": "Zarchiwizować {{count}} ukończonego zadania?",
-			"confirmDescription": "Znikną z tablicy i trafią do sekcji „Zarchiwizowane” w backlogu."
+			"success": "Zarchiwizowano zadań: {{count}}"
 		},
 		"assignee": {
 			"label": "Osoba przypisana",
 			"unassigned": "Nieprzypisane"
 		},
 		"backlog": {
+			"addFilter": "Dodaj filtr...",
 			"addTask": "Dodaj zadanie",
+			"filter": "Filtruj",
 			"filters": {
+				"assignee": "Osoba przypisana: {{name}}",
+				"due": "Termin: {{date}}",
 				"dueNextWeek": "Termin w przyszłym tygodniu",
 				"dueThisWeek": "Termin w tym tygodniu",
-				"noDueDate": "Brak terminu"
+				"label": "Etykieta: {{name}}",
+				"noDueDate": "Brak terminu",
+				"priority": "Priorytet: {{name}}"
 			},
 			"moveAll": "Przenieś wszystko",
 			"moveAllConfirm": "Przenieść wszystkie zaplanowane zadania ({{count}}) do „Do zrobienia”?",
@@ -3169,14 +3118,15 @@
 			}
 		},
 		"boardFilters": {
+			"allAssignees": "Wszystkie przypisane osoby",
+			"allDueDates": "Wszystkie terminy",
+			"allLabels": "Wszystkie etykiety",
+			"allPriorities": "Wszystkie priorytety",
+			"allStatuses": "Wszystkie statusy",
+			"filterBy": "Filtruj według",
 			"operators": {
 				"includeAnyOf": "zawiera dowolny z",
-				"isAnyOf": "jest jednym z",
-				"is": "jest",
-				"isNot": "nie jest",
-				"isNoneOf": "nie jest żadnym z",
-				"include": "zawiera",
-				"exclude": "nie zawiera"
+				"isAnyOf": "jest jednym z"
 			},
 			"selectedCount": "Wybrano: {{count}}",
 			"subjects": {
@@ -3184,21 +3134,17 @@
 				"dueDate": "Termin",
 				"labels": "Etykiety",
 				"priority": "Priorytet",
-				"status": "Status"
+				"status": "Status",
+				"sprint": "Sprint"
 			},
+			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Wszystkie sprinty"
 		},
+		"boardSearchPlaceholder": "Szukaj zadań...",
 		"bulk": {
-			"clearSelection": "Wyczyść zaznaczenie",
-			"selectAll": "Zaznacz wszystko",
-			"moreActions": "Więcej działań",
-			"statusPlaceholder": "Zmień status…",
-			"priorityPlaceholder": "Ustaw priorytet…",
-			"assigneePlaceholder": "Przypisz do…",
-			"labelPlaceholder": "Dodaj etykietę…",
-			"columnPlaceholder": "Przenieś do kolumny…",
 			"actions": "Akcje",
 			"addLabel": "Dodaj etykietę",
 			"addLabelError": "Nie udało się dodać etykiety",
@@ -3211,11 +3157,7 @@
 			"assignTo": "Przypisz do",
 			"changeStatus": "Zmień status",
 			"delete": "Usuń zadania",
-			"deleteConfirmTitle_one": "Usunąć {{count}} zadanie?",
-			"deleteConfirmTitle_few": "Usunąć {{count}} zadania?",
-			"deleteConfirmTitle_many": "Usunąć {{count}} zadań?",
-			"deleteConfirmTitle_other": "Usunąć {{count}} zadania?",
-			"deleteConfirmDescription": "Wybrane zadania i wszystkie ich dane zostaną trwale usunięte. Tej operacji nie można cofnąć.",
+			"deleteConfirm": "Usunąć {{count}} zadań? Tej operacji nie można cofnąć.",
 			"deleteError": "Nie udało się usunąć zadań",
 			"deleteSuccess": "Usunięto zadań: {{count}}",
 			"moveToBacklog": "Przenieś do backlogu",
@@ -3227,11 +3169,14 @@
 			"noActionsFound": "Nie znaleziono akcji.",
 			"searchActions": "Szukaj akcji...",
 			"selectedCount": "Wybrano: {{count}}",
+			"setDueDate": "Ustaw termin",
 			"setPriority": "Ustaw priorytet",
 			"updateDueDateError": "Nie udało się zaktualizować terminu",
 			"updateError": "Nie udało się zaktualizować zadań",
 			"updatePriorityError": "Nie udało się zaktualizować priorytetu",
-			"updateSuccess": "Zaktualizowano zadań: {{count}}"
+			"updateSuccess": "Zaktualizowano zadań: {{count}}",
+			"moveToSprint": "Przenieś do sprintu",
+			"updateSprintError": "Nie udało się przenieść zadań do sprintu"
 		},
 		"common": {
 			"loadingTask": "Ładowanie zadania...",
@@ -3284,6 +3229,7 @@
 					"onlyYoutubeInline": "Można osadzać tylko adresy URL YouTube. Użyj trybu linku.",
 					"submit": "Osadź"
 				},
+				"enterUrl": "Wprowadź adres URL",
 				"languages": {
 					"bash": "Bash",
 					"clojure": "Clojure",
@@ -3368,13 +3314,17 @@
 			"noActivity": "Nie znaleziono aktywności",
 			"openInFullPage": "Otwórz na pełnej stronie",
 			"subtaskOf": "Podzadanie zadania",
-			"titlePlaceholder": "Kliknij, aby dodać tytuł"
+			"titlePlaceholder": "Kliknij, aby dodać tytuł",
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
 		},
 		"dueDate": {
 			"clear": "Wyczyść datę",
 			"clearError": "Nie udało się wyczyścić terminu",
+			"clearSuccess": "Wyczyszczono termin zadania",
 			"label": "Termin",
-			"updateError": "Nie udało się zaktualizować terminu zadania"
+			"updateError": "Nie udało się zaktualizować terminu zadania",
+			"updateSuccess": "Termin zadania zaktualizowano pomyślnie"
 		},
 		"editor": {
 			"table": {
@@ -3405,15 +3355,16 @@
 			"noTasksThisMonth": "Nic nie zaplanowano w tym miesiącu"
 		},
 		"gantt": {
-			"searchPlaceholder": "Szukaj zaplanowanych zadań...",
 			"hideTasks": "Ukryj zadania",
 			"jumpToToday": "Przejdź do dzisiaj",
 			"noTasks": "Brak zaplanowanych zadań",
 			"noTasksFound": "Nie znaleziono zadań",
+			"noTasksMatch": "Brak zaplanowanych zadań pasujących do „{{query}}”",
 			"noTasksSubtitle": "Dodaj datę rozpoczęcia, termin lub obie daty, aby umieścić zadania na osi czasu projektu.",
 			"pageTitle": "{{name}} – wykres Gantta",
 			"resizeDue": "Zmień rozmiar terminu",
 			"resizeStart": "Zmień rozmiar daty rozpoczęcia",
+			"searchPlaceholder": "Szukaj zaplanowanych zadań...",
 			"showTasks": "Pokaż zadania",
 			"taskAriaLabel": "{{title}}: otwórz lub przeciągnij, aby przenieść",
 			"taskHeader": "Zadanie",
@@ -3429,7 +3380,8 @@
 			"automaticallySortedHint": "Automatyczne sortowanie: {{sort}}"
 		},
 		"labels": {
-			"empty": "Brak dostępnych etykiet"
+			"empty": "Brak dostępnych etykiet",
+			"label": "Etykiety"
 		},
 		"listView": {
 			"addTask": "Dodaj zadanie",
@@ -3454,9 +3406,11 @@
 			},
 			"dueDate": {
 				"clear": "Wyczyść datę",
-				"updateError": "Nie udało się zaktualizować terminu zadania"
+				"updateError": "Nie udało się zaktualizować terminu zadania",
+				"updateSuccess": "Termin zadania zaktualizowano pomyślnie"
 			},
 			"labels": {
+				"addSuccess": "Dodano etykietę",
 				"chooseColor": "Wybierz kolor",
 				"colors": {
 					"amber": "Bursztyn",
@@ -3473,6 +3427,7 @@
 				"createError": "Nie udało się utworzyć etykiety",
 				"createSuccess": "Utworzono i dodano etykietę",
 				"empty": "Nie znaleziono etykiet",
+				"removeSuccess": "Usunięto etykietę",
 				"searchPlaceholder": "Szukaj etykiet...",
 				"updateError": "Nie udało się zaktualizować etykiety",
 				"editLabels": "Edytuj etykiety"
@@ -3482,7 +3437,8 @@
 			},
 			"startDate": {
 				"clear": "Wyczyść datę rozpoczęcia",
-				"updateError": "Nie udało się zaktualizować daty rozpoczęcia zadania"
+				"updateError": "Nie udało się zaktualizować daty rozpoczęcia zadania",
+				"updateSuccess": "Datę rozpoczęcia zadania zaktualizowano pomyślnie"
 			},
 			"status": {
 				"updateError": "Nie udało się zaktualizować statusu zadania"
@@ -3506,19 +3462,21 @@
 			"no-priority": "Brak priorytetu",
 			"urgent": "Pilny"
 		},
+		"type": {
+			"label": "Typ",
+			"task": "Zadanie",
+			"bug": "Błąd"
+		},
 		"properties": {
 			"copyTaskBranch": "Kopiuj gałąź zadania",
 			"taskLinkCopied": "Skopiowano link do zadania",
 			"taskBranchCopied": "Skopiowano nazwę gałęzi",
 			"copyTaskLink": "Kopiuj link do zadania",
 			"labels": "Etykiety",
-			"addLabels": "Dodaj etykiety",
 			"noDate": "Brak daty",
 			"start": "Początek",
 			"startDate": "Data rozpoczęcia",
-			"title": "Właściwości",
-			"dates": "Daty",
-			"project": "Projekt"
+			"title": "Właściwości"
 		},
 		"relations": {
 			"blocks": "Blokuje",
@@ -3536,12 +3494,11 @@
 				"blocked_by": "blokowane przez",
 				"blocks": "blokuje",
 				"related": "powiązane z"
-			},
-			"blockedBy": "Zablokowane przez",
-			"parentPlaceholder": "Ustaw zadanie nadrzędne…"
+			}
 		},
 		"sort": {
 			"ascending": "Rosnąco",
+			"by": "Sortuj według",
 			"descending": "Malejąco",
 			"direction": "Kierunek",
 			"fields": {
@@ -3551,7 +3508,8 @@
 				"position": "Ręcznie (pozycja)",
 				"priority": "Priorytet",
 				"title": "Tytuł"
-			}
+			},
+			"label": "Sortuj"
 		},
 		"status": {
 			"archived": "Zarchiwizowane",
@@ -3578,7 +3536,8 @@
 			"noCompletionColumn": "This project has no matching column for completing or reopening this subtask."
 		},
 		"update": {
-			"error": "Nie udało się zaktualizować zadania"
+			"error": "Nie udało się zaktualizować zadania",
+			"success": "Zadanie zaktualizowano pomyślnie"
 		},
 		"view": {
 			"board": "Tablica",
@@ -3599,68 +3558,51 @@
 		},
 		"checklistProgress": "Ukończone elementy listy kontrolnej: {{completed}} z {{total}}",
 		"customFields": {
-			"fields": "Pola",
-			"empty": "Puste",
-			"required": "Wymagane",
-			"enterKey": "Enter",
-			"toSave": "aby zapisać",
-			"today": "Dzisiaj",
-			"clear": "Wyczyść",
-			"setValue": "Ustaw {{field}}…",
-			"noMatches": "Brak pasujących opcji",
-			"missingRequired_one": "{{count}} wymagane pole jest puste",
-			"missingRequired_few": "{{count}} wymagane pola są puste",
-			"missingRequired_many": "{{count}} wymaganych pól jest pustych",
-			"missingRequired_other": "{{count}} wymaganego pola jest puste",
-			"saveError": "Nie udało się zapisać pola {{field}}",
-			"moreFields_one": "Jeszcze {{count}} pole",
-			"moreFields_few": "Jeszcze {{count}} pola",
-			"moreFields_many": "Jeszcze {{count}} pól",
-			"moreFields_other": "Jeszcze {{count}} pola",
-			"manage": "Zarządzaj polami"
+			"ariaLabel": "Custom fields"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again.",
-			"keyboardInstructions": "Naciśnij Spację, aby wyświetlić podgląd, i Enter, aby otworzyć to zadanie. Użyj Alt lub Option ze strzałkami, aby je przenieść."
+			"reorderFailed": "Could not move task. Please try again."
 		},
-		"toolbar": {
-			"search": "Szukaj zadań",
-			"clearSearch": "Wyczyść wyszukiwanie",
-			"taskCount_one": "{{count}} zadanie",
-			"taskCount_few": "{{count}} zadania",
-			"taskCount_many": "{{count}} zadań",
-			"taskCount_other": "{{count}} zadania",
-			"shownCount_one": "{{shown}} z {{count}} zadania",
-			"shownCount_few": "{{shown}} z {{count}} zadań",
-			"shownCount_many": "{{shown}} z {{count}} zadań",
-			"shownCount_other": "{{shown}} z {{count}} zadania"
-		},
-		"display": {
-			"title": "Wyświetlanie",
-			"sortBy": "Sortuj według",
-			"showOnCards": "Pokaż na kartach",
-			"showOnRows": "Pokaż w wierszach",
-			"checklistProgress": "Postęp listy kontrolnej",
-			"projectBackground": "Tło projektu",
-			"layout": "Układ"
-		},
-		"filterBar": {
-			"label": "Aktywne filtry",
-			"removeFilter": "Usuń filtr {{name}}",
-			"noMatches": "Żadne zadanie nie pasuje do wyszukiwania ani filtrów."
-		},
-		"filterMenu": {
-			"addFilter": "Dodaj filtr…",
-			"searchSubject": "{{name}}…",
-			"noResults": "Brak wyników"
-		},
-		"shortcuts": {
-			"assignedToMe": "Przypisano do Ciebie",
-			"idCopied": "Skopiowano ID zadania",
-			"titleCopied": "Skopiowano tytuł zadania",
-			"markdownCopied": "Skopiowano jako Markdown",
-			"copyFailed": "Nie udało się skopiować do schowka.",
-			"pageUrlCopied": "Skopiowano URL strony"
+		"sprints": {
+			"title": "Sprinty",
+			"create": "Utwórz sprint",
+			"createTitle": "Utwórz sprint",
+			"createDescription": "Zaplanuj nadchodzący sprint: nazwa, cel i daty.",
+			"editTitle": "Edytuj sprint",
+			"editDescription": "Zaktualizuj nazwę, cel i daty sprintu.",
+			"edit": "Edytuj sprint",
+			"name": "Nazwa sprintu",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Cel sprintu",
+			"goalPlaceholder": "Co ma osiągnąć ten sprint?",
+			"save": "Zapisz zmiany",
+			"start": "Rozpocznij sprint",
+			"startSuccess": "Sprint {{name}} rozpoczęty",
+			"close": "Zamknij sprint",
+			"closeTitle": "Zamknij sprint",
+			"closeSummary": "{{name}} ma {{total}} zadań, z czego {{completed}} ukończonych.",
+			"closeTarget": "Przenieś {{count}} nieukończonych zadań do",
+			"closeConfirm": "Zamknij sprint i przenieś nieukończone zadania",
+			"closeSuccess": "Sprint zamknięty, przeniesiono {{count}} nieukończonych zadań",
+			"backlog": "Backlog",
+			"activeBadge": "Aktywny",
+			"noActive": "Żaden sprint nie jest aktywny. Rozpocznij nadchodzący sprint, aby iterować.",
+			"upcoming": "Nadchodzący sprint",
+			"unscheduled": "Bez terminu",
+			"taskCounts": "{{completed}} z {{total}} ukończonych",
+			"history": "Zamknięte sprinty ({{count}})",
+			"completedCount": "{{count}} ukończonych",
+			"moveUp": "W górę",
+			"moveDown": "W dół",
+			"closedLocked": "To zadanie należy do zamkniętego sprintu i pozostaje w nim jako historia",
+			"error": "Akcja sprintu nie powiodła się",
+			"daysRemaining": "Pozostało {{remaining}} dni",
+			"endsToday": "Kończy się dziś",
+			"daysOverdue": "{{remaining}} dni po terminie",
+			"noTasks": "Brak zadań w tym sprincie",
+			"toggleTasks": "Pokaż zadania sprintu",
+			"reportSummary": "Zaplanowane {{planned}}, ukończone {{completed}}, przeniesione {{carriedOver}}",
+			"carriedOver": "Przeniesione"
 		}
 	},
 	"press": {

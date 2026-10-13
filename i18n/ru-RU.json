@@ -10,7 +10,8 @@
 			"markAllRead": "Отметить все как прочитанные",
 			"remove": "Убрать",
 			"reset": "Сбросить",
-			"filter": "Фильтр"
+			"filter": "Фильтр",
+			"clearAllFilters": "Сбросить все фильтры"
 		},
 		"a11y": {
 			"toggleSidebar": "Переключить боковую панель"
@@ -153,13 +154,11 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "URL ссылки",
-				"placeholder": "Вставьте или введите ссылку…",
-				"apply": "Применить ссылку",
-				"remove": "Удалить ссылку"
-			}
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -929,7 +928,14 @@
 			"moveDialogTitle": "Переместить в другую рабочую область?",
 			"moveTargetLabel": "Рабочая область",
 			"moving": "Перемещение...",
-			"tasksTitle": "Задачи"
+			"tasksTitle": "Задачи",
+			"sprints": "Спринты",
+			"sprintsSubtitle": "Планируйте предстоящую работу итерациями фиксированной длины.",
+			"sprintLength": "Длина спринта по умолчанию",
+			"sprintLengthDescription": "Количество дней, которое по умолчанию занимает новый спринт.",
+			"sprintLengthSave": "Сохранить длину спринта",
+			"sprintLengthSaved": "Длина спринта сохранена",
+			"sprintLengthError": "Не удалось сохранить длину спринта"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции",
@@ -1544,10 +1550,12 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Флажок",
@@ -1557,6 +1565,7 @@
 				"text": "Text",
 				"multiselect": "Выпадающий список, несколько значений"
 			},
+			"availableOptions": "Available options",
 			"clearDefault": "Очистить значение по умолчанию",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1897,11 +1906,7 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace",
-			"checkoutSuccess": {
-				"title": "Спасибо за подписку",
-				"description": "Платёж получен. План ниже обновится, как только он будет подтверждён."
-			}
+			"openFailed": "Couldn't open billing for this workspace"
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2053,6 +2058,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2435,7 +2471,8 @@
 			"tokenTitle": "Токен доступа",
 			"webhookSecret": "Секрет",
 			"webhookSection": "Вебхук",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Перетаскивайте, чтобы изменить порядок их отображения в задаче.",
@@ -2534,124 +2571,36 @@
 		"projectSettings": {
 			"projectLabel": "Проект"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "Сочетания клавиш",
+			"subtitle": "Ускорьте работу с помощью сочетаний клавиш",
+			"searchPlaceholder": "Поиск сочетаний...",
+			"footer": "Нажмите <kbd>Escape</kbd>, чтобы закрыть",
 			"categories": {
 				"general": "Основные",
-				"navigation": "Навигация",
 				"create": "Создание",
 				"views": "Представления",
-				"tasks": "Задачи",
-				"list": "Доска и список",
-				"inbox": "Входящие",
-				"filters": "Фильтры",
-				"editor": "Редактор"
+				"navigation": "Навигация",
+				"quickSelect": "Быстрый выбор (в выпадающих списках)"
 			},
 			"items": {
-				"openCommandMenu": "Открыть палитру команд",
-				"openSearch": "Глобальный поиск",
-				"openShortcuts": "Показать сочетания клавиш",
-				"submit": "Сохранить или отправить",
-				"back": "Закрыть модальное окно/всплывающее меню",
-				"switchWorkspace": "Сменить рабочее пространство",
-				"logOut": "Выйти",
-				"showDisplayOptions": "Параметры отображения",
-				"dismissToasts": "Закрыть все уведомления",
+				"openCommandPalette": "Открыть палитру команд",
+				"globalSearch": "Глобальный поиск",
 				"toggleSidebar": "Переключить боковую панель",
-				"goToHome": "Перейти на главную",
-				"goToInbox": "Перейти во входящие",
-				"goToMyTasks": "Перейти к моим задачам",
-				"goToProjects": "Перейти к проектам",
-				"goToSettings": "Перейти в настройки",
-				"goToTasks": "Перейти к задачам",
-				"goToBacklog": "Перейти в бэклог",
-				"goToProject": "Перейти к проекту 1–9",
-				"openTask": "Открыть задачу",
-				"openProject": "Открыть проект",
+				"showShortcuts": "Показать сочетания клавиш",
+				"closeModal": "Закрыть модальное окно/всплывающее меню",
 				"createTask": "Создать задачу",
 				"createProject": "Создать проект",
-				"toggleLayout": "Переключить доску и список",
-				"deleteTask": "Удалить задачу",
-				"copyTaskUrl": "Скопировать ссылку на задачу",
-				"copyBranchName": "Скопировать ветку задачи",
-				"nextTask": "Следующий элемент",
-				"previousTask": "Предыдущий элемент",
-				"openFocusedTask": "Открыть выбранный элемент",
-				"selectAll": "Выбрать все",
-				"clearSelection": "Снять выделение",
-				"changeStatus": "Изменить статус",
-				"changePriority": "Изменить приоритет",
-				"assignTask": "Назначить",
-				"assignToMe": "Назначить на меня",
-				"changeLabels": "Изменить метки",
-				"setDueDate": "Установить срок",
-				"removeDueDate": "Убрать срок",
-				"renameTask": "Переименовать",
-				"editDescription": "Редактировать описание",
-				"commentOnTask": "Комментировать",
-				"moveToProject": "Переместить в другой проект",
-				"createSubtask": "Создать подзадачу",
-				"setParent": "Задать родительскую задачу",
-				"openParent": "Открыть родительскую задачу",
-				"openSubtask": "Открыть подзадачу",
-				"markBlockedBy": "Отметить как заблокированную",
-				"markBlocking": "Отметить как блокирующую",
-				"markRelated": "Отметить как связанную",
-				"addLink": "Добавить ссылку",
-				"toggleResources": "Показать или скрыть ресурсы",
-				"copyTaskId": "Копировать ID задачи",
-				"copyTaskTitle": "Копировать название задачи",
-				"copyAsMarkdown": "Копировать как Markdown",
-				"peekTask": "Предпросмотр выбранной задачи",
-				"selectTask": "Выбрать задачу",
-				"selectGroup": "Выбрать все в группе",
-				"copyPageUrl": "Копировать URL страницы",
-				"focusRight": "Следующая колонка",
-				"focusLeft": "Предыдущая колонка",
-				"moveTaskTop": "Переместить в начало группы",
-				"moveTaskUp": "Поднять на одну позицию",
-				"moveTaskDown": "Опустить на одну позицию",
-				"moveTaskBottom": "Переместить в конец группы",
-				"moveTaskLeft": "Переместить в предыдущую колонку",
-				"moveTaskRight": "Переместить в следующую колонку",
-				"toggleGroup": "Свернуть или развернуть группу",
-				"toggleAllGroups": "Свернуть или развернуть все группы",
-				"deleteNotification": "Удалить уведомление",
-				"deleteReadNotifications": "Удалить все прочитанные уведомления",
-				"toggleNotificationRead": "Отметить как прочитанное или непрочитанное",
-				"markAllNotificationsRead": "Отметить все как прочитанные",
-				"addFilter": "Добавить фильтр",
-				"clearAllFilters": "Сбросить все фильтры",
-				"clearLastFilter": "Сбросить последний фильтр",
-				"editorBold": "Жирный",
-				"editorItalic": "Курсив",
-				"editorUnderline": "Подчёркнутый",
-				"editorStrike": "Зачёркнутый",
-				"editorAttach": "Прикрепить изображение или файл",
-				"editorInlineCode": "Встроенный код",
-				"editorLink": "Превратить текст в ссылку",
-				"editorQuote": "Цитата",
-				"editorParagraph": "Обычный текст",
-				"editorHeading1": "Заголовок 1",
-				"editorHeading2": "Заголовок 2",
-				"editorHeading3": "Заголовок 3",
-				"editorChecklist": "Чек-лист",
-				"editorToggleChecklist": "Отметить пункт чек-листа",
-				"editorBulletList": "Маркированный список",
-				"editorNumberedList": "Нумерованный список",
-				"editorCodeBlock": "Блок кода",
-				"editorUndo": "Отменить",
-				"editorRedo": "Повторить"
-			},
-			"title": "Сочетания клавиш",
-			"searchPlaceholder": "Поиск по действию или клавише",
-			"results_one": "{{count}} результат",
-			"results_few": "{{count}} результата",
-			"results_many": "{{count}} результатов",
-			"results_other": "{{count}} результата",
-			"noResults": "Нет подходящих сочетаний",
-			"then": "затем",
-			"or": "или",
-			"thenEllipsis": "затем…"
+				"createWorkspace": "Создать рабочую область",
+				"boardView": "Переключиться на доску",
+				"listView": "Переключиться на список",
+				"backlogView": "Переключиться на бэклог",
+				"nextTask": "Следующая задача",
+				"prevTask": "Предыдущая задача",
+				"openTask": "Открыть выбранную задачу",
+				"quickSelectNumber": "Выбрать вариант по номеру",
+				"calendarView": "Переключиться на календарь"
+			}
 		}
 	},
 	"notifications": {
@@ -2735,9 +2684,7 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded.",
-			"actionError": "Не удалось обновить входящие. Попробуйте ещё раз.",
-			"readCleared": "Прочитанные уведомления удалены"
+			"taskLoadError": "This task couldn’t be loaded."
 		}
 	},
 	"activity": {
@@ -2771,6 +2718,7 @@
 				"imageUploaded": "Изображение загружено",
 				"fileAttached": "Файл прикреплён",
 				"failedToUploadFile": "Не удалось загрузить файл",
+				"enterUrl": "Введите URL",
 				"plaintext": "Простой текст",
 				"autoDetect": "Автоопределение",
 				"slashGroupText": "Текст",
@@ -2873,6 +2821,12 @@
 			"high": "Высокий",
 			"urgent": "Срочный"
 		},
+		"type": {
+			"label": "Тип",
+			"task": "Задача",
+			"bug": "Баг"
+		},
+		"boardSearchPlaceholder": "Поиск задач...",
 		"view": {
 			"board": "Доска",
 			"list": "Список",
@@ -2901,6 +2855,7 @@
 				"ariaLabel": "Редактор описания задачи",
 				"placeholder": "Напишите описание...",
 				"previewImage": "Предпросмотр изображения",
+				"enterUrl": "Введите URL",
 				"autoDetect": "Автоопределение",
 				"copyCode": "Скопировать код",
 				"copy": "Копировать",
@@ -3004,7 +2959,9 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			}
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
 		},
 		"entity": {
 			"task": "Задача"
@@ -3025,9 +2982,7 @@
 				"blocks": "блокирует",
 				"related": "связана с",
 				"blocked_by": "заблокирована"
-			},
-			"blockedBy": "Блокируется",
-			"parentPlaceholder": "Задать родительскую задачу…"
+			}
 		},
 		"subtasks": {
 			"title": "Подзадачи",
@@ -3047,16 +3002,13 @@
 		"properties": {
 			"title": "Свойства",
 			"labels": "Метки",
-			"addLabels": "Добавить метки",
 			"copyTaskLink": "Скопировать ссылку на задачу",
 			"copyTaskBranch": "Скопировать ветку задачи",
 			"taskLinkCopied": "Ссылка на задачу скопирована",
 			"taskBranchCopied": "Название ветки скопировано",
 			"start": "Начало",
 			"startDate": "Дата начала",
-			"noDate": "Без даты",
-			"dates": "Даты",
-			"project": "Проект"
+			"noDate": "Без даты"
 		},
 		"move": {
 			"title": "Переместить задачу",
@@ -3081,10 +3033,12 @@
 				"updateError": "Не удалось обновить приоритет задачи"
 			},
 			"dueDate": {
+				"updateSuccess": "Срок выполнения задачи успешно обновлён",
 				"updateError": "Не удалось обновить срок выполнения задачи",
 				"clear": "Очистить дату"
 			},
 			"startDate": {
+				"updateSuccess": "Дата начала задачи успешно обновлена",
 				"updateError": "Не удалось обновить дату начала задачи",
 				"clear": "Очистить дату начала"
 			},
@@ -3093,6 +3047,8 @@
 				"empty": "Метки не найдены",
 				"create": "Создать «{{name}}»",
 				"chooseColor": "Выберите цвет",
+				"addSuccess": "Метка добавлена",
+				"removeSuccess": "Метка удалена",
 				"updateError": "Не удалось обновить метку",
 				"createSuccess": "Метка создана и добавлена",
 				"createError": "Не удалось создать метку",
@@ -3122,12 +3078,18 @@
 			"moveAllTooltip": "Переместить все запланированные в «К выполнению»",
 			"moveAll": "Переместить все",
 			"addTask": "Добавить задачу",
+			"filter": "Фильтр",
+			"addFilter": "Добавить фильтр...",
 			"sections": {
 				"planned": "Запланировано",
 				"archived": "В архиве"
 			},
 			"noTasksInSection": "Нет задач в разделе «{{section}}»",
 			"filters": {
+				"priority": "Приоритет: {{name}}",
+				"assignee": "Исполнитель: {{name}}",
+				"due": "Срок: {{date}}",
+				"label": "Метка: {{name}}",
 				"dueThisWeek": "Срок на этой неделе",
 				"dueNextWeek": "Срок на следующей неделе",
 				"noDueDate": "Без срока"
@@ -3135,6 +3097,8 @@
 			"moveAllSuccess": "{{count}} задач перемещено в «К выполнению»"
 		},
 		"sort": {
+			"label": "Сортировка",
+			"by": "Сортировать по",
 			"direction": "Направление",
 			"ascending": "По возрастанию",
 			"descending": "По убыванию",
@@ -3148,6 +3112,12 @@
 			}
 		},
 		"boardFilters": {
+			"filterBy": "Фильтровать по",
+			"allStatuses": "Все статусы",
+			"allPriorities": "Все приоритеты",
+			"allAssignees": "Все исполнители",
+			"allDueDates": "Все сроки",
+			"allLabels": "Все метки",
 			"selectedCount_one": "{{count}} выбран",
 			"selectedCount_few": "{{count}} выбрано",
 			"selectedCount_many": "{{count}} выбрано",
@@ -3157,31 +3127,30 @@
 				"priority": "Приоритет",
 				"assignee": "Исполнитель",
 				"dueDate": "Срок выполнения",
-				"labels": "Метки"
+				"labels": "Метки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "любой из",
-				"includeAnyOf": "включает любой из",
-				"is": "равно",
-				"isNot": "не равно",
-				"isNoneOf": "ни один из",
-				"include": "включает",
-				"exclude": "исключает"
+				"includeAnyOf": "включает любой из"
 			},
 			"selectedCount": "{{count}} выбрано",
+			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Все спринты"
 		},
 		"gantt": {
-			"searchPlaceholder": "Поиск запланированных задач...",
 			"pageTitle": "{{name}} – Гант",
 			"title": "Временная шкала Ганта",
+			"searchPlaceholder": "Поиск запланированных задач...",
 			"hideTasks": "Скрыть задачи",
 			"showTasks": "Показать задачи",
 			"noTasks": "Нет запланированных задач",
 			"noTasksSubtitle": "Добавьте дату начала, срок выполнения или оба значения к задачам, чтобы разместить их на временной шкале проекта.",
 			"noTasksFound": "Задачи не найдены",
+			"noTasksMatch": "Нет запланированных задач, соответствующих «{{query}}»",
 			"taskHeader": "Задача",
 			"updateDatesError": "Не удалось обновить даты задачи",
 			"resizeStart": "Изменить дату начала",
@@ -3210,12 +3179,7 @@
 			"success_few": "{{count}} задачи архивированы",
 			"success_many": "{{count}} задач архивировано",
 			"success_other": "{{count}} задач архивировано",
-			"success": "{{count}} задач архивировано",
-			"confirmTitle_one": "Архивировать {{count}} завершённую задачу?",
-			"confirmTitle_few": "Архивировать {{count}} завершённые задачи?",
-			"confirmTitle_many": "Архивировать {{count}} завершённых задач?",
-			"confirmTitle_other": "Архивировать {{count}} завершённой задачи?",
-			"confirmDescription": "Они исчезнут с доски и перейдут в раздел «В архиве» бэклога."
+			"success": "{{count}} задач архивировано"
 		},
 		"listView": {
 			"addTask": "Добавить задачу",
@@ -3243,13 +3207,17 @@
 		"dueDate": {
 			"label": "Срок выполнения",
 			"clear": "Очистить дату",
+			"updateSuccess": "Срок выполнения задачи успешно обновлён",
 			"updateError": "Не удалось обновить срок выполнения задачи",
+			"clearSuccess": "Срок выполнения задачи очищен",
 			"clearError": "Не удалось очистить срок выполнения"
 		},
 		"labels": {
+			"label": "Метки",
 			"empty": "Нет доступных меток"
 		},
 		"update": {
+			"success": "Задача успешно обновлена",
 			"error": "Не удалось обновить задачу"
 		},
 		"contextMenu": {
@@ -3263,14 +3231,6 @@
 			"delete": "Удалить..."
 		},
 		"bulk": {
-			"clearSelection": "Снять выделение",
-			"selectAll": "Выбрать все",
-			"moreActions": "Другие действия",
-			"statusPlaceholder": "Изменить статус…",
-			"priorityPlaceholder": "Задать приоритет…",
-			"assigneePlaceholder": "Назначить…",
-			"labelPlaceholder": "Добавить метку…",
-			"columnPlaceholder": "Переместить в колонку…",
 			"selectedCount_one": "{{count}} выбрана",
 			"selectedCount_few": "{{count}} выбраны",
 			"selectedCount_many": "{{count}} выбрано",
@@ -3288,6 +3248,10 @@
 			"moveToBoardSuccess_other": "{{count}} задач перемещено на доску",
 			"moveToBoardError": "Не удалось переместить задачи на доску",
 			"delete": "Удалить задачи",
+			"deleteConfirm_one": "Удалить {{count}} задачу? Это действие нельзя отменить.",
+			"deleteConfirm_few": "Удалить {{count}} задачи? Это действие нельзя отменить.",
+			"deleteConfirm_many": "Удалить {{count}} задач? Это действие нельзя отменить.",
+			"deleteConfirm_other": "Удалить {{count}} задач? Это действие нельзя отменить.",
 			"deleteSuccess_one": "{{count}} задача удалена",
 			"deleteSuccess_few": "{{count}} задачи удалены",
 			"deleteSuccess_many": "{{count}} задач удалено",
@@ -3318,6 +3282,7 @@
 			"addLabelSuccess_many": "Метка добавлена к {{count}} задачам",
 			"addLabelSuccess_other": "Метка добавлена к {{count}} задачам",
 			"addLabelError": "Не удалось добавить метку",
+			"setDueDate": "Установить срок",
 			"updateDueDateError": "Не удалось обновить срок выполнения",
 			"actions": "Действия",
 			"searchActions": "Поиск действий...",
@@ -3326,16 +3291,14 @@
 			"selectedCount": "{{count}} выбрано",
 			"moveToBacklogSuccess": "{{count}} задач перемещено в бэклог",
 			"moveToBoardSuccess": "{{count}} задач перемещено на доску",
-			"deleteConfirmTitle_one": "Удалить {{count}} задачу?",
-			"deleteConfirmTitle_few": "Удалить {{count}} задачи?",
-			"deleteConfirmTitle_many": "Удалить {{count}} задач?",
-			"deleteConfirmTitle_other": "Удалить {{count}} задачи?",
-			"deleteConfirmDescription": "Выбранные задачи и все их данные будут безвозвратно удалены. Это действие нельзя отменить.",
+			"deleteConfirm": "Удалить {{count}} задач? Это действие нельзя отменить.",
 			"deleteSuccess": "{{count}} задач удалено",
 			"archiveSuccess": "{{count}} задач архивировано",
 			"updateSuccess": "{{count}} задач обновлено",
 			"assignSuccess": "{{count}} задач назначено",
-			"addLabelSuccess": "Метка добавлена к {{count}} задачам"
+			"addLabelSuccess": "Метка добавлена к {{count}} задачам",
+			"moveToSprint": "Переместить в спринт",
+			"updateSprintError": "Не удалось переместить задачи в спринт"
 		},
 		"editor": {
 			"table": {
@@ -3369,68 +3332,51 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"checklistProgress": "Выполнено пунктов списка: {{completed}} из {{total}}",
 		"customFields": {
-			"fields": "Поля",
-			"empty": "Пусто",
-			"required": "Обязательно",
-			"enterKey": "Enter",
-			"toSave": "чтобы сохранить",
-			"today": "Сегодня",
-			"clear": "Очистить",
-			"setValue": "Задать {{field}}…",
-			"noMatches": "Нет подходящих вариантов",
-			"missingRequired_one": "{{count}} обязательное поле не заполнено",
-			"missingRequired_few": "{{count}} обязательных поля не заполнены",
-			"missingRequired_many": "{{count}} обязательных полей не заполнено",
-			"missingRequired_other": "{{count}} обязательного поля не заполнено",
-			"saveError": "Не удалось сохранить поле «{{field}}»",
-			"moreFields_one": "Ещё {{count}} поле",
-			"moreFields_few": "Ещё {{count}} поля",
-			"moreFields_many": "Ещё {{count}} полей",
-			"moreFields_other": "Ещё {{count}} поля",
-			"manage": "Управлять полями"
+			"ariaLabel": "Custom fields"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again.",
-			"keyboardInstructions": "Нажмите Пробел для предпросмотра и Enter, чтобы открыть эту задачу. Используйте Alt или Option со стрелками, чтобы переместить её."
+			"reorderFailed": "Could not move task. Please try again."
 		},
-		"toolbar": {
-			"search": "Поиск задач",
-			"clearSearch": "Очистить поиск",
-			"taskCount_one": "{{count}} задача",
-			"taskCount_few": "{{count}} задачи",
-			"taskCount_many": "{{count}} задач",
-			"taskCount_other": "{{count}} задачи",
-			"shownCount_one": "{{shown}} из {{count}} задачи",
-			"shownCount_few": "{{shown}} из {{count}} задач",
-			"shownCount_many": "{{shown}} из {{count}} задач",
-			"shownCount_other": "{{shown}} из {{count}} задачи"
-		},
-		"display": {
-			"title": "Отображение",
-			"sortBy": "Сортировать по",
-			"showOnCards": "Показывать на карточках",
-			"showOnRows": "Показывать в строках",
-			"checklistProgress": "Прогресс чек-листа",
-			"projectBackground": "Фон проекта",
-			"layout": "Макет"
-		},
-		"filterBar": {
-			"label": "Активные фильтры",
-			"removeFilter": "Убрать фильтр «{{name}}»",
-			"noMatches": "Нет задач, подходящих под поиск или фильтры."
-		},
-		"filterMenu": {
-			"addFilter": "Добавить фильтр…",
-			"searchSubject": "{{name}}…",
-			"noResults": "Ничего не найдено"
-		},
-		"shortcuts": {
-			"assignedToMe": "Назначено на вас",
-			"idCopied": "ID задачи скопирован",
-			"titleCopied": "Название задачи скопировано",
-			"markdownCopied": "Скопировано как Markdown",
-			"copyFailed": "Не удалось скопировать в буфер обмена.",
-			"pageUrlCopied": "URL страницы скопирован"
+		"sprints": {
+			"title": "Спринты",
+			"create": "Создать спринт",
+			"createTitle": "Создать спринт",
+			"createDescription": "Запланируйте предстоящий спринт: название, цель и даты.",
+			"editTitle": "Изменить спринт",
+			"editDescription": "Обновите название, цель и даты спринта.",
+			"edit": "Изменить спринт",
+			"name": "Название спринта",
+			"namePlaceholder": "Спринт 1",
+			"goal": "Цель спринта",
+			"goalPlaceholder": "Чего должна достичь команда в этом спринте?",
+			"save": "Сохранить изменения",
+			"start": "Запустить спринт",
+			"startSuccess": "Спринт {{name}} запущен",
+			"close": "Закрыть спринт",
+			"closeTitle": "Закрыть спринт",
+			"closeSummary": "В спринте {{name}} {{total}} задач, из них завершено: {{completed}}.",
+			"closeTarget": "Перенести {{count}} незавершённых задач в",
+			"closeConfirm": "Закрыть спринт и перенести незавершённые задачи",
+			"closeSuccess": "Спринт закрыт, перенесено {{count}} незавершённых задач",
+			"backlog": "Бэклог",
+			"activeBadge": "Активен",
+			"noActive": "Нет активного спринта. Запустите предстоящий спринт, чтобы начать работу итерациями.",
+			"upcoming": "Предстоящий спринт",
+			"unscheduled": "Без сроков",
+			"taskCounts": "Завершено {{completed}} из {{total}}",
+			"history": "Закрытые спринты ({{count}})",
+			"completedCount": "Завершено: {{count}}",
+			"moveUp": "Выше",
+			"moveDown": "Ниже",
+			"closedLocked": "Задача относится к закрытому спринту и остаётся в нём как история",
+			"error": "Не удалось выполнить действие со спринтом",
+			"daysRemaining": "Осталось дней: {{remaining}}",
+			"endsToday": "Заканчивается сегодня",
+			"daysOverdue": "Просрочено на {{remaining}} дн.",
+			"noTasks": "В этом спринте пока нет задач",
+			"toggleTasks": "Показать задачи спринта",
+			"reportSummary": "Запланировано {{planned}}, завершено {{completed}}, перенесено {{carriedOver}}",
+			"carriedOver": "Перенесено"
 		}
 	},
 	"invitations": {
