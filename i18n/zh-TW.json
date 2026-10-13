@@ -3110,6 +3110,14 @@
 			"delete": "刪除…"
 		},
 		"bulk": {
+			"clearSelection": "清除選取",
+			"selectAll": "全選",
+			"moreActions": "更多動作",
+			"statusPlaceholder": "變更狀態…",
+			"priorityPlaceholder": "設定優先順序…",
+			"assigneePlaceholder": "指派給…",
+			"labelPlaceholder": "新增標籤…",
+			"columnPlaceholder": "移至欄位…",
 			"selectedCount": "已選 {{count}} 個",
 			"moveToBacklog": "移至待辦",
 			"moveToBacklogSuccess": "已將 {{count}} 個任務移至待辦",
@@ -3139,15 +3147,7 @@
 			"actions": "操作",
 			"searchActions": "搜尋操作…",
 			"noActionsFound": "找不到操作。",
-			"changeStatus": "變更狀態",
-			"clearSelection": "清除選取",
-			"selectAll": "全選",
-			"moreActions": "更多動作",
-			"statusPlaceholder": "變更狀態…",
-			"priorityPlaceholder": "設定優先順序…",
-			"assigneePlaceholder": "指派給…",
-			"labelPlaceholder": "新增標籤…",
-			"columnPlaceholder": "移至欄位…"
+			"changeStatus": "變更狀態"
 		},
 		"editor": {
 			"table": {
