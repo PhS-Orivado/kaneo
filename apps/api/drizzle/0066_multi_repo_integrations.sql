@@ -13,14 +13,14 @@ DO $add_workspace_limit_fk$
 BEGIN
 	ALTER TABLE "workspace_limit" ADD CONSTRAINT "workspace_limit_workspace_id_workspace_id_fk" FOREIGN KEY ("workspace_id") REFERENCES "public"."workspace"("id") ON DELETE cascade ON UPDATE cascade;
 EXCEPTION
-	WHEN duplicate_object THEN NULL;
+	WHEN duplicate_object OR duplicate_table THEN NULL;
 END
 $add_workspace_limit_fk$;--> statement-breakpoint
 DO $add_workflow_rule_integration_fk$
 BEGIN
 	ALTER TABLE "workflow_rule" ADD CONSTRAINT "workflow_rule_integration_id_integration_id_fk" FOREIGN KEY ("integration_id") REFERENCES "public"."integration"("id") ON DELETE cascade ON UPDATE cascade;
 EXCEPTION
-	WHEN duplicate_object THEN NULL;
+	WHEN duplicate_object OR duplicate_table THEN NULL;
 END
 $add_workflow_rule_integration_fk$;--> statement-breakpoint
 DO $backfill$
@@ -130,7 +130,7 @@ DO $add_integration_project_type_repo_unique$
 BEGIN
 	ALTER TABLE "integration" ADD CONSTRAINT "integration_project_type_repo_unique" UNIQUE ("project_id","type","repository_key");
 EXCEPTION
-	WHEN duplicate_object THEN NULL;
+	WHEN duplicate_object OR duplicate_table THEN NULL;
 END
 $add_integration_project_type_repo_unique$;--> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "integration_project_type_null_repo_unique" ON "integration" USING btree ("project_id","type") WHERE "integration"."repository_key" IS NULL;--> statement-breakpoint
