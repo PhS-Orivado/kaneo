@@ -10,7 +10,8 @@
 			"markAllRead": "सभी पढ़ा हुआ करें",
 			"remove": "निकालें",
 			"reset": "रीसेट करें",
-			"filter": "फ़िल्टर"
+			"filter": "फ़िल्टर",
+			"clearAllFilters": "सभी फ़िल्टर साफ़ करें"
 		},
 		"a11y": {
 			"toggleSidebar": "साइडबार टॉगल करें"
@@ -153,13 +154,11 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "लिंक URL",
-				"placeholder": "लिंक पेस्ट करें या लिखें…",
-				"apply": "लिंक लागू करें",
-				"remove": "लिंक हटाएँ"
-			}
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -1158,7 +1157,14 @@
 			"moveDialogTitle": "दूसरे वर्कस्पेस में ले जाएँ?",
 			"moveTargetLabel": "वर्कस्पेस",
 			"moving": "ले जाया जा रहा है...",
-			"tasksTitle": "कार्य"
+			"tasksTitle": "कार्य",
+			"sprints": "स्प्रिंट",
+			"sprintsSubtitle": "आगामी कार्य को निश्चित अवधि के चरणों में योजनाबद्ध करें।",
+			"sprintLength": "डिफ़ॉल्ट स्प्रिंट अवधि",
+			"sprintLengthDescription": "नए स्प्रिंट की डिफ़ॉल्ट अवधि दिनों में।",
+			"sprintLengthSave": "स्प्रिंट अवधि सहेजें",
+			"sprintLengthSaved": "स्प्रिंट अवधि सहेजी गई",
+			"sprintLengthError": "स्प्रिंट अवधि सहेजी नहीं जा सकी"
 		},
 		"projectIntegrations": {
 			"pageTitle": "एकीकरण",
@@ -1518,10 +1524,12 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "चेकबॉक्स",
@@ -1531,6 +1539,7 @@
 				"text": "Text",
 				"multiselect": "ड्रॉपडाउन, कई चुनें"
 			},
+			"availableOptions": "Available options",
 			"clearDefault": "डिफ़ॉल्ट हटाएँ",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1863,11 +1872,7 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace",
-			"checkoutSuccess": {
-				"title": "सदस्यता लेने के लिए धन्यवाद",
-				"description": "भुगतान प्राप्त हुआ। पुष्टि होते ही नीचे दी गई योजना अपडेट हो जाएगी।"
-			}
+			"openFailed": "Couldn't open billing for this workspace"
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2013,6 +2018,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2343,7 +2379,8 @@
 			"tokenTitle": "एक्सेस टोकन",
 			"webhookSecret": "सीक्रेट",
 			"webhookSection": "वेबहुक",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "कार्य पर इनके दिखने का क्रम बदलने के लिए खींचें।",
@@ -2442,122 +2479,36 @@
 		"projectSettings": {
 			"projectLabel": "प्रोजेक्ट"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "कीबोर्ड शॉर्टकट",
+			"subtitle": "कीबोर्ड शॉर्टकट से अपने कार्यप्रवाह को तेज़ करें",
+			"searchPlaceholder": "शॉर्टकट खोजें...",
+			"footer": "बंद करने के लिए <kbd>Escape</kbd> दबाएँ",
 			"categories": {
 				"general": "सामान्य",
-				"navigation": "नेविगेशन",
 				"create": "बनाएँ",
 				"views": "दृश्य",
-				"tasks": "कार्य",
-				"list": "बोर्ड और सूची",
-				"inbox": "इनबॉक्स",
-				"filters": "फ़िल्टर",
-				"editor": "एडिटर"
+				"navigation": "नेविगेशन",
+				"quickSelect": "त्वरित चयन (पॉपओवर में)"
 			},
 			"items": {
-				"openCommandMenu": "कमांड पैलेट खोलें",
-				"openSearch": "वैश्विक खोज",
-				"openShortcuts": "कीबोर्ड शॉर्टकट दिखाएँ",
-				"submit": "सहेजें या सबमिट करें",
-				"back": "मोडल/पॉपओवर बंद करें",
-				"switchWorkspace": "वर्कस्पेस बदलें",
-				"logOut": "लॉग आउट",
-				"showDisplayOptions": "डिस्प्ले विकल्प",
-				"dismissToasts": "सभी सूचनाएँ बंद करें",
+				"openCommandPalette": "कमांड पैलेट खोलें",
+				"globalSearch": "वैश्विक खोज",
 				"toggleSidebar": "साइडबार टॉगल करें",
-				"goToHome": "होम पर जाएँ",
-				"goToInbox": "इनबॉक्स पर जाएँ",
-				"goToMyTasks": "मेरे कार्यों पर जाएँ",
-				"goToProjects": "प्रोजेक्ट्स पर जाएँ",
-				"goToSettings": "सेटिंग्स पर जाएँ",
-				"goToTasks": "कार्यों पर जाएँ",
-				"goToBacklog": "बैकलॉग पर जाएँ",
-				"goToProject": "प्रोजेक्ट 1–9 पर जाएँ",
-				"openTask": "कार्य खोलें",
-				"openProject": "प्रोजेक्ट खोलें",
+				"showShortcuts": "कीबोर्ड शॉर्टकट दिखाएँ",
+				"closeModal": "मोडल/पॉपओवर बंद करें",
 				"createTask": "कार्य बनाएँ",
 				"createProject": "प्रोजेक्ट बनाएँ",
-				"toggleLayout": "बोर्ड और सूची के बीच बदलें",
-				"deleteTask": "कार्य हटाएँ",
-				"copyTaskUrl": "कार्य लिंक कॉपी करें",
-				"copyBranchName": "कार्य शाखा कॉपी करें",
-				"nextTask": "अगला आइटम",
-				"previousTask": "पिछला आइटम",
-				"openFocusedTask": "फ़ोकस किया गया आइटम खोलें",
-				"selectAll": "सभी चुनें",
-				"clearSelection": "चयन साफ़ करें",
-				"changeStatus": "स्थिति बदलें",
-				"changePriority": "प्राथमिकता बदलें",
-				"assignTask": "असाइन करें",
-				"assignToMe": "मुझे असाइन करें",
-				"changeLabels": "लेबल बदलें",
-				"setDueDate": "नियत तारीख सेट करें",
-				"removeDueDate": "नियत तारीख हटाएँ",
-				"renameTask": "नाम बदलें",
-				"editDescription": "विवरण संपादित करें",
-				"commentOnTask": "टिप्पणी करें",
-				"moveToProject": "दूसरे प्रोजेक्ट में ले जाएँ",
-				"createSubtask": "उप-कार्य बनाएँ",
-				"setParent": "मूल कार्य सेट करें",
-				"openParent": "मूल कार्य खोलें",
-				"openSubtask": "उप-कार्य खोलें",
-				"markBlockedBy": "इसके द्वारा अवरुद्ध चिह्नित करें",
-				"markBlocking": "अवरोधक के रूप में चिह्नित करें",
-				"markRelated": "संबंधित के रूप में चिह्नित करें",
-				"addLink": "लिंक जोड़ें",
-				"toggleResources": "संसाधन दिखाएँ या छिपाएँ",
-				"copyTaskId": "कार्य ID कॉपी करें",
-				"copyTaskTitle": "कार्य शीर्षक कॉपी करें",
-				"copyAsMarkdown": "Markdown के रूप में कॉपी करें",
-				"peekTask": "फ़ोकस किए गए कार्य का पूर्वावलोकन",
-				"selectTask": "कार्य चुनें",
-				"selectGroup": "समूह में सब चुनें",
-				"copyPageUrl": "पेज URL कॉपी करें",
-				"focusRight": "अगला कॉलम",
-				"focusLeft": "पिछला कॉलम",
-				"moveTaskTop": "समूह में सबसे ऊपर ले जाएँ",
-				"moveTaskUp": "एक स्थान ऊपर",
-				"moveTaskDown": "एक स्थान नीचे",
-				"moveTaskBottom": "समूह में सबसे नीचे ले जाएँ",
-				"moveTaskLeft": "पिछले कॉलम में ले जाएँ",
-				"moveTaskRight": "अगले कॉलम में ले जाएँ",
-				"toggleGroup": "समूह संक्षिप्त या विस्तृत करें",
-				"toggleAllGroups": "सभी समूह संक्षिप्त या विस्तृत करें",
-				"deleteNotification": "सूचना हटाएँ",
-				"deleteReadNotifications": "सभी पढ़ी गई सूचनाएँ हटाएँ",
-				"toggleNotificationRead": "पढ़ी गई या अनपढ़ी चिह्नित करें",
-				"markAllNotificationsRead": "सभी को पढ़ा गया चिह्नित करें",
-				"addFilter": "फ़िल्टर जोड़ें",
-				"clearAllFilters": "सभी फ़िल्टर हटाएँ",
-				"clearLastFilter": "अंतिम फ़िल्टर हटाएँ",
-				"editorBold": "बोल्ड",
-				"editorItalic": "इटैलिक",
-				"editorUnderline": "रेखांकित",
-				"editorStrike": "काटा हुआ",
-				"editorAttach": "छवि या फ़ाइल संलग्न करें",
-				"editorInlineCode": "इनलाइन कोड",
-				"editorLink": "टेक्स्ट को लिंक में बदलें",
-				"editorQuote": "उद्धरण",
-				"editorParagraph": "सामान्य टेक्स्ट",
-				"editorHeading1": "शीर्षक 1",
-				"editorHeading2": "शीर्षक 2",
-				"editorHeading3": "शीर्षक 3",
-				"editorChecklist": "चेकलिस्ट",
-				"editorToggleChecklist": "चेकलिस्ट आइटम टॉगल करें",
-				"editorBulletList": "बुलेट सूची",
-				"editorNumberedList": "क्रमांकित सूची",
-				"editorCodeBlock": "कोड ब्लॉक",
-				"editorUndo": "पूर्ववत करें",
-				"editorRedo": "फिर से करें"
-			},
-			"title": "कीबोर्ड शॉर्टकट",
-			"searchPlaceholder": "क्रिया या कुंजी से खोजें",
-			"results_one": "{{count}} परिणाम",
-			"results_other": "{{count}} परिणाम",
-			"noResults": "कोई शॉर्टकट मेल नहीं खाता",
-			"then": "फिर",
-			"or": "या",
-			"thenEllipsis": "फिर…"
+				"createWorkspace": "वर्कस्पेस बनाएँ",
+				"boardView": "बोर्ड दृश्य पर स्विच करें",
+				"listView": "सूची दृश्य पर स्विच करें",
+				"backlogView": "बैकलॉग दृश्य पर स्विच करें",
+				"nextTask": "अगला कार्य",
+				"prevTask": "पिछला कार्य",
+				"openTask": "चयनित कार्य खोलें",
+				"quickSelectNumber": "संख्या द्वारा विकल्प चुनें",
+				"calendarView": "कैलेंडर दृश्य पर जाएँ"
+			}
 		}
 	},
 	"notifications": {
@@ -2633,9 +2584,7 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded.",
-			"actionError": "आपका इनबॉक्स अपडेट नहीं हो सका। फिर से कोशिश करें।",
-			"readCleared": "पढ़ी गई सूचनाएँ हटा दी गईं"
+			"taskLoadError": "This task couldn’t be loaded."
 		}
 	},
 	"activity": {
@@ -2671,6 +2620,7 @@
 				"imageUploaded": "चित्र अपलोड किया गया",
 				"fileAttached": "फ़ाइल संलग्न की गई",
 				"failedToUploadFile": "फ़ाइल अपलोड करने में विफल",
+				"enterUrl": "URL दर्ज करें",
 				"plaintext": "सादा पाठ",
 				"autoDetect": "स्वतः पहचान",
 				"slashGroupText": "पाठ",
@@ -2771,6 +2721,12 @@
 			"high": "उच्च",
 			"urgent": "अत्यावश्यक"
 		},
+		"type": {
+			"label": "प्रकार",
+			"task": "कार्य",
+			"bug": "बग"
+		},
+		"boardSearchPlaceholder": "टिकट खोजें...",
 		"view": {
 			"board": "बोर्ड",
 			"list": "सूची",
@@ -2799,6 +2755,7 @@
 				"ariaLabel": "कार्य विवरण संपादक",
 				"placeholder": "विवरण लिखें...",
 				"previewImage": "पूर्वावलोकन चित्र",
+				"enterUrl": "URL दर्ज करें",
 				"autoDetect": "स्वतः पहचान",
 				"copyCode": "कोड कॉपी करें",
 				"copy": "कॉपी करें",
@@ -2902,7 +2859,9 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			}
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
 		},
 		"entity": {
 			"task": "कार्य"
@@ -2923,9 +2882,7 @@
 				"blocks": "ब्लॉक करता है",
 				"blocked_by": "ब्लॉक किया गया",
 				"related": "संबंधित है"
-			},
-			"blockedBy": "इसके द्वारा अवरुद्ध",
-			"parentPlaceholder": "मूल कार्य सेट करें…"
+			}
 		},
 		"subtasks": {
 			"title": "उप-कार्य",
@@ -2945,16 +2902,13 @@
 		"properties": {
 			"title": "गुण",
 			"labels": "लेबल",
-			"addLabels": "लेबल जोड़ें",
 			"copyTaskLink": "कार्य लिंक कॉपी करें",
 			"copyTaskBranch": "कार्य शाखा कॉपी करें",
 			"taskLinkCopied": "कार्य का लिंक कॉपी किया गया",
 			"taskBranchCopied": "ब्रांच का नाम कॉपी किया गया",
 			"start": "शुरू",
 			"startDate": "शुरू की तारीख",
-			"noDate": "कोई तारीख नहीं",
-			"dates": "तारीखें",
-			"project": "प्रोजेक्ट"
+			"noDate": "कोई तारीख नहीं"
 		},
 		"move": {
 			"title": "कार्य ले जाएँ",
@@ -2979,10 +2933,12 @@
 				"updateError": "कार्य की प्राथमिकता अपडेट करने में विफल"
 			},
 			"dueDate": {
+				"updateSuccess": "कार्य की नियत तारीख सफलतापूर्वक अपडेट की गई",
 				"updateError": "कार्य की नियत तारीख अपडेट करने में विफल",
 				"clear": "तारीख साफ़ करें"
 			},
 			"startDate": {
+				"updateSuccess": "कार्य की शुरू तारीख सफलतापूर्वक अपडेट की गई",
 				"updateError": "कार्य की शुरू तारीख अपडेट करने में विफल",
 				"clear": "शुरू तारीख साफ़ करें"
 			},
@@ -2991,6 +2947,8 @@
 				"empty": "कोई लेबल नहीं मिला",
 				"create": "\"{{name}}\" बनाएँ",
 				"chooseColor": "रंग चुनें",
+				"addSuccess": "लेबल जोड़ा गया",
+				"removeSuccess": "लेबल हटाया गया",
 				"updateError": "लेबल अपडेट करने में विफल",
 				"createSuccess": "लेबल बनाया और जोड़ा गया",
 				"createError": "लेबल बनाने में विफल",
@@ -3017,18 +2975,26 @@
 			"moveAllTooltip": "सभी नियोजित को To Do में ले जाएँ",
 			"moveAll": "सभी ले जाएँ",
 			"addTask": "कार्य जोड़ें",
+			"filter": "फ़िल्टर",
+			"addFilter": "फ़िल्टर जोड़ें...",
 			"sections": {
 				"planned": "नियोजित",
 				"archived": "संग्रहित"
 			},
 			"noTasksInSection": "कोई {{section}} कार्य नहीं",
 			"filters": {
+				"priority": "प्राथमिकता: {{name}}",
+				"assignee": "सौंपा गया: {{name}}",
+				"due": "देय: {{date}}",
+				"label": "लेबल: {{name}}",
 				"dueThisWeek": "इस सप्ताह देय",
 				"dueNextWeek": "अगले सप्ताह देय",
 				"noDueDate": "कोई नियत तारीख नहीं"
 			}
 		},
 		"sort": {
+			"label": "क्रमबद्ध करें",
+			"by": "इसके अनुसार",
 			"direction": "दिशा",
 			"ascending": "आरोही",
 			"descending": "अवरोही",
@@ -3042,36 +3008,41 @@
 			}
 		},
 		"boardFilters": {
+			"filterBy": "इसके अनुसार फ़िल्टर करें",
+			"allStatuses": "सभी स्थितियाँ",
+			"allPriorities": "सभी प्राथमिकताएँ",
+			"allAssignees": "सभी सौंपे गए",
+			"allDueDates": "सभी नियत तारीखें",
+			"allLabels": "सभी लेबल",
 			"selectedCount": "{{count}} चयनित",
 			"subjects": {
 				"status": "स्थिति",
 				"priority": "प्राथमिकता",
 				"assignee": "सौंपा गया",
 				"dueDate": "नियत तारीख",
-				"labels": "लेबल"
+				"labels": "लेबल",
+				"sprint": "स्प्रिंट"
 			},
 			"operators": {
 				"isAnyOf": "में से कोई है",
-				"includeAnyOf": "में से कोई शामिल है",
-				"is": "है",
-				"isNot": "नहीं है",
-				"isNoneOf": "में से कोई नहीं है",
-				"include": "शामिल है",
-				"exclude": "शामिल नहीं है"
+				"includeAnyOf": "में से कोई शामिल है"
 			},
+			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "सभी स्प्रिंट"
 		},
 		"gantt": {
-			"searchPlaceholder": "शेड्यूल किए गए टिकट खोजें...",
 			"pageTitle": "{{name}} – गैंट",
 			"title": "गैंट टाइमलाइन",
+			"searchPlaceholder": "शेड्यूल किए गए टिकट खोजें...",
 			"hideTasks": "कार्य छिपाएँ",
 			"showTasks": "कार्य दिखाएँ",
 			"noTasks": "कोई शेड्यूल किए गए कार्य नहीं",
 			"noTasksSubtitle": "प्रोजेक्ट टाइमलाइन पर रखने के लिए कार्यों में शुरू तारीख, नियत तारीख, या दोनों जोड़ें।",
 			"noTasksFound": "कोई कार्य नहीं मिला",
+			"noTasksMatch": "\"{{query}}\" से मेल खाने वाले कोई शेड्यूल किए गए कार्य नहीं",
 			"taskHeader": "कार्य",
 			"updateDatesError": "कार्य की तारीखें अपडेट करने में विफल",
 			"resizeStart": "शुरू तारीख बदलें",
@@ -3096,10 +3067,7 @@
 			"error": "कार्य डुप्लिकेट करने में विफल"
 		},
 		"archive": {
-			"success": "{{count}} कार्य संग्रहित किए गए",
-			"confirmTitle_one": "{{count}} पूर्ण कार्य संग्रहित करें?",
-			"confirmTitle_other": "{{count}} पूर्ण कार्य संग्रहित करें?",
-			"confirmDescription": "ये बोर्ड से हट जाएँगे और बैकलॉग के \"संग्रहित\" अनुभाग में चले जाएँगे।"
+			"success": "{{count}} कार्य संग्रहित किए गए"
 		},
 		"listView": {
 			"addTask": "कार्य जोड़ें",
@@ -3125,13 +3093,17 @@
 		"dueDate": {
 			"label": "नियत तारीख",
 			"clear": "तारीख साफ़ करें",
+			"updateSuccess": "कार्य की नियत तारीख सफलतापूर्वक अपडेट की गई",
 			"updateError": "कार्य की नियत तारीख अपडेट करने में विफल",
+			"clearSuccess": "कार्य की नियत तारीख साफ़ की गई",
 			"clearError": "नियत तारीख साफ़ करने में विफल"
 		},
 		"labels": {
+			"label": "लेबल",
 			"empty": "कोई लेबल उपलब्ध नहीं"
 		},
 		"update": {
+			"success": "कार्य सफलतापूर्वक अपडेट किया गया",
 			"error": "कार्य अपडेट करने में विफल"
 		},
 		"contextMenu": {
@@ -3145,14 +3117,6 @@
 			"delete": "हटाएँ..."
 		},
 		"bulk": {
-			"clearSelection": "चयन साफ़ करें",
-			"selectAll": "सभी चुनें",
-			"moreActions": "और कार्रवाइयाँ",
-			"statusPlaceholder": "स्थिति बदलें…",
-			"priorityPlaceholder": "प्राथमिकता सेट करें…",
-			"assigneePlaceholder": "असाइन करें…",
-			"labelPlaceholder": "लेबल जोड़ें…",
-			"columnPlaceholder": "कॉलम में ले जाएँ…",
 			"selectedCount": "{{count}} चयनित",
 			"moveToBacklog": "बैकलॉग में ले जाएँ",
 			"moveToBacklogSuccess": "{{count}} कार्य बैकलॉग में ले जाए गए",
@@ -3161,9 +3125,7 @@
 			"moveToBoardSuccess": "{{count}} कार्य बोर्ड पर ले जाए गए",
 			"moveToBoardError": "कार्य बोर्ड पर ले जाने में विफल",
 			"delete": "कार्य हटाएँ",
-			"deleteConfirmTitle_one": "{{count}} कार्य हटाएँ?",
-			"deleteConfirmTitle_other": "{{count}} कार्य हटाएँ?",
-			"deleteConfirmDescription": "यह चयनित कार्यों और उनके सभी डेटा को स्थायी रूप से हटा देगा। यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+			"deleteConfirm": "{{count}} कार्य हटाएँ? यह कार्रवाई पूर्ववत नहीं की जा सकती।",
 			"deleteSuccess": "{{count}} कार्य हटाए गए",
 			"deleteError": "कार्य हटाने में विफल",
 			"archive": "कार्य संग्रहित करें",
@@ -3179,11 +3141,14 @@
 			"addLabel": "लेबल जोड़ें",
 			"addLabelSuccess": "{{count}} कार्यों में लेबल जोड़ा गया",
 			"addLabelError": "लेबल जोड़ने में विफल",
+			"setDueDate": "नियत तारीख सेट करें",
 			"updateDueDateError": "नियत तारीख अपडेट करने में विफल",
 			"actions": "कार्रवाइयाँ",
 			"searchActions": "कार्रवाइयाँ खोजें...",
 			"noActionsFound": "कोई कार्रवाई नहीं मिली।",
-			"changeStatus": "स्थिति बदलें"
+			"changeStatus": "स्थिति बदलें",
+			"moveToSprint": "स्प्रिंट में ले जाएँ",
+			"updateSprintError": "कार्यों को स्प्रिंट में ले जाना विफल"
 		},
 		"editor": {
 			"table": {
@@ -3217,60 +3182,51 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"checklistProgress": "चेकलिस्ट के {{total}} में से {{completed}} आइटम पूरे हुए",
 		"customFields": {
-			"fields": "फ़ील्ड",
-			"empty": "खाली",
-			"required": "आवश्यक",
-			"enterKey": "Enter",
-			"toSave": "सहेजने के लिए",
-			"today": "आज",
-			"clear": "साफ़ करें",
-			"setValue": "{{field}} सेट करें…",
-			"noMatches": "कोई मिलता-जुलता विकल्प नहीं",
-			"missingRequired_one": "{{count}} आवश्यक फ़ील्ड खाली है",
-			"missingRequired_other": "{{count}} आवश्यक फ़ील्ड खाली हैं",
-			"saveError": "{{field}} सहेजा नहीं जा सका",
-			"moreFields_one": "{{count}} और फ़ील्ड",
-			"moreFields_other": "{{count}} और फ़ील्ड",
-			"manage": "फ़ील्ड प्रबंधित करें"
+			"ariaLabel": "Custom fields"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again.",
-			"keyboardInstructions": "पूर्वावलोकन के लिए Space और यह कार्य खोलने के लिए Enter दबाएँ। इसे ले जाने के लिए Alt या Option के साथ तीर कुंजियों का उपयोग करें।"
+			"reorderFailed": "Could not move task. Please try again."
 		},
-		"toolbar": {
-			"search": "कार्य खोजें",
-			"clearSearch": "खोज साफ़ करें",
-			"taskCount_one": "{{count}} कार्य",
-			"taskCount_other": "{{count}} कार्य",
-			"shownCount_one": "{{count}} में से {{shown}} कार्य",
-			"shownCount_other": "{{count}} में से {{shown}} कार्य"
-		},
-		"display": {
-			"title": "प्रदर्शन",
-			"sortBy": "इसके अनुसार क्रमबद्ध करें",
-			"showOnCards": "कार्ड पर दिखाएँ",
-			"showOnRows": "पंक्तियों में दिखाएँ",
-			"checklistProgress": "चेकलिस्ट प्रगति",
-			"projectBackground": "प्रोजेक्ट पृष्ठभूमि",
-			"layout": "लेआउट"
-		},
-		"filterBar": {
-			"label": "सक्रिय फ़िल्टर",
-			"removeFilter": "{{name}} फ़िल्टर हटाएँ",
-			"noMatches": "आपकी खोज या फ़िल्टर से कोई कार्य मेल नहीं खाता।"
-		},
-		"filterMenu": {
-			"addFilter": "फ़िल्टर जोड़ें…",
-			"searchSubject": "{{name}}…",
-			"noResults": "कोई परिणाम नहीं"
-		},
-		"shortcuts": {
-			"assignedToMe": "आपको असाइन किया गया",
-			"idCopied": "कार्य ID कॉपी हुई",
-			"titleCopied": "कार्य शीर्षक कॉपी हुआ",
-			"markdownCopied": "Markdown के रूप में कॉपी हुआ",
-			"copyFailed": "क्लिपबोर्ड पर कॉपी नहीं हो सका।",
-			"pageUrlCopied": "पेज URL कॉपी हुआ"
+		"sprints": {
+			"title": "स्प्रिंट",
+			"create": "स्प्रिंट बनाएँ",
+			"createTitle": "स्प्रिंट बनाएँ",
+			"createDescription": "नाम, लक्ष्य और तारीखों के साथ आगामी स्प्रिंट की योजना बनाएँ।",
+			"editTitle": "स्प्रिंट संपादित करें",
+			"editDescription": "स्प्रिंट का नाम, लक्ष्य और तारीखें अपडेट करें।",
+			"edit": "स्प्रिंट संपादित करें",
+			"name": "स्प्रिंट का नाम",
+			"namePlaceholder": "स्प्रिंट 1",
+			"goal": "स्प्रिंट का लक्ष्य",
+			"goalPlaceholder": "इस स्प्रिंट में क्या हासिल करना है?",
+			"save": "परिवर्तन सहेजें",
+			"start": "स्प्रिंट शुरू करें",
+			"startSuccess": "स्प्रिंट {{name}} शुरू हुआ",
+			"close": "स्प्रिंट बंद करें",
+			"closeTitle": "स्प्रिंट बंद करें",
+			"closeSummary": "{{name}} में {{total}} कार्य हैं, जिनमें से {{completed}} पूरे हुए।",
+			"closeTarget": "{{count}} अधूरे कार्य यहाँ ले जाएँ",
+			"closeConfirm": "स्प्रिंट बंद करें और अधूरे कार्य ले जाएँ",
+			"closeSuccess": "स्प्रिंट बंद हुआ, {{count}} अधूरे कार्य ले जाए गए",
+			"backlog": "बैकलॉग",
+			"activeBadge": "सक्रिय",
+			"noActive": "कोई स्प्रिंट सक्रिय नहीं है। पुनरावृत्ति शुरू करने के लिए आगामी स्प्रिंट शुरू करें।",
+			"upcoming": "आगामी स्प्रिंट",
+			"unscheduled": "अनिर्धारित",
+			"taskCounts": "{{total}} में से {{completed}} पूरे",
+			"history": "बंद स्प्रिंट ({{count}})",
+			"completedCount": "{{count}} पूरे",
+			"moveUp": "ऊपर ले जाएँ",
+			"moveDown": "नीचे ले जाएँ",
+			"closedLocked": "यह कार्य बंद स्प्रिंट का हिस्सा है और इतिहास के रूप में वहीं रहेगा",
+			"error": "स्प्रिंट कार्रवाई विफल",
+			"daysRemaining": "{{remaining}} दिन शेष",
+			"endsToday": "आज समाप्त",
+			"daysOverdue": "{{remaining}} दिन से अतिदेय",
+			"noTasks": "इस स्प्रिंट में अभी कोई कार्य नहीं है",
+			"toggleTasks": "स्प्रिंट कार्य दिखाएँ",
+			"reportSummary": "योजनाबद्ध {{planned}}, पूर्ण {{completed}}, स्थानांतरित {{carriedOver}}",
+			"carriedOver": "स्थानांतरित"
 		}
 	},
 	"invitations": {
