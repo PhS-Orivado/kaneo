@@ -3060,7 +3060,8 @@
 			"tokenTitle": "Token dostępu",
 			"webhookSecret": "Sekret",
 			"webhookSection": "Webhook",
-			"webhookUrl": "Adres URL"
+			"webhookUrl": "Adres URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Przeciągnij, aby zmienić kolejność wyświetlania w zadaniu.",

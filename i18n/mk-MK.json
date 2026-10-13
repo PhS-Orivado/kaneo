@@ -2379,7 +2379,8 @@
 			"tokenTitle": "Токен за пристап",
 			"webhookSecret": "Тајна",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Повлечи за да го смениш редоследот по кој се прикажуваат на задачата.",

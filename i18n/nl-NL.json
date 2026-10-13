@@ -2379,7 +2379,8 @@
 			"tokenTitle": "Toegangstoken",
 			"webhookSecret": "Geheim",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Sleep om de volgorde te wijzigen waarin ze op een taak verschijnen.",
