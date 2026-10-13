@@ -2,6 +2,7 @@ import { and, eq } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { projectTable, sprintTable } from "../../database/schema";
+import { isDatabaseUniqueViolation } from "../../integrations/map-unique-violation";
 import { publishEvent } from "../../events";
 import { getSprint } from "./get-sprints";
 import {
@@ -69,11 +70,27 @@ async function startSprint(
       ));
   validateDateRange(start, end);
 
-  const [updated] = await db
-    .update(sprintTable)
-    .set({ status: "active", startDate: start, endDate: end })
-    .where(eq(sprintTable.id, id))
-    .returning();
+  let updated: typeof sprintTable.$inferSelect | undefined;
+  try {
+    [updated] = await db
+      .update(sprintTable)
+      .set({ status: "active", startDate: start, endDate: end })
+      .where(eq(sprintTable.id, id))
+      .returning();
+  } catch (error) {
+    // Two concurrent starts can both pass the read check above; the partial
+    // unique index keeps one active sprint per project and maps back to 409.
+    if (
+      isDatabaseUniqueViolation(error) &&
+      error.constraint === "sprint_project_active_unique"
+    ) {
+      throw new HTTPException(409, {
+        message:
+          "Another sprint is already active. Close it before starting another sprint.",
+      });
+    }
+    throw error;
+  }
 
   if (!updated) {
     throw new HTTPException(500, { message: "Failed to start sprint" });

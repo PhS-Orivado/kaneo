@@ -2,6 +2,7 @@ import { and, eq, ne } from "drizzle-orm";
 import { HTTPException } from "hono/http-exception";
 import db from "../../database";
 import { sprintTable } from "../../database/schema";
+import { isDatabaseUniqueViolation } from "../../integrations/map-unique-violation";
 import { publishEvent } from "../../events";
 import { getSprint } from "./get-sprints";
 import { validateAndParseDate, validateDateRange } from "../../utils/validate-dates";
@@ -72,16 +73,31 @@ async function updateSprint(
     }
   }
 
-  const [updated] = await db
-    .update(sprintTable)
-    .set({
-      ...(data.name !== undefined && { name: data.name }),
-      ...(data.goal !== undefined && { goal: data.goal }),
-      ...(data.startDate !== undefined && { startDate: start }),
-      ...(data.endDate !== undefined && { endDate: end }),
-    })
-    .where(eq(sprintTable.id, id))
-    .returning();
+  let updated: typeof sprintTable.$inferSelect | undefined;
+  try {
+    [updated] = await db
+      .update(sprintTable)
+      .set({
+        ...(data.name !== undefined && { name: data.name }),
+        ...(data.goal !== undefined && { goal: data.goal }),
+        ...(data.startDate !== undefined && { startDate: start }),
+        ...(data.endDate !== undefined && { endDate: end }),
+      })
+      .where(eq(sprintTable.id, id))
+      .returning();
+  } catch (error) {
+    // The clash check above races a concurrent rename; the unique constraint
+    // is the final authority and must surface as a 409, not a 500.
+    if (
+      isDatabaseUniqueViolation(error) &&
+      error.constraint === "sprint_project_name_unique"
+    ) {
+      throw new HTTPException(409, {
+        message: `Sprint "${data.name}" already exists in this project`,
+      });
+    }
+    throw error;
+  }
 
   if (!updated) {
     throw new HTTPException(500, { message: "Failed to update sprint" });
