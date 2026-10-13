@@ -3243,6 +3243,14 @@
 			"delete": "Видалити..."
 		},
 		"bulk": {
+			"clearSelection": "Зняти виділення",
+			"selectAll": "Вибрати все",
+			"moreActions": "Інші дії",
+			"statusPlaceholder": "Змінити статус…",
+			"priorityPlaceholder": "Встановити пріоритет…",
+			"assigneePlaceholder": "Призначити…",
+			"labelPlaceholder": "Додати мітку…",
+			"columnPlaceholder": "Перемістити в колонку…",
 			"selectedCount": "{{count}} обрано",
 			"moveToBacklog": "Перемістити до беклогу",
 			"moveToBacklogSuccess": "{{count}} завдань переміщено до беклогу",
@@ -3275,15 +3283,7 @@
 			"actions": "Дії",
 			"searchActions": "Пошук дій...",
 			"noActionsFound": "Дій не знайдено.",
-			"changeStatus": "Змінити статус",
-			"clearSelection": "Зняти виділення",
-			"selectAll": "Вибрати все",
-			"moreActions": "Інші дії",
-			"statusPlaceholder": "Змінити статус…",
-			"priorityPlaceholder": "Встановити пріоритет…",
-			"assigneePlaceholder": "Призначити…",
-			"labelPlaceholder": "Додати мітку…",
-			"columnPlaceholder": "Перемістити в колонку…"
+			"changeStatus": "Змінити статус"
 		},
 		"editor": {
 			"table": {

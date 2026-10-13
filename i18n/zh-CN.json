@@ -3110,6 +3110,14 @@
 			"delete": "删除…"
 		},
 		"bulk": {
+			"clearSelection": "清除选择",
+			"selectAll": "全选",
+			"moreActions": "更多操作",
+			"statusPlaceholder": "更改状态…",
+			"priorityPlaceholder": "设置优先级…",
+			"assigneePlaceholder": "分配给…",
+			"labelPlaceholder": "添加标签…",
+			"columnPlaceholder": "移至列…",
 			"selectedCount": "已选 {{count}} 个",
 			"moveToBacklog": "移至待办",
 			"moveToBacklogSuccess": "{{count}} 个任务已移至待办",
@@ -3139,15 +3147,7 @@
 			"actions": "操作",
 			"searchActions": "搜索操作…",
 			"noActionsFound": "未找到操作。",
-			"changeStatus": "更改状态",
-			"clearSelection": "清除选择",
-			"selectAll": "全选",
-			"moreActions": "更多操作",
-			"statusPlaceholder": "更改状态…",
-			"priorityPlaceholder": "设置优先级…",
-			"assigneePlaceholder": "分配给…",
-			"labelPlaceholder": "添加标签…",
-			"columnPlaceholder": "移至列…"
+			"changeStatus": "更改状态"
 		},
 		"editor": {
 			"table": {

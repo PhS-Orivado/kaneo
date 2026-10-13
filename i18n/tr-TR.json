@@ -3145,6 +3145,14 @@
 			"delete": "Sil..."
 		},
 		"bulk": {
+			"clearSelection": "Seçimi temizle",
+			"selectAll": "Tümünü seç",
+			"moreActions": "Diğer işlemler",
+			"statusPlaceholder": "Durumu değiştir…",
+			"priorityPlaceholder": "Öncelik belirle…",
+			"assigneePlaceholder": "Ata…",
+			"labelPlaceholder": "Etiket ekle…",
+			"columnPlaceholder": "Sütuna taşı…",
 			"selectedCount": "{{count}} seçili",
 			"moveToBacklog": "Backlog'a Taşı",
 			"moveToBacklogSuccess": "{{count}} talep backlog'a taşındı",
@@ -3175,15 +3183,7 @@
 			"actions": "İşlemler",
 			"searchActions": "İşlem ara...",
 			"noActionsFound": "İşlem bulunamadı.",
-			"changeStatus": "Durumu Değiştir",
-			"clearSelection": "Seçimi temizle",
-			"selectAll": "Tümünü seç",
-			"moreActions": "Diğer işlemler",
-			"statusPlaceholder": "Durumu değiştir…",
-			"priorityPlaceholder": "Öncelik belirle…",
-			"assigneePlaceholder": "Ata…",
-			"labelPlaceholder": "Etiket ekle…",
-			"columnPlaceholder": "Sütuna taşı…"
+			"changeStatus": "Durumu Değiştir"
 		},
 		"editor": {
 			"table": {
