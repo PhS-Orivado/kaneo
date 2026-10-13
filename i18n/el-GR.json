@@ -2379,7 +2379,8 @@
 			"tokenTitle": "Token πρόσβασης",
 			"webhookSecret": "Μυστικό",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Σύρετε για να αλλάξετε τη σειρά με την οποία εμφανίζονται σε μια εργασία.",

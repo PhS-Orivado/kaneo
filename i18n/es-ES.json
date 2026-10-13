@@ -2421,7 +2421,8 @@
 			"tokenTitle": "Token de acceso",
 			"webhookSecret": "Secreto",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Arrastra para cambiar el orden en que aparecen en una tarea.",

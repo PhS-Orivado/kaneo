@@ -2341,6 +2341,7 @@
 			"retry": "Retry"
 		},
 		"codeHosting": {
+			"addAnotherRepository": "Add another repository",
 			"browse": "Browse",
 			"changeToken": "Change token",
 			"checking": "Checking access…",

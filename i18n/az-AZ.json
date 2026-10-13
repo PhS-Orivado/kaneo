@@ -2379,7 +2379,8 @@
 			"tokenTitle": "Giriş nişanı",
 			"webhookSecret": "Sirr",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Tapşırıqda göstərilmə sırasını dəyişmək üçün sürükləyin.",
