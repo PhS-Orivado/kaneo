@@ -70,6 +70,23 @@ export function IntegrationRow({
             </p>
           )}
         </div>
+          />
+        </SettingsIconTile>
+        <div className="min-w-0 flex-1 space-y-0.5">
+          <div className="flex items-center gap-2">
+            <p className="truncate text-sm font-medium">{name}</p>
+            <IntegrationStatusBadge state={state} />
+          </div>
+          {isSetUp && status?.details?.length ? (
+            <ul className="space-y-0.5">
+              {status.details.map((repository) => (
+                <li
+          ) : (
+            <p className="line-clamp-2 text-xs text-muted-foreground">
+              {t(integration.descriptionKey)}
+            </p>
+          )}
+        </div>
         {state === "unavailable" && !open ? (
           <Button
             className="w-24 shrink-0"
@@ -95,6 +112,16 @@ export function IntegrationRow({
       </div>
       <CollapsiblePanel>
         <div className="border-t border-border bg-muted/30">
+          <integration.Settings projectId={projectId} />
+        </div>
+      </CollapsiblePanel>
+    </Collapsible>
+  );
+}
+      <CollapsiblePanel>
+        <div className="border-t border-border bg-muted/30">
+          <integration.Settings projectId={projectId} />
+        </div>
           <integration.Settings projectId={projectId} />
         </div>
       </CollapsiblePanel>

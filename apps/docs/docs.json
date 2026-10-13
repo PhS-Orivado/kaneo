@@ -156,9 +156,7 @@
 							"core/integrations/github/configuration",
 							"core/integrations/github/troubleshooting",
 							"core/integrations/gitea/setup",
-							"core/integrations/gitlab/setup",
-							"core/integrations/jira/setup",
-							"core/integrations/repository-limits"
+							"core/integrations/gitlab/setup"
 						]
 					},
 					{
@@ -168,7 +166,6 @@
 							"core/integrations/discord",
 							"core/integrations/mattermost",
 							"core/integrations/telegram",
-							"core/integrations/matrix",
 							"core/integrations/outgoing-webhooks"
 						]
 					},

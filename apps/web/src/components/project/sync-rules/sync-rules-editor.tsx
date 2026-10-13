@@ -3,12 +3,19 @@ import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import type { SyncPreview, SyncScope } from "@/fetchers/integration-sync/types";
 import { useSaveSyncRules } from "@/hooks/mutations/integration-sync/use-save-sync-rules";
+  SyncPreview,
+} from "@/fetchers/integration-sync/types";
+import { useSaveSyncRules } from "@/hooks/mutations/integration-sync/use-save-sync-rules";
 import { useSyncPreview } from "@/hooks/queries/integration-sync/use-sync-preview";
 import { toast } from "@/lib/toast";
 import { LabelRuleEditor } from "./label-rule-editor";
 
 export function SyncRulesEditor({
   scope,
+  saved,
+  onDone,
+}: {
+  scope: SyncScope;
   saved,
   onDone,
 }: {
@@ -56,6 +63,23 @@ export function SyncRulesEditor({
           </p>
           <Button
             type="button"
+            variant="outline"
+  return (
+    <div className="space-y-5 rounded-lg border border-border bg-background p-3">
+      <p className="text-xs text-muted-foreground">
+        {t("settings:syncRules.sharedHint")}
+      </p>
+      {savedChanged && dirty && (
+        <div role="alert" className="space-y-2">
+          <p className="text-xs text-muted-foreground">
+            {t("settings:syncRules.rulesChanged")}
+          </p>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            disabled={save.isPending}
+            onClick={resetDraft}
             variant="outline"
             size="sm"
             disabled={save.isPending}
@@ -159,6 +183,46 @@ export function SyncRulesEditor({
           {t("common:actions.cancel")}
         </Button>
         <Button
+          <Button
+            type="button"
+            variant="outline"
+            variant="outline"
+            size="sm"
+            onClick={() => {
+              save.reset();
+              void preview.refetch();
+            }}
+          >
+            {t("settings:syncRules.refreshPreview")}
+          </Button>
+        </div>
+      )}
+      {impact?.missingLabels.length ? (
+        <p role="alert" className="text-xs text-destructive-foreground">
+          {t("settings:syncRules.missingLabels")}
+        </p>
+      ) : null}
+      <div className="flex items-center justify-end gap-2">
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+      ) : null}
+      <div className="flex items-center justify-end gap-2">
+        <Button
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          disabled={save.isPending}
+          onClick={() => {
+            resetDraft();
+            onDone();
+          }}
+        >
+          {t("common:actions.cancel")}
+        </Button>
+        <Button
           type="button"
           size="sm"
           loading={save.isPending}
@@ -189,5 +253,9 @@ export function SyncRulesEditor({
         </Button>
       </div>
     </div>
+        </Button>
+      </div>
+    </div>
   );
+}
 }

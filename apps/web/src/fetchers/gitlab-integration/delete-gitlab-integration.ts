@@ -10,7 +10,7 @@ async function deleteGitlabIntegration(integrationId: string) {
   const response = await client["gitlab-integration"].integration[
     ":integrationId"
   ].$delete({
-    param: { integrationId },
+    param: { projectId },
   });
 
   if (!response.ok) {

@@ -521,3 +521,51 @@ describe("API integration: calendar feeds", () => {
     expect((await app.request(feedPath(feed))).status).toBe(200);
   });
 });
+      { labelIds: [foreignLabel.id] },
+      { labelIds: [""] },
+      { labelIds: ["missing"] },
+      { labelIds: [labels[0].id], timeZone: "Not/A_Zone" },
+      { labelIds: Array(101).fill(labels[0].id) },
+    ])
+      expect((await create(body)).status).toBe(400);
+    const response = await create({ labelIds: [labels[0].id, labels[0].id] });
+    expect(response.status).toBe(201);
+    expect(((await response.json()) as Feed).labelIds).toEqual([labels[0].id]);
+  });
+
+  it("does not allow a project or workspace ID to authorize another project's feed", async () => {
+    const { app, endpoint, create, session } = await setup();
+    const feed = (await (await create()).json()) as Feed;
+    const outsider = await createWorkspaceMember({ role: "owner" });
+    const { project: outsiderProject } = await createProjectFixture({
+      workspaceId: outsider.workspace.id,
+    });
+    session.mockRestore();
+    mockAuthenticatedSession(outsider.user);
+    expect(
+      (await app.request(`${endpoint}?workspaceId=${outsider.workspace.id}`))
+        .status,
+    ).toBe(403);
+    expect(
+      (
+        await app.request(
+          `/api/calendar-feed/project/${outsiderProject.id}/${feed.id}`,
+          {
+            method: "DELETE",
+          },
+        )
+      ).status,
+    ).toBe(404);
+    expect(
+      (await app.request(`${endpoint}/${feed.id}`, { method: "DELETE" }))
+        .status,
+    ).toBe(403);
+    expect((await app.request(feedPath(feed))).status).toBe(200);
+  });
+});
+        .status,
+    ).toBe(403);
+    expect((await app.request(feedPath(feed))).status).toBe(200);
+  });
+});
+});

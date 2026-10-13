@@ -39,14 +39,6 @@ async function setup() {
   const config = {
     repositoryOwner: "owner",
     repositoryName: "repo",
-    installationId: 1,
-    repositoryId: 2,
-    verifiedGithubAccountId: "3",
-    verifiedByUserId: member.user.id,
-    branchPattern: "feature/{slug}-{number}",
-    commentTaskLinkOnGitHubIssue: false,
-  };
-  const [integration] = await db
     .insert(schema.integrationTable)
     .values({
       projectId: project.id,
@@ -74,8 +66,6 @@ async function setup() {
   await db
     .insert(schema.githubImportTable)
     .values({ integrationId: integration.id, state: initialImportState(2) });
-  verify.mockResolvedValue({
-    repositoryOwner: "owner",
     repositoryName: "repo",
     repositoryId: 2,
     installationId: 1,
@@ -134,26 +124,70 @@ describe("GitHub repository binding semantics (RFC 0001 WP2)", () => {
       repositoryName: "other",
       isActive: true,
     });
-    const rows = await db.query.integrationTable.findMany();
-    expect(rows).toHaveLength(2);
-    expect(rows.map((row) => row.repositoryKey).sort()).toEqual([
-      "github:2",
-      "github:99",
-    ]);
+      id: integration.id,
+    });
+    });
+    expect(await db.query.externalLinkTable.findFirst()).toMatchObject(link);
+    expect(await db.query.githubImportTable.findFirst()).toBeDefined();
+  });
+
+  it("links a different repository as an additional binding without touching the first", async () => {
+    const { config, integration, link, connect } = await setup();
+    verify.mockResolvedValue({
+      repositoryOwner: "owner",
+      repositoryName: "renamed",
+      repositoryId: 2,
+      installationId: 88,
+      verifiedGithubAccountId: "3",
+      verifiedByUserId: config.verifiedByUserId,
+    });
+    const next = await connect();
+    expect(next.id).not.toBe(integration.id);
+      repositoryName: "renamed",
+      installationId: 88,
+    });
+    expect(
+      JSON.parse((await db.query.integrationTable.findFirst())?.config ?? "{}"),
+    ).toMatchObject({
+      branchPattern: config.branchPattern,
+      commentTaskLinkOnGitHubIssue: false,
+      repositoryId: 2,
+    });
     expect(await db.query.externalLinkTable.findFirst()).toMatchObject(link);
     expect(await db.query.githubImportTable.findFirst()).toBeDefined();
   });
 
   it("permits relinking after disconnect without reusing old links or import cursors", async () => {
-    const { config, integration, task, connect } = await setup();
+    const legacy = {
+      repositoryOwner: "OWNER",
+      repositoryName: "REPO",
+      installationId: 1,
+    };
+    await db
+      .update(schema.integrationTable)
+      .set({ config: JSON.stringify(legacy) })
+      .where(eq(schema.integrationTable.id, integration.id));
+    verify.mockResolvedValue({ ...config, repositoryName: "another" });
+    await expect(connect()).rejects.toMatchObject({ status: 409 });
+    verify.mockResolvedValue(config);
+    await expect(connect()).resolves.toMatchObject({ id: integration.id });
+  });
+  it("requires an explicit disconnect when an existing configuration cannot establish repository identity", async () => {
+    const { integration, connect } = await setup();
+    await db
+      .update(schema.integrationTable)
+      .set({ config: "invalid" })
+      .where(eq(schema.integrationTable.id, integration.id));
+    await expect(connect()).rejects.toMatchObject({ status: 409 });
+    expect(await db.query.externalLinkTable.findFirst()).toBeDefined();
+  });
+  it("permits switching after disconnect without reusing old links or import cursors", async () => {
+    const { project, config, integration, task, connect } = await setup();
     await deleteIntegration(integration.id);
     verify.mockResolvedValue({
-      repositoryOwner: "owner",
-      repositoryName: "other",
+      ...config,
       repositoryId: 99,
-      installationId: 1,
-      verifiedGithubAccountId: "3",
-      verifiedByUserId: config.verifiedByUserId,
+      repositoryName: "other",
     });
     const next = await connect();
     expect(next.id).not.toBe(integration.id);
@@ -167,26 +201,35 @@ describe("GitHub repository binding semantics (RFC 0001 WP2)", () => {
     const nextConfig = JSON.stringify({
       ...config,
       repositoryId: 99,
-      repositoryName: "new",
-    });
-    const find = db.query.integrationTable.findFirst.bind(
-      db.query.integrationTable,
-    );
-    let flipped = false;
-    const spy = vi
-      .spyOn(db.query.integrationTable, "findFirst")
-      .mockImplementation(async (...args: Parameters<typeof find>) => {
-        const row = await find(...args);
-        // The fromIntegration access middleware resolves the binding with a
-        // plain select, so the PATCH handler's row read is the first
-        // findFirst on the integration table. Changing the config between
-        // the read and the compare-and-set yields 409.
-        if (!flipped && row?.id === integration.id) {
-          flipped = true;
+        repositoryId: 99,
+        repositoryName: "new",
+      });
+      const find = db.query.integrationTable.findFirst.bind(
+        db.query.integrationTable,
+      );
+      const spy = vi
+        .spyOn(db.query.integrationTable, "findFirst")
+        .mockImplementationOnce(async (...args) => {
+          const row = await find(...args);
           await db
             .update(schema.integrationTable)
             .set({ config: nextConfig })
             .where(eq(schema.integrationTable.id, integration.id));
+        }
+        return row;
+      });
+        if (operation === "reconnect")
+          await expect(connect()).rejects.toMatchObject({ status: 409 });
+        else {
+          const response = await app.request(
+            `/api/github-integration/integration/${integration.id}`,
+            {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ commentTaskLinkOnGitHubIssue: true }),
+            },
+          );
+          expect(response.status).toBe(409);
         }
         return row;
       });

@@ -111,6 +111,20 @@ function mount(node = <SyncRulesSection {...param} />) {
     client,
     ...render(
       <QueryClientProvider client={client}>{node}</QueryClientProvider>,
+afterEach(cleanup);
+async function openEditor() {
+  fireEvent.click(
+    await screen.findByRole("button", { name: "settings:syncRules.edit" }),
+  );
+}
+function mount(node = <SyncRulesSection {...param} />) {
+  const client = new QueryClient({
+    defaultOptions: { queries: { retry: false }, mutations: { retry: false } },
+  });
+  return {
+    client,
+    ...render(
+      <QueryClientProvider client={client}>{node}</QueryClientProvider>,
     ),
   };
 }
@@ -145,6 +159,37 @@ describe("advanced sync settings", () => {
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: "settings:syncRules.apply" }),
+      ).toBeEnabled(),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:syncRules.reviewPaused" }),
+    );
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:syncRules.next" }),
+    );
+    try {
+      await waitFor(() =>
+        expect(mocks.get).toHaveBeenCalledWith(param, "next-page"),
+      );
+      expect(screen.getByRole("checkbox", { name: "later" })).toBeChecked();
+      expect(
+        screen.getByRole("button", { name: "settings:syncRules.next" }),
+      ).toBeDisabled();
+    } finally {
+      await act(async () => {
+        release();
+      });
+    }
+    await waitFor(() =>
+      expect(
+        screen.getByRole("button", { name: "settings:syncRules.next" }),
+      ).toBeDisabled(),
+    );
+    expect(screen.getByRole("checkbox", { name: "later" })).toBeChecked();
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:syncRules.apply" }),
+    );
+    await waitFor(() =>
       ).toBeEnabled(),
     );
     fireEvent.click(
@@ -234,6 +279,34 @@ describe("advanced sync settings", () => {
         expect(screen.queryByRole("checkbox", { name: "sync" })).toBeNull();
         expect(screen.getByRole("status")).toHaveTextContent(
           "settings:syncRules.loading",
+        if (
+          scope.kind === "project" &&
+          scope.projectId === nextParam.projectId &&
+          scope.provider === nextParam.provider
+        )
+          await gate;
+        return saved;
+      });
+      const { client, rerender } = mount();
+      await openEditor();
+      const { client, rerender } = mount();
+      await openEditor();
+      await screen.findByRole("checkbox", { name: "sync" });
+      rerender(
+        <QueryClientProvider client={client}>
+          <SyncRulesSection scope={nextParam} />
+        </QueryClientProvider>,
+        <QueryClientProvider client={client}>
+          <SyncRulesSection scope={nextParam} />
+        </QueryClientProvider>,
+      );
+      try {
+        await waitFor(() =>
+          expect(mocks.get).toHaveBeenCalledWith(nextParam, undefined),
+        );
+        expect(screen.queryByRole("checkbox", { name: "sync" })).toBeNull();
+        expect(screen.getByRole("status")).toHaveTextContent(
+          "settings:syncRules.loading",
         );
       } finally {
         await act(async () => {
@@ -267,6 +340,25 @@ describe("advanced sync settings", () => {
         },
       };
       act(() =>
+        client.setQueryData(
+          ["integration-sync", param.projectId, param.provider, "", ""],
+          {
+            ...initial,
+            rules: { outgoing: { mode: "all" }, incoming: { mode: "all" } },
+          },
+        ),
+      );
+      await screen.findByText("settings:syncRules.rulesChanged");
+      expect(screen.getByRole("checkbox", { name: "sync" })).toBeChecked();
+      expect(screen.getByRole("checkbox", { name: "later" })).toBeChecked();
+      expect(mocks.save).not.toHaveBeenCalled();
+      if (choice === "reload") {
+        fireEvent.click(
+          screen.getByRole("button", {
+            name: "settings:syncRules.loadSavedRules",
+          }),
+        );
+        expect(screen.queryByRole("checkbox")).toBeNull();
         client.setQueryData(
           ["integration-sync", param.projectId, param.provider, "", ""],
           {
@@ -342,10 +434,48 @@ describe("advanced sync settings", () => {
     ];
     client.setQueryData(key, { ...saved, paused: 1, needsReview: 1 });
     await screen.findByText("Kaneo title");
+      client.setQueryData(
+        ["integration-sync", param.projectId, param.provider, "", ""],
+        {
+          ...saved,
+          rules: { outgoing: { mode: "all" }, incoming: { mode: "all" } },
+        },
+      ),
+    );
+    await waitFor(() => expect(screen.queryByRole("checkbox")).toBeNull());
+    expect(screen.queryByText("settings:syncRules.rulesChanged")).toBeNull();
+    expect(
+      screen.getByRole("button", { name: "settings:syncRules.apply" }),
+    ).toBeDisabled();
+  });
+
+  it("invalidates a cached rule preview after resuming a link", async () => {
+    const { client } = mount(
+      <ResumeSyncDialog
+        scope={param}
+        linkId="link-1"
+        taskId="task-1"
+        onClose={vi.fn()}
+      />,
+    );
+    const key = [
+      "integration-sync-preview",
+      param.projectId,
+      param.provider,
+      "",
+      saved.rules,
+    ];
+    client.setQueryData(key, { ...saved, paused: 1, needsReview: 1 });
+    await screen.findByText("Kaneo title");
+      param.provider,
+      "",
+      saved.rules,
+    ];
+    client.setQueryData(key, { ...saved, paused: 1, needsReview: 1 });
+    await screen.findByText("Kaneo title");
     fireEvent.click(
       screen.getByRole("button", { name: "settings:syncRules.useKaneo" }),
     );
-    await waitFor(() =>
       expect(client.getQueryState(key)?.isInvalidated).toBe(true),
     );
   });
@@ -481,6 +611,45 @@ describe("advanced sync settings", () => {
       labels,
       rules: {
         ...saved.rules,
+    const { client } = mount();
+    await screen.findByText("settings:syncRules.tasksLabelled");
+    mocks.get.mockRejectedValueOnce(new Error("Unavailable"));
+    await act(async () => {
+      await client.invalidateQueries({ queryKey: ["integration-sync"] });
+    });
+    expect(
+      await screen.findByText("settings:syncRules.loadError"),
+    ).toBeVisible();
+    expect(screen.queryByText("settings:syncRules.tasksLabelled")).toBeNull();
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:codeHosting.retry" }),
+    );
+    expect(
+    });
+    expect(
+      await screen.findByText("settings:syncRules.loadError"),
+    ).toBeVisible();
+    expect(screen.queryByText("settings:syncRules.tasksLabelled")).toBeNull();
+    fireEvent.click(
+      screen.getByRole("button", { name: "settings:codeHosting.retry" }),
+    );
+    expect(
+      await screen.findByText("settings:syncRules.tasksLabelled"),
+    ).toBeVisible();
+  });
+
+  it("stops at 50 labels while allowing a selected label to be removed", async () => {
+    useUserPreferencesStore.setState({ advancedSettings: true });
+    const labels = Array.from({ length: 51 }, (_, i) => ({
+      id: `label-${i + 1}`,
+      name: `Label ${i + 1}`,
+      color: "#123456",
+    }));
+    mocks.get.mockResolvedValue({
+      ...saved,
+      labels,
+      rules: {
+        ...saved.rules,
         outgoing: {
           mode: "labels",
           match: "any",
@@ -506,6 +675,11 @@ describe("advanced sync settings", () => {
   it("offers an explicit retry for eligible tasks without an issue link", async () => {
     useUserPreferencesStore.setState({ advancedSettings: true });
     mocks.get.mockResolvedValue({ ...saved, willCreate: 1 });
+    mount();
+    await openEditor();
+    const retry = await screen.findByRole("button", {
+      name: "settings:syncRules.exportPending",
+    });
     mount();
     await openEditor();
     const retry = await screen.findByRole("button", {
@@ -539,6 +713,13 @@ describe("advanced sync settings", () => {
     expect(screen.queryByRole("checkbox", { name: "sync" })).toBeNull();
     expect(mocks.save).not.toHaveBeenCalled();
   });
+    act(() => useUserPreferencesStore.getState().setAdvancedSettings(true));
+    await openEditor();
+    expect(await screen.findByRole("checkbox", { name: "sync" })).toBeChecked();
+    act(() => useUserPreferencesStore.getState().setAdvancedSettings(false));
+    expect(screen.queryByRole("checkbox", { name: "sync" })).toBeNull();
+    expect(mocks.save).not.toHaveBeenCalled();
+  });
 
   it("requires a selected label and a current impact preview before saving", async () => {
     useUserPreferencesStore.setState({ advancedSettings: true });
@@ -550,6 +731,7 @@ describe("advanced sync settings", () => {
     });
     fireEvent.click(checkbox);
     expect(apply).toBeDisabled();
+    expect(mocks.preview).not.toHaveBeenCalled();
     expect(mocks.preview).not.toHaveBeenCalled();
     fireEvent.click(checkbox);
     fireEvent.click(
@@ -611,6 +793,51 @@ describe("advanced sync settings", () => {
     );
     await screen.findByText("Paused task");
     expect(
+      screen.queryByRole("button", { name: "settings:syncRules.review" }),
+    ).toBeNull();
+    expect(
+      screen.queryByRole("button", { name: "settings:syncRules.edit" }),
+    ).toBeNull();
+    expect(screen.queryByRole("checkbox")).toBeNull();
+  });
+
+  it("keeps the comparison open and requires refresh after a failed resume", async () => {
+    const onClose = vi.fn();
+    mocks.resume.mockRejectedValue(new Error("Comparison changed"));
+    mount(
+      <ResumeSyncDialog
+        scope={param}
+        linkId="link-1"
+        taskId="task-1"
+        onClose={onClose}
+      />,
+    );
+    await screen.findByText("Repository title");
+    const keepLocal = screen.getByRole("button", {
+      name: "settings:syncRules.useKaneo",
+    });
+    fireEvent.click(keepLocal);
+    await screen.findByText("settings:syncRules.resumeError");
+    expect(onClose).not.toHaveBeenCalled();
+    expect(keepLocal).toBeDisabled();
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "settings:syncRules.refreshComparison",
+      }),
+    );
+    await waitFor(() => expect(keepLocal).toBeEnabled());
+    expect(mocks.review).toHaveBeenCalledTimes(2);
+  });
+
+  it("summarizes both directions with label pills", async () => {
+    mocks.get.mockResolvedValue({
+      ...saved,
+      rules: {
+        outgoing: { mode: "labels", match: "all", labels: ["label-1"] },
+        incoming: { mode: "labels", match: "any", labels: ["bug", "design"] },
+      },
+    });
+    mount();
       screen.queryByRole("button", { name: "settings:syncRules.review" }),
     ).toBeNull();
     expect(

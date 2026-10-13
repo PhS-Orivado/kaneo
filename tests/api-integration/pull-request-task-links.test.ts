@@ -167,6 +167,80 @@ describe.each(["github", "gitea"] as const)(
         expect(result.errors).toBeUndefined();
         return;
       }
+      if (provider === "gitea") {
+        const result = await importGiteaIssues({
+          integrationId: fixture.integration.id,
+        });
+        expect(result.errors).toBeUndefined();
+        return;
+      }
+      let result = await importIssues({
+        integrationId: fixture.integration.id,
+      });
+      for (let attempt = 0; result.pending && attempt < 10; attempt++) {
+        result = await importIssues({
+          integrationId: fixture.integration.id,
+          runId: result.runId,
+        });
+      }
+      expect(result.pending).toBe(false);
+    };
+    const open = (event = payload()) =>
+      provider === "github"
+        ? handlePullRequestOpened(event)
+        : handleGiteaPullRequestOpened(event, fixture.integration.id);
+    const openUnscoped = (event = payload()) =>
+      provider === "github"
+        ? handlePullRequestOpened(event)
+        : handleGiteaPullRequestOpened(event);
+    const openSigned = async () => {
+      const body = JSON.stringify(payload());
+      const signature = createHmac("sha256", "test-only-webhook-secret")
+        .update(body)
+        .digest("hex");
+      expect(
+        await handleGiteaWebhookRequest(
+          fixture.integration.id,
+          body,
+          signature,
+          "pull_request",
+        ),
+      ).toEqual({ success: true });
+    };
+    const linkIssue = (
+      taskId: string,
+      externalId = "61",
+      integrationId = fixture.integration.id,
+      resourceType = "issue",
+    ) =>
+      db.insert(schema.externalLinkTable).values({
+        taskId,
+        integrationId,
+        resourceType,
+        externalId,
+        url: `${repositoryUrl}/issues/${externalId}`,
+      });
+    const links = () =>
+      db.query.externalLinkTable.findMany({
+        where: and(
+          eq(schema.externalLinkTable.resourceType, "pull_request"),
+          eq(schema.externalLinkTable.externalId, "109"),
+        ),
+      });
+    const task = (id: string) =>
+      db.query.taskTable.findFirst({ where: eq(schema.taskTable.id, id) });
+    const expectUnchanged = async () => {
+      expect(await links()).toHaveLength(0);
+      expect((await task(fixture.intended.id))?.status).toBe("to-do");
+      expect((await task(fixture.unrelated.id))?.status).toBe("to-do");
+    };
+
+    beforeEach(async () => {
+      await resetTestDatabase();
+      fixture = await createFixture(provider);
+      vi.clearAllMocks();
+      remote.listIssues.mockResolvedValue([]);
+      }
       let result = await importIssues({
         integrationId: fixture.integration.id,
       });

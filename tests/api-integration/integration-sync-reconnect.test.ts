@@ -69,6 +69,36 @@ it.each(["gitea", "gitlab"] as const)(
       })
       .returning();
     const reconnect = () =>
+it.each(["gitea", "gitlab"] as const)(
+  "%s reconnect cannot overwrite rules saved during verification",
+  async (type) => {
+    const { workspace } = await createWorkspaceMember();
+    const { project } = await createProjectFixture({
+      workspaceId: workspace.id,
+    });
+    const base = {
+      baseUrl: "https://git.example",
+      accessToken: "test-only",
+      webhookSecret: "test-hook",
+    };
+    const [legacy] = await db
+      .insert(schema.integrationTable)
+      .values({
+        projectId: project.id,
+        type,
+        isActive: true,
+        config: JSON.stringify({
+          ...base,
+          ...(type === "gitea"
+          ...base,
+          ...(type === "gitea"
+            ? { repositoryOwner: "team", repositoryName: "repo" }
+            : { projectPath: "team/repo" }),
+          syncRules: defaultSyncRules,
+        }),
+      })
+      .returning();
+    const reconnect = () =>
       type === "gitea"
         ? createGiteaIntegration({
             ...base,
@@ -117,18 +147,41 @@ it.each(["gitea", "gitlab"] as const)(
       JSON.parse(
         (await db.query.integrationTable.findFirst({
           where: eq(schema.integrationTable.id, legacy!.id),
+      const preview = await previewSyncRules(
+        await getSyncIntegration(project.id, type),
+        rules,
+      );
+      await saveSyncRules(
+        project.id,
+        type,
+      await saveSyncRules(
+        project.id,
+        type,
+        preview.previewToken,
+        workspace.id,
+      );
+    } finally {
+      release();
+    }
+    const created = await pending;
+    // The legacy row keeps the rules saved during verification.
+    expect(
+      JSON.parse(
+    }
+    expect(
+      JSON.parse(
+        (await db.query.integrationTable.findFirst({
+          where: eq(schema.integrationTable.id, legacy!.id),
         }))!.config,
       ).syncRules,
     ).toEqual(rules);
     // A new keyed binding row exists with a fresh webhook secret.
     const rows = await db.query.integrationTable.findMany({
-      where: eq(schema.integrationTable.projectId, project.id),
-    });
-    expect(rows).toHaveLength(2);
-    const fresh = rows.find((row) => row.id !== legacy!.id)!;
-    expect(fresh.repositoryKey).toBe(`${type}:https://git.example/team/repo`);
-    expect(JSON.parse(fresh.config).webhookSecret).not.toBe("test-hook");
-    expect(created.webhookSecret).not.toBe("test-hook");
-    expect(created.id).not.toBe(legacy!.id);
+      JSON.parse(
+        (await db.query.integrationTable.findFirst({
+          where: eq(schema.integrationTable.id, integration!.id),
+        }))!.config,
+      ).syncRules,
+    ).toEqual(rules);
   },
 );

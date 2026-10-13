@@ -16,3 +16,4 @@ export default async function reviewSyncResume(
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }
+}

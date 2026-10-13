@@ -7,15 +7,17 @@ export type UpdateGithubIntegrationRequest = InferRequestType<
 >["json"];
 
 // RFC 0001 WP2/WP7: updates are keyed by the integration id of the binding
+
+// RFC 0001 WP2/WP7: updates are keyed by the integration id of the binding
 // the row represents; omitted fields keep their current value.
 async function updateGithubIntegration(
-  integrationId: string,
+  projectId: string,
   json: UpdateGithubIntegrationRequest,
 ) {
   const response = await client["github-integration"].integration[
-    ":integrationId"
+    ":projectId"
   ].$patch({
-    param: { integrationId },
+    param: { projectId },
     json,
   });
 

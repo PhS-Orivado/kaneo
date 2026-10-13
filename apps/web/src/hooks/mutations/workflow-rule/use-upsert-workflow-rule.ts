@@ -21,5 +21,10 @@ export function useUpsertWorkflowRule() {
       queryClient.invalidateQueries({
         queryKey: ["workflow-rules", variables.projectId],
       }),
+    }) => upsertWorkflowRule(projectId, data),
+    onSuccess: (_, variables) =>
+      queryClient.invalidateQueries({
+        queryKey: ["workflow-rules", variables.projectId],
+      }),
   });
 }

@@ -7,15 +7,17 @@ export type UpdateGiteaIntegrationRequest = InferRequestType<
 >["json"];
 
 // RFC 0001 WP3/WP7: updates are keyed by the integration id of the binding
+
+// RFC 0001 WP3/WP7: updates are keyed by the integration id of the binding
 // the row represents; omitted fields keep their current value.
 async function updateGiteaIntegration(
-  integrationId: string,
+  projectId: string,
   json: UpdateGiteaIntegrationRequest,
 ) {
   const response = await client["gitea-integration"].integration[
-    ":integrationId"
+    ":projectId"
   ].$patch({
-    param: { integrationId },
+    param: { projectId },
     json,
   });
 

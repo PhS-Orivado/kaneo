@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { IntegrationCheckLine } from "@/components/project/integrations/panel/integration-check-line";
 import { IntegrationPanelSection } from "@/components/project/integrations/panel/integration-panel-section";
 import { Button } from "@/components/ui/button";
-import type { SyncScope } from "@/fetchers/integration-sync/types";
+import type { SyncParams } from "@/fetchers/integration-sync/types";
 import { useSyncRules } from "@/hooks/queries/integration-sync/use-sync-rules";
 import { useWorkspacePermission } from "@/hooks/use-workspace-permission";
 import { useUserPreferencesStore } from "@/store/user-preferences";
@@ -13,7 +13,7 @@ import { ResumeSyncDialog } from "./resume-sync-dialog";
 import { SyncRulesEditor } from "./sync-rules-editor";
 import { SyncRulesSummary } from "./sync-rules-summary";
 
-export function SyncRulesSection({ scope }: { scope: SyncScope }) {
+export function SyncRulesSection({ projectId, provider }: SyncParams) {
   const { t } = useTranslation();
   const advanced = useUserPreferencesStore((state) => state.advancedSettings);
   const { canManageSettings, canUpdateTasks } = useWorkspacePermission();
@@ -94,9 +94,21 @@ export function SyncRulesSection({ scope }: { scope: SyncScope }) {
         </IntegrationCheckLine>
       )}
       {!advanced && canManage ? (
+          {t("settings:syncRules.missingLabels")}
+        </IntegrationCheckLine>
+      )}
+      {!advanced && canManage ? (
         <p className="text-xs text-muted-foreground">
           {t("settings:syncRules.advancedHint")}
         </p>
+      ) : null}
+      {canEdit && editing ? (
+        <SyncRulesEditor
+          key={`${projectId}:${provider}`}
+          param={param}
+          saved={data}
+          onDone={() => setEditing(false)}
+        />
       ) : null}
       {canEdit && editing ? (
         <SyncRulesEditor
@@ -140,4 +152,5 @@ export function SyncRulesSection({ scope }: { scope: SyncScope }) {
       )}
     </IntegrationPanelSection>
   );
+}
 }

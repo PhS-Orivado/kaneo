@@ -50,33 +50,18 @@ Every connected repository appears as a row in the GitHub integration list, toge
 - **Sync rules** restricts which tasks synchronize by label, for this binding only.
 - **Workflow rules** maps branch pushes and pull request events to columns, either type-wide or for this repository only.
 - **Import issues** starts or resumes an import for this repository.
-- **Disconnect** removes the binding after a confirmation step.
 
-The list header indicates whether the project is configured and connected across its bindings.
+1. Open **Settings → Projects**, select the project, then open **Integrations** and select **Connect** next to GitHub.
+2. Link your GitHub account if Kaneo asks for it. Kaneo uses it to confirm that you administer the repository.
+3. Type the repository as `owner/name`, or select **Browse** and search the repositories your installed app can reach. Kaneo checks the installation as soon as you pick one.
+4. Select **Connect repository**.
+5. Create a test task and check that its GitHub issue appears.
 
-### Disconnect a repository
+Use a test repository for the first check, since synchronization creates real issues and comments. Review the event-to-column mappings under **Workflow → Automations**.
 
-Disconnecting a single binding removes that binding together with its external links and any unfinished import progress; the Kaneo tasks remain. Reconnecting the same verified repository, including after a rename or reinstall, preserves its links and project preferences. Legacy integrations without a verified numeric identity can be reverified for the same repository name; review their existing links before enabling synchronization.
+## Add more repositories
 
-### Needs verification
-
-Bindings created before repository identities were verified are marked **Needs verification**. Their repository rows cannot be imported or edited until the identity is confirmed. Reverify the binding for the same repository name to restore the full feature set, and review the existing links before enabling synchronization.
-
-### Cross-project repository sharing
-
-The same repository may be connected to more than one project. GitHub events fan out to every project bound to the repository, and each project applies its own sync rules, workflow rules, and task numbering. The repository browser shows when a repository is already linked in another project; it can still be connected.
-
-### Workflow rule scope
-
-Workflow rules apply either to all repositories of a provider type (type-wide) or to a single repository binding. A repository-specific rule wins over the type-wide rule for that repository, while the other repositories keep following the type-wide rule.
-
-### Task numbering
-
-All repositories feed one per-project task sequence. A task created from an issue in any connected repository receives the next number from the same project counter.
-
-### Repository limits
-
-Cloud instances limit the number of active repository bindings per project across GitHub, Gitea, and GitLab, and self-hosted instances can configure `KANEO_MAX_REPOSITORIES_PER_PROJECT`. See [repository limits](/core/integrations/repository-limits) for the details.
+Disconnect the existing integration before connecting a different repository. This preserves local tasks but removes their old external links and any unfinished import progress. Reconnecting the same verified repository, including after a rename or reinstall, preserves its links and project preferences. Legacy integrations without a verified numeric identity can be reverified for the same repository name; review their existing links before enabling synchronization.
 
 ## Testing the Integration
 
@@ -141,6 +126,7 @@ Test both directions:
 ## Advanced Configuration
 
 ### Branch Naming Patterns
+
 
 Configure how Kaneo matches branches to tasks in each repository binding's workflow rules:
 
@@ -217,6 +203,35 @@ If you need to connect repositories from multiple GitHub organizations:
 Select **Import issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
 
 Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
+
+Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
+
+If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the binding if its repository verification no longer succeeds. Disconnecting the binding also removes its saved import progress; already imported tasks remain.
+2. Grant appropriate permissions for each organization
+3. Each Kaneo project can connect multiple repositories where your app is installed, and one repository can be shared by several projects
+
+---
+
+**Having issues?** Check our [troubleshooting guide](/core/integrations/github/troubleshooting) for common problems and solutions.
+
+## Import existing issues
+
+Select **Import issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
+
+Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
+
+Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
+
+If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the binding if its repository verification no longer succeeds. Disconnecting the binding also removes its saved import progress; already imported tasks remain.
+
+Select **Import issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
+
+Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
+
+Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
+
+
+Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to these settings and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
 
 Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
 

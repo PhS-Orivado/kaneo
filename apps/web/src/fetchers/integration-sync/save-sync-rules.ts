@@ -13,3 +13,4 @@ export default async function saveSyncRules(
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }
+}

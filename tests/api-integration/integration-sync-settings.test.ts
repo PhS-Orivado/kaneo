@@ -109,3 +109,51 @@ it.each(["gitea", "gitlab"] as const)(
     });
   },
 );
+      const preview = await previewSyncRules(
+        await getSyncIntegration(project.id, type),
+        rules,
+      );
+      await saveSyncRules(
+        project.id,
+        type,
+        rules,
+        preview.previewToken,
+        member.workspace.id,
+      );
+    } finally {
+      release();
+    }
+    expect((await pending).status).toBe(409);
+    const readConfig = async () =>
+      JSON.parse(
+        (await db.query.integrationTable.findFirst({
+          where: eq(schema.integrationTable.id, integration!.id),
+        }))!.config,
+      );
+    expect((await readConfig()).syncRules).toEqual(rules);
+    expect((await patch()).status).toBe(200);
+    expect(await readConfig()).toMatchObject({
+      await saveSyncRules(
+        project.id,
+        type,
+        preview.previewToken,
+        member.workspace.id,
+      );
+    } finally {
+      release();
+    }
+    expect((await pending).status).toBe(409);
+    const readConfig = async () =>
+      JSON.parse(
+        (await db.query.integrationTable.findFirst({
+          where: eq(schema.integrationTable.id, integration!.id),
+        }))!.config,
+      );
+    expect((await readConfig()).syncRules).toEqual(rules);
+    expect((await patch()).status).toBe(200);
+    expect(await readConfig()).toMatchObject({
+      syncRules: rules,
+      [property]: false,
+    });
+  },
+);

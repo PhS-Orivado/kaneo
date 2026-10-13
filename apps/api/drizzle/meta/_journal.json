@@ -95,8 +95,7 @@
     },
     {
       "idx": 13,
-      
-"version": "7",
+      "version": "7",
       "when": 1772660160328,
       "tag": "0013_quiet_gladiator",
       "breakpoints": true
@@ -189,8 +188,7 @@
       "idx": 26,
       "version": "7",
       "when": 1775102400000,
-      "tag": "0026_encrypt_notification_preference_secret
-s",
+      "tag": "0026_encrypt_notification_preference_secrets",
       "breakpoints": true
     },
     {
@@ -288,8 +286,7 @@ s",
       "idx": 40,
       "version": "7",
       "when": 1786555508802,
-      
-"tag": "0040_clear_eternals",
+      "tag": "0040_clear_eternals",
       "breakpoints": true
     },
     {
@@ -381,8 +378,7 @@ s",
       "version": "7",
       "when": 1790406015959,
       "tag": "0053_calendar_feeds",
-      "breakpoints": tru
-e
+      "breakpoints": true
     },
     {
       "idx": 54,
@@ -466,6 +462,13 @@ e
       "version": "7",
       "when": 1791800000001,
       "tag": "0065_sprint_carry_over",
+      "breakpoints": true
+    },
+    {
+      "idx": 66,
+      "version": "7",
+      "when": 1791817861615,
+      "tag": "0066_multi_repo_integrations",
       "breakpoints": true
     }
   ]

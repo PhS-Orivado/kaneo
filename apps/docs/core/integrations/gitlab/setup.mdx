@@ -27,17 +27,18 @@ Connect the first repository under **Settings → Projects → your project → 
 
 Each GitLab project becomes its own binding with its own settings, sync rules, workflow rules, and import state. Repositories already linked in the current project are marked in the browser and cannot be added twice. A project can combine several GitLab bindings with GitHub and Gitea bindings, and all repositories feed one per-project task sequence. The same GitLab project may be shared with other projects: webhook events fan out to every project bound to the repository, and each project applies its own rules and numbering. Active bindings are limited per project; see [repository limits](/core/integrations/repository-limits).
 
-## Webhooks in GitLab
 
-Kaneo verifies incoming webhooks with a **secret token** stored per binding, which GitLab sends back in a header rather than signing the payload, so serve Kaneo over HTTPS.
+## Connect repositories
 
-Every GitLab project you connect has its own binding, so create one webhook per GitLab project.
+
+Kaneo verifies incoming webhooks with a **secret token** stored per integration, which GitLab sends back in a header rather than signing the payload, so serve Kaneo over HTTPS.
 
 ### Where to create the webhook in GitLab
 
 1. Log in to GitLab and **open the same project** you connected in Kaneo (`group/project`).
 2. Open the project **Settings**.
-3. In the **left sidebar**, open **Webhooks** (under the "Settings" section).
+2. Open the project **Settings**.
+3. In the **left sidebar**, open **Webhooks** (under the “Settings” section).  
    - If you do not see it, you need at least the **Maintainer** role on that project.
 4. Click **Add new webhook**.
 
@@ -64,6 +65,14 @@ Example: `https://gitlab.com/acme/my-app/-/hooks`
 
 8. Save and use **Test → Push events** to confirm a `200` response from Kaneo.
    - If Kaneo runs on a private address, an administrator must first enable **Admin → Settings → Network → Outbound requests → Allow requests to the local network from webhooks and integrations**.
+
+The webhook URL includes the binding's integration id, for example:
+
+`https://your-kaneo-host/api/gitlab-integration/webhook/<integrationId>`
+
+A webhook for one GitLab project does not accept events for another, because each binding has its own integration id and secret token.
+
+## GitLab on a private network
 
 The webhook URL includes the binding's integration id, for example:
 

@@ -12,3 +12,4 @@ export default async function previewSyncRules(
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }
+}

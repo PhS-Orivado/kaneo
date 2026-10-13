@@ -13,6 +13,7 @@ import {
   defaultRolePayloads,
   owner,
 } from "@kaneo/permissions";
+} from "@kaneo/permissions";
 import bcrypt from "bcryptjs";
 import { betterAuth } from "better-auth";
 import {
@@ -123,6 +124,67 @@ try {
   }
 } catch {}
 
+import { getInvitationEmailSubject } from "./utils/get-invitation-email-subject";
+import {
+  getInvitationRoleLabel,
+  getWorkspaceInvitationEmailCopy,
+} from "./utils/get-workspace-invitation-email-copy";
+import { getGithubSsoOAuthCredentials } from "./utils/github-sso-env";
+import {
+  hasInstanceAdminRole,
+  instanceAdminRoleSql,
+} from "./utils/instance-admin-role";
+import {
+  hasRegisteredUsers,
+  promoteInitialAdministrator,
+} from "./utils/instance-bootstrap";
+import { isCloud } from "./utils/is-cloud";
+import { isDisposableEmail } from "./utils/is-disposable-email";
+import { isLocalSignInPath } from "./utils/is-local-sign-in-path";
+import { trackPasswordResetDelivery } from "./utils/password-reset-delivery";
+import {
+  assertEmailCodeRecipientAllowed,
+  assertGuestRegistrationAllowed,
+  assertUserRegistrationAllowed,
+  normalizeInvitationId,
+} from "./utils/registration-policy";
+import {
+  getUserLocale,
+  sendInvitationEmailToInvitation,
+} from "./utils/send-invitation-email";
+import { queueSignInEmail } from "./utils/sign-in-email-tasks";
+import { authCaptchaPaths, verifyTurnstile } from "./utils/verify-turnstile";
+
+config();
+} from "./utils/registration-policy";
+import {
+  getUserLocale,
+  sendInvitationEmailToInvitation,
+config();
+
+const githubSso = getGithubSsoOAuthCredentials();
+
+const isRegistrationDisabled = process.env.DISABLE_REGISTRATION === "true";
+const isPasswordRegistrationDisabled =
+  process.env.DISABLE_PASSWORD_REGISTRATION === "true";
+const isLoginFormDisabled = process.env.DISABLE_LOGIN_FORM === "true";
+const isEmailOtpSignInDisabled =
+  process.env.DISABLE_EMAIL_OTP_SIGN_IN === "true";
+const isWorkspaceCreationDisabled =
+  process.env.DISABLE_WORKSPACE_CREATION === "true";
+
+const apiUrl = process.env.KANEO_API_URL || "http://localhost:1337";
+const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
+
+const trustedOrigins = [clientUrl];
+try {
+  const apiOrigin = new URL(apiUrl);
+  const apiOriginString = `${apiOrigin.protocol}//${apiOrigin.host}`;
+  if (!trustedOrigins.includes(apiOriginString)) {
+    trustedOrigins.push(apiOriginString);
+  }
+} catch {}
+
 const baseURLWithoutPath = (() => {
   try {
     const url = new URL(apiUrl);
@@ -185,6 +247,65 @@ function getAuthEmailCopy(locale?: string | null) {
 
   if (localeKey === "vi") {
     return {
+      magicLinkSubject: "Liên kết đăng nhập Kaneo",
+  return "en";
+}
+
+function isEmailCodeSignInAvailable() {
+  return (
+    isSmtpConfigured() && !isEmailOtpSignInDisabled && !isLoginFormDisabled
+  );
+}
+
+// Reads env at call time (not module scope) so tests can stub it.
+  return (
+    isSmtpConfigured() && !isEmailOtpSignInDisabled && !isLoginFormDisabled
+  );
+}
+
+// Reads env at call time (not module scope) so tests can stub it.
+async function shouldDeliverSignInEmail(email: string) {
+  if (process.env.DISABLE_PASSWORD_REGISTRATION === "true") {
+    return userExistsByEmail(email);
+  }
+  if (process.env.DISABLE_REGISTRATION === "true") {
+    // Mirror `assertUserRegistrationAllowed`: the first non-guest user can
+    // always complete initial instance setup.
+    if (!(await hasRegisteredUsers())) {
+      return true;
+    }
+    return canSendSignInEmail(email);
+  }
+  return true;
+}
+
+function getAuthEmailCopy(locale?: string | null) {
+  const localeKey = getLocaleKey(locale);
+
+  if (localeKey === "de") {
+    return {
+      magicLinkSubject: "Anmeldelink für Kaneo",
+      otpSubject: (otp: string) => `${otp} ist dein Kaneo-Anmeldecode`,
+      passwordResetSubject: "Kaneo-Passwort zurücksetzen",
+    };
+  }
+
+  if (localeKey === "vi") {
+    return {
+      magicLinkSubject: "Liên kết đăng nhập Kaneo",
+      otpSubject: (otp: string) => `${otp} là mã đăng nhập Kaneo của bạn`,
+      passwordResetSubject: "Đặt lại mật khẩu Kaneo",
+    };
+  }
+
+  if (localeKey === "ja") {
+    return {
+      magicLinkSubject: "Kaneo ログインリンク",
+      otpSubject: (otp: string) => `Kaneo のサインインコード: ${otp}`,
+      passwordResetSubject: "Kaneo のパスワードをリセット",
+    };
+  }
+
       magicLinkSubject: "Liên kết đăng nhập Kaneo",
       otpSubject: (otp: string) => `${otp} là mã đăng nhập Kaneo của bạn`,
       passwordResetSubject: "Đặt lại mật khẩu Kaneo",
@@ -343,6 +464,64 @@ export const auth = betterAuth({
       : []),
     lastLoginMethod(),
     magicLink({
+    resetPasswordTokenExpiresIn: 60 * 60,
+    sendResetPassword: async ({ user, url }, request) => {
+      const requestContext = getEmailRequestContext(request?.headers);
+      // Keep SMTP latency out of the response so it cannot reveal accounts.
+      trackPasswordResetDelivery(
+        getUserLocale(user.email).then((locale) =>
+          sendPasswordResetEmail(
+            user.email,
+            getAuthEmailCopy(locale).passwordResetSubject,
+            {
+              resetLink: url,
+              userName: user.name,
+            getAuthEmailCopy(locale).passwordResetSubject,
+            {
+              resetLink: url,
+              userName: user.name,
+              locale,
+              ...requestContext,
+            },
+          ),
+        ),
+      );
+    },
+    password: {
+      hash: async (password) => {
+        return await bcrypt.hash(password, 10);
+      },
+      verify: async ({ hash, password }) => {
+        return await bcrypt.compare(password, hash);
+      },
+    },
+  },
+  socialProviders: {
+    github: {
+      clientId: githubSso.clientId,
+      clientSecret: githubSso.clientSecret,
+      scope: ["user:email"],
+    },
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+    },
+    discord: {
+      clientId: process.env.DISCORD_CLIENT_ID || "",
+      clientSecret: process.env.DISCORD_CLIENT_SECRET || "",
+    },
+  },
+  plugins: [
+    ...(process.env.DISABLE_GUEST_ACCESS !== "true"
+      ? [
+          anonymous({
+            generateName: async () => generateDemoName(),
+            emailDomainName: "kaneo.app",
+          }),
+        ]
+      : []),
+    lastLoginMethod(),
+    magicLink({
       disableSignUp: isPasswordRegistrationDisabled,
       sendMagicLink: async ({ email, url }, ctx) => {
         const requestContext = getEmailRequestContext(
@@ -381,6 +560,44 @@ export const auth = betterAuth({
                   const copy = getAuthEmailCopy(locale);
                   await sendOtpEmail(email, copy.otpSubject(otp), {
                     otp,
+                    locale,
+                    ...requestContext,
+            locale,
+            ...requestContext,
+          });
+        });
+      },
+    }),
+    ...(isEmailOtpSignInDisabled
+      ? []
+      : [
+          emailOTP({
+            expiresIn: OTP_EXPIRY_SECONDS,
+            disableSignUp: isPasswordRegistrationDisabled,
+            async sendVerificationOTP({ email, otp, type }, ctx) {
+              if (type === "sign-in") {
+                const requestContext = getEmailRequestContext(
+                  ctx?.request?.headers ?? ctx?.headers,
+                );
+                queueSignInEmail(async () => {
+                  if (!(await shouldDeliverSignInEmail(email))) {
+                    return;
+                  }
+              if (type === "sign-in") {
+                const requestContext = getEmailRequestContext(
+                  ctx?.request?.headers ?? ctx?.headers,
+                );
+                queueSignInEmail(async () => {
+                  if (!(await shouldDeliverSignInEmail(email))) {
+                    return;
+                  }
+                  const locale = await getUserLocale(email);
+                  const copy = getAuthEmailCopy(locale);
+                  await sendOtpEmail(email, copy.otpSubject(otp), {
+                    otp,
+                    locale,
+                    ...requestContext,
+                  });
                     locale,
                     ...requestContext,
                   });
@@ -604,6 +821,64 @@ export const auth = betterAuth({
             await handleOwnerPromoted(member.organizationId, member.userId);
           }
         },
+            throw new APIError("CONFLICT", {
+              code: "WORKSPACE_HAS_ACTIVE_SUBSCRIPTION",
+              message: formatBillableWorkspacesMessage(
+                billable.map((workspace) => workspace.name),
+              ),
+            });
+          }
+          if (ctx) {
+            const members = await db
+              .select({ userId: schema.workspaceUserTable.userId })
+              .from(schema.workspaceUserTable)
+              .where(
+                eq(schema.workspaceUserTable.workspaceId, organization.id),
+              );
+            const admins = await db
+              .select({ userId: schema.userTable.id })
+              .from(schema.userTable)
+              .where(instanceAdminRoleSql(schema.userTable.role));
+            deletedWorkspaceMembers.set(ctx.context, [
+              ...new Set(
+                [...members, ...admins].map((member) => member.userId),
+              ),
+            ]);
+          }
+        },
+        afterDeleteOrganization: async ({ organization }, ctx) => {
+          const userIds = ctx
+            ? (deletedWorkspaceMembers.get(ctx.context) ?? [])
+            : [];
+          if (ctx) deletedWorkspaceMembers.delete(ctx.context);
+          await Promise.all(
+            userIds.map((userId) =>
+              revokeWorkspaceConnections(userId, organization.id, {
+                force: true,
+              }),
+            ),
+          );
+        },
+        beforeCreateInvitation: async ({ invitation }) => {
+          const access = await resolveInvitationProjectAccess(invitation);
+          return { data: access };
+        },
+        beforeAcceptInvitation: async ({ invitation, user }) => {
+          await applyInvitationProjectAccess(invitation, user.id);
+        },
+        afterAcceptInvitation: async ({ member }) => {
+          await publishMemberProjects(
+            member.organizationId,
+            member.userId,
+          ).catch((error) => {
+            console.error("Project member refresh failed:", error);
+          });
+        },
+        afterUpdateMemberRole: async ({ member }) => {
+          if (isOwnerRole(member.role)) {
+            await handleOwnerPromoted(member.organizationId, member.userId);
+          }
+        },
         afterAddMember: async ({ member }) => {
           if (member?.organizationId) {
             await handleMemberAdded(member.organizationId, member.userId);
@@ -644,6 +919,89 @@ export const auth = betterAuth({
           },
           workspace: { name: data.organization.name },
         });
+
+        if (
+          result?.success === false &&
+          result.reason === "SMTP_NOT_CONFIGURED"
+        ) {
+          console.warn(
+            "Invitation created but email not sent due to SMTP not being configured",
+          );
+          return;
+        }
+      },
+    }),
+    genericOAuth({
+      config: [
+        {
+          providerId: "custom",
+          clientId: process.env.CUSTOM_OAUTH_CLIENT_ID || "",
+          clientSecret: resolveFileSecret("CUSTOM_OAUTH_CLIENT_SECRET"),
+          authorizationUrl: process.env.CUSTOM_OAUTH_AUTHORIZATION_URL || "",
+          tokenUrl: process.env.CUSTOM_OAUTH_TOKEN_URL || "",
+          userInfoUrl: process.env.CUSTOM_OAUTH_USER_INFO_URL || "",
+          scopes: process.env.CUSTOM_OAUTH_SCOPES?.split(",")
+            .map((s) => s.trim())
+            .filter(Boolean) || ["profile", "email"],
+          responseType: process.env.CUSTOM_OAUTH_RESPONSE_TYPE || "code",
+          discoveryUrl: process.env.CUSTOM_OAUTH_DISCOVERY_URL || "",
+          pkce: process.env.CUSTOM_AUTH_PKCE !== "false",
+          mapProfileToUser: mapCustomOAuthProfileToUser,
+        },
+      ],
+    }),
+    bearer(),
+    apiKey({
+      enableSessionForAPIKeys: true,
+      apiKeyHeaders: "x-api-key",
+      rateLimit: {
+        enabled: true,
+        maxRequests: 100,
+        timeWindow: 60 * 1000,
+      },
+    }),
+    deviceAuthorization({
+      verificationUri: getDeviceAuthVerificationUri(),
+      validateClient: async (clientId) =>
+        getDeviceAuthClientIds().has(clientId),
+    }),
+    adminPlugin({
+      defaultRole: "user",
+      adminRoles: ["admin"],
+    }),
+    openAPI(),
+  ],
+  session: {
+    cookieCache: {
+      // Consult the session store on every request so password recovery
+      // immediately rejects revoked cookies, including caches issued before upgrade.
+      enabled: false,
+    },
+  },
+  rateLimit: {
+    // Enable in cloud; self-hosted instances opt in by setting KANEO_CLOUD.
+    // Default better-auth rate-limit only kicks in for production; we keep the
+    // global limits conservative and tighten signup/invite via customRules.
+    enabled: isCloud(),
+    window: 10,
+    max: 100,
+    customRules: {
+      "/sign-up/email": { window: 60, max: 3 },
+      "/sign-in/anonymous": { window: 60, max: 3 },
+      "/organization/invite-member": { window: 60, max: 5 },
+    },
+  },
+  databaseHooks: {
+    user: {
+      delete: {
+        after: async (user, ctx) => {
+          // Anonymous linking deletes the old identity after issuing a new
+          // session. The replacement account must retain its authentication.
+          if (
+            (user as Partial<UserWithAnonymous>).isAnonymous &&
+            ctx?.context.newSession &&
+          },
+          workspace: { name: data.organization.name },
 
         if (
           result?.success === false &&
@@ -885,6 +1243,179 @@ export const auth = betterAuth({
               "Password registration is currently disabled. Please use a configured social or OIDC sign-in method.",
           });
         }
+
+        if (
+          isCloud() &&
+          !isInstanceAdminSetup &&
+          isEmailCodeSignInAvailable()
+        ) {
+          throw new APIError("FORBIDDEN", {
+            code: "EMAIL_CODE_REGISTRATION_REQUIRED",
+            message: "Create your account with an email code.",
+          });
+        }
+      }
+
+      if (!isRegistrationDisabled || isInstanceAdminSetup) {
+        return;
+      }
+
+      const email =
+        ctx.body?.email ||
+        ctx.query?.email ||
+        ctx.headers?.get("x-invitation-email");
+      const invitationId = normalizeInvitationId(
+        ctx.body?.invitationId ||
+          ctx.query?.invitationId ||
+          ctx.headers?.get("x-invitation-id"),
+      );
+
+      if (ctx.path === "/sign-up/email") {
+        const result = await checkRegistrationAllowed(email, invitationId);
+        if (!result.allowed) {
+          throw new APIError("FORBIDDEN", {
+            code: "REGISTRATION_NOT_ALLOWED",
+            message: result.reason,
+          });
+        }
+      }
+    }),
+    after: createAuthMiddleware(async (ctx) => {
+      if (
+        ctx.path === "/organization/list-invitations" ||
+        ctx.path === "/organization/get-full-organization"
+      ) {
+        const viewer = await getSessionFromCtx(ctx);
+        const returned = ctx.context.returned as
+          | { invitations?: unknown }
+          | unknown[]
+          | null;
+        if (viewer)
+          await hideInaccessibleInvitationProjects(
+            viewer.user.id,
+            Array.isArray(returned) ? returned : returned?.invitations,
+          );
+      }
+
+      if (ctx.path === "/organization/leave") {
+        // The successful endpoint returns the removed member. No post-delete
+        // query may prevent revocation after membership has already committed.
+        const removed = ctx.context.returned as
+          | { userId?: string; organizationId?: string }
+          | undefined;
+        if (
+          typeof removed?.userId === "string" &&
+          typeof removed.organizationId === "string" &&
+          removed.organizationId === ctx.body?.organizationId
+        ) {
+          await clearMemberProjectAccess(
+            removed.organizationId,
+            removed.userId,
+          ).catch((error) => {
+            console.error("Project access cleanup failed:", error);
+        throw new APIError("FORBIDDEN", {
+          code: "EMAIL_DELIVERY_NOT_CONFIGURED",
+          message: "Password reset requires email delivery to be configured.",
+        });
+      }
+
+      if (ctx.path === "/sign-in/anonymous") {
+        await assertGuestRegistrationAllowed();
+      }
+
+      if (authCaptchaPaths.has(ctx.path)) {
+        const verdict = await verifyTurnstile(
+          ctx.headers?.get("x-turnstile-token") ?? ctx.body?.turnstileToken,
+        );
+        if (!verdict.ok)
+          throw new APIError("FORBIDDEN", {
+            code: "CAPTCHA_FAILED",
+            message: verdict.reason,
+          });
+      }
+
+      if (
+        (ctx.path === "/email-otp/send-verification-otp" &&
+          ctx.body?.type === "sign-in") ||
+        ctx.path === "/sign-in/magic-link"
+      ) {
+        await assertEmailCodeRecipientAllowed(ctx.body?.email);
+      }
+
+      // Block invite-member calls on cloud from anonymous users or to
+      // disposable-email addresses. The 2026-05-28 incident saw ~14k phishing
+      // invites sent from throwaway disposable-email signups; gating here
+      // shuts that path off without affecting self-hosted instances.
+      if (ctx.path === "/organization/invite-member" && isCloud()) {
+        // `before` hooks don't auto-populate ctx.context.session; load it
+        // explicitly. `disableRefresh` keeps this gate cheap: we only need
+        // the user record, not a session refresh side-effect.
+        const session = await getSessionFromCtx(ctx, {
+          disableRefresh: true,
+        }).catch(() => null);
+        const sessionUser = session?.user as
+          | { isAnonymous?: boolean | null }
+          | undefined;
+        if (sessionUser?.isAnonymous) {
+          throw new APIError("FORBIDDEN", {
+            code: "GUEST_INVITATIONS_NOT_ALLOWED",
+            message: "Guest accounts may not send workspace invitations.",
+          });
+        }
+        const inviteeEmail = (ctx.body?.email as string | undefined) ?? "";
+        if (inviteeEmail && isDisposableEmail(inviteeEmail)) {
+          throw new APIError("BAD_REQUEST", {
+            code: "DISPOSABLE_EMAIL_NOT_ALLOWED",
+            message:
+              "Invitations to disposable-email addresses are not allowed.",
+          });
+        }
+      }
+
+      const isSignUpPath =
+        ctx.path === "/sign-up/email" ||
+        ctx.path.startsWith("/callback/") ||
+          throw new APIError("BAD_REQUEST", {
+            code: "DISPOSABLE_EMAIL_NOT_ALLOWED",
+            message:
+              "Invitations to disposable-email addresses are not allowed.",
+          });
+        }
+      }
+
+      const isSignUpPath =
+        ctx.path === "/sign-up/email" ||
+        ctx.path.startsWith("/callback/") ||
+        ctx.path.startsWith("/sign-in/social");
+
+      if (!isSignUpPath) {
+        return;
+      }
+
+      const isInstanceAdminSetup = !(await hasRegisteredUsers());
+
+      if (ctx.path === "/sign-up/email") {
+        if (isPasswordRegistrationDisabled && !isInstanceAdminSetup) {
+          throw new APIError("FORBIDDEN", {
+            code: "PASSWORD_REGISTRATION_DISABLED",
+            message:
+              "Password registration is currently disabled. Please use a configured social or OIDC sign-in method.",
+          });
+        }
+
+        if (
+          isCloud() &&
+          !isInstanceAdminSetup &&
+          isEmailCodeSignInAvailable()
+        ) {
+          throw new APIError("FORBIDDEN", {
+            code: "EMAIL_CODE_REGISTRATION_REQUIRED",
+            message: "Create your account with an email code.",
+          });
+        }
+      }
+
+      if (!isRegistrationDisabled || isInstanceAdminSetup) {
 
         if (
           isCloud() &&

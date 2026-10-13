@@ -17,3 +17,4 @@ export default async function resumeSync(
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
 }
+}
