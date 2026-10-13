@@ -1,16 +1,28 @@
-ALTER TABLE "integration" ADD COLUMN "repository_key" text;--> statement-breakpoint
-ALTER TABLE "integration" ADD COLUMN "repository_owner" text;--> statement-breakpoint
-ALTER TABLE "integration" ADD COLUMN "repository_name" text;--> statement-breakpoint
-ALTER TABLE "integration" ADD COLUMN "repository_id" integer;--> statement-breakpoint
-ALTER TABLE "integration" ADD COLUMN "base_url" text;--> statement-breakpoint
-ALTER TABLE "workflow_rule" ADD COLUMN "integration_id" text;--> statement-breakpoint
-CREATE TABLE "workspace_limit" (
+ALTER TABLE "integration" ADD COLUMN IF NOT EXISTS "repository_key" text;--> statement-breakpoint
+ALTER TABLE "integration" ADD COLUMN IF NOT EXISTS "repository_owner" text;--> statement-breakpoint
+ALTER TABLE "integration" ADD COLUMN IF NOT EXISTS "repository_name" text;--> statement-breakpoint
+ALTER TABLE "integration" ADD COLUMN IF NOT EXISTS "repository_id" integer;--> statement-breakpoint
+ALTER TABLE "integration" ADD COLUMN IF NOT EXISTS "base_url" text;--> statement-breakpoint
+ALTER TABLE "workflow_rule" ADD COLUMN IF NOT EXISTS "integration_id" text;--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "workspace_limit" (
 	"workspace_id" text PRIMARY KEY NOT NULL,
 	"max_repositories_per_project" integer,
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );--> statement-breakpoint
-ALTER TABLE "workspace_limit" ADD CONSTRAINT "workspace_limit_workspace_id_workspace_id_fk" FOREIGN KEY ("workspace_id") REFERENCES "public"."workspace"("id") ON DELETE cascade ON UPDATE cascade;--> statement-breakpoint
-ALTER TABLE "workflow_rule" ADD CONSTRAINT "workflow_rule_integration_id_integration_id_fk" FOREIGN KEY ("integration_id") REFERENCES "public"."integration"("id") ON DELETE cascade ON UPDATE cascade;--> statement-breakpoint
+DO $add_workspace_limit_fk$
+BEGIN
+	ALTER TABLE "workspace_limit" ADD CONSTRAINT "workspace_limit_workspace_id_workspace_id_fk" FOREIGN KEY ("workspace_id") REFERENCES "public"."workspace"("id") ON DELETE cascade ON UPDATE cascade;
+EXCEPTION
+	WHEN duplicate_object THEN NULL;
+END
+$add_workspace_limit_fk$;--> statement-breakpoint
+DO $add_workflow_rule_integration_fk$
+BEGIN
+	ALTER TABLE "workflow_rule" ADD CONSTRAINT "workflow_rule_integration_id_integration_id_fk" FOREIGN KEY ("integration_id") REFERENCES "public"."integration"("id") ON DELETE cascade ON UPDATE cascade;
+EXCEPTION
+	WHEN duplicate_object THEN NULL;
+END
+$add_workflow_rule_integration_fk$;--> statement-breakpoint
 DO $backfill$
 DECLARE
 	binding record;
@@ -112,12 +124,24 @@ BEGIN
 	END LOOP;
 END
 $backfill$;--> statement-breakpoint
-CREATE INDEX "integration_type_repository_key_idx" ON "integration" USING btree ("type","repository_key");--> statement-breakpoint
-ALTER TABLE "integration" DROP CONSTRAINT "integration_project_type_unique";--> statement-breakpoint
-ALTER TABLE "integration" ADD CONSTRAINT "integration_project_type_repo_unique" UNIQUE ("project_id","type","repository_key");--> statement-breakpoint
-CREATE UNIQUE INDEX "integration_project_type_null_repo_unique" ON "integration" USING btree ("project_id","type") WHERE "integration"."repository_key" IS NULL;--> statement-breakpoint
-CREATE INDEX "workflow_rule_integrationId_idx" ON "workflow_rule" USING btree ("integration_id");--> statement-breakpoint
-CREATE INDEX "workflow_rule_resolution_idx" ON "workflow_rule" USING btree ("project_id","integration_type","event_type","integration_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "integration_type_repository_key_idx" ON "integration" USING btree ("type","repository_key");--> statement-breakpoint
+ALTER TABLE "integration" DROP CONSTRAINT IF EXISTS "integration_project_type_unique";--> statement-breakpoint
+DO $add_integration_project_type_repo_unique$
+BEGIN
+	ALTER TABLE "integration" ADD CONSTRAINT "integration_project_type_repo_unique" UNIQUE ("project_id","type","repository_key");
+EXCEPTION
+	WHEN duplicate_object THEN NULL;
+END
+$add_integration_project_type_repo_unique$;--> statement-breakpoint
+CREATE UNIQUE INDEX IF NOT EXISTS "integration_project_type_null_repo_unique" ON "integration" USING btree ("project_id","type") WHERE "integration"."repository_key" IS NULL;--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "workflow_rule_integrationId_idx" ON "workflow_rule" USING btree ("integration_id");--> statement-breakpoint
+CREATE INDEX IF NOT EXISTS "workflow_rule_resolution_idx" ON "workflow_rule" USING btree ("project_id","integration_type","event_type","integration_id");--> statement-breakpoint
 -- RFC 0001 WP0: the legacy github_integration table is intentionally NOT
 -- dropped here. plugins/github/migration.ts reads it through raw SQL and
 -- drops it at startup, after this migration has run.
+--
+-- This migration is intentionally idempotent. Databases that already applied
+-- its content under its previous number (0064_multi_repo_integrations, before
+-- it was renumbered to 0066) can replay it as a no-op, while fresh databases
+-- get the same end state. The backfill block only touches rows where
+-- repository_key IS NULL, so it is also safe to replay.
