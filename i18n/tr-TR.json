@@ -2379,7 +2379,8 @@
 			"tokenTitle": "Erişim belirteci",
 			"webhookSecret": "Gizli anahtar",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Bir talepte görünme sıralarını değiştirmek için sürükleyin.",

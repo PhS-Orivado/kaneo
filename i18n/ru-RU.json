@@ -2471,7 +2471,8 @@
 			"tokenTitle": "Токен доступа",
 			"webhookSecret": "Секрет",
 			"webhookSection": "Вебхук",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Перетаскивайте, чтобы изменить порядок их отображения в задаче.",

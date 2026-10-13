@@ -2337,7 +2337,8 @@
 			"tokenTitle": "Token truy cập",
 			"webhookSecret": "Khóa bí mật",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Kéo để thay đổi thứ tự hiển thị trên công việc.",
