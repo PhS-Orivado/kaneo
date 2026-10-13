@@ -1,0 +1,104 @@
+---
+title: Jira Setup
+description: Connect Kaneo to Jira on Atlassian cloud or Data Center (issues, comments, webhooks).
+---
+
+## Overview
+
+The Jira integration links a Kaneo project to one or more Jira projects, on Atlassian cloud or a self-managed Jira Data Center or Server instance. Tasks sync with issues in both directions, and webhooks keep Kaneo updated when issues and comments change.
+
+You need:
+
+- **Jira URL**: `https://your-company.atlassian.net`, or e.g. `https://jira.example.com`.
+- **API token**: an Atlassian cloud API token, or a personal access token on Data Center or Server.
+- **Project key**: the key of the Jira project to sync, the same one that appears in Jira issue keys (e.g. `KAN`).
+
+The URL must be the final instance root, without a query, fragment, or embedded credentials. If the URL redirects, for example from `http` to `https`, use the final URL directly; Kaneo reports redirected URLs during verification.
+
+## Access token
+
+### Atlassian cloud
+
+1. Open **id.atlassian.com → Security → API tokens** and create an API token.
+2. Copy the token and store it securely.
+3. In Kaneo, leave **Jira type** on **Atlassian cloud** and enter your **account email** together with the API token. Kaneo sends both as Basic authentication.
+
+### Jira Data Center or Server
+
+1. In Jira, open your profile and create a **personal access token** with **read and write access**.
+2. In Kaneo, switch **Jira type** to **Data Center / Server** and paste the token. Kaneo sends it as a Bearer token.
+
+## Connect projects
+
+Connect the first project under **Settings → Projects → your project → Integrations → Jira**: enter the Jira URL, the Jira type, and the credentials. **Verify** checks that the URL points at a Jira instance and that the credentials can access a given project key; **Browse** lists every project your credentials can access, so you can pick one without knowing the key.
+
+Each Jira project becomes its own binding with its own settings, sync rules, workflow rules, and import state. Select **Add repository** to connect further Jira projects; the dialog collects fresh credentials for the added project. A Jira project already linked in the current project cannot be added twice; the same Jira project may be bound in other projects. A project can combine several Jira bindings with GitHub, Gitea, and GitLab bindings, and all repositories feed one per-project task sequence. Active bindings are limited per project; see [repository limits](/core/integrations/repository-limits).
+
+## Webhooks in Jira
+
+Kaneo gives every binding its own **Webhook URL** and **Webhook secret**; the binding's settings dialog shows both values. The URL follows the pattern:
+
+`https://your-kaneo-host/api/jira-integration/webhook/<integrationId>`
+
+Jira does not sign webhook deliveries, and the webhook registration built into Jira cannot add custom headers. Kaneo therefore accepts one of two ways to authenticate a delivery:
+
+- an `x-kaneo-webhook-secret` header containing the binding's exact secret, or
+- an `x-hub-signature-256` header with an HMAC-SHA256 signature of the raw request body, hex-encoded with an optional `sha256=` prefix (the plain `x-hub-signature` name also works).
+
+Because the secret travels in a header, serve Kaneo over HTTPS.
+
+### Where to create the webhook in Jira
+
+Jira Automation's **Send web request** action supports custom headers, so it is the practical way to deliver Jira's events:
+
+1. Connect the project in Kaneo and save the binding.
+2. Copy the **Webhook URL** and **Webhook secret** shown for that binding in Kaneo.
+3. In Jira, open **Project settings → Automation** and create a rule with a trigger and a **Send web request** action:
+   - an **Issue created** trigger sends the issue payload with `webhookEvent` set to `jira:issue_created`;
+   - an **Issue changed** trigger sends `jira:issue_updated`; include a `changelog` object in the body, because Kaneo ignores updates without one;
+   - a **Comment created** trigger sends the comment payload.
+4. Set the request method to **POST**, the URL to the Kaneo webhook URL, and add a request header `x-kaneo-webhook-secret` with the secret from Kaneo.
+5. Build the body from Jira's standard webhook payload. For the issue created rule, the smart values look like this:
+
+```json
+{
+  "webhookEvent": "jira:issue_created",
+  "issue": {
+    "id": "{{issue.id}}",
+    "key": "{{issue.key}}",
+    "self": "https://your-company.atlassian.net/rest/api/2/issue/{{issue.id}}",
+    "fields": {
+      "summary": "{{issue.summary}}",
+      "description": "{{issue.description}}",
+      "issuetype": { "name": "{{issue.type}}" },
+      "status": { "name": "{{issue.status}}" },
+      "project": { "key": "{{issue.project.key}}" }
+    }
+  }
+}
+```
+
+Kaneo reads the instance root from `issue.self`, so it must point at the REST API of your Jira instance. Optionally add a `labels` array with the issue's labels; labels sync to task labels. Comment deliveries additionally carry a `comment` object with `id`, `body`, and `author`; the description and comment bodies are plain text. Any relay that forwards Jira's built-in webhook payloads and adds one of the two headers above also works.
+
+A webhook for one Jira project does not accept events for another, because each binding has its own integration id and secret.
+
+## Statuses, priorities, and workflow rules
+
+- A new task creates a Jira issue in the connected project with the task title, description, priority, and labels. The issue type defaults to **Task**; change it per binding through the REST API. Kaneo can also comment a link to the task on the new issue; toggle this per binding in its settings.
+- When a linked task reaches a final column, Kaneo transitions the issue to a `done`-category status; moving it back transitions to the first available in-progress or to-do status. A status map from a Kaneo column slug to a Jira status name can target an exact status instead; set it through the REST API.
+- Jira priorities map onto Kaneo priorities: `Lowest` and `Low` become low, `Medium` becomes medium, `High` becomes high, and `Highest`, `Critical`, and `Blocker` become urgent. After issue creation the Jira priority field is not rewritten; a `priority:<name>` label carries the priority instead.
+- Workflow rules move a linked task when a Jira issue is created, closed, or reopened, and a `jira_status:<status name>` rule can map an individual Jira status onto a specific column. Configure them from the binding's workflow rules dialog.
+
+## Import issues
+
+Each binding has an **Import issues** action that reads every non-subtask issue of the connected Jira project. Issues without a linked task create one; issues already linked are refreshed, so the import can be repeated safely. Imports never change the status of existing tasks: statuses flow inbound through webhooks and workflow rules. Issues excluded by the binding's sync rules are skipped, and the result reports how many issues were imported, updated, and skipped.
+
+## What is not synced
+
+- **Subtasks.** They are skipped on import and ignored when they arrive through the webhook.
+- **Attachments.** Files attached to Jira issues are not transferred.
+- **Other issue fields.** The assignee, components, fix versions, and due dates are not mapped; only the title, description, status, labels, priority, and comments sync.
+
+## Disconnecting
+
+Disconnecting a binding removes that binding and its links to issues and comments; the tasks stay. Other bindings of the same instance are unaffected. Connecting the same Jira project again creates a new webhook URL and secret, so update the automation rule afterwards.

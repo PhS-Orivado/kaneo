@@ -13,7 +13,9 @@ export type ExternalLinkMetadata = {
     | "gitea-import"
     | "github-import"
     | "gitlab"
-    | "gitlab-import";
+    | "gitlab-import"
+    | "jira"
+    | "jira-import";
   lastCommit?: {
     sha: string;
     message: string;

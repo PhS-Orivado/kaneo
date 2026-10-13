@@ -13,6 +13,13 @@ export type TaskCreatedEvent = {
   priority: string | null;
   status: string;
   number: number;
+  /**
+   * Repository bindings allowed to create an issue for this task. When
+   * present, only these integration ids run onTaskCreated; an empty array
+   * skips issue creation entirely. Undefined keeps the legacy behavior of
+   * every active binding creating an issue.
+   */
+  syncIntegrationIds?: string[];
 };
 
 export type TaskStatusChangedEvent = {

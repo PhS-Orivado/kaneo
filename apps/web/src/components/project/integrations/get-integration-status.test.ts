@@ -64,6 +64,29 @@ describe("getIntegrationStatus", () => {
       }),
     ).toEqual({ state: "connected", detail: "acme/web" });
   });
+
+  it("collects every configured target into details", () => {
+    expect(
+      getIntegrationStatus({
+        configured: true,
+        isActive: true,
+        details: [" acme/web ", null, "acme/api", undefined],
+      }),
+    ).toEqual({
+      state: "connected",
+      details: ["acme/web", "acme/api"],
+    });
+    expect(
+      getIntegrationStatus({ configured: true, isActive: true, details: [] }),
+    ).toEqual({ state: "connected" });
+    expect(
+      getIntegrationStatus({
+        configured: true,
+        isActive: true,
+        details: ["  ", null],
+      }),
+    ).toEqual({ state: "connected" });
+  });
 });
 
 describe("integration detail formatting", () => {

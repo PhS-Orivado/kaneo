@@ -39,7 +39,7 @@ describe("GitHub import cache refresh", () => {
         ["projects", "workspace"],
         ["assigned-tasks", "workspace"],
         ["workspace-activity", "workspace"],
-        ["github-integration", "project"],
+        ["github-integrations", "project"],
       ];
       for (const key of keys) queryClient.setQueryData(key, {});
       if (outcome === "success")

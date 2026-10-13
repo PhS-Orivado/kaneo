@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { normalizeGiteaBaseUrl } from "../../gitea/config";
+import { normalizeJiraBaseUrl } from "../../jira/config";
 
 export type IssueField = "title" | "description" | "state";
 export type DeferredIssueEdit = {
@@ -41,11 +42,14 @@ export function issueEditScope(integration: { type: string; config: string }) {
         integration.type,
         integration.type === "gitea"
           ? normalizeGiteaBaseUrl(config.baseUrl)
-          : null,
+          : integration.type === "jira"
+            ? normalizeJiraBaseUrl(config.baseUrl)
+            : null,
         config.repositoryOwner,
         config.repositoryName,
         integration.type === "github" ? config.installationId : null,
         integration.type === "github" ? config.repositoryId : null,
+        integration.type === "jira" ? config.projectKey : null,
       ]),
     )
     .digest("hex");

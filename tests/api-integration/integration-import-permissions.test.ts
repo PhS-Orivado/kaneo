@@ -11,6 +11,8 @@ import {
 const provider = vi.hoisted(() => ({
   listIssues: vi.fn(async () => []),
   listPulls: vi.fn(async () => []),
+  listMergeRequests: vi.fn(async () => []),
+  listIssueNotes: vi.fn(async () => []),
 }));
 vi.mock(
   "../../apps/api/src/plugins/gitea/utils/gitea-api",
@@ -21,12 +23,21 @@ vi.mock(
     createGiteaClient: () => provider,
   }),
 );
+vi.mock(
+  "../../apps/api/src/plugins/gitlab/utils/gitlab-api",
+  async (original) => ({
+    ...(await original<
+      typeof import("../../apps/api/src/plugins/gitlab/utils/gitlab-api")
+    >()),
+    createGitlabClient: () => provider,
+  }),
+);
 beforeEach(async () => {
   await resetTestDatabase();
   vi.clearAllMocks();
 });
-describe("github and gitea import permissions", () => {
-  it.each(["github", "gitea"])(
+describe("github, gitea and gitlab import permissions", () => {
+  it.each(["github", "gitea", "gitlab"])(
     "%s denies a create-only custom role",
     async (type) => {
       const member = await createWorkspaceMember({ role: "importer" });
@@ -83,34 +94,52 @@ describe("github and gitea import permissions", () => {
       expect(provider.listIssues).not.toHaveBeenCalled();
     },
   );
-  it("gitea accepts a custom role with both create and update", async () => {
-    const member = await createWorkspaceMember({ role: "importer" });
-    await db.insert(schema.workspaceRoleTable).values({
-      workspaceId: member.workspace.id,
-      role: "importer",
-      permission: JSON.stringify({ task: ["create", "update"] }),
-    });
-    const { project } = await createProjectFixture({
-      workspaceId: member.workspace.id,
-    });
-    await db.insert(schema.integrationTable).values({
-      projectId: project.id,
-      type: "gitea",
-      config: JSON.stringify({
-        baseUrl: "https://gitea.example",
-        accessToken: "fake-test-token",
-        repositoryOwner: "owner",
-        repositoryName: "repo",
-      }),
-    });
-    mockAuthenticatedSession(member.user);
-    const { app } = createApp();
-    const response = await app.request("/api/gitea-integration/import-issues", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ projectId: project.id }),
-    });
-    expect(response.status).toBe(200);
-    expect(provider.listIssues).toHaveBeenCalled();
-  });
+  it.each(["gitea", "gitlab"])(
+    "%s accepts a custom role with both create and update",
+    async (type) => {
+      const member = await createWorkspaceMember({ role: "importer" });
+      await db.insert(schema.workspaceRoleTable).values({
+        workspaceId: member.workspace.id,
+        role: "importer",
+        permission: JSON.stringify({ task: ["create", "update"] }),
+      });
+      const { project } = await createProjectFixture({
+        workspaceId: member.workspace.id,
+      });
+      const [integration] = await db
+        .insert(schema.integrationTable)
+        .values({
+          projectId: project.id,
+          type,
+          isActive: true,
+          config: JSON.stringify(
+            type === "gitlab"
+              ? {
+                  baseUrl: "https://gitlab.example",
+                  accessToken: "fake-test-token",
+                  projectPath: "owner/repo",
+                }
+              : {
+                  baseUrl: "https://gitea.example",
+                  accessToken: "fake-test-token",
+                  repositoryOwner: "owner",
+                  repositoryName: "repo",
+                },
+          ),
+        })
+        .returning();
+      mockAuthenticatedSession(member.user);
+      const { app } = createApp();
+      const response = await app.request(
+        `/api/${type}-integration/import-issues`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ integrationId: integration!.id }),
+        },
+      );
+      expect(response.status).toBe(200);
+      expect(provider.listIssues).toHaveBeenCalled();
+    },
+  );
 });

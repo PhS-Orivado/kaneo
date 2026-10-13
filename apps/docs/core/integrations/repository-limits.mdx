@@ -1,0 +1,41 @@
+---
+title: Repository limits
+description: How repository bindings are counted per project, what happens at the limit, and the self-hosted default.
+---
+
+Each Kaneo project can hold several repository bindings at once. This page explains how they are counted, what the quota badge means, and what happens when a project reaches its limit.
+
+## What counts
+
+Only active repository bindings count: GitHub, Gitea, and GitLab bindings of one project, added together across the three providers. Slack, Discord, Mattermost, Telegram, and webhook integrations are not counted.
+
+- The limit applies per project. Every project of a workspace is limited separately.
+- Deactivated bindings do not count. Deactivating a binding frees its slot, and reactivating it is checked against the limit again.
+- Tasks themselves are never limited by this quota; only the number of connected repositories is.
+
+## The quota badge
+
+The repository list in **Settings → Projects → your project → Integrations** shows a badge next to the heading:
+
+- \"N of M repositories\" while the project is under a configured limit.
+- \"N repositories\" when no limit applies.
+
+The badge reflects the server's own count, so it always matches what the next request will accept.
+
+## At the limit
+
+When the project already holds its maximum number of active bindings:
+
+- Adding another repository is rejected with HTTP 402 and the code `binding_limit_exceeded`, including the current `used` and `limit` values.
+- The repository browser keeps the dialog open and shows the server's message inline, so the blocker and the action that clears it are visible in place.
+- The same repository can be linked after another binding is disconnected or deactivated, or after the workspace plan raises the limit.
+
+## Self-hosted instances
+
+A self-hosted instance is unlimited by default. Set the environment variable `KANEO_MAX_REPOSITORIES_PER_PROJECT` on the API to cap every project:
+
+```env
+KANEO_MAX_REPOSITORIES_PER_PROJECT=5
+```
+
+Leave it unset for unlimited repositories. A billing integration can set a per-workspace override that takes precedence over the instance default.

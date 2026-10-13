@@ -140,7 +140,15 @@ export async function findExternalLinksByTask(taskId: string) {
   return db.query.externalLinkTable.findMany({
     where: and(eq(externalLinkTable.taskId, taskId), externalLinkScope()),
     with: {
-      integration: true,
+      integration: {
+        columns: {
+          id: true,
+          projectId: true,
+          type: true,
+          config: true,
+          isActive: true,
+        },
+      },
     },
   });
 }

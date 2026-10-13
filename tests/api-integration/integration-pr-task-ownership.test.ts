@@ -91,6 +91,9 @@ it.each(cases)(
       .values({
         projectId: project.id,
         type: provider,
+        // RFC 0001 WP2: the github pull request webhooks resolve bindings by
+        // repository_key instead of parsing every github config.
+        ...(provider === "github" ? { repositoryKey: "github:20" } : {}),
         config: JSON.stringify({
           baseUrl: "https://git.example",
           accessToken: "test-only",

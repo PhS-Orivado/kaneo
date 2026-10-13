@@ -1,8 +1,8 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import resumeSync from "@/fetchers/integration-sync/resume-sync";
-import type { SyncParams } from "@/fetchers/integration-sync/types";
+import type { SyncScope } from "@/fetchers/integration-sync/types";
 
-export function useResumeSync(param: SyncParams, linkId: string) {
+export function useResumeSync(scope: SyncScope, linkId: string) {
   const client = useQueryClient();
   return useMutation({
     mutationFn: ({
@@ -11,22 +11,11 @@ export function useResumeSync(param: SyncParams, linkId: string) {
     }: {
       token: string;
       source: "kaneo" | "provider";
-    }) => resumeSync(param, linkId, token, source),
+    }) => resumeSync(scope, linkId, token, source),
     onSuccess: async () => {
-      await client.invalidateQueries({
-        queryKey: ["integration-sync", param.projectId],
-      });
-      await client.invalidateQueries({
-        queryKey: ["integration-sync-preview", param.projectId],
-      });
-      await client.invalidateQueries({
-        queryKey: [
-          "integration-sync-review",
-          param.projectId,
-          param.provider,
-          linkId,
-        ],
-      });
+      // The sync, preview and review keys share the "integration-sync"
+      // prefix, so one invalidation covers the whole surface.
+      await client.invalidateQueries({ queryKey: ["integration-sync"] });
       await client.invalidateQueries({ queryKey: ["external-links"] });
       await client.invalidateQueries({ queryKey: ["tasks"] });
     },

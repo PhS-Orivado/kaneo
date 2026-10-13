@@ -122,7 +122,17 @@ async function replayClaimedIssueEdits() {
         sql`${externalLinkTable.resourceType} = 'issue' AND ${externalLinkTable.metadata} LIKE '%"deferredIssueEdit":%'`,
         cursor ? gt(externalLinkTable.id, cursor) : undefined,
       ),
-      with: { integration: true },
+      with: {
+        integration: {
+          columns: {
+            id: true,
+            projectId: true,
+            type: true,
+            config: true,
+            isActive: true,
+          },
+        },
+      },
       orderBy: asc(externalLinkTable.id),
       limit: 20,
     });
