@@ -3145,6 +3145,14 @@
 			"delete": "हटाएँ..."
 		},
 		"bulk": {
+			"clearSelection": "चयन साफ़ करें",
+			"selectAll": "सभी चुनें",
+			"moreActions": "और कार्रवाइयाँ",
+			"statusPlaceholder": "स्थिति बदलें…",
+			"priorityPlaceholder": "प्राथमिकता सेट करें…",
+			"assigneePlaceholder": "असाइन करें…",
+			"labelPlaceholder": "लेबल जोड़ें…",
+			"columnPlaceholder": "कॉलम में ले जाएँ…",
 			"selectedCount": "{{count}} चयनित",
 			"moveToBacklog": "बैकलॉग में ले जाएँ",
 			"moveToBacklogSuccess": "{{count}} कार्य बैकलॉग में ले जाए गए",
@@ -3175,15 +3183,7 @@
 			"actions": "कार्रवाइयाँ",
 			"searchActions": "कार्रवाइयाँ खोजें...",
 			"noActionsFound": "कोई कार्रवाई नहीं मिली।",
-			"changeStatus": "स्थिति बदलें",
-			"clearSelection": "चयन साफ़ करें",
-			"selectAll": "सभी चुनें",
-			"moreActions": "और कार्रवाइयाँ",
-			"statusPlaceholder": "स्थिति बदलें…",
-			"priorityPlaceholder": "प्राथमिकता सेट करें…",
-			"assigneePlaceholder": "असाइन करें…",
-			"labelPlaceholder": "लेबल जोड़ें…",
-			"columnPlaceholder": "कॉलम में ले जाएँ…"
+			"changeStatus": "स्थिति बदलें"
 		},
 		"editor": {
 			"table": {

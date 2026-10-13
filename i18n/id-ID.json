@@ -3096,6 +3096,14 @@
 			"delete": "Hapus..."
 		},
 		"bulk": {
+			"clearSelection": "Hapus pilihan",
+			"selectAll": "Pilih semua",
+			"moreActions": "Tindakan lainnya",
+			"statusPlaceholder": "Ubah status…",
+			"priorityPlaceholder": "Atur prioritas…",
+			"assigneePlaceholder": "Tugaskan ke…",
+			"labelPlaceholder": "Tambah label…",
+			"columnPlaceholder": "Pindahkan ke kolom…",
 			"selectedCount": "{{count}} dipilih",
 			"moveToBacklog": "Pindahkan ke Backlog",
 			"moveToBacklogSuccess": "{{count}} tugas dipindahkan ke backlog",
@@ -3125,15 +3133,7 @@
 			"actions": "Aksi",
 			"searchActions": "Cari aksi...",
 			"noActionsFound": "Tidak ada aksi ditemukan.",
-			"changeStatus": "Ubah Status",
-			"clearSelection": "Hapus pilihan",
-			"selectAll": "Pilih semua",
-			"moreActions": "Tindakan lainnya",
-			"statusPlaceholder": "Ubah status…",
-			"priorityPlaceholder": "Atur prioritas…",
-			"assigneePlaceholder": "Tugaskan ke…",
-			"labelPlaceholder": "Tambah label…",
-			"columnPlaceholder": "Pindahkan ke kolom…"
+			"changeStatus": "Ubah Status"
 		},
 		"editor": {
 			"table": {
