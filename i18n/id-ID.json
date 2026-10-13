@@ -2337,7 +2337,8 @@
 			"tokenTitle": "Token akses",
 			"webhookSecret": "Rahasia",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Seret untuk mengubah urutan tampilannya di tugas.",

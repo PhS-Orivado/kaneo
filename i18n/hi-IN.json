@@ -2379,7 +2379,8 @@
 			"tokenTitle": "एक्सेस टोकन",
 			"webhookSecret": "सीक्रेट",
 			"webhookSection": "वेबहुक",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "कार्य पर इनके दिखने का क्रम बदलने के लिए खींचें।",

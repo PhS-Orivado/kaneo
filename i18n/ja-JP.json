@@ -2337,7 +2337,8 @@
 			"tokenTitle": "アクセストークン",
 			"webhookSecret": "シークレット",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "ドラッグして、タスク上での表示順を変更します。",
