@@ -93,7 +93,13 @@ export default function CloseSprintDialog({
           </Label>
           <Select value={target} onValueChange={(value) => setTarget(String(value ?? BACKLOG_VALUE))}>
             <SelectTrigger id="close-target" className="w-full">
-              <SelectValue />
+              <SelectValue>
+                {target === BACKLOG_VALUE
+                  ? t("tasks:sprints.backlog")
+                  : futureSprints.find(
+                        (futureSprint) => futureSprint.id === target,
+                      )?.name}
+              </SelectValue>
             </SelectTrigger>
             <SelectContent>
               {futureSprints.map((futureSprint) => (

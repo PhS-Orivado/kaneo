@@ -151,7 +151,9 @@ export default function BoardSprintBanner({
                 onValueChange={(value) => setSelectedSprintId(String(value ?? ""))}
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue />
+                  <SelectValue placeholder={t("tasks:sprints.upcoming")}>
+                    {selectedSprint?.name}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {futureSprints.map((sprint) => (
