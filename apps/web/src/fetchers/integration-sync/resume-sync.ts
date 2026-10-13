@@ -1,9 +1,9 @@
 import { client } from "@kaneo/libs";
 import { HttpError } from "@/lib/http-error";
-import type { SyncScope } from "./types";
+import type { SyncParams } from "./types";
 
 export default async function resumeSync(
-  scope: SyncScope,
+  param: SyncParams,
   linkId: string,
   token: string,
   source: "kaneo" | "provider",
@@ -16,5 +16,4 @@ export default async function resumeSync(
   });
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
-}
 }

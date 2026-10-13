@@ -2,9 +2,9 @@ import { client } from "@kaneo/libs";
 
 import { HttpError } from "@/lib/http-error";
 
-// RFC 0001 WP2: deletes are keyed by the integration id. The server removes
-// the binding together with its external links; other bindings of the same
-// repository keep working.
+async function deleteGithubIntegration(projectId: string) {
+  const response = await client["github-integration"].project[
+    ":projectId"
   ].$delete({
     param: { projectId },
   });
@@ -13,7 +13,7 @@ import { HttpError } from "@/lib/http-error";
     throw await HttpError.fromResponse(response);
   }
 
-  return response.json();
+  const result = await response.json();
   return result;
 }
 

@@ -55,20 +55,6 @@ export const userTable = pgTable("user", {
 export const sessionTable = pgTable(
   "session",
   {
-  updatedAt: timestamp("updated_at", { mode: "date" })
-    .default(utcNow)
-    .$onUpdate(() => /* @__PURE__ */ new Date())
-    .notNull(),
-  isAnonymous: boolean("is_anonymous").default(false),
-  role: text("role"),
-  banned: boolean("banned").default(false),
-  banReason: text("ban_reason"),
-  banExpires: timestamp("ban_expires", { mode: "date" }),
-});
-
-export const sessionTable = pgTable(
-  "session",
-  {
     id: text("id").primaryKey(),
     expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
     token: text("token").notNull().unique(),
@@ -148,36 +134,6 @@ export const userAvatarTable = pgTable(
   },
   (table) => [index("user_avatar_userId_idx").on(table.userId)],
 );
-    data: bytea("data").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("user_avatar_userId_idx").on(table.userId)],
-);
-
-export const verificationTable = pgTable(
-  "verification",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    identifier: text("identifier").notNull(),
-    value: text("value").notNull(),
-    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("user_avatar_userId_idx").on(table.userId)],
-);
 
 export const verificationTable = pgTable(
   "verification",
@@ -191,17 +147,6 @@ export const verificationTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => /* @__PURE__ */ new Date())
-      .notNull(),
-  },
-  (table) => [index("verification_identifier_idx").on(table.identifier)],
-);
-
-export const workspaceTable = pgTable("workspace", {
-  id: text("id")
-    .$defaultFn(() => createId())
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => /* @__PURE__ */ new Date())
@@ -337,87 +282,6 @@ export const teamMemberTable = pgTable(
   {
     id: text("id").primaryKey(),
     teamId: text("team_id")
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("workspace_billing_workspaceId_idx").on(table.workspaceId)],
-);
-
-// RFC 0001 WP0 (for WP10): per-workspace plan limit overrides written by the
-// billing system. The API only reads this table; a NULL
-// max_repositories_per_project means "no workspace override; fall back to the
-// instance default (KANEO_MAX_REPOSITORIES_PER_PROJECT)".
-export const workspaceLimitTable = pgTable("workspace_limit", {
-  workspaceId: text("workspace_id")
-    .primaryKey()
-    .references(() => workspaceTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-  maxRepositoriesPerProject: integer("max_repositories_per_project"),
-  updatedAt: timestamp("updated_at", { mode: "date" })
-    .defaultNow()
-    .$onUpdate(() => new Date())
-    .notNull(),
-});
-
-export const trialGrantTable = pgTable("trial_grant", {
-  emailHash: text("email_hash").primaryKey(),
-  trialEndsAt: timestamp("trial_ends_at", { mode: "date" }).notNull(),
-  createdAt: timestamp("created_at", { mode: "date" })
-    .default(utcNow)
-    .notNull(),
-});
-
-export const billingEventTable = pgTable("billing_event", {
-  id: text("id").primaryKey(),
-  eventType: text("event_type").notNull(),
-  processedAt: timestamp("processed_at", { mode: "date" })
-    .default(utcNow)
-    .notNull(),
-});
-
-export const teamTable = pgTable(
-  "team",
-  {
-    id: text("id").primaryKey(),
-    name: text("name").notNull(),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, { onDelete: "cascade" }),
-    createdAt: timestamp("created_at").notNull(),
-    updatedAt: timestamp("updated_at").$onUpdate(
-      () => /* @__PURE__ */ new Date(),
-    ),
-  },
-  processedAt: timestamp("processed_at", { mode: "date" })
-    .default(utcNow)
-    .notNull(),
-});
-
-export const teamTable = pgTable(
-  "team",
-  {
-    id: text("id").primaryKey(),
-    name: text("name").notNull(),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, { onDelete: "cascade" }),
-    createdAt: timestamp("created_at").notNull(),
-    updatedAt: timestamp("updated_at").$onUpdate(
-      () => /* @__PURE__ */ new Date(),
-    ),
-  },
-  (table) => [index("team_workspaceId_idx").on(table.workspaceId)],
-);
-
-export const teamMemberTable = pgTable(
-  "team_member",
-  {
-    id: text("id").primaryKey(),
-    teamId: text("team_id")
       .notNull()
       .references(() => teamTable.id, { onDelete: "cascade" }),
     userId: text("user_id")
@@ -495,50 +359,6 @@ export const workspaceRoleTable = pgTable(
 export const projectTable = pgTable(
   "project",
   {
-    permission: text("permission").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("workspace_role_workspaceId_idx").on(table.workspaceId),
-    index("workspace_role_role_idx").on(table.role),
-  ],
-);
-
-export const projectTable = pgTable(
-  "project",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    slug: text("slug").notNull(),
-    icon: text("icon").default("Layout"),
-    name: text("name").notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("workspace_role_workspaceId_idx").on(table.workspaceId),
-    index("workspace_role_role_idx").on(table.role),
-  ],
-);
-
-export const projectTable = pgTable(
-  "project",
-  {
     id: text("id")
       .$defaultFn(() => createId())
       .primaryKey(),
@@ -576,25 +396,6 @@ export const projectTable = pgTable(
       table.position,
     ),
   ],
-    lastTaskNumber: integer("last_task_number").notNull().default(0),
-    defaultSprintLengthDays: integer("default_sprint_length_days")
-      .notNull()
-      .default(14),
-    position: integer("position").notNull().default(0),
-    backgroundObjectKey: text("background_object_key"),
-    backgroundMimeType: text("background_mime_type"),
-    backgroundVersion: text("background_version"),
-  },
-  (table) => [
-    index("project_background_object_key_idx")
-      .on(table.backgroundObjectKey)
-      .where(sql`${table.backgroundObjectKey} is not null`),
-    unique("project_workspace_id_id_unique").on(table.workspaceId, table.id),
-    index("project_workspaceId_position_idx").on(
-      table.workspaceId,
-      table.position,
-    ),
-  ],
 );
 
 export const workspaceMemberAccessTable = pgTable(
@@ -613,32 +414,6 @@ export const workspaceMemberAccessTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    unique("workspace_member_access_workspace_user_unique").on(
-      table.workspaceId,
-      table.userId,
-    ),
-    index("workspace_member_access_userId_idx").on(table.userId),
-  ],
-);
-
-export const workspaceMemberProjectTable = pgTable(
-  "workspace_member_project",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    workspaceId: text("workspace_id").notNull(),
-    userId: text("user_id")
-      .notNull()
-      .references(() => userTable.id, { onDelete: "cascade" }),
-    projectId: text("project_id").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -736,37 +511,6 @@ export const sprintTable = pgTable(
     // kept as a report so the carried-over work stays traceable.
     carryOverTasks: jsonb("carry_over_tasks").$type<
       { id: string; title: string }[]
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("column_projectId_idx").on(table.projectId)],
-);
-
-// Sprints iterate a project. Exactly one sprint per project may be active;
-// closed sprints are immutable and keep their finished tasks as history.
-export const sprintTable = pgTable(
-  "sprint",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    projectId: text("project_id")
-      .notNull()
-      .references(() => projectTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    name: text("name").notNull(),
-    goal: text("goal"),
-    status: text("status").notNull().default("future"),
-    startDate: timestamp("start_date", { mode: "date" }),
-    endDate: timestamp("end_date", { mode: "date" }),
-    // Snapshot of the unfinished tasks moved out when the sprint was closed;
-    // kept as a report so the carried-over work stays traceable.
-    carryOverTasks: jsonb("carry_over_tasks").$type<
-      { id: string; title: string }[]
     >(),
     position: integer("position").notNull().default(0),
     createdAt: timestamp("created_at", { mode: "date" })
@@ -823,22 +567,6 @@ export const workflowRuleTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-        onUpdate: "cascade",
-      },
-    ),
-    eventType: text("event_type").notNull(),
-    columnId: text("column_id")
-      .notNull()
-      .references(() => columnTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -908,35 +636,12 @@ export const taskTable = pgTable(
       onUpdate: "cascade",
     }),
     sprintId: text("sprint_id").references(() => sprintTable.id, {
-    }),
-    sprintId: text("sprint_id").references(() => sprintTable.id, {
       onDelete: "set null",
       onUpdate: "cascade",
     }),
     type: text("type"),
     priority: text("priority").default("low").notNull(),
     startDate: timestamp("start_date", { mode: "date" }),
-    dueDate: timestamp("due_date", { mode: "date" }),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("task_projectId_idx").on(table.projectId),
-    index("task_project_scheduled_id_idx")
-      .on(table.projectId, table.id)
-      .where(
-        sql`${table.startDate} is not null or ${table.dueDate} is not null`,
-      ),
-    index("task_dueDate_idx").on(table.dueDate),
-    index("task_assigneeId_idx").on(table.userId),
-    index("task_columnId_idx").on(table.columnId),
-    index("task_sprintId_idx").on(table.sprintId),
-    unique("task_project_number_unique").on(table.projectId, table.number),
     dueDate: timestamp("due_date", { mode: "date" }),
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
@@ -1004,26 +709,6 @@ export const jobLeaseTable = pgTable("job_lease", {
   owner: text("owner").notNull(),
   expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
 });
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("billing_reminder_sent_workspaceId_idx").on(table.workspaceId),
-    index("billing_reminder_sent_userId_idx").on(table.userId),
-    unique("billing_reminder_sent_user_type_unique").on(
-      table.userId,
-      table.reminderType,
-    ),
-  ],
-);
-
-export const jobLeaseTable = pgTable("job_lease", {
-  name: text("name").primaryKey(),
-  owner: text("owner").notNull(),
-  expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-});
 
 export const taskReminderSentTable = pgTable(
   "task_reminder_sent",
@@ -1041,34 +726,6 @@ export const taskReminderSentTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("task_reminder_sent_taskId_idx").on(table.taskId),
-    unique("task_reminder_sent_task_type_unique").on(
-      table.taskId,
-      table.reminderType,
-    ),
-  ],
-);
-
-export const timeEntryTable = pgTable(
-  "time_entry",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    taskId: text("task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    userId: text("user_id").references(() => userTable.id, {
-      onDelete: "set null",
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -1133,52 +790,6 @@ export const activityTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("time_entry_taskId_idx").on(table.taskId),
-    index("time_entry_userId_idx").on(table.userId),
-  ],
-);
-
-export const activityTable = pgTable(
-  "activity",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    taskId: text("task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    type: text("type").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-    userId: text("user_id").references(() => userTable.id, {
-      onDelete: "set null",
-      onUpdate: "cascade",
-    }),
-    content: text("content"),
-    eventData: jsonb("event_data"),
-    externalUserName: text("external_user_name"),
-    externalUserAvatar: text("external_user_avatar"),
-    externalSource: text("external_source"),
-    externalUrl: text("external_url"),
-  },
-  (table) => [
-    index("activity_task_id_idx").on(table.taskId),
-    index("activity_userId_idx").on(table.userId),
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -1271,60 +882,6 @@ export const labelTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-    deletionStartedAt: timestamp("deletion_started_at", { mode: "date" }),
-    taskId: text("task_id").references(() => taskTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    workspaceId: text("workspace_id").references(() => workspaceTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-  },
-  (table) => [
-    index("label_task_id_idx").on(table.taskId),
-    index("label_workspace_id_idx").on(table.workspaceId),
-    index("label_workspace_cascade_idx")
-      .on(table.workspaceId, table.name, table.createdAt, table.id)
-      .where(sql`${table.taskId} is not null`),
-    unique("label_task_name_unique").on(table.taskId, table.name),
-    uniqueIndex("label_workspace_name_unique")
-      .on(table.workspaceId, table.name)
-      .where(sql`${table.taskId} is null`),
-  ],
-);
-
-export const notificationTable = pgTable(
-  "notification",
-  {
-    id: text("id")
-    color: text("color").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-    deletionStartedAt: timestamp("deletion_started_at", { mode: "date" }),
-    taskId: text("task_id").references(() => taskTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    workspaceId: text("workspace_id").references(() => workspaceTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-  },
-  (table) => [
-    index("label_task_id_idx").on(table.taskId),
-    index("label_workspace_id_idx").on(table.workspaceId),
-    index("label_workspace_cascade_idx")
-      .on(table.workspaceId, table.name, table.createdAt, table.id)
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -1514,150 +1071,6 @@ export const userNotificationWorkspaceProjectTable = pgTable(
     foreignKey({
       columns: [table.workspaceId, table.projectId],
       foreignColumns: [projectTable.workspaceId, projectTable.id],
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-);
-
-export const userNotificationWorkspaceRuleTable = pgTable(
-  "user_notification_workspace_rule",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    userId: text("user_id")
-      .notNull()
-      .references(() => userTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    isActive: boolean("is_active").default(true).notNull(),
-    emailEnabled: boolean("email_enabled").default(false).notNull(),
-    ntfyEnabled: boolean("ntfy_enabled").default(false).notNull(),
-    gotifyEnabled: boolean("gotify_enabled").default(false).notNull(),
-    webhookEnabled: boolean("webhook_enabled").default(false).notNull(),
-    projectMode: text("project_mode").default("all").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("user_notification_workspace_rule_userId_idx").on(table.userId),
-    index("user_notification_workspace_rule_workspaceId_idx").on(
-      table.workspaceId,
-    ),
-    unique("user_notification_workspace_rule_user_workspace_unique").on(
-      table.userId,
-      table.workspaceId,
-    ),
-    unique("user_notification_workspace_rule_workspace_id_id_unique").on(
-      table.workspaceId,
-      table.id,
-    ),
-  ],
-);
-
-export const userNotificationWorkspaceProjectTable = pgTable(
-  "user_notification_workspace_project",
-  {
-    id: text("id")
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("user_notification_workspace_rule_userId_idx").on(table.userId),
-    index("user_notification_workspace_rule_workspaceId_idx").on(
-      table.workspaceId,
-    ),
-    unique("user_notification_workspace_rule_user_workspace_unique").on(
-      table.userId,
-      table.workspaceId,
-    ),
-    unique("user_notification_workspace_rule_workspace_id_id_unique").on(
-      table.workspaceId,
-      table.id,
-    ),
-  ],
-);
-
-export const userNotificationWorkspaceProjectTable = pgTable(
-  "user_notification_workspace_project",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    workspaceRuleId: text("workspace_rule_id").notNull(),
-    projectId: text("project_id").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    foreignKey({
-      columns: [table.workspaceId, table.workspaceRuleId],
-      foreignColumns: [
-        userNotificationWorkspaceRuleTable.workspaceId,
-        userNotificationWorkspaceRuleTable.id,
-      ],
-    })
-      .onDelete("cascade")
-      .onUpdate("cascade"),
-    foreignKey({
-      columns: [table.workspaceId, table.projectId],
-      foreignColumns: [projectTable.workspaceId, projectTable.id],
-    })
-      .onDelete("cascade")
-      .onUpdate("cascade"),
-    index("user_notification_workspace_project_ruleId_idx").on(
-      table.workspaceRuleId,
-    ),
-    index("user_notification_workspace_project_projectId_idx").on(
-      table.projectId,
-    ),
-    index("user_notification_workspace_project_workspaceId_projectId_idx").on(
-      table.workspaceId,
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    foreignKey({
-      columns: [table.workspaceId, table.workspaceRuleId],
-      foreignColumns: [
-        userNotificationWorkspaceRuleTable.workspaceId,
-        userNotificationWorkspaceRuleTable.id,
-      ],
-    })
-      .onDelete("cascade")
-      .onUpdate("cascade"),
-    foreignKey({
-      columns: [table.workspaceId, table.projectId],
-      foreignColumns: [projectTable.workspaceId, projectTable.id],
     })
       .onDelete("cascade")
       .onUpdate("cascade"),
@@ -1682,29 +1095,8 @@ export const userNotificationWorkspaceProjectTable = pgTable(
   ],
 );
 
-// Legacy table: the GitHub plugin migration drops it at startup on existing
-// installs, so SQL migrations must not touch it.
-export const githubIntegrationTable = pgTable("github_integration", {
-  id: text("id")
-    .$defaultFn(() => createId())
-    .primaryKey(),
-  projectId: text("project_id")
-    .notNull()
-    .references(() => projectTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    })
-    .unique(),
-  repositoryOwner: text("repository_owner").notNull(),
-  repositoryName: text("repository_name").notNull(),
-  installationId: integer("installation_id"),
-  isActive: boolean("is_active").default(true),
-  createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
-  updatedAt: timestamp("updated_at", { mode: "date" })
-    .defaultNow()
-    .$onUpdate(() => new Date())
-    .notNull(),
-});
+// RFC 0001 (cleanup): the legacy github_integration table is retired from
+// the schema; the startup migration reads and drops it through raw SQL.
 
 export const integrationTable = pgTable(
   "integration",
@@ -1721,33 +1113,20 @@ export const integrationTable = pgTable(
     type: text("type").notNull(),
     config: text("config").notNull(),
     // RFC 0001: repository identity for multi-repository projects. The key
+    // is provider-scoped (github:<repositoryId>, gitea:<baseUrl>/<owner>/<name>,
+    // gitlab:<baseUrl>/<projectPath>); owner/name/id are denormalized from the
+    // config so list views do not parse JSON.
+    repositoryKey: text("repository_key"),
+    repositoryOwner: text("repository_owner"),
+    repositoryName: text("repository_name"),
+    repositoryId: integer("repository_id"),
+    // RFC 0001: baseUrl for self-hosted Gitea/GitLab instances; null for
+    // github.com and default installs.
+    baseUrl: text("base_url"),
     isActive: boolean("is_active").default(true),
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("integration_projectId_idx").on(table.projectId),
-    index("integration_type_idx").on(table.type),
-    index("integration_type_repository_key_idx").on(
-      table.type,
-      table.repositoryKey,
-    ),
-    // RFC 0001 WP0: one binding per repository per project. Cross-project
-    // repository sharing is allowed, so there is deliberately no instance-wide
-    // unique. Legacy rows have a NULL repository_key; unique constraints treat
-    // NULLs as distinct, so they coexist until backfill.
-    unique("integration_project_type_repo_unique").on(
-      table.projectId,
-      table.type,
-      table.repositoryKey,
-    ),
-    // RFC 0001 WP0: preserves the one-row-per-project guarantee for
-    // integrations without repository identity (Slack, Discord, Mattermost,
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -1794,43 +1173,6 @@ export const githubImportTable = pgTable("github_import", {
     .default(utcNow)
     .notNull()
     .$onUpdate(() => new Date()),
-});
-
-export const importRunTable = pgTable(
-  "import_run",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    userId: text("user_id").references(() => userTable.id, {
-      onDelete: "set null",
-      onUpdate: "cascade",
-    }),
-    source: text("source").notNull(),
-    status: text("status").notNull().default("running"),
-    includeComments: boolean("include_comments").notNull().default(true),
-    message: text("message"),
-    projects: jsonb("projects").$type<ImportRunProject[]>().notNull(),
-    error: text("error"),
-    heartbeatAt: timestamp("heartbeat_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    finishedAt: timestamp("finished_at", { mode: "date" }),
-  },
-  (table) => [
-    index("import_run_workspace_created_idx").on(
-      table.workspaceId,
-      table.createdAt,
-    ),
 });
 
 export const importRunTable = pgTable(
@@ -1919,27 +1261,6 @@ export const externalLinkTable = pgTable(
 export const commentTable = pgTable(
   "comment",
   {
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("external_link_taskId_idx").on(table.taskId),
-    index("external_link_integrationId_idx").on(table.integrationId),
-    index("external_link_externalId_idx").on(table.externalId),
-    index("external_link_resourceType_idx").on(table.resourceType),
-    index("external_link_deferred_issue_idx")
-      .on(table.id)
-      .where(
-        sql`${table.resourceType} = 'issue' AND ${table.metadata} LIKE '%"deferredIssueEdit":%'`,
-      ),
-  ],
-);
-
-export const commentTable = pgTable(
-  "comment",
-  {
     id: text("id")
       .$defaultFn(() => createId())
       .primaryKey(),
@@ -1959,37 +1280,6 @@ export const commentTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("comment_task_idx").on(table.taskId),
-    index("comment_user_idx").on(table.userId),
-  ],
-);
-
-export const taskRelationTable = pgTable(
-  "task_relation",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    sourceTaskId: text("source_task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    targetTaskId: text("target_task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    relationType: text("relation_type").notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -2117,84 +1407,6 @@ export const mcpOauthStateTable = pgTable(
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    uniqueIndex("mcp_oauth_state_kind_key_uidx").on(table.kind, table.key),
-    index("mcp_oauth_state_expiresAt_idx").on(table.expiresAt),
-  ],
-);
-
-// Auth-schema compatible aliases in schema.ts
-export const user = userTable;
-export const session = sessionTable;
-export const account = accountTable;
-export const verification = verificationTable;
-export const workspace = workspaceTable;
-export const team = teamTable;
-export const teamMember = teamMemberTable;
-export const workspace_member = workspaceUserTable;
-export const invitation = invitationTable;
-export const organizationRole = workspaceRoleTable;
-export const apikey = apikeyTable;
-export const deviceCode = deviceCodeTable;
-
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-    status: text("status").notNull(),
-    lastPolledAt: timestamp("last_polled_at", { mode: "date" }),
-    pollingInterval: integer("polling_interval"),
-    clientId: text("client_id"),
-    scope: text("scope"),
-  },
-  (table) => [
-    uniqueIndex("device_code_device_code_uidx").on(table.deviceCode),
-    uniqueIndex("device_code_user_code_uidx").on(table.userCode),
-    index("device_code_user_id_idx").on(table.userId),
-  ],
-);
-
-export const mcpOauthStateTable = pgTable(
-  "mcp_oauth_state",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    kind: text("kind").notNull(),
-    key: text("key").notNull(),
-    payload: jsonb("payload").notNull(),
-    expiresAt: timestamp("expires_at", { mode: "date" }).notNull(),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    uniqueIndex("mcp_oauth_state_kind_key_uidx").on(table.kind, table.key),
-    index("mcp_oauth_state_expiresAt_idx").on(table.expiresAt),
-  ],
-);
-
-// Auth-schema compatible aliases in schema.ts
-export const user = userTable;
-export const session = sessionTable;
-export const account = accountTable;
-export const verification = verificationTable;
-export const workspace = workspaceTable;
-export const team = teamTable;
-export const teamMember = teamMemberTable;
-export const workspace_member = workspaceUserTable;
-export const invitation = invitationTable;
-export const organizationRole = workspaceRoleTable;
     updatedAt: timestamp("updated_at", { mode: "date" })
       .default(utcNow)
       .$onUpdate(() => new Date())
@@ -2383,90 +1595,4 @@ export const dataMigrationTable = pgTable("data_migration", {
   completedAt: timestamp("completed_at", { mode: "date" })
     .default(utcNow)
     .notNull(),
-});
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [index("custom_field_def_projectId_idx").on(table.projectId)],
-);
-
-export const customFieldValueTable = pgTable(
-  "custom_field_value",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    taskId: text("task_id")
-      .notNull()
-      .references(() => taskTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    fieldId: text("field_id")
-      .notNull()
-      .references(() => customFieldDefinitionTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    value: text("value"),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("custom_field_value_taskId_idx").on(table.taskId),
-    index("custom_field_value_fieldId_idx").on(table.fieldId),
-    unique("custom_field_value_task_field_unique").on(
-      table.taskId,
-      table.fieldId,
-    ),
-  ],
-);
-
-// These records outlive their original owner so failed object deletion can retry.
-export const storageCleanupTable = pgTable("storage_cleanup", {
-  objectKey: text("object_key").primaryKey(),
-  lastAttemptAt: timestamp("last_attempt_at", { mode: "date" }),
-  createdAt: timestamp("created_at", { mode: "date" })
-    .default(utcNow)
-    updatedAt: timestamp("updated_at", { mode: "date" })
-      .default(utcNow)
-      .$onUpdate(() => new Date())
-      .notNull(),
-  },
-  (table) => [
-    index("custom_field_value_taskId_idx").on(table.taskId),
-    index("custom_field_value_fieldId_idx").on(table.fieldId),
-    unique("custom_field_value_task_field_unique").on(
-      table.taskId,
-      table.fieldId,
-    ),
-  ],
-);
-
-// These records outlive their original owner so failed object deletion can retry.
-export const storageCleanupTable = pgTable("storage_cleanup", {
-  objectKey: text("object_key").primaryKey(),
-  lastAttemptAt: timestamp("last_attempt_at", { mode: "date" }),
-  createdAt: timestamp("created_at", { mode: "date" })
-    .default(utcNow)
-    .notNull(),
-});
-
-export const dataMigrationTable = pgTable("data_migration", {
-  id: text("id").primaryKey(),
-  completedAt: timestamp("completed_at", { mode: "date" })
-    .default(utcNow)
-    .notNull(),
-});
-  completedAt: timestamp("completed_at", { mode: "date" })
-    .default(utcNow)
-    .notNull(),
-});
 });

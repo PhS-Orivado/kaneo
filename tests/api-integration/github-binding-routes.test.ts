@@ -184,104 +184,6 @@ describe("GitHub binding HTTP and webhook tenant boundaries", () => {
       await db.insert(schema.integrationTable).values({
         projectId: tenant.project.id,
         type: "github",
-        // RFC 0001 WP2: webhook fan-out resolves bindings by repository_key.
-        ...(config.repositoryId
-          ? { repositoryKey: `github:${config.repositoryId}` }
-          : {}),
-        isActive: true,
-        config: JSON.stringify({
-          repositoryOwner: "owner",
-          repositoryName: "repo",
-          ...config,
-        }),
-      });
-    }
-    await handleLabelCreated({
-      action: "created",
-      label: { name: "Provider label", color: "123456" },
-      repository: { id: 20, owner: { login: "owner" }, name: "repo" },
-      installation: { id: 10 },
-    });
-    const labels = await db.query.labelTable.findMany();
-    expect(labels).toHaveLength(1);
-    expect(labels[0]).toMatchObject({
-        });
-        expect(response.status).toBe(status);
-      }
-    }
-    expect(m.installation).not.toHaveBeenCalled();
-  });
-
-  it("requires a completed OAuth account and permits independently authorized tenant bindings", async () => {
-    const owners = [await fixture(), await fixture()];
-    const { app } = createApp();
-    const connect = (projectId: string) =>
-      app.request(calls(projectId)[0][0], {
-        ...calls(projectId)[0][1],
-        headers: { "content-type": "application/json" },
-      });
-    mockAuthenticatedSession(owners[0].user);
-    expect((await connect(owners[0].project.id)).status).toBe(403);
-    expect(m.installation).not.toHaveBeenCalled();
-    for (const owner of owners) {
-      await db.insert(schema.accountTable).values({
-        id: `account-${owner.user.id}`,
-        userId: owner.user.id,
-        providerId: "github",
-        accountId: "30",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      });
-      mockAuthenticatedSession(owner.user);
-      expect((await connect(owner.project.id)).status).toBe(200);
-    }
-    const bindings = await db.query.integrationTable.findMany();
-    expect(bindings).toHaveLength(2);
-    for (const binding of bindings)
-      expect(JSON.parse(binding.config)).toMatchObject({
-        repositoryId: 20,
-        installationId: 10,
-        verifiedGithubAccountId: "30",
-      });
-    m.permission.mockResolvedValue({ data: { permission: "read" } });
-    const forbidden = await connect(owners[1].project.id);
-    expect(forbidden.status).toBe(403);
-    expect(await forbidden.text()).not.toContain(owners[0].workspace.id);
-  });
-
-  it("an actual label webhook mutates only a verified matching active tenant", async () => {
-    const configs = [
-      {
-        repositoryId: 20,
-        installationId: 10,
-        verifiedGithubAccountId: "30",
-        verifiedByUserId: "operator",
-      },
-      { installationId: 10 },
-      {
-        repositoryId: 21,
-        installationId: 10,
-        verifiedGithubAccountId: "30",
-        verifiedByUserId: "operator",
-      },
-      {
-        repositoryId: 20,
-        installationId: 11,
-        verifiedGithubAccountId: "30",
-        verifiedByUserId: "operator",
-      },
-    ];
-    const tenants = [];
-    for (const config of configs) {
-      const tenant = await fixture();
-      tenants.push(tenant);
-      await db.insert(schema.integrationTable).values({
-        projectId: tenant.project.id,
-        type: "github",
-        // RFC 0001 WP2: webhook fan-out resolves bindings by repository_key.
-        ...(config.repositoryId
-          ? { repositoryKey: `github:${config.repositoryId}` }
-          : {}),
         isActive: true,
         config: JSON.stringify({
           repositoryOwner: "owner",
@@ -309,5 +211,4 @@ describe("GitHub binding HTTP and webhook tenant boundaries", () => {
     });
     expect(await db.query.labelTable.findMany()).toHaveLength(1);
   });
-});
 });

@@ -26,10 +26,8 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
     taskId: string;
     linkId: string;
   } | null>(null);
-  // RFC 0001 WP5/WP7: the section is addressed by the repository binding the
-  // row represents, never by the project, so sibling bindings never share
-  // rules, paused links or a resume flow by accident.
-  const query = useSyncRules(scope, pages.at(-1));
+  const param = { projectId, provider };
+  const query = useSyncRules(param, pages.at(-1));
   const data = query.data;
   const canEdit = advanced && canManage;
   const label = t("settings:syncRules.title");
@@ -94,10 +92,6 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
         </IntegrationCheckLine>
       )}
       {!advanced && canManage ? (
-          {t("settings:syncRules.missingLabels")}
-        </IntegrationCheckLine>
-      )}
-      {!advanced && canManage ? (
         <p className="text-xs text-muted-foreground">
           {t("settings:syncRules.advancedHint")}
         </p>
@@ -106,18 +100,6 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
         <SyncRulesEditor
           key={`${projectId}:${provider}`}
           param={param}
-          saved={data}
-          onDone={() => setEditing(false)}
-        />
-      ) : null}
-      {canEdit && editing ? (
-        <SyncRulesEditor
-          key={
-            scope.kind === "binding"
-              ? scope.integrationId
-              : `${scope.projectId}:${scope.provider}`
-          }
-          scope={scope}
           saved={data}
           onDone={() => setEditing(false)}
         />
@@ -144,7 +126,7 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
       )}
       {reviewTask && (
         <ResumeSyncDialog
-          scope={scope}
+          param={param}
           linkId={reviewTask.linkId}
           taskId={reviewTask.taskId}
           onClose={() => setReviewTask(null)}
@@ -152,5 +134,4 @@ export function SyncRulesSection({ projectId, provider }: SyncParams) {
       )}
     </IntegrationPanelSection>
   );
-}
 }

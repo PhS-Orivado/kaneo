@@ -1,9 +1,9 @@
 import { client } from "@kaneo/libs";
 import { HttpError } from "@/lib/http-error";
-import type { SyncRules, SyncScope } from "./types";
+import type { SyncParams, SyncRules } from "./types";
 
 export default async function previewSyncRules(
-  scope: SyncScope,
+  param: SyncParams,
   rules: SyncRules,
 ) {
   const response = await client["integration-sync"].project[":projectId"][
@@ -11,5 +11,4 @@ export default async function previewSyncRules(
   ].preview.$post({ param, json: { rules } });
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
-}
 }

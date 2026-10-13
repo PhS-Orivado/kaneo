@@ -1,12 +1,11 @@
 import { Webhook } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { DiscordIcon } from "@/components/icons/discord-icon";
-import { MatrixIcon } from "@/components/icons/matrix-icon";
 import { GiteaIcon } from "@/components/icons/gitea-icon";
 import { GithubIcon } from "@/components/icons/github-icon";
 import { GitlabIcon } from "@/components/icons/gitlab-icon";
-import { JiraIcon } from "@/components/icons/jira-icon";
 import { MattermostIcon } from "@/components/icons/mattermost-icon";
+import { SlackIcon } from "@/components/icons/slack-icon";
 import { TelegramIcon } from "@/components/icons/telegram-icon";
 import { DiscordIntegrationSettings } from "@/components/project/discord-integration-settings";
 import { GenericWebhookIntegrationSettings } from "@/components/project/generic-webhook-integration-settings";
@@ -15,20 +14,17 @@ import { GitHubIntegrationSettings } from "@/components/project/github-integrati
 import { GitlabIntegrationSettings } from "@/components/project/gitlab-integration/gitlab-integration-settings";
 import { MattermostIntegrationSettings } from "@/components/project/mattermost-integration-settings";
 import { SlackIntegrationSettings } from "@/components/project/slack-integration-settings";
-import { JiraIntegrationSettings } from "@/components/project/jira-integration-settings";
+import { TelegramIntegrationSettings } from "@/components/project/telegram-integration-settings";
 
 export type IntegrationId =
   | "github"
   | "gitea"
   | "gitlab"
-  | "jira"
   | "slack"
   | "discord"
   | "mattermost"
-  | "matrix"
-  | "mattermost"
-  | "matrix"
   | "telegram"
+  | "webhook";
 
 export type IntegrationDefinition = {
   id: IntegrationId;
@@ -69,15 +65,6 @@ export const INTEGRATIONS: IntegrationDefinition[] = [
     Settings: GitlabIntegrationSettings,
   },
   {
-    id: "jira",
-    category: "code",
-    name: "Jira",
-    descriptionKey: "settings:projectIntegrations.jiraSectionSubtitle",
-    icon: JiraIcon,
-    iconClassName: "text-[#0052CC] dark:text-[#2684FF]",
-    Settings: JiraIntegrationSettings,
-  },
-  {
     id: "slack",
     category: "chat",
     name: "Slack",
@@ -103,15 +90,6 @@ export const INTEGRATIONS: IntegrationDefinition[] = [
     icon: MattermostIcon,
     iconClassName: "text-[#0058CC] dark:text-[#5C9DFF]",
     Settings: MattermostIntegrationSettings,
-  },
-  {
-    id: "matrix",
-    category: "chat",
-    name: "Matrix",
-    descriptionKey: "settings:projectIntegrations.matrixSectionSubtitle",
-    icon: MatrixIcon,
-    iconClassName: "text-foreground",
-    Settings: MatrixIntegrationSettings,
   },
   {
     id: "telegram",

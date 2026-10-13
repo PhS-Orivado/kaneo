@@ -1,6 +1,6 @@
 ---
 title: "Connect a GitHub repository"
-description: "Add the app credentials, connect repositories to a project, and verify synchronization."
+description: "Add the app credentials, connect a project, and verify synchronization."
 ---
 
 First [create and install a GitHub App](/core/integrations/github/setup). GitHub sign-in is separate and uses [OAuth settings](/core/social-providers/github).
@@ -26,7 +26,7 @@ docker compose up -d --force-recreate kaneo
 
 For Kubernetes, pass the same values through a Secret using your deployment's existing secret configuration. Do not create a second API deployment just for this integration.
 
-## Connect the first repository
+## Connect the project
 
 1. Open **Settings → Projects**, select the project, then open **Integrations** and select **Connect** next to GitHub.
 2. Link your GitHub account if Kaneo asks for it. Kaneo uses it to confirm that you administer the repository.
@@ -36,30 +36,7 @@ For Kubernetes, pass the same values through a Secret using your deployment's ex
 
 Use a test repository for the first check, since synchronization creates real issues and comments. Review the event-to-column mappings under **Workflow → Automations**.
 
-## Add more repositories
-
-A project is not limited to one GitHub repository. Select **Add repository** to open the repository browser and connect further repositories available to your installed app. A project can also hold Gitea and GitLab bindings alongside GitHub bindings.
-
-The browser marks repositories that are already linked in the current project and prevents selecting them twice. A repository that is connected to a different project can still be added; see cross-project sharing below.
-
-## The repository list
-
-Every connected repository appears as a row in the GitHub integration list, together with the project's current binding usage, for example `3 / 5`. Each row represents one repository binding with its own settings:
-
-- **Settings** opens the binding details, including the toggle that links new issues back to their Kaneo task with a comment.
-- **Sync rules** restricts which tasks synchronize by label, for this binding only.
-- **Workflow rules** maps branch pushes and pull request events to columns, either type-wide or for this repository only.
-- **Import issues** starts or resumes an import for this repository.
-
-1. Open **Settings → Projects**, select the project, then open **Integrations** and select **Connect** next to GitHub.
-2. Link your GitHub account if Kaneo asks for it. Kaneo uses it to confirm that you administer the repository.
-3. Type the repository as `owner/name`, or select **Browse** and search the repositories your installed app can reach. Kaneo checks the installation as soon as you pick one.
-4. Select **Connect repository**.
-5. Create a test task and check that its GitHub issue appears.
-
-Use a test repository for the first check, since synchronization creates real issues and comments. Review the event-to-column mappings under **Workflow → Automations**.
-
-## Add more repositories
+### Changing the connected repository
 
 Disconnect the existing integration before connecting a different repository. This preserves local tasks but removes their old external links and any unfinished import progress. Reconnecting the same verified repository, including after a rename or reinstall, preserves its links and project preferences. Legacy integrations without a verified numeric identity can be reverified for the same repository name; review their existing links before enabling synchronization.
 
@@ -95,7 +72,7 @@ Test branch-based workflow:
 7. Verify the task moves to "done"
 
 <Info>
-Default branch pattern is `{slug}-{number}`. You can customize this in the repository binding's workflow rules.
+Default branch pattern is `{slug}-{number}`. You can customize this in project settings.
 </Info>
 </Step>
 
@@ -127,8 +104,7 @@ Test both directions:
 
 ### Branch Naming Patterns
 
-
-Configure how Kaneo matches branches to tasks in each repository binding's workflow rules:
+Configure how Kaneo matches branches to tasks in your project's GitHub integration settings:
 
 **Predefined Patterns:**
 - `{slug}-{number}` (default) - e.g., `proj-123`
@@ -192,7 +168,7 @@ If you need to connect repositories from multiple GitHub organizations:
 
 1. Install your GitHub App on each organization
 2. Grant appropriate permissions for each organization
-3. Each Kaneo project can connect multiple repositories where your app is installed, and one repository can be shared by several projects
+3. Each Kaneo project can connect to any repository where your app is installed
 
 ---
 
@@ -201,38 +177,9 @@ If you need to connect repositories from multiple GitHub organizations:
 ## Import existing issues
 
 Select **Import issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
-
-Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
-
-Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
-
-If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the binding if its repository verification no longer succeeds. Disconnecting the binding also removes its saved import progress; already imported tasks remain.
-2. Grant appropriate permissions for each organization
-3. Each Kaneo project can connect multiple repositories where your app is installed, and one repository can be shared by several projects
-
----
-
-**Having issues?** Check our [troubleshooting guide](/core/integrations/github/troubleshooting) for common problems and solutions.
-
-## Import existing issues
-
-Select **Import issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
-
-Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
-
-Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
-
-If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the binding if its repository verification no longer succeeds. Disconnecting the binding also removes its saved import progress; already imported tasks remain.
-
-Select **Import issues** in the project's GitHub integration settings to import open issues and their labels and comments. Existing linked tasks are updated; matching open pull requests are linked to their tasks. Bot comments are excluded.
-
-Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to the repository's row and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
-
-Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
-
 
 Large imports run in small, sequential steps. Keep the page open until the completion message appears. If the connection fails or you close the page, the saved progress remains available: return to these settings and select **Resume import**. The completion message lists created, updated and skipped issues. A skipped issue may have lost its source or linked task during the import, or have a legacy link to another project.
 
 Each run uses its start time as a cutoff for newly created issues, pull requests and comments. Label and comment counts are bounded by the first page observed for each issue, so additions during an import may require a new import after the current run completes. GitHub can change during a run; this is not an exact point-in-time snapshot. Reimporting does not duplicate already linked tasks or comments.
 
-If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the binding if its repository verification no longer succeeds. Disconnecting the binding also removes its saved import progress; already imported tasks remain.
+If GitHub is unavailable or rate limits requests, wait before resuming. Reconnect the integration if its repository verification no longer succeeds. Unlinking the integration also removes saved import progress; already imported tasks remain.

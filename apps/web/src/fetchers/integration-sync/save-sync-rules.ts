@@ -1,9 +1,9 @@
 import { client } from "@kaneo/libs";
 import { HttpError } from "@/lib/http-error";
-import type { SyncRules, SyncScope } from "./types";
+import type { SyncParams, SyncRules } from "./types";
 
 export default async function saveSyncRules(
-  scope: SyncScope,
+  param: SyncParams,
   rules: SyncRules,
   previewToken: string,
 ) {
@@ -12,5 +12,4 @@ export default async function saveSyncRules(
   ].$patch({ param, json: { rules, previewToken } });
   if (!response.ok) throw await HttpError.fromResponse(response);
   return response.json();
-}
 }

@@ -10,17 +10,7 @@ export function useUpsertWorkflowRule() {
       data,
     }: {
       projectId: string;
-      data: {
-        integrationType: string;
-        integrationId?: string;
-        eventType: string;
-        columnId: string;
-      };
-    }) => upsertWorkflowRule(projectId, data),
-    onSuccess: (_, variables) =>
-      queryClient.invalidateQueries({
-        queryKey: ["workflow-rules", variables.projectId],
-      }),
+      data: { integrationType: string; eventType: string; columnId: string };
     }) => upsertWorkflowRule(projectId, data),
     onSuccess: (_, variables) =>
       queryClient.invalidateQueries({

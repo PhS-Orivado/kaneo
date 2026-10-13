@@ -2,7 +2,7 @@ import { client } from "@kaneo/libs";
 
 import { HttpError } from "@/lib/http-error";
 
-export type ImportGiteaIssuesRequest = InferRequestType<
+async function importGiteaIssues(projectId: string) {
   const response = await client["gitea-integration"]["import-issues"].$post({
     json: { projectId },
   });

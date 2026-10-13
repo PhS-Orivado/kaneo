@@ -3,18 +3,14 @@ import type { InferRequestType } from "hono";
 import { HttpError } from "@/lib/http-error";
 
 export type UpdateGithubIntegrationRequest = InferRequestType<
-  (typeof client)["github-integration"]["integration"][":integrationId"]["$patch"]
+  (typeof client)["github-integration"]["project"][":projectId"]["$patch"]
 >["json"];
 
-// RFC 0001 WP2/WP7: updates are keyed by the integration id of the binding
-
-// RFC 0001 WP2/WP7: updates are keyed by the integration id of the binding
-// the row represents; omitted fields keep their current value.
 async function updateGithubIntegration(
   projectId: string,
   json: UpdateGithubIntegrationRequest,
 ) {
-  const response = await client["github-integration"].integration[
+  const response = await client["github-integration"].project[
     ":projectId"
   ].$patch({
     param: { projectId },

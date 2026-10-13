@@ -3,16 +3,14 @@ import type { InferRequestType } from "hono";
 import { HttpError } from "@/lib/http-error";
 
 export type UpdateGitlabIntegrationRequest = InferRequestType<
-  (typeof client)["gitlab-integration"]["integration"][":integrationId"]["$patch"]
+  (typeof client)["gitlab-integration"]["project"][":projectId"]["$patch"]
 >["json"];
 
-// RFC 0001 WP4/WP7: updates are keyed by the integration id of the binding
-// the row represents; omitted fields keep their current value.
 async function updateGitlabIntegration(
   projectId: string,
   json: UpdateGitlabIntegrationRequest,
 ) {
-  const response = await client["gitlab-integration"].integration[
+  const response = await client["gitlab-integration"].project[
     ":projectId"
   ].$patch({
     param: { projectId },

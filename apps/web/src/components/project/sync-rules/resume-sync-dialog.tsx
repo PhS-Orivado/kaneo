@@ -10,31 +10,24 @@ import {
   DialogPopup,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { SyncScope } from "@/fetchers/integration-sync/types";
+import type { SyncParams } from "@/fetchers/integration-sync/types";
 import { useResumeSync } from "@/hooks/mutations/integration-sync/use-resume-sync";
 import { useResumePreview } from "@/hooks/queries/integration-sync/use-resume-preview";
 
 export function ResumeSyncDialog({
-  scope,
+  param,
   linkId,
   taskId,
   onClose,
 }: {
-  scope: SyncScope;
-export function ResumeSyncDialog({
-  scope,
-  linkId,
-  taskId,
-  onClose,
-}: {
-  scope: SyncScope;
+  param: SyncParams;
   linkId: string;
   taskId: string;
   onClose: () => void;
 }) {
   const { t } = useTranslation();
-  const preview = useResumePreview(scope, linkId, taskId);
-  const resume = useResumeSync(scope, linkId);
+  const preview = useResumePreview(param, linkId, taskId);
+  const resume = useResumeSync(param, linkId);
   const data = preview.data;
   const choose = (source: "kaneo" | "provider") => {
     if (data)
@@ -121,32 +114,6 @@ export function ResumeSyncDialog({
             {t("common:actions.cancel")}
           </DialogClose>
           <Button
-            variant="outline"
-            disabled={
-              !data ||
-              preview.isFetching ||
-              resume.isPending ||
-              resume.isError ||
-              preview.isError
-            }
-            onClick={() => choose("provider")}
-          >
-            {t("settings:syncRules.useRepository")}
-          </Button>
-          <Button
-            loading={resume.isPending}
-            disabled={
-              !data || preview.isFetching || resume.isError || preview.isError
-            }
-            onClick={() => choose("kaneo")}
-          >
-            {t("settings:syncRules.useKaneo")}
-          </Button>
-        </DialogFooter>
-      </DialogPopup>
-    </Dialog>
-  );
-}
             variant="outline"
             disabled={
               !data ||
