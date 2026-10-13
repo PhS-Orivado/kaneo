@@ -3154,6 +3154,14 @@
 			"duplicate": "Duplicate"
 		},
 		"bulk": {
+			"clearSelection": "Seçimi təmizlə",
+			"selectAll": "Hamısını seç",
+			"moreActions": "Digər əməliyyatlar",
+			"statusPlaceholder": "Statusu dəyiş…",
+			"priorityPlaceholder": "Prioriteti təyin et…",
+			"assigneePlaceholder": "Təyin et…",
+			"labelPlaceholder": "Etiket əlavə et…",
+			"columnPlaceholder": "Sütuna köçür…",
 			"selectedCount": "{{count}} seçilib",
 			"moveToBacklog": "Gözləyən tapşırıqlara köçür",
 			"moveToBacklogSuccess": "{{count}} tapşırıq gözləyən tapşırıqlara köçürüldü",
@@ -3184,15 +3192,7 @@
 			"actions": "Əməliyyatlar",
 			"searchActions": "Əməliyyatları axtar...",
 			"noActionsFound": "Əməliyyat tapılmadı.",
-			"changeStatus": "Vəziyyəti dəyiş",
-			"clearSelection": "Seçimi təmizlə",
-			"selectAll": "Hamısını seç",
-			"moreActions": "Digər əməliyyatlar",
-			"statusPlaceholder": "Statusu dəyiş…",
-			"priorityPlaceholder": "Prioriteti təyin et…",
-			"assigneePlaceholder": "Təyin et…",
-			"labelPlaceholder": "Etiket əlavə et…",
-			"columnPlaceholder": "Sütuna köçür…"
+			"changeStatus": "Vəziyyəti dəyiş"
 		},
 		"editor": {
 			"table": {

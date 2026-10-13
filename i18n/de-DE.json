@@ -3145,6 +3145,14 @@
 			"delete": "Löschen..."
 		},
 		"bulk": {
+			"clearSelection": "Auswahl aufheben",
+			"selectAll": "Alle auswählen",
+			"moreActions": "Weitere Aktionen",
+			"statusPlaceholder": "Status ändern…",
+			"priorityPlaceholder": "Priorität festlegen…",
+			"assigneePlaceholder": "Zuweisen an…",
+			"labelPlaceholder": "Label hinzufügen…",
+			"columnPlaceholder": "In Spalte verschieben…",
 			"selectedCount": "{{count}} ausgewählt",
 			"moveToBacklog": "In Backlog verschieben",
 			"moveToBacklogSuccess": "{{count}} Aufgaben ins Backlog verschoben",
@@ -3175,15 +3183,7 @@
 			"actions": "Aktionen",
 			"searchActions": "Aktionen suchen...",
 			"noActionsFound": "Keine Aktionen gefunden.",
-			"changeStatus": "Status ändern",
-			"clearSelection": "Auswahl aufheben",
-			"selectAll": "Alle auswählen",
-			"moreActions": "Weitere Aktionen",
-			"statusPlaceholder": "Status ändern…",
-			"priorityPlaceholder": "Priorität festlegen…",
-			"assigneePlaceholder": "Zuweisen an…",
-			"labelPlaceholder": "Label hinzufügen…",
-			"columnPlaceholder": "In Spalte verschieben…"
+			"changeStatus": "Status ändern"
 		},
 		"editor": {
 			"table": {

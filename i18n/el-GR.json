@@ -3145,6 +3145,14 @@
 			"delete": "Διαγραφή..."
 		},
 		"bulk": {
+			"clearSelection": "Εκκαθάριση επιλογής",
+			"selectAll": "Επιλογή όλων",
+			"moreActions": "Περισσότερες ενέργειες",
+			"statusPlaceholder": "Αλλαγή κατάστασης…",
+			"priorityPlaceholder": "Ορισμός προτεραιότητας…",
+			"assigneePlaceholder": "Ανάθεση σε…",
+			"labelPlaceholder": "Προσθήκη ετικέτας…",
+			"columnPlaceholder": "Μετακίνηση σε στήλη…",
 			"selectedCount": "{{count}} επιλεγμένα",
 			"moveToBacklog": "Μετακίνηση στο Backlog",
 			"moveToBacklogSuccess": "{{count}} εργασίες μετακινήθηκαν στο backlog",
@@ -3175,15 +3183,7 @@
 			"actions": "Ενέργειες",
 			"searchActions": "Αναζήτηση ενεργειών...",
 			"noActionsFound": "Δεν βρέθηκαν ενέργειες.",
-			"changeStatus": "Αλλαγή κατάστασης",
-			"clearSelection": "Εκκαθάριση επιλογής",
-			"selectAll": "Επιλογή όλων",
-			"moreActions": "Περισσότερες ενέργειες",
-			"statusPlaceholder": "Αλλαγή κατάστασης…",
-			"priorityPlaceholder": "Ορισμός προτεραιότητας…",
-			"assigneePlaceholder": "Ανάθεση σε…",
-			"labelPlaceholder": "Προσθήκη ετικέτας…",
-			"columnPlaceholder": "Μετακίνηση σε στήλη…"
+			"changeStatus": "Αλλαγή κατάστασης"
 		},
 		"editor": {
 			"table": {

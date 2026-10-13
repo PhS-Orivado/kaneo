@@ -3160,6 +3160,14 @@
 			"delete": "Delete..."
 		},
 		"bulk": {
+			"clearSelection": "Clear selection",
+			"selectAll": "Select all",
+			"moreActions": "More actions",
+			"statusPlaceholder": "Change status…",
+			"priorityPlaceholder": "Set priority…",
+			"assigneePlaceholder": "Assign to…",
+			"labelPlaceholder": "Add label…",
+			"columnPlaceholder": "Move to column…",
 			"selectedCount": "{{count}} selected",
 			"moveToBacklog": "Move to backlog",
 			"moveToBacklogSuccess": "{{count}} tasks moved to backlog",
@@ -3190,15 +3198,7 @@
 			"actions": "Actions",
 			"searchActions": "Search actions...",
 			"noActionsFound": "No actions found.",
-			"changeStatus": "Change Status",
-			"clearSelection": "Clear selection",
-			"selectAll": "Select all",
-			"moreActions": "More actions",
-			"statusPlaceholder": "Change status…",
-			"priorityPlaceholder": "Set priority…",
-			"assigneePlaceholder": "Assign to…",
-			"labelPlaceholder": "Add label…",
-			"columnPlaceholder": "Move to column…"
+			"changeStatus": "Change Status"
 		},
 		"editor": {
 			"table": {
