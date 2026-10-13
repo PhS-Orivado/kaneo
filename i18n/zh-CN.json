@@ -2337,7 +2337,8 @@
 			"tokenTitle": "访问令牌",
 			"webhookSecret": "密钥",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "拖动以调整它们在任务中的显示顺序。",
