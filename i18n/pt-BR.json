@@ -3194,6 +3194,14 @@
 			"delete": "Excluir..."
 		},
 		"bulk": {
+			"clearSelection": "Limpar seleção",
+			"selectAll": "Selecionar tudo",
+			"moreActions": "Mais ações",
+			"statusPlaceholder": "Alterar status…",
+			"priorityPlaceholder": "Definir prioridade…",
+			"assigneePlaceholder": "Atribuir a…",
+			"labelPlaceholder": "Adicionar etiqueta…",
+			"columnPlaceholder": "Mover para a coluna…",
 			"selectedCount": "{{count}} selecionado(s)",
 			"moveToBacklog": "Mover para o backlog",
 			"moveToBacklogSuccess": "{{count}} tarefas movidas para o backlog",
@@ -3225,15 +3233,7 @@
 			"actions": "Ações",
 			"searchActions": "Buscar ações...",
 			"noActionsFound": "Nenhuma ação encontrada.",
-			"changeStatus": "Mudar status",
-			"clearSelection": "Limpar seleção",
-			"selectAll": "Selecionar tudo",
-			"moreActions": "Mais ações",
-			"statusPlaceholder": "Alterar status…",
-			"priorityPlaceholder": "Definir prioridade…",
-			"assigneePlaceholder": "Atribuir a…",
-			"labelPlaceholder": "Adicionar etiqueta…",
-			"columnPlaceholder": "Mover para a coluna…"
+			"changeStatus": "Mudar status"
 		},
 		"editor": {
 			"table": {

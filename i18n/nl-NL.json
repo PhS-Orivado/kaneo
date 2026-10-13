@@ -3134,6 +3134,14 @@
 			"delete": "Verwijderen..."
 		},
 		"bulk": {
+			"clearSelection": "Selectie wissen",
+			"selectAll": "Alles selecteren",
+			"moreActions": "Meer acties",
+			"statusPlaceholder": "Status wijzigen…",
+			"priorityPlaceholder": "Prioriteit instellen…",
+			"assigneePlaceholder": "Toewijzen aan…",
+			"labelPlaceholder": "Label toevoegen…",
+			"columnPlaceholder": "Naar kolom verplaatsen…",
 			"selectedCount": "{{count}} geselecteerd",
 			"moveToBacklog": "Naar Backlog verplaatsen",
 			"moveToBacklogSuccess": "{{count}} taken naar backlog verplaatst",
@@ -3164,15 +3172,7 @@
 			"actions": "Acties",
 			"searchActions": "Acties zoeken...",
 			"noActionsFound": "Geen acties gevonden.",
-			"changeStatus": "Status wijzigen",
-			"clearSelection": "Selectie wissen",
-			"selectAll": "Alles selecteren",
-			"moreActions": "Meer acties",
-			"statusPlaceholder": "Status wijzigen…",
-			"priorityPlaceholder": "Prioriteit instellen…",
-			"assigneePlaceholder": "Toewijzen aan…",
-			"labelPlaceholder": "Label toevoegen…",
-			"columnPlaceholder": "Naar kolom verplaatsen…"
+			"changeStatus": "Status wijzigen"
 		},
 		"move": {
 			"title": "Taak verplaatsen",

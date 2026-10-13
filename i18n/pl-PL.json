@@ -3191,6 +3191,14 @@
 			"noValuesUsedYet": "No values used yet"
 		},
 		"bulk": {
+			"clearSelection": "Wyczyść zaznaczenie",
+			"selectAll": "Zaznacz wszystko",
+			"moreActions": "Więcej działań",
+			"statusPlaceholder": "Zmień status…",
+			"priorityPlaceholder": "Ustaw priorytet…",
+			"assigneePlaceholder": "Przypisz do…",
+			"labelPlaceholder": "Dodaj etykietę…",
+			"columnPlaceholder": "Przenieś do kolumny…",
 			"actions": "Akcje",
 			"addLabel": "Dodaj etykietę",
 			"addLabelError": "Nie udało się dodać etykiety",
@@ -3223,15 +3231,7 @@
 			"updateDueDateError": "Nie udało się zaktualizować terminu",
 			"updateError": "Nie udało się zaktualizować zadań",
 			"updatePriorityError": "Nie udało się zaktualizować priorytetu",
-			"updateSuccess": "Zaktualizowano zadań: {{count}}",
-			"clearSelection": "Wyczyść zaznaczenie",
-			"selectAll": "Zaznacz wszystko",
-			"moreActions": "Więcej działań",
-			"statusPlaceholder": "Zmień status…",
-			"priorityPlaceholder": "Ustaw priorytet…",
-			"assigneePlaceholder": "Przypisz do…",
-			"labelPlaceholder": "Dodaj etykietę…",
-			"columnPlaceholder": "Przenieś do kolumny…"
+			"updateSuccess": "Zaktualizowano zadań: {{count}}"
 		},
 		"common": {
 			"loadingTask": "Ładowanie zadania...",

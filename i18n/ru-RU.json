@@ -3263,6 +3263,14 @@
 			"delete": "Удалить..."
 		},
 		"bulk": {
+			"clearSelection": "Снять выделение",
+			"selectAll": "Выбрать все",
+			"moreActions": "Другие действия",
+			"statusPlaceholder": "Изменить статус…",
+			"priorityPlaceholder": "Задать приоритет…",
+			"assigneePlaceholder": "Назначить…",
+			"labelPlaceholder": "Добавить метку…",
+			"columnPlaceholder": "Переместить в колонку…",
 			"selectedCount_one": "{{count}} выбрана",
 			"selectedCount_few": "{{count}} выбраны",
 			"selectedCount_many": "{{count}} выбрано",
@@ -3327,15 +3335,7 @@
 			"archiveSuccess": "{{count}} задач архивировано",
 			"updateSuccess": "{{count}} задач обновлено",
 			"assignSuccess": "{{count}} задач назначено",
-			"addLabelSuccess": "Метка добавлена к {{count}} задачам",
-			"clearSelection": "Снять выделение",
-			"selectAll": "Выбрать все",
-			"moreActions": "Другие действия",
-			"statusPlaceholder": "Изменить статус…",
-			"priorityPlaceholder": "Задать приоритет…",
-			"assigneePlaceholder": "Назначить…",
-			"labelPlaceholder": "Добавить метку…",
-			"columnPlaceholder": "Переместить в колонку…"
+			"addLabelSuccess": "Метка добавлена к {{count}} задачам"
 		},
 		"editor": {
 			"table": {
