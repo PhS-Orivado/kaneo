@@ -1,4 +1,4 @@
-successfully downloaded text file (SHA: a8742b5591cf7da44ebfeb5b382751e83d9ae948){
+{
 	"$schema": "https://json-schema.org/draft/2020-12/schema",
 	"$id": "https://kaneo.app/i18n/schema.json",
 	"title": "Kaneo locale schema",
