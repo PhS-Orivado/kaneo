@@ -10,7 +10,8 @@
 			"markAllRead": "Alle als gelesen markieren",
 			"remove": "Entfernen",
 			"reset": "Zurücksetzen",
-			"filter": "Filter"
+			"filter": "Filter",
+			"clearAllFilters": "Alle Filter löschen"
 		},
 		"a11y": {
 			"toggleSidebar": "Sidebar umschalten"
@@ -153,13 +154,11 @@
 				"statusLoadError": "Project statuses couldn’t be loaded."
 			}
 		},
-		"editor": {
-			"link": {
-				"label": "Link-URL",
-				"placeholder": "Link einfügen oder eingeben…",
-				"apply": "Link übernehmen",
-				"remove": "Link entfernen"
-			}
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -990,7 +989,14 @@
 			"moveDialogTitle": "In anderen Workspace verschieben?",
 			"moveTargetLabel": "Workspace",
 			"moving": "Wird verschoben...",
-			"tasksTitle": "Aufgaben"
+			"tasksTitle": "Aufgaben",
+			"sprints": "Sprints",
+			"sprintsSubtitle": "Plane anstehende Arbeit in Iterationen fester Länge.",
+			"sprintLength": "Standard-Sprint-Länge",
+			"sprintLengthDescription": "Anzahl der Tage, die ein neuer Sprint standardmäßig umfasst.",
+			"sprintLengthSave": "Sprint-Länge speichern",
+			"sprintLengthSaved": "Sprint-Länge gespeichert",
+			"sprintLengthError": "Sprint-Länge konnte nicht gespeichert werden"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrationen",
@@ -1595,10 +1601,12 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
+			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
+			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Kontrollkästchen",
@@ -1608,6 +1616,7 @@
 				"text": "Text",
 				"multiselect": "Dropdown, Mehrfachauswahl"
 			},
+			"availableOptions": "Available options",
 			"clearDefault": "Standardwert entfernen",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1863,11 +1872,7 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace",
-			"checkoutSuccess": {
-				"title": "Danke für dein Abo",
-				"description": "Zahlung erhalten. Der Plan unten wird aktualisiert, sobald sie bestätigt ist."
-			}
+			"openFailed": "Couldn't open billing for this workspace"
 		},
 		"syncRules": {
 			"addLabel": "Label hinzufügen",
@@ -2013,6 +2018,37 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
+			}
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2343,7 +2379,8 @@
 			"tokenTitle": "Zugriffstoken",
 			"webhookSecret": "Secret",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Ziehe die Felder, um ihre Reihenfolge in einer Aufgabe zu ändern.",
@@ -2442,122 +2479,36 @@
 		"projectSettings": {
 			"projectLabel": "Projekt"
 		},
-		"shortcuts": {
+		"keyboardShortcuts": {
+			"title": "Tastenkürzel",
+			"subtitle": "Beschleunige deinen Workflow mit Tastenkürzeln",
+			"searchPlaceholder": "Tastenkürzel suchen...",
+			"footer": "Drücke <kbd>Escape</kbd>, um zu schließen",
 			"categories": {
 				"general": "Allgemein",
-				"navigation": "Navigation",
 				"create": "Erstellen",
 				"views": "Ansichten",
-				"tasks": "Aufgaben",
-				"list": "Board und Liste",
-				"inbox": "Posteingang",
-				"filters": "Filter",
-				"editor": "Editor"
+				"navigation": "Navigation",
+				"quickSelect": "Schnellauswahl (in Popovers)"
 			},
 			"items": {
-				"openCommandMenu": "Befehlspalette öffnen",
-				"openSearch": "Globale Suche",
-				"openShortcuts": "Tastenkürzel anzeigen",
-				"submit": "Speichern oder absenden",
-				"back": "Modal/Popover schließen",
-				"switchWorkspace": "Workspace wechseln",
-				"logOut": "Abmelden",
-				"showDisplayOptions": "Anzeigeoptionen",
-				"dismissToasts": "Alle Hinweise schließen",
+				"openCommandPalette": "Befehlspalette öffnen",
+				"globalSearch": "Globale Suche",
 				"toggleSidebar": "Sidebar umschalten",
-				"goToHome": "Zur Startseite",
-				"goToInbox": "Zum Posteingang",
-				"goToMyTasks": "Zu meinen Aufgaben",
-				"goToProjects": "Zu den Projekten",
-				"goToSettings": "Zu den Einstellungen",
-				"goToTasks": "Zu den Aufgaben",
-				"goToBacklog": "Zum Backlog",
-				"goToProject": "Zu Projekt 1–9",
-				"openTask": "Aufgabe öffnen",
-				"openProject": "Projekt öffnen",
+				"showShortcuts": "Tastenkürzel anzeigen",
+				"closeModal": "Modal/Popover schließen",
 				"createTask": "Aufgabe erstellen",
 				"createProject": "Projekt erstellen",
-				"toggleLayout": "Zwischen Board und Liste wechseln",
-				"deleteTask": "Aufgabe löschen",
-				"copyTaskUrl": "Aufgabenlink kopieren",
-				"copyBranchName": "Aufgaben-Branch kopieren",
-				"nextTask": "Nächstes Element",
-				"previousTask": "Vorheriges Element",
-				"openFocusedTask": "Fokussiertes Element öffnen",
-				"selectAll": "Alle auswählen",
-				"clearSelection": "Auswahl aufheben",
-				"changeStatus": "Status ändern",
-				"changePriority": "Priorität ändern",
-				"assignTask": "Zuweisen",
-				"assignToMe": "Mir zuweisen",
-				"changeLabels": "Labels ändern",
-				"setDueDate": "Fälligkeitsdatum festlegen",
-				"removeDueDate": "Fälligkeitsdatum entfernen",
-				"renameTask": "Umbenennen",
-				"editDescription": "Beschreibung bearbeiten",
-				"commentOnTask": "Kommentieren",
-				"moveToProject": "In anderes Projekt verschieben",
-				"createSubtask": "Unteraufgabe erstellen",
-				"setParent": "Übergeordnete Aufgabe festlegen",
-				"openParent": "Übergeordnete Aufgabe öffnen",
-				"openSubtask": "Unteraufgabe öffnen",
-				"markBlockedBy": "Als blockiert durch markieren",
-				"markBlocking": "Als blockierend markieren",
-				"markRelated": "Als verwandt markieren",
-				"addLink": "Link hinzufügen",
-				"toggleResources": "Ressourcen ein- oder ausblenden",
-				"copyTaskId": "Aufgaben-ID kopieren",
-				"copyTaskTitle": "Aufgabentitel kopieren",
-				"copyAsMarkdown": "Als Markdown kopieren",
-				"peekTask": "Fokussierte Aufgabe in der Vorschau öffnen",
-				"selectTask": "Aufgabe auswählen",
-				"selectGroup": "Alle in der Gruppe auswählen",
-				"copyPageUrl": "Seiten-URL kopieren",
-				"focusRight": "Nächste Spalte",
-				"focusLeft": "Vorherige Spalte",
-				"moveTaskTop": "An den Anfang der Gruppe verschieben",
-				"moveTaskUp": "Eine Position nach oben",
-				"moveTaskDown": "Eine Position nach unten",
-				"moveTaskBottom": "An das Ende der Gruppe verschieben",
-				"moveTaskLeft": "In die vorherige Spalte verschieben",
-				"moveTaskRight": "In die nächste Spalte verschieben",
-				"toggleGroup": "Gruppe ein- oder ausklappen",
-				"toggleAllGroups": "Alle Gruppen ein- oder ausklappen",
-				"deleteNotification": "Benachrichtigung löschen",
-				"deleteReadNotifications": "Alle gelesenen Benachrichtigungen löschen",
-				"toggleNotificationRead": "Als gelesen oder ungelesen markieren",
-				"markAllNotificationsRead": "Alle als gelesen markieren",
-				"addFilter": "Filter hinzufügen",
-				"clearAllFilters": "Alle Filter entfernen",
-				"clearLastFilter": "Letzten Filter entfernen",
-				"editorBold": "Fett",
-				"editorItalic": "Kursiv",
-				"editorUnderline": "Unterstrichen",
-				"editorStrike": "Durchgestrichen",
-				"editorAttach": "Bild oder Datei anhängen",
-				"editorInlineCode": "Inline-Code",
-				"editorLink": "Text in Link umwandeln",
-				"editorQuote": "Zitat",
-				"editorParagraph": "Normaler Text",
-				"editorHeading1": "Überschrift 1",
-				"editorHeading2": "Überschrift 2",
-				"editorHeading3": "Überschrift 3",
-				"editorChecklist": "Checkliste",
-				"editorToggleChecklist": "Checklistenpunkt umschalten",
-				"editorBulletList": "Aufzählung",
-				"editorNumberedList": "Nummerierte Liste",
-				"editorCodeBlock": "Codeblock",
-				"editorUndo": "Rückgängig",
-				"editorRedo": "Wiederholen"
-			},
-			"title": "Tastenkürzel",
-			"searchPlaceholder": "Nach Aktion oder Taste suchen",
-			"results_one": "{{count}} Ergebnis",
-			"results_other": "{{count}} Ergebnisse",
-			"noResults": "Keine passenden Tastenkürzel",
-			"then": "dann",
-			"or": "oder",
-			"thenEllipsis": "dann…"
+				"createWorkspace": "Workspace erstellen",
+				"boardView": "Zur Board-Ansicht wechseln",
+				"listView": "Zur Listenansicht wechseln",
+				"backlogView": "Zur Backlog-Ansicht wechseln",
+				"nextTask": "Nächste Aufgabe",
+				"prevTask": "Vorherige Aufgabe",
+				"openTask": "Ausgewählte Aufgabe öffnen",
+				"quickSelectNumber": "Option per Nummer auswählen",
+				"calendarView": "Zur Kalenderansicht wechseln"
+			}
 		}
 	},
 	"notifications": {
@@ -2633,9 +2584,7 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded.",
-			"actionError": "Dein Posteingang konnte nicht aktualisiert werden. Versuche es erneut.",
-			"readCleared": "Gelesene Benachrichtigungen gelöscht"
+			"taskLoadError": "This task couldn’t be loaded."
 		}
 	},
 	"activity": {
@@ -2671,6 +2620,7 @@
 				"imageUploaded": "Bild hochgeladen",
 				"fileAttached": "Datei angehängt",
 				"failedToUploadFile": "Datei konnte nicht hochgeladen werden",
+				"enterUrl": "URL eingeben",
 				"plaintext": "Klartext",
 				"autoDetect": "Automatisch erkennen",
 				"slashGroupText": "Text",
@@ -2771,6 +2721,12 @@
 			"high": "Hoch",
 			"urgent": "Dringend"
 		},
+		"type": {
+			"label": "Typ",
+			"task": "Aufgabe",
+			"bug": "Bug"
+		},
+		"boardSearchPlaceholder": "Tickets suchen...",
 		"view": {
 			"board": "Board",
 			"list": "Liste",
@@ -2799,6 +2755,7 @@
 				"ariaLabel": "Editor für Aufgabenbeschreibung",
 				"placeholder": "Schreibe eine Beschreibung...",
 				"previewImage": "Bildvorschau",
+				"enterUrl": "URL eingeben",
 				"autoDetect": "Automatisch erkennen",
 				"copyCode": "Code kopieren",
 				"copy": "Kopieren",
@@ -2902,7 +2859,9 @@
 				"saving": "Wird gespeichert…",
 				"saveFailed": "Speichern fehlgeschlagen",
 				"retrySave": "Erneut speichern"
-			}
+			},
+			"customFieldUpdated": "Field updated",
+			"selectOption": "Select option"
 		},
 		"entity": {
 			"task": "Aufgabe"
@@ -2923,9 +2882,7 @@
 				"blocks": "blockiert",
 				"related": "steht in Beziehung zu",
 				"blocked_by": "blockiert von"
-			},
-			"blockedBy": "Blockiert durch",
-			"parentPlaceholder": "Übergeordnete Aufgabe festlegen…"
+			}
 		},
 		"subtasks": {
 			"title": "Teilaufgaben",
@@ -2945,16 +2902,13 @@
 		"properties": {
 			"title": "Eigenschaften",
 			"labels": "Labels",
-			"addLabels": "Labels hinzufügen",
 			"copyTaskLink": "Aufgabenlink kopieren",
 			"copyTaskBranch": "Aufgaben-Branch kopieren",
 			"taskLinkCopied": "Aufgabenlink kopiert",
 			"taskBranchCopied": "Branch-Name kopiert",
 			"start": "Start",
 			"startDate": "Startdatum",
-			"noDate": "Kein Datum",
-			"dates": "Termine",
-			"project": "Projekt"
+			"noDate": "Kein Datum"
 		},
 		"move": {
 			"title": "Aufgabe verschieben",
@@ -2979,10 +2933,12 @@
 				"updateError": "Aufgabenpriorität konnte nicht aktualisiert werden"
 			},
 			"dueDate": {
+				"updateSuccess": "Fälligkeitsdatum erfolgreich aktualisiert",
 				"updateError": "Fälligkeitsdatum konnte nicht aktualisiert werden",
 				"clear": "Datum entfernen"
 			},
 			"startDate": {
+				"updateSuccess": "Startdatum erfolgreich aktualisiert",
 				"updateError": "Startdatum konnte nicht aktualisiert werden",
 				"clear": "Startdatum entfernen"
 			},
@@ -2991,6 +2947,8 @@
 				"empty": "Keine Labels gefunden",
 				"create": "\"{{name}}\" erstellen",
 				"chooseColor": "Farbe auswählen",
+				"addSuccess": "Label hinzugefügt",
+				"removeSuccess": "Label entfernt",
 				"updateError": "Label konnte nicht aktualisiert werden",
 				"createSuccess": "Label erstellt und hinzugefügt",
 				"createError": "Label konnte nicht erstellt werden",
@@ -3017,18 +2975,26 @@
 			"moveAllTooltip": "Alle geplanten Aufgaben nach „Zu erledigen“ verschieben",
 			"moveAll": "Alle verschieben",
 			"addTask": "Aufgabe hinzufügen",
+			"filter": "Filter",
+			"addFilter": "Filter hinzufügen...",
 			"sections": {
 				"planned": "Geplant",
 				"archived": "Archiviert"
 			},
 			"noTasksInSection": "Keine {{section}}-Aufgaben",
 			"filters": {
+				"priority": "Priorität: {{name}}",
+				"assignee": "Zugewiesen: {{name}}",
+				"due": "Fällig: {{date}}",
+				"label": "Label: {{name}}",
 				"dueThisWeek": "Diese Woche fällig",
 				"dueNextWeek": "Nächste Woche fällig",
 				"noDueDate": "Kein Fälligkeitsdatum"
 			}
 		},
 		"sort": {
+			"label": "Sortieren",
+			"by": "Sortieren nach",
 			"direction": "Richtung",
 			"ascending": "Aufsteigend",
 			"descending": "Absteigend",
@@ -3042,36 +3008,41 @@
 			}
 		},
 		"boardFilters": {
+			"filterBy": "Filtern nach",
+			"allStatuses": "Alle Status",
+			"allPriorities": "Alle Prioritäten",
+			"allAssignees": "Alle Zugewiesenen",
+			"allDueDates": "Alle Fälligkeitsdaten",
+			"allLabels": "Alle Labels",
 			"selectedCount": "{{count}} ausgewählt",
 			"subjects": {
 				"status": "Status",
 				"priority": "Priorität",
 				"assignee": "Zugewiesen",
 				"dueDate": "Fälligkeitsdatum",
-				"labels": "Labels"
+				"labels": "Labels",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "ist einer von",
-				"includeAnyOf": "enthält einen von",
-				"is": "ist",
-				"isNot": "ist nicht",
-				"isNoneOf": "ist keiner von",
-				"include": "enthält",
-				"exclude": "enthält nicht"
+				"includeAnyOf": "enthält einen von"
 			},
+			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Alle Sprints"
 		},
 		"gantt": {
-			"searchPlaceholder": "Geplante Tickets suchen...",
 			"pageTitle": "{{name}} – Gantt",
 			"title": "Gantt-Zeitachse",
+			"searchPlaceholder": "Geplante Tickets suchen...",
 			"hideTasks": "Aufgaben ausblenden",
 			"showTasks": "Aufgaben anzeigen",
 			"noTasks": "Keine geplanten Aufgaben",
 			"noTasksSubtitle": "Füge Aufgaben ein Startdatum, ein Fälligkeitsdatum oder beides hinzu, um sie auf der Projektzeitleiste zu platzieren.",
 			"noTasksFound": "Keine Aufgaben gefunden",
+			"noTasksMatch": "Keine geplanten Aufgaben entsprechen \"{{query}}\"",
 			"taskHeader": "Aufgabe",
 			"updateDatesError": "Aufgabendaten konnten nicht aktualisiert werden",
 			"resizeStart": "Startdatum anpassen",
@@ -3096,10 +3067,7 @@
 			"error": "Aufgabe konnte nicht dupliziert werden"
 		},
 		"archive": {
-			"success": "{{count}} Aufgaben archiviert",
-			"confirmTitle_one": "{{count}} erledigte Aufgabe archivieren?",
-			"confirmTitle_other": "{{count}} erledigte Aufgaben archivieren?",
-			"confirmDescription": "Sie verschwinden vom Board und landen im Bereich „Archiviert“ des Backlogs."
+			"success": "{{count}} Aufgaben archiviert"
 		},
 		"listView": {
 			"addTask": "Aufgabe hinzufügen",
@@ -3125,13 +3093,17 @@
 		"dueDate": {
 			"label": "Fälligkeitsdatum",
 			"clear": "Datum entfernen",
+			"updateSuccess": "Fälligkeitsdatum erfolgreich aktualisiert",
 			"updateError": "Fälligkeitsdatum konnte nicht aktualisiert werden",
+			"clearSuccess": "Fälligkeitsdatum entfernt",
 			"clearError": "Fälligkeitsdatum konnte nicht entfernt werden"
 		},
 		"labels": {
+			"label": "Labels",
 			"empty": "Keine Labels verfügbar"
 		},
 		"update": {
+			"success": "Aufgabe erfolgreich aktualisiert",
 			"error": "Aufgabe konnte nicht aktualisiert werden"
 		},
 		"contextMenu": {
@@ -3145,14 +3117,6 @@
 			"delete": "Löschen..."
 		},
 		"bulk": {
-			"clearSelection": "Auswahl aufheben",
-			"selectAll": "Alle auswählen",
-			"moreActions": "Weitere Aktionen",
-			"statusPlaceholder": "Status ändern…",
-			"priorityPlaceholder": "Priorität festlegen…",
-			"assigneePlaceholder": "Zuweisen an…",
-			"labelPlaceholder": "Label hinzufügen…",
-			"columnPlaceholder": "In Spalte verschieben…",
 			"selectedCount": "{{count}} ausgewählt",
 			"moveToBacklog": "In Backlog verschieben",
 			"moveToBacklogSuccess": "{{count}} Aufgaben ins Backlog verschoben",
@@ -3161,9 +3125,7 @@
 			"moveToBoardSuccess": "{{count}} Aufgaben aufs Board verschoben",
 			"moveToBoardError": "Aufgaben konnten nicht aufs Board verschoben werden",
 			"delete": "Aufgaben löschen",
-			"deleteConfirmTitle_one": "{{count}} Aufgabe löschen?",
-			"deleteConfirmTitle_other": "{{count}} Aufgaben löschen?",
-			"deleteConfirmDescription": "Dadurch werden die ausgewählten Aufgaben und alle zugehörigen Daten dauerhaft entfernt. Diese Aktion kann nicht rückgängig gemacht werden.",
+			"deleteConfirm": "{{count}} Aufgaben löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
 			"deleteSuccess": "{{count}} Aufgaben gelöscht",
 			"deleteError": "Aufgaben konnten nicht gelöscht werden",
 			"archive": "Aufgaben archivieren",
@@ -3179,11 +3141,14 @@
 			"addLabel": "Label hinzufügen",
 			"addLabelSuccess": "Label zu {{count}} Aufgaben hinzugefügt",
 			"addLabelError": "Label konnte nicht hinzugefügt werden",
+			"setDueDate": "Fälligkeitsdatum festlegen",
 			"updateDueDateError": "Fälligkeitsdatum konnte nicht aktualisiert werden",
 			"actions": "Aktionen",
 			"searchActions": "Aktionen suchen...",
 			"noActionsFound": "Keine Aktionen gefunden.",
-			"changeStatus": "Status ändern"
+			"changeStatus": "Status ändern",
+			"moveToSprint": "In Sprint verschieben",
+			"updateSprintError": "Aufgaben konnten nicht in den Sprint verschoben werden"
 		},
 		"editor": {
 			"table": {
@@ -3217,60 +3182,51 @@
 		"descriptionLoadError": "Die Beschreibung konnte nicht geladen werden. Versuche es erneut, um die aktuelle Version zu laden.",
 		"checklistProgress": "{{completed}} von {{total}} Checklistenpunkten abgeschlossen",
 		"customFields": {
-			"fields": "Felder",
-			"empty": "Leer",
-			"required": "Pflichtfeld",
-			"enterKey": "Enter",
-			"toSave": "zum Speichern",
-			"today": "Heute",
-			"clear": "Leeren",
-			"setValue": "{{field}} festlegen…",
-			"noMatches": "Keine passenden Optionen",
-			"missingRequired_one": "{{count}} Pflichtfeld ist leer",
-			"missingRequired_other": "{{count}} Pflichtfelder sind leer",
-			"saveError": "{{field}} konnte nicht gespeichert werden",
-			"moreFields_one": "{{count}} weiteres Feld",
-			"moreFields_other": "{{count}} weitere Felder",
-			"manage": "Felder verwalten"
+			"ariaLabel": "Custom fields"
 		},
 		"board": {
-			"reorderFailed": "Die Reihenfolge konnte nicht gespeichert werden.",
-			"keyboardInstructions": "Drücke die Leertaste für die Vorschau und Enter, um diese Aufgabe zu öffnen. Mit Alt oder Option und den Pfeiltasten verschiebst du sie."
+			"reorderFailed": "Die Reihenfolge konnte nicht gespeichert werden."
 		},
-		"toolbar": {
-			"search": "Aufgaben suchen",
-			"clearSearch": "Suche leeren",
-			"taskCount_one": "{{count}} Aufgabe",
-			"taskCount_other": "{{count}} Aufgaben",
-			"shownCount_one": "{{shown}} von {{count}} Aufgabe",
-			"shownCount_other": "{{shown}} von {{count}} Aufgaben"
-		},
-		"display": {
-			"title": "Anzeige",
-			"sortBy": "Sortieren nach",
-			"showOnCards": "Auf Karten anzeigen",
-			"showOnRows": "In Zeilen anzeigen",
-			"checklistProgress": "Checklisten-Fortschritt",
-			"projectBackground": "Projekthintergrund",
-			"layout": "Layout"
-		},
-		"filterBar": {
-			"label": "Aktive Filter",
-			"removeFilter": "Filter {{name}} entfernen",
-			"noMatches": "Keine Aufgaben passen zu deiner Suche oder deinen Filtern."
-		},
-		"filterMenu": {
-			"addFilter": "Filter hinzufügen…",
-			"searchSubject": "{{name}}…",
-			"noResults": "Keine Ergebnisse"
-		},
-		"shortcuts": {
-			"assignedToMe": "Dir zugewiesen",
-			"idCopied": "Aufgaben-ID kopiert",
-			"titleCopied": "Aufgabentitel kopiert",
-			"markdownCopied": "Als Markdown kopiert",
-			"copyFailed": "Kopieren in die Zwischenablage fehlgeschlagen.",
-			"pageUrlCopied": "Seiten-URL kopiert"
+		"sprints": {
+			"title": "Sprints",
+			"create": "Sprint erstellen",
+			"createTitle": "Sprint erstellen",
+			"createDescription": "Plane einen kommenden Sprint mit Name, Ziel und Terminen.",
+			"editTitle": "Sprint bearbeiten",
+			"editDescription": "Aktualisiere Name, Ziel und Termine des Sprints.",
+			"edit": "Sprint bearbeiten",
+			"name": "Sprint-Name",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint-Ziel",
+			"goalPlaceholder": "Was soll dieser Sprint erreichen?",
+			"save": "Änderungen speichern",
+			"start": "Sprint starten",
+			"startSuccess": "Sprint {{name}} gestartet",
+			"close": "Sprint abschließen",
+			"closeTitle": "Sprint abschließen",
+			"closeSummary": "{{name}} hat {{total}} Aufgaben, davon {{completed}} abgeschlossen.",
+			"closeTarget": "{{count}} offene Aufgaben verschieben nach",
+			"closeConfirm": "Sprint abschließen und offene Aufgaben verschieben",
+			"closeSuccess": "Sprint abgeschlossen, {{count}} offene Aufgaben verschoben",
+			"backlog": "Backlog",
+			"activeBadge": "Aktiv",
+			"noActive": "Kein Sprint ist aktiv. Starte einen kommenden Sprint, um zu iterieren.",
+			"upcoming": "Kommender Sprint",
+			"unscheduled": "Nicht terminiert",
+			"taskCounts": "{{completed}} von {{total}} abgeschlossen",
+			"history": "Abgeschlossene Sprints ({{count}})",
+			"completedCount": "{{count}} abgeschlossen",
+			"moveUp": "Nach oben",
+			"moveDown": "Nach unten",
+			"closedLocked": "Diese Aufgabe gehört zu einem abgeschlossenen Sprint und bleibt dort als Verlauf",
+			"error": "Sprint-Aktion fehlgeschlagen",
+			"daysRemaining": "{{remaining}} Tage verbleibend",
+			"endsToday": "Endet heute",
+			"daysOverdue": "{{remaining}} Tage überfällig",
+			"noTasks": "Noch keine Aufgaben in diesem Sprint",
+			"toggleTasks": "Sprint-Aufgaben anzeigen",
+			"reportSummary": "Geplant {{planned}}, abgeschlossen {{completed}}, übertragen {{carriedOver}}",
+			"carriedOver": "Übertragen"
 		}
 	},
 	"invitations": {
