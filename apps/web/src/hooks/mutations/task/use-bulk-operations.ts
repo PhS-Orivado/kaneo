@@ -146,9 +146,28 @@ export function useBulkOperations() {
     onSuccess: invalidateCommon,
   });
 
+  const bulkSprint = useMutation({
+    mutationFn: async ({
+      taskIds,
+      sprintId,
+    }: {
+      taskIds: string[];
+      sprintId: string | null;
+    }) => {
+      await bulkOperation({
+        taskIds,
+        operation: "updateSprint",
+        value: sprintId,
+      });
+    },
+    onSuccess: () => {
+      invalidateCommon();
+      queryClientRef.invalidateQueries({ queryKey: ["sprints"] });
+    },
+  });
+
   return {
     bulkDelete: bulkDelete.mutateAsync,
-    isDeleting: bulkDelete.isPending,
     bulkArchive: bulkArchive.mutateAsync,
     bulkChangeStatus: bulkChangeStatus.mutateAsync,
     bulkAssign: bulkAssign.mutateAsync,
@@ -157,5 +176,6 @@ export function useBulkOperations() {
     bulkPriority: bulkPriority.mutateAsync,
     bulkAddLabel: bulkAddLabel.mutateAsync,
     bulkDueDate: bulkDueDate.mutateAsync,
+    bulkSprint: bulkSprint.mutateAsync,
   };
 }

@@ -1,4 +1,3 @@
-import { ImportIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { ImportIssuesSection } from "@/components/project/code-hosting/import-issues-section";
 import useImportGitlabIssues from "@/hooks/mutations/gitlab-integration/use-import-gitlab-issues";
@@ -7,11 +6,13 @@ import { toast } from "@/lib/toast";
 
 type GitlabIssuesSectionProps = {
   projectId: string;
+  integrationId: string;
   isConnected: boolean;
 };
 
 export function GitlabIssuesSection({
   projectId,
+  integrationId,
   isConnected,
 }: GitlabIssuesSectionProps) {
   const { t } = useTranslation();
@@ -23,10 +24,8 @@ export function GitlabIssuesSection({
   const handleImport = async () => {
     if (!canImport) return;
     try {
-      await importIssues(projectId);
-      toast.success(t("settings:gitlabIntegration.toast.issuesImported"), {
-        icon: ImportIcon,
-      });
+      await importIssues({ projectId, integrationId });
+      toast.success(t("settings:gitlabIntegration.toast.issuesImported"));
     } catch (error) {
       toast.error(
         error instanceof Error

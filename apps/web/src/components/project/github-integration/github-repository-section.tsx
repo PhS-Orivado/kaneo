@@ -1,4 +1,3 @@
-import { MessageSquareIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { CommentLinkRow } from "@/components/project/code-hosting/comment-link-row";
 import { RepositoryLink } from "@/components/project/code-hosting/repository-link";
@@ -7,13 +6,14 @@ import { GithubReconnectAction } from "@/components/project/github-integration/g
 import { IntegrationCheckLine } from "@/components/project/integrations/panel/integration-check-line";
 import { IntegrationPanelSection } from "@/components/project/integrations/panel/integration-panel-section";
 import type { GitHubAppInfo } from "@/fetchers/github-integration/get-app-info";
-import type { GithubIntegration } from "@/fetchers/github-integration/get-github-integration";
+import type { GithubIntegration } from "@/fetchers/github-integration/get-github-integrations";
 import type { VerifyGithubInstallationResponse } from "@/fetchers/github-integration/verify-github-installation";
 import { useUpdateGithubIntegration } from "@/hooks/mutations/github-integration/use-update-github-integration";
 import { toast } from "@/lib/toast";
 
 type GithubRepositorySectionProps = {
   projectId: string;
+  integrationId: string;
   integration: GithubIntegration;
   appInfo: GitHubAppInfo | undefined;
   verification: VerifyGithubInstallationResponse | undefined;
@@ -23,6 +23,7 @@ type GithubRepositorySectionProps = {
 
 export function GithubRepositorySection({
   projectId,
+  integrationId,
   integration,
   appInfo,
   verification,
@@ -38,13 +39,13 @@ export function GithubRepositorySection({
     try {
       await update({
         projectId,
+        integrationId,
         json: { commentTaskLinkOnGitHubIssue: checked },
       });
       toast.success(
         checked
           ? t("settings:githubIntegration.toast.commentOnEnabled")
           : t("settings:githubIntegration.toast.commentOnDisabled"),
-        { icon: MessageSquareIcon },
       );
     } catch (error) {
       toast.error(
