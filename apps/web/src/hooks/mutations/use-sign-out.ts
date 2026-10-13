@@ -11,9 +11,9 @@ function useSignOut(idpLogoutUrl?: string | null) {
 
   return useMutation({
     mutationFn: async () => {
-      const resume = descriptionSaveQueue.pause(session?.user.id ?? "");
+      const resume = descriptionSaveQueue.pause(session?.user?.id ?? "");
       try {
-        if (!(await descriptionSaveQueue.drain(session?.user.id ?? "")))
+        if (!(await descriptionSaveQueue.drain(session?.user?.id ?? "")))
           throw new Error(i18n.t("tasks:detail.editor.saveFailed"));
         let idToken: string | null = null;
 

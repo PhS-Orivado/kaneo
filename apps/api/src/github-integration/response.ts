@@ -1,4 +1,8 @@
 import { responseTimestamp, z } from "../openapi";
+import {
+  repositoryBindingUsageSchema,
+  repositoryLinkedToSchema,
+} from "../integrations/response";
 
 export const importResultSchema = z
   .object({
@@ -38,6 +42,19 @@ export const githubIntegrationSchema = z
   })
   .openapi("GitHubIntegration");
 
+// RFC 0001 WP2: list response of the project's GitHub bindings with the
+// workspace's repository binding usage summary (WP10).
+export const githubIntegrationListSchema = z
+  .object({
+    integrations: z
+      .array(githubIntegrationSchema)
+      .openapi({
+        description: "Every GitHub binding of the project, oldest first.",
+      }),
+    usage: repositoryBindingUsageSchema,
+  })
+  .openapi("GitHubIntegrationList");
+
 export const githubAppInfoSchema = z
   .object({
     accountConnected: z.boolean(),
@@ -76,6 +93,10 @@ export const githubRepositorySchema = z
     installation_id: z.number().openapi({
       description: "Which App installation this repository came through.",
     }),
+    linkedTo: repositoryLinkedToSchema.nullable().openapi({
+      description:
+        "The binding that already links this repository, or null. Same-project links block selection in the picker; cross-project links (decision D1) are informational only.",
+    }),
   })
   .openapi("GitHubRepository");
 
@@ -97,13 +118,17 @@ export const githubRepositoryListSchema = z
   .object({
     repositories: z.array(githubRepositorySchema).openapi({
       description:
-        "Deduplicated across installations, most recently updated first.",
+        "Repositories the caller administers, deduplicated within the response.",
     }),
     installations: z.array(githubInstallationSchema),
     total: z.number(),
     nextPage: z
       .object({ installationPage: z.number(), repositoryPage: z.number() })
-      .nullable(),
+      .nullable()
+      .openapi({
+        description:
+          "Where to continue listing, or null when every installation has been read.",
+      }),
   })
   .openapi("GitHubRepositoryList");
 
@@ -146,7 +171,3 @@ export const createdGithubIntegrationSchema = githubIntegrationSchema
 export const deleteResultSchema = z
   .object({ success: z.boolean(), message: z.string() })
   .openapi("GitHubDeleteResult");
-
-export const integrationNotFoundSchema = z
-  .object({ error: z.string() })
-  .openapi("GitHubIntegrationNotFound");

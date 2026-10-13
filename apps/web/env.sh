@@ -36,4 +36,29 @@ for mode in resource authorization; do
   trap - EXIT HUP INT TERM
 done
 
+# Split web/api deployments: the web container proxies /api/ to the backend
+# service. apps/web/nginx.conf references this upstream unconditionally, so
+# the file must always exist. The value is validated strictly because it
+# becomes part of an nginx configuration string.
+api_proxy_target="${KANEO_API_PROXY_TARGET:-127.0.0.1:1337}"
+case "$api_proxy_target" in
+  [A-Za-z0-9._-]*:[0-9]*)
+    ;;
+  *)
+    echo "ERROR: KANEO_API_PROXY_TARGET must be host:port." >&2
+    exit 1
+    ;;
+esac
+conf_dir=/etc/nginx/conf.d
+if [ -w "$conf_dir" ]; then
+  temporary=$(mktemp "${conf_dir}/api-upstream.conf.XXXXXX")
+  trap 'rm -f "$temporary"' EXIT HUP INT TERM
+  printf 'upstream kaneo_api_backend {\n    server %s;\n}\n' "$api_proxy_target" > "$temporary"
+  chmod 644 "$temporary"
+  mv "$temporary" "$conf_dir/api-upstream.conf"
+  trap - EXIT HUP INT TERM
+else
+  echo "WARNING: $conf_dir is not writable; skipping API upstream configuration." >&2
+fi
+
 echo "Public web configuration prepared."
