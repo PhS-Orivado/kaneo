@@ -2674,6 +2674,11 @@
 			"high": "高",
 			"urgent": "紧急"
 		},
+		"type": {
+			"label": "类型",
+			"task": "任务",
+			"bug": "缺陷"
+		},
 		"boardSearchPlaceholder": "搜索工单…",
 		"view": {
 			"board": "看板",

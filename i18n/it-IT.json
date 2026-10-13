@@ -2766,6 +2766,11 @@
 			"high": "Alta",
 			"urgent": "Urgente"
 		},
+		"type": {
+			"label": "Tipo",
+			"task": "Attività",
+			"bug": "Bug"
+		},
 		"boardSearchPlaceholder": "Cerca ticket...",
 		"view": {
 			"board": "Board",

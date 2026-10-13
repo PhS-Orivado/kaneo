@@ -2674,6 +2674,11 @@
 			"high": "Cao",
 			"urgent": "Khẩn cấp"
 		},
+		"type": {
+			"label": "Loại",
+			"task": "Công việc",
+			"bug": "Lỗi"
+		},
 		"boardSearchPlaceholder": "Tìm phiếu...",
 		"view": {
 			"board": "Bảng",

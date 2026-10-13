@@ -2720,6 +2720,11 @@
 			"high": "Yüksək",
 			"urgent": "Təcili"
 		},
+		"type": {
+			"label": "Növ",
+			"task": "Tapşırıq",
+			"bug": "Xəta"
+		},
 		"boardSearchPlaceholder": "Tapşırıqları axtar...",
 		"view": {
 			"board": "Lövhə",

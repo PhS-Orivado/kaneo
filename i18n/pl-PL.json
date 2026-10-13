@@ -3461,6 +3461,11 @@
 			"no-priority": "Brak priorytetu",
 			"urgent": "Pilny"
 		},
+		"type": {
+			"label": "Typ",
+			"task": "Zadanie",
+			"bug": "Błąd"
+		},
 		"properties": {
 			"copyTaskBranch": "Kopiuj gałąź zadania",
 			"taskLinkCopied": "Skopiowano link do zadania",
