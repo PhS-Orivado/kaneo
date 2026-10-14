@@ -11,6 +11,10 @@ import { planImportColumns } from "./plan-import-columns";
 import { planImportRelations } from "./plan-import-relations";
 import { planImportSprints } from "./plan-import-sprints";
 import { planImportTasks } from "./plan-import-tasks";
+import {
+  planImportAttachments,
+  type ImportTaskAttachments,
+} from "./write-import-attachments";
 import { writeImportColumns } from "./write-import-columns";
 import { writeImportComments } from "./write-import-comments";
 import { writeImportLabels } from "./write-import-labels";
@@ -29,6 +33,12 @@ export type ProjectContentInput = {
   includeComments: boolean;
 };
 
+export type ProjectContentResult = {
+  counts: ImportCounts;
+  warnings: string[];
+  attachments: ImportTaskAttachments[];
+};
+
 export async function writeProjectContent(
   tx: Transaction,
   {
@@ -39,7 +49,7 @@ export async function writeProjectContent(
     project,
     includeComments,
   }: ProjectContentInput,
-): Promise<{ counts: ImportCounts; warnings: string[] }> {
+): Promise<ProjectContentResult> {
   const now = new Date();
   const description = project.description?.trim();
   if (description) {
@@ -114,11 +124,20 @@ export async function writeProjectContent(
       comments,
       assignees: tasks.filter((task) => task.userId).length,
       relations,
+      attachments: 0,
     },
     warnings: [
       ...project.warnings,
       ...columnPlan.warnings,
       ...(unmatched ? [unmatched] : []),
     ],
+    attachments: planImportAttachments(
+      tasks.map((task) => ({
+        key: task.key,
+        id: task.id,
+        description: task.description,
+      })),
+      project.tasks,
+    ),
   };
 }

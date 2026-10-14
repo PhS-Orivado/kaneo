@@ -12,10 +12,11 @@ const counts = {
   comments: 1032,
   assignees: 30,
   relations: 4,
+  attachments: 0,
 };
 
 describe("summarizeImportCounts", () => {
-  it("lists tasks, columns, labels and comments and omits zeros", () => {
+  it("lists tasks, columns, labels, comments and attachments and omits zeros", () => {
     expect(summarizeImportCounts(counts)).toEqual([
       { key: "tasks", count: 412 },
       { key: "columns", count: 7 },
@@ -56,6 +57,7 @@ describe("sumImportCounts", () => {
       comments: 2064,
       assignees: 60,
       relations: 8,
+      attachments: 0,
     });
   });
 });

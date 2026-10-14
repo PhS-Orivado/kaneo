@@ -6,6 +6,7 @@ export type PlannedImportSprint = {
   id: string;
   name: string;
   status: "future" | "active" | "closed";
+  goal: string | null;
   startDate: Date | null;
   endDate: Date | null;
   position: number;
@@ -40,6 +41,7 @@ export function planImportSprints(
       id: newId(),
       name,
       status: sprintStatus(sprint.status),
+      goal: sprint.goal?.trim() || null,
       startDate: parseImportDate(sprint.startDate),
       endDate: parseImportDate(sprint.endDate),
       position: index,

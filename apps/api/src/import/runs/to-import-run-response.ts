@@ -56,7 +56,11 @@ export function toImportRunResponse(
     includeComments: current.includeComments,
     message: current.message,
     error: current.error,
-    projects: current.projects,
+    // Runs stored before attachments were imported have no attachments count.
+    projects: current.projects.map((project) => ({
+      ...project,
+      counts: { attachments: 0, ...project.counts },
+    })),
     createdAt: current.createdAt,
     finishedAt: current.finishedAt,
   };

@@ -63,9 +63,6 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
     relations,
     warnings: [
       ...buildWarnings({
-        issuesWithAttachments: data.issues.filter(
-          (issue) => (issue.fields?.attachment?.length ?? 0) > 0,
-        ).length,
         externalLinks: external,
         boardUnavailable: data.boardUnavailable,
       }),

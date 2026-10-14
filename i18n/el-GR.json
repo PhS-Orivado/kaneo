@@ -2049,6 +2049,8 @@
 				"columns_other": "{{count, number}} columns",
 				"comments_one": "{{count, number}} comment",
 				"comments_other": "{{count, number}} comments",
+				"attachments_one": "{{count, number}} attachment",
+				"attachments_other": "{{count, number}} attachments",
 				"labels_one": "{{count, number}} label",
 				"labels_other": "{{count, number}} labels",
 				"tasks_one": "{{count, number}} task",

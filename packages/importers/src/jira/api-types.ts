@@ -59,6 +59,7 @@ export type JiraSprint = {
   id: number;
   name?: string | null;
   state?: string | null;
+  goal?: string | null;
   startDate?: string | null;
   endDate?: string | null;
 };
@@ -99,6 +100,14 @@ export type JiraIssueLink = {
   outwardIssue?: JiraLinkedIssue | null;
 };
 
+export type JiraAttachment = {
+  id: string;
+  filename?: string | null;
+  mimeType?: string | null;
+  size?: number | string | null;
+  content?: string | null;
+};
+
 export type JiraIssueFields = {
   summary?: string | null;
   description?: unknown;
@@ -110,7 +119,7 @@ export type JiraIssueFields = {
   created?: string | null;
   parent?: JiraLinkedIssue | null;
   issuelinks?: JiraIssueLink[] | null;
-  attachment?: unknown[] | null;
+  attachment?: JiraAttachment[] | null;
   comment?: { total?: number | null } | null;
 };
 

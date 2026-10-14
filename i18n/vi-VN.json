@@ -2031,6 +2031,7 @@
 			"counts": {
 				"columns_other": "{{count, number}} columns",
 				"comments_other": "{{count, number}} comments",
+				"attachments_other": "{{count, number}} attachments",
 				"labels_other": "{{count, number}} labels",
 				"tasks_other": "{{count, number}} tasks"
 			},

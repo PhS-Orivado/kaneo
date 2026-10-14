@@ -1,5 +1,6 @@
 import { toIsoDate } from "../markdown.js";
 import type {
+  ImportedAttachment,
   ImportedComment,
   ImportedPriority,
   ImportedTask,
@@ -51,6 +52,32 @@ export function issueDescription(
   return typeof raw === "string" ? raw.trim() : "";
 }
 
+export function mapAttachments(
+  issue: JiraIssue,
+): ImportedAttachment[] {
+  const attachments = issue.fields?.attachment ?? [];
+  const mapped: ImportedAttachment[] = [];
+  for (const attachment of attachments) {
+    const contentUrl = attachment.content?.trim();
+    const filename = attachment.filename?.trim();
+    if (!contentUrl || !filename || !attachment.id) continue;
+    const size =
+      typeof attachment.size === "string"
+        ? Number.parseInt(attachment.size, 10)
+        : attachment.size;
+    mapped.push({
+      key: attachment.id,
+      filename,
+      ...(attachment.mimeType?.trim() ? { mimeType: attachment.mimeType.trim() } : {}),
+      ...(typeof size === "number" && Number.isFinite(size) && size >= 0
+        ? { size }
+        : {}),
+      contentUrl,
+    });
+  }
+  return mapped;
+}
+
 export function mapIssue(
   issue: JiraIssue,
   context: IssueContext,
@@ -61,6 +88,7 @@ export function mapIssue(
   const createdAt = toIsoDate(fields.created);
   const assignee = toPerson(fields.assignee);
   const sprintKey = context.issueSprint?.get(issue.id) ?? null;
+  const attachments = mapAttachments(issue);
   return {
     key: issue.id,
     ...(number !== undefined ? { number } : {}),
@@ -74,5 +102,6 @@ export function mapIssue(
     labelKeys: issueLabels(issue),
     comments: context.comments,
     ...(sprintKey ? { sprintKey } : {}),
+    ...(attachments.length ? { attachments } : {}),
   };
 }
