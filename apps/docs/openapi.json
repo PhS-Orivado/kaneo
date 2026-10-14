@@ -5192,6 +5192,100 @@
           "authorizeUrl"
         ]
       },
+      "JiraLinkRewrite": {
+        "type": "object",
+        "properties": {
+          "dryRun": {
+            "type": "boolean",
+            "description": "true when nothing was written; false when the rewrite was applied."
+          },
+          "replacements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sourceUrl": {
+                  "type": "string",
+                  "description": "The Jira issue link found in the text."
+                },
+                "targetUrl": {
+                  "type": "string",
+                  "description": "The Kaneo task URL that replaces it."
+                },
+                "targetTicketId": {
+                  "type": "string",
+                  "description": "Ticket ID of the imported task, e.g. ABC-1."
+                },
+                "targetTitle": {
+                  "type": "string",
+                  "description": "Title of the imported task."
+                },
+                "taskId": {
+                  "type": "string",
+                  "description": "The task whose description contains the link; same as commentId's task when commentId is set."
+                },
+                "commentId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ],
+                  "description": "The comment that contains the link, when it is not the description."
+                }
+              },
+              "required": [
+                "sourceUrl",
+                "targetUrl",
+                "targetTicketId",
+                "targetTitle",
+                "taskId",
+                "commentId"
+              ]
+            },
+            "description": "Every link that resolves to an imported task."
+          },
+          "unresolved": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "taskId": {
+                  "type": "string"
+                },
+                "commentId": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "url",
+                "taskId",
+                "commentId"
+              ]
+            },
+            "description": "Links that point at a project or issue this workspace has no task for. They are left unchanged."
+          },
+          "updatedTasks": {
+            "type": "integer",
+            "description": "Tasks whose description changes. Planned when dryRun is true."
+          },
+          "updatedComments": {
+            "type": "integer",
+            "description": "Comments that change. Planned when dryRun is true."
+          }
+        },
+        "required": [
+          "dryRun",
+          "replacements",
+          "unresolved",
+          "updatedTasks",
+          "updatedComments"
+        ]
+      },
       "CurrentUser": {
         "type": "object",
         "properties": {
@@ -23717,6 +23811,105 @@
           },
           "404": {
             "description": "Workspace or import not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/import/jira-links/rewrite": {
+      "post": {
+        "operationId": "rewriteJiraLinks",
+        "tags": [
+          "Import"
+        ],
+        "summary": "Rewrite Jira issue links",
+        "description": "Find Jira issue links (…/browse/KEY-123) in task descriptions and comments across the workspace and point them at the matching imported tasks: a Jira import keeps the Jira project key as the project slug and the issue number as the task number. With dryRun true nothing is written. Unresolvable links are reported and left unchanged.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "workspaceId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "dryRun": {
+                    "type": "boolean",
+                    "description": "Report the planned replacements without writing anything. Send false to apply them."
+                  }
+                },
+                "required": [
+                  "workspaceId",
+                  "dryRun"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The link rewrite report",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JiraLinkRewrite"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Workspace plan has expired",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing workspace:manage_settings or project:create permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Workspace not found",
             "content": {
               "application/json": {
                 "schema": {
