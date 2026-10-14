@@ -78,6 +78,9 @@ export type JiraSprintIssue = {
 };
 
 export type JiraSprintIssuePage = {
+  // The agile issue searches wrap their page in "issues"; "values" is only
+  // kept for gateways that normalize it to the sprint page shape.
+  issues?: JiraSprintIssue[] | null;
   values?: JiraSprintIssue[] | null;
   startAt?: number | null;
   maxResults?: number | null;

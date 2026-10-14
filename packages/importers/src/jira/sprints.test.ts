@@ -11,6 +11,7 @@ import {
 const client = (pages: {
   sprints?: unknown[];
   issues?: Record<string, unknown[][] | Error>;
+  issuesKey?: "issues" | "values";
 }) =>
   ({
     boardSprints: (_boardId: number, startAt: number) => {
@@ -24,10 +25,15 @@ const client = (pages: {
     sprintIssues: (sprintId: string, startAt: number) => {
       const page = pages.issues?.[sprintId]?.[startAt];
       if (page === undefined) {
-        return Promise.resolve({ values: [], isLast: true });
+        return Promise.resolve({ issues: [], isLast: true });
       }
       if (page instanceof Error) return Promise.reject(page);
-      return Promise.resolve({ values: page, isLast: false });
+      // Jira's agile issue search wraps its page in "issues", unlike the
+      // sprint pages that use "values".
+      return Promise.resolve({
+        [pages.issuesKey ?? "issues"]: page,
+        isLast: false,
+      });
     },
   }) as never;
 
@@ -46,7 +52,6 @@ describe("mapSprintStatus", () => {
     expect(mapSprintStatus(undefined)).toBe("future");
   });
 });
-
 describe("toImportedSprint", () => {
   it("keeps the sprint id as key and maps the fields", () => {
     expect(
@@ -80,7 +85,6 @@ describe("toImportedSprint", () => {
     ).toBeUndefined();
   });
 });
-
 describe("readBoardSprints", () => {
   it("reads sprints and assigns issues to the later sprint", async () => {
     const read = await readBoardSprints(
@@ -134,5 +138,30 @@ describe("readBoardSprints", () => {
     );
 
     expect(read.issueSprint).toEqual(new Map([["101", "2"]]));
+  });
+
+  it("still reads pages a gateway normalizes to the values key", async () => {
+    const read = await readBoardSprints(
+      client({
+        sprints: [[sprint(1)]],
+        issues: { "1": [[{ id: "101" }]] },
+        issuesKey: "values",
+      }),
+      7,
+    );
+
+    expect(read.issueSprint).toEqual(new Map([["101", "1"]]));
+  });
+
+  it("normalizes numeric Jira issue ids to strings", async () => {
+    const read = await readBoardSprints(
+      client({
+        sprints: [[sprint(1)]],
+        issues: { "1": [[{ id: 101 }]] },
+      }),
+      7,
+    );
+
+    expect(read.issueSprint).toEqual(new Map([["101", "1"]]));
   });
 });
