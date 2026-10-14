@@ -85,4 +85,55 @@ export const trelloAuthorizeUrlSchema = z
   })
   .openapi("TrelloAuthorizeUrl");
 
+export const jiraLinkRewriteSchema = z
+  .object({
+    dryRun: z.boolean().openapi({
+      description: "true when nothing was written; false when the rewrite was applied.",
+    }),
+    replacements: z
+      .array(
+        z.object({
+          sourceUrl: z.string().openapi({
+            description: "The Jira issue link found in the text.",
+          }),
+          targetUrl: z.string().openapi({
+            description: "The Kaneo task URL that replaces it.",
+          }),
+          targetTicketId: z.string().openapi({
+            description: "Ticket ID of the imported task, e.g. ABC-1.",
+          }),
+          targetTitle: z.string().openapi({
+            description: "Title of the imported task.",
+          }),
+          taskId: z.string().openapi({
+            description:
+              "The task whose description contains the link; same as commentId's task when commentId is set.",
+          }),
+          commentId: z.string().nullable().openapi({
+            description: "The comment that contains the link, when it is not the description.",
+          }),
+        }),
+      )
+      .openapi({ description: "Every link that resolves to an imported task." }),
+    unresolved: z
+      .array(
+        z.object({
+          url: z.string(),
+          taskId: z.string(),
+          commentId: z.string().nullable(),
+        }),
+      )
+      .openapi({
+        description:
+          "Links that point at a project or issue this workspace has no task for. They are left unchanged.",
+      }),
+    updatedTasks: z.number().int().openapi({
+      description: "Tasks whose description changes. Planned when dryRun is true.",
+    }),
+    updatedComments: z.number().int().openapi({
+      description: "Comments that change. Planned when dryRun is true.",
+    }),
+  })
+  .openapi("JiraLinkRewrite");
+
 export type ImportRunResponse = z.infer<typeof importRunSchema>;
