@@ -3,7 +3,7 @@ import { createId } from "@paralleldrive/cuid2";
 import { eq, sql } from "drizzle-orm";
 import type db from "../../database";
 import { projectTable } from "../../database/schema";
-import type { ImportCounts } from "../import-run-project";
+import type { ImportCounts, ImportStage } from "../import-run-project";
 import { assignImportTaskNumbers } from "./assign-import-task-numbers";
 import { loadAssignableMembers } from "./load-assignable-members";
 import { createAssigneeMatcher } from "./match-assignees";
@@ -15,14 +15,19 @@ import {
   planImportAttachments,
   type ImportTaskAttachments,
 } from "./write-import-attachments";
+import {
+  type ImportUserHandling,
+  planImportUsers,
+} from "./plan-import-users";
 import { writeImportColumns } from "./write-import-columns";
 import { writeImportComments } from "./write-import-comments";
 import { writeImportLabels } from "./write-import-labels";
 import { writeImportRelations } from "./write-import-relations";
 import { writeImportSprints } from "./write-import-sprints";
 import { writeImportTasks } from "./write-import-tasks";
+import { writeImportUsers } from "./write-import-users";
 
-type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
+type Transaction = Parameters<Parameters<typeof db.transaction>[0][0]>;
 
 export type ProjectContentInput = {
   projectId: string;
@@ -31,6 +36,8 @@ export type ProjectContentInput = {
   source: ImportSourceId;
   project: ImportedProject;
   includeComments: boolean;
+  userHandling: ImportUserHandling;
+  onStage?: (stage: ImportStage) => void;
 };
 
 export type ProjectContentResult = {
@@ -48,6 +55,8 @@ export async function writeProjectContent(
     source,
     project,
     includeComments,
+    userHandling,
+    onStage,
   }: ProjectContentInput,
 ): Promise<ProjectContentResult> {
   const now = new Date();
@@ -61,9 +70,31 @@ export async function writeProjectContent(
 
   const columnPlan = planImportColumns(project.columns);
   const board = await writeImportColumns(tx, projectId, columnPlan);
-  const assignees = createAssigneeMatcher(
-    await loadAssignableMembers(tx, workspaceId, projectId),
+  const members = await loadAssignableMembers(tx, workspaceId, projectId);
+
+  onStage?.("sprints");
+  const plannedSprints = planImportSprints(project.sprints ?? [], createId);
+  const sprintIds = await writeImportSprints(tx, projectId, plannedSprints);
+
+  onStage?.("users");
+  const plannedUsers = planImportUsers(
+    members,
+    project.tasks.map((task) => task.assignee),
   );
+  const writtenUsers =
+    plannedUsers.length > 0
+      ? await writeImportUsers(tx, {
+          workspaceId,
+          userId,
+          handling: userHandling,
+          users: plannedUsers,
+        })
+      : { members: [], users: 0, warnings: [] };
+
+  const assignees = createAssigneeMatcher([
+    ...members,
+    ...writtenUsers.members,
+  ]);
 
   const { numbers, lastNumber } = assignImportTaskNumbers(project.tasks);
   if (lastNumber > 0) {
@@ -74,11 +105,8 @@ export async function writeProjectContent(
       })
       .where(eq(projectTable.id, projectId));
   }
-  const sprintIds = await writeImportSprints(
-    tx,
-    projectId,
-    planImportSprints(project.sprints ?? [], createId),
-  );
+
+  onStage?.("tasks");
   const tasks = planImportTasks({
     tasks: project.tasks,
     columns: board.byKey,
@@ -125,10 +153,13 @@ export async function writeProjectContent(
       assignees: tasks.filter((task) => task.userId).length,
       relations,
       attachments: 0,
+      sprints: plannedSprints.length,
+      users: writtenUsers.users,
     },
     warnings: [
       ...project.warnings,
       ...columnPlan.warnings,
+      ...writtenUsers.warnings,
       ...(unmatched ? [unmatched] : []),
     ],
     attachments: planImportAttachments(

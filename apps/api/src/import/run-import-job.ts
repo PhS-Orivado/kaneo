@@ -11,6 +11,7 @@ import {
 } from "./runs/import-run-store";
 import { createProgressThrottle } from "./runs/progress-throttle";
 import type { OpenedImportSource } from "./source/open-import-source";
+import type { ImportUserHandling } from "./writer/plan-import-users";
 import { writeImportedProject } from "./write-imported-project";
 
 export type ImportJobState = { projects: ImportRunProject[] };
@@ -21,6 +22,7 @@ export type ImportJob = {
   userId: string;
   includeComments: boolean;
   includeSprints: boolean;
+  userHandling: ImportUserHandling;
   opened: OpenedImportSource;
   state: ImportJobState;
   signal: AbortSignal;
@@ -77,7 +79,7 @@ async function importProject(
 
   await store.save({
     message: `Reading ${entry.name}`,
-    projects: updateProject(job, index, { status: "running" }),
+    projects: updateProject(job, index, { status: "running", stage: "reading" }),
   });
 
   let project: ImportedProject;
@@ -105,10 +107,17 @@ async function importProject(
       signal: job.signal,
       project,
       includeComments: job.includeComments,
+      userHandling: job.userHandling,
+      onStage: (stage) => {
+        void store.save({
+          projects: updateProject(job, index, { stage }),
+        });
+      },
     });
     await store.save({
       projects: updateProject(job, index, {
         status: "completed",
+        stage: "done",
         error: null,
         ...written,
       }),
