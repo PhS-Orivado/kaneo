@@ -137,6 +137,33 @@ describe("planImportTasks", () => {
   it("dates tasks without a source date now", () => {
     expect(plan([task("a")])[0]?.createdAt).toEqual(now);
   });
+
+  it("places tasks in their sprint and leaves unknown sprint keys unassigned", () => {
+    const planned = planImportTasks({
+      tasks: [
+        task("a", { sprintKey: "s1" }),
+        task("b", { sprintKey: "gone" }),
+        task("c", { sprintKey: null }),
+        task("d"),
+      ],
+      columns: new Map<string, { id: string; slug: string }>([
+        ["todo", { id: "col-todo", slug: "to-do" }],
+      ]),
+      fallbackColumn: { id: "col-todo", slug: "to-do" },
+      numbers: [41, 42, 43, 44],
+      now,
+      newId: () => "task-id",
+      assign: () => null,
+      sprints: new Map([["s1", "sprint-1"]]),
+    });
+
+    expect(planned.map(({ key, sprintId }) => ({ key, sprintId }))).toEqual([
+      { key: "a", sprintId: "sprint-1" },
+      { key: "b", sprintId: null },
+      { key: "c", sprintId: null },
+      { key: "d", sprintId: null },
+    ]);
+  });
 });
 
 describe("parseImportDate", () => {

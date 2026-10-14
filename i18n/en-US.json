@@ -1505,6 +1505,8 @@
 				"back": "Back",
 				"commentsLabel": "Import comments",
 				"commentsDescription": "Keeps each comment's original author and date.",
+				"sprintsLabel": "Import sprints",
+				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
 				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
 				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
 				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned.",

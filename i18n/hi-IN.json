@@ -2169,6 +2169,8 @@
 				"back": "Back",
 				"clear": "Clear",
 				"commentsDescription": "Keeps each comment's original author and date.",
+				"sprintsLabel": "Import sprints",
+				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
 				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",

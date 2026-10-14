@@ -20,6 +20,7 @@ export type ImportJob = {
   workspaceId: string;
   userId: string;
   includeComments: boolean;
+  includeSprints: boolean;
   opened: OpenedImportSource;
   state: ImportJobState;
   signal: AbortSignal;
@@ -57,6 +58,7 @@ async function readSourceProject(
   try {
     return await job.opened.source.readProject(sourceId, {
       includeComments: job.includeComments,
+      includeSprints: job.includeSprints,
       onProgress: progress.report,
       signal: job.signal,
     });

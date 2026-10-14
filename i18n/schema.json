@@ -6310,6 +6310,12 @@
 								"commentsDescription": {
 									"type": "string"
 								},
+								"sprintsLabel": {
+									"type": "string"
+								},
+								"sprintsDescription": {
+									"type": "string"
+								},
 								"membersNote": {
 									"type": "string"
 								},
@@ -6329,6 +6335,8 @@
 								"back",
 								"commentsLabel",
 								"commentsDescription",
+								"sprintsLabel",
+								"sprintsDescription",
 								"membersNote",
 								"membersNoteTrello",
 								"membersNoteJira",

@@ -9,11 +9,13 @@ import { loadAssignableMembers } from "./load-assignable-members";
 import { createAssigneeMatcher } from "./match-assignees";
 import { planImportColumns } from "./plan-import-columns";
 import { planImportRelations } from "./plan-import-relations";
+import { planImportSprints } from "./plan-import-sprints";
 import { planImportTasks } from "./plan-import-tasks";
 import { writeImportColumns } from "./write-import-columns";
 import { writeImportComments } from "./write-import-comments";
 import { writeImportLabels } from "./write-import-labels";
 import { writeImportRelations } from "./write-import-relations";
+import { writeImportSprints } from "./write-import-sprints";
 import { writeImportTasks } from "./write-import-tasks";
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0]>[0];
@@ -62,6 +64,11 @@ export async function writeProjectContent(
       })
       .where(eq(projectTable.id, projectId));
   }
+  const sprintIds = await writeImportSprints(
+    tx,
+    projectId,
+    planImportSprints(project.sprints ?? [], createId),
+  );
   const tasks = planImportTasks({
     tasks: project.tasks,
     columns: board.byKey,
@@ -70,6 +77,7 @@ export async function writeProjectContent(
     now,
     newId: createId,
     assign: assignees.match,
+    sprints: sprintIds,
   });
   await writeImportTasks(tx, projectId, userId, tasks);
 

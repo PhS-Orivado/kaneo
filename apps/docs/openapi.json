@@ -23969,6 +23969,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Import task comments too. Defaults to true."
+                  },
+                  "includeSprints": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Import sprints too, when the source has them, and keep each task in its sprint. Defaults to true."
                   }
                 },
                 "required": [

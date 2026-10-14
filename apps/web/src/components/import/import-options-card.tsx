@@ -11,6 +11,8 @@ type ImportOptionsCardProps = {
   workspaceName: string;
   includeComments: boolean;
   onIncludeCommentsChange: (includeComments: boolean) => void;
+  includeSprints: boolean;
+  onIncludeSprintsChange: (includeSprints: boolean) => void;
 };
 
 export function ImportOptionsCard({
@@ -19,11 +21,34 @@ export function ImportOptionsCard({
   workspaceName,
   includeComments,
   onIncludeCommentsChange,
+  includeSprints,
+  onIncludeSprintsChange,
 }: ImportOptionsCardProps) {
   const { t } = useTranslation();
 
   return (
     <div className="divide-y divide-border overflow-hidden rounded-xl border border-border bg-card">
+      {sourceId === "jira" ? (
+        <div className="flex items-center justify-between gap-4 px-4 py-3.5">
+          <div className="min-w-0 space-y-0.5">
+            <p id="import-sprints-label" className="font-medium text-sm">
+              {t("settings:workspaceImport.select.sprintsLabel")}
+            </p>
+            <p
+              id="import-sprints-description"
+              className="text-muted-foreground text-xs"
+            >
+              {t("settings:workspaceImport.select.sprintsDescription")}
+            </p>
+          </div>
+          <Switch
+            checked={includeSprints}
+            onCheckedChange={onIncludeSprintsChange}
+            aria-labelledby="import-sprints-label"
+            aria-describedby="import-sprints-description"
+          />
+        </div>
+      ) : null}
       <div className="flex items-center justify-between gap-4 px-4 py-3.5">
         <div className="min-w-0 space-y-0.5">
           <p id="import-comments-label" className="font-medium text-sm">

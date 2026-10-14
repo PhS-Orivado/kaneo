@@ -26,6 +26,7 @@ export type IssueContext = {
   columnKey: string | null;
   comments: ImportedComment[];
   toMarkdown: HtmlToMarkdown;
+  issueSprint?: ReadonlyMap<string, string>;
 };
 
 export function mapPriority(name: string | null | undefined): ImportedPriority {
@@ -59,6 +60,7 @@ export function mapIssue(
   const dueDate = toIsoDate(fields.duedate);
   const createdAt = toIsoDate(fields.created);
   const assignee = toPerson(fields.assignee);
+  const sprintKey = context.issueSprint?.get(issue.id) ?? null;
   return {
     key: issue.id,
     ...(number !== undefined ? { number } : {}),
@@ -71,5 +73,6 @@ export function mapIssue(
     ...(assignee ? { assignee } : {}),
     labelKeys: issueLabels(issue),
     comments: context.comments,
+    ...(sprintKey ? { sprintKey } : {}),
   };
 }
