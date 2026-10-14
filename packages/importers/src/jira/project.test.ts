@@ -37,7 +37,20 @@ function issue(
 }
 
 const ISSUES = [
-  issue("10", DONE, { attachment: [{}], parent: { id: "11" } }),
+  issue("10", DONE, {
+    attachment: [
+      {
+        id: "1",
+        filename: "spec.pdf",
+        mimeType: "application/pdf",
+        size: 12,
+        content:
+          "https://acme.atlassian.net/secure/attachment/1/spec.pdf",
+      },
+      { id: "2" },
+    ],
+    parent: { id: "11" },
+  }),
   issue("11", DOING, { labels: ["ux"] }),
   issue("12", BACKLOG),
   issue("13", TODO, {
@@ -112,8 +125,16 @@ describe("mapJiraProject", () => {
       { sourceKey: "11", targetKey: "10", type: "subtask" },
       { sourceKey: "13", targetKey: "11", type: "blocks" },
     ]);
+    expect(result.tasks.find((task) => task.key === "10")?.attachments).toEqual([
+      {
+        key: "1",
+        filename: "spec.pdf",
+        mimeType: "application/pdf",
+        size: 12,
+        contentUrl: "https://acme.atlassian.net/secure/attachment/1/spec.pdf",
+      },
+    ]);
     expect(result.warnings).toEqual([
-      "1 issue has attachments, which are not imported.",
       "1 parent or issue link points to another project, so it was not imported.",
     ]);
   });

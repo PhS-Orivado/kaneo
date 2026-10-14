@@ -1,4 +1,8 @@
-import { createJsonClient, type JsonClient } from "../http.js";
+import {
+  createJsonClient,
+  type JsonClient,
+  SourceHttpError,
+} from "../http.js";
 import type { FetchLike } from "../types.js";
 import type {
   JiraBoardConfiguration,
@@ -21,6 +25,7 @@ export const PROJECTS_PAGE_SIZE = 50;
 export const SEARCH_PAGE_SIZE = 100;
 export const COMMENTS_PAGE_SIZE = 100;
 export const SPRINTS_PAGE_SIZE = 50;
+export const DOWNLOAD_TIMEOUT_MS = 60_000;
 
 export type JiraClientOptions = {
   site: JiraSite;
@@ -172,6 +177,53 @@ export class JiraClient {
     return this.request(
       `${this.api}/issue/${encodeURIComponent(issueId)}/comment?${params}`,
     );
+  }
+
+  // Downloads a raw attachment; Jira's content URLs share the site origin and
+  // need the same authorization header as the JSON API.
+  async download(
+    url: string,
+    options: { signal?: AbortSignal } = {},
+  ): Promise<{ contentType?: string; body: ArrayBuffer }> {
+    if (!url.startsWith(`${this.options.site.baseUrl}/`)) {
+      throw new Error(
+        `Jira attachment URL is outside the Jira site: ${url}`,
+      );
+    }
+
+    const signals = [
+      AbortSignal.timeout(DOWNLOAD_TIMEOUT_MS),
+      this.options.signal,
+      options.signal,
+    ].filter((signal): signal is AbortSignal => Boolean(signal));
+    const fetchImpl = this.options.fetch ?? fetch;
+
+    let res: Response;
+    try {
+      res = await fetchImpl(url, {
+        headers: { Authorization: this.options.auth.authorization },
+        signal: AbortSignal.any(signals),
+      });
+    } catch (error) {
+      if (options.signal?.aborted || this.options.signal?.aborted) {
+        throw error;
+      }
+      throw toJiraError(error, this.options.auth.rejectedMessage);
+    }
+
+    if (!res.ok) {
+      await res.body?.cancel();
+      throw new SourceHttpError(
+        `Jira attachment could not be downloaded (HTTP ${res.status}).`,
+        res.status,
+        null,
+      );
+    }
+
+    return {
+      contentType: res.headers.get("content-type") ?? undefined,
+      body: await res.arrayBuffer(),
+    };
   }
 
   private async request<T>(path: string, init?: RequestInit): Promise<T> {
