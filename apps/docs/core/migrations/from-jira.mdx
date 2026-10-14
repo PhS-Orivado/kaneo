@@ -1,6 +1,6 @@
 ---
 title: Import from Jira
-description: Move Jira Cloud or Jira Data Center projects into Kaneo, including board columns, issues, priorities, labels, assignees, sub-tasks, issue links, and comments.
+description: Move Jira Cloud or Jira Data Center projects into Kaneo, including board columns, issues, priorities, labels, assignees, sub-tasks, issue links, comments, sprints, and attachments.
 ---
 
 Each Jira project becomes a Kaneo project. This works with Jira Cloud and Jira Data Center. Read [Import from other tools](/core/migrations) first for the rules that apply to every import.
@@ -24,7 +24,7 @@ If you run Kaneo yourself and Jira is on a private network, for example a Jira D
 1. In Kaneo, open **Settings → Workspace → Import** and choose **Jira**.
 2. Paste your Jira site URL.
 3. For Jira Cloud, enter your email and paste your API token. For Jira Data Center, leave the email empty and paste your personal access token.
-4. Select the projects to import. Leave comments on, or turn them off.
+4. Select the projects to import. Leave comments and sprints on, or turn either of them off.
 5. Start the import. You can leave the page while it runs and check **Recent imports** later.
 
 ## What carries over
@@ -44,11 +44,11 @@ If you run Kaneo yourself and Jira is on a private network, for example a Jira D
 | Sub-tasks, and issues that have a parent issue such as an epic | Subtask relations |
 | Issue links | **Blocks** links stay blocks relations. Other links, such as **Relates**, become related relations |
 | Comments | Comments, with the original author's name and date |
+| Sprints | Sprints, with their goal and start and end dates. Each issue stays in the sprint it belongs to. When Jira does not share the project's sprints, the report says so |
+| Attachments | Copied into the Kaneo storage backend and linked at the end of the task description. Self-hosted instances need the S3 storage backend configured; when Kaneo cannot reach the bucket, the report says so and the import finishes without the files |
 
 ## What doesn't
 
-- **Attachments.** Download anything you need from Jira before you stop using it.
-- **Sprints.**
 - **Epics**, other than as parent issues. An epic is imported as a task, with its issues as subtasks.
 - **Components and fix versions.**
 - **Custom fields.**
