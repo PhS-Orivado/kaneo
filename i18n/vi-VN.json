@@ -10,8 +10,7 @@
 			"markAllRead": "Đánh dấu đã đọc tất cả",
 			"remove": "Gỡ bỏ",
 			"reset": "Đặt lại",
-			"filter": "Lọc",
-			"clearAllFilters": "Xóa tất cả bộ lọc"
+			"filter": "Lọc"
 		},
 		"a11y": {
 			"toggleSidebar": "Bật/tắt thanh bên"
@@ -152,6 +151,14 @@
 					"crimson": "Đỏ thẫm"
 				},
 				"statusLoadError": "Project statuses couldn’t be loaded."
+			}
+		},
+		"editor": {
+			"link": {
+				"label": "URL liên kết",
+				"placeholder": "Dán hoặc nhập liên kết…",
+				"apply": "Áp dụng liên kết",
+				"remove": "Xóa liên kết"
 			}
 		},
 		"boolean": {
@@ -1515,12 +1522,10 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
-			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
-			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Hộp kiểm",
@@ -1530,7 +1535,6 @@
 				"text": "Text",
 				"multiselect": "Danh sách thả xuống, chọn nhiều"
 			},
-			"availableOptions": "Available options",
 			"clearDefault": "Xóa mặc định",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1859,7 +1863,11 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace"
+			"openFailed": "Couldn't open billing for this workspace",
+			"checkoutSuccess": {
+				"title": "Cảm ơn bạn đã đăng ký",
+				"description": "Đã nhận thanh toán. Gói bên dưới sẽ được cập nhật ngay khi thanh toán được xác nhận."
+			}
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2002,37 +2010,6 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
-			}
-		},
-		"adminBranding": {
-			"title": "Branding",
-			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
-			"instanceBadge": "Instance",
-			"loadError": "Branding settings could not be loaded.",
-			"retry": "Retry",
-			"form": {
-				"appName": "Application name",
-				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
-				"logoLightUrl": "Light-mode logo URL",
-				"logoDarkUrl": "Dark-mode logo URL",
-				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
-				"accentColor": "Accent color",
-				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
-				"footerText": "Footer text",
-				"footerDescription": "Shown in the footer instead of the application name.",
-				"footerUrl": "Footer link URL",
-				"termsUrl": "Terms of service URL",
-				"privacyUrl": "Privacy policy URL",
-				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
-				"showPoweredBy": "Show \"Powered by Kaneo\"",
-				"showPoweredByDescription": "Displays a small attribution link in the footer.",
-				"reset": "Reset",
-				"save": "Save changes",
-				"saving": "Saving..."
-			},
-			"toast": {
-				"saved": "Branding updated.",
-				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2353,6 +2330,37 @@
 		},
 		"shared": {
 			"autosave": "Thay đổi được lưu tự động"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2438,6 +2446,122 @@
 		},
 		"projectSettings": {
 			"projectLabel": "Dự án"
+		},
+		"shortcuts": {
+			"categories": {
+				"general": "Chung",
+				"navigation": "Điều hướng",
+				"create": "Tạo",
+				"views": "Chế độ xem",
+				"tasks": "Công việc",
+				"list": "Bảng và danh sách",
+				"inbox": "Hộp thư đến",
+				"filters": "Bộ lọc",
+				"editor": "Trình soạn thảo"
+			},
+			"items": {
+				"openCommandMenu": "Mở bảng lệnh",
+				"openSearch": "Tìm kiếm toàn cục",
+				"openShortcuts": "Hiện phím tắt",
+				"submit": "Lưu hoặc gửi",
+				"back": "Đóng modal/popover",
+				"switchWorkspace": "Đổi không gian làm việc",
+				"logOut": "Đăng xuất",
+				"showDisplayOptions": "Tùy chọn hiển thị",
+				"dismissToasts": "Đóng tất cả thông báo",
+				"toggleSidebar": "Bật/tắt thanh bên",
+				"goToHome": "Đến trang chủ",
+				"goToInbox": "Đến hộp thư đến",
+				"goToMyTasks": "Đến công việc của tôi",
+				"goToProjects": "Đến dự án",
+				"goToSettings": "Đến cài đặt",
+				"goToTasks": "Đến công việc",
+				"goToBacklog": "Đến Backlog",
+				"goToProject": "Đến dự án 1–9",
+				"openTask": "Mở công việc",
+				"openProject": "Mở dự án",
+				"createTask": "Tạo công việc",
+				"createProject": "Tạo dự án",
+				"toggleLayout": "Chuyển giữa bảng và danh sách",
+				"deleteTask": "Xóa công việc",
+				"copyTaskUrl": "Sao chép liên kết công việc",
+				"copyBranchName": "Sao chép nhánh công việc",
+				"nextTask": "Mục tiếp theo",
+				"previousTask": "Mục trước",
+				"openFocusedTask": "Mở mục đang chọn",
+				"selectAll": "Chọn tất cả",
+				"clearSelection": "Bỏ chọn",
+				"changeStatus": "Đổi trạng thái",
+				"changePriority": "Đổi mức ưu tiên",
+				"assignTask": "Giao việc",
+				"assignToMe": "Giao cho tôi",
+				"changeLabels": "Đổi nhãn",
+				"setDueDate": "Đặt hạn chót",
+				"removeDueDate": "Xóa hạn chót",
+				"renameTask": "Đổi tên",
+				"editDescription": "Sửa mô tả",
+				"commentOnTask": "Bình luận",
+				"moveToProject": "Chuyển sang dự án khác",
+				"createSubtask": "Tạo công việc con",
+				"setParent": "Đặt công việc cha",
+				"openParent": "Mở công việc cha",
+				"openSubtask": "Mở công việc con",
+				"markBlockedBy": "Đánh dấu bị chặn bởi",
+				"markBlocking": "Đánh dấu đang chặn",
+				"markRelated": "Đánh dấu liên quan",
+				"addLink": "Thêm liên kết",
+				"toggleResources": "Hiện hoặc ẩn tài nguyên",
+				"copyTaskId": "Sao chép ID công việc",
+				"copyTaskTitle": "Sao chép tiêu đề công việc",
+				"copyAsMarkdown": "Sao chép dưới dạng Markdown",
+				"peekTask": "Xem trước công việc đang chọn",
+				"selectTask": "Chọn công việc",
+				"selectGroup": "Chọn tất cả trong nhóm",
+				"copyPageUrl": "Sao chép URL trang",
+				"focusRight": "Cột tiếp theo",
+				"focusLeft": "Cột trước",
+				"moveTaskTop": "Chuyển lên đầu nhóm",
+				"moveTaskUp": "Lên một vị trí",
+				"moveTaskDown": "Xuống một vị trí",
+				"moveTaskBottom": "Chuyển xuống cuối nhóm",
+				"moveTaskLeft": "Chuyển sang cột trước",
+				"moveTaskRight": "Chuyển sang cột tiếp theo",
+				"toggleGroup": "Thu gọn hoặc mở rộng nhóm",
+				"toggleAllGroups": "Thu gọn hoặc mở rộng tất cả nhóm",
+				"deleteNotification": "Xóa thông báo",
+				"deleteReadNotifications": "Xóa tất cả thông báo đã đọc",
+				"toggleNotificationRead": "Đánh dấu đã đọc hoặc chưa đọc",
+				"markAllNotificationsRead": "Đánh dấu tất cả là đã đọc",
+				"addFilter": "Thêm bộ lọc",
+				"clearAllFilters": "Xóa tất cả bộ lọc",
+				"clearLastFilter": "Xóa bộ lọc cuối",
+				"editorBold": "In đậm",
+				"editorItalic": "In nghiêng",
+				"editorUnderline": "Gạch chân",
+				"editorStrike": "Gạch ngang",
+				"editorAttach": "Đính kèm ảnh hoặc tệp",
+				"editorInlineCode": "Mã nội dòng",
+				"editorLink": "Chuyển văn bản thành liên kết",
+				"editorQuote": "Trích dẫn",
+				"editorParagraph": "Văn bản thường",
+				"editorHeading1": "Tiêu đề 1",
+				"editorHeading2": "Tiêu đề 2",
+				"editorHeading3": "Tiêu đề 3",
+				"editorChecklist": "Danh sách kiểm tra",
+				"editorToggleChecklist": "Đánh dấu mục danh sách",
+				"editorBulletList": "Danh sách dấu đầu dòng",
+				"editorNumberedList": "Danh sách đánh số",
+				"editorCodeBlock": "Khối mã",
+				"editorUndo": "Hoàn tác",
+				"editorRedo": "Làm lại"
+			},
+			"title": "Phím tắt",
+			"searchPlaceholder": "Tìm theo thao tác hoặc phím",
+			"results_other": "{{count}} kết quả",
+			"noResults": "Không có phím tắt phù hợp",
+			"then": "rồi",
+			"or": "hoặc",
+			"thenEllipsis": "rồi…"
 		},
 		"keyboardShortcuts": {
 			"title": "Phím tắt",
@@ -2540,7 +2664,9 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded."
+			"taskLoadError": "This task couldn’t be loaded.",
+			"actionError": "Không thể cập nhật hộp thư đến. Hãy thử lại.",
+			"readCleared": "Đã xóa các thông báo đã đọc"
 		}
 	},
 	"activity": {
@@ -2576,7 +2702,6 @@
 				"imageUploaded": "Đã tải ảnh lên",
 				"fileAttached": "Đã đính kèm file",
 				"failedToUploadFile": "Không thể tải file lên",
-				"enterUrl": "Nhập URL",
 				"plaintext": "Văn bản thuần",
 				"autoDetect": "Tự động nhận diện",
 				"slashGroupText": "Văn bản",
@@ -2677,12 +2802,6 @@
 			"high": "Cao",
 			"urgent": "Khẩn cấp"
 		},
-		"type": {
-			"label": "Loại",
-			"task": "Công việc",
-			"bug": "Lỗi"
-		},
-		"boardSearchPlaceholder": "Tìm phiếu...",
 		"view": {
 			"board": "Bảng",
 			"list": "Danh sách",
@@ -2711,7 +2830,6 @@
 				"ariaLabel": "Trình soạn thảo mô tả công việc",
 				"placeholder": "Viết mô tả...",
 				"previewImage": "Xem trước ảnh",
-				"enterUrl": "Nhập URL",
 				"autoDetect": "Tự động nhận diện",
 				"copyCode": "Sao chép mã",
 				"copy": "Sao chép",
@@ -2815,9 +2933,7 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			},
-			"customFieldUpdated": "Field updated",
-			"selectOption": "Select option"
+			}
 		},
 		"entity": {
 			"task": "Công việc"
@@ -2838,7 +2954,9 @@
 				"blocks": "chặn",
 				"blocked_by": "bị chặn bởi",
 				"related": "liên quan đến"
-			}
+			},
+			"blockedBy": "Bị chặn bởi",
+			"parentPlaceholder": "Đặt công việc cha…"
 		},
 		"subtasks": {
 			"title": "Công việc con",
@@ -2858,13 +2976,16 @@
 		"properties": {
 			"title": "Thuộc tính",
 			"labels": "Nhãn",
+			"addLabels": "Thêm nhãn",
 			"copyTaskLink": "Sao chép liên kết công việc",
 			"copyTaskBranch": "Sao chép nhánh công việc",
 			"taskLinkCopied": "Đã sao chép liên kết công việc",
 			"taskBranchCopied": "Đã sao chép tên nhánh",
 			"start": "Bắt đầu",
 			"startDate": "Ngày bắt đầu",
-			"noDate": "Không có ngày"
+			"noDate": "Không có ngày",
+			"dates": "Ngày",
+			"project": "Dự án"
 		},
 		"move": {
 			"title": "Di chuyển công việc",
@@ -2889,12 +3010,10 @@
 				"updateError": "Không thể cập nhật mức ưu tiên công việc"
 			},
 			"dueDate": {
-				"updateSuccess": "Cập nhật ngày đến hạn công việc thành công",
 				"updateError": "Không thể cập nhật ngày đến hạn công việc",
 				"clear": "Xóa ngày"
 			},
 			"startDate": {
-				"updateSuccess": "Cập nhật ngày bắt đầu công việc thành công",
 				"updateError": "Không thể cập nhật ngày bắt đầu công việc",
 				"clear": "Xóa ngày bắt đầu"
 			},
@@ -2903,8 +3022,6 @@
 				"empty": "Không tìm thấy nhãn",
 				"create": "Tạo \"{{name}}\"",
 				"chooseColor": "Chọn màu",
-				"addSuccess": "Đã thêm nhãn",
-				"removeSuccess": "Đã gỡ nhãn",
 				"updateError": "Không thể cập nhật nhãn",
 				"createSuccess": "Đã tạo và thêm nhãn",
 				"createError": "Không thể tạo nhãn",
@@ -2931,26 +3048,18 @@
 			"moveAllTooltip": "Di chuyển tất cả công việc đã lên kế hoạch sang Cần làm",
 			"moveAll": "Di chuyển tất cả",
 			"addTask": "Thêm công việc",
-			"filter": "Lọc",
-			"addFilter": "Thêm bộ lọc...",
 			"sections": {
 				"planned": "Đã lên kế hoạch",
 				"archived": "Đã lưu trữ"
 			},
 			"noTasksInSection": "Không có công việc {{section}}",
 			"filters": {
-				"priority": "Mức ưu tiên: {{name}}",
-				"assignee": "Người được giao: {{name}}",
-				"due": "Đến hạn: {{date}}",
-				"label": "Nhãn: {{name}}",
 				"dueThisWeek": "Đến hạn tuần này",
 				"dueNextWeek": "Đến hạn tuần sau",
 				"noDueDate": "Không có ngày đến hạn"
 			}
 		},
 		"sort": {
-			"label": "Sắp xếp",
-			"by": "Sắp xếp theo",
 			"direction": "Chiều",
 			"ascending": "Tăng dần",
 			"descending": "Giảm dần",
@@ -2964,12 +3073,6 @@
 			}
 		},
 		"boardFilters": {
-			"filterBy": "Lọc theo",
-			"allStatuses": "Tất cả trạng thái",
-			"allPriorities": "Tất cả mức ưu tiên",
-			"allAssignees": "Tất cả người được giao",
-			"allDueDates": "Tất cả ngày đến hạn",
-			"allLabels": "Tất cả nhãn",
 			"selectedCount": "Đã chọn {{count}}",
 			"subjects": {
 				"status": "Trạng thái",
@@ -2981,24 +3084,27 @@
 			},
 			"operators": {
 				"isAnyOf": "là một trong",
-				"includeAnyOf": "bao gồm một trong"
+				"includeAnyOf": "bao gồm một trong",
+				"is": "là",
+				"isNot": "không phải",
+				"isNoneOf": "không phải bất kỳ",
+				"include": "bao gồm",
+				"exclude": "loại trừ"
 			},
-			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
 			"noValuesUsedYet": "No values used yet",
 			"allSprints": "Tất cả sprint"
 		},
 		"gantt": {
+			"searchPlaceholder": "Tìm phiếu đã lên lịch...",
 			"pageTitle": "{{name}} – Gantt",
 			"title": "Dòng thời gian Gantt",
-			"searchPlaceholder": "Tìm phiếu đã lên lịch...",
 			"hideTasks": "Ẩn công việc",
 			"showTasks": "Hiện công việc",
 			"noTasks": "Không có công việc đã lên lịch",
 			"noTasksSubtitle": "Thêm ngày bắt đầu, ngày đến hạn, hoặc cả hai cho công việc để đặt chúng lên dòng thời gian dự án.",
 			"noTasksFound": "Không tìm thấy công việc nào",
-			"noTasksMatch": "Không có công việc đã lên lịch khớp với \"{{query}}\"",
 			"taskHeader": "Công việc",
 			"updateDatesError": "Không thể cập nhật ngày của công việc",
 			"resizeStart": "Thay đổi kích thước ngày bắt đầu",
@@ -3023,7 +3129,9 @@
 			"error": "Không thể nhân bản công việc"
 		},
 		"archive": {
-			"success": "Đã lưu trữ {{count}} công việc"
+			"success": "Đã lưu trữ {{count}} công việc",
+			"confirmTitle_other": "Lưu trữ {{count}} công việc đã hoàn thành?",
+			"confirmDescription": "Chúng sẽ rời khỏi bảng và chuyển sang mục \"Đã lưu trữ\" trong Backlog."
 		},
 		"listView": {
 			"addTask": "Thêm công việc",
@@ -3039,7 +3147,8 @@
 			"draft": "Bản nháp",
 			"open": "Đang mở",
 			"label": "Pull Request",
-			"count_other": "{{count}} PR"
+			"count_other": "{{count}} PR",
+			"closed": "Đã đóng"
 		},
 		"assignee": {
 			"label": "Người được giao",
@@ -3048,17 +3157,13 @@
 		"dueDate": {
 			"label": "Ngày đến hạn",
 			"clear": "Xóa ngày",
-			"updateSuccess": "Cập nhật ngày đến hạn công việc thành công",
 			"updateError": "Không thể cập nhật ngày đến hạn công việc",
-			"clearSuccess": "Đã xóa ngày đến hạn công việc",
 			"clearError": "Không thể xóa ngày đến hạn"
 		},
 		"labels": {
-			"label": "Nhãn",
 			"empty": "Không có nhãn khả dụng"
 		},
 		"update": {
-			"success": "Cập nhật công việc thành công",
 			"error": "Không thể cập nhật công việc"
 		},
 		"contextMenu": {
@@ -3080,7 +3185,8 @@
 			"moveToBoardSuccess": "Đã chuyển {{count}} công việc sang bảng",
 			"moveToBoardError": "Không thể chuyển công việc sang bảng",
 			"delete": "Xóa công việc",
-			"deleteConfirm": "Xóa {{count}} công việc? Hành động này không thể hoàn tác.",
+			"deleteConfirmTitle_other": "Xóa {{count}} công việc?",
+			"deleteConfirmDescription": "Thao tác này sẽ xóa vĩnh viễn các công việc đã chọn và toàn bộ dữ liệu của chúng. Bạn không thể hoàn tác hành động này.",
 			"deleteSuccess": "Đã xóa {{count}} công việc",
 			"deleteError": "Không thể xóa công việc",
 			"archive": "Lưu trữ công việc",
@@ -3096,12 +3202,19 @@
 			"addLabel": "Thêm nhãn",
 			"addLabelSuccess": "Đã thêm nhãn vào {{count}} công việc",
 			"addLabelError": "Không thể thêm nhãn",
-			"setDueDate": "Đặt ngày đến hạn",
 			"updateDueDateError": "Không thể cập nhật ngày đến hạn",
 			"actions": "Hành động",
 			"searchActions": "Tìm hành động...",
 			"noActionsFound": "Không tìm thấy hành động nào.",
 			"changeStatus": "Đổi trạng thái",
+			"clearSelection": "Bỏ chọn",
+			"selectAll": "Chọn tất cả",
+			"moreActions": "Thao tác khác",
+			"statusPlaceholder": "Đổi trạng thái…",
+			"priorityPlaceholder": "Đặt mức ưu tiên…",
+			"assigneePlaceholder": "Giao cho…",
+			"labelPlaceholder": "Thêm nhãn…",
+			"columnPlaceholder": "Chuyển sang cột…",
 			"moveToSprint": "Chuyển sang sprint",
 			"updateSprintError": "Không thể chuyển công việc sang sprint"
 		},
@@ -3137,10 +3250,79 @@
 		"descriptionLoadError": "The description could not be loaded. Retry to load the current version.",
 		"checklistProgress": "Đã hoàn thành {{completed}} trên {{total}} mục trong danh sách kiểm tra",
 		"customFields": {
-			"ariaLabel": "Custom fields"
+			"fields": "Trường",
+			"empty": "Trống",
+			"required": "Bắt buộc",
+			"enterKey": "Enter",
+			"toSave": "để lưu",
+			"clear": "Xóa",
+			"setValue": "Đặt {{field}}…",
+			"noMatches": "Không có tùy chọn phù hợp",
+			"missingRequired_other": "{{count}} trường bắt buộc còn trống",
+			"saveError": "Không thể lưu {{field}}",
+			"moreFields_other": "Thêm {{count}} trường",
+			"manage": "Quản lý trường"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again."
+			"reorderFailed": "Could not move task. Please try again.",
+			"keyboardInstructions": "Nhấn Space để xem trước và Enter để mở công việc này. Dùng Alt hoặc Option với phím mũi tên để di chuyển."
+		},
+		"toolbar": {
+			"search": "Tìm công việc",
+			"clearSearch": "Xóa tìm kiếm",
+			"taskCount_other": "{{count}} công việc",
+			"shownCount_other": "{{shown}} trên {{count}} công việc"
+		},
+		"display": {
+			"title": "Hiển thị",
+			"sortBy": "Sắp xếp theo",
+			"showOnCards": "Hiện trên thẻ",
+			"showOnRows": "Hiện trên hàng",
+			"checklistProgress": "Tiến độ danh sách kiểm tra",
+			"projectBackground": "Hình nền dự án",
+			"layout": "Bố cục"
+		},
+		"filterBar": {
+			"label": "Bộ lọc đang áp dụng",
+			"removeFilter": "Xóa bộ lọc {{name}}",
+			"noMatches": "Không có công việc nào khớp với tìm kiếm hoặc bộ lọc của bạn."
+		},
+		"filterMenu": {
+			"addFilter": "Thêm bộ lọc…",
+			"searchSubject": "{{name}}…",
+			"noResults": "Không có kết quả"
+		},
+		"shortcuts": {
+			"assignedToMe": "Đã giao cho bạn",
+			"idCopied": "Đã sao chép ID công việc",
+			"titleCopied": "Đã sao chép tiêu đề công việc",
+			"markdownCopied": "Đã sao chép dưới dạng Markdown",
+			"copyFailed": "Không thể sao chép vào bộ nhớ tạm.",
+			"pageUrlCopied": "Đã sao chép URL trang"
+		},
+		"due": {
+			"overdueDays_other": "Quá hạn {{count}} ngày",
+			"overdueWeeks_other": "Quá hạn {{count}} tuần",
+			"today": "Hôm nay",
+			"tomorrow": "Ngày mai",
+			"inDays_other": "Còn {{count}} ngày",
+			"fullDate": "Hạn {{date}}"
+		},
+		"datePicker": {
+			"dueDatePlaceholder": "Đặt hạn chót…",
+			"startDatePlaceholder": "Đặt ngày bắt đầu…",
+			"datePlaceholder": "Đặt ngày…",
+			"thisWeekend": "Cuối tuần này",
+			"nextWeek": "Tuần sau",
+			"pickDate": "Chọn ngày",
+			"startsOn": "Bắt đầu {{date}}",
+			"beforeStart": "{{date}} trước ngày bắt đầu",
+			"afterDue": "{{date}} sau hạn chót"
+		},
+		"type": {
+			"label": "Loại",
+			"task": "Công việc",
+			"bug": "Lỗi"
 		},
 		"sprints": {
 			"title": "Sprint",

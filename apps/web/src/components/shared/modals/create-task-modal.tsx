@@ -3,6 +3,7 @@ import { produce } from "immer";
 import {
   Bug,
   CalendarIcon,
+  CircleAlert,
   Check,
   FolderKanban,
   ListChecks,
@@ -11,16 +12,18 @@ import {
   Tag,
   UserIcon,
   X,
+  TagIcon,
+  SquarePlusIcon,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import TaskDescriptionEditor from "@/components/task/task-description-editor";
+import { CustomFieldChip } from "@/components/custom-fields/custom-field-chip";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+  findMissingRequiredFields,
+  isCustomFieldValueEmpty,
+} from "@/components/custom-fields/missing-required-fields";
+import type { CustomFieldDefinition } from "@/components/project/custom-fields/types";
+import TaskDescriptionEditor from "@/components/task/task-description-editor";
 import {
   AlertDialog,
   AlertDialogClose,
@@ -38,18 +41,8 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { DatePickerMenu } from "@/components/common/date-picker/date-picker-menu";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Combobox,
-  ComboboxChips,
-  ComboboxChipsInput,
-  ComboboxEmpty,
-  ComboboxItem,
-  ComboboxList,
-  ComboboxPopup,
-  ComboboxValue,
-} from "@/components/ui/combobox";
 import {
   Dialog,
   DialogContent,
@@ -58,25 +51,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/preview-card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Switch } from "@/components/ui/switch";
 import { useGetColumns } from "@/hooks/queries/column/use-get-columns";
 import { getColumnIcon } from "@/lib/column";
 import { getStatusDisplayLabel } from "@/lib/i18n/domain";
@@ -107,6 +86,7 @@ type CreateTaskModalProps = {
   onClose: () => void;
   status?: string;
   projectId?: string;
+  instant?: boolean;
 };
 
 type Priority = "no-priority" | "low" | "medium" | "high" | "urgent";
@@ -132,27 +112,6 @@ type Label = {
 };
 
 type PopoverStep = "select" | "color";
-
-type CustomFieldType =
-  | "text"
-  | "number"
-  | "date"
-  | "dropdown"
-  | "boolean"
-  | "multiselect";
-
-type CustomFieldDefinition = {
-  id: string;
-  projectId: string;
-  name: string;
-  type: CustomFieldType;
-  required: boolean;
-  defaultValue: string | null;
-  options: string[] | null;
-  position: number;
-  createdAt: string;
-  updatedAt: string;
-};
 
 function normalizeTask(
   task: Partial<Task> &
@@ -180,6 +139,7 @@ function CreateTaskModalContent({
   onClose,
   status,
   projectId,
+  instant = false,
 }: CreateTaskModalProps) {
   const { t } = useTranslation();
   const { project, setProject } = useProjectStore();
@@ -261,6 +221,8 @@ function CreateTaskModalContent({
   const [assigneeId, setAssigneeId] = useState("");
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [dueDate, setDueDate] = useState<Date | undefined>(undefined);
+  const [startDateOpen, setStartDateOpen] = useState(false);
+  const [dueDateOpen, setDueDateOpen] = useState(false);
   const [createMore, setCreateMore] = useState(false);
   const [labels, setLabels] = useState<Label[]>([]);
   const [discardConfirmationOpen, setDiscardConfirmationOpen] = useState(false);
@@ -350,6 +312,12 @@ function CreateTaskModalContent({
   const [customFieldValues, setCustomFieldValues] = useState<
     Record<string, string>
   >({});
+
+  const [showMissingRequired, setShowMissingRequired] = useState(false);
+  const missingRequired = findMissingRequiredFields(
+    customFields,
+    customFieldValues,
+  );
 
   const handleCustomFieldChange = (fieldId: string, value: string) => {
     setCustomFieldValues((prev) => ({
@@ -540,6 +508,16 @@ function CreateTaskModalContent({
     )
       return;
 
+    if (missingRequired.length > 0) {
+      setShowMissingRequired(true);
+      e.currentTarget
+        .querySelector<HTMLElement>(
+          `[data-custom-field="${missingRequired[0].id}"]`,
+        )
+        ?.focus();
+      return;
+    }
+
     submittingRef.current = true;
     setIsSubmitting(true);
     try {
@@ -566,11 +544,17 @@ function CreateTaskModalContent({
           draftAssetIds: stagedAssetsRef.current.filter((id) =>
             description.includes(`/asset/${id}`),
           ),
-          customFields: Object.entries(customFieldValues)
-            .filter(([_, value]) => value.trim() !== "")
-            .map(([fieldId, value]) => ({
-              fieldId,
-              value,
+          customFields: customFields
+            .filter(
+              (field) =>
+                !isCustomFieldValueEmpty(
+                  field.type,
+                  customFieldValues[field.id] ?? "",
+                ),
+            )
+            .map((field) => ({
+              fieldId: field.id,
+              value: customFieldValues[field.id] ?? "",
             })),
         }),
       );
@@ -591,7 +575,9 @@ function CreateTaskModalContent({
       stagedAssetsRef.current = [];
       if (!activeRef.current) return;
       syncTaskIntoProject(savedTask);
-      toast.success(t("common:modals.createTask.successCreated"));
+      toast.success(t("common:modals.createTask.successCreated"), {
+        icon: SquarePlusIcon,
+      });
 
       if (createMore) {
         setTitle("");
@@ -611,6 +597,7 @@ function CreateTaskModalContent({
         didSubmitRef.current = false;
 
         setCustomFieldValues(buildDefaultCustomFieldValues());
+        setShowMissingRequired(false);
       } else {
         closeAndReset();
       }
@@ -735,7 +722,9 @@ function CreateTaskModalContent({
       };
 
       setLabels([...labels, newLabel]);
-      toast.success(t("common:modals.createTask.labelCreated"));
+      toast.success(t("common:modals.createTask.labelCreated"), {
+        icon: TagIcon,
+      });
       handleLabelsClose();
     } catch (error) {
       toast.error(
@@ -750,242 +739,6 @@ function CreateTaskModalContent({
     setLabels(labels.filter((l) => l.name !== labelName));
   };
 
-  const renderCustomFieldInput = (field: CustomFieldDefinition) => {
-    const value = customFieldValues[field.id] ?? "";
-
-    switch (field.type) {
-      case "dropdown": {
-        const options = field.options || [];
-
-        return (
-          <Select
-            value={value}
-            onValueChange={(val) =>
-              handleCustomFieldChange(field.id, val as string)
-            }
-          >
-            <SelectTrigger className="h-9 w-full text-sm bg-background">
-              <SelectValue
-                placeholder={t(
-                  "common:modals.createTask.selectOptionPlaceholder",
-                  "Select an option",
-                )}
-              />
-            </SelectTrigger>
-            <SelectContent>
-              {options.map((opt) => (
-                <SelectItem key={opt} value={opt}>
-                  <span className="block max-w-50 truncate">{opt}</span>
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        );
-      }
-
-      case "date":
-        return (
-          <Input
-            type="date"
-            value={value}
-            onChange={(e) => handleCustomFieldChange(field.id, e.target.value)}
-            required={field.required}
-            className="h-9 w-full text-base sm:text-sm bg-background"
-          />
-        );
-
-      case "number":
-        return (
-          <Input
-            type="number"
-            value={value}
-            onChange={(e) => handleCustomFieldChange(field.id, e.target.value)}
-            placeholder={field.defaultValue || ""}
-            required={field.required}
-            className="h-9 w-full text-base sm:text-sm bg-background"
-          />
-        );
-
-      case "boolean":
-        return (
-          <div className="flex h-9 w-full items-center justify-between rounded-md border border-input bg-background px-3 text-sm">
-            <span className="text-sm text-foreground capitalize">{value}</span>
-
-            <Switch
-              checked={value === "true"}
-              onCheckedChange={(checked) =>
-                handleCustomFieldChange(field.id, checked ? "true" : "false")
-              }
-            />
-          </div>
-        );
-
-      case "multiselect": {
-        const selectedValues: string[] = (() => {
-          if (!value) return [];
-          try {
-            const parsed = JSON.parse(value);
-            return Array.isArray(parsed) ? parsed : [];
-          } catch {
-            return value.split(",").filter((v) => v.length > 0);
-          }
-        })();
-        const MAX_VISIBLE_CHIPS = 3;
-
-        return (
-          <Combobox
-            multiple={true}
-            autoHighlight
-            items={Array.from(new Set(field.options ?? []))}
-            value={selectedValues}
-            onValueChange={(val) =>
-              handleCustomFieldChange(field.id, JSON.stringify(val))
-            }
-          >
-            <ComboboxChips className="h-9 w-full flex-[2_0_0] select-none cursor-default text-sm disabled:opacity-50">
-              <ComboboxValue>
-                {(values: string[]) => {
-                  const visibleChips = values.slice(0, MAX_VISIBLE_CHIPS);
-                  const hiddenCount = values.length - MAX_VISIBLE_CHIPS;
-
-                  return (
-                    <>
-                      {visibleChips.map((value) => (
-                        <div
-                          key={value}
-                          className={cn(
-                            "min-w-0 max-w-full flex-1 shrink basis-0",
-                            "inline-flex items-center overflow-hidden",
-                            "rounded-md bg-secondary px-1.5 py-0.5",
-                            "select-none cursor-default",
-                          )}
-                        >
-                          <span className="block min-w-0 max-w-full truncate text-xs text-secondary-foreground">
-                            {value}
-                          </span>
-                        </div>
-                      ))}
-                      {values.length > MAX_VISIBLE_CHIPS && (
-                        <HoverCard>
-                          <HoverCardTrigger asChild>
-                            <button
-                              type="button"
-                              className="shrink-0 inline-flex items-center gap-1 text-xs font-medium cursor-pointer text-foreground/50 pe-1"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                              }}
-                              onPointerDown={(e) => {
-                                e.stopPropagation();
-                                e.preventDefault();
-                              }}
-                            >
-                              {t("settings:customFields.moreOptions", {
-                                hiddenCount,
-                              })}
-                            </button>
-                          </HoverCardTrigger>
-
-                          <HoverCardContent
-                            side="top"
-                            align="start"
-                            className="flex max-w-xs flex-wrap gap-1"
-                          >
-                            <div className="space-y-1.5">
-                              <div className="text-xs font-medium text-muted-foreground">
-                                {t(
-                                  "settings:customFields.availableOptions",
-                                  "Available options",
-                                )}
-                              </div>
-
-                              <div className="flex min-w-0 max-h-48 flex-wrap gap-x-1.5 gap-y-1.5 overflow-y-auto overflow-x-hidden">
-                                {values
-                                  .slice(MAX_VISIBLE_CHIPS)
-                                  .map((value) => (
-                                    <div
-                                      key={value}
-                                      className={cn(
-                                        "min-w-0 max-w-full",
-                                        "inline-flex items-center overflow-hidden",
-                                        "rounded bg-secondary px-1.5 py-0.5",
-                                        "select-none cursor-default",
-                                      )}
-                                    >
-                                      <span className="block min-w-0 max-w-[13rem] truncate text-xs">
-                                        {value}
-                                      </span>
-                                    </div>
-                                  ))}
-                              </div>
-                            </div>
-                          </HoverCardContent>
-                        </HoverCard>
-                      )}
-
-                      <ComboboxChipsInput
-                        className={cn(
-                          "min-w-0 flex-1 caret-transparent",
-                          values.length > 0 && "hidden",
-                          "pointer-events-none",
-                          "placeholder:text-foreground/50",
-                          "text-transparent",
-                        )}
-                        placeholder={
-                          new Set(field.options ?? []).size === 0
-                            ? t(
-                                "settings:customFields.noOptionsPlaceholder",
-                                "No options",
-                              )
-                            : values.length === 0
-                              ? t(
-                                  "settings:customFields.defaultValuePlaceholder",
-                                  "Default value",
-                                )
-                              : undefined
-                        }
-                      />
-                    </>
-                  );
-                }}
-              </ComboboxValue>
-            </ComboboxChips>
-
-            <ComboboxPopup>
-              <ComboboxEmpty>
-                {t("settings:customFields.noOptionsPlaceholder", "No options")}
-              </ComboboxEmpty>
-
-              <ComboboxList>
-                {(option: string) => (
-                  <ComboboxItem
-                    className="min-w-0 max-w-full"
-                    key={`field_option_${option}`}
-                    value={option}
-                  >
-                    <span className="block max-w-50 truncate">{option}</span>
-                  </ComboboxItem>
-                )}
-              </ComboboxList>
-            </ComboboxPopup>
-          </Combobox>
-        );
-      }
-
-      default:
-        return (
-          <Input
-            type="text"
-            value={value}
-            onChange={(e) => handleCustomFieldChange(field.id, e.target.value)}
-            placeholder={field.defaultValue || ""}
-            required={field.required}
-            className="h-9 w-full text-base sm:text-sm bg-background"
-          />
-        );
-    }
-  };
-
   // Defense-in-depth: if the user lacks task-create permission, don't render
   // the modal even if a stale trigger somehow opens it (e.g., keyboard
   // shortcut after the capability has changed).
@@ -996,6 +749,7 @@ function CreateTaskModalContent({
       <DialogContent
         className="kaneo-create-task-modal max-w-2xl max-h-[90vh] flex flex-col overflow-hidden"
         showCloseButton={false}
+        instant={instant}
       >
         <DialogHeader className="flex-shrink-0">
           <DialogTitle asChild>
@@ -1053,64 +807,6 @@ function CreateTaskModalContent({
                 uploadAsset={stageAsset}
               />
             </div>
-
-            {customFields.length > 0 && (
-              <div className="mt-2">
-                <Accordion
-                  key={resolvedProjectId}
-                  className="w-full"
-                  defaultValue={
-                    customFields.some((field) => field.required)
-                      ? ["custom-fields"]
-                      : []
-                  }
-                >
-                  <AccordionItem
-                    value="custom-fields"
-                    className="rounded-lg border border-border bg-sidebar/30 px-4"
-                  >
-                    <AccordionTrigger className="py-4 hover:no-underline">
-                      <div className="flex items-center gap-2 text-left">
-                        <span className="text-sm font-semibold text-foreground">
-                          {t("tasks:common.customFields")}
-                        </span>
-                        <span className="rounded bg-muted px-2 py-0.5 text-xs text-muted-foreground">
-                          {customFields.length}
-                        </span>
-                      </div>
-                    </AccordionTrigger>
-
-                    <AccordionContent className="pb-4">
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        <div className="space-y-4 pt-4 border-t border-border sm:col-span-2">
-                          <div className="grid gap-4 sm:grid-cols-2">
-                            {customFields.map((field) => (
-                              <div
-                                key={`custom-field_${field.id}`}
-                                className="space-y-1.5"
-                              >
-                                <label
-                                  htmlFor={`custom-field_${field.id}`}
-                                  className="text-xs font-medium text-muted-foreground flex items-center gap-1"
-                                >
-                                  {field.name}
-                                  {field.required && (
-                                    <span className="text-destructive">*</span>
-                                  )}
-                                </label>
-                                <div className="w-full">
-                                  {renderCustomFieldInput(field)}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            )}
 
             {labels.length > 0 && (
               <div className="flex flex-wrap mb-2">
@@ -1197,7 +893,7 @@ function CreateTaskModalContent({
                 {statusLabel}
               </div>
 
-              <Popover>
+              <Popover open={startDateOpen} onOpenChange={setStartDateOpen}>
                 <PopoverTrigger asChild>
                   <button
                     type="button"
@@ -1216,26 +912,19 @@ function CreateTaskModalContent({
                     </span>
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={startDate}
-                    onSelect={setStartDate}
-                    className="w-full bg-popover"
+                <PopoverContent className="w-65 p-0" align="start">
+                  <DatePickerMenu
+                    label={t("common:modals.createTask.startDate")}
+                    placeholder={t("tasks:datePicker.startDatePlaceholder")}
+                    clearLabel={t("common:modals.createTask.clearStartDate")}
+                    value={startDate ?? null}
+                    onChange={(date) => {
+                      setStartDate(date ?? undefined);
+                      setStartDateOpen(false);
+                    }}
+                    bounds={dueDate ? { after: dueDate } : undefined}
+                    formatLimit={(date) => t("tasks:due.fullDate", { date })}
                   />
-                  {startDate && (
-                    <div className="p-2 border-t border-border">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        className="w-full text-xs"
-                        onClick={() => setStartDate(undefined)}
-                      >
-                        {t("common:modals.createTask.clearStartDate")}
-                      </Button>
-                    </div>
-                  )}
                 </PopoverContent>
               </Popover>
 
@@ -1388,7 +1077,7 @@ function CreateTaskModalContent({
                 </PopoverContent>
               </Popover>
 
-              <Popover>
+              <Popover open={dueDateOpen} onOpenChange={setDueDateOpen}>
                 <PopoverTrigger asChild>
                   <button
                     type="button"
@@ -1407,26 +1096,21 @@ function CreateTaskModalContent({
                     </span>
                   </button>
                 </PopoverTrigger>
-                <PopoverContent className="p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={dueDate}
-                    onSelect={setDueDate}
-                    className="w-full bg-popover"
+                <PopoverContent className="w-65 p-0" align="start">
+                  <DatePickerMenu
+                    label={t("common:modals.createTask.dueDate")}
+                    placeholder={t("tasks:datePicker.dueDatePlaceholder")}
+                    clearLabel={t("common:modals.createTask.clearDueDate")}
+                    value={dueDate ?? null}
+                    onChange={(date) => {
+                      setDueDate(date ?? undefined);
+                      setDueDateOpen(false);
+                    }}
+                    bounds={startDate ? { before: startDate } : undefined}
+                    formatLimit={(date) =>
+                      t("tasks:datePicker.startsOn", { date })
+                    }
                   />
-                  {dueDate && (
-                    <div className="p-2 border-t border-border">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        size="sm"
-                        className="w-full text-xs"
-                        onClick={() => setDueDate(undefined)}
-                      >
-                        {t("common:modals.createTask.clearDueDate")}
-                      </Button>
-                    </div>
-                  )}
                 </PopoverContent>
               </Popover>
 
@@ -1568,6 +1252,24 @@ function CreateTaskModalContent({
                   )}
                 </PopoverContent>
               </Popover>
+              {customFields.length > 0 && (
+                <div className="flex w-full flex-wrap items-center gap-2">
+                  {customFields.map((field) => (
+                    <CustomFieldChip
+                      key={field.id}
+                      field={field}
+                      value={customFieldValues[field.id] ?? ""}
+                      onChange={(value) =>
+                        handleCustomFieldChange(field.id, value)
+                      }
+                      invalid={
+                        showMissingRequired &&
+                        missingRequired.some(({ id }) => id === field.id)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
@@ -1600,6 +1302,17 @@ function CreateTaskModalContent({
               </label>
             </div>
 
+            {showMissingRequired && missingRequired.length > 0 && (
+              <p
+                role="alert"
+                className="flex items-center gap-1.5 text-destructive-foreground text-xs"
+              >
+                <CircleAlert aria-hidden="true" className="size-3.5" />
+                {t("tasks:customFields.missingRequired", {
+                  count: missingRequired.length,
+                })}
+              </p>
+            )}
             <Button
               type="button"
               onClick={() => handleOpenChange(false)}
