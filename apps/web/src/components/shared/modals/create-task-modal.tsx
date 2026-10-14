@@ -1,10 +1,12 @@
 import { useLocation, useParams } from "@tanstack/react-router";
 import { produce } from "immer";
 import {
+  Bug,
   CalendarIcon,
   CircleAlert,
   Check,
   FolderKanban,
+  ListChecks,
   Plus,
   Search,
   Tag,
@@ -213,6 +215,9 @@ function CreateTaskModalContent({
   const titleRef = useAutoGrowTextarea(title);
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState<Priority>("no-priority");
+  // Bugs route to the active sprint on creation; every other type starts in
+  // the backlog (docs/sprints, FR-12/FR-13).
+  const [taskType, setTaskType] = useState<"task" | "bug">("task");
   const [assigneeId, setAssigneeId] = useState("");
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [dueDate, setDueDate] = useState<Date | undefined>(undefined);
@@ -531,6 +536,7 @@ function CreateTaskModalContent({
           description: description.trim() || "",
           userId: selectedUser?.id ?? "",
           priority,
+          type: taskType,
           projectId: resolvedProjectId,
           startDate: startDate ? startDate.toISOString() : undefined,
           dueDate: dueDate ? dueDate.toISOString() : undefined,
@@ -577,6 +583,7 @@ function CreateTaskModalContent({
         setTitle("");
         setDescription("");
         setPriority("no-priority");
+        setTaskType("task");
         setAssigneeId("");
         setStartDate(undefined);
         setDueDate(undefined);
@@ -959,6 +966,36 @@ function CreateTaskModalContent({
                   </div>
                 </PopoverContent>
               </Popover>
+
+              <button
+                type="button"
+                role="switch"
+                aria-checked={taskType === "bug"}
+                aria-label={t("tasks:type.label")}
+                title={t("tasks:type.label")}
+                className={cn(
+                  "flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors border border-border hover:bg-accent/50",
+                  taskType === "bug"
+                    ? "bg-accent/30 text-foreground"
+                    : "text-muted-foreground",
+                )}
+                onClick={() =>
+                  setTaskType((previous) =>
+                    previous === "bug" ? "task" : "bug",
+                  )
+                }
+              >
+                {taskType === "bug" ? (
+                  <Bug className="w-3.5 h-3.5" />
+                ) : (
+                  <ListChecks className="w-3.5 h-3.5" />
+                )}
+                <span>
+                  {taskType === "bug"
+                    ? t("tasks:type.bug")
+                    : t("tasks:type.task")}
+                </span>
+              </button>
 
               <Popover>
                 <PopoverTrigger asChild>

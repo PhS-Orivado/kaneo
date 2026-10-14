@@ -18,6 +18,7 @@ import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { useUpdateTask } from "@/hooks/mutations/task/use-update-task";
 import { useGetTasks } from "@/hooks/queries/task/use-get-tasks";
 import { useBoardSort } from "@/hooks/use-board-sort";
+import SprintPlanningView from "@/components/sprint-planning/sprint-planning-view";
 import { sortTasks } from "@/lib/sort-tasks";
 import { countBacklogTasks } from "@/lib/task-filters/count-tasks";
 import { toast } from "@/lib/toast";
@@ -75,7 +76,13 @@ function RouteComponent() {
     if (!filteredProject || sort.field === "position") return filteredProject;
     return {
       ...filteredProject,
-      plannedTasks: sortTasks(filteredProject.plannedTasks || [], sort),
+      // Tasks scheduled into a sprint are planned in the sprint sections of
+      // the SprintPlanningView above, so the backlog list below only shows
+      // unscheduled tasks (the Jira model).
+      plannedTasks: sortTasks(
+        (filteredProject.plannedTasks || []).filter((task) => !task.sprintId),
+        sort,
+      ),
       archivedTasks: sortTasks(filteredProject.archivedTasks || [], sort),
     };
   }, [filters.filteredProject, sort]);
@@ -170,23 +177,26 @@ function RouteComponent() {
         title={t("tasks:backlog.pageTitle", { name: project?.name })}
       />
       <div className="relative flex flex-col h-full min-h-0 overflow-hidden">
-        <div className="flex-1 overflow-hidden bg-card h-full">
-          {sortedProject ? (
-            <BacklogListView
-              project={sortedProject}
-              disableDragDrop={sort.field !== "position"}
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-muted rounded-lg animate-pulse mx-auto" />
-                <div className="space-y-2">
-                  <div className="w-48 h-4 bg-muted rounded animate-pulse mx-auto" />
-                  <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
+        <div className="flex flex-1 flex-col overflow-hidden bg-card h-full">
+          <SprintPlanningView projectId={projectId} />
+          <div className="flex-1 min-h-0">
+            {sortedProject ? (
+              <BacklogListView
+                project={sortedProject}
+                disableDragDrop={sort.field !== "position"}
+              />
+            ) : (
+              <div className="flex h-full items-center justify-center">
+                <div className="text-center space-y-4">
+                  <div className="w-16 h-16 bg-muted rounded-lg animate-pulse mx-auto" />
+                  <div className="space-y-2">
+                    <div className="w-48 h-4 bg-muted rounded animate-pulse mx-auto" />
+                    <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
+                  </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
 
         <CreateTaskModal

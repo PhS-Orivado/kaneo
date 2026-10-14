@@ -17,6 +17,7 @@ const DEFAULT_FILTERS: BoardFilters = {
   priority: null,
   assignee: null,
   dueDate: null,
+  sprint: null,
   labels: null,
   customFields: null,
   negated: null,
@@ -29,6 +30,7 @@ const FILTER_KEYS: Array<keyof BoardFilters> = [
   "priority",
   "assignee",
   "dueDate",
+  "sprint",
   "labels",
   "customFields",
   "negated",
@@ -166,7 +168,7 @@ export function useTaskFiltersWithLabelsSupport(
   };
 
   const toggleFilter = (
-    key: "status" | "priority" | "assignee" | "dueDate" | "labels",
+    key: "status" | "priority" | "assignee" | "dueDate" | "sprint" | "labels",
     value: string,
   ) => {
     setFilters((prev) => {

@@ -13,6 +13,7 @@ import { TaskCount } from "@/components/project/toolbar/task-count";
 import { useProjectTaskView } from "@/components/project/toolbar/use-project-task-view";
 import { LayoutSwitch } from "@/components/project/views/layout-switch";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
+import BoardSprintBanner from "@/components/sprint-planning/board-sprint-banner";
 import TaskDetailsSheet from "@/components/task/task-details-sheet";
 import { useGetTasks } from "@/hooks/queries/task/use-get-tasks";
 import { useBoardSort } from "@/hooks/use-board-sort";
@@ -175,6 +176,10 @@ function RouteComponent() {
         hideAppName
       />
       <div className="relative flex flex-col h-full min-h-0 overflow-hidden">
+        <BoardSprintBanner
+          projectId={projectId}
+          workspaceId={workspaceId}
+        />
         {descriptionSearch.isLoading && (
           <p role="status" className="px-4 py-2 text-sm text-muted-foreground">
             {t("tasks:descriptionSearchLoading")}
