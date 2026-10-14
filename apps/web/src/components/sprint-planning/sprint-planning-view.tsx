@@ -47,7 +47,7 @@ function formatSprintRange(sprint: Sprint, t: (key: string) => string) {
   return `${start} – ${end}`;
 }
 
-function SprintTaskRow({ task }: { task: Task }) {
+export function SprintTaskRow({ task }: { task: Task }) {
   const navigate = useNavigate();
   const projectSlug = useProjectStore((state) => state.project?.slug);
   const projectColumns = useProjectStore((state) => state.project?.columns);
@@ -81,7 +81,7 @@ function SprintTaskRow({ task }: { task: Task }) {
 
 // Carried-over tasks may have been deleted since the sprint closed, so the
 // frozen snapshot title is the fallback when no live task matches.
-function CarriedOverTaskRow({ title }: { title: string }) {
+export function CarriedOverTaskRow({ title }: { title: string }) {
   return (
     <span className="flex w-full items-center gap-2 rounded-md px-3 py-1 text-left text-xs text-muted-foreground">
       <span className="truncate">{title}</span>
