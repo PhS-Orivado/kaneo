@@ -2052,7 +2052,11 @@
 				"labels_one": "{{count, number}} label",
 				"labels_other": "{{count, number}} labels",
 				"tasks_one": "{{count, number}} task",
-				"tasks_other": "{{count, number}} tasks"
+				"tasks_other": "{{count, number}} tasks",
+				"sprints_one": "{{count, number}} Sprint",
+				"sprints_other": "{{count, number}} Sprints",
+				"users_one": "{{count, number}} Benutzer",
+				"users_other": "{{count, number}} Benutzer"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2150,10 +2154,16 @@
 				"sprintsDescription": "Erstellt die Sprints des Projekts und behält jede Aufgabe in ihrem Sprint.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"membersNote": "Bearbeiter werden per E-Mail-Adresse mit Mitgliedern von {{workspace}} abgeglichen. Unbekannte Personen erhalten je obiger Auswahl eine Einladung oder ein Konto.",
+				"membersNoteTrello": "Bearbeiter werden per E-Mail-Adresse, bei Trello auch über den vollständigen Namen, mit Mitgliedern von {{workspace}} abgeglichen. Unbekannte Personen erhalten je obiger Auswahl eine Einladung oder ein Konto.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+				"membersNoteJira": "Bearbeiter werden per E-Mail-Adresse, bei Jira auch über den vollständigen Namen, wenn Jira die E-Mail-Adresse verbirgt, mit Mitgliedern von {{workspace}} abgeglichen. Unbekannte Personen erhalten je obiger Auswahl eine Einladung oder ein Konto.",
+				"usersLabel": "Neue Benutzer",
+				"usersDescription": "Was passiert mit Bearbeitern, die noch keine Mitglieder dieses Workspaces sind.",
+				"usersInviteLabel": "Einladung senden",
+				"usersInviteDescription": "Sie erhalten eine E-Mail-Einladung und treten bei, sobald sie diese annehmen. Ihre Aufgaben bleiben bis dahin nicht zugewiesen.",
+				"usersCreateLabel": "Konto erstellen",
+				"usersCreateDescription": "Konten werden direkt erstellt und als Mitglieder hinzugefügt, sodass ihre Aufgaben sofort zugewiesen sind. Sie melden sich mit ihrer E-Mail-Adresse an."
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2292,6 +2302,12 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
+			},
+			"stages": {
+				"reading": "Lesen",
+				"sprints": "Sprints",
+				"users": "Benutzer",
+				"tasks": "Aufgaben"
 			}
 		},
 		"chatIntegrations": {
@@ -2854,7 +2870,8 @@
 			"list": "Liste",
 			"backlog": "Backlog",
 			"gantt": "Gantt",
-			"heading": "Ansicht"
+			"heading": "Ansicht",
+			"sprints": "Sprints"
 		},
 		"common": {
 			"selectTask": "Aufgabe auswählen",
@@ -3420,7 +3437,11 @@
 			"noTasks": "Noch keine Aufgaben in diesem Sprint",
 			"toggleTasks": "Sprint-Aufgaben anzeigen",
 			"reportSummary": "Geplant {{planned}}, abgeschlossen {{completed}}, übertragen {{carriedOver}}",
-			"carriedOver": "Übertragen"
+			"carriedOver": "Übertragen",
+			"viewPageTitle": "Sprints · {{name}}",
+			"viewHeading": "Alle Sprints",
+			"viewEmptyTitle": "Noch keine Sprints",
+			"viewEmptyDescription": "Erstelle einen Sprint, um Arbeit in Iterationen zu planen und von hier aus zu verfolgen."
 		}
 	},
 	"invitations": {
