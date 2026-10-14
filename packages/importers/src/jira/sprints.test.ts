@@ -54,6 +54,7 @@ describe("toImportedSprint", () => {
         id: 9,
         name: " Q3 ",
         state: "active",
+        goal: " Ship the Q3 release ",
         startDate: "2026-07-01T00:00:00.000Z",
         endDate: "2026-07-14T00:00:00.000Z",
       }),
@@ -61,6 +62,7 @@ describe("toImportedSprint", () => {
       key: "9",
       name: "Q3",
       status: "active",
+      goal: "Ship the Q3 release",
       startDate: "2026-07-01T00:00:00.000Z",
       endDate: "2026-07-14T00:00:00.000Z",
     });
@@ -70,6 +72,12 @@ describe("toImportedSprint", () => {
     expect(toImportedSprint({ id: 3, state: "future" }).name).toBe(
       "Sprint 3",
     );
+  });
+
+  it("drops an empty sprint goal", () => {
+    expect(
+      toImportedSprint({ id: 4, state: "future", goal: "  " }).goal,
+    ).toBeUndefined();
   });
 });
 

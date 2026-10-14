@@ -59,6 +59,7 @@ export type JiraSprint = {
   id: number;
   name?: string | null;
   state?: string | null;
+  goal?: string | null;
   startDate?: string | null;
   endDate?: string | null;
 };

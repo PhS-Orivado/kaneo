@@ -27,6 +27,7 @@ export function toImportedSprint(sprint: JiraSprint): ImportedSprint {
     key: String(sprint.id),
     name: sprint.name?.trim() || `Sprint ${sprint.id}`,
     status: mapSprintStatus(sprint.state),
+    ...(sprint.goal?.trim() ? { goal: sprint.goal.trim() } : {}),
     ...(sprint.startDate ? { startDate: sprint.startDate } : {}),
     ...(sprint.endDate ? { endDate: sprint.endDate } : {}),
   };

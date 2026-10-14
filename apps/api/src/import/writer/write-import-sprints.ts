@@ -18,6 +18,7 @@ export async function writeImportSprints(
         projectId,
         name: sprint.name,
         status: sprint.status,
+        goal: sprint.goal,
         startDate: sprint.startDate,
         endDate: sprint.endDate,
         position: sprint.position,

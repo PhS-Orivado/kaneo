@@ -39,6 +39,7 @@ export type ImportedSprint = {
   key: string;
   name: string;
   status: ImportedSprintStatus;
+  goal?: string;
   startDate?: string;
   endDate?: string;
 };

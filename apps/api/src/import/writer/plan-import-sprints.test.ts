@@ -16,7 +16,12 @@ describe("planImportSprints", () => {
   it("keeps sprint order, status and dates", () => {
     const planned = planImportSprints(
       [
-        sprint("1", { status: "closed", startDate: "2026-01-01", endDate: "2026-01-14" }),
+        sprint("1", {
+          status: "closed",
+          goal: "Ship it",
+          startDate: "2026-01-01",
+          endDate: "2026-01-14",
+        }),
         sprint("2", { status: "active" }),
       ],
       () => "new-id",
@@ -28,6 +33,7 @@ describe("planImportSprints", () => {
         id: "new-id",
         name: "Sprint 1",
         status: "closed",
+        goal: "Ship it",
         startDate: new Date("2026-01-01T00:00:00.000Z"),
         endDate: new Date("2026-01-14T00:00:00.000Z"),
         position: 0,
@@ -37,6 +43,7 @@ describe("planImportSprints", () => {
         id: "new-id",
         name: "Sprint 2",
         status: "active",
+        goal: null,
         startDate: null,
         endDate: null,
         position: 1,
