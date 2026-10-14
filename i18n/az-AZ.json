@@ -160,6 +160,12 @@
 				"apply": "Keçidi tətbiq et",
 				"remove": "Keçidi sil"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -1158,7 +1164,14 @@
 			"moveDialogTitle": "Başqa iş sahəsinə köçürülsün?",
 			"moveTargetLabel": "İş sahəsi",
 			"moving": "Köçürülür...",
-			"tasksTitle": "Tapşırıqlar"
+			"tasksTitle": "Tapşırıqlar",
+			"sprints": "Sprintlər",
+			"sprintsSubtitle": "Gələcək işi sabit uzunluqlu iterasiyalarla planlaşdırın.",
+			"sprintLength": "Sprintin standart müddəti",
+			"sprintLengthDescription": "Yeni sprintin standart olaraq əhatə etdiyi gün sayı.",
+			"sprintLengthSave": "Sprint müddətini saxla",
+			"sprintLengthSaved": "Sprint müddəti saxlanıldı",
+			"sprintLengthError": "Sprint müddəti saxlanıla bilmədi"
 		},
 		"projectIntegrations": {
 			"pageTitle": "İnteqrasiyalar",
@@ -2343,7 +2356,8 @@
 			"tokenTitle": "Giriş nişanı",
 			"webhookSecret": "Sirr",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Tapşırıqda göstərilmə sırasını dəyişmək üçün sürükləyin.",
@@ -2356,6 +2370,37 @@
 		},
 		"shared": {
 			"autosave": "Dəyişikliklər avtomatik yadda saxlanılır"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2558,6 +2603,37 @@
 			"then": "sonra",
 			"or": "və ya",
 			"thenEllipsis": "sonra…"
+		},
+		"keyboardShortcuts": {
+			"title": "Klaviatura qısayolları",
+			"subtitle": "Klaviatura qısayolları ilə işinizi sürətləndirin",
+			"searchPlaceholder": "Qısayolları axtar...",
+			"footer": "Bağlamaq üçün <kbd>Escape</kbd> düyməsini basın",
+			"categories": {
+				"general": "Ümumi",
+				"create": "Yarat",
+				"views": "Görünüşlər",
+				"navigation": "Naviqasiya",
+				"quickSelect": "Sürətli seçim (açılan pəncərələrdə)"
+			},
+			"items": {
+				"openCommandPalette": "Əmr palitrasını aç",
+				"globalSearch": "Ümumi axtarış",
+				"toggleSidebar": "Yan paneli aç/bağla",
+				"showShortcuts": "Klaviatura qısayollarını göstər",
+				"closeModal": "Modal/açılan pəncərəni bağla",
+				"createTask": "Tapşırıq yarat",
+				"createProject": "Layihə yarat",
+				"createWorkspace": "İş sahəsi yarat",
+				"boardView": "Lövhə görünüşünə keç",
+				"listView": "Siyahı görünüşünə keç",
+				"backlogView": "Gözləyən tapşırıqlar görünüşünə keç",
+				"calendarView": "Təqvim görünüşünə keç",
+				"nextTask": "Növbəti tapşırıq",
+				"prevTask": "Əvvəlki tapşırıq",
+				"openTask": "Seçilmiş tapşırığı aç",
+				"quickSelectNumber": "Nömrəyə görə seçim et"
+			}
 		}
 	},
 	"notifications": {
@@ -3048,7 +3124,8 @@
 				"priority": "Prioritet",
 				"assignee": "İcraçı",
 				"dueDate": "Son tarix",
-				"labels": "Etiketlər"
+				"labels": "Etiketlər",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "Bunlardan biridir",
@@ -3061,7 +3138,8 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Bütün sprintlər"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – Təqvim",
@@ -3193,7 +3271,9 @@
 			"priorityPlaceholder": "Prioriteti təyin et…",
 			"assigneePlaceholder": "Təyin et…",
 			"labelPlaceholder": "Etiket əlavə et…",
-			"columnPlaceholder": "Sütuna köçür…"
+			"columnPlaceholder": "Sütuna köçür…",
+			"moveToSprint": "Sprintə köçür",
+			"updateSprintError": "Tapşırıqları sprintə köçürmək alınmadı"
 		},
 		"editor": {
 			"table": {
@@ -3293,6 +3373,52 @@
 			"startsOn": "Başlayır: {{date}}",
 			"beforeStart": "{{date}} başlama tarixindən əvvəldir",
 			"afterDue": "{{date}} son tarixdən sonradır"
+		},
+		"type": {
+			"label": "Növ",
+			"task": "Tapşırıq",
+			"bug": "Xəta"
+		},
+		"sprints": {
+			"title": "Sprintlər",
+			"create": "Sprint yarat",
+			"createTitle": "Sprint yarat",
+			"createDescription": "Gələcək sprinti ad, məqsəd və tarixlərlə planlaşdırın.",
+			"editTitle": "Sprinti redaktə et",
+			"editDescription": "Sprintin adını, məqsədini və tarixlərini yeniləyin.",
+			"edit": "Sprinti redaktə et",
+			"name": "Sprint adı",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint məqsədi",
+			"goalPlaceholder": "Bu sprint nəyə nail olmalıdır?",
+			"save": "Dəyişiklikləri saxla",
+			"start": "Sprinti başlat",
+			"startSuccess": "Sprint {{name}} başladı",
+			"close": "Sprinti bağla",
+			"closeTitle": "Sprinti bağla",
+			"closeSummary": "{{name}} sprintində {{total}} tapşırıq var, onlardan {{completed}} tamamlandı.",
+			"closeTarget": "{{count}} yarımçıq tapşırığı buraya köçür:",
+			"closeConfirm": "Sprinti bağla və yarımçıq tapşırıqları köçür",
+			"closeSuccess": "Sprint bağlandı, {{count}} yarımçıq tapşırıq köçürüldü",
+			"backlog": "Backlog",
+			"activeBadge": "Aktiv",
+			"noActive": "Aktiv sprint yoxdur. İterasiya üçün gələcək sprintlərdən birini başladın.",
+			"upcoming": "Gələcək sprint",
+			"unscheduled": "Planlaşdırılmayıb",
+			"taskCounts": "{{total}} tapşırıqdan {{completed}} tamamlandı",
+			"history": "Bağlanmış sprintlər ({{count}})",
+			"completedCount": "{{count}} tamamlandı",
+			"moveUp": "Yuxarı",
+			"moveDown": "Aşağı",
+			"closedLocked": "Bu tapşırıq bağlanmış sprintə aiddir və tarix kimi orada qalır",
+			"error": "Sprint əməliyyatı alınmadı",
+			"daysRemaining": "{{remaining}} gün qalıb",
+			"endsToday": "Bu gün bitir",
+			"daysOverdue": "{{remaining}} gün gecikib",
+			"noTasks": "Bu sprintdə hələ tapşırıq yoxdur",
+			"toggleTasks": "Sprint tapşırıqlarını göstər",
+			"reportSummary": "Planlaşdırılmış {{planned}}, tamamlanmış {{completed}}, köçürülmüş {{carriedOver}}",
+			"carriedOver": "Köçürülmüş"
 		}
 	},
 	"invitations": {
