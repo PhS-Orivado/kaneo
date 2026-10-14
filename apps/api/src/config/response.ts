@@ -70,3 +70,76 @@ export const configSchema = z
     branding: brandingSchema,
   })
   .openapi("Config");
+
+const instanceSmtpConfigSchema = z
+  .object({
+    host: z.string().nullable().openapi({
+      description: "SMTP server host in effect.",
+    }),
+    port: z
+      .number()
+      .int()
+      .nullable()
+      .openapi({
+        description:
+          "SMTP server port in effect. Null lets the mail library pick the default for the security mode.",
+      }),
+    secure: z.boolean().openapi({
+      description: "Whether the connection starts in TLS mode.",
+    }),
+    requireTls: z.boolean().openapi({
+      description: "Whether STARTTLS is required on plaintext connections.",
+    }),
+    user: z.string().nullable().openapi({
+      description: "SMTP authentication user in effect.",
+    }),
+    password: z
+      .null()
+      .openapi({ description: "Never returned; see passwordSet." }),
+    passwordSet: z.boolean().openapi({
+      description: "Whether an SMTP password is stored.",
+    }),
+    from: z.string().nullable().openapi({
+      description: "Envelope sender address in effect.",
+    }),
+  })
+  .openapi("InstanceSmtpConfig");
+
+const instanceS3ConfigSchema = z
+  .object({
+    endpoint: z.string().nullable().openapi({
+      description: "S3-compatible endpoint URL in effect.",
+    }),
+    region: z.string().nullable().openapi({
+      description: "Bucket region in effect.",
+    }),
+    bucket: z.string().nullable().openapi({
+      description: "Bucket name in effect.",
+    }),
+    accessKeyId: z.string().nullable().openapi({
+      description: "Static access key id in effect.",
+    }),
+    secretAccessKey: z
+      .null()
+      .openapi({ description: "Never returned; see secretAccessKeySet." }),
+    secretAccessKeySet: z.boolean().openapi({
+      description: "Whether a secret access key is stored.",
+    }),
+    publicBaseUrl: z.string().nullable().openapi({
+      description: "Public base URL objects are served from, if any.",
+    }),
+    keyPrefix: z.string().nullable().openapi({
+      description: "Prefix prepended to object keys, if any.",
+    }),
+    forcePathStyle: z.boolean().openapi({
+      description: "Whether path-style URLs are used.",
+    }),
+  })
+  .openapi("InstanceS3Config");
+
+export const instanceConfigSchema = z
+  .object({
+    smtp: instanceSmtpConfigSchema,
+    s3: instanceS3ConfigSchema,
+  })
+  .openapi("InstanceConfig");

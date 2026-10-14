@@ -82,3 +82,53 @@ export const updateBrandingBody = z.object({
     description: "Whether the Kaneo attribution appears on public pages.",
   }),
 });
+
+const configText = (description: string) =>
+  z.string().max(500).nullable().openapi({ description });
+
+const configSecret = (description: string) =>
+  z.string().max(500).nullable().openapi({ description });
+
+export const updateInstanceConfigBody = z.object({
+  smtp: z.object({
+    host: configText("SMTP server host. Null clears the override."),
+    port: z
+      .number()
+      .int()
+      .min(1)
+      .max(65535)
+      .nullable()
+      .openapi({
+        description:
+          "SMTP server port. Null lets the mail library pick the default for the security mode.",
+      }),
+    secure: z.boolean().openapi({
+      description: "Connect over TLS from the start (port 465 style).",
+    }),
+    requireTls: z.boolean().openapi({
+      description: "Require STARTTLS upgrade on plaintext connections.",
+    }),
+    user: configText("SMTP authentication user. Null clears it."),
+    password: configSecret(
+      "SMTP authentication password. Null keeps the current value.",
+    ),
+    from: configText("Envelope sender address, for example no-reply@example.com."),
+  }),
+  s3: z.object({
+    endpoint: configText("S3-compatible endpoint URL. Null clears it."),
+    region: configText("Bucket region. Defaults to us-east-1 when empty."),
+    bucket: configText("Bucket name. Null clears it."),
+    accessKeyId: configText("Static access key id. Null clears it."),
+    secretAccessKey: configSecret(
+      "Static secret access key. Null keeps the current value.",
+    ),
+    publicBaseUrl: configText(
+      "Base URL objects are served from, for CDN fronts. Null clears it.",
+    ),
+    keyPrefix: configText("Prefix prepended to object keys. Null clears it."),
+    forcePathStyle: z.boolean().openapi({
+      description:
+        "Use path-style URLs instead of virtual hosts (needed by most self-hosted S3-compatible stores).",
+    }),
+  }),
+});
