@@ -160,6 +160,12 @@
 				"apply": "应用链接",
 				"remove": "移除链接"
 			}
+		},
+		"boolean": {
+			"false": "否",
+			"notSet": "未设置",
+			"true": "是",
+			"undefined": "未定义"
 		}
 	},
 	"auth": {
@@ -1149,7 +1155,14 @@
 			"moveDialogTitle": "移动到其他工作区？",
 			"moveTargetLabel": "工作区",
 			"moving": "正在移动...",
-			"tasksTitle": "任务"
+			"tasksTitle": "任务",
+			"sprints": "冲刺",
+			"sprintsSubtitle": "以固定长度的迭代来规划接下来的工作。",
+			"sprintLength": "默认冲刺长度",
+			"sprintLengthDescription": "新冲刺默认涵盖的天数。",
+			"sprintLengthSave": "保存冲刺长度",
+			"sprintLengthSaved": "冲刺长度已保存",
+			"sprintLengthError": "无法保存冲刺长度"
 		},
 		"projectIntegrations": {
 			"pageTitle": "集成",
@@ -2301,7 +2314,8 @@
 			"tokenTitle": "访问令牌",
 			"webhookSecret": "密钥",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "拖动以调整它们在任务中的显示顺序。",
@@ -2314,6 +2328,37 @@
 		},
 		"shared": {
 			"autosave": "更改会自动保存"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2515,6 +2560,37 @@
 			"then": "然后",
 			"or": "或",
 			"thenEllipsis": "然后…"
+		},
+		"keyboardShortcuts": {
+			"title": "键盘快捷键",
+			"subtitle": "使用键盘快捷键提升效率",
+			"searchPlaceholder": "搜索快捷键…",
+			"footer": "按 <kbd>Esc</kbd> 关闭",
+			"categories": {
+				"general": "通用",
+				"create": "创建",
+				"views": "视图",
+				"navigation": "导航",
+				"quickSelect": "快速选择（在弹层中）"
+			},
+			"items": {
+				"openCommandPalette": "打开命令面板",
+				"globalSearch": "全局搜索",
+				"toggleSidebar": "切换侧边栏",
+				"showShortcuts": "显示键盘快捷键",
+				"closeModal": "关闭弹窗/弹层",
+				"createTask": "创建任务",
+				"createProject": "创建项目",
+				"createWorkspace": "创建工作区",
+				"boardView": "切换到看板视图",
+				"listView": "切换到列表视图",
+				"backlogView": "切换到待办视图",
+				"calendarView": "切换到日历视图",
+				"nextTask": "下一任务",
+				"prevTask": "上一任务",
+				"openTask": "打开所选任务",
+				"quickSelectNumber": "按数字选择选项"
+			}
 		}
 	},
 	"notifications": {
@@ -3001,7 +3077,8 @@
 				"priority": "优先级",
 				"assignee": "负责人",
 				"dueDate": "截止日期",
-				"labels": "标签"
+				"labels": "标签",
+				"sprint": "冲刺"
 			},
 			"operators": {
 				"isAnyOf": "为以下任一",
@@ -3014,7 +3091,8 @@
 			},
 			"allCustomFieldValues": "所有值",
 			"noCustomFieldValues": "没有自定义字段的值",
-			"noValuesUsedYet": "还没有使用过任何值"
+			"noValuesUsedYet": "还没有使用过任何值",
+			"allSprints": "所有冲刺"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} – 日历",
@@ -3148,7 +3226,9 @@
 			"priorityPlaceholder": "设置优先级…",
 			"assigneePlaceholder": "分配给…",
 			"labelPlaceholder": "添加标签…",
-			"columnPlaceholder": "移至列…"
+			"columnPlaceholder": "移至列…",
+			"moveToSprint": "移至冲刺",
+			"updateSprintError": "无法将任务移至冲刺"
 		},
 		"editor": {
 			"table": {
@@ -3236,6 +3316,52 @@
 			"startsOn": "开始于 {{date}}",
 			"beforeStart": "{{date}} 早于开始日期",
 			"afterDue": "{{date}} 晚于截止日期"
+		},
+		"type": {
+			"label": "类型",
+			"task": "任务",
+			"bug": "缺陷"
+		},
+		"sprints": {
+			"title": "冲刺",
+			"create": "创建冲刺",
+			"createTitle": "创建冲刺",
+			"createDescription": "为即将开始的冲刺设置名称、目标和日期。",
+			"editTitle": "编辑冲刺",
+			"editDescription": "更新冲刺的名称、目标和日期。",
+			"edit": "编辑冲刺",
+			"name": "冲刺名称",
+			"namePlaceholder": "冲刺 1",
+			"goal": "冲刺目标",
+			"goalPlaceholder": "这个冲刺要达成什么？",
+			"save": "保存更改",
+			"start": "开始冲刺",
+			"startSuccess": "冲刺 {{name}} 已开始",
+			"close": "关闭冲刺",
+			"closeTitle": "关闭冲刺",
+			"closeSummary": "{{name}} 共有 {{total}} 个任务，其中 {{completed}} 个已完成。",
+			"closeTarget": "将 {{count}} 个未完成的任务移动到",
+			"closeConfirm": "关闭冲刺并移动未完成的任务",
+			"closeSuccess": "冲刺已关闭，已移动 {{count}} 个未完成的任务",
+			"backlog": "待办列表",
+			"activeBadge": "进行中",
+			"noActive": "当前没有进行中的冲刺。请开始一个即将进行的冲刺以进入迭代。",
+			"upcoming": "即将开始的冲刺",
+			"unscheduled": "未安排",
+			"taskCounts": "已完成 {{completed}} / {{total}}",
+			"history": "已关闭的冲刺（{{count}}）",
+			"completedCount": "{{count}} 个已完成",
+			"moveUp": "上移",
+			"moveDown": "下移",
+			"closedLocked": "此任务属于已关闭的冲刺，将作为历史保留在其中",
+			"error": "冲刺操作失败",
+			"daysRemaining": "剩余 {{remaining}} 天",
+			"endsToday": "今天结束",
+			"daysOverdue": "已逾期 {{remaining}} 天",
+			"noTasks": "此冲刺中尚无任务",
+			"toggleTasks": "显示冲刺任务",
+			"reportSummary": "已计划 {{planned}}，已完成 {{completed}}，已结转 {{carriedOver}}",
+			"carriedOver": "结转的任务"
 		}
 	},
 	"invitations": {
