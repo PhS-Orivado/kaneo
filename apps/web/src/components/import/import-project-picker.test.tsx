@@ -77,6 +77,7 @@ describe("ImportProjectPicker", () => {
       projectIds: ["eng"],
       includeComments: true,
       includeSprints: true,
+      userHandling: "invite",
     });
   });
 
@@ -117,6 +118,26 @@ describe("ImportProjectPicker", () => {
       projectIds: ["eng"],
       includeComments: true,
       includeSprints: false,
+      userHandling: "invite",
+    });
+  });
+
+  it("lets the user create accounts instead of sending invitations", () => {
+    const onStart = renderPicker();
+
+    fireEvent.click(screen.getByText("Engineering"));
+    fireEvent.click(
+      screen.getByRole("radio", {
+        name: "settings:workspaceImport.select.usersCreateLabel",
+      }),
+    );
+    fireEvent.click(importButton(1));
+
+    expect(onStart).toHaveBeenCalledWith({
+      projectIds: ["eng"],
+      includeComments: true,
+      includeSprints: true,
+      userHandling: "create",
     });
   });
 
@@ -138,6 +159,7 @@ describe("ImportProjectPicker", () => {
       projectIds: ["eng", "des"],
       includeComments: false,
       includeSprints: true,
+      userHandling: "invite",
     });
 
     fireEvent.click(

@@ -75,10 +75,18 @@ export function ImportSourceFlow({
     projectIds,
     includeComments,
     includeSprints,
+    userHandling,
   }: ImportProjectSelection) => {
     if (!connection || startRun.isPending) return;
     startRun.mutate(
-      { workspaceId, connection, projectIds, includeComments, includeSprints },
+      {
+        workspaceId,
+        connection,
+        projectIds,
+        includeComments,
+        includeSprints,
+        userHandling,
+      },
       {
         onSuccess: ({ run }) => {
           setValues(EMPTY_CONNECT_VALUES);
