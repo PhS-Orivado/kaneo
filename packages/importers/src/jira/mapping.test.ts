@@ -4,6 +4,7 @@ import { createJiraHtmlToMarkdown } from "./html.js";
 import {
   issueDescription,
   issueNumber,
+  mapAttachments,
   mapIssue,
   mapPriority,
 } from "./mapping.js";
@@ -70,6 +71,38 @@ describe("issueDescription", () => {
         toMarkdown,
       ),
     ).toBe("");
+  });
+});
+
+describe("mapAttachments", () => {
+  it("keeps attachments with a download URL and skips the rest", () => {
+    expect(
+      mapAttachments({
+        id: "1",
+        key: "ABC-1",
+        fields: {
+          attachment: [
+            {
+              id: "7",
+              filename: "spec.pdf",
+              mimeType: "application/pdf",
+              size: "2048",
+              content: "https://acme.atlassian.net/secure/attachment/7/spec.pdf",
+            },
+            { id: "8", filename: "no-url.png" },
+            { id: "9", content: "https://acme.atlassian.net/secure/attachment/9" },
+          ],
+        },
+      }),
+    ).toEqual([
+      {
+        key: "7",
+        filename: "spec.pdf",
+        mimeType: "application/pdf",
+        size: 2048,
+        contentUrl: "https://acme.atlassian.net/secure/attachment/7/spec.pdf",
+      },
+    ]);
   });
 });
 
