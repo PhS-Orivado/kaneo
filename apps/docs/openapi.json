@@ -5152,6 +5152,10 @@
           },
           "relations": {
             "type": "integer"
+          },
+          "attachments": {
+            "type": "integer",
+            "description": "Attachments copied into the storage backend and linked from the task descriptions."
           }
         },
         "required": [
@@ -5160,7 +5164,8 @@
           "labels",
           "comments",
           "assignees",
-          "relations"
+          "relations",
+          "attachments"
         ]
       },
       "ImportRunList": {
