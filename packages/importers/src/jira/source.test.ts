@@ -7,6 +7,7 @@ import {
 } from "./auth.js";
 import { connectJira } from "./index.js";
 import { NOT_JIRA_MESSAGE } from "./source.js";
+import { SPRINTS_UNAVAILABLE_WARNING } from "./sprints.js";
 import { BOARD_UNAVAILABLE_WARNING } from "./warnings.js";
 
 const TOKEN = "jira-secret-token";
@@ -566,6 +567,92 @@ describe("readProject on Jira Cloud", () => {
       "1 issue has attachments, which are not imported.",
       "1 parent or issue link points to another project, so it was not imported.",
     ]);
+  });
+
+  it("reads sprints and keeps each issue in its sprint when asked", async () => {
+    const jira = fakeJira(
+      cloudRoutes({
+        "GET /rest/agile/1.0/board/7/sprint": {
+          values: [
+            {
+              id: 1,
+              name: "Sprint 1",
+              state: "closed",
+              startDate: "2026-01-01T00:00:00.000Z",
+              endDate: "2026-01-14T00:00:00.000Z",
+            },
+            { id: 2, name: "Sprint 2", state: "active" },
+          ],
+          isLast: true,
+        },
+        "GET /rest/agile/1.0/sprint/1/issue": {
+          values: [{ id: "101" }],
+          isLast: true,
+        },
+        "GET /rest/agile/1.0/sprint/2/issue": {
+          values: [{ id: "103" }],
+          isLast: true,
+        },
+      }),
+    );
+    const source = await connectJira(
+      { url: CLOUD_URL, email: "ada@example.com", apiToken: TOKEN },
+      { fetch: jira.fetch },
+    );
+    const project = await source.readProject("ABC", {
+      includeComments: false,
+      includeSprints: true,
+    });
+
+    expect(project.sprints).toEqual([
+      {
+        key: "1",
+        name: "Sprint 1",
+        status: "closed",
+        startDate: "2026-01-01T00:00:00.000Z",
+        endDate: "2026-01-14T00:00:00.000Z",
+      },
+      { key: "2", name: "Sprint 2", status: "active" },
+    ]);
+    expect(
+      project.tasks
+        .filter((task) => task.sprintKey)
+        .map((task) => [task.key, task.sprintKey]),
+    ).toEqual([
+      ["101", "1"],
+      ["103", "2"],
+    ]);
+  });
+
+  it("skips the sprint requests when sprints are not asked for", async () => {
+    const jira = fakeJira(cloudRoutes());
+    const source = await connectJira(
+      { url: CLOUD_URL, email: "ada@example.com", apiToken: TOKEN },
+      { fetch: jira.fetch },
+    );
+    const project = await source.readProject("ABC", { includeComments: false });
+
+    expect(
+      jira.paths().some((path) => path.includes("/sprint")),
+    ).toBe(false);
+    expect(project.sprints).toBeUndefined();
+  });
+
+  it("imports with a warning when Jira denies sprint access", async () => {
+    const jira = fakeJira(
+      cloudRoutes({ "GET /rest/agile/1.0/board/7/sprint": new Reply(403) }),
+    );
+    const source = await connectJira(
+      { url: CLOUD_URL, email: "ada@example.com", apiToken: TOKEN },
+      { fetch: jira.fetch },
+    );
+    const project = await source.readProject("ABC", {
+      includeComments: false,
+      includeSprints: true,
+    });
+
+    expect(project.sprints).toBeUndefined();
+    expect(project.warnings).toContain(SPRINTS_UNAVAILABLE_WARNING);
   });
 
   it("leaves comments out of the search and skips the comment requests when not asked", async () => {

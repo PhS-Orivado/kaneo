@@ -33,6 +33,16 @@ export type ImportedComment = {
   createdAt?: string;
 };
 
+export type ImportedSprintStatus = "future" | "active" | "closed";
+
+export type ImportedSprint = {
+  key: string;
+  name: string;
+  status: ImportedSprintStatus;
+  startDate?: string;
+  endDate?: string;
+};
+
 export type ImportedTask = {
   key: string;
   number?: number;
@@ -47,6 +57,7 @@ export type ImportedTask = {
   assignee?: ImportedPerson;
   labelKeys: string[];
   comments: ImportedComment[];
+  sprintKey?: string | null;
 };
 
 export type ImportedRelationType = "subtask" | "blocks" | "related";
@@ -66,6 +77,7 @@ export type ImportedProject = {
   tasks: ImportedTask[];
   relations: ImportedRelation[];
   warnings: string[];
+  sprints?: ImportedSprint[];
 };
 
 export type SourceProject = {
@@ -76,6 +88,7 @@ export type SourceProject = {
 
 export type ReadProjectOptions = {
   includeComments: boolean;
+  includeSprints?: boolean;
   onProgress?: (message: string) => void;
   signal?: AbortSignal;
 };

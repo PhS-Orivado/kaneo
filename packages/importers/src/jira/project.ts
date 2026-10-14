@@ -1,4 +1,4 @@
-import type { ImportedProject } from "../types.js";
+import type { ImportedProject, ImportedSprint } from "../types.js";
 import type {
   JiraBoardColumn,
   JiraComment,
@@ -21,6 +21,7 @@ import { createJiraHtmlToMarkdown } from "./html.js";
 import { mapLabels } from "./labels.js";
 import { mapIssue } from "./mapping.js";
 import { mapRelations } from "./relations.js";
+import { SPRINTS_UNAVAILABLE_WARNING } from "./sprints.js";
 import { buildWarnings } from "./warnings.js";
 
 export type JiraProjectData = {
@@ -31,6 +32,9 @@ export type JiraProjectData = {
   boardUnavailable: boolean;
   issues: JiraIssue[];
   comments: ReadonlyMap<string, JiraComment[]>;
+  sprints?: ImportedSprint[] | null;
+  issueSprint?: ReadonlyMap<string, string>;
+  sprintsUnavailable?: boolean;
 };
 
 export function mapJiraProject(data: JiraProjectData): ImportedProject {
@@ -53,16 +57,21 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
         columnKey,
         comments: mapComments(data.comments.get(issue.id) ?? [], toMarkdown),
         toMarkdown,
+        ...(data.issueSprint ? { issueSprint: data.issueSprint } : {}),
       }),
     ),
     relations,
-    warnings: buildWarnings({
-      issuesWithAttachments: data.issues.filter(
-        (issue) => (issue.fields?.attachment?.length ?? 0) > 0,
-      ).length,
-      externalLinks: external,
-      boardUnavailable: data.boardUnavailable,
-    }),
+    warnings: [
+      ...buildWarnings({
+        issuesWithAttachments: data.issues.filter(
+          (issue) => (issue.fields?.attachment?.length ?? 0) > 0,
+        ).length,
+        externalLinks: external,
+        boardUnavailable: data.boardUnavailable,
+      }),
+      ...(data.sprintsUnavailable ? [SPRINTS_UNAVAILABLE_WARNING] : []),
+    ],
+    ...(data.sprints?.length ? { sprints: data.sprints } : {}),
   };
 }
 

@@ -55,6 +55,35 @@ export type JiraBoardConfiguration = {
   columnConfig?: { columns?: JiraBoardColumn[] | null } | null;
 };
 
+export type JiraSprint = {
+  id: number;
+  name?: string | null;
+  state?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+};
+
+export type JiraSprintPage = {
+  values?: JiraSprint[] | null;
+  startAt?: number | null;
+  maxResults?: number | null;
+  total?: number | null;
+  isLast?: boolean | null;
+};
+
+export type JiraSprintIssue = {
+  id?: string | null;
+  key?: string | null;
+};
+
+export type JiraSprintIssuePage = {
+  values?: JiraSprintIssue[] | null;
+  startAt?: number | null;
+  maxResults?: number | null;
+  total?: number | null;
+  isLast?: boolean | null;
+};
+
 export type JiraLinkedIssue = {
   id: string;
   key?: string | null;
