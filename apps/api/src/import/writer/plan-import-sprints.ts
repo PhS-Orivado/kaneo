@@ -20,6 +20,18 @@ function sprintStatus(status: string): PlannedImportSprint["status"] {
     : "future";
 }
 
+// A closed sprint keeps completed tasks as its history, so the import places
+// every task of these source keys in the final column.
+export function closedSprintKeys(
+  sprints: readonly ImportedSprint[],
+): Set<string> {
+  return new Set(
+    sprints
+      .filter((sprint) => sprint.status === "closed")
+      .map((sprint) => sprint.key),
+  );
+}
+
 // Sprint names are unique per project; a duplicate from the source would abort
 // the whole import on the unique constraint, so conflicting names get a suffix.
 export function planImportSprints(

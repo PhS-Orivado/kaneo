@@ -35,6 +35,14 @@ type PlanImportTasksInput = {
   newId: () => string;
   assign: (person: ImportedPerson | undefined) => string | null;
   sprints?: ReadonlyMap<string, string>;
+  /** Source keys of the sprints imported as closed; their tasks import as done. */
+  closedSprints?: ReadonlySet<string>;
+  doneColumn?: BoardColumn | null;
+};
+
+type ClosedSprintPlacement = {
+  closedSprints: ReadonlySet<string>;
+  doneColumn: BoardColumn | null;
 };
 
 const UNTITLED_TASK = "Untitled task";
@@ -60,8 +68,19 @@ function placeTask(
   task: ImportedTask,
   columns: ReadonlyMap<string, BoardColumn>,
   fallbackColumn: BoardColumn | null,
+  closedSprintPlacement: ClosedSprintPlacement,
 ): { status: string; columnId: string | null } {
   if (task.archived) return { status: "archived", columnId: null };
+  const closedSprint =
+    task.sprintKey !== undefined &&
+    task.sprintKey !== null &&
+    closedSprintPlacement.closedSprints.has(task.sprintKey);
+  if (closedSprint && closedSprintPlacement.doneColumn) {
+    return {
+      status: closedSprintPlacement.doneColumn.slug,
+      columnId: closedSprintPlacement.doneColumn.id,
+    };
+  }
   if (task.columnKey === null) return { status: "planned", columnId: null };
   const column = columns.get(task.columnKey) ?? fallbackColumn;
   return column
@@ -78,15 +97,23 @@ export function planImportTasks({
   newId,
   assign,
   sprints = new Map(),
+  closedSprints = new Set(),
+  doneColumn = null,
 }: PlanImportTasksInput): PlannedImportTask[] {
   const positions = new Map<string, number>();
+  const closedSprintPlacement = { closedSprints, doneColumn };
 
   return tasks.map((task, index) => {
     const number = numbers[index];
     if (number === undefined) {
       throw new Error("Every imported task needs a number");
     }
-    const placement = placeTask(task, columns, fallbackColumn);
+    const placement = placeTask(
+      task,
+      columns,
+      fallbackColumn,
+      closedSprintPlacement,
+    );
     const bucket = placement.columnId ?? `status:${placement.status}`;
     const position = (positions.get(bucket) ?? 0) + 1;
     positions.set(bucket, position);

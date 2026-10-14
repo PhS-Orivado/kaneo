@@ -1,6 +1,6 @@
 import type { ImportedSprint } from "@kaneo/importers";
 import { describe, expect, it } from "vite-plus/test";
-import { planImportSprints } from "./plan-import-sprints";
+import { closedSprintKeys, planImportSprints } from "./plan-import-sprints";
 
 const sprint = (
   key: string,
@@ -74,5 +74,16 @@ describe("planImportSprints", () => {
 
   it("plans no sprints for an empty list", () => {
     expect(planImportSprints([], () => "id")).toEqual([]);
+  });
+});
+describe("closedSprintKeys", () => {
+  it("collects the keys of the sprints imported as closed", () => {
+    expect(
+      closedSprintKeys([
+        sprint("1", { status: "closed" }),
+        sprint("2", { status: "active" }),
+        sprint("3", { status: "closed" }),
+      ]),
+    ).toEqual(new Set(["1", "3"]));
   });
 });
