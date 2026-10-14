@@ -160,6 +160,12 @@
 				"apply": "लिंक लागू करें",
 				"remove": "लिंक हटाएँ"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -1158,7 +1164,14 @@
 			"moveDialogTitle": "दूसरे वर्कस्पेस में ले जाएँ?",
 			"moveTargetLabel": "वर्कस्पेस",
 			"moving": "ले जाया जा रहा है...",
-			"tasksTitle": "कार्य"
+			"tasksTitle": "कार्य",
+			"sprints": "स्प्रिंट",
+			"sprintsSubtitle": "आगामी कार्य को निश्चित अवधि के चरणों में योजनाबद्ध करें।",
+			"sprintLength": "डिफ़ॉल्ट स्प्रिंट अवधि",
+			"sprintLengthDescription": "नए स्प्रिंट की डिफ़ॉल्ट अवधि दिनों में।",
+			"sprintLengthSave": "स्प्रिंट अवधि सहेजें",
+			"sprintLengthSaved": "स्प्रिंट अवधि सहेजी गई",
+			"sprintLengthError": "स्प्रिंट अवधि सहेजी नहीं जा सकी"
 		},
 		"projectIntegrations": {
 			"pageTitle": "एकीकरण",
@@ -2343,7 +2356,8 @@
 			"tokenTitle": "एक्सेस टोकन",
 			"webhookSecret": "सीक्रेट",
 			"webhookSection": "वेबहुक",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "कार्य पर इनके दिखने का क्रम बदलने के लिए खींचें।",
@@ -2356,6 +2370,37 @@
 		},
 		"shared": {
 			"autosave": "बदलाव अपने आप सहेजे जाते हैं"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2558,6 +2603,37 @@
 			"then": "फिर",
 			"or": "या",
 			"thenEllipsis": "फिर…"
+		},
+		"keyboardShortcuts": {
+			"title": "कीबोर्ड शॉर्टकट",
+			"subtitle": "कीबोर्ड शॉर्टकट से अपने कार्यप्रवाह को तेज़ करें",
+			"searchPlaceholder": "शॉर्टकट खोजें...",
+			"footer": "बंद करने के लिए <kbd>Escape</kbd> दबाएँ",
+			"categories": {
+				"general": "सामान्य",
+				"create": "बनाएँ",
+				"views": "दृश्य",
+				"navigation": "नेविगेशन",
+				"quickSelect": "त्वरित चयन (पॉपओवर में)"
+			},
+			"items": {
+				"openCommandPalette": "कमांड पैलेट खोलें",
+				"globalSearch": "वैश्विक खोज",
+				"toggleSidebar": "साइडबार टॉगल करें",
+				"showShortcuts": "कीबोर्ड शॉर्टकट दिखाएँ",
+				"closeModal": "मोडल/पॉपओवर बंद करें",
+				"createTask": "कार्य बनाएँ",
+				"createProject": "प्रोजेक्ट बनाएँ",
+				"createWorkspace": "वर्कस्पेस बनाएँ",
+				"boardView": "बोर्ड दृश्य पर स्विच करें",
+				"listView": "सूची दृश्य पर स्विच करें",
+				"backlogView": "बैकलॉग दृश्य पर स्विच करें",
+				"nextTask": "अगला कार्य",
+				"prevTask": "पिछला कार्य",
+				"openTask": "चयनित कार्य खोलें",
+				"quickSelectNumber": "संख्या द्वारा विकल्प चुनें",
+				"calendarView": "कैलेंडर दृश्य पर जाएँ"
+			}
 		}
 	},
 	"notifications": {
@@ -3048,7 +3124,8 @@
 				"priority": "प्राथमिकता",
 				"assignee": "सौंपा गया",
 				"dueDate": "नियत तारीख",
-				"labels": "लेबल"
+				"labels": "लेबल",
+				"sprint": "स्प्रिंट"
 			},
 			"operators": {
 				"isAnyOf": "में से कोई है",
@@ -3061,7 +3138,8 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "सभी स्प्रिंट"
 		},
 		"gantt": {
 			"searchPlaceholder": "शेड्यूल किए गए टिकट खोजें...",
@@ -3184,7 +3262,9 @@
 			"priorityPlaceholder": "प्राथमिकता सेट करें…",
 			"assigneePlaceholder": "असाइन करें…",
 			"labelPlaceholder": "लेबल जोड़ें…",
-			"columnPlaceholder": "कॉलम में ले जाएँ…"
+			"columnPlaceholder": "कॉलम में ले जाएँ…",
+			"moveToSprint": "स्प्रिंट में ले जाएँ",
+			"updateSprintError": "कार्यों को स्प्रिंट में ले जाना विफल"
 		},
 		"editor": {
 			"table": {
@@ -3293,6 +3373,52 @@
 			"startsOn": "शुरुआत: {{date}}",
 			"beforeStart": "{{date}} प्रारंभ तारीख से पहले है",
 			"afterDue": "{{date}} नियत तारीख के बाद है"
+		},
+		"type": {
+			"label": "प्रकार",
+			"task": "कार्य",
+			"bug": "बग"
+		},
+		"sprints": {
+			"title": "स्प्रिंट",
+			"create": "स्प्रिंट बनाएँ",
+			"createTitle": "स्प्रिंट बनाएँ",
+			"createDescription": "नाम, लक्ष्य और तारीखों के साथ आगामी स्प्रिंट की योजना बनाएँ।",
+			"editTitle": "स्प्रिंट संपादित करें",
+			"editDescription": "स्प्रिंट का नाम, लक्ष्य और तारीखें अपडेट करें।",
+			"edit": "स्प्रिंट संपादित करें",
+			"name": "स्प्रिंट का नाम",
+			"namePlaceholder": "स्प्रिंट 1",
+			"goal": "स्प्रिंट का लक्ष्य",
+			"goalPlaceholder": "इस स्प्रिंट में क्या हासिल करना है?",
+			"save": "परिवर्तन सहेजें",
+			"start": "स्प्रिंट शुरू करें",
+			"startSuccess": "स्प्रिंट {{name}} शुरू हुआ",
+			"close": "स्प्रिंट बंद करें",
+			"closeTitle": "स्प्रिंट बंद करें",
+			"closeSummary": "{{name}} में {{total}} कार्य हैं, जिनमें से {{completed}} पूरे हुए।",
+			"closeTarget": "{{count}} अधूरे कार्य यहाँ ले जाएँ",
+			"closeConfirm": "स्प्रिंट बंद करें और अधूरे कार्य ले जाएँ",
+			"closeSuccess": "स्प्रिंट बंद हुआ, {{count}} अधूरे कार्य ले जाए गए",
+			"backlog": "बैकलॉग",
+			"activeBadge": "सक्रिय",
+			"noActive": "कोई स्प्रिंट सक्रिय नहीं है। पुनरावृत्ति शुरू करने के लिए आगामी स्प्रिंट शुरू करें।",
+			"upcoming": "आगामी स्प्रिंट",
+			"unscheduled": "अनिर्धारित",
+			"taskCounts": "{{total}} में से {{completed}} पूरे",
+			"history": "बंद स्प्रिंट ({{count}})",
+			"completedCount": "{{count}} पूरे",
+			"moveUp": "ऊपर ले जाएँ",
+			"moveDown": "नीचे ले जाएँ",
+			"closedLocked": "यह कार्य बंद स्प्रिंट का हिस्सा है और इतिहास के रूप में वहीं रहेगा",
+			"error": "स्प्रिंट कार्रवाई विफल",
+			"daysRemaining": "{{remaining}} दिन शेष",
+			"endsToday": "आज समाप्त",
+			"daysOverdue": "{{remaining}} दिन से अतिदेय",
+			"noTasks": "इस स्प्रिंट में अभी कोई कार्य नहीं है",
+			"toggleTasks": "स्प्रिंट कार्य दिखाएँ",
+			"reportSummary": "योजनाबद्ध {{planned}}, पूर्ण {{completed}}, स्थानांतरित {{carriedOver}}",
+			"carriedOver": "स्थानांतरित"
 		}
 	},
 	"invitations": {
