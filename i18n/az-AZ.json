@@ -10,8 +10,7 @@
 			"markAllRead": "Hamısını oxunmuş kimi işarələ",
 			"remove": "Çıxar",
 			"reset": "Sıfırla",
-			"filter": "Süzgəc",
-			"clearAllFilters": "Bütün süzgəcləri təmizlə"
+			"filter": "Süzgəc"
 		},
 		"a11y": {
 			"toggleSidebar": "Yan paneli aç/bağla"
@@ -152,6 +151,14 @@
 					"crimson": "Tünd qırmızı"
 				},
 				"statusLoadError": "Project statuses couldn’t be loaded."
+			}
+		},
+		"editor": {
+			"link": {
+				"label": "Keçid URL-i",
+				"placeholder": "Keçidi yapışdırın və ya yazın…",
+				"apply": "Keçidi tətbiq et",
+				"remove": "Keçidi sil"
 			}
 		},
 		"boolean": {
@@ -1524,12 +1531,10 @@
 			"createSuccess": "Custom field created.",
 			"creating": "Creating...",
 			"defaultLabel": "Default",
-			"defaultValuePlaceholder": "Default value",
 			"deleteError": "Failed to delete custom field.",
 			"deleteSuccess": "Custom field deleted.",
 			"deleting": "Deleting...",
 			"namePlaceholder": "Field name",
-			"noOptionsPlaceholder": "No options",
 			"required": "Required",
 			"types": {
 				"boolean": "Seçim qutusu",
@@ -1539,7 +1544,6 @@
 				"text": "Text",
 				"multiselect": "Açılan siyahı, bir neçə seçim"
 			},
-			"availableOptions": "Available options",
 			"clearDefault": "Standart dəyəri təmizlə",
 			"moreOptions": "+{{hiddenCount}} more",
 			"reorderError": "Failed to reorder fields",
@@ -1872,7 +1876,11 @@
 				"expiredDescription": "Subscribe to keep creating and editing.",
 				"viewPlans": "View plans"
 			},
-			"openFailed": "Couldn't open billing for this workspace"
+			"openFailed": "Couldn't open billing for this workspace",
+			"checkoutSuccess": {
+				"title": "Abunə olduğunuz üçün təşəkkürlər",
+				"description": "Ödəniş alındı. Aşağıdakı plan təsdiqləndikdən sonra yenilənəcək."
+			}
 		},
 		"syncRules": {
 			"addLabel": "Add label",
@@ -2018,37 +2026,6 @@
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
 				"transferError": "Failed to transfer ownership"
-			}
-		},
-		"adminBranding": {
-			"title": "Branding",
-			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
-			"instanceBadge": "Instance",
-			"loadError": "Branding settings could not be loaded.",
-			"retry": "Retry",
-			"form": {
-				"appName": "Application name",
-				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
-				"logoLightUrl": "Light-mode logo URL",
-				"logoDarkUrl": "Dark-mode logo URL",
-				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
-				"accentColor": "Accent color",
-				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
-				"footerText": "Footer text",
-				"footerDescription": "Shown in the footer instead of the application name.",
-				"footerUrl": "Footer link URL",
-				"termsUrl": "Terms of service URL",
-				"privacyUrl": "Privacy policy URL",
-				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
-				"showPoweredBy": "Show \"Powered by Kaneo\"",
-				"showPoweredByDescription": "Displays a small attribution link in the footer.",
-				"reset": "Reset",
-				"save": "Save changes",
-				"saving": "Saving..."
-			},
-			"toast": {
-				"saved": "Branding updated.",
-				"saveError": "Branding could not be saved."
 			}
 		},
 		"workspaceImport": {
@@ -2393,6 +2370,37 @@
 		},
 		"shared": {
 			"autosave": "Dəyişikliklər avtomatik yadda saxlanılır"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2478,6 +2486,123 @@
 		},
 		"projectSettings": {
 			"projectLabel": "Layihə"
+		},
+		"shortcuts": {
+			"categories": {
+				"general": "Ümumi",
+				"navigation": "Naviqasiya",
+				"create": "Yarat",
+				"views": "Görünüşlər",
+				"tasks": "Tapşırıqlar",
+				"list": "Lövhə və siyahı",
+				"inbox": "Gələnlər",
+				"filters": "Filtrlər",
+				"editor": "Redaktor"
+			},
+			"items": {
+				"openCommandMenu": "Əmr palitrasını aç",
+				"openSearch": "Ümumi axtarış",
+				"openShortcuts": "Klaviatura qısayollarını göstər",
+				"submit": "Yadda saxla və ya göndər",
+				"back": "Modal/açılan pəncərəni bağla",
+				"switchWorkspace": "İş sahəsini dəyiş",
+				"logOut": "Çıxış et",
+				"showDisplayOptions": "Görünüş seçimləri",
+				"dismissToasts": "Bütün bildirişləri bağla",
+				"toggleSidebar": "Yan paneli aç/bağla",
+				"goToHome": "Ana səhifəyə keç",
+				"goToInbox": "Gələnlərə keç",
+				"goToMyTasks": "Tapşırıqlarıma keç",
+				"goToProjects": "Layihələrə keç",
+				"goToSettings": "Parametrlərə keç",
+				"goToTasks": "Tapşırıqlara keç",
+				"goToBacklog": "Gözləyən tapşırıqlara keç",
+				"goToProject": "1–9 nömrəli layihəyə keç",
+				"openTask": "Tapşırığı aç",
+				"openProject": "Layihəni aç",
+				"createTask": "Tapşırıq yarat",
+				"createProject": "Layihə yarat",
+				"toggleLayout": "Lövhə və siyahı arasında keç",
+				"deleteTask": "Tapşırığı sil",
+				"copyTaskUrl": "Tapşırığın keçidini kopyala",
+				"copyBranchName": "Tapşırığın budağını kopyala",
+				"nextTask": "Növbəti element",
+				"previousTask": "Əvvəlki element",
+				"openFocusedTask": "Seçilmiş elementi aç",
+				"selectAll": "Hamısını seç",
+				"clearSelection": "Seçimi təmizlə",
+				"changeStatus": "Statusu dəyiş",
+				"changePriority": "Prioriteti dəyiş",
+				"assignTask": "Təyin et",
+				"assignToMe": "Mənə təyin et",
+				"changeLabels": "Etiketləri dəyiş",
+				"setDueDate": "Son tarix təyin et",
+				"removeDueDate": "Son tarixi sil",
+				"renameTask": "Adını dəyiş",
+				"editDescription": "Təsviri redaktə et",
+				"commentOnTask": "Şərh yaz",
+				"moveToProject": "Başqa layihəyə köçür",
+				"createSubtask": "Alt tapşırıq yarat",
+				"setParent": "Əsas tapşırığı təyin et",
+				"openParent": "Əsas tapşırığı aç",
+				"openSubtask": "Alt tapşırığı aç",
+				"markBlockedBy": "Bloklanmış kimi qeyd et",
+				"markBlocking": "Bloklayan kimi qeyd et",
+				"markRelated": "Əlaqəli kimi qeyd et",
+				"addLink": "Keçid əlavə et",
+				"toggleResources": "Resursları göstər və ya gizlət",
+				"copyTaskId": "Tapşırıq ID-sini kopyala",
+				"copyTaskTitle": "Tapşırıq adını kopyala",
+				"copyAsMarkdown": "Markdown kimi kopyala",
+				"peekTask": "Seçilmiş tapşırığa önbaxış",
+				"selectTask": "Tapşırığı seç",
+				"selectGroup": "Qrupdakı hamısını seç",
+				"copyPageUrl": "Səhifə URL-ni kopyala",
+				"focusRight": "Növbəti sütun",
+				"focusLeft": "Əvvəlki sütun",
+				"moveTaskTop": "Qrupun əvvəlinə köçür",
+				"moveTaskUp": "Bir mövqe yuxarı",
+				"moveTaskDown": "Bir mövqe aşağı",
+				"moveTaskBottom": "Qrupun sonuna köçür",
+				"moveTaskLeft": "Əvvəlki sütuna köçür",
+				"moveTaskRight": "Növbəti sütuna köçür",
+				"toggleGroup": "Qrupu yığ və ya aç",
+				"toggleAllGroups": "Bütün qrupları yığ və ya aç",
+				"deleteNotification": "Bildirişi sil",
+				"deleteReadNotifications": "Bütün oxunmuş bildirişləri sil",
+				"toggleNotificationRead": "Oxunmuş və ya oxunmamış kimi qeyd et",
+				"markAllNotificationsRead": "Hamısını oxunmuş kimi qeyd et",
+				"addFilter": "Filtr əlavə et",
+				"clearAllFilters": "Bütün filtrləri təmizlə",
+				"clearLastFilter": "Sonuncu filtri təmizlə",
+				"editorBold": "Qalın",
+				"editorItalic": "Kursiv",
+				"editorUnderline": "Altından xətt",
+				"editorStrike": "Üstündən xətt",
+				"editorAttach": "Şəkil və ya fayl əlavə et",
+				"editorInlineCode": "Sətirdaxili kod",
+				"editorLink": "Mətni keçidə çevir",
+				"editorQuote": "Sitat",
+				"editorParagraph": "Adi mətn",
+				"editorHeading1": "Başlıq 1",
+				"editorHeading2": "Başlıq 2",
+				"editorHeading3": "Başlıq 3",
+				"editorChecklist": "Yoxlama siyahısı",
+				"editorToggleChecklist": "Yoxlama bəndini dəyiş",
+				"editorBulletList": "Nişanlı siyahı",
+				"editorNumberedList": "Nömrəli siyahı",
+				"editorCodeBlock": "Kod bloku",
+				"editorUndo": "Geri al",
+				"editorRedo": "Təkrarla"
+			},
+			"title": "Klaviatura qısayolları",
+			"searchPlaceholder": "Əməliyyat və ya düymə ilə axtar",
+			"results_one": "{{count}} nəticə",
+			"results_other": "{{count}} nəticə",
+			"noResults": "Uyğun qısayol yoxdur",
+			"then": "sonra",
+			"or": "və ya",
+			"thenEllipsis": "sonra…"
 		},
 		"keyboardShortcuts": {
 			"title": "Klaviatura qısayolları",
@@ -2584,7 +2709,9 @@
 			"today": "Today",
 			"unread": "Unread",
 			"loadError": "Notifications couldn't be loaded.",
-			"taskLoadError": "This task couldn’t be loaded."
+			"taskLoadError": "This task couldn’t be loaded.",
+			"actionError": "Gələnlər qutusu yenilənmədi. Yenidən cəhd edin.",
+			"readCleared": "Oxunmuş bildirişlər silindi"
 		}
 	},
 	"activity": {
@@ -2620,7 +2747,6 @@
 				"imageUploaded": "Şəkil yükləndi",
 				"fileAttached": "Fayl əlavə edildi",
 				"failedToUploadFile": "Faylı yükləmək alınmadı",
-				"enterUrl": "URL daxil edin",
 				"plaintext": "Sadə mətn",
 				"autoDetect": "Avtomatik müəyyən et",
 				"slashGroupText": "Mətn",
@@ -2721,12 +2847,6 @@
 			"high": "Yüksək",
 			"urgent": "Təcili"
 		},
-		"type": {
-			"label": "Növ",
-			"task": "Tapşırıq",
-			"bug": "Xəta"
-		},
-		"boardSearchPlaceholder": "Tapşırıqları axtar...",
 		"view": {
 			"board": "Lövhə",
 			"list": "Siyahı",
@@ -2755,7 +2875,6 @@
 				"ariaLabel": "Tapşırıq təsviri redaktoru",
 				"placeholder": "Təsvir yazın...",
 				"previewImage": "Şəklə önbaxış",
-				"enterUrl": "URL daxil edin",
 				"autoDetect": "Avtomatik müəyyən et",
 				"copyCode": "Kodu kopyala",
 				"copy": "Kopyala",
@@ -2859,9 +2978,7 @@
 				"saving": "Saving…",
 				"saveFailed": "Changes could not be saved",
 				"retrySave": "Retry"
-			},
-			"customFieldUpdated": "Field updated",
-			"selectOption": "Select option"
+			}
 		},
 		"entity": {
 			"task": "Tapşırıq"
@@ -2882,7 +2999,9 @@
 				"blocks": "Mane olur",
 				"blocked_by": "Mane olan",
 				"related": "Əlaqəlidir"
-			}
+			},
+			"blockedBy": "Bloklayan",
+			"parentPlaceholder": "Əsas tapşırığı təyin et…"
 		},
 		"subtasks": {
 			"title": "Alt tapşırıqlar",
@@ -2902,13 +3021,16 @@
 		"properties": {
 			"title": "Xüsusiyyətlər",
 			"labels": "Etiketlər",
+			"addLabels": "Etiket əlavə et",
 			"copyTaskLink": "Tapşırığın keçidini kopyala",
 			"copyTaskBranch": "Tapşırığın budağını kopyala",
 			"taskLinkCopied": "Tapşırıq keçidi kopyalandı",
 			"taskBranchCopied": "Branch adı kopyalandı",
 			"start": "Başlat",
 			"startDate": "Başlama tarixi",
-			"noDate": "Tarix yoxdur"
+			"noDate": "Tarix yoxdur",
+			"dates": "Tarixlər",
+			"project": "Layihə"
 		},
 		"move": {
 			"title": "Tapşırığı köçür",
@@ -2933,12 +3055,10 @@
 				"updateError": "Tapşırığın prioritetini yeniləmək alınmadı"
 			},
 			"dueDate": {
-				"updateSuccess": "Tapşırığın son tarixi uğurla yeniləndi",
 				"updateError": "Tapşırığın son tarixini yeniləmək alınmadı",
 				"clear": "Tarixi təmizlə"
 			},
 			"startDate": {
-				"updateSuccess": "Tapşırığın başlama tarixi uğurla yeniləndi",
 				"updateError": "Tapşırığın başlama tarixini yeniləmək alınmadı",
 				"clear": "Başlama tarixini təmizlə"
 			},
@@ -2947,8 +3067,6 @@
 				"empty": "Etiket tapılmadı",
 				"create": "\"{{name}}\" adlı etiket yarat",
 				"chooseColor": "Rəng seç",
-				"addSuccess": "Etiket əlavə edildi",
-				"removeSuccess": "Etiket çıxarıldı",
 				"updateError": "Etiketi yeniləmək alınmadı",
 				"createSuccess": "Etiket yaradıldı və əlavə edildi",
 				"createError": "Etiketi yaratmaq alınmadı",
@@ -2975,26 +3093,18 @@
 			"moveAllTooltip": "Bütün planlaşdırılmış tapşırıqları «Görüləcək» bölməsinə köçür",
 			"moveAll": "Hamısını köçür",
 			"addTask": "Tapşırıq əlavə et",
-			"filter": "Süzgəc",
-			"addFilter": "Süzgəc əlavə et...",
 			"sections": {
 				"planned": "Planlaşdırılmış",
 				"archived": "Arxivlənmiş"
 			},
 			"noTasksInSection": "{{section}} bölməsində tapşırıq yoxdur",
 			"filters": {
-				"priority": "Prioritet: {{name}}",
-				"assignee": "İcraçı: {{name}}",
-				"due": "Son tarix: {{date}}",
-				"label": "Etiket: {{name}}",
 				"dueThisWeek": "Son tarixi bu həftə olan",
 				"dueNextWeek": "Son tarixi gələn həftə olan",
 				"noDueDate": "Son tarix yoxdur"
 			}
 		},
 		"sort": {
-			"label": "Sırala",
-			"by": "Sıralama meyarı",
 			"direction": "İstiqamət",
 			"ascending": "Artan",
 			"descending": "Azalan",
@@ -3008,12 +3118,6 @@
 			}
 		},
 		"boardFilters": {
-			"filterBy": "Süzmə meyarı",
-			"allStatuses": "Bütün vəziyyətlər",
-			"allPriorities": "Bütün prioritetlər",
-			"allAssignees": "Bütün icraçılar",
-			"allDueDates": "Bütün son tarixlər",
-			"allLabels": "Bütün etiketlər",
 			"selectedCount": "{{count}} seçilib",
 			"subjects": {
 				"status": "Vəziyyət",
@@ -3025,9 +3129,13 @@
 			},
 			"operators": {
 				"isAnyOf": "Bunlardan biridir",
-				"includeAnyOf": "Bunlardan hər hansı birini ehtiva edir"
+				"includeAnyOf": "Bunlardan hər hansı birini ehtiva edir",
+				"is": "bərabərdir",
+				"isNot": "bərabər deyil",
+				"isNoneOf": "heç biri deyil",
+				"include": "ehtiva edir",
+				"exclude": "ehtiva etmir"
 			},
-			"all": "All",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
 			"noValuesUsedYet": "No values used yet",
@@ -3048,16 +3156,15 @@
 			"noTasksThisMonth": "Bu ay heç nə planlaşdırılmayıb"
 		},
 		"gantt": {
+			"searchPlaceholder": "Tarixi təyin edilmiş tapşırıqları axtar...",
 			"pageTitle": "{{name}} – Qant diaqramı",
 			"title": "Qant zaman xətti",
 			"jumpToToday": "Bu günə keç",
-			"searchPlaceholder": "Tarixi təyin edilmiş tapşırıqları axtar...",
 			"hideTasks": "Tapşırıqları gizlət",
 			"showTasks": "Tapşırıqları göstər",
 			"noTasks": "Tarixi təyin edilmiş tapşırıq yoxdur",
 			"noTasksSubtitle": "Tapşırıqları layihənin zaman xəttində yerləşdirmək üçün onlara başlama tarixi, son tarix və ya hər ikisini əlavə edin.",
 			"noTasksFound": "Tapşırıq tapılmadı",
-			"noTasksMatch": "\"{{query}}\" sorğusuna uyğun tarixi təyin edilmiş tapşırıq yoxdur",
 			"taskHeader": "Tapşırıq",
 			"updateDatesError": "Tapşırıq tarixlərini yeniləmək alınmadı",
 			"resizeStart": "Başlama tarixini sürüşdür",
@@ -3076,7 +3183,10 @@
 			"error": "Tapşırığı silmək alınmadı"
 		},
 		"archive": {
-			"success": "{{count}} tapşırıq arxivləndi"
+			"success": "{{count}} tapşırıq arxivləndi",
+			"confirmTitle_one": "{{count}} tamamlanmış tapşırıq arxivlənsin?",
+			"confirmTitle_other": "{{count}} tamamlanmış tapşırıq arxivlənsin?",
+			"confirmDescription": "Onlar lövhədən çıxarılıb gözləyən tapşırıqların \"Arxivlənmiş\" bölməsinə keçəcək."
 		},
 		"listView": {
 			"addTask": "Tapşırıq əlavə et",
@@ -3093,7 +3203,8 @@
 			"open": "Açıq",
 			"label": "Birləşdirmə sorğusu",
 			"count_one": "{{count}} birləşdirmə sorğusu",
-			"count_other": "{{count}} birləşdirmə sorğusu"
+			"count_other": "{{count}} birləşdirmə sorğusu",
+			"closed": "Bağlı"
 		},
 		"assignee": {
 			"label": "İcraçı",
@@ -3102,17 +3213,13 @@
 		"dueDate": {
 			"label": "Son tarix",
 			"clear": "Tarixi təmizlə",
-			"updateSuccess": "Tapşırığın son tarixi uğurla yeniləndi",
 			"updateError": "Tapşırığın son tarixini yeniləmək alınmadı",
-			"clearSuccess": "Tapşırığın son tarixi təmizləndi",
 			"clearError": "Son tarixi təmizləmək alınmadı"
 		},
 		"labels": {
-			"label": "Etiketlər",
 			"empty": "Mövcud etiket yoxdur"
 		},
 		"update": {
-			"success": "Tapşırıq uğurla yeniləndi",
 			"error": "Tapşırığı yeniləmək alınmadı"
 		},
 		"contextMenu": {
@@ -3134,7 +3241,9 @@
 			"moveToBoardSuccess": "{{count}} tapşırıq lövhəyə köçürüldü",
 			"moveToBoardError": "Tapşırıqları lövhəyə köçürmək alınmadı",
 			"delete": "Tapşırıqları sil",
-			"deleteConfirm": "{{count}} tapşırıq silinsin? Bu əməliyyat geri qaytarıla bilməz.",
+			"deleteConfirmTitle_one": "{{count}} tapşırıq silinsin?",
+			"deleteConfirmTitle_other": "{{count}} tapşırıq silinsin?",
+			"deleteConfirmDescription": "Bu, seçilmiş tapşırıqları və onların bütün məlumatlarını həmişəlik siləcək. Bu əməliyyatı geri qaytara bilməzsiniz.",
 			"deleteSuccess": "{{count}} tapşırıq silindi",
 			"deleteError": "Tapşırıqları silmək alınmadı",
 			"archive": "Tapşırıqları arxivlə",
@@ -3150,12 +3259,19 @@
 			"addLabel": "Etiket əlavə et",
 			"addLabelSuccess": "{{count}} tapşırığa etiket əlavə edildi",
 			"addLabelError": "Etiket əlavə etmək alınmadı",
-			"setDueDate": "Son tarix təyin et",
 			"updateDueDateError": "Son tarixi yeniləmək alınmadı",
 			"actions": "Əməliyyatlar",
 			"searchActions": "Əməliyyatları axtar...",
 			"noActionsFound": "Əməliyyat tapılmadı.",
 			"changeStatus": "Vəziyyəti dəyiş",
+			"clearSelection": "Seçimi təmizlə",
+			"selectAll": "Hamısını seç",
+			"moreActions": "Digər əməliyyatlar",
+			"statusPlaceholder": "Statusu dəyiş…",
+			"priorityPlaceholder": "Prioriteti təyin et…",
+			"assigneePlaceholder": "Təyin et…",
+			"labelPlaceholder": "Etiket əlavə et…",
+			"columnPlaceholder": "Sütuna köçür…",
 			"moveToSprint": "Sprintə köçür",
 			"updateSprintError": "Tapşırıqları sprintə köçürmək alınmadı"
 		},
@@ -3182,10 +3298,86 @@
 		},
 		"checklistProgress": "{{completed}} of {{total}} checklist items completed",
 		"customFields": {
-			"ariaLabel": "Custom fields"
+			"fields": "Sahələr",
+			"empty": "Boş",
+			"required": "Məcburi",
+			"enterKey": "Enter",
+			"toSave": "saxlamaq üçün",
+			"clear": "Təmizlə",
+			"setValue": "{{field}} seçin…",
+			"noMatches": "Uyğun seçim yoxdur",
+			"missingRequired_one": "{{count}} məcburi sahə boşdur",
+			"missingRequired_other": "{{count}} məcburi sahə boşdur",
+			"saveError": "{{field}} saxlanılmadı",
+			"moreFields_one": "Daha {{count}} sahə",
+			"moreFields_other": "Daha {{count}} sahə",
+			"manage": "Sahələri idarə et"
 		},
 		"board": {
-			"reorderFailed": "Could not move task. Please try again."
+			"reorderFailed": "Could not move task. Please try again.",
+			"keyboardInstructions": "Önbaxış üçün Boşluq, bu tapşırığı açmaq üçün Enter düyməsini basın. Köçürmək üçün Alt və ya Option ilə ox düymələrindən istifadə edin."
+		},
+		"toolbar": {
+			"search": "Tapşırıqları axtar",
+			"clearSearch": "Axtarışı təmizlə",
+			"taskCount_one": "{{count}} tapşırıq",
+			"taskCount_other": "{{count}} tapşırıq",
+			"shownCount_one": "{{count}} tapşırıqdan {{shown}}",
+			"shownCount_other": "{{count}} tapşırıqdan {{shown}}"
+		},
+		"display": {
+			"title": "Görünüş",
+			"sortBy": "Sıralama meyarı",
+			"showOnCards": "Kartlarda göstər",
+			"showOnRows": "Sətirlərdə göstər",
+			"checklistProgress": "Yoxlama siyahısının gedişatı",
+			"projectBackground": "Layihə fonu",
+			"layout": "Düzən"
+		},
+		"filterBar": {
+			"label": "Aktiv süzgəclər",
+			"removeFilter": "{{name}} süzgəcini sil",
+			"noMatches": "Axtarışınıza və ya süzgəclərinizə uyğun tapşırıq yoxdur."
+		},
+		"filterMenu": {
+			"addFilter": "Süzgəc əlavə et…",
+			"searchSubject": "{{name}}…",
+			"noResults": "Nəticə yoxdur"
+		},
+		"shortcuts": {
+			"assignedToMe": "Sizə təyin edildi",
+			"idCopied": "Tapşırıq ID-si kopyalandı",
+			"titleCopied": "Tapşırıq adı kopyalandı",
+			"markdownCopied": "Markdown kimi kopyalandı",
+			"copyFailed": "Mübadilə buferinə kopyalamaq alınmadı.",
+			"pageUrlCopied": "Səhifə URL-i kopyalandı"
+		},
+		"due": {
+			"overdueDays_one": "{{count}} g gecikib",
+			"overdueDays_other": "{{count}} g gecikib",
+			"overdueWeeks_one": "{{count}} h gecikib",
+			"overdueWeeks_other": "{{count}} h gecikib",
+			"today": "Bu gün",
+			"tomorrow": "Sabah",
+			"inDays_one": "{{count}} gün sonra",
+			"inDays_other": "{{count}} gün sonra",
+			"fullDate": "Son tarix {{date}}"
+		},
+		"datePicker": {
+			"dueDatePlaceholder": "Son tarixi təyin et…",
+			"startDatePlaceholder": "Başlama tarixini təyin et…",
+			"datePlaceholder": "Tarix təyin et…",
+			"thisWeekend": "Bu həftə sonu",
+			"nextWeek": "Gələn həftə",
+			"pickDate": "Tarix seç",
+			"startsOn": "Başlayır: {{date}}",
+			"beforeStart": "{{date}} başlama tarixindən əvvəldir",
+			"afterDue": "{{date}} son tarixdən sonradır"
+		},
+		"type": {
+			"label": "Növ",
+			"task": "Tapşırıq",
+			"bug": "Xəta"
 		},
 		"sprints": {
 			"title": "Sprintlər",
