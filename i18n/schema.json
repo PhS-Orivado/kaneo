@@ -5875,6 +5875,30 @@
 								"done"
 							]
 						},
+						"stages": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"reading": {
+									"type": "string"
+								},
+								"sprints": {
+									"type": "string"
+								},
+								"users": {
+									"type": "string"
+								},
+								"tasks": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"reading",
+								"sprints",
+								"users",
+								"tasks"
+							]
+						},
 						"back": {
 							"type": "object",
 							"additionalProperties": false,
@@ -6231,6 +6255,24 @@
 								},
 								"inviteMembers": {
 									"type": "string"
+								},
+								"usersLabel": {
+									"type": "string"
+								},
+								"usersDescription": {
+									"type": "string"
+								},
+								"usersInviteLabel": {
+									"type": "string"
+								},
+								"usersInviteDescription": {
+									"type": "string"
+								},
+								"usersCreateLabel": {
+									"type": "string"
+								},
+								"usersCreateDescription": {
+									"type": "string"
 								}
 							},
 							"required": [
@@ -6244,7 +6286,13 @@
 								"membersNote",
 								"membersNoteTrello",
 								"membersNoteJira",
-								"inviteMembers"
+								"inviteMembers",
+								"usersLabel",
+								"usersDescription",
+								"usersInviteLabel",
+								"usersInviteDescription",
+								"usersCreateLabel",
+								"usersCreateDescription"
 							]
 						},
 						"units": {
@@ -6742,6 +6790,42 @@
 								"comments_other": {
 									"type": "string"
 								},
+								"sprints_one": {
+									"type": "string"
+								},
+								"sprints_zero": {
+									"type": "string"
+								},
+								"sprints_two": {
+									"type": "string"
+								},
+								"sprints_few": {
+									"type": "string"
+								},
+								"sprints_many": {
+									"type": "string"
+								},
+								"sprints_other": {
+									"type": "string"
+								},
+								"users_one": {
+									"type": "string"
+								},
+								"users_zero": {
+									"type": "string"
+								},
+								"users_two": {
+									"type": "string"
+								},
+								"users_few": {
+									"type": "string"
+								},
+								"users_many": {
+									"type": "string"
+								},
+								"users_other": {
+									"type": "string"
+								},
 								"attachments_one": {
 									"type": "string"
 								},
@@ -6969,6 +7053,7 @@
 						"history",
 						"status",
 						"steps",
+						"stages",
 						"back",
 						"connect",
 						"linear",
@@ -12235,6 +12320,9 @@
 						"backlog": {
 							"type": "string"
 						},
+						"sprints": {
+							"type": "string"
+						},
 						"gantt": {
 							"type": "string"
 						},
@@ -12246,6 +12334,7 @@
 						"board",
 						"list",
 						"backlog",
+						"sprints",
 						"gantt",
 						"heading"
 					]
@@ -14695,6 +14784,18 @@
 						"title": {
 							"type": "string"
 						},
+						"viewPageTitle": {
+							"type": "string"
+						},
+						"viewHeading": {
+							"type": "string"
+						},
+						"viewEmptyTitle": {
+							"type": "string"
+						},
+						"viewEmptyDescription": {
+							"type": "string"
+						},
 						"create": {
 							"type": "string"
 						},
@@ -14884,6 +14985,10 @@
 					},
 					"required": [
 						"title",
+						"viewPageTitle",
+						"viewHeading",
+						"viewEmptyTitle",
+						"viewEmptyDescription",
 						"create",
 						"createTitle",
 						"createDescription",
