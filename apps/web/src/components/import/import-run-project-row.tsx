@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ImportRunStatusIcon } from "@/components/import/import-run-status-icon";
+import { ImportRunStageList } from "@/components/import/import-run-stage-list";
 import {
   IMPORT_COUNT_LABEL_KEYS,
   summarizeImportCounts,
@@ -118,6 +119,9 @@ export function ImportRunProjectRow({
             >
               {detail}
             </p>
+            {project.status === "running" ? (
+              <ImportRunStageList stage={project.stage ?? "reading"} />
+            ) : null}
           </div>
           {warnings.length > 0 ? (
             <CollapsibleTrigger

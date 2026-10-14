@@ -38,6 +38,7 @@ function project(patch: Partial<ImportRunProject>): ImportRunProject {
     sourceId: "s1",
     name: "Design",
     status: "completed",
+    stage: "done",
     projectId: "p1",
     projectSlug: "DES",
     counts: {
@@ -47,6 +48,8 @@ function project(patch: Partial<ImportRunProject>): ImportRunProject {
       comments: 108,
       assignees: 0,
       relations: 0,
+      sprints: 0,
+      users: 0,
     },
     warnings: [],
     error: null,
@@ -82,14 +85,20 @@ describe("ImportRunProjectRow", () => {
     ).toHaveAttribute("href", "/board/p1");
   });
 
-  it("shows the live message for the project being imported", () => {
+  it("shows the live message and stage checklist for the project being imported", () => {
     renderRow(
-      project({ status: "running", projectId: null }),
+      project({ status: "running", projectId: null, stage: "reading" }),
       "Reading comments (300 so far)",
     );
 
     expect(
       screen.getByText("Reading comments (300 so far)"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("settings:workspaceImport.stages.reading"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("settings:workspaceImport.stages.sprints"),
     ).toBeInTheDocument();
     expect(
       screen.getByText("settings:workspaceImport.run.importingBadge"),

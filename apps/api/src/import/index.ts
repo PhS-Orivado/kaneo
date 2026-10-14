@@ -177,7 +177,7 @@ const importRoutes = apiRouter<BaseVariables & { workspaceId: string }>()
     return c.json(await listSourceProjects(connection), 200);
   })
   .openapi(startImportRunRoute, async (c) => {
-    const { connection, projectIds, includeComments, includeSprints } =
+    const { connection, projectIds, includeComments, includeSprints, userHandling } =
       c.req.valid("json");
     const run = await startImportRun({
       workspaceId: c.get("workspaceId"),
@@ -186,6 +186,7 @@ const importRoutes = apiRouter<BaseVariables & { workspaceId: string }>()
       projectIds,
       includeComments,
       includeSprints,
+      userHandling,
     });
     return c.json({ run }, 202);
   })

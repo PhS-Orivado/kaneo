@@ -5104,6 +5104,17 @@
               "null"
             ]
           },
+          "stage": {
+            "type": "string",
+            "enum": [
+              "reading",
+              "sprints",
+              "users",
+              "tasks",
+              "done"
+            ],
+            "description": "The import step this project is currently in."
+          },
           "counts": {
             "$ref": "#/components/schemas/ImportCounts"
           },
@@ -5126,6 +5137,7 @@
           "status",
           "projectId",
           "projectSlug",
+          "stage",
           "counts",
           "warnings",
           "error"
@@ -5152,6 +5164,14 @@
           },
           "relations": {
             "type": "integer"
+          },
+          "sprints": {
+            "type": "integer",
+            "description": "Sprints written into the project."
+          },
+          "users": {
+            "type": "integer",
+            "description": "Users invited or created for unknown assignees."
           }
         },
         "required": [
@@ -5160,7 +5180,9 @@
           "labels",
           "comments",
           "assignees",
-          "relations"
+          "relations",
+          "sprints",
+          "users"
         ]
       },
       "ImportRunList": {
@@ -23418,6 +23440,15 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Import sprints too, when the source has them, and keep each task in its sprint. Defaults to true."
+                  },
+                  "userHandling": {
+                    "type": "string",
+                    "enum": [
+                      "invite",
+                      "create"
+                    ],
+                    "default": "invite",
+                    "description": "What happens to assignees who are not members of the workspace yet. \"invite\" sends them a workspace invitation and leaves their tasks unassigned until they join; \"create\" creates their account and workspace membership directly. Defaults to \"invite\"."
                   }
                 },
                 "required": [
