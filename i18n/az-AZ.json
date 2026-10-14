@@ -2054,7 +2054,11 @@
 				"labels_one": "{{count, number}} label",
 				"labels_other": "{{count, number}} labels",
 				"tasks_one": "{{count, number}} task",
-				"tasks_other": "{{count, number}} tasks"
+				"tasks_other": "{{count, number}} tasks",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"users_one": "{{count, number}} user",
+				"users_other": "{{count, number}} users"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2152,10 +2156,16 @@
 				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"usersLabel": "New users",
+				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
+				"usersInviteLabel": "Send an invitation",
+				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
+				"usersCreateLabel": "Create their account",
+				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email."
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2294,6 +2304,12 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
+			},
+			"stages": {
+				"reading": "Reading",
+				"sprints": "Sprints",
+				"users": "Users",
+				"tasks": "Issues"
 			}
 		},
 		"chatIntegrations": {
@@ -2856,7 +2872,8 @@
 			"list": "Siyahı",
 			"backlog": "Gözləyən tapşırıqlar",
 			"gantt": "Qant",
-			"heading": "Görünüş"
+			"heading": "Görünüş",
+			"sprints": "Sprints"
 		},
 		"common": {
 			"selectTask": "Tapşırıq seç",
@@ -3422,7 +3439,11 @@
 			"noTasks": "Bu sprintdə hələ tapşırıq yoxdur",
 			"toggleTasks": "Sprint tapşırıqlarını göstər",
 			"reportSummary": "Planlaşdırılmış {{planned}}, tamamlanmış {{completed}}, köçürülmüş {{carriedOver}}",
-			"carriedOver": "Köçürülmüş"
+			"carriedOver": "Köçürülmüş",
+			"viewPageTitle": "Sprints · {{name}}",
+			"viewHeading": "All sprints",
+			"viewEmptyTitle": "No sprints yet",
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here."
 		}
 	},
 	"invitations": {

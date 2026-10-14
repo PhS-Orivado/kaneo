@@ -2813,7 +2813,15 @@
 				"tasks_few": "{{count, number}} tasks",
 				"tasks_many": "{{count, number}} tasks",
 				"tasks_one": "{{count, number}} task",
-				"tasks_other": "{{count, number}} tasks"
+				"tasks_other": "{{count, number}} tasks",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"users_one": "{{count, number}} user",
+				"users_other": "{{count, number}} users",
+				"sprints_few": "{{count, number}} sprints",
+				"sprints_many": "{{count, number}} sprints",
+				"users_few": "{{count, number}} users",
+				"users_many": "{{count, number}} users"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2917,10 +2925,16 @@
 				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"usersLabel": "New users",
+				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
+				"usersInviteLabel": "Send an invitation",
+				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
+				"usersCreateLabel": "Create their account",
+				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email."
 			},
 			"sources": {
 				"connect": "Connect",
@@ -3097,6 +3111,12 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
+			},
+			"stages": {
+				"reading": "Reading",
+				"sprints": "Sprints",
+				"users": "Users",
+				"tasks": "Issues"
 			}
 		},
 		"chatIntegrations": {
@@ -3672,7 +3692,8 @@
 			"list": "Lista",
 			"backlog": "Backlog",
 			"gantt": "Gantt",
-			"heading": "Widok"
+			"heading": "Widok",
+			"sprints": "Sprints"
 		},
 		"descriptionSearchLoading": "Searching full descriptions…",
 		"descriptionSearchError": "Description search failed. Results may be incomplete.",
@@ -3820,7 +3841,11 @@
 			"noTasks": "Brak zadań w tym sprincie",
 			"toggleTasks": "Pokaż zadania sprintu",
 			"reportSummary": "Zaplanowane {{planned}}, ukończone {{completed}}, przeniesione {{carriedOver}}",
-			"carriedOver": "Przeniesione"
+			"carriedOver": "Przeniesione",
+			"viewPageTitle": "Sprints · {{name}}",
+			"viewHeading": "All sprints",
+			"viewEmptyTitle": "No sprints yet",
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here."
 		}
 	},
 	"press": {

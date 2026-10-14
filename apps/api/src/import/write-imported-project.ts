@@ -1,8 +1,9 @@
 import type { ImportedProject, ImportSourceId } from "@kaneo/importers";
 import { publishEvent } from "../events";
-import type { ImportCounts } from "./import-run-project";
+import type { ImportCounts, ImportStage } from "./import-run-project";
 import type { OpenedImportSource } from "./source/open-import-source";
 import { createImportProject } from "./writer/create-import-project";
+import type { ImportUserHandling } from "./writer/plan-import-users";
 import { writeProjectContent } from "./writer/write-project-content";
 import { writeImportAttachments } from "./writer/write-import-attachments";
 
@@ -14,6 +15,8 @@ export type WriteImportedProjectInput = {
   signal: AbortSignal;
   project: ImportedProject;
   includeComments: boolean;
+  userHandling: ImportUserHandling;
+  onStage?: (stage: ImportStage) => void;
 };
 
 export type WrittenImportProject = {
@@ -31,6 +34,8 @@ export async function writeImportedProject({
   signal,
   project,
   includeComments,
+  userHandling,
+  onStage,
 }: WriteImportedProjectInput): Promise<WrittenImportProject> {
   const written = await createImportProject(
     {
@@ -49,6 +54,8 @@ export async function writeImportedProject({
         source,
         project,
         includeComments,
+        userHandling,
+        onStage,
       })),
     }),
   );

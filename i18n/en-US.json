@@ -1395,6 +1395,12 @@
 				"import": "Import",
 				"done": "(completed)"
 			},
+			"stages": {
+				"reading": "Reading",
+				"sprints": "Sprints",
+				"users": "Users",
+				"tasks": "Issues"
+			},
 			"back": {
 				"allSources": "All sources",
 				"changeKey": "Change key",
@@ -1483,10 +1489,16 @@
 				"commentsDescription": "Keeps each comment's original author and date.",
 				"sprintsLabel": "Import sprints",
 				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned.",
-				"inviteMembers": "Invite members"
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"inviteMembers": "Invite members",
+				"usersLabel": "New users",
+				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
+				"usersInviteLabel": "Send an invitation",
+				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
+				"usersCreateLabel": "Create their account",
+				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email."
 			},
 			"units": {
 				"team": {
@@ -1556,6 +1568,10 @@
 				"labels_other": "{{count, number}} labels",
 				"comments_one": "{{count, number}} comment",
 				"comments_other": "{{count, number}} comments",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"users_one": "{{count, number}} user",
+				"users_other": "{{count, number}} users",
 				"attachments_one": "{{count, number}} attachment",
 				"attachments_other": "{{count, number}} attachments"
 			},
@@ -2856,6 +2872,7 @@
 			"board": "Board",
 			"list": "List",
 			"backlog": "Backlog",
+			"sprints": "Sprints",
 			"gantt": "Gantt",
 			"heading": "View"
 		},
@@ -3385,6 +3402,10 @@
 		},
 		"sprints": {
 			"title": "Sprints",
+			"viewPageTitle": "Sprints · {{name}}",
+			"viewHeading": "All sprints",
+			"viewEmptyTitle": "No sprints yet",
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
 			"create": "Create sprint",
 			"createTitle": "Create sprint",
 			"createDescription": "Plan an upcoming sprint with a name, goal, and dates.",

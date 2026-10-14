@@ -2,6 +2,7 @@ import { IMPORT_SOURCE_IDS } from "@kaneo/importers";
 import { nullableResponseTimestamp, responseTimestamp, z } from "../openapi";
 import {
   IMPORT_RUN_PROJECT_STATUSES,
+  IMPORT_RUN_STAGES,
   IMPORT_RUN_STATUSES,
 } from "./import-run-project";
 
@@ -34,6 +35,13 @@ const importCountsSchema = z
       description:
         "Attachments copied into the storage backend and linked from the task descriptions.",
     }),
+    sprints: z.number().int().openapi({
+      description: "Sprints created by the import.",
+    }),
+    users: z.number().int().openapi({
+      description:
+        "People who were not workspace members yet and were invited or had an account created.",
+    }),
   })
   .openapi("ImportCounts");
 
@@ -42,6 +50,10 @@ export const importRunProjectSchema = z
     sourceId: z.string(),
     name: z.string(),
     status: z.enum(IMPORT_RUN_PROJECT_STATUSES),
+    stage: z.enum(IMPORT_RUN_STAGES).openapi({
+      description:
+        "While running, the import step this project is on: reading the source, then sprints, users, and issues. done once completed.",
+    }),
     projectId: z.string().nullable().openapi({
       description: "The Kaneo project created by the import, once completed.",
     }),
