@@ -2947,6 +2947,22 @@
 					"intro": "Each Jira project becomes a project here, with its workflow as columns."
 				}
 			},
+			"jiraLinks": {
+				"title": "Jira links",
+				"description": "Point Jira issue links at the imported tasks.",
+				"cardDescription": "Replace Jira issue links in task descriptions and comments with links to the imported tasks. You see a preview before anything changes.",
+				"find": "Find Jira links",
+				"dialogTitle": "Replace Jira links",
+				"dialogDescription": "Links that match an imported task are shown below. Unmatched links stay unchanged.",
+				"summary": "{{count}} links in {{tasks}} tasks and {{comments}} comments point at imported tasks.",
+				"unresolved": "{{count}} links did not match an imported task and stay unchanged.",
+				"none": "No Jira issue links were found.",
+				"noneUnresolved": "{{count}} Jira issue links were found, but none match an imported task. Nothing changes.",
+				"apply": "Replace {{count}} links",
+				"successToast": "Replaced {{count}} Jira links.",
+				"loadError": "Jira links could not be checked.",
+				"applyError": "The links could not be replaced."
+			},
 			"status": {
 				"failed": "Failed",
 				"imported": "Imported",

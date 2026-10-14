@@ -5877,6 +5877,155 @@
 								"kaneo"
 							]
 						},
+						"jiraLinks": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								},
+								"cardDescription": {
+									"type": "string"
+								},
+								"find": {
+									"type": "string"
+								},
+								"dialogTitle": {
+									"type": "string"
+								},
+								"dialogDescription": {
+									"type": "string"
+								},
+								"summary": {
+									"type": "string"
+								},
+								"summary_zero": {
+									"type": "string"
+								},
+								"summary_one": {
+									"type": "string"
+								},
+								"summary_two": {
+									"type": "string"
+								},
+								"summary_few": {
+									"type": "string"
+								},
+								"summary_many": {
+									"type": "string"
+								},
+								"summary_other": {
+									"type": "string"
+								},
+								"unresolved": {
+									"type": "string"
+								},
+								"unresolved_zero": {
+									"type": "string"
+								},
+								"unresolved_one": {
+									"type": "string"
+								},
+								"unresolved_two": {
+									"type": "string"
+								},
+								"unresolved_few": {
+									"type": "string"
+								},
+								"unresolved_many": {
+									"type": "string"
+								},
+								"unresolved_other": {
+									"type": "string"
+								},
+								"none": {
+									"type": "string"
+								},
+								"noneUnresolved": {
+									"type": "string"
+								},
+								"noneUnresolved_zero": {
+									"type": "string"
+								},
+								"noneUnresolved_one": {
+									"type": "string"
+								},
+								"noneUnresolved_two": {
+									"type": "string"
+								},
+								"noneUnresolved_few": {
+									"type": "string"
+								},
+								"noneUnresolved_many": {
+									"type": "string"
+								},
+								"noneUnresolved_other": {
+									"type": "string"
+								},
+								"apply": {
+									"type": "string"
+								},
+								"apply_zero": {
+									"type": "string"
+								},
+								"apply_one": {
+									"type": "string"
+								},
+								"apply_two": {
+									"type": "string"
+								},
+								"apply_few": {
+									"type": "string"
+								},
+								"apply_many": {
+									"type": "string"
+								},
+								"apply_other": {
+									"type": "string"
+								},
+								"successToast": {
+									"type": "string"
+								},
+								"successToast_zero": {
+									"type": "string"
+								},
+								"successToast_one": {
+									"type": "string"
+								},
+								"successToast_two": {
+									"type": "string"
+								},
+								"successToast_few": {
+									"type": "string"
+								},
+								"successToast_many": {
+									"type": "string"
+								},
+								"successToast_other": {
+									"type": "string"
+								},
+								"loadError": {
+									"type": "string"
+								},
+								"applyError": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"title",
+								"description",
+								"cardDescription",
+								"find",
+								"dialogTitle",
+								"dialogDescription",
+								"none",
+								"loadError",
+								"applyError"
+							]
+						},
 						"history": {
 							"type": "object",
 							"additionalProperties": false,
@@ -7036,6 +7185,7 @@
 						"retry",
 						"notAllowed",
 						"sources",
+						"jiraLinks",
 						"history",
 						"status",
 						"steps",
