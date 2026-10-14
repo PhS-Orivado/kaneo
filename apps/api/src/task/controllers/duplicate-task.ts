@@ -9,6 +9,7 @@ import {
   customFieldValueTable,
   labelTable,
   projectTable,
+  sprintTable,
   taskRelationTable,
   taskTable,
   userTable,
@@ -283,6 +284,17 @@ async function duplicateTask({
         column?.id ?? null,
       );
 
+      // A duplicate keeps the task type, and the sprint only while that
+      // sprint is still mutable: closed sprints keep their original tasks
+      // as history.
+      const duplicatedSprintId = await (async () => {
+        if (!sourceTask.sprintId) return null;
+        const sprint = await tx.query.sprintTable.findFirst({
+          where: eq(sprintTable.id, sourceTask.sprintId),
+        });
+        return sprint && sprint.status !== "closed" ? sprint.id : null;
+      })();
+
       const [task] = await tx
         .insert(taskTable)
         .values({
@@ -292,6 +304,8 @@ async function duplicateTask({
           title: title?.trim() || sourceTask.title,
           status: sourceTask.status,
           columnId: column?.id ?? null,
+          type: sourceTask.type,
+          sprintId: duplicatedSprintId,
           startDate: sourceTask.startDate,
           dueDate: sourceTask.dueDate,
           description,

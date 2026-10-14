@@ -31,6 +31,14 @@ export const createGiteaBody = z.object({
 export const updateGiteaBody = z.object({
   isActive: z.boolean().optional(),
   commentTaskLinkOnGiteaIssue: z.boolean().optional(),
+  accessToken: z
+    .string()
+    .min(1)
+    .optional()
+    .openapi({
+      description:
+        "Replace this binding's stored token. Verified against the instance and the repository before it is stored.",
+    }),
 });
 
 // RFC 0001 WP3: import is keyed by integration id; a projectId in the body is

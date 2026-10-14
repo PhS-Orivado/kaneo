@@ -802,7 +802,7 @@ describe.each(["github", "gitea", "gitlab"] as const)(
           new Error("Temporary initialization failure"),
         );
         await reconcileTaskSync(f.project.id, f.task.id);
-        const integration = await getSyncIntegration(f.project.id, type);
+        const integration = await getSyncIntegration(f.integration.id);
         expect(
           (await previewSyncRules(integration, f.config.syncRules as SyncRules))
             .willCreate,
@@ -1159,14 +1159,12 @@ describe.each(["github", "gitea", "gitlab"] as const)(
           labels: [],
         });
         const review = await reviewSyncResume(
-          f.project.id,
-          type,
+          f.integration.id,
           link.id,
           f.workspace.id,
         );
         await resumeSync(
-          f.project.id,
-          type,
+          f.integration.id,
           link.id,
           review.token,
           "provider",
@@ -1217,14 +1215,12 @@ describe.each(["github", "gitea", "gitlab"] as const)(
           color: "#123456",
         });
         const review = await reviewSyncResume(
-          f.project.id,
-          type,
+          f.integration.id,
           link.id,
           f.workspace.id,
         );
         await resumeSync(
-          f.project.id,
-          type,
+          f.integration.id,
           link.id,
           review.token,
           source,
@@ -1737,7 +1733,7 @@ it("continues after a task export throws and leaves failed tasks available for e
       "Task sync reconciliation failed",
       expect.objectContaining({ integrationId: f.integration.id }),
     );
-    const integration = await getSyncIntegration(f.project.id, "gitea");
+    const integration = await getSyncIntegration(f.integration.id);
     expect(
       (await previewSyncRules(integration, f.config.syncRules as SyncRules))
         .willCreate,
@@ -1777,7 +1773,7 @@ it("broadcasts deleted label availability even without changed links or an activ
   expect(publish).not.toHaveBeenCalledWith("project.updated", {
     projectId: foreign.project.id,
   });
-  const integration = await getSyncIntegration(f.project.id, "gitea");
+  const integration = await getSyncIntegration(f.integration.id);
   expect(
     (await previewSyncRules(integration, f.config.syncRules as SyncRules))
       .missingLabels,

@@ -1,7 +1,7 @@
 import { pagingNumber, z } from "../openapi";
 import { MAX_TASK_POSITION } from "./controllers/next-task-position";
 import { TICKET_ID_PATTERN } from "./ticket-id";
-import { VALID_PRIORITIES } from "./validate-task-fields";
+import { TASK_TYPES, VALID_PRIORITIES } from "./validate-task-fields";
 
 export const taskParam = z.object({ id: z.string() });
 
@@ -39,6 +39,11 @@ export const assignedTasksQuery = z.object({
 
 const priority = z.enum(VALID_PRIORITIES);
 
+const taskType = z.enum(TASK_TYPES).openapi({
+  description:
+    "Bugs default to the project's active sprint; every other type defaults to the backlog.",
+});
+
 // Required object of optional filters: a RouteParameter cannot itself be optional.
 export const listTasksQuery = z.object({
   status: z.string().optional(),
@@ -66,10 +71,11 @@ export const bulkUpdateBody = z.object({
     "addLabel",
     "removeLabel",
     "updateDueDate",
+    "updateSprint",
   ]),
   value: z.string().nullable().optional().openapi({
     description:
-      "The new value for the chosen operation. Unused by `delete`; null clears an assignee or due date.",
+      "The new value for the chosen operation. Unused by `delete`; null clears an assignee or due date, or moves tasks to the backlog for `updateSprint`.",
   }),
 });
 
@@ -80,6 +86,14 @@ export const createTaskBody = z.object({
   dueDate: z.string().optional(),
   priority,
   status: z.string().openapi({ description: "The target column's slug." }),
+  type: taskType.optional(),
+  sprintId: z
+    .string()
+    .optional()
+    .openapi({
+      description:
+        "Active or future sprint of the project. Omit to apply the type-based default: bugs go to the active sprint, everything else to the backlog.",
+    }),
   userId: z.string().optional().openapi({ description: "Assignee, if any." }),
   draftAssetIds: z.array(z.string()).max(100).optional(),
   customFields: z

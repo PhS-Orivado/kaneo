@@ -1,5 +1,6 @@
 import { and, eq } from "drizzle-orm";
 import type { Context } from "hono";
+import type { ContentfulStatusCode } from "hono/utils/http-status";
 import { HTTPException } from "hono/http-exception";
 import db from "../database";
 import { publishEvent } from "../events";
@@ -16,8 +17,17 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
-import { type GiteaConfig, validateGiteaConfig } from "../plugins/gitea/config";
+import {
+  type GiteaConfig,
+  normalizeGiteaBaseUrl,
+  validateGiteaConfig,
+} from "../plugins/gitea/config";
 import { handleGiteaWebhookRequest } from "../plugins/gitea/webhook-handler";
+import {
+  createGiteaClient,
+  GiteaApiError,
+  verifyGiteaToken,
+} from "../plugins/gitea/utils/gitea-api";
 import {
   hasWorkspacePermission,
   requireWorkspacePermission,
@@ -235,7 +245,7 @@ const updateIntegrationRoute = createRoute({
     403: errorResponse(
       "No access to the project, or missing workspace:manage_settings",
     ),
-    404: jsonResponse("Integration not found", integrationNotFoundSchema),
+    404: errorResponse("Integration not found"),
   },
 });
 
@@ -304,7 +314,9 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
   })
   .openapi(listIntegrationsRoute, async (c) => {
     const { projectId } = c.req.valid("param");
-    const integrations = await listGiteaIntegrations(projectId);
+    // The route already requires workspace:manage_settings, and each panel
+    // needs its own secret to paste into Gitea, so every row is enriched.
+    const integrations = await listGiteaIntegrations(projectId, true);
     const usage = await getRepositoryBindingUsage(
       projectId,
       c.get("workspaceId"),
@@ -377,6 +389,38 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
         ...config,
         commentTaskLinkOnGiteaIssue: body.commentTaskLinkOnGiteaIssue,
       };
+    }
+
+    // The token belongs to one binding (RFC 0001 WP3), so replacing it is a
+    // per-binding update, not a re-create; it is verified against the
+    // instance and the repository before it is stored.
+    if (body.accessToken !== undefined) {
+      const trimmed = body.accessToken.trim();
+      if (!trimmed) {
+        throw new HTTPException(400, { message: "Access token is required" });
+      }
+      const normalizedBase = normalizeGiteaBaseUrl(
+        config.baseUrl ?? row.baseUrl ?? "",
+      );
+      try {
+        await verifyGiteaToken(normalizedBase, trimmed);
+        const giteaClient = createGiteaClient({
+          baseUrl: normalizedBase,
+          accessToken: trimmed,
+        });
+        await giteaClient.getRepo(
+          row.repositoryOwner ?? config.repositoryOwner ?? "",
+          row.repositoryName ?? config.repositoryName ?? "",
+        );
+      } catch (error) {
+        if (error instanceof GiteaApiError) {
+          throw new HTTPException((error.status || 400) as ContentfulStatusCode, {
+            message: error.message,
+          });
+        }
+        throw error;
+      }
+      config = { ...config, accessToken: trimmed };
     }
 
     const validation = await validateGiteaConfig(config);
