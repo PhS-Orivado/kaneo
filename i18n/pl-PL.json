@@ -160,6 +160,12 @@
 				"apply": "Zastosuj link",
 				"remove": "Usuń link"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -772,6 +778,37 @@
 			"then": "potem",
 			"or": "lub",
 			"thenEllipsis": "potem…"
+		},
+		"keyboardShortcuts": {
+			"title": "Skróty klawiszowe",
+			"subtitle": "Przyspiesz pracę dzięki skrótom klawiszowym",
+			"searchPlaceholder": "Szukaj skrótów...",
+			"footer": "Naciśnij <kbd>Escape</kbd>, aby zamknąć",
+			"categories": {
+				"general": "Ogólne",
+				"create": "Tworzenie",
+				"views": "Widoki",
+				"navigation": "Nawigacja",
+				"quickSelect": "Szybki wybór (w oknach podręcznych)"
+			},
+			"items": {
+				"openCommandPalette": "Otwórz paletę poleceń",
+				"globalSearch": "Globalne wyszukiwanie",
+				"toggleSidebar": "Przełącz pasek boczny",
+				"showShortcuts": "Pokaż skróty klawiszowe",
+				"closeModal": "Zamknij okno lub menu",
+				"createTask": "Utwórz zadanie",
+				"createProject": "Utwórz projekt",
+				"createWorkspace": "Utwórz obszar roboczy",
+				"boardView": "Przełącz na widok tablicy",
+				"listView": "Przełącz na widok listy",
+				"backlogView": "Przełącz na backlog",
+				"calendarView": "Przełącz na widok kalendarza",
+				"nextTask": "Następne zadanie",
+				"prevTask": "Poprzednie zadanie",
+				"openTask": "Otwórz zaznaczone zadanie",
+				"quickSelectNumber": "Wybierz opcję numerem"
+			}
 		}
 	},
 	"notifications": {
@@ -1745,7 +1782,14 @@
 			"moveDialogTitle": "Przenieść do innego obszaru roboczego?",
 			"moveTargetLabel": "Obszar roboczy",
 			"moving": "Przenoszenie...",
-			"tasksTitle": "Zadania"
+			"tasksTitle": "Zadania",
+			"sprints": "Sprinty",
+			"sprintsSubtitle": "Planuj nadchodzącą pracę w iteracjach o stałej długości.",
+			"sprintLength": "Domyślna długość sprintu",
+			"sprintLengthDescription": "Liczba dni, które domyślnie obejmuje nowy sprint.",
+			"sprintLengthSave": "Zapisz długość sprintu",
+			"sprintLengthSaved": "Długość sprintu zapisana",
+			"sprintLengthError": "Nie udało się zapisać długości sprintu"
 		},
 		"projectIntegrations": {
 			"discordSectionSubtitle": "Wysyłaj aktualizacje zadań projektu na kanał Discord za pomocą webhooka.",
@@ -3113,7 +3157,8 @@
 			"tokenTitle": "Token dostępu",
 			"webhookSecret": "Sekret",
 			"webhookSection": "Webhook",
-			"webhookUrl": "Adres URL"
+			"webhookUrl": "Adres URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Przeciągnij, aby zmienić kolejność wyświetlania w zadaniu.",
@@ -3126,6 +3171,37 @@
 		},
 		"shared": {
 			"autosave": "Zmiany zapisują się automatycznie"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"tasks": {
@@ -3184,11 +3260,13 @@
 				"dueDate": "Termin",
 				"labels": "Etykiety",
 				"priority": "Priorytet",
-				"status": "Status"
+				"status": "Status",
+				"sprint": "Sprint"
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Wszystkie sprinty"
 		},
 		"bulk": {
 			"actions": "Akcje",
@@ -3231,7 +3309,9 @@
 			"priorityPlaceholder": "Ustaw priorytet…",
 			"assigneePlaceholder": "Przypisz do…",
 			"labelPlaceholder": "Dodaj etykietę…",
-			"columnPlaceholder": "Przenieś do kolumny…"
+			"columnPlaceholder": "Przenieś do kolumny…",
+			"moveToSprint": "Przenieś do sprintu",
+			"updateSprintError": "Nie udało się przenieść zadań do sprintu"
 		},
 		"common": {
 			"loadingTask": "Ładowanie zadania...",
@@ -3689,6 +3769,52 @@
 			"startsOn": "Początek: {{date}}",
 			"beforeStart": "{{date}} jest przed datą rozpoczęcia",
 			"afterDue": "{{date}} jest po terminie"
+		},
+		"type": {
+			"label": "Typ",
+			"task": "Zadanie",
+			"bug": "Błąd"
+		},
+		"sprints": {
+			"title": "Sprinty",
+			"create": "Utwórz sprint",
+			"createTitle": "Utwórz sprint",
+			"createDescription": "Zaplanuj nadchodzący sprint: nazwa, cel i daty.",
+			"editTitle": "Edytuj sprint",
+			"editDescription": "Zaktualizuj nazwę, cel i daty sprintu.",
+			"edit": "Edytuj sprint",
+			"name": "Nazwa sprintu",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Cel sprintu",
+			"goalPlaceholder": "Co ma osiągnąć ten sprint?",
+			"save": "Zapisz zmiany",
+			"start": "Rozpocznij sprint",
+			"startSuccess": "Sprint {{name}} rozpoczęty",
+			"close": "Zamknij sprint",
+			"closeTitle": "Zamknij sprint",
+			"closeSummary": "{{name}} ma {{total}} zadań, z czego {{completed}} ukończonych.",
+			"closeTarget": "Przenieś {{count}} nieukończonych zadań do",
+			"closeConfirm": "Zamknij sprint i przenieś nieukończone zadania",
+			"closeSuccess": "Sprint zamknięty, przeniesiono {{count}} nieukończonych zadań",
+			"backlog": "Backlog",
+			"activeBadge": "Aktywny",
+			"noActive": "Żaden sprint nie jest aktywny. Rozpocznij nadchodzący sprint, aby iterować.",
+			"upcoming": "Nadchodzący sprint",
+			"unscheduled": "Bez terminu",
+			"taskCounts": "{{completed}} z {{total}} ukończonych",
+			"history": "Zamknięte sprinty ({{count}})",
+			"completedCount": "{{count}} ukończonych",
+			"moveUp": "W górę",
+			"moveDown": "W dół",
+			"closedLocked": "To zadanie należy do zamkniętego sprintu i pozostaje w nim jako historia",
+			"error": "Akcja sprintu nie powiodła się",
+			"daysRemaining": "Pozostało {{remaining}} dni",
+			"endsToday": "Kończy się dziś",
+			"daysOverdue": "{{remaining}} dni po terminie",
+			"noTasks": "Brak zadań w tym sprincie",
+			"toggleTasks": "Pokaż zadania sprintu",
+			"reportSummary": "Zaplanowane {{planned}}, ukończone {{completed}}, przeniesione {{carriedOver}}",
+			"carriedOver": "Przeniesione"
 		}
 	},
 	"press": {

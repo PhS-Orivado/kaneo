@@ -160,6 +160,12 @@
 				"apply": "Применить ссылку",
 				"remove": "Удалить ссылку"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -929,7 +935,14 @@
 			"moveDialogTitle": "Переместить в другую рабочую область?",
 			"moveTargetLabel": "Рабочая область",
 			"moving": "Перемещение...",
-			"tasksTitle": "Задачи"
+			"tasksTitle": "Задачи",
+			"sprints": "Спринты",
+			"sprintsSubtitle": "Планируйте предстоящую работу итерациями фиксированной длины.",
+			"sprintLength": "Длина спринта по умолчанию",
+			"sprintLengthDescription": "Количество дней, которое по умолчанию занимает новый спринт.",
+			"sprintLengthSave": "Сохранить длину спринта",
+			"sprintLengthSaved": "Длина спринта сохранена",
+			"sprintLengthError": "Не удалось сохранить длину спринта"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции",
@@ -2435,7 +2448,8 @@
 			"tokenTitle": "Токен доступа",
 			"webhookSecret": "Секрет",
 			"webhookSection": "Вебхук",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Перетаскивайте, чтобы изменить порядок их отображения в задаче.",
@@ -2448,6 +2462,37 @@
 		},
 		"shared": {
 			"autosave": "Изменения сохраняются автоматически"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2652,6 +2697,37 @@
 			"then": "затем",
 			"or": "или",
 			"thenEllipsis": "затем…"
+		},
+		"keyboardShortcuts": {
+			"title": "Сочетания клавиш",
+			"subtitle": "Ускорьте работу с помощью сочетаний клавиш",
+			"searchPlaceholder": "Поиск сочетаний...",
+			"footer": "Нажмите <kbd>Escape</kbd>, чтобы закрыть",
+			"categories": {
+				"general": "Основные",
+				"create": "Создание",
+				"views": "Представления",
+				"navigation": "Навигация",
+				"quickSelect": "Быстрый выбор (в выпадающих списках)"
+			},
+			"items": {
+				"openCommandPalette": "Открыть палитру команд",
+				"globalSearch": "Глобальный поиск",
+				"toggleSidebar": "Переключить боковую панель",
+				"showShortcuts": "Показать сочетания клавиш",
+				"closeModal": "Закрыть модальное окно/всплывающее меню",
+				"createTask": "Создать задачу",
+				"createProject": "Создать проект",
+				"createWorkspace": "Создать рабочую область",
+				"boardView": "Переключиться на доску",
+				"listView": "Переключиться на список",
+				"backlogView": "Переключиться на бэклог",
+				"nextTask": "Следующая задача",
+				"prevTask": "Предыдущая задача",
+				"openTask": "Открыть выбранную задачу",
+				"quickSelectNumber": "Выбрать вариант по номеру",
+				"calendarView": "Переключиться на календарь"
+			}
 		}
 	},
 	"notifications": {
@@ -3157,7 +3233,8 @@
 				"priority": "Приоритет",
 				"assignee": "Исполнитель",
 				"dueDate": "Срок выполнения",
-				"labels": "Метки"
+				"labels": "Метки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "любой из",
@@ -3171,7 +3248,8 @@
 			"selectedCount": "{{count}} выбрано",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Все спринты"
 		},
 		"gantt": {
 			"searchPlaceholder": "Поиск запланированных задач...",
@@ -3336,7 +3414,9 @@
 			"priorityPlaceholder": "Задать приоритет…",
 			"assigneePlaceholder": "Назначить…",
 			"labelPlaceholder": "Добавить метку…",
-			"columnPlaceholder": "Переместить в колонку…"
+			"columnPlaceholder": "Переместить в колонку…",
+			"moveToSprint": "Переместить в спринт",
+			"updateSprintError": "Не удалось переместить задачи в спринт"
 		},
 		"editor": {
 			"table": {
@@ -3459,6 +3539,52 @@
 			"startsOn": "Начало: {{date}}",
 			"beforeStart": "{{date}} раньше даты начала",
 			"afterDue": "{{date}} позже срока"
+		},
+		"type": {
+			"label": "Тип",
+			"task": "Задача",
+			"bug": "Баг"
+		},
+		"sprints": {
+			"title": "Спринты",
+			"create": "Создать спринт",
+			"createTitle": "Создать спринт",
+			"createDescription": "Запланируйте предстоящий спринт: название, цель и даты.",
+			"editTitle": "Изменить спринт",
+			"editDescription": "Обновите название, цель и даты спринта.",
+			"edit": "Изменить спринт",
+			"name": "Название спринта",
+			"namePlaceholder": "Спринт 1",
+			"goal": "Цель спринта",
+			"goalPlaceholder": "Чего должна достичь команда в этом спринте?",
+			"save": "Сохранить изменения",
+			"start": "Запустить спринт",
+			"startSuccess": "Спринт {{name}} запущен",
+			"close": "Закрыть спринт",
+			"closeTitle": "Закрыть спринт",
+			"closeSummary": "В спринте {{name}} {{total}} задач, из них завершено: {{completed}}.",
+			"closeTarget": "Перенести {{count}} незавершённых задач в",
+			"closeConfirm": "Закрыть спринт и перенести незавершённые задачи",
+			"closeSuccess": "Спринт закрыт, перенесено {{count}} незавершённых задач",
+			"backlog": "Бэклог",
+			"activeBadge": "Активен",
+			"noActive": "Нет активного спринта. Запустите предстоящий спринт, чтобы начать работу итерациями.",
+			"upcoming": "Предстоящий спринт",
+			"unscheduled": "Без сроков",
+			"taskCounts": "Завершено {{completed}} из {{total}}",
+			"history": "Закрытые спринты ({{count}})",
+			"completedCount": "Завершено: {{count}}",
+			"moveUp": "Выше",
+			"moveDown": "Ниже",
+			"closedLocked": "Задача относится к закрытому спринту и остаётся в нём как история",
+			"error": "Не удалось выполнить действие со спринтом",
+			"daysRemaining": "Осталось дней: {{remaining}}",
+			"endsToday": "Заканчивается сегодня",
+			"daysOverdue": "Просрочено на {{remaining}} дн.",
+			"noTasks": "В этом спринте пока нет задач",
+			"toggleTasks": "Показать задачи спринта",
+			"reportSummary": "Запланировано {{planned}}, завершено {{completed}}, перенесено {{carriedOver}}",
+			"carriedOver": "Перенесено"
 		}
 	},
 	"invitations": {
