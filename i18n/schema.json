@@ -42,9 +42,6 @@
 						},
 						"filter": {
 							"type": "string"
-						},
-						"clearAllFilters": {
-							"type": "string"
 						}
 					},
 					"required": [
@@ -56,8 +53,7 @@
 						"markAllRead",
 						"remove",
 						"reset",
-						"filter",
-						"clearAllFilters"
+						"filter"
 					]
 				},
 				"a11y": {
@@ -146,30 +142,6 @@
 					"required": [
 						"label",
 						"more"
-					]
-				},
-				"boolean": {
-					"type": "object",
-					"additionalProperties": false,
-					"properties": {
-						"true": {
-							"type": "string"
-						},
-						"false": {
-							"type": "string"
-						},
-						"undefined": {
-							"type": "string"
-						},
-						"notSet": {
-							"type": "string"
-						}
-					},
-					"required": [
-						"true",
-						"false",
-						"undefined",
-						"notSet"
 					]
 				},
 				"language": {
@@ -655,6 +627,63 @@
 						"createWorkspace",
 						"createTask"
 					]
+				},
+				"editor": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"link": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"label": {
+									"type": "string"
+								},
+								"placeholder": {
+									"type": "string"
+								},
+								"apply": {
+									"type": "string"
+								},
+								"remove": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"label",
+								"placeholder",
+								"apply",
+								"remove"
+							]
+						}
+					},
+					"required": [
+						"link"
+					]
+				},
+				"boolean": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"true": {
+							"type": "string"
+						},
+						"false": {
+							"type": "string"
+						},
+						"undefined": {
+							"type": "string"
+						},
+						"notSet": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"true",
+						"false",
+						"undefined",
+						"notSet"
+					]
 				}
 			},
 			"required": [
@@ -665,11 +694,12 @@
 				"empty",
 				"pagination",
 				"breadcrumb",
-				"boolean",
 				"language",
 				"people",
 				"error",
-				"modals"
+				"modals",
+				"editor",
+				"boolean"
 			]
 		},
 		"auth": {
@@ -3342,132 +3372,6 @@
 						"members",
 						"addMember",
 						"confirm",
-						"toast"
-					]
-				},
-				"adminBranding": {
-					"type": "object",
-					"additionalProperties": false,
-					"properties": {
-						"title": {
-							"type": "string"
-						},
-						"subtitle": {
-							"type": "string"
-						},
-						"instanceBadge": {
-							"type": "string"
-						},
-						"loadError": {
-							"type": "string"
-						},
-						"retry": {
-							"type": "string"
-						},
-						"form": {
-							"type": "object",
-							"additionalProperties": false,
-							"properties": {
-								"appName": {
-									"type": "string"
-								},
-								"appNameDescription": {
-									"type": "string"
-								},
-								"logoLightUrl": {
-									"type": "string"
-								},
-								"logoDarkUrl": {
-									"type": "string"
-								},
-								"logoDescription": {
-									"type": "string"
-								},
-								"accentColor": {
-									"type": "string"
-								},
-								"accentColorDescription": {
-									"type": "string"
-								},
-								"footerText": {
-									"type": "string"
-								},
-								"footerDescription": {
-									"type": "string"
-								},
-								"footerUrl": {
-									"type": "string"
-								},
-								"termsUrl": {
-									"type": "string"
-								},
-								"privacyUrl": {
-									"type": "string"
-								},
-								"legalDescription": {
-									"type": "string"
-								},
-								"showPoweredBy": {
-									"type": "string"
-								},
-								"showPoweredByDescription": {
-									"type": "string"
-								},
-								"reset": {
-									"type": "string"
-								},
-								"save": {
-									"type": "string"
-								},
-								"saving": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"appName",
-								"appNameDescription",
-								"logoLightUrl",
-								"logoDarkUrl",
-								"logoDescription",
-								"accentColor",
-								"accentColorDescription",
-								"footerText",
-								"footerDescription",
-								"footerUrl",
-								"termsUrl",
-								"privacyUrl",
-								"legalDescription",
-								"showPoweredBy",
-								"showPoweredByDescription",
-								"reset",
-								"save",
-								"saving"
-							]
-						},
-						"toast": {
-							"type": "object",
-							"additionalProperties": false,
-							"properties": {
-								"saved": {
-									"type": "string"
-								},
-								"saveError": {
-									"type": "string"
-								}
-							},
-							"required": [
-								"saved",
-								"saveError"
-							]
-						}
-					},
-					"required": [
-						"title",
-						"subtitle",
-						"instanceBadge",
-						"loadError",
-						"retry",
-						"form",
 						"toast"
 					]
 				},
@@ -6837,6 +6741,24 @@
 								},
 								"comments_other": {
 									"type": "string"
+								},
+								"attachments_one": {
+									"type": "string"
+								},
+								"attachments_zero": {
+									"type": "string"
+								},
+								"attachments_two": {
+									"type": "string"
+								},
+								"attachments_few": {
+									"type": "string"
+								},
+								"attachments_many": {
+									"type": "string"
+								},
+								"attachments_other": {
+									"type": "string"
 								}
 							},
 							"required": []
@@ -7651,12 +7573,6 @@
 						"namePlaceholder": {
 							"type": "string"
 						},
-						"noOptionsPlaceholder": {
-							"type": "string"
-						},
-						"defaultValuePlaceholder": {
-							"type": "string"
-						},
 						"selectPlaceholder": {
 							"type": "string"
 						},
@@ -7691,9 +7607,6 @@
 							"type": "string"
 						},
 						"clearDefault": {
-							"type": "string"
-						},
-						"availableOptions": {
 							"type": "string"
 						},
 						"types": {
@@ -7862,8 +7775,6 @@
 					},
 					"required": [
 						"namePlaceholder",
-						"noOptionsPlaceholder",
-						"defaultValuePlaceholder",
 						"selectPlaceholder",
 						"required",
 						"creating",
@@ -7876,7 +7787,6 @@
 						"reorderError",
 						"moreOptions",
 						"clearDefault",
-						"availableOptions",
 						"types",
 						"startsAs",
 						"startsAt",
@@ -9906,6 +9816,22 @@
 						},
 						"openFailed": {
 							"type": "string"
+						},
+						"checkoutSuccess": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"title": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"title",
+								"description"
+							]
 						}
 					},
 					"required": [
@@ -9933,7 +9859,8 @@
 						"status",
 						"trialCard",
 						"expiredCallout",
-						"openFailed"
+						"openFailed",
+						"checkoutSuccess"
 					]
 				},
 				"chatIntegrations": {
@@ -10041,9 +9968,6 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
-						"addAnotherRepository": {
-							"type": "string"
-						},
 						"browse": {
 							"type": "string"
 						},
@@ -10160,10 +10084,12 @@
 						},
 						"webhookUrl": {
 							"type": "string"
+						},
+						"addAnotherRepository": {
+							"type": "string"
 						}
 					},
 					"required": [
-						"addAnotherRepository",
 						"browse",
 						"changeToken",
 						"checking",
@@ -10202,7 +10128,8 @@
 						"tokenTitle",
 						"webhookSecret",
 						"webhookSection",
-						"webhookUrl"
+						"webhookUrl",
+						"addAnotherRepository"
 					]
 				},
 				"shared": {
@@ -10252,6 +10179,132 @@
 						"fieldsTitle",
 						"fieldsDescription"
 					]
+				},
+				"adminBranding": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"subtitle": {
+							"type": "string"
+						},
+						"instanceBadge": {
+							"type": "string"
+						},
+						"loadError": {
+							"type": "string"
+						},
+						"retry": {
+							"type": "string"
+						},
+						"form": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"appName": {
+									"type": "string"
+								},
+								"appNameDescription": {
+									"type": "string"
+								},
+								"logoLightUrl": {
+									"type": "string"
+								},
+								"logoDarkUrl": {
+									"type": "string"
+								},
+								"logoDescription": {
+									"type": "string"
+								},
+								"accentColor": {
+									"type": "string"
+								},
+								"accentColorDescription": {
+									"type": "string"
+								},
+								"footerText": {
+									"type": "string"
+								},
+								"footerDescription": {
+									"type": "string"
+								},
+								"footerUrl": {
+									"type": "string"
+								},
+								"termsUrl": {
+									"type": "string"
+								},
+								"privacyUrl": {
+									"type": "string"
+								},
+								"legalDescription": {
+									"type": "string"
+								},
+								"showPoweredBy": {
+									"type": "string"
+								},
+								"showPoweredByDescription": {
+									"type": "string"
+								},
+								"reset": {
+									"type": "string"
+								},
+								"save": {
+									"type": "string"
+								},
+								"saving": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"appName",
+								"appNameDescription",
+								"logoLightUrl",
+								"logoDarkUrl",
+								"logoDescription",
+								"accentColor",
+								"accentColorDescription",
+								"footerText",
+								"footerDescription",
+								"footerUrl",
+								"termsUrl",
+								"privacyUrl",
+								"legalDescription",
+								"showPoweredBy",
+								"showPoweredByDescription",
+								"reset",
+								"save",
+								"saving"
+							]
+						},
+						"toast": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"saved": {
+									"type": "string"
+								},
+								"saveError": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"saved",
+								"saveError"
+							]
+						}
+					},
+					"required": [
+						"title",
+						"subtitle",
+						"instanceBadge",
+						"loadError",
+						"retry",
+						"form",
+						"toast"
+					]
 				}
 			},
 			"required": [
@@ -10267,7 +10320,6 @@
 				"apiKeys",
 				"adminUsers",
 				"adminWorkspaces",
-				"adminBranding",
 				"informationPage",
 				"notificationsPage",
 				"preferencesPage",
@@ -10304,7 +10356,8 @@
 				"chatIntegrations",
 				"codeHosting",
 				"shared",
-				"projectCustomFields"
+				"projectCustomFields",
+				"adminBranding"
 			]
 		},
 		"navigation": {
@@ -10645,6 +10698,486 @@
 						"projectLabel"
 					]
 				},
+				"shortcuts": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"categories": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"general": {
+									"type": "string"
+								},
+								"navigation": {
+									"type": "string"
+								},
+								"create": {
+									"type": "string"
+								},
+								"views": {
+									"type": "string"
+								},
+								"tasks": {
+									"type": "string"
+								},
+								"list": {
+									"type": "string"
+								},
+								"inbox": {
+									"type": "string"
+								},
+								"filters": {
+									"type": "string"
+								},
+								"editor": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"general",
+								"navigation",
+								"create",
+								"views",
+								"tasks",
+								"list",
+								"inbox",
+								"filters",
+								"editor"
+							]
+						},
+						"items": {
+							"type": "object",
+							"additionalProperties": false,
+							"properties": {
+								"openCommandMenu": {
+									"type": "string"
+								},
+								"openSearch": {
+									"type": "string"
+								},
+								"openShortcuts": {
+									"type": "string"
+								},
+								"submit": {
+									"type": "string"
+								},
+								"back": {
+									"type": "string"
+								},
+								"switchWorkspace": {
+									"type": "string"
+								},
+								"logOut": {
+									"type": "string"
+								},
+								"showDisplayOptions": {
+									"type": "string"
+								},
+								"dismissToasts": {
+									"type": "string"
+								},
+								"toggleSidebar": {
+									"type": "string"
+								},
+								"goToHome": {
+									"type": "string"
+								},
+								"goToInbox": {
+									"type": "string"
+								},
+								"goToMyTasks": {
+									"type": "string"
+								},
+								"goToProjects": {
+									"type": "string"
+								},
+								"goToSettings": {
+									"type": "string"
+								},
+								"goToTasks": {
+									"type": "string"
+								},
+								"goToBacklog": {
+									"type": "string"
+								},
+								"goToProject": {
+									"type": "string"
+								},
+								"openTask": {
+									"type": "string"
+								},
+								"openProject": {
+									"type": "string"
+								},
+								"createTask": {
+									"type": "string"
+								},
+								"createProject": {
+									"type": "string"
+								},
+								"toggleLayout": {
+									"type": "string"
+								},
+								"deleteTask": {
+									"type": "string"
+								},
+								"copyTaskUrl": {
+									"type": "string"
+								},
+								"copyBranchName": {
+									"type": "string"
+								},
+								"nextTask": {
+									"type": "string"
+								},
+								"previousTask": {
+									"type": "string"
+								},
+								"openFocusedTask": {
+									"type": "string"
+								},
+								"selectAll": {
+									"type": "string"
+								},
+								"clearSelection": {
+									"type": "string"
+								},
+								"changeStatus": {
+									"type": "string"
+								},
+								"changePriority": {
+									"type": "string"
+								},
+								"assignTask": {
+									"type": "string"
+								},
+								"assignToMe": {
+									"type": "string"
+								},
+								"changeLabels": {
+									"type": "string"
+								},
+								"setDueDate": {
+									"type": "string"
+								},
+								"removeDueDate": {
+									"type": "string"
+								},
+								"renameTask": {
+									"type": "string"
+								},
+								"editDescription": {
+									"type": "string"
+								},
+								"commentOnTask": {
+									"type": "string"
+								},
+								"moveToProject": {
+									"type": "string"
+								},
+								"createSubtask": {
+									"type": "string"
+								},
+								"setParent": {
+									"type": "string"
+								},
+								"openParent": {
+									"type": "string"
+								},
+								"openSubtask": {
+									"type": "string"
+								},
+								"markBlockedBy": {
+									"type": "string"
+								},
+								"markBlocking": {
+									"type": "string"
+								},
+								"markRelated": {
+									"type": "string"
+								},
+								"addLink": {
+									"type": "string"
+								},
+								"toggleResources": {
+									"type": "string"
+								},
+								"copyTaskId": {
+									"type": "string"
+								},
+								"copyTaskTitle": {
+									"type": "string"
+								},
+								"copyAsMarkdown": {
+									"type": "string"
+								},
+								"peekTask": {
+									"type": "string"
+								},
+								"selectTask": {
+									"type": "string"
+								},
+								"selectGroup": {
+									"type": "string"
+								},
+								"copyPageUrl": {
+									"type": "string"
+								},
+								"focusRight": {
+									"type": "string"
+								},
+								"focusLeft": {
+									"type": "string"
+								},
+								"moveTaskTop": {
+									"type": "string"
+								},
+								"moveTaskUp": {
+									"type": "string"
+								},
+								"moveTaskDown": {
+									"type": "string"
+								},
+								"moveTaskBottom": {
+									"type": "string"
+								},
+								"moveTaskLeft": {
+									"type": "string"
+								},
+								"moveTaskRight": {
+									"type": "string"
+								},
+								"toggleGroup": {
+									"type": "string"
+								},
+								"toggleAllGroups": {
+									"type": "string"
+								},
+								"deleteNotification": {
+									"type": "string"
+								},
+								"deleteReadNotifications": {
+									"type": "string"
+								},
+								"toggleNotificationRead": {
+									"type": "string"
+								},
+								"markAllNotificationsRead": {
+									"type": "string"
+								},
+								"addFilter": {
+									"type": "string"
+								},
+								"clearAllFilters": {
+									"type": "string"
+								},
+								"clearLastFilter": {
+									"type": "string"
+								},
+								"editorBold": {
+									"type": "string"
+								},
+								"editorItalic": {
+									"type": "string"
+								},
+								"editorUnderline": {
+									"type": "string"
+								},
+								"editorStrike": {
+									"type": "string"
+								},
+								"editorAttach": {
+									"type": "string"
+								},
+								"editorInlineCode": {
+									"type": "string"
+								},
+								"editorLink": {
+									"type": "string"
+								},
+								"editorQuote": {
+									"type": "string"
+								},
+								"editorParagraph": {
+									"type": "string"
+								},
+								"editorHeading1": {
+									"type": "string"
+								},
+								"editorHeading2": {
+									"type": "string"
+								},
+								"editorHeading3": {
+									"type": "string"
+								},
+								"editorChecklist": {
+									"type": "string"
+								},
+								"editorToggleChecklist": {
+									"type": "string"
+								},
+								"editorBulletList": {
+									"type": "string"
+								},
+								"editorNumberedList": {
+									"type": "string"
+								},
+								"editorCodeBlock": {
+									"type": "string"
+								},
+								"editorUndo": {
+									"type": "string"
+								},
+								"editorRedo": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"openCommandMenu",
+								"openSearch",
+								"openShortcuts",
+								"submit",
+								"back",
+								"switchWorkspace",
+								"logOut",
+								"showDisplayOptions",
+								"dismissToasts",
+								"toggleSidebar",
+								"goToHome",
+								"goToInbox",
+								"goToMyTasks",
+								"goToProjects",
+								"goToSettings",
+								"goToTasks",
+								"goToBacklog",
+								"goToProject",
+								"openTask",
+								"openProject",
+								"createTask",
+								"createProject",
+								"toggleLayout",
+								"deleteTask",
+								"copyTaskUrl",
+								"copyBranchName",
+								"nextTask",
+								"previousTask",
+								"openFocusedTask",
+								"selectAll",
+								"clearSelection",
+								"changeStatus",
+								"changePriority",
+								"assignTask",
+								"assignToMe",
+								"changeLabels",
+								"setDueDate",
+								"removeDueDate",
+								"renameTask",
+								"editDescription",
+								"commentOnTask",
+								"moveToProject",
+								"createSubtask",
+								"setParent",
+								"openParent",
+								"openSubtask",
+								"markBlockedBy",
+								"markBlocking",
+								"markRelated",
+								"addLink",
+								"toggleResources",
+								"copyTaskId",
+								"copyTaskTitle",
+								"copyAsMarkdown",
+								"peekTask",
+								"selectTask",
+								"selectGroup",
+								"copyPageUrl",
+								"focusRight",
+								"focusLeft",
+								"moveTaskTop",
+								"moveTaskUp",
+								"moveTaskDown",
+								"moveTaskBottom",
+								"moveTaskLeft",
+								"moveTaskRight",
+								"toggleGroup",
+								"toggleAllGroups",
+								"deleteNotification",
+								"deleteReadNotifications",
+								"toggleNotificationRead",
+								"markAllNotificationsRead",
+								"addFilter",
+								"clearAllFilters",
+								"clearLastFilter",
+								"editorBold",
+								"editorItalic",
+								"editorUnderline",
+								"editorStrike",
+								"editorAttach",
+								"editorInlineCode",
+								"editorLink",
+								"editorQuote",
+								"editorParagraph",
+								"editorHeading1",
+								"editorHeading2",
+								"editorHeading3",
+								"editorChecklist",
+								"editorToggleChecklist",
+								"editorBulletList",
+								"editorNumberedList",
+								"editorCodeBlock",
+								"editorUndo",
+								"editorRedo"
+							]
+						},
+						"title": {
+							"type": "string"
+						},
+						"searchPlaceholder": {
+							"type": "string"
+						},
+						"results_one": {
+							"type": "string"
+						},
+						"results_zero": {
+							"type": "string"
+						},
+						"results_two": {
+							"type": "string"
+						},
+						"results_few": {
+							"type": "string"
+						},
+						"results_many": {
+							"type": "string"
+						},
+						"results_other": {
+							"type": "string"
+						},
+						"noResults": {
+							"type": "string"
+						},
+						"then": {
+							"type": "string"
+						},
+						"or": {
+							"type": "string"
+						},
+						"thenEllipsis": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"categories",
+						"items",
+						"title",
+						"searchPlaceholder",
+						"noResults",
+						"then",
+						"or",
+						"thenEllipsis"
+					]
+				},
 				"keyboardShortcuts": {
 					"type": "object",
 					"additionalProperties": false,
@@ -10782,6 +11315,7 @@
 				"workspaceSwitcher",
 				"page",
 				"projectSettings",
+				"shortcuts",
 				"keyboardShortcuts"
 			]
 		},
@@ -11111,6 +11645,12 @@
 						},
 						"taskLoadError": {
 							"type": "string"
+						},
+						"actionError": {
+							"type": "string"
+						},
+						"readCleared": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -11126,7 +11666,9 @@
 						"openTask",
 						"recentActivity",
 						"taskUnavailable",
-						"taskLoadError"
+						"taskLoadError",
+						"actionError",
+						"readCleared"
 					]
 				}
 			},
@@ -11247,9 +11789,6 @@
 									"type": "string"
 								},
 								"failedToUploadFile": {
-									"type": "string"
-								},
-								"enterUrl": {
 									"type": "string"
 								},
 								"plaintext": {
@@ -11514,7 +12053,6 @@
 								"imageUploaded",
 								"fileAttached",
 								"failedToUploadFile",
-								"enterUrl",
 								"plaintext",
 								"autoDetect",
 								"slashGroupText",
@@ -11684,29 +12222,6 @@
 						"urgent"
 					]
 				},
-				"type": {
-					"type": "object",
-					"additionalProperties": false,
-					"properties": {
-						"label": {
-							"type": "string"
-						},
-						"task": {
-							"type": "string"
-						},
-						"bug": {
-							"type": "string"
-						}
-					},
-					"required": [
-						"label",
-						"task",
-						"bug"
-					]
-				},
-				"boardSearchPlaceholder": {
-					"type": "string"
-				},
 				"view": {
 					"type": "object",
 					"additionalProperties": false,
@@ -11782,12 +12297,6 @@
 						"subtaskOf": {
 							"type": "string"
 						},
-						"customFieldUpdated": {
-							"type": "string"
-						},
-						"selectOption": {
-							"type": "string"
-						},
 						"activity": {
 							"type": "string"
 						},
@@ -11814,9 +12323,6 @@
 									"type": "string"
 								},
 								"previewImage": {
-									"type": "string"
-								},
-								"enterUrl": {
 									"type": "string"
 								},
 								"autoDetect": {
@@ -12230,7 +12736,6 @@
 								"ariaLabel",
 								"placeholder",
 								"previewImage",
-								"enterUrl",
 								"autoDetect",
 								"copyCode",
 								"copy",
@@ -12253,8 +12758,6 @@
 					},
 					"required": [
 						"subtaskOf",
-						"customFieldUpdated",
-						"selectOption",
 						"activity",
 						"noActivity",
 						"openInFullPage",
@@ -12331,6 +12834,12 @@
 								"blocked_by",
 								"related"
 							]
+						},
+						"blockedBy": {
+							"type": "string"
+						},
+						"parentPlaceholder": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -12345,7 +12854,9 @@
 						"related",
 						"blocks",
 						"selectTask",
-						"types"
+						"types",
+						"blockedBy",
+						"parentPlaceholder"
 					]
 				},
 				"subtasks": {
@@ -12418,6 +12929,9 @@
 						"labels": {
 							"type": "string"
 						},
+						"addLabels": {
+							"type": "string"
+						},
 						"copyTaskLink": {
 							"type": "string"
 						},
@@ -12438,18 +12952,27 @@
 						},
 						"noDate": {
 							"type": "string"
+						},
+						"dates": {
+							"type": "string"
+						},
+						"project": {
+							"type": "string"
 						}
 					},
 					"required": [
 						"title",
 						"labels",
+						"addLabels",
 						"copyTaskLink",
 						"copyTaskBranch",
 						"taskLinkCopied",
 						"taskBranchCopied",
 						"start",
 						"startDate",
-						"noDate"
+						"noDate",
+						"dates",
+						"project"
 					]
 				},
 				"move": {
@@ -12544,9 +13067,6 @@
 							"type": "object",
 							"additionalProperties": false,
 							"properties": {
-								"updateSuccess": {
-									"type": "string"
-								},
 								"updateError": {
 									"type": "string"
 								},
@@ -12555,7 +13075,6 @@
 								}
 							},
 							"required": [
-								"updateSuccess",
 								"updateError",
 								"clear"
 							]
@@ -12564,9 +13083,6 @@
 							"type": "object",
 							"additionalProperties": false,
 							"properties": {
-								"updateSuccess": {
-									"type": "string"
-								},
 								"updateError": {
 									"type": "string"
 								},
@@ -12575,7 +13091,6 @@
 								}
 							},
 							"required": [
-								"updateSuccess",
 								"updateError",
 								"clear"
 							]
@@ -12594,12 +13109,6 @@
 									"type": "string"
 								},
 								"chooseColor": {
-									"type": "string"
-								},
-								"addSuccess": {
-									"type": "string"
-								},
-								"removeSuccess": {
 									"type": "string"
 								},
 								"updateError": {
@@ -12664,8 +13173,6 @@
 								"empty",
 								"create",
 								"chooseColor",
-								"addSuccess",
-								"removeSuccess",
 								"updateError",
 								"createSuccess",
 								"createError",
@@ -12747,12 +13254,6 @@
 						"addTask": {
 							"type": "string"
 						},
-						"filter": {
-							"type": "string"
-						},
-						"addFilter": {
-							"type": "string"
-						},
 						"sections": {
 							"type": "object",
 							"additionalProperties": false,
@@ -12776,18 +13277,6 @@
 							"type": "object",
 							"additionalProperties": false,
 							"properties": {
-								"priority": {
-									"type": "string"
-								},
-								"assignee": {
-									"type": "string"
-								},
-								"due": {
-									"type": "string"
-								},
-								"label": {
-									"type": "string"
-								},
 								"dueThisWeek": {
 									"type": "string"
 								},
@@ -12799,10 +13288,6 @@
 								}
 							},
 							"required": [
-								"priority",
-								"assignee",
-								"due",
-								"label",
 								"dueThisWeek",
 								"dueNextWeek",
 								"noDueDate"
@@ -12816,8 +13301,6 @@
 						"moveAllTooltip",
 						"moveAll",
 						"addTask",
-						"filter",
-						"addFilter",
 						"sections",
 						"noTasksInSection",
 						"filters"
@@ -12827,12 +13310,6 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
-						"label": {
-							"type": "string"
-						},
-						"by": {
-							"type": "string"
-						},
 						"direction": {
 							"type": "string"
 						},
@@ -12876,8 +13353,6 @@
 						}
 					},
 					"required": [
-						"label",
-						"by",
 						"direction",
 						"ascending",
 						"descending",
@@ -12888,24 +13363,6 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
-						"filterBy": {
-							"type": "string"
-						},
-						"allStatuses": {
-							"type": "string"
-						},
-						"allPriorities": {
-							"type": "string"
-						},
-						"allAssignees": {
-							"type": "string"
-						},
-						"allDueDates": {
-							"type": "string"
-						},
-						"allLabels": {
-							"type": "string"
-						},
 						"noValuesUsedYet": {
 							"type": "string"
 						},
@@ -12934,9 +13391,6 @@
 							"type": "string"
 						},
 						"selectedCount_other": {
-							"type": "string"
-						},
-						"all": {
 							"type": "string"
 						},
 						"subjects": {
@@ -12980,11 +13434,31 @@
 								},
 								"includeAnyOf": {
 									"type": "string"
+								},
+								"is": {
+									"type": "string"
+								},
+								"isNot": {
+									"type": "string"
+								},
+								"isNoneOf": {
+									"type": "string"
+								},
+								"include": {
+									"type": "string"
+								},
+								"exclude": {
+									"type": "string"
 								}
 							},
 							"required": [
 								"isAnyOf",
-								"includeAnyOf"
+								"includeAnyOf",
+								"is",
+								"isNot",
+								"isNoneOf",
+								"include",
+								"exclude"
 							]
 						},
 						"allSprints": {
@@ -12992,16 +13466,9 @@
 						}
 					},
 					"required": [
-						"filterBy",
-						"allStatuses",
-						"allPriorities",
-						"allAssignees",
-						"allDueDates",
-						"allLabels",
 						"noValuesUsedYet",
 						"noCustomFieldValues",
 						"allCustomFieldValues",
-						"all",
 						"subjects",
 						"operators",
 						"allSprints"
@@ -13084,6 +13551,9 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
+						"searchPlaceholder": {
+							"type": "string"
+						},
 						"pageTitle": {
 							"type": "string"
 						},
@@ -13091,9 +13561,6 @@
 							"type": "string"
 						},
 						"jumpToToday": {
-							"type": "string"
-						},
-						"searchPlaceholder": {
 							"type": "string"
 						},
 						"hideTasks": {
@@ -13109,9 +13576,6 @@
 							"type": "string"
 						},
 						"noTasksFound": {
-							"type": "string"
-						},
-						"noTasksMatch": {
 							"type": "string"
 						},
 						"taskHeader": {
@@ -13143,16 +13607,15 @@
 						}
 					},
 					"required": [
+						"searchPlaceholder",
 						"pageTitle",
 						"title",
 						"jumpToToday",
-						"searchPlaceholder",
 						"hideTasks",
 						"showTasks",
 						"noTasks",
 						"noTasksSubtitle",
 						"noTasksFound",
-						"noTasksMatch",
 						"taskHeader",
 						"updateDatesError",
 						"resizeStart",
@@ -13236,9 +13699,32 @@
 						},
 						"success_other": {
 							"type": "string"
+						},
+						"confirmTitle_one": {
+							"type": "string"
+						},
+						"confirmTitle_zero": {
+							"type": "string"
+						},
+						"confirmTitle_two": {
+							"type": "string"
+						},
+						"confirmTitle_few": {
+							"type": "string"
+						},
+						"confirmTitle_many": {
+							"type": "string"
+						},
+						"confirmTitle_other": {
+							"type": "string"
+						},
+						"confirmDescription": {
+							"type": "string"
 						}
 					},
-					"required": []
+					"required": [
+						"confirmDescription"
+					]
 				},
 				"listView": {
 					"type": "object",
@@ -13309,13 +13795,17 @@
 						},
 						"count_other": {
 							"type": "string"
+						},
+						"closed": {
+							"type": "string"
 						}
 					},
 					"required": [
 						"merged",
 						"draft",
 						"open",
-						"label"
+						"label",
+						"closed"
 					]
 				},
 				"assignee": {
@@ -13344,13 +13834,7 @@
 						"clear": {
 							"type": "string"
 						},
-						"updateSuccess": {
-							"type": "string"
-						},
 						"updateError": {
-							"type": "string"
-						},
-						"clearSuccess": {
 							"type": "string"
 						},
 						"clearError": {
@@ -13360,9 +13844,7 @@
 					"required": [
 						"label",
 						"clear",
-						"updateSuccess",
 						"updateError",
-						"clearSuccess",
 						"clearError"
 					]
 				},
@@ -13370,15 +13852,11 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
-						"label": {
-							"type": "string"
-						},
 						"empty": {
 							"type": "string"
 						}
 					},
 					"required": [
-						"label",
 						"empty"
 					]
 				},
@@ -13386,15 +13864,11 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
-						"success": {
-							"type": "string"
-						},
 						"error": {
 							"type": "string"
 						}
 					},
 					"required": [
-						"success",
 						"error"
 					]
 				},
@@ -13520,25 +13994,25 @@
 						"delete": {
 							"type": "string"
 						},
-						"deleteConfirm": {
+						"deleteConfirmTitle_one": {
 							"type": "string"
 						},
-						"deleteConfirm_zero": {
+						"deleteConfirmTitle_zero": {
 							"type": "string"
 						},
-						"deleteConfirm_one": {
+						"deleteConfirmTitle_two": {
 							"type": "string"
 						},
-						"deleteConfirm_two": {
+						"deleteConfirmTitle_few": {
 							"type": "string"
 						},
-						"deleteConfirm_few": {
+						"deleteConfirmTitle_many": {
 							"type": "string"
 						},
-						"deleteConfirm_many": {
+						"deleteConfirmTitle_other": {
 							"type": "string"
 						},
-						"deleteConfirm_other": {
+						"deleteConfirmDescription": {
 							"type": "string"
 						},
 						"deleteSuccess": {
@@ -13676,9 +14150,6 @@
 						"addLabelError": {
 							"type": "string"
 						},
-						"setDueDate": {
-							"type": "string"
-						},
 						"updateDueDateError": {
 							"type": "string"
 						},
@@ -13694,6 +14165,30 @@
 						"changeStatus": {
 							"type": "string"
 						},
+						"clearSelection": {
+							"type": "string"
+						},
+						"selectAll": {
+							"type": "string"
+						},
+						"moreActions": {
+							"type": "string"
+						},
+						"statusPlaceholder": {
+							"type": "string"
+						},
+						"priorityPlaceholder": {
+							"type": "string"
+						},
+						"assigneePlaceholder": {
+							"type": "string"
+						},
+						"labelPlaceholder": {
+							"type": "string"
+						},
+						"columnPlaceholder": {
+							"type": "string"
+						},
 						"moveToSprint": {
 							"type": "string"
 						},
@@ -13707,6 +14202,7 @@
 						"moveToBoard",
 						"moveToBoardError",
 						"delete",
+						"deleteConfirmDescription",
 						"deleteError",
 						"archive",
 						"archiveError",
@@ -13717,12 +14213,19 @@
 						"updatePriorityError",
 						"addLabel",
 						"addLabelError",
-						"setDueDate",
 						"updateDueDateError",
 						"actions",
 						"searchActions",
 						"noActionsFound",
 						"changeStatus",
+						"clearSelection",
+						"selectAll",
+						"moreActions",
+						"statusPlaceholder",
+						"priorityPlaceholder",
+						"assigneePlaceholder",
+						"labelPlaceholder",
+						"columnPlaceholder",
 						"moveToSprint",
 						"updateSprintError"
 					]
@@ -13776,12 +14279,84 @@
 					"type": "object",
 					"additionalProperties": false,
 					"properties": {
-						"ariaLabel": {
+						"fields": {
+							"type": "string"
+						},
+						"empty": {
+							"type": "string"
+						},
+						"required": {
+							"type": "string"
+						},
+						"enterKey": {
+							"type": "string"
+						},
+						"toSave": {
+							"type": "string"
+						},
+						"clear": {
+							"type": "string"
+						},
+						"setValue": {
+							"type": "string"
+						},
+						"noMatches": {
+							"type": "string"
+						},
+						"missingRequired_one": {
+							"type": "string"
+						},
+						"missingRequired_zero": {
+							"type": "string"
+						},
+						"missingRequired_two": {
+							"type": "string"
+						},
+						"missingRequired_few": {
+							"type": "string"
+						},
+						"missingRequired_many": {
+							"type": "string"
+						},
+						"missingRequired_other": {
+							"type": "string"
+						},
+						"saveError": {
+							"type": "string"
+						},
+						"moreFields_one": {
+							"type": "string"
+						},
+						"moreFields_zero": {
+							"type": "string"
+						},
+						"moreFields_two": {
+							"type": "string"
+						},
+						"moreFields_few": {
+							"type": "string"
+						},
+						"moreFields_many": {
+							"type": "string"
+						},
+						"moreFields_other": {
+							"type": "string"
+						},
+						"manage": {
 							"type": "string"
 						}
 					},
 					"required": [
-						"ariaLabel"
+						"fields",
+						"empty",
+						"required",
+						"enterKey",
+						"toSave",
+						"clear",
+						"setValue",
+						"noMatches",
+						"saveError",
+						"manage"
 					]
 				},
 				"descriptionSearchLoading": {
@@ -13805,10 +14380,312 @@
 					"properties": {
 						"reorderFailed": {
 							"type": "string"
+						},
+						"keyboardInstructions": {
+							"type": "string"
 						}
 					},
 					"required": [
-						"reorderFailed"
+						"reorderFailed",
+						"keyboardInstructions"
+					]
+				},
+				"toolbar": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"search": {
+							"type": "string"
+						},
+						"clearSearch": {
+							"type": "string"
+						},
+						"taskCount_one": {
+							"type": "string"
+						},
+						"taskCount_zero": {
+							"type": "string"
+						},
+						"taskCount_two": {
+							"type": "string"
+						},
+						"taskCount_few": {
+							"type": "string"
+						},
+						"taskCount_many": {
+							"type": "string"
+						},
+						"taskCount_other": {
+							"type": "string"
+						},
+						"shownCount_one": {
+							"type": "string"
+						},
+						"shownCount_zero": {
+							"type": "string"
+						},
+						"shownCount_two": {
+							"type": "string"
+						},
+						"shownCount_few": {
+							"type": "string"
+						},
+						"shownCount_many": {
+							"type": "string"
+						},
+						"shownCount_other": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"search",
+						"clearSearch"
+					]
+				},
+				"display": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"title": {
+							"type": "string"
+						},
+						"sortBy": {
+							"type": "string"
+						},
+						"showOnCards": {
+							"type": "string"
+						},
+						"showOnRows": {
+							"type": "string"
+						},
+						"checklistProgress": {
+							"type": "string"
+						},
+						"projectBackground": {
+							"type": "string"
+						},
+						"layout": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"title",
+						"sortBy",
+						"showOnCards",
+						"showOnRows",
+						"checklistProgress",
+						"projectBackground",
+						"layout"
+					]
+				},
+				"filterBar": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"label": {
+							"type": "string"
+						},
+						"removeFilter": {
+							"type": "string"
+						},
+						"noMatches": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"label",
+						"removeFilter",
+						"noMatches"
+					]
+				},
+				"filterMenu": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"addFilter": {
+							"type": "string"
+						},
+						"searchSubject": {
+							"type": "string"
+						},
+						"noResults": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"addFilter",
+						"searchSubject",
+						"noResults"
+					]
+				},
+				"shortcuts": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"assignedToMe": {
+							"type": "string"
+						},
+						"idCopied": {
+							"type": "string"
+						},
+						"titleCopied": {
+							"type": "string"
+						},
+						"markdownCopied": {
+							"type": "string"
+						},
+						"copyFailed": {
+							"type": "string"
+						},
+						"pageUrlCopied": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"assignedToMe",
+						"idCopied",
+						"titleCopied",
+						"markdownCopied",
+						"copyFailed",
+						"pageUrlCopied"
+					]
+				},
+				"due": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"overdueDays_one": {
+							"type": "string"
+						},
+						"overdueDays_zero": {
+							"type": "string"
+						},
+						"overdueDays_two": {
+							"type": "string"
+						},
+						"overdueDays_few": {
+							"type": "string"
+						},
+						"overdueDays_many": {
+							"type": "string"
+						},
+						"overdueDays_other": {
+							"type": "string"
+						},
+						"overdueWeeks_one": {
+							"type": "string"
+						},
+						"overdueWeeks_zero": {
+							"type": "string"
+						},
+						"overdueWeeks_two": {
+							"type": "string"
+						},
+						"overdueWeeks_few": {
+							"type": "string"
+						},
+						"overdueWeeks_many": {
+							"type": "string"
+						},
+						"overdueWeeks_other": {
+							"type": "string"
+						},
+						"today": {
+							"type": "string"
+						},
+						"tomorrow": {
+							"type": "string"
+						},
+						"inDays_one": {
+							"type": "string"
+						},
+						"inDays_zero": {
+							"type": "string"
+						},
+						"inDays_two": {
+							"type": "string"
+						},
+						"inDays_few": {
+							"type": "string"
+						},
+						"inDays_many": {
+							"type": "string"
+						},
+						"inDays_other": {
+							"type": "string"
+						},
+						"fullDate": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"today",
+						"tomorrow",
+						"fullDate"
+					]
+				},
+				"datePicker": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"dueDatePlaceholder": {
+							"type": "string"
+						},
+						"startDatePlaceholder": {
+							"type": "string"
+						},
+						"datePlaceholder": {
+							"type": "string"
+						},
+						"thisWeekend": {
+							"type": "string"
+						},
+						"nextWeek": {
+							"type": "string"
+						},
+						"pickDate": {
+							"type": "string"
+						},
+						"startsOn": {
+							"type": "string"
+						},
+						"beforeStart": {
+							"type": "string"
+						},
+						"afterDue": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"dueDatePlaceholder",
+						"startDatePlaceholder",
+						"datePlaceholder",
+						"thisWeekend",
+						"nextWeek",
+						"pickDate",
+						"startsOn",
+						"beforeStart",
+						"afterDue"
+					]
+				},
+				"type": {
+					"type": "object",
+					"additionalProperties": false,
+					"properties": {
+						"label": {
+							"type": "string"
+						},
+						"task": {
+							"type": "string"
+						},
+						"bug": {
+							"type": "string"
+						}
+					},
+					"required": [
+						"label",
+						"task",
+						"bug"
 					]
 				},
 				"sprints": {
@@ -14049,8 +14926,6 @@
 				"title",
 				"status",
 				"priority",
-				"type",
-				"boardSearchPlaceholder",
 				"view",
 				"common",
 				"detail",
@@ -14086,6 +14961,14 @@
 				"descriptionLoading",
 				"descriptionLoadError",
 				"board",
+				"toolbar",
+				"display",
+				"filterBar",
+				"filterMenu",
+				"shortcuts",
+				"due",
+				"datePicker",
+				"type",
 				"sprints"
 			]
 		},
