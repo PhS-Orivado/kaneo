@@ -8,6 +8,7 @@ import {
 import {
   type BoardFilters,
   DUE_DATE_FILTER_VALUES,
+  SPRINT_FILTER_VALUES,
 } from "@/hooks/use-task-filters";
 import type Task from "@/types/task";
 import { customFieldSubjectId } from "./filter-subject-id";
@@ -92,6 +93,16 @@ export function taskMatchesFilters(
       "assignee",
       filters.assignee,
       () => filters.assignee?.includes(task.userId ?? "") ?? false,
+    ],
+    [
+      "sprint",
+      filters.sprint,
+      () =>
+        filters.sprint?.some((value) =>
+          value === SPRINT_FILTER_VALUES.backlog
+            ? task.sprintId == null
+            : task.sprintId === value,
+        ) ?? false,
     ],
     [
       "dueDate",

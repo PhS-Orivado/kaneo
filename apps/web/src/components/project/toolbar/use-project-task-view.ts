@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useFilterSubjects } from "@/components/project/task-filters/use-filter-subjects";
 import { useTaskFilterOptions } from "@/components/project/task-filters/use-task-filter-options";
+import { useGetSprints } from "@/hooks/queries/sprint/use-get-sprints";
 import { useDescriptionMatches } from "@/hooks/queries/task/use-description-matches";
 import type { BoardFilters } from "@/hooks/use-task-filters";
 import { useTaskFiltersWithLabelsSupport } from "@/hooks/use-task-filters-with-labels-support";
@@ -29,6 +30,7 @@ export function useProjectTaskView({
     scope === "backlog" ? BACKLOG_IGNORED_FILTERS : NO_IGNORED_FILTERS;
   const [search, setSearch] = useState("");
   const descriptionSearch = useDescriptionMatches(projectId, project, search);
+  const { data: sprints = [] } = useGetSprints(projectId);
   const filters = useTaskFiltersWithLabelsSupport(
     project,
     projectId,
@@ -44,6 +46,7 @@ export function useProjectTaskView({
     columns: project?.columns,
     tasks,
     showStatus: scope !== "backlog",
+    sprints,
   });
 
   return { search, setSearch, descriptionSearch, filters, subjects };

@@ -12,8 +12,10 @@ import TaskDueDatePopover from "../task-due-date-popover";
 import TaskLabelsPopover from "../task-labels-popover";
 import TaskMovePopover from "../task-move-popover";
 import TaskPriorityPopover from "../task-priority-popover";
+import TaskSprintPopover from "../task-sprint-popover";
 import TaskStartDatePopover from "../task-start-date-popover";
 import TaskStatusPopover from "../task-status-popover";
+import TaskTypeBadge from "../task-type-badge";
 import { AssigneeAvatar } from "./assignee-avatar";
 import { dueDateTextClass } from "./due-date-text-class";
 import { LabelsValue } from "./labels-value";
@@ -62,6 +64,14 @@ export function PropertiesRail({
               <span className="truncate">{status.label}</span>
             </PropertyValue>
           </TaskStatusPopover>
+        </PropertyRow>
+
+        <PropertyRow label={t("tasks:boardFilters.subjects.sprint")}>
+          <TaskSprintPopover task={task} />
+        </PropertyRow>
+
+        <PropertyRow label={t("tasks:type.label")}>
+          <TaskTypeBadge task={task} />
         </PropertyRow>
 
         <PropertyRow label={t("tasks:priority.label")}>
