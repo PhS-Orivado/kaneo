@@ -23,6 +23,7 @@ import { getPriorityIcon } from "@/lib/priority";
 import { useReorderSprints } from "@/hooks/mutations/sprint/use-reorder-sprints";
 import { useStartSprint } from "@/hooks/mutations/sprint/use-start-sprint";
 import { useGetSprints } from "@/hooks/queries/sprint/use-get-sprints";
+import { AssigneeAvatar } from "@/components/task/properties/assignee-avatar";
 import useProjectStore from "@/store/project";
 import { toast } from "@/lib/toast";
 import type Sprint from "@/types/sprint";
@@ -49,12 +50,16 @@ function formatSprintRange(sprint: Sprint, t: (key: string) => string) {
 
 export function SprintTaskRow({ task }: { task: Task }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const projectSlug = useProjectStore((state) => state.project?.slug);
   const projectColumns = useProjectStore((state) => state.project?.columns);
   const isDone =
     projectColumns?.some(
       (column) => column.isFinal && column.id === task.status,
     ) ?? false;
+  const statusName =
+    projectColumns?.find((column) => column.id === task.status)?.name ??
+    (task.status === "planned" ? t("tasks:sprints.backlog") : null);
 
   return (
     <button
@@ -71,10 +76,34 @@ export function SprintTaskRow({ task }: { task: Task }) {
         </span>
       )}
       <span
-        className={`truncate ${isDone ? "text-muted-foreground line-through" : ""}`}
+        className={`min-w-0 flex-1 truncate ${isDone ? "text-muted-foreground line-through" : ""}`}
       >
         {task.title}
       </span>
+      {statusName && (
+        <span className="ml-auto shrink-0 rounded-full bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+          {statusName}
+        </span>
+      )}
+      {(task.userId || task.assigneeName) && (
+        <span
+          className="flex shrink-0 items-center gap-1"
+          title={task.assigneeName ?? undefined}
+        >
+          <AssigneeAvatar
+            name={task.assigneeName}
+            image={task.assigneeImage ?? null}
+            assigned={Boolean(task.userId)}
+            className="size-4"
+            fallbackClassName="text-[7px]"
+          />
+          {task.assigneeName && (
+            <span className="max-w-24 truncate text-[10px] text-muted-foreground">
+              {task.assigneeName}
+            </span>
+          )}
+        </span>
+      )}
     </button>
   );
 }
