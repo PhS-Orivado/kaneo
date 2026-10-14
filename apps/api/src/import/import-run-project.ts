@@ -19,6 +19,7 @@ export type ImportCounts = {
   comments: number;
   assignees: number;
   relations: number;
+  attachments: number;
 };
 
 export type ImportRunProject = {
@@ -39,6 +40,7 @@ export const EMPTY_IMPORT_COUNTS: ImportCounts = {
   comments: 0,
   assignees: 0,
   relations: 0,
+  attachments: 0,
 };
 
 export function pendingRunProject(

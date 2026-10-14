@@ -69,6 +69,7 @@ import project from "./project";
 import { assertProjectAccess } from "./project-access/assert-project-access";
 import { getPublicProject } from "./project/controllers/get-public-project";
 import { initializeScheduler, shutdownScheduler } from "./scheduler";
+import { checkStorageBackend } from "./storage/backend-status";
 import search from "./search";
 import slackIntegration from "./slack-integration";
 import sprint from "./sprint";
@@ -1050,6 +1051,17 @@ export async function runStartupTasks() {
   initializePlugins();
   initializeScheduler();
   await initializeWebSocketAdapter();
+
+  // A reachable storage backend is required for asset uploads and imported
+  // attachments; the instance still starts without it, but the startup
+  // message and the stored status tell the administrator what is wrong.
+  console.log("🔄 Checking the storage backend (S3)...");
+  const storageStatus = await checkStorageBackend();
+  console.log(
+    storageStatus.available
+      ? `✅ Storage backend: ${storageStatus.message}`
+      : `⚠️ Storage backend: ${storageStatus.message}`,
+  );
 }
 
 export async function startServer(
