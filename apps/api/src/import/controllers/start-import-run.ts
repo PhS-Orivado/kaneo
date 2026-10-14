@@ -29,6 +29,7 @@ type StartImportRunInput = {
   connection: ImportConnectionInput;
   projectIds: string[];
   includeComments: boolean;
+  includeSprints: boolean;
 };
 
 async function connectAndList(
@@ -59,6 +60,7 @@ async function startImportRun({
   connection,
   projectIds,
   includeComments,
+  includeSprints,
 }: StartImportRunInput) {
   const slot = reserveImportSlot();
   if (!slot) {
@@ -91,6 +93,7 @@ async function startImportRun({
         workspaceId,
         userId,
         includeComments,
+        includeSprints,
         opened,
         state,
         signal: slot.controller.signal,

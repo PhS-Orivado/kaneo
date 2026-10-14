@@ -15,6 +15,7 @@ export type PlannedImportTask = {
   description: string;
   status: string;
   columnId: string | null;
+  sprintId: string | null;
   position: number;
   priority: string;
   startDate: Date | null;
@@ -33,6 +34,7 @@ type PlanImportTasksInput = {
   now: Date;
   newId: () => string;
   assign: (person: ImportedPerson | undefined) => string | null;
+  sprints?: ReadonlyMap<string, string>;
 };
 
 const UNTITLED_TASK = "Untitled task";
@@ -75,6 +77,7 @@ export function planImportTasks({
   now,
   newId,
   assign,
+  sprints = new Map(),
 }: PlanImportTasksInput): PlannedImportTask[] {
   const positions = new Map<string, number>();
 
@@ -95,6 +98,7 @@ export function planImportTasks({
       title: task.title.trim() || UNTITLED_TASK,
       description: task.description ?? "",
       ...placement,
+      sprintId: task.sprintKey ? sprints.get(task.sprintKey) ?? null : null,
       position,
       priority: importPriority(task.priority),
       startDate: parseImportDate(task.startDate),
