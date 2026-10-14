@@ -30,6 +30,10 @@ const importCountsSchema = z
       description: "Tasks that were assigned to a workspace member.",
     }),
     relations: z.number().int(),
+    attachments: z.number().int().openapi({
+      description:
+        "Attachments copied into the storage backend and linked from the task descriptions.",
+    }),
   })
   .openapi("ImportCounts");
 

@@ -101,6 +101,8 @@ async function importProject(
       workspaceId: job.workspaceId,
       userId: job.userId,
       source: job.opened.sourceId,
+      opened: job.opened,
+      signal: job.signal,
       project,
       includeComments: job.includeComments,
     });
