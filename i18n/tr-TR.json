@@ -160,6 +160,12 @@
 				"apply": "Bağlantıyı uygula",
 				"remove": "Bağlantıyı kaldır"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -913,7 +919,14 @@
 			"moveDialogTitle": "Başka bir çalışma alanına taşınsın mı?",
 			"moveTargetLabel": "Çalışma alanı",
 			"moving": "Taşınıyor...",
-			"tasksTitle": "Talepler"
+			"tasksTitle": "Talepler",
+			"sprints": "Sprintler",
+			"sprintsSubtitle": "Yaklaşan işi sabit uzunluklu yinelemelerle planlayın.",
+			"sprintLength": "Varsayılan sprint uzunluğu",
+			"sprintLengthDescription": "Yeni bir sprintin varsayılan olarak kapsadığı gün sayısı.",
+			"sprintLengthSave": "Sprint uzunluğunu kaydet",
+			"sprintLengthSaved": "Sprint uzunluğu kaydedildi",
+			"sprintLengthError": "Sprint uzunluğu kaydedilemedi"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Entegrasyonlar",
@@ -2343,7 +2356,8 @@
 			"tokenTitle": "Erişim belirteci",
 			"webhookSecret": "Gizli anahtar",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Bir talepte görünme sıralarını değiştirmek için sürükleyin.",
@@ -2356,6 +2370,37 @@
 		},
 		"shared": {
 			"autosave": "Değişiklikler otomatik olarak kaydedilir"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2558,6 +2603,37 @@
 			"then": "sonra",
 			"or": "veya",
 			"thenEllipsis": "sonra…"
+		},
+		"keyboardShortcuts": {
+			"title": "Klavye Kısayolları",
+			"subtitle": "Klavye kısayollarıyla iş akışınızı hızlandırın",
+			"searchPlaceholder": "Kısayol ara...",
+			"footer": "Kapatmak için <kbd>Escape</kbd> tuşuna basın",
+			"categories": {
+				"general": "Genel",
+				"create": "Oluştur",
+				"views": "Görünümler",
+				"navigation": "Gezinme",
+				"quickSelect": "Hızlı Seçim (açılır pencerelerde)"
+			},
+			"items": {
+				"openCommandPalette": "Komut paletini aç",
+				"globalSearch": "Genel arama",
+				"toggleSidebar": "Kenar çubuğunu aç/kapat",
+				"showShortcuts": "Klavye kısayollarını göster",
+				"closeModal": "Modal/açılır pencereyi kapat",
+				"createTask": "Talep oluştur",
+				"createProject": "Proje oluştur",
+				"createWorkspace": "Çalışma alanı oluştur",
+				"boardView": "Pano görünümüne geç",
+				"listView": "Liste görünümüne geç",
+				"backlogView": "Backlog görünümüne geç",
+				"nextTask": "Sonraki talep",
+				"prevTask": "Önceki talep",
+				"openTask": "Seçili talebi aç",
+				"quickSelectNumber": "Numarayla seçenek seç",
+				"calendarView": "Takvim görünümüne geç"
+			}
 		}
 	},
 	"notifications": {
@@ -3048,7 +3124,8 @@
 				"priority": "Öncelik",
 				"assignee": "Atanan",
 				"dueDate": "Bitiş tarihi",
-				"labels": "Etiketler"
+				"labels": "Etiketler",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "herhangi biri",
@@ -3061,7 +3138,8 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Tüm sprintler"
 		},
 		"gantt": {
 			"searchPlaceholder": "Zamanlanmış talep ara...",
@@ -3184,7 +3262,9 @@
 			"priorityPlaceholder": "Öncelik belirle…",
 			"assigneePlaceholder": "Ata…",
 			"labelPlaceholder": "Etiket ekle…",
-			"columnPlaceholder": "Sütuna taşı…"
+			"columnPlaceholder": "Sütuna taşı…",
+			"moveToSprint": "Sprinte taşı",
+			"updateSprintError": "Görevler sprinte taşınamadı"
 		},
 		"editor": {
 			"table": {
@@ -3293,6 +3373,52 @@
 			"startsOn": "Başlangıç: {{date}}",
 			"beforeStart": "{{date}} başlangıç tarihinden önce",
 			"afterDue": "{{date}} bitiş tarihinden sonra"
+		},
+		"type": {
+			"label": "Tür",
+			"task": "Görev",
+			"bug": "Hata"
+		},
+		"sprints": {
+			"title": "Sprintler",
+			"create": "Sprint oluştur",
+			"createTitle": "Sprint oluştur",
+			"createDescription": "Yaklaşan bir sprinti ad, hedef ve tarihlerle planlayın.",
+			"editTitle": "Sprinti düzenle",
+			"editDescription": "Sprintin adını, hedefini ve tarihlerini güncelleyin.",
+			"edit": "Sprinti düzenle",
+			"name": "Sprint adı",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Sprint hedefi",
+			"goalPlaceholder": "Bu sprint neyi başarmalı?",
+			"save": "Değişiklikleri kaydet",
+			"start": "Sprinti başlat",
+			"startSuccess": "Sprint {{name}} başlatıldı",
+			"close": "Sprinti kapat",
+			"closeTitle": "Sprinti kapat",
+			"closeSummary": "{{name}} sprintinde {{total}} görev var, {{completed}} tanesi tamamlandı.",
+			"closeTarget": "{{count}} bitmemiş görevi şu yöne taşı:",
+			"closeConfirm": "Sprinti kapat ve bitmemiş görevleri taşı",
+			"closeSuccess": "Sprint kapatıldı, {{count}} bitmemiş görev taşındı",
+			"backlog": "Backlog",
+			"activeBadge": "Aktif",
+			"noActive": "Aktif bir sprint yok. Yineleme yapmak için yaklaşan bir sprinti başlatın.",
+			"upcoming": "Yaklaşan sprint",
+			"unscheduled": "Planlanmadı",
+			"taskCounts": "{{total}} görevden {{completed}} tamamlandı",
+			"history": "Kapatılan sprintler ({{count}})",
+			"completedCount": "{{count}} tamamlandı",
+			"moveUp": "Yukarı taşı",
+			"moveDown": "Aşağı taşı",
+			"closedLocked": "Bu görev kapatılmış bir sprinte ait ve geçmiş olarak orada kalır",
+			"error": "Sprint işlemi başarısız oldu",
+			"daysRemaining": "{{remaining}} gün kaldı",
+			"endsToday": "Bugün bitiyor",
+			"daysOverdue": "{{remaining}} gün gecikmiş",
+			"noTasks": "Bu sprintte henüz görev yok",
+			"toggleTasks": "Sprint görevlerini göster",
+			"reportSummary": "Planlanan {{planned}}, tamamlanan {{completed}}, aktarılan {{carriedOver}}",
+			"carriedOver": "Aktarılan"
 		}
 	},
 	"invitations": {

@@ -160,6 +160,12 @@
 				"apply": "Áp dụng liên kết",
 				"remove": "Xóa liên kết"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -1149,7 +1155,14 @@
 			"moveDialogTitle": "Chuyển sang không gian làm việc khác?",
 			"moveTargetLabel": "Không gian làm việc",
 			"moving": "Đang chuyển...",
-			"tasksTitle": "Công việc"
+			"tasksTitle": "Công việc",
+			"sprints": "Sprint",
+			"sprintsSubtitle": "Lập kế hoạch công việc sắp tới theo các vòng lặp có độ dài cố định.",
+			"sprintLength": "Độ dài sprint mặc định",
+			"sprintLengthDescription": "Số ngày một sprint mới bao phủ theo mặc định.",
+			"sprintLengthSave": "Lưu độ dài sprint",
+			"sprintLengthSaved": "Đã lưu độ dài sprint",
+			"sprintLengthError": "Không thể lưu độ dài sprint"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Tích hợp",
@@ -2301,7 +2314,8 @@
 			"tokenTitle": "Token truy cập",
 			"webhookSecret": "Khóa bí mật",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Kéo để thay đổi thứ tự hiển thị trên công việc.",
@@ -2314,6 +2328,37 @@
 		},
 		"shared": {
 			"autosave": "Thay đổi được lưu tự động"
+		},
+		"adminBranding": {
+			"title": "Branding",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"form": {
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"logoLightUrl": "Light-mode logo URL",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"footerText": "Footer text",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerUrl": "Footer link URL",
+				"termsUrl": "Terms of service URL",
+				"privacyUrl": "Privacy policy URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"toast": {
+				"saved": "Branding updated.",
+				"saveError": "Branding could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2515,6 +2560,37 @@
 			"then": "rồi",
 			"or": "hoặc",
 			"thenEllipsis": "rồi…"
+		},
+		"keyboardShortcuts": {
+			"title": "Phím tắt",
+			"subtitle": "Tăng tốc quy trình làm việc của bạn với phím tắt",
+			"searchPlaceholder": "Tìm phím tắt...",
+			"footer": "Nhấn <kbd>Escape</kbd> để đóng",
+			"categories": {
+				"general": "Chung",
+				"create": "Tạo",
+				"views": "Chế độ xem",
+				"navigation": "Điều hướng",
+				"quickSelect": "Chọn nhanh (trong popover)"
+			},
+			"items": {
+				"openCommandPalette": "Mở bảng lệnh",
+				"globalSearch": "Tìm kiếm toàn cục",
+				"toggleSidebar": "Bật/tắt thanh bên",
+				"showShortcuts": "Hiện phím tắt",
+				"closeModal": "Đóng modal/popover",
+				"createTask": "Tạo công việc",
+				"createProject": "Tạo dự án",
+				"createWorkspace": "Tạo không gian làm việc",
+				"boardView": "Chuyển sang chế độ xem bảng",
+				"listView": "Chuyển sang chế độ xem danh sách",
+				"backlogView": "Chuyển sang chế độ xem backlog",
+				"nextTask": "Công việc tiếp theo",
+				"prevTask": "Công việc trước đó",
+				"openTask": "Mở công việc đã chọn",
+				"quickSelectNumber": "Chọn tùy chọn theo số",
+				"calendarView": "Chuyển sang chế độ xem lịch"
+			}
 		}
 	},
 	"notifications": {
@@ -3001,7 +3077,8 @@
 				"priority": "Mức ưu tiên",
 				"assignee": "Người được giao",
 				"dueDate": "Ngày đến hạn",
-				"labels": "Nhãn"
+				"labels": "Nhãn",
+				"sprint": "Sprint"
 			},
 			"operators": {
 				"isAnyOf": "là một trong",
@@ -3014,7 +3091,8 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Tất cả sprint"
 		},
 		"gantt": {
 			"searchPlaceholder": "Tìm phiếu đã lên lịch...",
@@ -3134,7 +3212,9 @@
 			"priorityPlaceholder": "Đặt mức ưu tiên…",
 			"assigneePlaceholder": "Giao cho…",
 			"labelPlaceholder": "Thêm nhãn…",
-			"columnPlaceholder": "Chuyển sang cột…"
+			"columnPlaceholder": "Chuyển sang cột…",
+			"moveToSprint": "Chuyển sang sprint",
+			"updateSprintError": "Không thể chuyển công việc sang sprint"
 		},
 		"editor": {
 			"table": {
@@ -3236,6 +3316,52 @@
 			"startsOn": "Bắt đầu {{date}}",
 			"beforeStart": "{{date}} trước ngày bắt đầu",
 			"afterDue": "{{date}} sau hạn chót"
+		},
+		"type": {
+			"label": "Loại",
+			"task": "Công việc",
+			"bug": "Lỗi"
+		},
+		"sprints": {
+			"title": "Sprint",
+			"create": "Tạo sprint",
+			"createTitle": "Tạo sprint",
+			"createDescription": "Lập kế hoạch sprint sắp tới với tên, mục tiêu và ngày.",
+			"editTitle": "Sửa sprint",
+			"editDescription": "Cập nhật tên, mục tiêu và ngày của sprint.",
+			"edit": "Sửa sprint",
+			"name": "Tên sprint",
+			"namePlaceholder": "Sprint 1",
+			"goal": "Mục tiêu sprint",
+			"goalPlaceholder": "Sprint này cần đạt được điều gì?",
+			"save": "Lưu thay đổi",
+			"start": "Bắt đầu sprint",
+			"startSuccess": "Sprint {{name}} đã bắt đầu",
+			"close": "Đóng sprint",
+			"closeTitle": "Đóng sprint",
+			"closeSummary": "{{name}} có {{total}} công việc, trong đó {{completed}} đã hoàn thành.",
+			"closeTarget": "Chuyển {{count}} công việc chưa hoàn thành sang",
+			"closeConfirm": "Đóng sprint và chuyển công việc chưa hoàn thành",
+			"closeSuccess": "Sprint đã đóng, {{count}} công việc chưa hoàn thành đã được chuyển",
+			"backlog": "Backlog",
+			"activeBadge": "Đang chạy",
+			"noActive": "Không có sprint nào đang chạy. Hãy bắt đầu một sprint sắp tới.",
+			"upcoming": "Sprint sắp tới",
+			"unscheduled": "Chưa lên lịch",
+			"taskCounts": "{{completed}} trên {{total}} hoàn thành",
+			"history": "Sprint đã đóng ({{count}})",
+			"completedCount": "{{count}} hoàn thành",
+			"moveUp": "Chuyển lên",
+			"moveDown": "Chuyển xuống",
+			"closedLocked": "Công việc này thuộc một sprint đã đóng và ở lại đó như lịch sử",
+			"error": "Thao tác sprint thất bại",
+			"daysRemaining": "Còn {{remaining}} ngày",
+			"endsToday": "Kết thúc hôm nay",
+			"daysOverdue": "Trễ {{remaining}} ngày",
+			"noTasks": "Chưa có công việc nào trong sprint này",
+			"toggleTasks": "Hiển thị công việc của sprint",
+			"reportSummary": "Đã lập kế hoạch {{planned}}, đã hoàn thành {{completed}}, đã chuyển {{carriedOver}}",
+			"carriedOver": "Đã chuyển sang"
 		}
 	},
 	"invitations": {
