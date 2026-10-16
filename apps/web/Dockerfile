@@ -83,6 +83,11 @@ COPY --chown=appuser:appuser apps/web/env.sh /docker-entrypoint.d/env.sh
 COPY --chown=appuser:appuser apps/web/env.awk /docker-entrypoint.d/env.awk
 RUN chmod +x /docker-entrypoint.d/env.sh
 
+# Split web/api deployments: the default proxy target is the API container
+# named kaneo-api. Override with KANEO_API_PROXY_TARGET when the API
+# container has a different name (for example api:1337 in Compose).
+ENV KANEO_API_PROXY_TARGET=kaneo-api:1337
+
 # Switch to non-root user
 USER appuser
 EXPOSE 5173

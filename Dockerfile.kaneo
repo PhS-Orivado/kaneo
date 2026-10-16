@@ -121,6 +121,8 @@ COPY --chown=appuser:appuser deploy/kaneo-entrypoint.sh /usr/local/bin/kaneo-ent
 RUN chmod +x /docker-entrypoint.d/env.sh /usr/local/bin/kaneo-entrypoint.sh
 
 ENV NODE_ENV=production
+# Bundled image: the API process runs in this container on loopback.
+ENV KANEO_API_PROXY_TARGET=127.0.0.1:1337
 
 USER appuser
 EXPOSE 5173
