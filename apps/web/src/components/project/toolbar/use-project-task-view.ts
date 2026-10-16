@@ -7,6 +7,7 @@ import type { BoardFilters } from "@/hooks/use-task-filters";
 import { useTaskFiltersWithLabelsSupport } from "@/hooks/use-task-filters-with-labels-support";
 import type { ProjectWithTasks } from "@/types/project";
 import { scopeTasks } from "./scope-tasks";
+import { filterProjectBySprintScope, type SprintScope } from "./sprint-scope";
 
 const NO_IGNORED_FILTERS: ReadonlyArray<keyof BoardFilters> = [];
 const BACKLOG_IGNORED_FILTERS: ReadonlyArray<keyof BoardFilters> = ["status"];
@@ -20,11 +21,13 @@ export function useProjectTaskView({
   projectId,
   workspaceId,
   scope,
+  sprintScope,
 }: {
   project: ProjectWithTasks | null | undefined;
   projectId: string;
   workspaceId: string;
   scope: TaskViewScope;
+  sprintScope?: SprintScope;
 }) {
   const ignore =
     scope === "backlog" ? BACKLOG_IGNORED_FILTERS : NO_IGNORED_FILTERS;
@@ -49,5 +52,26 @@ export function useProjectTaskView({
     sprints,
   });
 
-  return { search, setSearch, descriptionSearch, filters, subjects };
+  // The board opens on the sprint slice the user picked, on top of the
+  // regular filters. Views without a sprint scope are not restricted.
+  const filteredProject = useMemo(
+    () =>
+      sprintScope && filters.filteredProject
+        ? filterProjectBySprintScope(
+            filters.filteredProject,
+            sprintScope,
+            sprints,
+          )
+        : filters.filteredProject,
+    [filters.filteredProject, sprintScope, sprints],
+  );
+
+  return {
+    search,
+    setSearch,
+    descriptionSearch,
+    filters,
+    subjects,
+    filteredProject,
+  };
 }

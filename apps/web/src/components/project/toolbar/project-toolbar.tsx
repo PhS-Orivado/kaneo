@@ -9,12 +9,14 @@ type ProjectToolbarProps = {
   view: ProjectTaskView;
   display: ReactNode;
   actions?: ReactNode;
+  sprintScope?: ReactNode;
 };
 
 export function ProjectToolbar({
   view,
   display,
   actions,
+  sprintScope,
 }: ProjectToolbarProps) {
   useFilterShortcuts(view.subjects, view.filters.clearFilters);
 
@@ -27,6 +29,7 @@ export function ProjectToolbar({
         </>
       )}
       <ProjectSearch value={view.search} onChange={view.setSearch} />
+      {sprintScope}
       <FilterMenu
         subjects={view.subjects}
         activeCount={view.filters.activeFilterCount}
