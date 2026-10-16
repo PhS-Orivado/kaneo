@@ -3443,7 +3443,15 @@
 			"noTasks": "No tasks in this sprint yet",
 			"toggleTasks": "Show sprint tasks",
 			"reportSummary": "Planned {{planned}}, completed {{completed}}, carried over {{carriedOver}}",
-			"carriedOver": "Carried over"
+			"carriedOver": "Carried over",
+			"scopeTitle": "Sprint scope",
+			"scopeCurrent": "Current sprint",
+			"selectTask": "Select task",
+			"openTaskMenu": "Open task menu",
+			"backlogDescription": "Tasks without a sprint",
+			"backlogEmpty": "No unscheduled tasks",
+			"moveSuccess_one": "Task moved",
+			"moveSuccess_other": "{{count}} tasks moved"
 		}
 	},
 	"invitations": {
