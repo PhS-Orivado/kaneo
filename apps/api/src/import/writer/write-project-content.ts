@@ -9,7 +9,7 @@ import { loadAssignableMembers } from "./load-assignable-members";
 import { createAssigneeMatcher } from "./match-assignees";
 import { planImportColumns } from "./plan-import-columns";
 import { planImportRelations } from "./plan-import-relations";
-import { planImportSprints } from "./plan-import-sprints";
+import { closedSprintKeys, planImportSprints } from "./plan-import-sprints";
 import { planImportTasks } from "./plan-import-tasks";
 import {
   planImportAttachments,
@@ -71,6 +71,14 @@ export async function writeProjectContent(
   const columnPlan = planImportColumns(project.columns);
   const board = await writeImportColumns(tx, projectId, columnPlan);
   const members = await loadAssignableMembers(tx, workspaceId, projectId);
+  // A closed sprint keeps completed tasks as its history, so every task
+  // imported into one lands in the final column, whatever its source status.
+  const doneColumnKey = columnPlan.columns
+    .filter((column) => column.isFinal)
+    .at(-1)?.key;
+  const doneColumn = doneColumnKey
+    ? (board.byKey.get(doneColumnKey) ?? null)
+    : null;
 
   onStage?.("sprints");
   const plannedSprints = planImportSprints(project.sprints ?? [], createId);
@@ -116,6 +124,8 @@ export async function writeProjectContent(
     newId: createId,
     assign: assignees.match,
     sprints: sprintIds,
+    closedSprints: closedSprintKeys(project.sprints ?? []),
+    doneColumn,
   });
   await writeImportTasks(tx, projectId, userId, tasks);
 

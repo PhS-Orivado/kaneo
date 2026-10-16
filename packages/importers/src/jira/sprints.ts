@@ -63,7 +63,7 @@ export async function readBoardSprints(
   for (const [index, sprint] of ordered.entries()) {
     const issues = await readSprintIssues(client, String(sprint.id));
     for (const issue of issues) {
-      if (issue.id) issueSprint.set(issue.id, String(sprint.id));
+      if (issue.id) issueSprint.set(String(issue.id), String(sprint.id));
     }
     const done = index + 1;
     if (done % 10 === 0 || done === ordered.length) {
@@ -94,12 +94,14 @@ async function readAllSprints(
 async function readSprintIssues(
   client: JiraClient,
   sprintId: string,
-): Promise<Array<{ id?: string | null }>> {
-  const issues: Array<{ id?: string | null }> = [];
+): Promise<Array<{ id?: string | number | null }>> {
+  const issues: Array<{ id?: string | number | null }> = [];
   try {
     for (;;) {
       const page = await client.sprintIssues(sprintId, issues.length);
-      const batch = page?.values ?? [];
+      // The agile issue search wraps its page in "issues", unlike the sprint
+      // pages that use "values".
+      const batch = page?.issues ?? page?.values ?? [];
       issues.push(...batch);
       if (batch.length === 0 || page?.isLast === true) return issues;
     }
