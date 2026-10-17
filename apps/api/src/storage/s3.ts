@@ -194,6 +194,8 @@ function getClient(config: StorageConfig) {
     accessKeyId: config.accessKeyId,
     bucket: config.bucket,
     forcePathStyle: config.forcePathStyle,
+    // The secret is part of the key so a rotated key builds a fresh client.
+    secretAccessKey: config.secretAccessKey,
   });
 
   if (clientCache?.cacheKey === cacheKey) {

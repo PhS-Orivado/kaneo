@@ -5622,6 +5622,152 @@
           "showPoweredBy"
         ]
       },
+      "InstanceSmtpConfig": {
+        "type": "object",
+        "properties": {
+          "host": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "SMTP server host in effect."
+          },
+          "port": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 65535,
+            "description": "SMTP server port in effect. Null lets the mail library pick the default for the security mode."
+          },
+          "secure": {
+            "type": "boolean",
+            "description": "Whether the connection starts in TLS mode."
+          },
+          "requireTls": {
+            "type": "boolean",
+            "description": "Whether STARTTLS is required on plaintext connections."
+          },
+          "user": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "SMTP authentication user in effect."
+          },
+          "password": {
+            "type": "null",
+            "description": "Never returned; see passwordSet."
+          },
+          "passwordSet": {
+            "type": "boolean",
+            "description": "Whether an SMTP password is stored."
+          },
+          "from": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Envelope sender address in effect."
+          }
+        },
+        "required": [
+          "host",
+          "port",
+          "secure",
+          "requireTls",
+          "user",
+          "password",
+          "passwordSet",
+          "from"
+        ]
+      },
+      "InstanceS3Config": {
+        "type": "object",
+        "properties": {
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "S3-compatible endpoint URL in effect."
+          },
+          "region": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Bucket region in effect."
+          },
+          "bucket": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Bucket name in effect."
+          },
+          "accessKeyId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Static access key id in effect."
+          },
+          "secretAccessKey": {
+            "type": "null",
+            "description": "Never returned; see secretAccessKeySet."
+          },
+          "secretAccessKeySet": {
+            "type": "boolean",
+            "description": "Whether a secret access key is stored."
+          },
+          "publicBaseUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Public base URL objects are served from, if any."
+          },
+          "keyPrefix": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Prefix prepended to object keys, if any."
+          },
+          "forcePathStyle": {
+            "type": "boolean",
+            "description": "Whether path-style URLs are used."
+          }
+        },
+        "required": [
+          "endpoint",
+          "region",
+          "bucket",
+          "accessKeyId",
+          "secretAccessKey",
+          "secretAccessKeySet",
+          "publicBaseUrl",
+          "keyPrefix",
+          "forcePathStyle"
+        ]
+      },
+      "InstanceConfig": {
+        "type": "object",
+        "properties": {
+          "smtp": {
+            "$ref": "#/components/schemas/InstanceSmtpConfig"
+          },
+          "s3": {
+            "$ref": "#/components/schemas/InstanceS3Config"
+          }
+        },
+        "required": [
+          "smtp",
+          "s3"
+        ]
+      },
       "Sprint": {
         "type": "object",
         "properties": {
@@ -25698,6 +25844,258 @@
           },
           "400": {
             "description": "Invalid branding values",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an instance administrator or is authenticated with an API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/admin/instance-config": {
+      "get": {
+        "operationId": "getAdminInstanceConfig",
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Get instance email and storage config",
+        "description": "Read the SMTP email and S3 storage configuration in effect on this instance: the values saved by administrators, falling back to environment variables. Secrets are never returned; only whether one is set. Requires an instance administrator session; API keys are rejected.",
+        "responses": {
+          "200": {
+            "description": "Instance config",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceConfig"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The caller is not an instance administrator or is authenticated with an API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateAdminInstanceConfig",
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Update instance email and storage config",
+        "description": "Save SMTP email and S3 storage settings for this instance. They take effect immediately and override the environment variables. Null clears a value back to the environment; null secrets keep the current one. Requires an instance administrator session; API keys are rejected.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "smtp": {
+                    "type": "object",
+                    "properties": {
+                      "host": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "SMTP server host. Null clears the override."
+                      },
+                      "port": {
+                        "type": [
+                          "integer",
+                          "null"
+                        ],
+                        "minimum": 1,
+                        "maximum": 65535,
+                        "description": "SMTP server port. Null lets the mail library pick the default for the security mode."
+                      },
+                      "secure": {
+                        "type": "boolean",
+                        "description": "Connect over TLS from the start (port 465 style)."
+                      },
+                      "requireTls": {
+                        "type": "boolean",
+                        "description": "Require STARTTLS upgrade on plaintext connections."
+                      },
+                      "user": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "SMTP authentication user. Null clears it."
+                      },
+                      "password": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "SMTP authentication password. Null keeps the current value."
+                      },
+                      "from": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Envelope sender address, for example no-reply@example.com."
+                      }
+                    },
+                    "required": [
+                      "host",
+                      "port",
+                      "secure",
+                      "requireTls",
+                      "user",
+                      "password",
+                      "from"
+                    ]
+                  },
+                  "s3": {
+                    "type": "object",
+                    "properties": {
+                      "endpoint": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "S3-compatible endpoint URL. Null clears it."
+                      },
+                      "region": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Bucket region. Defaults to us-east-1 when empty."
+                      },
+                      "bucket": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Bucket name. Null clears it."
+                      },
+                      "accessKeyId": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Static access key id. Null clears it."
+                      },
+                      "secretAccessKey": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Static secret access key. Null keeps the current value."
+                      },
+                      "publicBaseUrl": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Base URL objects are served from, for CDN fronts. Null clears it."
+                      },
+                      "keyPrefix": {
+                        "type": [
+                          "string",
+                          "null"
+                        ],
+                        "maxLength": 500,
+                        "description": "Prefix prepended to object keys. Null clears it."
+                      },
+                      "forcePathStyle": {
+                        "type": "boolean",
+                        "description": "Use path-style URLs instead of virtual hosts (needed by most self-hosted S3-compatible stores)."
+                      }
+                    },
+                    "required": [
+                      "endpoint",
+                      "region",
+                      "bucket",
+                      "accessKeyId",
+                      "secretAccessKey",
+                      "publicBaseUrl",
+                      "keyPrefix",
+                      "forcePathStyle"
+                    ]
+                  }
+                },
+                "required": [
+                  "smtp",
+                  "s3"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated instance config",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstanceConfig"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid config values",
             "content": {
               "application/json": {
                 "schema": {

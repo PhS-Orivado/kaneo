@@ -23,7 +23,19 @@ import WorkspaceInvitationEmail, {
 
 config();
 
-const transporter = nodemailer.createTransport(getSmtpTransportOptions());
+type SmtpTransporter = ReturnType<typeof nodemailer.createTransport>;
+let transporter: { key: string; value: SmtpTransporter } | undefined;
+
+// Rebuilt when the settings change (the instance config editor can update SMTP at runtime),
+// cached otherwise so every send reuses one connection pool.
+function getTransporter() {
+  const options = getSmtpTransportOptions();
+  const key = JSON.stringify(options);
+  if (!transporter || transporter.key !== key) {
+    transporter = { key, value: nodemailer.createTransport(options) };
+  }
+  return transporter.value;
+}
 
 export const sendMagicLinkEmail = async (
   to: string,
@@ -34,7 +46,7 @@ export const sendMagicLinkEmail = async (
     MagicLinkEmail({ email: to, instance: instanceHost(), ...data }),
   );
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       subject,
@@ -54,7 +66,7 @@ export const sendOtpEmail = async (
     OtpEmail({ email: to, instance: instanceHost(), ...data }),
   );
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       subject,
@@ -80,7 +92,7 @@ export const sendPasswordResetEmail = async (
     return;
   }
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       subject,
@@ -112,7 +124,7 @@ export const sendWorkspaceInvitationEmail = async (
     const emailTemplate = await render(
       WorkspaceInvitationEmail({ instance: instanceHost(), ...data, to }),
     );
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       subject,
@@ -136,7 +148,7 @@ export const sendNotificationEmail = async (
 
   try {
     const emailTemplate = await render(NotificationEmail(data));
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       subject,
@@ -158,7 +170,7 @@ export const sendTrialReminderEmail = async (
     TrialReminderEmail({ email: to, ...data }),
   );
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       subject,

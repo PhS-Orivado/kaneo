@@ -46,6 +46,7 @@ import { Route as LayoutAuthenticatedDashboardSettingsAccountNotificationsRouteI
 import { Route as LayoutAuthenticatedDashboardSettingsAccountPreferencesRouteImport } from './routes/_layout/_authenticated/dashboard/settings/account/preferences'
 import { Route as LayoutAuthenticatedDashboardSettingsAccountSecurityRouteImport } from './routes/_layout/_authenticated/dashboard/settings/account/security'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/branding'
+import { Route as LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/instance-config'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminUsersRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/users'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminWorkspacesRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/workspaces'
 import { Route as LayoutAuthenticatedDashboardSettingsWorkspaceBillingRouteImport } from './routes/_layout/_authenticated/dashboard/settings/workspace/billing'
@@ -278,6 +279,12 @@ const LayoutAuthenticatedDashboardSettingsAdminBrandingRoute =
     path: '/branding',
     getParentRoute: () => LayoutAuthenticatedDashboardSettingsAdminRoute,
   } as any)
+const LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute =
+  LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRouteImport.update({
+    id: '/instance-config',
+    path: '/instance-config',
+    getParentRoute: () => LayoutAuthenticatedDashboardSettingsAdminRoute,
+  } as any)
 const LayoutAuthenticatedDashboardSettingsAdminUsersRoute =
   LayoutAuthenticatedDashboardSettingsAdminUsersRouteImport.update({
     id: '/users',
@@ -495,6 +502,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings/account/preferences': typeof LayoutAuthenticatedDashboardSettingsAccountPreferencesRoute
   '/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
   '/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  '/dashboard/settings/admin/instance-config': typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   '/dashboard/settings/admin/users': typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   '/dashboard/settings/admin/workspaces': typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
   '/dashboard/settings/workspace/billing': typeof LayoutAuthenticatedDashboardSettingsWorkspaceBillingRoute
@@ -554,6 +562,7 @@ export interface FileRoutesByTo {
   '/dashboard/settings/account/preferences': typeof LayoutAuthenticatedDashboardSettingsAccountPreferencesRoute
   '/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
   '/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  '/dashboard/settings/admin/instance-config': typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   '/dashboard/settings/admin/users': typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   '/dashboard/settings/admin/workspaces': typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
   '/dashboard/settings/workspace/billing': typeof LayoutAuthenticatedDashboardSettingsWorkspaceBillingRoute
@@ -619,6 +628,7 @@ export interface FileRoutesById {
   '/_layout/_authenticated/dashboard/settings/account/preferences': typeof LayoutAuthenticatedDashboardSettingsAccountPreferencesRoute
   '/_layout/_authenticated/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
   '/_layout/_authenticated/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  '/_layout/_authenticated/dashboard/settings/admin/instance-config': typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   '/_layout/_authenticated/dashboard/settings/admin/users': typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   '/_layout/_authenticated/dashboard/settings/admin/workspaces': typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
   '/_layout/_authenticated/dashboard/settings/workspace/billing': typeof LayoutAuthenticatedDashboardSettingsWorkspaceBillingRoute
@@ -1102,6 +1112,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport
       parentRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRoute
     }
+    '/_layout/_authenticated/dashboard/settings/admin/instance-config': {
+      id: '/_layout/_authenticated/dashboard/settings/admin/instance-config'
+      path: '/instance-config'
+      fullPath: '/dashboard/settings/admin/instance-config'
+      preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRouteImport
+      parentRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRoute
+    }
     '/_layout/_authenticated/dashboard/settings/admin/users': {
       id: '/_layout/_authenticated/dashboard/settings/admin/users'
       path: '/users'
@@ -1309,6 +1326,7 @@ const LayoutAuthenticatedDashboardSettingsAccountRouteWithChildren =
 
 interface LayoutAuthenticatedDashboardSettingsAdminRouteChildren {
   LayoutAuthenticatedDashboardSettingsAdminBrandingRoute: typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute: typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   LayoutAuthenticatedDashboardSettingsAdminUsersRoute: typeof LayoutAuthenticatedDashboardSettingsAdminUsersRoute
   LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute: typeof LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute
 }
@@ -1317,6 +1335,8 @@ const LayoutAuthenticatedDashboardSettingsAdminRouteChildren: LayoutAuthenticate
   {
     LayoutAuthenticatedDashboardSettingsAdminBrandingRoute:
       LayoutAuthenticatedDashboardSettingsAdminBrandingRoute,
+    LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute:
+      LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute,
     LayoutAuthenticatedDashboardSettingsAdminUsersRoute:
       LayoutAuthenticatedDashboardSettingsAdminUsersRoute,
     LayoutAuthenticatedDashboardSettingsAdminWorkspacesRoute:

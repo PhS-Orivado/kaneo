@@ -5,6 +5,7 @@ import {
   CreditCard,
   Import,
   KeyRound,
+  Mail,
   Palette,
   Server,
   Settings,
@@ -171,6 +172,12 @@ export function buildSettingsNav({
               label: t("settings:adminBranding.title"),
               to: "/dashboard/settings/admin/branding",
               icon: Palette,
+            },
+            {
+              id: "admin-instance-config",
+              label: t("settings:adminInstanceConfig.title"),
+              to: "/dashboard/settings/admin/instance-config",
+              icon: Mail,
             },
           ],
         }

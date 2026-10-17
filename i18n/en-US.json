@@ -2417,6 +2417,51 @@
 				"saved": "Branding updated.",
 				"saveError": "Branding could not be saved."
 			}
+		},
+		"adminInstanceConfig": {
+			"title": "Email and storage",
+			"subtitle": "Configure SMTP email delivery and S3 file storage for everyone on this instance.",
+			"instanceBadge": "Instance",
+			"envHint": "Saved values take effect immediately and override the environment variables. Empty fields fall back to the environment configuration.",
+			"loadError": "Email and storage settings could not be loaded.",
+			"retry": "Retry",
+			"smtp": {
+				"title": "Email (SMTP)",
+				"host": "SMTP host",
+				"port": "Port",
+				"portHint": "Leave empty to let the mail library choose the default for the security mode.",
+				"from": "Sender address",
+				"user": "Username",
+				"password": "Password",
+				"secretSetHint": "A password is saved. Leave the field empty to keep it; clear the username to stop using authentication.",
+				"secure": "Use TLS from the start",
+				"secureHint": "Enable for connections that are encrypted from the first byte, such as port 465.",
+				"requireTls": "Require STARTTLS",
+				"requireTlsHint": "Reject plaintext connections that cannot upgrade to TLS."
+			},
+			"s3": {
+				"title": "File storage (S3)",
+				"endpoint": "Endpoint URL",
+				"bucket": "Bucket",
+				"region": "Region",
+				"accessKeyId": "Access key ID",
+				"secretAccessKey": "Secret access key",
+				"secretSetHint": "A secret access key is saved. Leave the field empty to keep it; clear the access key ID to use the default AWS credential chain.",
+				"publicBaseUrl": "Public base URL",
+				"publicBaseUrlHint": "Optional URL objects are served from, for example a CDN in front of the bucket.",
+				"keyPrefix": "Key prefix",
+				"forcePathStyle": "Path-style URLs",
+				"forcePathStyleHint": "Enable for most self-hosted S3-compatible stores; disable for AWS S3 virtual-hosted buckets."
+			},
+			"form": {
+				"save": "Save changes",
+				"saving": "Saving...",
+				"reset": "Reset"
+			},
+			"toast": {
+				"saved": "Email and storage settings updated.",
+				"saveError": "Email and storage settings could not be saved."
+			}
 		}
 	},
 	"navigation": {
