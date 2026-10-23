@@ -2020,11 +2020,6 @@
 				"columns_other": "{{count, number}} 列",
 				"comments_other": "{{count, number}} 条评论",
 				"labels_other": "{{count, number}} 个标签",
-				"attachments_other": "{{count, number}} attachments",
-				"sprints_one": "{{count, number}} sprint",
-				"sprints_other": "{{count, number}} sprints",
-				"users_one": "{{count, number}} user",
-				"users_other": "{{count, number}} users",
 				"tasks_other": "{{count, number}} 个任务"
 			},
 			"entry": {
@@ -2116,19 +2111,11 @@
 				"back": "返回",
 				"clear": "清除",
 				"commentsDescription": "保留每条评论的原作者和时间。",
-				"sprintsLabel": "Import sprints",
-				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
 				"commentsLabel": "导入评论",
 				"inviteMembers": "邀请成员",
 				"membersNote": "负责人按邮箱与 {{workspace}} 的成员对应。建议先邀请团队成员，这样任务能保留负责人。",
 				"membersNoteTrello": "负责人按邮箱与 {{workspace}} 的成员对应，Trello 也可以按姓名匹配。建议先邀请团队成员，这样任务能保留负责人。",
 				"selectAll": "全选",
-				"usersLabel": "New users",
-				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
-				"usersInviteLabel": "Send an invitation",
-				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
-				"usersCreateLabel": "Create their account",
-				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email.",
 				"membersNoteJira": "负责人按邮箱与 {{workspace}} 的成员对应，Jira 隐藏邮箱时按姓名匹配。建议先邀请团队成员，这样任务能保留负责人。"
 			},
 			"sources": {
