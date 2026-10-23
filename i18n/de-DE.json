@@ -2039,12 +2039,6 @@
 				"comments_other": "{{count, number}} Kommentare",
 				"labels_one": "{{count, number}} Label",
 				"labels_other": "{{count, number}} Labels",
-				"attachments_one": "{{count, number}} attachment",
-				"attachments_other": "{{count, number}} attachments",
-				"sprints_one": "{{count, number}} Sprint",
-				"sprints_other": "{{count, number}} Sprints",
-				"users_one": "{{count, number}} Benutzer",
-				"users_other": "{{count, number}} Benutzer",
 				"tasks_one": "{{count, number}} Aufgabe",
 				"tasks_other": "{{count, number}} Aufgaben"
 			},
@@ -2140,19 +2134,11 @@
 				"back": "Zurück",
 				"clear": "Leeren",
 				"commentsDescription": "Der ursprüngliche Autor und das Datum jedes Kommentars bleiben erhalten.",
-				"sprintsLabel": "Sprints importieren",
-				"sprintsDescription": "Erstellt die Sprints des Projekts und behält jede Aufgabe in ihrem Sprint.",
 				"commentsLabel": "Kommentare importieren",
 				"inviteMembers": "Mitglieder einladen",
 				"membersNote": "Zugewiesene Personen werden anhand ihrer E-Mail-Adresse den Mitgliedern von {{workspace}} zugeordnet. Lade zuerst dein Team ein, damit die Aufgaben zugewiesen bleiben.",
 				"membersNoteTrello": "Zugewiesene Personen werden anhand ihrer E-Mail-Adresse, bei Trello auch anhand ihres vollständigen Namens, den Mitgliedern von {{workspace}} zugeordnet. Lade zuerst dein Team ein, damit die Aufgaben zugewiesen bleiben.",
 				"selectAll": "Alle auswählen",
-				"usersLabel": "Neue Benutzer",
-				"usersDescription": "Was passiert mit Bearbeitern, die noch keine Mitglieder dieses Workspaces sind.",
-				"usersInviteLabel": "Einladung senden",
-				"usersInviteDescription": "Sie erhalten eine E-Mail-Einladung und treten bei, sobald sie diese annehmen. Ihre Aufgaben bleiben bis dahin nicht zugewiesen.",
-				"usersCreateLabel": "Konto erstellen",
-				"usersCreateDescription": "Konten werden direkt erstellt und als Mitglieder hinzugefügt, sodass ihre Aufgaben sofort zugewiesen sind. Sie melden sich mit ihrer E-Mail-Adresse an.",
 				"membersNoteJira": "Zugewiesene Personen werden anhand ihrer E-Mail-Adresse den Mitgliedern von {{workspace}} zugeordnet. Wenn Jira die E-Mail-Adresse ausblendet, wird der vollständige Name verwendet. Lade zuerst dein Team ein, damit die Aufgaben zugewiesen bleiben."
 			},
 			"sources": {
@@ -2292,12 +2278,6 @@
 				"urlDescription": "Kopiere sie aus deinem Browser. Data Center wird ebenfalls unterstützt.",
 				"urlLabel": "URL der Jira-Website",
 				"urlPlaceholder": "https://deine-website.atlassian.net"
-			},
-			"stages": {
-					"reading": "Lesen",
-					"sprints": "Sprints",
-					"users": "Benutzer",
-					"tasks": "Aufgaben"
 			}
 		},
 		"chatIntegrations": {
@@ -3082,7 +3062,6 @@
 			},
 			"allCustomFieldValues": "Alle Werte",
 			"noCustomFieldValues": "Keine Werte für benutzerdefinierte Felder",
-			"allSprints": "Alle Sprints",
 			"noValuesUsedYet": "Noch keine Werte verwendet"
 		},
 		"gantt": {

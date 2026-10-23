@@ -71,18 +71,16 @@ COPY --chown=appuser:appuser apps/web/runtime-storage.sh /docker-entrypoint.d/05
 COPY --chown=appuser:appuser apps/web/env.sh /docker-entrypoint.d/env.sh
 COPY --chown=appuser:appuser apps/web/env.awk /docker-entrypoint.d/env.awk
 RUN chmod +x /docker-entrypoint.d/05-kaneo-runtime-storage.sh /docker-entrypoint.d/env.sh
-# Split web/api deployments: the default proxy target is the API container
-# named kaneo-api. Override with KANEO_API_PROXY_TARGET when the API
-# container has a different name (for example api:1337 in Compose).
-ENV KANEO_API_PROXY_TARGET=kaneo-api:1337
-
-
 
 # Switch to non-root user
 ENV TMPDIR=/var/lib/kaneo/tmp
 ENV NGINX_ENVSUBST_OUTPUT_DIR=/var/lib/kaneo/nginx/conf.d
 USER 1001:0
 EXPOSE 5173
+# Split web/api deployments: the default proxy target is the API container
+# named kaneo-api. Override with KANEO_API_PROXY_TARGET when the API
+# container has a different name (for example api:1337 in Compose).
+ENV KANEO_API_PROXY_TARGET=kaneo-api:1337
 
 # Use exec form of CMD for proper signal handling
 CMD ["nginx", "-g", "daemon off;"]
