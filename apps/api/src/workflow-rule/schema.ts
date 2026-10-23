@@ -15,9 +15,9 @@ const workflowEventTypes = [
 
 export const upsertWorkflowRuleBody = z.object({
   integrationType: z.string(),
+  eventType: z.enum(workflowEventTypes),
+  columnId: z.string(),
   // RFC 0001 WP6: optional repository binding. Absent keeps the legacy
   // type-wide rule semantics.
   integrationId: z.string().optional(),
-  eventType: z.enum(workflowEventTypes),
-  columnId: z.string(),
 });
