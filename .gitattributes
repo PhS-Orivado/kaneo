@@ -2,8 +2,3 @@
 # trailing carriage return to commitlint and every commit fails on Unix.
 .husky/* text eol=lf
 apps/docs/openapi.json text eol=lf
-# These locale files carry fork-only keys inside objects that upstream
-# rewrites wholesale; the union driver merges both sides without
-# conflict markers and keeps the result valid JSON.
-i18n/de-DE.json merge=union
-i18n/zh-CN.json merge=union
