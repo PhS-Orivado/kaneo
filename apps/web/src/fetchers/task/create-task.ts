@@ -20,6 +20,7 @@ async function createTask(
   type?: CreateTaskRequest["type"],
   sprintId?: string,
   draftAssetIds?: string[],
+  recurrence?: CreateTaskRequest["recurrence"],
 ) {
   if (!projectId) {
     throw new Error("No project selected for task creation");
@@ -34,6 +35,7 @@ async function createTask(
       startDate: startDate?.toISOString() || undefined,
       dueDate: dueDate?.toISOString() || undefined,
       priority,
+      recurrence,
       customFields,
       draftAssetIds,
       ...(type ? { type } : {}),

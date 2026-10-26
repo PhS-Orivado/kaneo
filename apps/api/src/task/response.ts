@@ -1,4 +1,5 @@
 import { nullableResponseTimestamp, responseTimestamp, z } from "../openapi";
+import { taskRecurrenceSchema } from "./recurrence/schema";
 
 const priorityDescription = "One of: no-priority, low, medium, high, urgent.";
 
@@ -39,6 +40,7 @@ export const taskSchema = z
       .openapi({ description: "Task type, e.g. task or bug." }),
     startDate: nullableResponseTimestamp,
     dueDate: nullableResponseTimestamp,
+    recurrence: z.union([taskRecurrenceSchema, z.null()]).optional(),
     createdAt: responseTimestamp,
     customFields: z
       .array(z.object({ fieldId: z.string(), value: z.string() }))
@@ -128,6 +130,7 @@ export const boardTaskSchema = z
       .openapi({ description: "Task type, e.g. task or bug." }),
     startDate: nullableResponseTimestamp,
     dueDate: nullableResponseTimestamp,
+    recurrence: z.union([taskRecurrenceSchema, z.null()]),
     position: z.number().nullable(),
     createdAt: responseTimestamp,
     userId: z.string().nullable(),

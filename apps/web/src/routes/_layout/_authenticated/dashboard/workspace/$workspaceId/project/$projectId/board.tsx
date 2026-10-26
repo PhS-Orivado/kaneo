@@ -88,6 +88,7 @@ function RouteComponent() {
     data,
     isError: boardError,
     isFetching: boardFetching,
+    isSuccess: boardLoaded,
     refetch: retryBoard,
   } = useGetTasks(projectId);
   const { project, setProject } = useProjectStore();
@@ -181,6 +182,7 @@ function RouteComponent() {
         <ActiveFiltersBar
           subjects={view.subjects}
           onClear={filters.clearFilters}
+          customFieldValues={filters.customFieldValues}
         />
       }
     >
@@ -234,7 +236,7 @@ function RouteComponent() {
                 project={sortedProject}
                 disableCollectionActions={boardFetching || boardError}
                 disableDragDrop={
-                  boardFetching ||
+                  (boardFetching && !boardLoaded) ||
                   boardError ||
                   (sort.field !== "position" &&
                     sort.field !== "number" &&

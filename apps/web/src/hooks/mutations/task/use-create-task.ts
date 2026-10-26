@@ -22,6 +22,7 @@ function useCreateTask() {
       type,
       sprintId,
       draftAssetIds,
+      recurrence,
     }: CreateTaskRequest) =>
       createTask(
         title,
@@ -36,6 +37,7 @@ function useCreateTask() {
         type,
         sprintId,
         draftAssetIds,
+        recurrence,
       ),
     onSuccess: (_data, variables) => {
       invalidateMyWork(queryClient);
