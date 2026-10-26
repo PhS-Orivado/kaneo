@@ -777,6 +777,19 @@ export function registerTools(
       ),
   );
 
+
+  registerTool(
+    "list_task_time_entries",
+    {
+      description: "List the time entries logged against a task.",
+      inputSchema: z.object({ taskId: nonEmptyString }),
+    },
+    async (args) =>
+      run(() =>
+        client.json(`/api/time-entry/task/${encodeURIComponent(args.taskId)}`),
+      ),
+  );
+
   registerTool(
     "list_sprints",
     {
@@ -929,18 +942,6 @@ export function registerTools(
           method: "PUT",
           body: JSON.stringify({ sprintId: args.sprintId }),
         }),
-      ),
-  );
-
-  registerTool(
-    "list_task_time_entries",
-    {
-      description: "List the time entries logged against a task.",
-      inputSchema: z.object({ taskId: nonEmptyString }),
-    },
-    async (args) =>
-      run(() =>
-        client.json(`/api/time-entry/task/${encodeURIComponent(args.taskId)}`),
       ),
   );
 

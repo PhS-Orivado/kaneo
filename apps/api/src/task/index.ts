@@ -914,10 +914,10 @@ const task = apiRouter<BaseVariables & { workspaceId: string }>()
       dueDate: parsedDueDate,
       priority,
       status,
-      type,
-      sprintId,
       customFields,
       draftAssetIds,
+      type,
+      sprintId,
     });
 
     return c.json(task, 200);

@@ -17,9 +17,9 @@ async function createTask(
   dueDate: Date | undefined,
   priority: CreateTaskRequest["priority"],
   customFields?: { fieldId: string; value: string }[],
-  draftAssetIds?: string[],
   type?: CreateTaskRequest["type"],
   sprintId?: string,
+  draftAssetIds?: string[],
 ) {
   if (!projectId) {
     throw new Error("No project selected for task creation");

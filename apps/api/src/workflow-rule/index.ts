@@ -26,12 +26,15 @@ const getWorkflowRulesRoute = createRoute({
   tags: ["Workflow Rules"],
   summary: "Get workflow rules",
   description:
-    "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires. Rules with a null integrationId are type-wide; rules with an integrationId are scoped to that repository binding (RFC 0001).",
-  middleware: [workspaceAccess.fromProject("projectId")] as const,
+    "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires.",
+  middleware: [
+    workspaceAccess.fromProject("projectId"),
+    requireWorkspacePermission({ project: ["read"] }),
+  ] as const,
   request: { params: projectIdParam },
   responses: {
     200: jsonResponse("List of workflow rules", workflowRuleListSchema),
-    403: errorResponse("No access to the project"),
+    403: errorResponse("No access to the project, or missing read permission"),
     404: errorResponse("Project not found"),
   },
 });
