@@ -470,6 +470,27 @@
       "when": 1793038077476,
       "tag": "0066_task_recurrence",
       "breakpoints": true
+    },
+    {
+      "idx": 67,
+      "version": "7",
+      "when": 1791800000000,
+      "tag": "0067_sprint_planning",
+      "breakpoints": true
+    },
+    {
+      "idx": 68,
+      "version": "7",
+      "when": 1791800000001,
+      "tag": "0068_sprint_carry_over",
+      "breakpoints": true
+    },
+    {
+      "idx": 69,
+      "version": "7",
+      "when": 1791817861615,
+      "tag": "0069_multi_repo_integrations",
+      "breakpoints": true
     }
   ]
 }
