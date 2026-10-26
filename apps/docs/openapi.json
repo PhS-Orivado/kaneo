@@ -720,7 +720,8 @@
           "customOAuthLogoutUrl",
           "customOAuthManagedProfileFields",
           "customOAuthAccountUrl",
-          "billingEnabled"
+          "billingEnabled",
+          "branding"
         ]
       },
       "McpClientRegistration": {
