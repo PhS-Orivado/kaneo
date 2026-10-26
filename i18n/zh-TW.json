@@ -3436,7 +3436,14 @@
 			"viewPageTitle": "Sprints · {{name}}",
 			"viewHeading": "All sprints",
 			"viewEmptyTitle": "No sprints yet",
-			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here."
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
+			"backlogDescription": "Tasks without a sprint",
+			"backlogEmpty": "No unscheduled tasks",
+			"moveSuccess_other": "{{count}} tasks moved",
+			"openTaskMenu": "Open task menu",
+			"scopeCurrent": "Current sprint",
+			"scopeTitle": "Sprint scope",
+			"selectTask": "Select task"
 		}
 	},
 	"invitations": {
