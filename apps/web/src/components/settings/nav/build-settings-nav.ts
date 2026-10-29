@@ -7,6 +7,7 @@ import {
   Import,
   KeyRound,
   LayoutDashboard,
+  Palette,
   ScrollText,
   Server,
   Settings,
@@ -89,6 +90,12 @@ const ADMIN_LINKS = [
     labelKey: "settings:adminWebhooks.title",
     to: "/dashboard/settings/admin/webhooks",
     icon: Webhook,
+  },
+  {
+    id: "admin-branding",
+    labelKey: "settings:adminBranding.title",
+    to: "/dashboard/settings/admin/branding",
+    icon: Palette,
   },
 ] as const satisfies readonly {
   id: string;
