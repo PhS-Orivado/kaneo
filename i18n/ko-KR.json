@@ -163,6 +163,12 @@
 				"apply": "링크 적용",
 				"remove": "링크 제거"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -919,7 +925,14 @@
 			"moveDialogTitle": "다른 워크스페이스로 이동할까요?",
 			"moveTargetLabel": "워크스페이스",
 			"moving": "이동 중...",
-			"tasksTitle": "작업"
+			"tasksTitle": "작업",
+			"sprintLength": "기본 스프린트 기간",
+			"sprintLengthDescription": "새 스프린트가 기본적으로 포함하는 일수입니다.",
+			"sprintLengthError": "스프린트 기간을 저장할 수 없습니다",
+			"sprintLengthSave": "스프린트 기간 저장",
+			"sprintLengthSaved": "스프린트 기간이 저장되었습니다",
+			"sprints": "스프린트",
+			"sprintsSubtitle": "다가오는 작업을 고정 길이 반복 주기로 계획합니다."
 		},
 		"projectIntegrations": {
 			"pageTitle": "연동",
@@ -2156,7 +2169,12 @@
 				"columns_other": "{{count, number}} columns",
 				"comments_other": "{{count, number}} comments",
 				"labels_other": "{{count, number}} labels",
-				"tasks_other": "{{count, number}} tasks"
+				"tasks_other": "{{count, number}} tasks",
+				"attachments_other": "{{count, number}} attachments",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"users_one": "{{count, number}} user",
+				"users_other": "{{count, number}} users"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2249,10 +2267,18 @@
 				"commentsDescription": "Keeps each comment's original author and date.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
+				"sprintsLabel": "Import sprints",
+				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email.",
+				"usersCreateLabel": "Create their account",
+				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
+				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
+				"usersInviteLabel": "Send an invitation",
+				"usersLabel": "New users"
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2372,6 +2398,12 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
+			},
+			"stages": {
+				"reading": "Reading",
+				"sprints": "Sprints",
+				"tasks": "Issues",
+				"users": "Users"
 			}
 		},
 		"chatIntegrations": {
@@ -2438,7 +2470,8 @@
 			"tokenTitle": "액세스 토큰",
 			"webhookSecret": "시크릿",
 			"webhookSection": "웹훅",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "드래그하여 작업에 표시되는 순서를 변경합니다.",
@@ -2791,6 +2824,37 @@
 			"title": "Webhooks",
 			"url": "URL",
 			"save": "Save"
+		},
+		"adminBranding": {
+			"form": {
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerText": "Footer text",
+				"footerUrl": "Footer link URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"logoLightUrl": "Light-mode logo URL",
+				"privacyUrl": "Privacy policy URL",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving...",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"termsUrl": "Terms of service URL"
+			},
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"title": "Branding",
+			"toast": {
+				"saveError": "Branding could not be saved.",
+				"saved": "Branding updated."
+			}
 		}
 	},
 	"navigation": {
@@ -2991,6 +3055,37 @@
 			"then": "다음",
 			"or": "또는",
 			"thenEllipsis": "다음…"
+		},
+		"keyboardShortcuts": {
+			"categories": {
+				"create": "만들기",
+				"general": "일반",
+				"navigation": "탐색",
+				"quickSelect": "빠른 선택 (팝오버 내)",
+				"views": "보기"
+			},
+			"footer": "닫으려면 <kbd>Escape</kbd>를 누르세요",
+			"items": {
+				"backlogView": "백로그 보기로 전환",
+				"boardView": "보드 보기로 전환",
+				"calendarView": "캘린더 보기로 전환",
+				"closeModal": "모달/팝오버 닫기",
+				"createProject": "프로젝트 만들기",
+				"createTask": "작업 만들기",
+				"createWorkspace": "워크스페이스 만들기",
+				"globalSearch": "전체 검색",
+				"listView": "목록 보기로 전환",
+				"nextTask": "다음 작업",
+				"openCommandPalette": "명령 팔레트 열기",
+				"openTask": "선택한 작업 열기",
+				"prevTask": "이전 작업",
+				"quickSelectNumber": "번호로 옵션 선택",
+				"showShortcuts": "키보드 단축키 표시",
+				"toggleSidebar": "사이드바 토글"
+			},
+			"searchPlaceholder": "단축키 검색...",
+			"subtitle": "키보드 단축키로 워크플로 속도를 높이세요",
+			"title": "키보드 단축키"
 		}
 	},
 	"notifications": {
@@ -3205,7 +3300,8 @@
 			"list": "목록",
 			"backlog": "백로그",
 			"gantt": "간트",
-			"heading": "보기"
+			"heading": "보기",
+			"sprints": "Sprints"
 		},
 		"common": {
 			"selectTask": "작업 선택",
@@ -3504,7 +3600,8 @@
 				"priority": "우선순위",
 				"assignee": "담당자",
 				"dueDate": "마감일",
-				"labels": "라벨"
+				"labels": "라벨",
+				"sprint": "스프린트"
 			},
 			"operators": {
 				"isAnyOf": "다음 중 하나",
@@ -3517,7 +3614,8 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "모든 스프린트"
 		},
 		"calendar": {
 			"pageTitle": "{{name}} / 캘린더",
@@ -3655,7 +3753,9 @@
 			"priorityPlaceholder": "우선순위 설정…",
 			"assigneePlaceholder": "담당자 지정…",
 			"labelPlaceholder": "라벨 추가…",
-			"columnPlaceholder": "열로 이동…"
+			"columnPlaceholder": "열로 이동…",
+			"moveToSprint": "스프린트로 이동",
+			"updateSprintError": "작업을 스프린트로 이동하지 못했습니다"
 		},
 		"editor": {
 			"table": {
@@ -3753,6 +3853,63 @@
 			"startsOn": "시작: {{date}}",
 			"beforeStart": "{{date}}은(는) 시작일 이전입니다",
 			"afterDue": "{{date}}은(는) 마감일 이후입니다"
+		},
+		"sprints": {
+			"activeBadge": "진행 중",
+			"backlog": "백로그",
+			"backlogDescription": "Tasks without a sprint",
+			"backlogEmpty": "No unscheduled tasks",
+			"carriedOver": "이월됨",
+			"close": "스프린트 종료",
+			"closeConfirm": "스프린트를 종료하고 완료되지 않은 작업 이동",
+			"closeSuccess": "스프린트가 종료되었으며 완료되지 않은 작업 {{count}}개가 이동했습니다",
+			"closeSummary": "{{name}}에 {{total}}개의 작업이 있으며 {{completed}}개가 완료되었습니다.",
+			"closeTarget": "완료되지 않은 작업 {{count}}개를 이동할 위치",
+			"closeTitle": "스프린트 종료",
+			"closedLocked": "이 작업은 종료된 스프린트의 일부로 기록에 남습니다",
+			"completedCount": "{{count}}개 완료",
+			"create": "스프린트 만들기",
+			"createDescription": "이름, 목표, 날짜로 다가오는 스프린트를 계획합니다.",
+			"createTitle": "스프린트 만들기",
+			"daysOverdue": "{{remaining}}일 지연",
+			"daysRemaining": "{{remaining}}일 남음",
+			"edit": "스프린트 편집",
+			"editDescription": "스프린트의 이름, 목표, 날짜를 업데이트합니다.",
+			"editTitle": "스프린트 편집",
+			"endsToday": "오늘 종료",
+			"error": "스프린트 작업이 실패했습니다",
+			"goal": "스프린트 목표",
+			"goalPlaceholder": "이 스프린트에서 무엇을 달성해야 하나요?",
+			"history": "종료된 스프린트 ({{count}})",
+			"moveDown": "아래로 이동",
+			"moveSuccess_other": "{{count}} tasks moved",
+			"moveUp": "위로 이동",
+			"name": "스프린트 이름",
+			"namePlaceholder": "스프린트 1",
+			"noActive": "진행 중인 스프린트가 없습니다. 다가오는 스프린트를 시작하세요.",
+			"noTasks": "이 스프린트에는 아직 작업이 없습니다",
+			"openTaskMenu": "Open task menu",
+			"reportSummary": "계획 {{planned}}, 완료 {{completed}}, 이월 {{carriedOver}}",
+			"save": "변경 사항 저장",
+			"scopeCurrent": "Current sprint",
+			"scopeTitle": "Sprint scope",
+			"selectTask": "Select task",
+			"start": "스프린트 시작",
+			"startSuccess": "스프린트 {{name}} 시작됨",
+			"taskCounts": "{{total}}개 중 {{completed}}개 완료",
+			"title": "스프린트",
+			"toggleTasks": "스프린트 작업 표시",
+			"unscheduled": "일정 없음",
+			"upcoming": "다가오는 스프린트",
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
+			"viewEmptyTitle": "No sprints yet",
+			"viewHeading": "All sprints",
+			"viewPageTitle": "Sprints · {{name}}"
+		},
+		"type": {
+			"bug": "버그",
+			"label": "유형",
+			"task": "작업"
 		}
 	},
 	"invitations": {
