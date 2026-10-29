@@ -1,5 +1,5 @@
+import { getInstanceSettings } from "../instance-settings/get-instance-settings";
 import { apiRouter, createRoute, jsonResponse } from "../openapi";
-import { getBranding } from "../branding/get-branding";
 import getSettings from "../utils/get-settings";
 import { configSchema } from "./response";
 
@@ -12,7 +12,7 @@ const getConfigRoute = createRoute({
   tags: ["Config"],
   summary: "Get config",
   description:
-    "Public instance settings: which sign-in methods, registration paths, and features are enabled.",
+    "Public instance settings: the instance name, which sign-in methods, registration paths, integrations, and features are enabled.",
   security: [],
   responses: {
     200: jsonResponse("Application settings", configSchema),
@@ -20,7 +20,7 @@ const getConfigRoute = createRoute({
 });
 
 const config = apiRouter().openapi(getConfigRoute, async (c) =>
-  c.json({ ...getSettings(), branding: await getBranding() }, 200),
+  c.json(getSettings(await getInstanceSettings()), 200),
 );
 
 export default config;

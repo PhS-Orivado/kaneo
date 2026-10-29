@@ -3,6 +3,7 @@ import {
   CopyObjectCommand,
   DeleteObjectCommand,
   GetObjectCommand,
+  HeadBucketCommand,
   type HeadObjectCommandOutput,
   PutObjectCommand,
   S3Client,
@@ -185,10 +186,6 @@ function getMaxImageUploadBytes() {
     process.env.S3_MAX_IMAGE_UPLOAD_BYTES,
     DEFAULT_MAX_IMAGE_UPLOAD_BYTES,
   );
-}
-
-export function taskAssetUploadLimitBytes() {
-  return getMaxImageUploadBytes();
 }
 
 function getClient(config: StorageConfig) {
@@ -499,33 +496,15 @@ export function isStorageConfigured() {
   }
 }
 
-// Resolves the configured bucket and an authorized client for it. Throws the
-// configuration error when S3 uploads are not set up.
-export function getStorageClient() {
+/** Check that the bucket answers with the configured credentials. */
+export async function headStorageBucket(abortSignal: AbortSignal) {
   const config = getStorageConfig();
-  return { config, client: getClient(config) };
-}
-
-// Uploads an object the server itself downloaded (an imported attachment)
-// under the same per-task key scheme the presigned browser uploads use.
-export async function putImportedTaskAsset(
-  context: TaskImageUploadContext & { body: Uint8Array },
-): Promise<string> {
-  const config = getStorageConfig();
-  const client = getClient(config);
-  const key = applyKeyPrefix(config.keyPrefix, buildObjectKey(context));
-
-  await client.send(
-    new PutObjectCommand({
-      Bucket: config.bucket,
-      Key: key,
-      ContentType: context.contentType,
-      Body: context.body,
-    }),
-    { abortSignal: AbortSignal.timeout(120_000) },
+  await getClient(config).send(
+    new HeadBucketCommand({ Bucket: config.bucket }),
+    {
+      abortSignal,
+    },
   );
-
-  return key;
 }
 
 export function assertTaskImageKeyMatchesContext(

@@ -10,6 +10,7 @@ import { type GitHubConfig, hasVerifiedGitHubBinding } from "../config";
 import { extractTaskLinks } from "../utils/task-references";
 
 import type { IntegrationDatabase } from "./integration-task-scope";
+import { activeIntegrationCondition } from "../../active-integration-condition";
 
 export type TaskRow = InferSelectModel<typeof taskTable>;
 
@@ -150,20 +151,9 @@ export async function getIntegrationWithProject(integrationId: string) {
 
 export type GitHubWebhookSource = {
   installation?: { id: number };
-  repository: {
-    id: number;
-    name?: string;
-    owner?: { login?: string };
-  };
+  repository: { id: number };
 };
 
-/**
- * RFC 0001 WP2: webhook routing resolves the affected bindings through the
- * repository_key index instead of loading every github row and parsing each
- * config in memory. With decision D1 the result can span multiple projects;
- * every webhook handler iterates the returned bindings, so one repository
- * event fans out to every bound project.
- */
 export async function findAllIntegrationsByRepo(source: GitHubWebhookSource) {
   const installationId = source.installation?.id;
   const repositoryId = source.repository.id;
@@ -172,56 +162,23 @@ export async function findAllIntegrationsByRepo(source: GitHubWebhookSource) {
     !Number.isSafeInteger(repositoryId)
   )
     return [];
-
-  // The installation check is retained from the previous implementation: a
-  // repository can be reachable through more than one installation, and only
-  // the binding created through the installation that delivered the event may
-  // write tasks for it. hasVerifiedGitHubBinding keeps excluding rows whose
-  // config was never verified.
-  const matchesInstallation = (integration: {
-    config: string;
-    repositoryKey: string | null;
-    isActive: boolean | null;
-  }) => {
-    let config: GitHubConfig;
+  const integrations = await db.query.integrationTable.findMany({
+    where: and(
+      eq(integrationTable.type, "github"),
+      activeIntegrationCondition(),
+    ),
+    with: { project: true },
+  });
+  return integrations.filter((integration) => {
     try {
-      config = JSON.parse(integration.config) as GitHubConfig;
+      const config = JSON.parse(integration.config) as GitHubConfig;
+      return (
+        hasVerifiedGitHubBinding(config) &&
+        config.installationId === installationId &&
+        config.repositoryId === repositoryId
+      );
     } catch {
       return false;
     }
-    return (
-      hasVerifiedGitHubBinding(config) &&
-      config.installationId === installationId
-    );
-  };
-
-  const byRepositoryKey = await db.query.integrationTable.findMany({
-    where: and(
-      eq(integrationTable.type, "github"),
-      eq(integrationTable.repositoryKey, `github:${repositoryId}`),
-      eq(integrationTable.isActive, true),
-    ),
-    with: { project: true },
   });
-  const verified = byRepositoryKey.filter(matchesInstallation);
-  if (verified.length > 0) return verified;
-
-  // Legacy fallback: events from repositories whose bindings still carry the
-  // owner/name key form. hasVerifiedGitHubBinding filters unverifiable rows,
-  // mirroring today's behavior.
-  const ownerLogin = source.repository.owner?.login;
-  const repositoryName = source.repository.name;
-  if (!ownerLogin || !repositoryName) return [];
-  const legacy = await db.query.integrationTable.findMany({
-    where: and(
-      eq(integrationTable.type, "github"),
-      eq(
-        integrationTable.repositoryKey,
-        `github:${ownerLogin}/${repositoryName}`.toLowerCase(),
-      ),
-      eq(integrationTable.isActive, true),
-    ),
-    with: { project: true },
-  });
-  return legacy.filter(matchesInstallation);
 }
