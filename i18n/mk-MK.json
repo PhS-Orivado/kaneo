@@ -163,6 +163,12 @@
 				"apply": "Примени врска",
 				"remove": "Отстрани врска"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -927,7 +933,14 @@
 			"moveDialogTitle": "Да се премести во друг работен простор?",
 			"moveTargetLabel": "Работен простор",
 			"moving": "Се преместува...",
-			"tasksTitle": "Задачи"
+			"tasksTitle": "Задачи",
+			"sprintLength": "Стандардна должина на спринтот",
+			"sprintLengthDescription": "Број на денови што ги покрива новиот спринт по стандард.",
+			"sprintLengthError": "Не успеа зачувувањето на должината на спринтот",
+			"sprintLengthSave": "Зачувај должина на спринт",
+			"sprintLengthSaved": "Должината на спринтот е зачувана",
+			"sprints": "Спринтови",
+			"sprintsSubtitle": "Планирајте ја претстојната работа во итерации со фиксна должина."
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции",
@@ -2176,7 +2189,13 @@
 				"labels_one": "{{count, number}} label",
 				"labels_other": "{{count, number}} labels",
 				"tasks_one": "{{count, number}} task",
-				"tasks_other": "{{count, number}} tasks"
+				"tasks_other": "{{count, number}} tasks",
+				"attachments_one": "{{count, number}} attachment",
+				"attachments_other": "{{count, number}} attachments",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"users_one": "{{count, number}} user",
+				"users_other": "{{count, number}} users"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2272,10 +2291,18 @@
 				"commentsDescription": "Keeps each comment's original author and date.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
+				"sprintsLabel": "Import sprints",
+				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email.",
+				"usersCreateLabel": "Create their account",
+				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
+				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
+				"usersInviteLabel": "Send an invitation",
+				"usersLabel": "New users"
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2414,6 +2441,12 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
+			},
+			"stages": {
+				"reading": "Reading",
+				"sprints": "Sprints",
+				"tasks": "Issues",
+				"users": "Users"
 			}
 		},
 		"chatIntegrations": {
@@ -2480,7 +2513,8 @@
 			"tokenTitle": "Токен за пристап",
 			"webhookSecret": "Тајна",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Повлечи за да го смениш редоследот по кој се прикажуваат на задачата.",
@@ -2840,6 +2874,37 @@
 			"title": "Webhooks",
 			"url": "URL",
 			"save": "Save"
+		},
+		"adminBranding": {
+			"form": {
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerText": "Footer text",
+				"footerUrl": "Footer link URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"logoLightUrl": "Light-mode logo URL",
+				"privacyUrl": "Privacy policy URL",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving...",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"termsUrl": "Terms of service URL"
+			},
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"title": "Branding",
+			"toast": {
+				"saveError": "Branding could not be saved.",
+				"saved": "Branding updated."
+			}
 		}
 	},
 	"navigation": {
@@ -3041,6 +3106,37 @@
 			"then": "потоа",
 			"or": "или",
 			"thenEllipsis": "потоа…"
+		},
+		"keyboardShortcuts": {
+			"categories": {
+				"create": "Креирај",
+				"general": "Општо",
+				"navigation": "Навигација",
+				"quickSelect": "Брз избор (во менија)",
+				"views": "Прикази"
+			},
+			"footer": "Притисни <kbd>Escape</kbd> за затворање",
+			"items": {
+				"backlogView": "Премини на приказ заостанати",
+				"boardView": "Премини на приказ табла",
+				"calendarView": "Префрли на календарски приказ",
+				"closeModal": "Затвори модал/мени",
+				"createProject": "Креирај проект",
+				"createTask": "Креирај задача",
+				"createWorkspace": "Креирај работен простор",
+				"globalSearch": "Глобално пребарување",
+				"listView": "Премини на приказ листа",
+				"nextTask": "Следна задача",
+				"openCommandPalette": "Отвори палета на команди",
+				"openTask": "Отвори избрана задача",
+				"prevTask": "Претходна задача",
+				"quickSelectNumber": "Избери опција по број",
+				"showShortcuts": "Прикажи кратенки на тастатура",
+				"toggleSidebar": "Вклучи/исклучи странична лента"
+			},
+			"searchPlaceholder": "Пребарај кратенки...",
+			"subtitle": "Забрзај го работниот тек со кратенки на тастатура",
+			"title": "Кратенки на тастатура"
 		}
 	},
 	"notifications": {
@@ -3259,7 +3355,8 @@
 			"list": "Листа",
 			"backlog": "Заостанати",
 			"gantt": "Gantt",
-			"heading": "Приказ"
+			"heading": "Приказ",
+			"sprints": "Sprints"
 		},
 		"common": {
 			"selectTask": "Избери задача",
@@ -3562,7 +3659,8 @@
 				"priority": "Приоритет",
 				"assignee": "Доделен",
 				"dueDate": "Краен рок",
-				"labels": "Етикети"
+				"labels": "Етикети",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "е било кој од",
@@ -3575,7 +3673,8 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Сите спринтови"
 		},
 		"gantt": {
 			"searchPlaceholder": "Пребарај закажани тикети...",
@@ -3702,7 +3801,9 @@
 			"priorityPlaceholder": "Постави приоритет…",
 			"assigneePlaceholder": "Додели на…",
 			"labelPlaceholder": "Додај ознака…",
-			"columnPlaceholder": "Премести во колона…"
+			"columnPlaceholder": "Премести во колона…",
+			"moveToSprint": "Премести во спринт",
+			"updateSprintError": "Не успеа преместувањето на задачите во спринтот"
 		},
 		"editor": {
 			"table": {
@@ -3825,6 +3926,64 @@
 			"startsOn": "Почнува: {{date}}",
 			"beforeStart": "{{date}} е пред датумот на почеток",
 			"afterDue": "{{date}} е по рокот"
+		},
+		"sprints": {
+			"activeBadge": "Активен",
+			"backlog": "Backlog",
+			"backlogDescription": "Tasks without a sprint",
+			"backlogEmpty": "No unscheduled tasks",
+			"carriedOver": "Пренесени",
+			"close": "Затвори спринт",
+			"closeConfirm": "Затвори спринт и премести незавршени задачи",
+			"closeSuccess": "Спринтот е затворен, преместени се {{count}} незавршени задачи",
+			"closeSummary": "{{name}} има {{total}} задачи, од кои {{completed}} се завршени.",
+			"closeTarget": "Премести {{count}} незавршени задачи во",
+			"closeTitle": "Затвори спринт",
+			"closedLocked": "Оваа задача припаѓа на затворен спринт и останува таму како историја",
+			"completedCount": "{{count}} завршени",
+			"create": "Создај спринт",
+			"createDescription": "Планирајте претстоен спринт со име, цел и датуми.",
+			"createTitle": "Создај спринт",
+			"daysOverdue": "{{remaining}} дена доцни",
+			"daysRemaining": "Остануваат {{remaining}} дена",
+			"edit": "Уреди спринт",
+			"editDescription": "Ажурирајте име, цел и датуми на спринтот.",
+			"editTitle": "Уреди спринт",
+			"endsToday": "Завршува денес",
+			"error": "Дејството за спринтот не успеа",
+			"goal": "Цел на спринтот",
+			"goalPlaceholder": "Што треба да постигне овој спринт?",
+			"history": "Затворени спринтови ({{count}})",
+			"moveDown": "Помести надолу",
+			"moveSuccess_one": "Task moved",
+			"moveSuccess_other": "{{count}} tasks moved",
+			"moveUp": "Помести нагоре",
+			"name": "Име на спринтот",
+			"namePlaceholder": "Спринт 1",
+			"noActive": "Нема активен спринт. Започнете претстоен спринт за да итерирате.",
+			"noTasks": "Уште нема задачи во овој спринт",
+			"openTaskMenu": "Open task menu",
+			"reportSummary": "Планирани {{planned}}, завршени {{completed}}, пренесени {{carriedOver}}",
+			"save": "Зачувај промени",
+			"scopeCurrent": "Current sprint",
+			"scopeTitle": "Sprint scope",
+			"selectTask": "Select task",
+			"start": "Започни спринт",
+			"startSuccess": "Спринтот {{name}} започна",
+			"taskCounts": "{{completed}} од {{total}} завршени",
+			"title": "Спринтови",
+			"toggleTasks": "Прикажи задачи во спринтот",
+			"unscheduled": "Без рок",
+			"upcoming": "Претстоен спринт",
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
+			"viewEmptyTitle": "No sprints yet",
+			"viewHeading": "All sprints",
+			"viewPageTitle": "Sprints · {{name}}"
+		},
+		"type": {
+			"bug": "Грешка",
+			"label": "Тип",
+			"task": "Задача"
 		}
 	},
 	"invitations": {
