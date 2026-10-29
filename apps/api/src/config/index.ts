@@ -1,3 +1,4 @@
+import { getBranding } from "../branding/get-branding";
 import { getInstanceSettings } from "../instance-settings/get-instance-settings";
 import { apiRouter, createRoute, jsonResponse } from "../openapi";
 import getSettings from "../utils/get-settings";
@@ -20,7 +21,10 @@ const getConfigRoute = createRoute({
 });
 
 const config = apiRouter().openapi(getConfigRoute, async (c) =>
-  c.json(getSettings(await getInstanceSettings()), 200),
+  c.json(
+    { ...getSettings(await getInstanceSettings()), branding: await getBranding() },
+    200,
+  ),
 );
 
 export default config;

@@ -188,6 +188,10 @@ function getMaxImageUploadBytes() {
   );
 }
 
+export function taskAssetUploadLimitBytes() {
+  return getMaxImageUploadBytes();
+}
+
 function getClient(config: StorageConfig) {
   const cacheKey = JSON.stringify({
     endpoint: config.endpoint,
@@ -505,6 +509,35 @@ export async function headStorageBucket(abortSignal: AbortSignal) {
       abortSignal,
     },
   );
+}
+
+// Resolves the configured bucket and an authorized client for it. Throws the
+// configuration error when S3 uploads are not set up.
+export function getStorageClient() {
+  const config = getStorageConfig();
+  return { config, client: getClient(config) };
+}
+
+// Uploads an object the server itself downloaded (an imported attachment)
+// under the same per-task key scheme the presigned browser uploads use.
+export async function putImportedTaskAsset(
+  context: TaskImageUploadContext & { body: Uint8Array },
+): Promise<string> {
+  const config = getStorageConfig();
+  const client = getClient(config);
+  const key = applyKeyPrefix(config.keyPrefix, buildObjectKey(context));
+
+  await client.send(
+    new PutObjectCommand({
+      Bucket: config.bucket,
+      Key: key,
+      ContentType: context.contentType,
+      Body: context.body,
+    }),
+    { abortSignal: AbortSignal.timeout(120_000) },
+  );
+
+  return key;
 }
 
 export function assertTaskImageKeyMatchesContext(

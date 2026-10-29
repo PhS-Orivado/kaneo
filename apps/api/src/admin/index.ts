@@ -4,8 +4,12 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
+import { getBranding } from "../branding/get-branding";
+import { updateBranding } from "../branding/update-branding";
+import { brandingSchema } from "../config/response";
 import { requireInstancePermission } from "./roles/require-instance-permission";
 import { requireUserSession } from "../utils/require-user-session";
+import { requireInstanceAdmin } from "../utils/require-instance-admin";
 import { adminAuditRequest } from "./audit/admin-audit-request";
 import addWorkspaceMember from "./controllers/add-workspace-member";
 import archiveWorkspace from "./controllers/archive-workspace";
@@ -48,6 +52,7 @@ import {
   listAdminWorkspacesQuery,
   transferAdminWorkspaceOwnershipBody,
   updateAdminWorkspaceMemberRoleBody,
+  updateBrandingBody,
 } from "./schema";
 import {
   adminSystemStatusSchema,
@@ -441,6 +446,43 @@ const getOverviewRoute = createRoute({
   },
 });
 
+const getBrandingRoute = createRoute({
+  method: "get",
+  operationId: "getAdminBranding",
+  path: "/branding",
+  tags: ["Admin"],
+  summary: "Get instance branding",
+  description:
+    "Read the white-label branding applied to this instance: application name, logos, accent color, footer, and legal links. Requires an instance administrator session; API keys are rejected.",
+  middleware: [requireUserSession, requireInstanceAdmin] as const,
+  responses: {
+    200: jsonResponse("Instance branding", brandingSchema),
+    403: forbidden,
+  },
+});
+
+const updateBrandingRoute = createRoute({
+  method: "put",
+  operationId: "updateAdminBranding",
+  path: "/branding",
+  tags: ["Admin"],
+  summary: "Update instance branding",
+  description:
+    "Replace the white-label branding for this instance. Null values restore the default Kaneo branding. Requires an instance administrator session; API keys are rejected.",
+  middleware: [requireUserSession, requireInstanceAdmin] as const,
+  request: {
+    body: {
+      required: true,
+      content: { "application/json": { schema: updateBrandingBody } },
+    },
+  },
+  responses: {
+    200: jsonResponse("Updated instance branding", brandingSchema),
+    400: errorResponse("Invalid branding values"),
+    403: forbidden,
+  },
+});
+
 const admin = apiRouter()
   .openapi(getOverviewRoute, async (c) => c.json(await getOverview(), 200))
   .openapi(getAccessRoute, async (c) => {
@@ -545,6 +587,10 @@ const admin = apiRouter()
   .route("/roles", adminRoleRoutes)
   .route("/settings", adminSettingsRoutes)
   .route("/webhooks", adminWebhookRoutes)
-  .route("/", adminUserSecurityRoutes);
+  .route("/", adminUserSecurityRoutes)
+  .openapi(getBrandingRoute, async (c) => c.json(await getBranding(), 200))
+  .openapi(updateBrandingRoute, async (c) =>
+    c.json(await updateBranding(c.req.valid("json")), 200),
+  );
 
 export default admin;
