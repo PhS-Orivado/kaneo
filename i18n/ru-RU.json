@@ -163,6 +163,12 @@
 				"apply": "Применить ссылку",
 				"remove": "Удалить ссылку"
 			}
+		},
+		"boolean": {
+			"false": "False",
+			"notSet": "Not Set",
+			"true": "True",
+			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -943,7 +949,14 @@
 			"moveDialogTitle": "Переместить в другую рабочую область?",
 			"moveTargetLabel": "Рабочая область",
 			"moving": "Перемещение...",
-			"tasksTitle": "Задачи"
+			"tasksTitle": "Задачи",
+			"sprintLength": "Длина спринта по умолчанию",
+			"sprintLengthDescription": "Количество дней, которое по умолчанию занимает новый спринт.",
+			"sprintLengthError": "Не удалось сохранить длину спринта",
+			"sprintLengthSave": "Сохранить длину спринта",
+			"sprintLengthSaved": "Длина спринта сохранена",
+			"sprints": "Спринты",
+			"sprintsSubtitle": "Планируйте предстоящую работу итерациями фиксированной длины."
 		},
 		"projectIntegrations": {
 			"pageTitle": "Интеграции",
@@ -2224,7 +2237,19 @@
 				"tasks_few": "{{count, number}} tasks",
 				"tasks_many": "{{count, number}} tasks",
 				"tasks_one": "{{count, number}} task",
-				"tasks_other": "{{count, number}} tasks"
+				"tasks_other": "{{count, number}} tasks",
+				"attachments_few": "{{count, number}} attachments",
+				"attachments_many": "{{count, number}} attachments",
+				"attachments_one": "{{count, number}} attachment",
+				"attachments_other": "{{count, number}} attachments",
+				"sprints_few": "{{count, number}} sprints",
+				"sprints_many": "{{count, number}} sprints",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"users_few": "{{count, number}} users",
+				"users_many": "{{count, number}} users",
+				"users_one": "{{count, number}} user",
+				"users_other": "{{count, number}} users"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2326,10 +2351,18 @@
 				"commentsDescription": "Keeps each comment's original author and date.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
+				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
+				"sprintsLabel": "Import sprints",
+				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email.",
+				"usersCreateLabel": "Create their account",
+				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
+				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
+				"usersInviteLabel": "Send an invitation",
+				"usersLabel": "New users"
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2506,6 +2539,12 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
+			},
+			"stages": {
+				"reading": "Reading",
+				"sprints": "Sprints",
+				"tasks": "Issues",
+				"users": "Users"
 			}
 		},
 		"chatIntegrations": {
@@ -2572,7 +2611,8 @@
 			"tokenTitle": "Токен доступа",
 			"webhookSecret": "Секрет",
 			"webhookSection": "Вебхук",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Перетаскивайте, чтобы изменить порядок их отображения в задаче.",
@@ -2946,6 +2986,37 @@
 			"title": "Webhooks",
 			"url": "URL",
 			"save": "Save"
+		},
+		"adminBranding": {
+			"form": {
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerText": "Footer text",
+				"footerUrl": "Footer link URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"logoLightUrl": "Light-mode logo URL",
+				"privacyUrl": "Privacy policy URL",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving...",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"termsUrl": "Terms of service URL"
+			},
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"title": "Branding",
+			"toast": {
+				"saveError": "Branding could not be saved.",
+				"saved": "Branding updated."
+			}
 		}
 	},
 	"navigation": {
@@ -3149,6 +3220,37 @@
 			"then": "затем",
 			"or": "или",
 			"thenEllipsis": "затем…"
+		},
+		"keyboardShortcuts": {
+			"categories": {
+				"create": "Создание",
+				"general": "Основные",
+				"navigation": "Навигация",
+				"quickSelect": "Быстрый выбор (в выпадающих списках)",
+				"views": "Представления"
+			},
+			"footer": "Нажмите <kbd>Escape</kbd>, чтобы закрыть",
+			"items": {
+				"backlogView": "Переключиться на бэклог",
+				"boardView": "Переключиться на доску",
+				"calendarView": "Переключиться на календарь",
+				"closeModal": "Закрыть модальное окно/всплывающее меню",
+				"createProject": "Создать проект",
+				"createTask": "Создать задачу",
+				"createWorkspace": "Создать рабочую область",
+				"globalSearch": "Глобальный поиск",
+				"listView": "Переключиться на список",
+				"nextTask": "Следующая задача",
+				"openCommandPalette": "Открыть палитру команд",
+				"openTask": "Открыть выбранную задачу",
+				"prevTask": "Предыдущая задача",
+				"quickSelectNumber": "Выбрать вариант по номеру",
+				"showShortcuts": "Показать сочетания клавиш",
+				"toggleSidebar": "Переключить боковую панель"
+			},
+			"searchPlaceholder": "Поиск сочетаний...",
+			"subtitle": "Ускорьте работу с помощью сочетаний клавиш",
+			"title": "Сочетания клавиш"
 		}
 	},
 	"notifications": {
@@ -3375,7 +3477,8 @@
 			"list": "Список",
 			"backlog": "Бэклог",
 			"gantt": "Гант",
-			"heading": "Вид"
+			"heading": "Вид",
+			"sprints": "Sprints"
 		},
 		"common": {
 			"selectTask": "Выбрать задачу",
@@ -3693,7 +3796,8 @@
 				"priority": "Приоритет",
 				"assignee": "Исполнитель",
 				"dueDate": "Срок выполнения",
-				"labels": "Метки"
+				"labels": "Метки",
+				"sprint": "Спринт"
 			},
 			"operators": {
 				"isAnyOf": "любой из",
@@ -3707,7 +3811,8 @@
 			"selectedCount": "{{count}} выбрано",
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet"
+			"noValuesUsedYet": "No values used yet",
+			"allSprints": "Все спринты"
 		},
 		"gantt": {
 			"searchPlaceholder": "Поиск запланированных задач...",
@@ -3876,7 +3981,9 @@
 			"priorityPlaceholder": "Задать приоритет…",
 			"assigneePlaceholder": "Назначить…",
 			"labelPlaceholder": "Добавить метку…",
-			"columnPlaceholder": "Переместить в колонку…"
+			"columnPlaceholder": "Переместить в колонку…",
+			"moveToSprint": "Переместить в спринт",
+			"updateSprintError": "Не удалось переместить задачи в спринт"
 		},
 		"editor": {
 			"table": {
@@ -4021,6 +4128,66 @@
 			"startsOn": "Начало: {{date}}",
 			"beforeStart": "{{date}} раньше даты начала",
 			"afterDue": "{{date}} позже срока"
+		},
+		"sprints": {
+			"activeBadge": "Активен",
+			"backlog": "Бэклог",
+			"backlogDescription": "Tasks without a sprint",
+			"backlogEmpty": "No unscheduled tasks",
+			"carriedOver": "Перенесено",
+			"close": "Закрыть спринт",
+			"closeConfirm": "Закрыть спринт и перенести незавершённые задачи",
+			"closeSuccess": "Спринт закрыт, перенесено {{count}} незавершённых задач",
+			"closeSummary": "В спринте {{name}} {{total}} задач, из них завершено: {{completed}}.",
+			"closeTarget": "Перенести {{count}} незавершённых задач в",
+			"closeTitle": "Закрыть спринт",
+			"closedLocked": "Задача относится к закрытому спринту и остаётся в нём как история",
+			"completedCount": "Завершено: {{count}}",
+			"create": "Создать спринт",
+			"createDescription": "Запланируйте предстоящий спринт: название, цель и даты.",
+			"createTitle": "Создать спринт",
+			"daysOverdue": "Просрочено на {{remaining}} дн.",
+			"daysRemaining": "Осталось дней: {{remaining}}",
+			"edit": "Изменить спринт",
+			"editDescription": "Обновите название, цель и даты спринта.",
+			"editTitle": "Изменить спринт",
+			"endsToday": "Заканчивается сегодня",
+			"error": "Не удалось выполнить действие со спринтом",
+			"goal": "Цель спринта",
+			"goalPlaceholder": "Чего должна достичь команда в этом спринте?",
+			"history": "Закрытые спринты ({{count}})",
+			"moveDown": "Ниже",
+			"moveSuccess_few": "{{count}} tasks moved",
+			"moveSuccess_many": "{{count}} tasks moved",
+			"moveSuccess_one": "Task moved",
+			"moveSuccess_other": "{{count}} tasks moved",
+			"moveUp": "Выше",
+			"name": "Название спринта",
+			"namePlaceholder": "Спринт 1",
+			"noActive": "Нет активного спринта. Запустите предстоящий спринт, чтобы начать работу итерациями.",
+			"noTasks": "В этом спринте пока нет задач",
+			"openTaskMenu": "Open task menu",
+			"reportSummary": "Запланировано {{planned}}, завершено {{completed}}, перенесено {{carriedOver}}",
+			"save": "Сохранить изменения",
+			"scopeCurrent": "Current sprint",
+			"scopeTitle": "Sprint scope",
+			"selectTask": "Select task",
+			"start": "Запустить спринт",
+			"startSuccess": "Спринт {{name}} запущен",
+			"taskCounts": "Завершено {{completed}} из {{total}}",
+			"title": "Спринты",
+			"toggleTasks": "Показать задачи спринта",
+			"unscheduled": "Без сроков",
+			"upcoming": "Предстоящий спринт",
+			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
+			"viewEmptyTitle": "No sprints yet",
+			"viewHeading": "All sprints",
+			"viewPageTitle": "Sprints · {{name}}"
+		},
+		"type": {
+			"bug": "Баг",
+			"label": "Тип",
+			"task": "Задача"
 		}
 	},
 	"invitations": {
