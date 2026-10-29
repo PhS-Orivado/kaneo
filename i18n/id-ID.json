@@ -163,12 +163,6 @@
 				"apply": "Terapkan tautan",
 				"remove": "Hapus tautan"
 			}
-		},
-		"boolean": {
-			"false": "False",
-			"notSet": "Not Set",
-			"true": "True",
-			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -266,7 +260,8 @@
 			},
 			"invitation": {
 				"description": "Gunakan email yang menerima undangan. Anda akan langsung bergabung ke ruang kerja setelahnya."
-			}
+			},
+			"verifyEmail": "Check your email to confirm your address, then sign in."
 		},
 		"verifyOtp": {
 			"pageTitle": "Verifikasi Kode",
@@ -293,7 +288,8 @@
 			"sendFailed": "Gagal mengirim kode verifikasi"
 		},
 		"signInForm": {
-			"failedSignIn": "Gagal masuk"
+			"failedSignIn": "Gagal masuk",
+			"emailNotVerified": "Confirm your email address first. We sent you a new link."
 		},
 		"invitation": {
 			"pageTitleAccept": "Terima Undangan",
@@ -923,14 +919,7 @@
 			"moveDialogTitle": "Pindahkan ke ruang kerja lain?",
 			"moveTargetLabel": "Ruang kerja",
 			"moving": "Memindahkan...",
-			"tasksTitle": "Tugas",
-			"sprints": "Sprint",
-			"sprintsSubtitle": "Rencanakan pekerjaan mendatang dalam iterasi dengan durasi tetap.",
-			"sprintLength": "Durasi sprint bawaan",
-			"sprintLengthDescription": "Jumlah hari yang dicakup sprint baru secara bawaan.",
-			"sprintLengthSave": "Simpan durasi sprint",
-			"sprintLengthSaved": "Durasi sprint disimpan",
-			"sprintLengthError": "Tidak dapat menyimpan durasi sprint"
+			"tasksTitle": "Tugas"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrasi",
@@ -958,7 +947,8 @@
 			"statusPaused": "Dijeda",
 			"connect": "Hubungkan",
 			"configure": "Konfigurasi",
-			"done": "Selesai"
+			"done": "Selesai",
+			"turnedOffByAdmin": "Turned off by an administrator"
 		},
 		"projectVisibility": {
 			"pageTitle": "Visibilitas Proyek",
@@ -1602,7 +1592,11 @@
 				"deactivate": "Nonaktifkan",
 				"edit": "Edit",
 				"open": "Actions for {{name}}",
-				"reactivate": "Aktifkan kembali"
+				"reactivate": "Aktifkan kembali",
+				"markEmailVerified": "Mark email as verified",
+				"sendPasswordReset": "Send password reset link",
+				"sendVerification": "Resend verification email",
+				"security": "Sessions & API keys"
 			},
 			"clearSearch": "Clear search",
 			"columns": {
@@ -1610,7 +1604,8 @@
 				"joined": "Joined",
 				"role": "Peran",
 				"status": "Status",
-				"user": "User"
+				"user": "User",
+				"lastActive": "Last active"
 			},
 			"confirm": {
 				"deactivate": {
@@ -1628,7 +1623,19 @@
 					"description": "{{name}} will be able to sign in and access their workspaces again.",
 					"title": "Reactivate this account?"
 				},
-				"working": "Working…"
+				"working": "Working…",
+				"markEmailVerified": {
+					"action": "Mark as verified",
+					"title": "Mark this email as verified?"
+				},
+				"sendPasswordReset": {
+					"action": "Send link",
+					"title": "Send a password reset link?"
+				},
+				"sendVerification": {
+					"action": "Send email",
+					"title": "Resend the verification email?"
+				}
 			},
 			"directoryTitle": "Semua pengguna",
 			"edit": {
@@ -1668,9 +1675,78 @@
 				"deleted": "User deleted",
 				"reactivated": "User reactivated",
 				"updated": "User updated",
-				"updateError": "Failed to update user"
+				"updateError": "Failed to update user",
+				"avatarChanged": "Profile picture updated",
+				"avatarError": "Failed to update the profile picture",
+				"avatarRemoved": "Profile picture removed",
+				"createdForSso": "User created for single sign-on.",
+				"createdLinkFailed": "User created. Password email failed; retry “Send password reset link”.",
+				"createdLinkSent": "User created. Password link sent to {{email}}.",
+				"createdNoSmtp": "User created. Set SMTP_HOST to send a password link.",
+				"createError": "Failed to create user",
+				"emailError": "The email could not be sent",
+				"emailVerified": "Email marked as verified",
+				"passwordResetSent": "Password reset link sent to {{email}}",
+				"verificationSent": "Verification email sent to {{email}}"
 			},
-			"you": "Anda"
+			"you": "Anda",
+			"create": {
+				"creating": "Creating…",
+				"open": "Create user",
+				"submit": "Create user",
+				"title": "Create user",
+				"nameRequired": "Enter a name",
+				"hintNoEmail": "Set SMTP_HOST to send password links."
+			},
+			"details": {
+				"emailStatus": "Email",
+				"methods": {
+					"password": "Password"
+				},
+				"noSignInMethods": "No password or linked account yet",
+				"notVerified": "Not verified",
+				"removeAvatar": "Remove",
+				"signInMethods": "Sign-in methods",
+				"uploadAvatar": "Upload",
+				"verified": "Verified"
+			},
+			"filters": {
+				"anyEmail": "Any email",
+				"anyRole": "Any role",
+				"anyStatus": "Any status",
+				"clear": "Clear filters",
+				"email": "Email verification",
+				"label": "Filter users",
+				"role": "Role",
+				"status": "Status",
+				"unverified": "Unverified email",
+				"verified": "Verified email"
+			},
+			"never": "Never",
+			"unverified": "Unverified",
+			"security": {
+				"apiKeysEmpty": "No API keys.",
+				"apiKeysLoadError": "Couldn't load API keys.",
+				"apiKeysTitle": "API keys",
+				"disabled": "Disabled",
+				"lastUsed": "Last used {{time}}",
+				"neverUsed": "Never used",
+				"revokeAll": "Sign out everywhere",
+				"revokeAllConfirmDescription": "They'll be signed out everywhere right away.",
+				"revokeAllConfirmTitle": "Sign {{name}} out everywhere?",
+				"revokeAllSelfDescription": "Your other sessions will be signed out right away.",
+				"revokeKey": "Revoke",
+				"revokeKeyConfirmDescription": "Requests using this key will fail right away.",
+				"revokeKeyConfirmTitle": "Revoke {{name}}?",
+				"revokeKeyLabel": "Revoke {{name}}",
+				"revokingKey": "Revoking...",
+				"sessionsEmpty": "Not signed in anywhere.",
+				"sessionsTitle": "Sessions",
+				"title": "Sessions & API keys: {{name}}",
+				"toastKeyRevoked": "API key revoked.",
+				"toastKeyRevokeError": "Couldn't revoke the API key.",
+				"toastRevokedAll": "Sessions signed out."
+			}
 		},
 		"security": "Security",
 		"securityPage": {
@@ -1703,7 +1779,14 @@
 			"dialogDescription": "Minimal 8 karakter, berbeda dari kata sandi saat ini.",
 			"dialogTitle": "Ubah kata sandi",
 			"passwordHint": "Gunakan minimal 8 karakter yang tidak Anda gunakan di tempat lain.",
-			"passwordTitle": "Kata sandi"
+			"passwordTitle": "Kata sandi",
+			"sessions": {
+				"revokeOthers": "Sign out other sessions",
+				"revokeOthersConfirmDescription": "Your other sessions will be signed out right away.",
+				"revokeOthersConfirmTitle": "Sign out all other sessions?",
+				"title": "Active sessions",
+				"toastRevokedOthers": "Other sessions signed out."
+			}
 		},
 		"gitlabIntegration": {
 			"baseUrlLabel": "GitLab URL",
@@ -1983,7 +2066,22 @@
 					"description": "{{name}} becomes the only owner of {{workspace}}. Anyone who owns it now becomes an admin.",
 					"title": "Make {{name}} the owner?"
 				},
-				"working": "Working…"
+				"working": "Working…",
+				"archive": {
+					"action": "Archive workspace",
+					"description": "Members will lose access until it's restored.",
+					"title": "Archive {{name}}?"
+				},
+				"delete": {
+					"action": "Delete workspace",
+					"description": "Its projects, tasks, and files will be permanently deleted.",
+					"title": "Delete {{name}}?",
+					"typeName": "Type {{name}} to confirm"
+				},
+				"restore": {
+					"action": "Restore workspace",
+					"title": "Restore {{name}}?"
+				}
 			},
 			"directoryTitle": "Semua ruang kerja",
 			"emptyDescription": "Try another name or slug.",
@@ -2023,8 +2121,20 @@
 				"removeError": "Failed to remove member",
 				"roleError": "Failed to update role",
 				"roleUpdated": "Role updated",
-				"transferError": "Failed to transfer ownership"
-			}
+				"transferError": "Failed to transfer ownership",
+				"archived": "Workspace archived",
+				"archiveError": "Could not archive workspace",
+				"deleted": "Workspace deleted",
+				"deleteError": "Could not delete workspace",
+				"restored": "Workspace restored",
+				"restoreError": "Could not restore workspace"
+			},
+			"actions": {
+				"archive": "Archive workspace",
+				"open": "Actions for {{name}}",
+				"restore": "Restore workspace"
+			},
+			"archived": "Archived"
 		},
 		"workspaceImport": {
 			"back": {
@@ -2045,13 +2155,8 @@
 			"counts": {
 				"columns_other": "{{count, number}} columns",
 				"comments_other": "{{count, number}} comments",
-				"attachments_other": "{{count, number}} attachments",
 				"labels_other": "{{count, number}} labels",
-				"tasks_other": "{{count, number}} tasks",
-				"sprints_one": "{{count, number}} sprint",
-				"sprints_other": "{{count, number}} sprints",
-				"users_one": "{{count, number}} user",
-				"users_other": "{{count, number}} users"
+				"tasks_other": "{{count, number}} tasks"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2142,20 +2247,12 @@
 				"back": "Back",
 				"clear": "Clear",
 				"commentsDescription": "Keeps each comment's original author and date.",
-				"sprintsLabel": "Import sprints",
-				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
-				"usersLabel": "New users",
-				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
-				"usersInviteLabel": "Send an invitation",
-				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
-				"usersCreateLabel": "Create their account",
-				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email."
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2275,12 +2372,6 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
-			},
-			"stages": {
-				"reading": "Reading",
-				"sprints": "Sprints",
-				"users": "Users",
-				"tasks": "Issues"
 			}
 		},
 		"chatIntegrations": {
@@ -2347,8 +2438,7 @@
 			"tokenTitle": "Token akses",
 			"webhookSecret": "Rahasia",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL",
-			"addAnotherRepository": "Add another repository"
+			"webhookUrl": "URL"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Seret untuk mengubah urutan tampilannya di tugas.",
@@ -2362,36 +2452,345 @@
 		"shared": {
 			"autosave": "Perubahan disimpan otomatis"
 		},
-		"adminBranding": {
-			"title": "Branding",
-			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
-			"instanceBadge": "Instance",
-			"loadError": "Branding settings could not be loaded.",
-			"retry": "Retry",
-			"form": {
-				"appName": "Application name",
-				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
-				"logoLightUrl": "Light-mode logo URL",
-				"logoDarkUrl": "Dark-mode logo URL",
-				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
-				"accentColor": "Accent color",
-				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
-				"footerText": "Footer text",
-				"footerDescription": "Shown in the footer instead of the application name.",
-				"footerUrl": "Footer link URL",
-				"termsUrl": "Terms of service URL",
-				"privacyUrl": "Privacy policy URL",
-				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
-				"showPoweredBy": "Show \"Powered by Kaneo\"",
-				"showPoweredByDescription": "Displays a small attribution link in the footer.",
-				"reset": "Reset",
-				"save": "Save changes",
-				"saving": "Saving..."
+		"adminAuditLog": {
+			"actions": {
+				"sessionRevoked": "Revoked a session",
+				"sessionRevokedAll": "Revoked all sessions",
+				"userCreated": "Created user",
+				"userDeactivated": "Deactivated user",
+				"userDeleted": "Deleted user",
+				"userImpersonated": "Signed in as user",
+				"userPasswordSet": "Set user password",
+				"userReactivated": "Reactivated user",
+				"userRoleChanged": "Changed instance role",
+				"userUpdated": "Updated user details",
+				"workspaceMemberAdded": "Added workspace member",
+				"workspaceMemberRemoved": "Removed workspace member",
+				"workspaceMemberRoleChanged": "Changed workspace member role",
+				"workspaceOwnerTransferred": "Transferred workspace ownership",
+				"userAvatarChanged": "Changed profile picture",
+				"userAvatarRemoved": "Removed profile picture",
+				"userEmailVerified": "Marked email as verified",
+				"userPasswordResetSent": "Sent password reset link",
+				"userVerificationSent": "Sent verification email",
+				"apiKeyRevoked": "Revoked an API key",
+				"emailTestSent": "Sent test email",
+				"workspaceArchived": "Archived workspace",
+				"workspaceDeleted": "Deleted workspace",
+				"workspaceRestored": "Restored workspace",
+				"roleCreated": "Role created",
+				"roleDeleted": "Role deleted",
+				"roleUpdated": "Role updated",
+				"instanceSettingsUpdated": "Updated instance settings",
+				"webhookCreated": "Created webhook",
+				"webhookDeleted": "Deleted webhook",
+				"webhookSecretRotated": "Rotated webhook secret",
+				"webhookUpdated": "Updated webhook"
 			},
+			"categories": {
+				"all": "All actions",
+				"session": "Sessions",
+				"user": "Users",
+				"workspace": "Workspaces",
+				"apiKey": "API keys",
+				"email": "Email",
+				"role": "Roles",
+				"instance": "Instance settings",
+				"webhook": "Webhooks"
+			},
+			"categoryLabel": "Filter by category",
+			"clearFilter": "Show all actions",
+			"columns": {
+				"action": "Action",
+				"actor": "Administrator",
+				"target": "Target",
+				"time": "Time and IP"
+			},
+			"deletedActor": "Account deleted",
+			"details": {
+				"change": "{{from}} → {{to}}",
+				"fields": "Changed {{fields}}",
+				"memberChange": "{{member}}: {{from}} → {{to}}",
+				"memberWithRole": "{{member}} as {{role}}",
+				"noRole": "No role",
+				"reason": "Reason: {{reason}}",
+				"createdWithRole": "Role: {{role}}",
+				"sessionCount_other": "{{count}} sessions",
+				"workspaceContents": "{{members}} members, {{projects}} projects",
+				"permissionsChanged": "{{added}} permissions added, {{removed}} removed"
+			},
+			"directoryTitle": "Recorded actions",
+			"emptyTitle": "No actions recorded",
+			"fields": {
+				"email": "email",
+				"emailVerified": "email verification",
+				"image": "avatar",
+				"name": "name"
+			},
+			"loadError": "The audit log could not be loaded.",
+			"mobileSummary": "{{actor}} · {{target}} · {{time}}",
+			"next": "Next",
+			"pagination": "Page {{current}} of {{total}}",
+			"previous": "Previous",
+			"refreshing": "Refreshing audit log",
+			"retry": "Retry",
+			"targetTypes": {
+				"user": "User",
+				"workspace": "Workspace",
+				"role": "Role",
+				"instance": "Instance",
+				"webhook": "Webhook"
+			},
+			"title": "Audit log",
+			"unknownActor": "Unknown"
+		},
+		"sessions": {
+			"device": "{{browser}} on {{os}}",
+			"lastActive": "Active {{time}}",
+			"loadError": "Couldn't load sessions.",
+			"revoke": "Sign out",
+			"revokeConfirmDescription": "They'll be signed out right away.",
+			"revokeConfirmTitle": "Sign out {{device}}?",
+			"revokeLabel": "Sign out {{device}}",
+			"revoking": "Signing out...",
+			"signedIn": "Signed in {{date}}",
+			"thisDevice": "This device",
+			"toastRevoked": "Session signed out.",
+			"toastRevokeError": "Couldn't sign out the session.",
+			"unknownDevice": "Unknown device"
+		},
+		"adminSystem": {
+			"checkedAt": "Checked {{time}}",
+			"email": {
+				"down": "Can't connect to the mail server ({{code}})",
+				"notConfigured": "Set SMTP_HOST and SMTP_FROM to turn on email.",
+				"ok": "Connected to the mail server",
+				"send": "Send test email",
+				"sending": "Sending…",
+				"sendTest": "Test email",
+				"smtp": "SMTP",
+				"title": "Email"
+			},
+			"instance": {
+				"api": "API",
+				"apiDescription": "Up {{uptime}} · Node {{node}}",
+				"database": "Database",
+				"databaseDown": "Can't reach PostgreSQL ({{code}})",
+				"databaseVersion": "PostgreSQL {{version}}",
+				"latency": "{{ms}} ms",
+				"migrations_other": "{{count}} migrations applied",
+				"realtime": "Live updates",
+				"realtimeConnections_other": "{{count}} open connections on this instance",
+				"realtimeInMemory": "delivered in memory",
+				"realtimeNotStarted": "WebSockets haven't started",
+				"realtimeRedis": "shared with other instances through Redis",
+				"realtimeRedisDown": "Redis is down, so only people on this instance get live updates",
+				"redis": "Redis",
+				"redisDown": "Can't reach Redis ({{code}})",
+				"redisModes": {
+					"cluster": "Cluster",
+					"sentinel": "Sentinel",
+					"standalone": "Standalone"
+				},
+				"redisNotConfigured": "Set REDIS_URL to share live updates across API instances.",
+				"redisOk": "{{mode}}, reachable",
+				"storage": "File storage",
+				"storageDown": "Can't reach the bucket ({{code}})",
+				"storageIncomplete": "Some S3 settings are missing, so uploads are off.",
+				"storageNotConfigured": "Set S3_ENDPOINT and S3_BUCKET to turn on uploads.",
+				"storageOk": "Bucket reachable",
+				"storageWarning": "Can't check the bucket with these credentials ({{code}}).",
+				"title": "Instance",
+				"version": "Kaneo version",
+				"versionUnknown": "Unknown"
+			},
+			"integrations": {
+				"available": "Available",
+				"connectedProjects_other": "Connected in {{count}} projects",
+				"connectedUnknown": "Project count unavailable",
+				"instanceSetup": {
+					"down": "GitHub App unavailable",
+					"not_configured": "GitHub App not set up",
+					"ok": "GitHub App set up",
+					"warning": "Some GitHub App settings are missing"
+				},
+				"title": "Integrations"
+			},
+			"loadError": "System status could not be loaded.",
+			"refresh": "Refresh",
+			"refreshing": "Checking…",
+			"retry": "Retry",
+			"setupStatus": {
+				"down": "Down",
+				"not_configured": "Not configured",
+				"ok": "Configured",
+				"warning": "Incomplete"
+			},
+			"signIn": {
+				"emailOtpSignIn": "Email sign-in codes",
+				"guestAccess": "Guest access",
+				"off": "Off",
+				"on": "On",
+				"passwordRegistration": "Sign-up with a password",
+				"passwordSignIn": "Email and password sign-in",
+				"registration": "Registration",
+				"title": "Sign-in",
+				"workspaceCreation": "Workspace creation",
+				"customProvider": "OAuth or OpenID Connect"
+			},
+			"status": {
+				"down": "Down",
+				"not_configured": "Not configured",
+				"ok": "Operational",
+				"warning": "Warning"
+			},
+			"title": "System",
 			"toast": {
-				"saved": "Branding updated.",
-				"saveError": "Branding could not be saved."
+				"testEmailError": "The test email could not be sent.",
+				"testEmailSent": "Test email sent to {{to}}"
 			}
+		},
+		"adminOverview": {
+			"activeUsers": "Active (30 days)",
+			"archivedWorkspaces": "Archived",
+			"configurationWarnings": "Configuration warnings",
+			"disabledUsers": "Disabled users",
+			"loadError": "Could not load the overview.",
+			"noActions": "No administrative actions",
+			"noUsers": "No users",
+			"recentActions": "Recent administrative actions",
+			"recentUsers": "Recent users",
+			"services": "Services",
+			"title": "Overview",
+			"totalUsers": "Total users",
+			"viewAuditLog": "View audit log",
+			"viewSystem": "View system",
+			"viewUsers": "View users",
+			"warnings": {
+				"noSecondAdmin": "Only one administrator has access. Assign a second admin in User management.",
+				"redisUnreachable": "Redis is unavailable. Check the connection.",
+				"registrationWithoutEmail": "Registration is open without email. Configure SMTP or set DISABLE_REGISTRATION=true.",
+				"smtpNotConfigured": "Email is not configured. Set SMTP_HOST and SMTP_FROM.",
+				"smtpUnreachable": "Email is unavailable. Check SMTP settings.",
+				"storageIncomplete": "Storage setup is incomplete. Check S3 settings.",
+				"storageUnreachable": "Storage needs attention. Check S3 access."
+			},
+			"workspaces": "Workspaces"
+		},
+		"adminRoles": {
+			"actions": "Actions for {{name}}",
+			"allPermissions": "All permissions",
+			"builtIn": "Built-in",
+			"create": "New role",
+			"deleteTitle": "Delete {{name}}?",
+			"dialog": {
+				"create": "Create role",
+				"createTitle": "New role",
+				"editTitle": "Edit role",
+				"name": "Name",
+				"nameHint": "Use 2–32 lowercase letters, digits, or hyphens, starting with a letter.",
+				"save": "Save"
+			},
+			"edit": "Edit",
+			"groups": {
+				"instance": "Instance",
+				"users": "Users",
+				"workspaces": "Workspaces"
+			},
+			"listTitle": "All roles",
+			"loadError": "Roles could not be loaded.",
+			"noPermissions": "No permissions",
+			"permissionCount_other": "{{count}} permissions",
+			"permissions": {
+				"auditRead": "View the audit log",
+				"instanceSettings": "Change instance settings",
+				"systemRead": "View system status",
+				"usersApiKeys": "View and revoke API keys",
+				"usersCreate": "Create users",
+				"usersCredentials": "Send password reset and verification emails",
+				"usersDelete": "Delete users",
+				"usersDisable": "Deactivate and reactivate users",
+				"usersRead": "View users",
+				"usersSessions": "View and end sessions",
+				"usersUpdate": "Edit users and their roles",
+				"workspacesArchive": "Archive and restore workspaces",
+				"workspacesDelete": "Delete workspaces",
+				"workspacesManage": "Manage workspace members",
+				"workspacesRead": "View workspaces and members"
+			},
+			"title": "Roles",
+			"toast": {
+				"created": "Role created",
+				"deleted": "Role deleted",
+				"error": "The role could not be saved.",
+				"updated": "Role updated"
+			},
+			"userCount_other": "{{count}} users",
+			"viewUsers": "View users"
+		},
+		"adminSettings": {
+			"defaultRole": "Default role for new users",
+			"general": "General",
+			"instanceName": "Instance name",
+			"instanceUrl": "Instance URL",
+			"instanceUrlMissing": "Set KANEO_CLIENT_URL",
+			"integrations": "Integrations",
+			"loadError": "Couldn't load instance settings.",
+			"lockedByEnv": "Set by {{name}}",
+			"passwordRegistrationEnabled": "Email and password sign-up",
+			"registration": "Registration",
+			"registrationEnabled": "Open registration",
+			"requireEmailVerification": "Require email verification",
+			"requiresSmtp": "Requires SMTP",
+			"signInProviders": "Sign-in providers",
+			"title": "Settings",
+			"toast": {
+				"error": "Couldn't save settings",
+				"saved": "Settings saved"
+			},
+			"workspaceCreationRestricted": "Only administrators can create workspaces",
+			"workspaces": "Workspaces",
+			"save": "Save"
+		},
+		"adminWebhooks": {
+			"actions": "Actions for {{url}}",
+			"add": "Add webhook",
+			"attempts_other": "{{count}} attempts",
+			"categories": "Events",
+			"deleteTitle": "Delete webhook?",
+			"deliveries": "Recent deliveries",
+			"disabled": "Disabled",
+			"edit": "Edit webhook",
+			"empty": "No webhooks",
+			"enabled": "Enabled",
+			"errors": {
+				"destination": "Destination blocked",
+				"disabled": "Webhook disabled",
+				"http": "HTTP error",
+				"interrupted": "Delivery interrupted",
+				"network": "Connection failed",
+				"response": "Invalid response",
+				"signing": "Signing failed",
+				"timeout": "Timed out"
+			},
+			"failed": "Failed",
+			"httpStatus": "HTTP {{status}}",
+			"loadError": "Webhooks could not be loaded.",
+			"noDeliveries": "No deliveries",
+			"pending": "Pending",
+			"rotate": "Rotate secret",
+			"rotateTitle": "Rotate signing secret?",
+			"saveError": "The webhook could not be saved.",
+			"secretTitle": "Signing secret — save it now",
+			"sendTest": "Send test",
+			"setup": "Set NOTIFICATION_SECRET_ENCRYPTION_KEY to create webhooks.",
+			"signingSecret": "Signing secret",
+			"succeeded": "Delivered",
+			"testEvent": "Test event",
+			"testQueued": "Test event queued.",
+			"title": "Webhooks",
+			"url": "URL",
+			"save": "Save"
 		}
 	},
 	"navigation": {
@@ -2470,7 +2869,6 @@
 			"selectWorkspace": "Pilih ruang kerja"
 		},
 		"page": {
-			"projectsTitle": "Proyek",
 			"settingsTitle": "Pengaturan",
 			"backToWorkspace": "Kembali ke Ruang Kerja",
 			"settingsWorkspaceTab": "Ruang Kerja"
@@ -2593,37 +2991,6 @@
 			"then": "lalu",
 			"or": "atau",
 			"thenEllipsis": "lalu…"
-		},
-		"keyboardShortcuts": {
-			"title": "Pintasan Keyboard",
-			"subtitle": "Percepat alur kerja Anda dengan pintasan keyboard",
-			"searchPlaceholder": "Cari pintasan...",
-			"footer": "Tekan <kbd>Escape</kbd> untuk menutup",
-			"categories": {
-				"general": "Umum",
-				"create": "Buat",
-				"views": "Tampilan",
-				"navigation": "Navigasi",
-				"quickSelect": "Pilih Cepat (di popover)"
-			},
-			"items": {
-				"openCommandPalette": "Buka palet perintah",
-				"globalSearch": "Pencarian global",
-				"toggleSidebar": "Tampilkan/sembunyikan panel samping",
-				"showShortcuts": "Tampilkan pintasan keyboard",
-				"closeModal": "Tutup modal/popover",
-				"createTask": "Buat tugas",
-				"createProject": "Buat proyek",
-				"createWorkspace": "Buat ruang kerja",
-				"boardView": "Beralih ke tampilan papan",
-				"listView": "Beralih ke tampilan daftar",
-				"backlogView": "Beralih ke tampilan backlog",
-				"nextTask": "Tugas berikutnya",
-				"prevTask": "Tugas sebelumnya",
-				"openTask": "Buka tugas terpilih",
-				"quickSelectNumber": "Pilih opsi berdasarkan nomor",
-				"calendarView": "Beralih ke tampilan kalender"
-			}
 		}
 	},
 	"notifications": {
@@ -2838,8 +3205,7 @@
 			"list": "Daftar",
 			"backlog": "Backlog",
 			"gantt": "Gantt",
-			"heading": "Tampilan",
-			"sprints": "Sprints"
+			"heading": "Tampilan"
 		},
 		"common": {
 			"selectTask": "Pilih tugas",
@@ -3138,8 +3504,7 @@
 				"priority": "Prioritas",
 				"assignee": "Penanggung jawab",
 				"dueDate": "Tenggat",
-				"labels": "Label",
-				"sprint": "Sprint"
+				"labels": "Label"
 			},
 			"operators": {
 				"isAnyOf": "adalah salah satu dari",
@@ -3152,12 +3517,11 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet",
-			"allSprints": "Semua sprint"
+			"noValuesUsedYet": "No values used yet"
 		},
 		"gantt": {
 			"searchPlaceholder": "Cari tiket terjadwal...",
-			"pageTitle": "{{name}} – Gantt",
+			"pageTitle": "{{name}} / Gantt",
 			"title": "Linimasa Gantt",
 			"hideTasks": "Sembunyikan tugas",
 			"showTasks": "Tampilkan tugas",
@@ -3195,7 +3559,11 @@
 		"listView": {
 			"addTask": "Tambah tugas",
 			"archiveAllTooltip": "Arsipkan semua tugas yang selesai",
-			"noTasks": "Tidak ada tugas"
+			"noTasks": "Tidak ada tugas",
+			"collapseSubtasks": "Sembunyikan subtugas {{title}}",
+			"expandSubtasks": "Tampilkan subtugas {{title}}",
+			"subtaskLevel": "Subtugas, tingkat {{level}}",
+			"subtasksLoadError": "Subtugas tidak dapat dimuat, jadi tugas ditampilkan tanpa hierarkinya."
 		},
 		"kanban": {
 			"addTask": "Tambah tugas",
@@ -3273,9 +3641,7 @@
 			"priorityPlaceholder": "Atur prioritas…",
 			"assigneePlaceholder": "Tugaskan ke…",
 			"labelPlaceholder": "Tambah label…",
-			"columnPlaceholder": "Pindahkan ke kolom…",
-			"moveToSprint": "Pindahkan ke sprint",
-			"updateSprintError": "Gagal memindahkan tugas ke sprint"
+			"columnPlaceholder": "Pindahkan ke kolom…"
 		},
 		"editor": {
 			"table": {
@@ -3294,7 +3660,7 @@
 			"nextMonth": "Bulan berikutnya",
 			"noTasks": "Tidak ada tugas terjadwal",
 			"noTasksSubtitle": "Tambahkan tanggal mulai, tenggat, atau keduanya ke tugas untuk menampilkannya di kalender.",
-			"pageTitle": "{{name}} – Kalender",
+			"pageTitle": "{{name}} / Kalender",
 			"previousMonth": "Bulan sebelumnya",
 			"taskAriaLabel": "{{title}}, {{range}}: buka tugas",
 			"title": "Kalender",
@@ -3387,68 +3753,11 @@
 			"startsOn": "Mulai {{date}}",
 			"beforeStart": "{{date}} sebelum tanggal mulai",
 			"afterDue": "{{date}} setelah tenggat"
-		},
-		"type": {
-			"label": "Tipe",
-			"task": "Tugas",
-			"bug": "Bug"
-		},
-		"sprints": {
-			"title": "Sprint",
-			"create": "Buat sprint",
-			"createTitle": "Buat sprint",
-			"createDescription": "Rencanakan sprint mendatang dengan nama, tujuan, dan tanggal.",
-			"editTitle": "Edit sprint",
-			"editDescription": "Perbarui nama, tujuan, dan tanggal sprint.",
-			"edit": "Edit sprint",
-			"name": "Nama sprint",
-			"namePlaceholder": "Sprint 1",
-			"goal": "Tujuan sprint",
-			"goalPlaceholder": "Apa yang ingin dicapai sprint ini?",
-			"save": "Simpan perubahan",
-			"start": "Mulai sprint",
-			"startSuccess": "Sprint {{name}} dimulai",
-			"close": "Tutup sprint",
-			"closeTitle": "Tutup sprint",
-			"closeSummary": "{{name}} memiliki {{total}} tugas, {{completed}} di antaranya selesai.",
-			"closeTarget": "Pindahkan {{count}} tugas yang belum selesai ke",
-			"closeConfirm": "Tutup sprint dan pindahkan tugas yang belum selesai",
-			"closeSuccess": "Sprint ditutup, {{count}} tugas yang belum selesai dipindahkan",
-			"backlog": "Backlog",
-			"activeBadge": "Aktif",
-			"noActive": "Tidak ada sprint yang aktif. Mulai sprint mendatang untuk beriterasi.",
-			"upcoming": "Sprint mendatang",
-			"unscheduled": "Belum dijadwalkan",
-			"taskCounts": "{{completed}} dari {{total}} selesai",
-			"history": "Sprint yang ditutup ({{count}})",
-			"completedCount": "{{count}} selesai",
-			"moveUp": "Naikkan",
-			"moveDown": "Turunkan",
-			"closedLocked": "Tugas ini bagian dari sprint yang ditutup dan tetap di sana sebagai riwayat",
-			"error": "Tindakan sprint gagal",
-			"daysRemaining": "{{remaining}} hari tersisa",
-			"endsToday": "Berakhir hari ini",
-			"daysOverdue": "Terlambat {{remaining}} hari",
-			"noTasks": "Belum ada tugas dalam sprint ini",
-			"toggleTasks": "Tampilkan tugas sprint",
-			"reportSummary": "Direncanakan {{planned}}, selesai {{completed}}, dipindahkan {{carriedOver}}",
-			"carriedOver": "Dipindahkan",
-			"viewPageTitle": "Sprints · {{name}}",
-			"viewHeading": "All sprints",
-			"viewEmptyTitle": "No sprints yet",
-			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
-			"backlogDescription": "Tasks without a sprint",
-			"backlogEmpty": "No unscheduled tasks",
-			"moveSuccess_other": "{{count}} tasks moved",
-			"openTaskMenu": "Open task menu",
-			"scopeCurrent": "Current sprint",
-			"scopeTitle": "Sprint scope",
-			"selectTask": "Select task"
 		}
 	},
 	"invitations": {
 		"email": {
-			"subject": "{{inviterName}} mengundang Anda bergabung ke {{workspaceName}} di Kaneo",
+			"subject": "{{inviterName}} mengundang Anda bergabung ke {{workspaceName}} di {{instanceName}}",
 			"preview": "Anda diundang ke {{workspaceName}} di Kaneo",
 			"title": "Bergabung ke {{workspaceName}}",
 			"subtitle": "{{inviterName}} ({{inviterEmail}}) mengundang Anda untuk berkolaborasi di Kaneo.",
@@ -3595,6 +3904,12 @@
 			},
 			"empty": "Nothing assigned to you",
 			"loadError": "Your tasks couldn't be loaded."
+		},
+		"archived": {
+			"description": "Contact an administrator to restore access.",
+			"manage": "Manage workspaces",
+			"otherWorkspaces": "Go to workspaces",
+			"title": "Workspace archived"
 		}
 	},
 	"team": {
@@ -3767,13 +4082,13 @@
 		},
 		"hero": {
 			"cloudCta": "Try Kaneo Cloud",
-			"selfHostCta": "Self-host Kaneo",
 			"trialNote": "14-day cloud trial. No credit card required.",
 			"github": "GitHub",
 			"productHunt": "Product Hunt",
 			"title": "Project management",
 			"titleAccent": "that doesn't become the project.",
-			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or let Kaneo Cloud handle the hosting."
+			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or let Kaneo Cloud handle the hosting.",
+			"pricingCta": "See pricing"
 		},
 		"navigation": {
 			"product": "Product",
@@ -3863,10 +4178,6 @@
 			"eyebrow": "Make it your own",
 			"title": "A clear path from trying it to using it.",
 			"description": "Set up your server, connect your tools, or compare Kaneo with your current tracker.",
-			"docker": {
-				"title": "Self-host with Docker",
-				"description": "Installation, backups, and updates for a setup you control."
-			},
 			"sso": {
 				"title": "Bring your own identity provider",
 				"description": "Configure OIDC single sign-on in the free self-hosted build."
@@ -3878,6 +4189,10 @@
 			"linear": {
 				"title": "Compare Kaneo and Linear",
 				"description": "See the differences in hosting, licensing, and workflow."
+			},
+			"startups": {
+				"description": "What a startup needs from a tracker, and what Kaneo Cloud costs as you hire.",
+				"title": "Project management for startups"
 			}
 		},
 		"product": {
@@ -4006,6 +4321,15 @@
 			"signUp": {
 				"name": "Nama",
 				"passwordHint": "Minimal 8 karakter"
+			},
+			"unlock": {
+				"buy": "Unlock for {{price}}",
+				"buyNoPrice": "Unlock",
+				"message": "Signing in to Kaneo Cloud is always included. Connecting the app to a self-hosted server is a one-time purchase that supports Kaneo's development.",
+				"nothingToRestore": "No earlier purchase was found for this store account.",
+				"restore": "Restore purchase",
+				"title": "Connect your own server",
+				"unavailable": "Purchases aren't available right now. Try again later."
 			}
 		},
 		"invitations": {
