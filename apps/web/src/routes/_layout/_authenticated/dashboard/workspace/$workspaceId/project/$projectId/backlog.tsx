@@ -175,7 +175,11 @@ function RouteComponent() {
       }
     >
       <PageTitle
-        title={t("tasks:backlog.pageTitle", { name: project?.name })}
+        title={
+          project
+            ? t("tasks:backlog.pageTitle", { name: project.name })
+            : undefined
+        }
       />
       <div className="relative flex flex-col h-full min-h-0 overflow-hidden">
         <div className="flex flex-1 flex-col overflow-hidden bg-card h-full">

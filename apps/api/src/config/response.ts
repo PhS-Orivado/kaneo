@@ -45,10 +45,17 @@ export const brandingSchema = z
 export const configSchema = z
   .object({
     isCloud: z.boolean(),
+    instanceName: z.string().openapi({
+      description: "Name shown in page titles and emails. Defaults to Kaneo.",
+    }),
     disableRegistration: z.boolean(),
     disablePasswordRegistration: z.boolean(),
     disableEmailOtpSignIn: z.boolean(),
     disableWorkspaceCreation: z.boolean(),
+    disabledIntegrations: z.array(z.string()).openapi({
+      description:
+        "Integration provider types an administrator turned off, such as `slack`.",
+    }),
     isDemoMode: z.boolean(),
     hasSmtp: z.boolean(),
     hasImageUploads: z.boolean().openapi({
