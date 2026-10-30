@@ -1215,7 +1215,9 @@
 			"missingOne": "Il en manque un ?",
 			"searching": "Recherche…",
 			"updated": "Mis à jour {{time}}",
-			"useRepository": "Utiliser ce dépôt"
+			"useRepository": "Utiliser ce dépôt",
+			"useSelected": "Utiliser la sélection",
+			"selectedCount": "{{count}} sélectionnés"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Exporter les tâches",
@@ -2382,7 +2384,9 @@
 			"chooseProjectTitle": "Choisissez un projet",
 			"chooseRepositoryTitle": "Choisissez un dépôt",
 			"connectProject": "Connecter le projet",
+			"connectProjects": "Connecter {{count}} projets",
 			"connectRepository": "Connecter le dépôt",
+			"connectRepositories": "Connecter {{count}} dépôts",
 			"copied": "Copié",
 			"copyFailed": "Impossible de copier dans le presse-papiers.",
 			"copySecret": "Copier le secret",
@@ -2407,6 +2411,7 @@
 			"repositorySection": "Dépôt",
 			"retry": "Réessayer",
 			"saveToken": "Enregistrer le jeton",
+			"selectedRepositories": "Dépôts sélectionnés",
 			"showSecret": "Afficher le secret",
 			"signInDescription": "Utilisez un jeton qui peut lire le projet et ses issues.",
 			"signInTitle": "Connectez-vous à votre instance",
