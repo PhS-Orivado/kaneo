@@ -17,7 +17,7 @@ type GithubRepositoryResultsProps = {
   hasNextPage: boolean;
   fetchingMore: boolean;
   appName: string | null | undefined;
-  selected: string | null;
+  selectedKeys: Set<string>;
   onSelect: (repository: GithubRepository) => void;
   onConfirm: (repository: GithubRepository) => void;
   onRetry: () => void;
@@ -33,7 +33,7 @@ export function GithubRepositoryResults({
   hasNextPage,
   fetchingMore,
   appName,
-  selected,
+  selectedKeys,
   onSelect,
   onConfirm,
   onRetry,
@@ -77,7 +77,7 @@ export function GithubRepositoryResults({
               name={repository.full_name}
               isPrivate={repository.private}
               meta={<GithubRepositoryMeta repository={repository} />}
-              selected={selected === repository.full_name}
+              selected={selectedKeys.has(repository.full_name)}
               onSelect={() => onSelect(repository)}
               onConfirm={() => onConfirm(repository)}
             />

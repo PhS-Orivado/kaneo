@@ -16,7 +16,7 @@ type GiteaRepositoryPickerProps = {
   open: boolean;
   projectId: string;
   onOpenChange: (open: boolean) => void;
-  onSelectRepository: (repository: { owner: string; name: string }) => void;
+  onSelectRepositories: (repositories: { owner: string; name: string }[]) => void;
   selectedRepository?: string;
   baseUrl: string;
   accessToken: string;
@@ -26,14 +26,14 @@ export function GiteaRepositoryPicker({
   open,
   projectId,
   onOpenChange,
-  onSelectRepository,
+  onSelectRepositories,
   selectedRepository,
   baseUrl,
   accessToken,
 }: GiteaRepositoryPickerProps) {
   const { t } = useTranslation();
   const [term, setTerm] = useState("");
-  const [selected, setSelected] = useState<GiteaRepository | null>(null);
+  const [selected, setSelected] = useState<GiteaRepository[]>([]);
   const { data: session } = authClient.useSession();
   const credentials = useMemo(
     () => ({ accessToken, cacheId: crypto.randomUUID() }),
@@ -69,28 +69,46 @@ export function GiteaRepositoryPicker({
     term,
     (repository) => repository.full_name,
   );
-  const chosen =
-    selected ??
-    data?.repositories.find(
-      (repository) => repository.full_name === selectedRepository,
-    ) ??
-    null;
+  // Keep the repository already typed into the setup panel usable without a
+  // click, so confirming a single repository behaves exactly as before.
+  const implicit =
+    selected.length === 0 && selectedRepository
+      ? data?.repositories.find(
+          (repository) => repository.full_name === selectedRepository,
+        ) ?? null
+      : null;
+  const effective = selected.length > 0 ? selected : implicit ? [implicit] : [];
+  const effectiveKeys = new Set(effective.map((repository) => repository.full_name));
 
   const changeOpen = (next: boolean) => {
     if (!next) {
       setTerm("");
-      setSelected(null);
+      setSelected([]);
     }
     onOpenChange(next);
   };
 
-  const use = (repository: GiteaRepository | null) => {
-    if (!repository) return;
-    onSelectRepository({
-      owner: repository.owner.login,
-      name: repository.name,
-    });
+  const toggle = (repository: GiteaRepository) => {
+    setSelected((current) =>
+      current.some((item) => item.full_name === repository.full_name)
+        ? current.filter((item) => item.full_name !== repository.full_name)
+        : [...current, repository],
+    );
+  };
+
+  const use = (list: GiteaRepository[]) => {
+    if (list.length === 0) return;
+    onSelectRepositories(
+      list.map((repository) => ({
+        owner: repository.owner.login,
+        name: repository.name,
+      })),
+    );
     changeOpen(false);
+  };
+
+  const useRepository = (repository: GiteaRepository) => {
+    use(effectiveKeys.has(repository.full_name) ? effective : [...effective, repository]);
   };
 
   return (
@@ -106,9 +124,20 @@ export function GiteaRepositoryPicker({
           onChange={setTerm}
         />
       }
-      confirmLabel={t("settings:repositoryBrowser.useRepository")}
-      confirmDisabled={!chosen || !canFetch}
-      onConfirm={() => use(chosen)}
+      footerStart={
+        effective.length > 0
+          ? t("settings:repositoryBrowser.selectedCount", {
+              count: effective.length,
+            })
+          : undefined
+      }
+      confirmLabel={
+        effective.length > 1
+          ? t("settings:repositoryBrowser.useSelected")
+          : t("settings:repositoryBrowser.useRepository")
+      }
+      confirmDisabled={effective.length === 0 || !canFetch}
+      onConfirm={() => use(effective)}
     >
       <GiteaRepositoryResults
         canFetch={canFetch}
@@ -117,9 +146,9 @@ export function GiteaRepositoryPicker({
         loaded={canFetch && Boolean(data)}
         repositories={repositories}
         searching={term.trim() !== ""}
-        selected={chosen?.full_name ?? null}
-        onSelect={setSelected}
-        onConfirm={use}
+        selectedKeys={effectiveKeys}
+        onSelect={toggle}
+        onConfirm={useRepository}
         onRetry={() => void refetch()}
       />
     </RepositoryPickerDialog>

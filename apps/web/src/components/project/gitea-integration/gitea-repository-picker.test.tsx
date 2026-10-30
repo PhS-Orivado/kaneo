@@ -69,7 +69,7 @@ function show() {
         baseUrl="https://gitea.example"
         accessToken={accessToken}
         onOpenChange={vi.fn()}
-        onSelectRepository={vi.fn()}
+        onSelectRepositories={vi.fn()}
       />
     </QueryClientProvider>
   );
@@ -153,7 +153,7 @@ describe("Gitea repository credential isolation", () => {
           baseUrl="https://gitea.example"
           accessToken="token"
           onOpenChange={vi.fn()}
-          onSelectRepository={selected}
+          onSelectRepositories={selected}
         />
       </QueryClientProvider>,
     );
@@ -171,6 +171,45 @@ describe("Gitea repository credential isolation", () => {
         name: "settings:repositoryBrowser.useRepository",
       }),
     );
-    expect(selected).toHaveBeenCalledWith({ owner: "owner", name: "website" });
+    expect(selected).toHaveBeenCalledWith([{ owner: "owner", name: "website" }]);
+  });
+
+  it("collects several repositories and hands them over together", async () => {
+    m.list.mockResolvedValueOnce({
+      repositories: [
+        { ...result("alpha").repositories[0], id: 1 },
+        { ...result("beta").repositories[0], id: 2 },
+        { ...result("gamma").repositories[0], id: 3 },
+      ],
+    });
+    const client = new QueryClient({
+      defaultOptions: { queries: { retry: false } },
+    });
+    clients.push(client);
+    const selected = vi.fn();
+    render(
+      <QueryClientProvider client={client}>
+        <GiteaRepositoryPicker
+          open
+          projectId="project"
+          baseUrl="https://gitea.example"
+          accessToken="token"
+          onOpenChange={vi.fn()}
+          onSelectRepositories={selected}
+        />
+      </QueryClientProvider>,
+    );
+    await screen.findByText("owner/alpha");
+    fireEvent.click(screen.getByRole("button", { name: /owner\/alpha/ }));
+    fireEvent.click(screen.getByRole("button", { name: /owner\/gamma/ }));
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "settings:repositoryBrowser.useSelected",
+      }),
+    );
+    expect(selected).toHaveBeenCalledWith([
+      { owner: "owner", name: "alpha" },
+      { owner: "owner", name: "gamma" },
+    ]);
   });
 });

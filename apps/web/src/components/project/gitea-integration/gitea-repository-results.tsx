@@ -14,7 +14,7 @@ type GiteaRepositoryResultsProps = {
   loaded: boolean;
   repositories: GiteaRepository[];
   searching: boolean;
-  selected: string | null;
+  selectedKeys: Set<string>;
   onSelect: (repository: GiteaRepository) => void;
   onConfirm: (repository: GiteaRepository) => void;
   onRetry: () => void;
@@ -27,7 +27,7 @@ export function GiteaRepositoryResults({
   loaded,
   repositories,
   searching,
-  selected,
+  selectedKeys,
   onSelect,
   onConfirm,
   onRetry,
@@ -82,7 +82,7 @@ export function GiteaRepositoryResults({
           key={repository.id}
           name={repository.full_name}
           isPrivate={repository.private}
-          selected={selected === repository.full_name}
+          selected={selectedKeys.has(repository.full_name)}
           onSelect={() => onSelect(repository)}
           onConfirm={() => onConfirm(repository)}
         />

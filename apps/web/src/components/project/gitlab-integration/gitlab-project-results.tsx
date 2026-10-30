@@ -14,7 +14,7 @@ type GitlabProjectResultsProps = {
   loaded: boolean;
   projects: GitlabProject[];
   searching: boolean;
-  selected: string | null;
+  selectedKeys: Set<string>;
   onSelect: (project: GitlabProject) => void;
   onConfirm: (project: GitlabProject) => void;
   onRetry: () => void;
@@ -27,7 +27,7 @@ export function GitlabProjectResults({
   loaded,
   projects,
   searching,
-  selected,
+  selectedKeys,
   onSelect,
   onConfirm,
   onRetry,
@@ -83,7 +83,7 @@ export function GitlabProjectResults({
           name={project.path_with_namespace}
           isPrivate={project.visibility !== "public"}
           meta={project.name_with_namespace}
-          selected={selected === project.path_with_namespace}
+          selected={selectedKeys.has(project.path_with_namespace)}
           onSelect={() => onSelect(project)}
           onConfirm={() => onConfirm(project)}
         />

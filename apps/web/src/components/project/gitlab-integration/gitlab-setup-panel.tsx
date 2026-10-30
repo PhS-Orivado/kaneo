@@ -4,6 +4,7 @@ import { AccessVerificationLine } from "@/components/project/code-hosting/access
 import { isAccessVerified } from "@/components/project/code-hosting/access-verification-tone";
 import { isValidUrl } from "@/components/project/code-hosting/is-valid-url";
 import { RepositoryChoiceStep } from "@/components/project/code-hosting/repository-choice-step";
+import { SelectedRepositoriesList } from "@/components/project/code-hosting/selected-repositories-list";
 import {
   GITLAB_CLOUD_URL,
   type GitlabTokenType,
@@ -24,15 +25,14 @@ type GitlabSetupPanelProps = {
   onConnected?: () => void;
 };
 
-export function GitlabSetupPanel({
-  projectId,
-  onConnected,
-}: GitlabSetupPanelProps) {
+export function GitlabSetupPanel({ projectId, onConnected }: GitlabSetupPanelProps) {
   const { t } = useTranslation();
   const [baseUrl, setBaseUrl] = useState(GITLAB_CLOUD_URL);
   const [token, setToken] = useState("");
   const [tokenType, setTokenType] = useState<GitlabTokenType>("private");
   const [path, setPath] = useState("");
+  const [selection, setSelection] = useState<string[]>([]);
+  const [connecting, setConnecting] = useState(false);
   const [touched, setTouched] = useState({ baseUrl: false, path: false });
   const [browsing, setBrowsing] = useState(false);
   const { save, saving } = useSaveGitlabIntegration(projectId);
@@ -54,6 +54,9 @@ export function GitlabSetupPanel({
   const verification = useGitlabVerification(projectId, access);
   const verified = isAccessVerified(verification.result);
   const blocked = verification.result !== undefined && !verified;
+  // Projects picked in the browser connect together with the same
+  // credentials; a typed path stays the single-project flow.
+  const targets = selection.length > 0 ? selection : projectPath ? [projectPath] : [];
 
   const baseUrlError = !touched.baseUrl
     ? null
@@ -63,6 +66,43 @@ export function GitlabSetupPanel({
         ? null
         : t("settings:gitlabIntegration.validation.baseUrlInvalid");
   const pathInvalid = touched.path && path.trim() !== "" && !pathValid;
+
+  const removeTarget = (target: string) => {
+    const remaining = selection.filter((item) => item !== target);
+    setSelection(remaining);
+    if (path === target) setPath(remaining[0] ?? "");
+  };
+
+  const connect = async () => {
+    if (targets.length === 0) return;
+    setConnecting(true);
+    // One integration per project: each gets its own webhook and settings.
+    const connected: string[] = [];
+    for (const [index, target] of targets.entries()) {
+      const targetPath = normalizeProjectPath(target);
+      if (!isValidProjectPath(targetPath)) continue;
+      const ok = await save(
+        {
+          baseUrl: trimmedUrl,
+          accessToken: trimmedToken,
+          tokenType,
+          projectPath: targetPath,
+        },
+        index === 0 ? verified : false,
+      );
+      if (ok) connected.push(target);
+    }
+    setConnecting(false);
+    if (connected.length === 0) return;
+    const remaining = selection.filter((item) => !connected.includes(item));
+    if (remaining.length === 0) {
+      setSelection([]);
+      onConnected?.();
+    } else {
+      setSelection(remaining);
+      if (connected.includes(path)) setPath(remaining[0]);
+    }
+  };
 
   return (
     <>
@@ -94,7 +134,7 @@ export function GitlabSetupPanel({
                 ? t("settings:gitlabIntegration.validation.pathInvalid")
                 : null
             }
-            disabled={saving}
+            disabled={saving || connecting}
             browseDisabled={!trimmedUrl || !trimmedToken}
             status={
               <AccessVerificationLine
@@ -104,7 +144,19 @@ export function GitlabSetupPanel({
                 )}
               />
             }
-            onChange={setPath}
+            extra={
+              targets.length > 1 ? (
+                <SelectedRepositoriesList
+                  repositories={targets}
+                  disabled={saving || connecting}
+                  onRemove={removeTarget}
+                />
+              ) : null
+            }
+            onChange={(next) => {
+              setSelection([]);
+              setPath(next);
+            }}
             onBlur={() => setTouched((current) => ({ ...current, path: true }))}
             onBrowse={() => setBrowsing(true)}
           />
@@ -112,16 +164,15 @@ export function GitlabSetupPanel({
         <IntegrationPanelFooter>
           <Button
             type="button"
-            loading={saving}
+            loading={saving || connecting}
             disabled={!access || blocked}
-            onClick={() => {
-              if (access)
-                void save(access, verified).then((ok) => {
-                  if (ok) onConnected?.();
-                });
-            }}
+            onClick={() => void connect()}
           >
-            {t("settings:codeHosting.connectProject")}
+            {targets.length > 1
+              ? t("settings:codeHosting.connectProjects", {
+                  count: targets.length,
+                })
+              : t("settings:codeHosting.connectProject")}
           </Button>
         </IntegrationPanelFooter>
       </IntegrationPanel>
@@ -129,8 +180,9 @@ export function GitlabSetupPanel({
         open={browsing}
         projectId={projectId}
         onOpenChange={setBrowsing}
-        onSelectProject={(selected) => {
-          setPath(selected);
+        onSelectProjects={(paths) => {
+          setSelection(paths);
+          setPath(paths[0] ?? "");
           setTouched((current) => ({ ...current, path: true }));
         }}
         selectedProjectPath={projectPath || undefined}

@@ -88,7 +88,7 @@ function show(selectedRepository?: string) {
         open
         projectId="project"
         onOpenChange={onOpenChange}
-        onSelectRepository={selected}
+        onSelectRepositories={selected}
         selectedRepository={selectedRepository}
       />
     </QueryClientProvider>
@@ -146,7 +146,29 @@ describe("GitHub repository picker", () => {
         name: "settings:repositoryBrowser.useRepository",
       }),
     );
-    expect(selected).toHaveBeenCalledWith({ owner: "owner", name: "second" });
+    expect(selected).toHaveBeenCalledWith([{ owner: "owner", name: "second" }]);
+    expect(onOpenChange).toHaveBeenCalledWith(false);
+  });
+
+  it("collects several repositories and hands them over together", async () => {
+    m.list.mockResolvedValueOnce(result(["alpha", "beta", "gamma"], null));
+    const { selected, onOpenChange } = show();
+    await screen.findByRole("button", { name: /owner\/alpha/ });
+    fireEvent.click(screen.getByRole("button", { name: /owner\/alpha/ }));
+    fireEvent.click(screen.getByRole("button", { name: /owner\/gamma/ }));
+    const alpha = screen.getByRole("button", { name: /owner\/alpha/ });
+    const beta = screen.getByRole("button", { name: /owner\/beta/ });
+    expect(alpha).toHaveAttribute("aria-pressed", "true");
+    expect(beta).toHaveAttribute("aria-pressed", "false");
+    fireEvent.click(
+      screen.getByRole("button", {
+        name: "settings:repositoryBrowser.useSelected",
+      }),
+    );
+    expect(selected).toHaveBeenCalledWith([
+      { owner: "owner", name: "alpha" },
+      { owner: "owner", name: "gamma" },
+    ]);
     expect(onOpenChange).toHaveBeenCalledWith(false);
   });
 
