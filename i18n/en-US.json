@@ -1569,7 +1569,11 @@
 				"labels_one": "{{count, number}} label",
 				"labels_other": "{{count, number}} labels",
 				"comments_one": "{{count, number}} comment",
-				"comments_other": "{{count, number}} comments"
+				"comments_other": "{{count, number}} comments",
+				"sprints_one": "{{count, number}} sprint",
+				"sprints_other": "{{count, number}} sprints",
+				"attachments_one": "{{count, number}} attachment",
+				"attachments_other": "{{count, number}} attachments"
 			},
 			"run": {
 				"importingTitle": "Importing from {{source}}",
