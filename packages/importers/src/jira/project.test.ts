@@ -37,7 +37,19 @@ function issue(
 }
 
 const ISSUES = [
-  issue("10", DONE, { attachment: [{}], parent: { id: "11" } }),
+  issue("10", DONE, {
+    attachment: [
+      {
+        id: "10000",
+        filename: "shot.png",
+        mimeType: "image/png",
+        size: 1234,
+        content:
+          "https://acme.atlassian.net/rest/api/3/attachment/content/10000",
+      },
+    ],
+    parent: { id: "11" },
+  }),
   issue("11", DOING, { labels: ["ux"] }),
   issue("12", BACKLOG),
   issue("13", TODO, {
@@ -77,6 +89,26 @@ function project(
         ],
       ],
     ]),
+    sprints: [
+      {
+        key: "1",
+        name: "Sprint 1",
+        state: "closed",
+        taskKeys: ["10", "11"],
+      },
+      {
+        key: "2",
+        name: "Sprint 2",
+        state: "active",
+        taskKeys: ["13"],
+      },
+    ],
+    taskSprintKeys: new Map([
+      ["10", "1"],
+      ["11", "1"],
+      ["13", "2"],
+    ]),
+    sprintsUnavailable: false,
     ...overrides,
   });
 }
@@ -112,8 +144,29 @@ describe("mapJiraProject", () => {
       { sourceKey: "11", targetKey: "10", type: "subtask" },
       { sourceKey: "13", targetKey: "11", type: "blocks" },
     ]);
+    expect(result.sprints).toEqual([
+      { key: "1", name: "Sprint 1", state: "closed", taskKeys: ["10", "11"] },
+      { key: "2", name: "Sprint 2", state: "active", taskKeys: ["13"] },
+    ]);
+    expect(
+      result.tasks.map((task) => [task.key, task.sprintKey]),
+    ).toEqual([
+      ["12", null],
+      ["13", "2"],
+      ["11", "1"],
+      ["14", null],
+      ["10", "1"],
+    ]);
+    expect(result.tasks.find((task) => task.key === "10")?.attachments).toEqual([
+      {
+        id: "10000",
+        filename: "shot.png",
+        mimeType: "image/png",
+        size: 1234,
+        url: "https://acme.atlassian.net/rest/api/3/attachment/content/10000",
+      },
+    ]);
     expect(result.warnings).toEqual([
-      "1 issue has attachments, which are not imported.",
       "1 parent or issue link points to another project, so it was not imported.",
     ]);
   });

@@ -70,6 +70,36 @@ export type JiraIssueLink = {
   outwardIssue?: JiraLinkedIssue | null;
 };
 
+export type JiraAttachment = {
+  id: string;
+  filename?: string | null;
+  mimeType?: string | null;
+  size?: number | null;
+  content?: string | null;
+};
+
+export type JiraSprint = {
+  id: number;
+  name?: string | null;
+  state?: string | null;
+  goal?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+};
+
+export type JiraSprintPage = {
+  values?: JiraSprint[] | null;
+  isLast?: boolean | null;
+  maxResults?: number | null;
+  total?: number | null;
+};
+
+export type JiraSprintIssuePage = {
+  issues?: Array<{ id?: string | null; key?: string | null }> | null;
+  isLast?: boolean | null;
+  maxResults?: number | null;
+};
+
 export type JiraIssueFields = {
   summary?: string | null;
   description?: unknown;
@@ -81,7 +111,7 @@ export type JiraIssueFields = {
   created?: string | null;
   parent?: JiraLinkedIssue | null;
   issuelinks?: JiraIssueLink[] | null;
-  attachment?: unknown[] | null;
+  attachment?: JiraAttachment[] | null;
   comment?: { total?: number | null } | null;
 };
 

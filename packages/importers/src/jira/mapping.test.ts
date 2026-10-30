@@ -99,6 +99,8 @@ describe("mapIssue", () => {
         columnKey: "column-2",
         comments: [{ author: { name: "Grace" }, body: "Hi" }],
         toMarkdown,
+        baseUrl: "https://acme.atlassian.net",
+        sprintKey: null,
       }),
     ).toEqual({
       key: "10042",
@@ -112,6 +114,8 @@ describe("mapIssue", () => {
       assignee: { name: "Ada Lovelace" },
       labelKeys: ["auth", "ux"],
       comments: [{ author: { name: "Grace" }, body: "Hi" }],
+      attachments: [],
+      sprintKey: null,
     });
   });
 
@@ -119,7 +123,13 @@ describe("mapIssue", () => {
     expect(
       mapIssue(
         { id: "1", key: "ABC-1", fields: { summary: " " } },
-        { columnKey: null, comments: [], toMarkdown },
+        {
+          columnKey: null,
+          comments: [],
+          toMarkdown,
+          baseUrl: "https://acme.atlassian.net",
+          sprintKey: null,
+        },
       ),
     ).toEqual({
       key: "1",
@@ -130,6 +140,51 @@ describe("mapIssue", () => {
       priority: "no-priority",
       labelKeys: [],
       comments: [],
+      attachments: [],
+      sprintKey: null,
+    });
+  });
+
+  it("maps attachments and the sprint", () => {
+    expect(
+      mapIssue(
+        {
+          id: "2",
+          key: "ABC-2",
+          fields: {
+            summary: "Two",
+            attachment: [
+              {
+                id: "10000",
+                filename: "shot.png",
+                mimeType: "image/png",
+                size: 1234,
+                content: "https://acme.atlassian.net/rest/api/3/attachment/content/10000",
+              },
+              { id: "10001" },
+            ],
+          },
+        },
+        {
+          columnKey: null,
+          comments: [],
+          toMarkdown,
+          baseUrl: "https://acme.atlassian.net",
+          sprintKey: "5",
+        },
+      ),
+    ).toMatchObject({
+      key: "2",
+      attachments: [
+        {
+          id: "10000",
+          filename: "shot.png",
+          mimeType: "image/png",
+          size: 1234,
+          url: "https://acme.atlassian.net/rest/api/3/attachment/content/10000",
+        },
+      ],
+      sprintKey: "5",
     });
   });
 });

@@ -54,6 +54,10 @@ export async function connectJira(
         readOptions,
       );
     },
+
+    downloadAttachment(attachment) {
+      return client.downloadAttachment(attachment);
+    },
   };
 }
 

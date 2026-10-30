@@ -27,6 +27,27 @@ export type ImportedPerson = {
   email?: string;
 };
 
+export type ImportedAttachment = {
+  id: string;
+  filename: string;
+  mimeType: string;
+  size: number;
+  /** Absolute source URL to download the attachment bytes from. */
+  url: string;
+};
+
+export type ImportedSprintState = "future" | "active" | "closed";
+
+export type ImportedSprint = {
+  key: string;
+  name: string;
+  state: ImportedSprintState;
+  goal?: string;
+  startDate?: string;
+  endDate?: string;
+  taskKeys: string[];
+};
+
 export type ImportedComment = {
   author: ImportedPerson;
   body: string;
@@ -47,6 +68,14 @@ export type ImportedTask = {
   assignee?: ImportedPerson;
   labelKeys: string[];
   comments: ImportedComment[];
+  attachments?: ImportedAttachment[];
+  sprintKey?: string | null;
+};
+
+export type DownloadedAttachment = {
+  body: ArrayBuffer;
+  contentType: string;
+  size: number;
 };
 
 export type ImportedRelationType = "subtask" | "blocks" | "related";
@@ -65,6 +94,7 @@ export type ImportedProject = {
   labels: ImportedLabel[];
   tasks: ImportedTask[];
   relations: ImportedRelation[];
+  sprints?: ImportedSprint[];
   warnings: string[];
 };
 
@@ -86,6 +116,10 @@ export type ImportSource = {
     projectId: string,
     options: ReadProjectOptions,
   ): Promise<ImportedProject>;
+  /** Downloads attachment bytes with the source's credentials; absent when the source cannot serve them. */
+  downloadAttachment?(
+    attachment: ImportedAttachment,
+  ): Promise<DownloadedAttachment>;
 };
 
 export type ConnectOptions = {

@@ -4,6 +4,7 @@ import type {
   ImportedPriority,
   ImportedTask,
 } from "../types.js";
+import { mapAttachments } from "./attachments.js";
 import type { JiraIssue } from "./api-types.js";
 import type { HtmlToMarkdown } from "./html.js";
 import { issueLabels } from "./labels.js";
@@ -26,6 +27,8 @@ export type IssueContext = {
   columnKey: string | null;
   comments: ImportedComment[];
   toMarkdown: HtmlToMarkdown;
+  baseUrl: string;
+  sprintKey: string | null;
 };
 
 export function mapPriority(name: string | null | undefined): ImportedPriority {
@@ -71,5 +74,7 @@ export function mapIssue(
     ...(assignee ? { assignee } : {}),
     labelKeys: issueLabels(issue),
     comments: context.comments,
+    attachments: mapAttachments(context.baseUrl, fields.attachment),
+    sprintKey: context.sprintKey,
   };
 }

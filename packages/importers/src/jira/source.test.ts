@@ -224,6 +224,28 @@ function cloudRoutes(extra: Record<string, Handler | unknown> = {}) {
       ],
     },
     "GET /rest/agile/1.0/board/7/configuration": BOARD_CONFIG,
+    "GET /rest/agile/1.0/board/7/sprint": {
+      maxResults: 50,
+      startAt: 0,
+      total: 1,
+      isLast: true,
+      values: [
+        {
+          id: 5,
+          name: "Sprint 1",
+          state: "active",
+          goal: "Ship it",
+          startDate: "2024-01-01T10:00:00.000Z",
+          endDate: "2024-01-14T10:00:00.000Z",
+        },
+      ],
+    },
+    "GET /rest/agile/1.0/sprint/5/issue": {
+      maxResults: 100,
+      startAt: 0,
+      isLast: true,
+      issues: [{ id: "101", key: "ABC-1" }],
+    },
     "POST /rest/api/3/search/jql": (request: Request) =>
       request.body?.nextPageToken === "page-2"
         ? { issues: ISSUE_PAGE_2, isLast: true }
@@ -493,6 +515,7 @@ describe("readProject on Jira Cloud", () => {
       "Reading issues (2 so far)",
       "Reading issues (3 so far)",
       "Reading comments (1 of 1)",
+      "Reading sprints",
     ]);
 
     expect(project.name).toBe("Alpha");
@@ -521,6 +544,8 @@ describe("readProject on Jira Cloud", () => {
         createdAt: "2024-01-01T10:00:00.000Z",
         labelKeys: [],
         comments: [],
+        attachments: [],
+        sprintKey: null,
       },
       {
         key: "101",
@@ -545,6 +570,8 @@ describe("readProject on Jira Cloud", () => {
             createdAt: "2024-02-02T10:00:00.000Z",
           },
         ],
+        attachments: [],
+        sprintKey: "5",
       },
       {
         key: "103",
@@ -556,14 +583,26 @@ describe("readProject on Jira Cloud", () => {
         createdAt: "2024-01-01T10:00:00.000Z",
         labelKeys: [],
         comments: [],
+        attachments: [],
+        sprintKey: null,
       },
     ]);
     expect(project.relations).toEqual([
       { sourceKey: "101", targetKey: "103", type: "blocks" },
       { sourceKey: "101", targetKey: "103", type: "subtask" },
     ]);
+    expect(project.sprints).toEqual([
+      {
+        key: "5",
+        name: "Sprint 1",
+        state: "active",
+        goal: "Ship it",
+        startDate: "2024-01-01T10:00:00.000Z",
+        endDate: "2024-01-14T10:00:00.000Z",
+        taskKeys: ["101"],
+      },
+    ]);
     expect(project.warnings).toEqual([
-      "1 issue has attachments, which are not imported.",
       "1 parent or issue link points to another project, so it was not imported.",
     ]);
   });

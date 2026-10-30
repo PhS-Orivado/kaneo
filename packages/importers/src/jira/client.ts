@@ -1,6 +1,7 @@
-import { createJsonClient, type JsonClient } from "../http.js";
-import type { FetchLike } from "../types.js";
+import { createJsonClient, type JsonClient, SourceHttpError } from "../http.js";
+import type { DownloadedAttachment, FetchLike, ImportedAttachment } from "../types.js";
 import type {
+  JiraAttachment,
   JiraBoardConfiguration,
   JiraBoardPage,
   JiraCloudSearchPage,
@@ -9,6 +10,8 @@ import type {
   JiraProject,
   JiraProjectPage,
   JiraServerSearchPage,
+  JiraSprintIssuePage,
+  JiraSprintPage,
   JiraUser,
 } from "./api-types.js";
 import type { JiraAuth } from "./auth.js";
@@ -18,6 +21,7 @@ import type { JiraSite } from "./url.js";
 export const PROJECTS_PAGE_SIZE = 50;
 export const SEARCH_PAGE_SIZE = 100;
 export const COMMENTS_PAGE_SIZE = 100;
+const DOWNLOAD_TIMEOUT_MS = 60_000;
 
 export type JiraClientOptions = {
   site: JiraSite;
@@ -105,6 +109,67 @@ export class JiraClient {
     return this.request(
       `/rest/agile/1.0/board/${encodeURIComponent(String(boardId))}/configuration`,
     );
+  }
+
+  boardSprints(boardId: number, startAt: number): Promise<JiraSprintPage | null> {
+    const params = new URLSearchParams({
+      startAt: String(startAt),
+      maxResults: String(SEARCH_PAGE_SIZE),
+    });
+    return this.request(
+      `/rest/agile/1.0/board/${encodeURIComponent(String(boardId))}/sprint?${params}`,
+    );
+  }
+
+  sprintIssues(
+    sprintId: number,
+    startAt: number,
+  ): Promise<JiraSprintIssuePage | null> {
+    const params = new URLSearchParams({
+      startAt: String(startAt),
+      maxResults: String(SEARCH_PAGE_SIZE),
+    });
+    return this.request(
+      `/rest/agile/1.0/sprint/${encodeURIComponent(String(sprintId))}/issue?${params}`,
+    );
+  }
+
+  async downloadAttachment(
+    attachment: ImportedAttachment,
+  ): Promise<DownloadedAttachment> {
+    const fetchImpl: FetchLike =
+      this.options.fetch ?? ((input, init) => fetch(input, init));
+    const signals = [AbortSignal.timeout(DOWNLOAD_TIMEOUT_MS)];
+    if (this.options.signal) signals.push(this.options.signal);
+    let response: Response;
+    try {
+      response = await fetchImpl(attachment.url, {
+        headers: { Authorization: this.options.auth.authorization },
+        signal: AbortSignal.any(signals),
+      });
+    } catch (error) {
+      throw new Error(
+        `Jira could not download "${attachment.filename}": ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+    if (!response.ok) {
+      throw toJiraError(
+        new SourceHttpError(
+          `Jira could not download "${attachment.filename}"`,
+          response.status,
+          null,
+        ),
+        this.options.auth.rejectedMessage,
+      );
+    }
+    const body = await response.arrayBuffer();
+    return {
+      body,
+      contentType:
+        response.headers.get("content-type")?.split(";")[0]?.trim() ||
+        attachment.mimeType,
+      size: body.byteLength,
+    };
   }
 
   searchCloud(

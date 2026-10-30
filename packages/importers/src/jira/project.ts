@@ -1,4 +1,4 @@
-import type { ImportedProject } from "../types.js";
+import type { ImportedProject, ImportedSprint } from "../types.js";
 import type {
   JiraBoardColumn,
   JiraComment,
@@ -31,6 +31,9 @@ export type JiraProjectData = {
   boardUnavailable: boolean;
   issues: JiraIssue[];
   comments: ReadonlyMap<string, JiraComment[]>;
+  sprints: ImportedSprint[];
+  taskSprintKeys: ReadonlyMap<string, string>;
+  sprintsUnavailable: boolean;
 };
 
 export function mapJiraProject(data: JiraProjectData): ImportedProject {
@@ -53,15 +56,16 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
         columnKey,
         comments: mapComments(data.comments.get(issue.id) ?? [], toMarkdown),
         toMarkdown,
+        baseUrl: data.baseUrl,
+        sprintKey: data.taskSprintKeys.get(issue.id) ?? null,
       }),
     ),
     relations,
+    sprints: data.sprints,
     warnings: buildWarnings({
-      issuesWithAttachments: data.issues.filter(
-        (issue) => (issue.fields?.attachment?.length ?? 0) > 0,
-      ).length,
       externalLinks: external,
       boardUnavailable: data.boardUnavailable,
+      sprintsUnavailable: data.sprintsUnavailable,
     }),
   };
 }
