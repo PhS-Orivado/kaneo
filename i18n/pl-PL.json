@@ -1870,7 +1870,9 @@
 			"missingOne": "Brakuje jakiegoś?",
 			"searching": "Wyszukiwanie…",
 			"updated": "Zaktualizowano {{time}}",
-			"useRepository": "Użyj repozytorium"
+			"useRepository": "Użyj repozytorium",
+			"useSelected": "Użyj wybranych",
+			"selectedCount": "Wybrano: {{count}}"
 		},
 		"slackIntegration": {
 			"connect": "Połącz Slack",
@@ -3141,7 +3143,9 @@
 			"chooseProjectTitle": "Wybierz projekt",
 			"chooseRepositoryTitle": "Wybierz repozytorium",
 			"connectProject": "Połącz projekt",
+			"connectProjects": "Połącz projekty ({{count}})",
 			"connectRepository": "Połącz repozytorium",
+			"connectRepositories": "Połącz repozytoria ({{count}})",
 			"copied": "Skopiowano",
 			"copyFailed": "Nie udało się skopiować do schowka.",
 			"copySecret": "Kopiuj sekret",
@@ -3166,6 +3170,7 @@
 			"repositorySection": "Repozytorium",
 			"retry": "Spróbuj ponownie",
 			"saveToken": "Zapisz token",
+			"selectedRepositories": "Wybrane repozytoria",
 			"showSecret": "Pokaż sekret",
 			"signInDescription": "Użyj tokenu, który może odczytać projekt i jego zgłoszenia.",
 			"signInTitle": "Zaloguj się do swojej instancji",
