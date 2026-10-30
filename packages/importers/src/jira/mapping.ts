@@ -4,7 +4,7 @@ import type {
   ImportedPriority,
   ImportedTask,
 } from "../types.js";
-import { mapAttachments } from "./attachments.js";
+import { mapAttachments, resolveJiraUrl } from "./attachments.js";
 import type { JiraIssue } from "./api-types.js";
 import type { HtmlToMarkdown } from "./html.js";
 import { issueLabels } from "./labels.js";
@@ -62,6 +62,8 @@ export function mapIssue(
   const dueDate = toIsoDate(fields.duedate);
   const createdAt = toIsoDate(fields.created);
   const assignee = toPerson(fields.assignee);
+  const label = issue.key?.trim();
+  const sourceUrl = label ? resolveJiraUrl(context.baseUrl, `browse/${label}`) : null;
   return {
     key: issue.id,
     ...(number !== undefined ? { number } : {}),
@@ -72,6 +74,8 @@ export function mapIssue(
     ...(dueDate ? { dueDate } : {}),
     ...(createdAt ? { createdAt } : {}),
     ...(assignee ? { assignee } : {}),
+    ...(label ? { sourceLabel: label } : {}),
+    ...(sourceUrl ? { sourceUrl } : {}),
     labelKeys: issueLabels(issue),
     comments: context.comments,
     attachments: mapAttachments(context.baseUrl, fields.attachment),

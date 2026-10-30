@@ -49,6 +49,8 @@ export type ImportedSprint = {
 };
 
 export type ImportedComment = {
+  /** Source comment id, when the source provides one; lets the import keep a reference to it. */
+  id?: string;
   author: ImportedPerson;
   body: string;
   createdAt?: string;
@@ -70,6 +72,10 @@ export type ImportedTask = {
   comments: ImportedComment[];
   attachments?: ImportedAttachment[];
   sprintKey?: string | null;
+  /** Human key the source shows in text, e.g. "ABC-123". */
+  sourceLabel?: string;
+  /** Canonical source URL of the task, when the source has one. */
+  sourceUrl?: string;
 };
 
 export type DownloadedAttachment = {
@@ -90,6 +96,8 @@ export type ImportedProject = {
   name: string;
   key?: string;
   description?: string;
+  /** Base URL of the source site, when known; lets the import rewrite links that point at it. */
+  sourceUrl?: string;
   columns: ImportedColumn[];
   labels: ImportedLabel[];
   tasks: ImportedTask[];

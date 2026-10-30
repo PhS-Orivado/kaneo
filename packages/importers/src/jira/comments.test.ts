@@ -42,16 +42,19 @@ describe("mapComments", () => {
       ),
     ).toEqual([
       {
+        id: "1",
         author: { name: "Ada Lovelace" },
         body: "First",
         createdAt: "2024-03-01T09:00:00.000Z",
       },
       {
+        id: "2",
         author: { name: "Grace Hopper", email: "grace@example.com" },
         body: "Second **reply**",
         createdAt: "2024-03-02T09:00:00.000Z",
       },
       {
+        id: "3",
         author: { name: "Jira user" },
         body: "Wiki *text*",
         createdAt: "2024-03-03T09:00:00.000Z",

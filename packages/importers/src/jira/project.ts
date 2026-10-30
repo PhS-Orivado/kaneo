@@ -49,6 +49,7 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
     name: data.project.name?.trim() || data.project.key,
     key: data.project.key,
     ...(description ? { description } : {}),
+    sourceUrl: data.baseUrl,
     columns: plan.columns,
     labels: mapLabels(data.issues),
     tasks: placed.map(({ issue, columnKey }) =>
