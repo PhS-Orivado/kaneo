@@ -1443,7 +1443,9 @@
 			"missingOne": "Thiếu kho lưu trữ?",
 			"searching": "Đang tìm…",
 			"updated": "Cập nhật {{time}}",
-			"useRepository": "Dùng kho lưu trữ này"
+			"useRepository": "Dùng kho lưu trữ này",
+			"useSelected": "Dùng mục đã chọn",
+			"selectedCount": "Đã chọn {{count}}"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Xuất công việc",
@@ -2298,7 +2300,9 @@
 			"chooseProjectTitle": "Chọn một dự án",
 			"chooseRepositoryTitle": "Chọn một kho lưu trữ",
 			"connectProject": "Kết nối dự án",
+			"connectProjects": "Kết nối {{count}} dự án",
 			"connectRepository": "Kết nối kho lưu trữ",
+			"connectRepositories": "Kết nối {{count}} kho",
 			"copied": "Đã sao chép",
 			"copyFailed": "Không thể sao chép vào bộ nhớ tạm.",
 			"copySecret": "Sao chép khóa bí mật",
@@ -2323,6 +2327,7 @@
 			"repositorySection": "Kho lưu trữ",
 			"retry": "Thử lại",
 			"saveToken": "Lưu token",
+			"selectedRepositories": "Kho đã chọn",
 			"showSecret": "Hiện khóa bí mật",
 			"signInDescription": "Dùng token có thể đọc dự án và các issue của dự án.",
 			"signInTitle": "Đăng nhập vào máy chủ của bạn",
