@@ -47,6 +47,8 @@ function project(patch: Partial<ImportRunProject>): ImportRunProject {
       comments: 108,
       assignees: 0,
       relations: 0,
+      sprints: 0,
+      attachments: 0,
     },
     warnings: [],
     error: null,

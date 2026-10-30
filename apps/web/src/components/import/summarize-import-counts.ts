@@ -2,7 +2,13 @@ import type { ImportRunProject } from "@/fetchers/import/get-import-run";
 
 export type ImportCounts = ImportRunProject["counts"];
 
-export type ImportCountKey = "tasks" | "columns" | "labels" | "comments";
+export type ImportCountKey =
+  | "tasks"
+  | "columns"
+  | "labels"
+  | "comments"
+  | "sprints"
+  | "attachments";
 
 export type ImportCountPart = { key: ImportCountKey; count: number };
 
@@ -11,12 +17,15 @@ export const PROJECT_COUNT_KEYS: ImportCountKey[] = [
   "columns",
   "labels",
   "comments",
+  "sprints",
+  "attachments",
 ];
 
 export const TOTAL_COUNT_KEYS: ImportCountKey[] = [
   "tasks",
   "comments",
   "labels",
+  "attachments",
 ];
 
 export const IMPORT_COUNT_LABEL_KEYS: Record<ImportCountKey, string> = {
@@ -24,6 +33,8 @@ export const IMPORT_COUNT_LABEL_KEYS: Record<ImportCountKey, string> = {
   columns: "settings:workspaceImport.counts.columns",
   labels: "settings:workspaceImport.counts.labels",
   comments: "settings:workspaceImport.counts.comments",
+  sprints: "settings:workspaceImport.counts.sprints",
+  attachments: "settings:workspaceImport.counts.attachments",
 };
 
 export function summarizeImportCounts(
@@ -45,6 +56,8 @@ export function sumImportCounts(
     comments: 0,
     assignees: 0,
     relations: 0,
+    sprints: 0,
+    attachments: 0,
   };
 
   for (const project of projects) {
