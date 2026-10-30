@@ -1223,7 +1223,9 @@
 			"missingOne": "Немає потрібного?",
 			"searching": "Пошук…",
 			"updated": "Оновлено {{time}}",
-			"useRepository": "Використати репозиторій"
+			"useRepository": "Використати репозиторій",
+			"useSelected": "Використати вибрані",
+			"selectedCount": "Вибрано: {{count}}"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Експортувати завдання",
@@ -2424,7 +2426,9 @@
 			"chooseProjectTitle": "Виберіть проєкт",
 			"chooseRepositoryTitle": "Виберіть репозиторій",
 			"connectProject": "Підключити проєкт",
+			"connectProjects": "Підключити проєкти ({{count}})",
 			"connectRepository": "Підключити репозиторій",
+			"connectRepositories": "Підключити репозиторії ({{count}})",
 			"copied": "Скопійовано",
 			"copyFailed": "Не вдалося скопіювати в буфер обміну.",
 			"copySecret": "Копіювати секрет",
@@ -2449,6 +2453,7 @@
 			"repositorySection": "Репозиторій",
 			"retry": "Повторити",
 			"saveToken": "Зберегти токен",
+			"selectedRepositories": "Вибрані репозиторії",
 			"showSecret": "Показати секрет",
 			"signInDescription": "Використайте токен, який може читати проєкт і його issues.",
 			"signInTitle": "Увійдіть у свій екземпляр",
