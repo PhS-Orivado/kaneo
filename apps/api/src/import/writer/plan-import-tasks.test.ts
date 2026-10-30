@@ -33,6 +33,10 @@ function plan(tasks: ImportedTask[], numbers = tasks.map((_, i) => 41 + i)) {
     now,
     newId: () => `task-${++id}`,
     assign: (person) => (person?.email === "ana@example.com" ? "u-ana" : null),
+    sprints: new Map([
+      ["sprint-1", "sprint-id-1"],
+      ["sprint-2", "sprint-id-2"],
+    ]),
   });
 }
 
@@ -109,6 +113,18 @@ describe("planImportTasks", () => {
       status: "to-do",
       columnId: "col-todo",
     });
+  });
+
+  it("assigns the sprint and keeps attachments for the writer", () => {
+    const planned = plan([
+      task("a", { sprintKey: "sprint-1", attachments: [] }),
+      task("b", { sprintKey: "gone" }),
+    ]);
+
+    expect(planned.map(({ key, sprintId, attachments }) => ({ key, sprintId, attachments }))).toEqual([
+      { key: "a", sprintId: "sprint-id-1", attachments: [] },
+      { key: "b", sprintId: null, attachments: [] },
+    ]);
   });
 
   it("cleans titles, priorities and dates", () => {

@@ -30,6 +30,12 @@ const importCountsSchema = z
       description: "Tasks that were assigned to a workspace member.",
     }),
     relations: z.number().int(),
+    sprints: z.number().int().openapi({
+      description: "Sprints created for the project.",
+    }),
+    attachments: z.number().int().openapi({
+      description: "Source attachments downloaded into Kaneo storage.",
+    }),
   })
   .openapi("ImportCounts");
 

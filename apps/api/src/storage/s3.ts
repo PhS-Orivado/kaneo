@@ -394,6 +394,31 @@ export async function createTaskImageUploadUrl(
   };
 }
 
+/**
+ * Uploads attachment bytes directly from the server, for imports where no
+ * browser presign flow is available. Mirrors createTaskImageUploadUrl.
+ */
+export async function putTaskAssetObject(
+  context: TaskImageUploadContext & { body: Buffer; size: number },
+): Promise<{ key: string }> {
+  validateTaskAssetUploadInput(context.contentType, context.size);
+  const config = getStorageConfig();
+  const client = getClient(config);
+  const key = applyKeyPrefix(config.keyPrefix, buildObjectKey(context));
+
+  await client.send(
+    new PutObjectCommand({
+      Bucket: config.bucket,
+      Key: key,
+      ContentType: context.contentType,
+      ContentLength: context.size,
+      Body: context.body,
+    }),
+  );
+
+  return { key };
+}
+
 export async function createProjectBackgroundUploadUrl(
   context: ProjectBackgroundUploadContext,
 ): Promise<ProjectBackgroundUploadUrl> {

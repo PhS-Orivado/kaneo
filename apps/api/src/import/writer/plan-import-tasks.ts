@@ -1,4 +1,5 @@
 import type {
+  ImportedAttachment,
   ImportedComment,
   ImportedPerson,
   ImportedTask,
@@ -23,6 +24,8 @@ export type PlannedImportTask = {
   userId: string | null;
   labelKeys: readonly string[];
   comments: readonly ImportedComment[];
+  attachments: readonly ImportedAttachment[];
+  sprintId: string | null;
 };
 
 type PlanImportTasksInput = {
@@ -33,6 +36,7 @@ type PlanImportTasksInput = {
   now: Date;
   newId: () => string;
   assign: (person: ImportedPerson | undefined) => string | null;
+  sprints: ReadonlyMap<string, string>;
 };
 
 const UNTITLED_TASK = "Untitled task";
@@ -75,6 +79,7 @@ export function planImportTasks({
   now,
   newId,
   assign,
+  sprints,
 }: PlanImportTasksInput): PlannedImportTask[] {
   const positions = new Map<string, number>();
 
@@ -103,6 +108,8 @@ export function planImportTasks({
       userId: assign(task.assignee),
       labelKeys: task.labelKeys,
       comments: task.comments,
+      attachments: task.attachments ?? [],
+      sprintId: task.sprintKey ? (sprints.get(task.sprintKey) ?? null) : null,
     };
   });
 }

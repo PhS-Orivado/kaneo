@@ -11,7 +11,11 @@ import {
 } from "./runs/import-run-store";
 import { createProgressThrottle } from "./runs/progress-throttle";
 import type { OpenedImportSource } from "./source/open-import-source";
-import { writeImportedProject } from "./write-imported-project";
+import {
+  writeImportedProject,
+  type WrittenImportProject,
+} from "./write-imported-project";
+import rewriteJiraLinks from "./controllers/rewrite-jira-links";
 
 export type ImportJobState = { projects: ImportRunProject[] };
 
@@ -95,13 +99,23 @@ async function importProject(
   await store.save({ message: `Saving ${entry.name}` });
 
   try {
-    const written = await writeImportedProject({
-      workspaceId: job.workspaceId,
-      userId: job.userId,
-      source: job.opened.sourceId,
-      project,
-      includeComments: job.includeComments,
+    const saveProgress = createProgressThrottle((message) => {
+      void store.save({ message });
     });
+    let written: WrittenImportProject;
+    try {
+      written = await writeImportedProject({
+        workspaceId: job.workspaceId,
+        userId: job.userId,
+        source: job.opened.sourceId,
+        project,
+        includeComments: job.includeComments,
+        downloadAttachment: job.opened.source.downloadAttachment,
+        onProgress: saveProgress.report,
+      });
+    } finally {
+      saveProgress.cancel();
+    }
     await store.save({
       projects: updateProject(job, index, {
         status: "completed",
@@ -122,6 +136,36 @@ async function importProject(
   }
 }
 
+/**
+ * Once every project of a Jira import exists, replaces the browse links in
+ * descriptions and comments with links to the new Kaneo tasks. A failure here
+ * must not fail the run: the projects are already saved.
+ */
+async function rewriteImportedJiraLinks(
+  job: ImportJob,
+  store: ImportRunStore,
+): Promise<void> {
+  if (job.opened.sourceId !== "jira") return;
+  const projectIds = job.state.projects
+    .filter(
+      (project) => project.status === "completed" && project.projectId !== null,
+    )
+    .map((project) => project.projectId as string);
+  if (projectIds.length === 0) return;
+
+  await store.save({ message: "Updating Jira links" });
+  try {
+    await rewriteJiraLinks({
+      workspaceId: job.workspaceId,
+      userId: job.userId,
+      dryRun: false,
+      projectIds,
+    });
+  } catch (unexpected) {
+    logImportError("Failed to rewrite Jira links", job.runId, unexpected);
+  }
+}
+
 export async function runImportJob(job: ImportJob): Promise<void> {
   const store = createImportRunStore(job.runId);
   const heartbeat = setInterval(() => {
@@ -136,6 +180,7 @@ export async function runImportJob(job: ImportJob): Promise<void> {
       await importProject(job, store, index);
     }
     if (job.signal.aborted) error = stopReason(job.signal);
+    else await rewriteImportedJiraLinks(job, store);
   } catch (unexpected) {
     logImportError("Import run failed", job.runId, unexpected);
     error = UNEXPECTED;

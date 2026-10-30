@@ -2,6 +2,7 @@ import type { ImportedProject, ImportSourceId } from "@kaneo/importers";
 import { publishEvent } from "../events";
 import type { ImportCounts } from "./import-run-project";
 import { createImportProject } from "./writer/create-import-project";
+import type { ImportAttachmentDownloader } from "./writer/write-import-attachments";
 import { writeProjectContent } from "./writer/write-project-content";
 
 export type WriteImportedProjectInput = {
@@ -10,6 +11,8 @@ export type WriteImportedProjectInput = {
   source: ImportSourceId;
   project: ImportedProject;
   includeComments: boolean;
+  downloadAttachment?: ImportAttachmentDownloader;
+  onProgress?: (message: string) => void;
 };
 
 export type WrittenImportProject = {
@@ -25,6 +28,8 @@ export async function writeImportedProject({
   source,
   project,
   includeComments,
+  downloadAttachment,
+  onProgress,
 }: WriteImportedProjectInput): Promise<WrittenImportProject> {
   const written = await createImportProject(
     {
@@ -43,6 +48,8 @@ export async function writeImportedProject({
         source,
         project,
         includeComments,
+        downloadAttachment,
+        onProgress,
       })),
     }),
   );
