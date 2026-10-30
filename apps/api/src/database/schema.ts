@@ -1213,6 +1213,76 @@ export const importRunTable = pgTable(
   ],
 );
 
+/**
+ * Maps every imported Kaneo entity back to the source entity it came from,
+ * with a foreign key to that entity. The import uses these rows to update
+ * references and links in imported text to the internal Kaneo ones, and
+ * removes the rows afterwards so no link to the source system remains.
+ */
+export const importReferenceTable = pgTable(
+  "import_reference",
+  {
+    id: text("id")
+      .$defaultFn(() => createId())
+      .primaryKey(),
+    workspaceId: text("workspace_id")
+      .notNull()
+      .references(() => workspaceTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    projectId: text("project_id")
+      .notNull()
+      .references(() => projectTable.id, {
+        onDelete: "cascade",
+        onUpdate: "cascade",
+      }),
+    source: text("source").notNull(),
+    /** task | sprint | column | asset | comment */
+    entityType: text("entity_type").notNull(),
+    /** Canonical source id of the entity, e.g. the Jira issue id. */
+    sourceKey: text("source_key").notNull(),
+    /** Human form the source uses in text, e.g. "ABC-123"; null when there is none. */
+    sourceLabel: text("source_label"),
+    /** Canonical source URL of the entity; null when the source has none. */
+    sourceUrl: text("source_url"),
+    taskId: text("task_id").references(() => taskTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+    sprintId: text("sprint_id").references(() => sprintTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+    columnId: text("column_id").references(() => columnTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+    assetId: text("asset_id").references(() => assetTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+    activityId: text("activity_id").references(() => activityTable.id, {
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    }),
+    createdAt: timestamp("created_at", { mode: "date" })
+      .default(utcNow)
+      .notNull(),
+  },
+  (table) => [
+    index("import_reference_workspaceId_idx").on(table.workspaceId),
+    index("import_reference_projectId_idx").on(table.projectId),
+    index("import_reference_taskId_idx").on(table.taskId),
+    unique("import_reference_source_key_unique").on(
+      table.projectId,
+      table.source,
+      table.entityType,
+      table.sourceKey,
+    ),
+  ],
+);
+
 export const externalLinkTable = pgTable(
   "external_link",
   {

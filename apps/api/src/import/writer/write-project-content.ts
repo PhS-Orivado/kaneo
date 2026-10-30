@@ -2,7 +2,11 @@ import type { ImportedProject, ImportSourceId } from "@kaneo/importers";
 import { createId } from "@paralleldrive/cuid2";
 import { eq, sql } from "drizzle-orm";
 import type db from "../../database";
-import { assetTable, projectTable } from "../../database/schema";
+import {
+  assetTable,
+  importReferenceTable,
+  projectTable,
+} from "../../database/schema";
 import { normalizeApiServerUrl } from "../../utils/openapi-spec";
 import type { ImportCounts } from "../import-run-project";
 import { assignImportTaskNumbers } from "./assign-import-task-numbers";
@@ -128,7 +132,7 @@ export async function writeProjectContent(
         source,
         now,
       })
-    : 0;
+    : { count: 0, references: [] };
 
   const relations = await writeImportRelations(
     tx,
@@ -138,13 +142,69 @@ export async function writeProjectContent(
     ),
   );
 
+  // Every imported entity is recorded with a reference to its source, so the
+  // links and mentions inside imported text can be updated to the internal
+  // Kaneo ones once all projects of the import exist.
+  const referenceRows: (typeof importReferenceTable.$inferInsert)[] = [
+    ...[...board.byKey].map(([sourceKey, column]) => ({
+      id: createId(),
+      workspaceId,
+      projectId,
+      source,
+      entityType: "column",
+      sourceKey,
+      columnId: column.id,
+    })),
+    ...[...sprintIds].map(([sourceKey, sprintId]) => ({
+      id: createId(),
+      workspaceId,
+      projectId,
+      source,
+      entityType: "sprint",
+      sourceKey,
+      sprintId,
+    })),
+    ...tasks.map((task) => ({
+      id: createId(),
+      workspaceId,
+      projectId,
+      source,
+      entityType: "task",
+      sourceKey: task.key,
+      ...(task.sourceLabel ? { sourceLabel: task.sourceLabel } : {}),
+      ...(task.sourceUrl ? { sourceUrl: task.sourceUrl } : {}),
+      taskId: task.id,
+    })),
+    ...attachments.references.map(({ sourceKey, assetId }) => ({
+      id: createId(),
+      workspaceId,
+      projectId,
+      source,
+      entityType: "asset",
+      sourceKey,
+      assetId,
+    })),
+    ...comments.references.map(({ sourceKey, activityId }) => ({
+      id: createId(),
+      workspaceId,
+      projectId,
+      source,
+      entityType: "comment",
+      sourceKey,
+      activityId,
+    })),
+  ];
+  for (const batch of chunk(referenceRows)) {
+    await tx.insert(importReferenceTable).values(batch);
+  }
+
   const unmatched = assignees.warning();
   return {
     counts: {
       columns: board.count,
       tasks: rewrittenTasks.length,
       labels,
-      comments,
+      comments: comments.count,
       assignees: rewrittenTasks.filter((task) => task.userId).length,
       relations,
       sprints: (project.sprints ?? []).length,

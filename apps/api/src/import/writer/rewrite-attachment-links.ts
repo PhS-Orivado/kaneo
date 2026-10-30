@@ -49,16 +49,18 @@ export function buildAttachmentLinkRewrites(
     const id = escapeRegExp(attachment.id);
     const relative = String.raw`(?<![\w])`;
 
+    // The trailing boundary keeps an id from matching inside a longer one
+    // (attachment 10000 inside 100001) when no filename follows the id.
     const stems = [
-      `${base}\/secure\/attachment\/${id}(\/${URL_TAIL})?`,
-      `${base}\/rest\/api\/\d+\/attachment\/content\/${id}(\/${URL_TAIL})?`,
-      `${relative}\/secure\/attachment\/${id}(\/${URL_TAIL})?`,
-      `${relative}\/rest\/api\/\d+\/attachment\/content\/${id}(\/${URL_TAIL})?`,
+      String.raw`${base}\/secure\/attachment\/${id}(\/${URL_TAIL})?(?![\w])`,
+      String.raw`${base}\/rest\/api\/\d+\/attachment\/content\/${id}(\/${URL_TAIL})?(?![\w])`,
+      String.raw`${relative}\/secure\/attachment\/${id}(\/${URL_TAIL})?(?![\w])`,
+      String.raw`${relative}\/rest\/api\/\d+\/attachment\/content\/${id}(\/${URL_TAIL})?(?![\w])`,
     ];
     if (basePath) {
       stems.push(
-        `${relative}${basePath}\/secure\/attachment\/${id}(\/${URL_TAIL})?`,
-        `${relative}${basePath}\/rest\/api\/\d+\/attachment\/content\/${id}(\/${URL_TAIL})?`,
+        String.raw`${relative}${basePath}\/secure\/attachment\/${id}(\/${URL_TAIL})?(?![\w])`,
+        String.raw`${relative}${basePath}\/rest\/api\/\d+\/attachment\/content\/${id}(\/${URL_TAIL})?(?![\w])`,
       );
     }
 

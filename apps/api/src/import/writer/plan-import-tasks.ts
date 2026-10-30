@@ -26,6 +26,10 @@ export type PlannedImportTask = {
   comments: readonly ImportedComment[];
   attachments: readonly ImportedAttachment[];
   sprintId: string | null;
+  /** Human key the source shows in text, e.g. "ABC-123"; null when the source has none. */
+  sourceLabel: string | null;
+  /** Canonical source URL of the task; null when the source has none. */
+  sourceUrl: string | null;
 };
 
 type PlanImportTasksInput = {
@@ -110,6 +114,8 @@ export function planImportTasks({
       comments: task.comments,
       attachments: task.attachments ?? [],
       sprintId: task.sprintKey ? (sprints.get(task.sprintKey) ?? null) : null,
+      sourceLabel: task.sourceLabel?.trim() || null,
+      sourceUrl: task.sourceUrl?.trim() || null,
     };
   });
 }

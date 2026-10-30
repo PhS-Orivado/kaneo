@@ -16,6 +16,7 @@ import {
   type WrittenImportProject,
 } from "./write-imported-project";
 import rewriteJiraLinks from "./controllers/rewrite-jira-links";
+import { rewriteImportedReferences } from "./rewrite-imported-references";
 
 export type ImportJobState = { projects: ImportRunProject[] };
 
@@ -136,6 +137,40 @@ async function importProject(
   }
 }
 
+function completedProjectIds(job: ImportJob): string[] {
+  return job.state.projects
+    .filter(
+      (project) => project.status === "completed" && project.projectId !== null,
+    )
+    .map((project) => project.projectId as string);
+}
+
+/**
+ * Once every project of the import exists, updates the references and links
+ * inside the imported text to point at the new Kaneo tasks, and removes the
+ * import references so no link to the source system remains. A failure here
+ * must not fail the run: the projects are already saved, and the kept
+ * references allow the pass to run again.
+ */
+async function rewriteImportedSourceReferences(
+  job: ImportJob,
+  store: ImportRunStore,
+): Promise<void> {
+  const projectIds = completedProjectIds(job);
+  if (projectIds.length === 0) return;
+
+  await store.save({ message: "Updating links and references" });
+  try {
+    await rewriteImportedReferences({
+      workspaceId: job.workspaceId,
+      userId: job.userId,
+      projectIds,
+    });
+  } catch (unexpected) {
+    logImportError("Failed to rewrite imported references", job.runId, unexpected);
+  }
+}
+
 /**
  * Once every project of a Jira import exists, replaces the browse links in
  * descriptions and comments with links to the new Kaneo tasks. A failure here
@@ -146,11 +181,7 @@ async function rewriteImportedJiraLinks(
   store: ImportRunStore,
 ): Promise<void> {
   if (job.opened.sourceId !== "jira") return;
-  const projectIds = job.state.projects
-    .filter(
-      (project) => project.status === "completed" && project.projectId !== null,
-    )
-    .map((project) => project.projectId as string);
+  const projectIds = completedProjectIds(job);
   if (projectIds.length === 0) return;
 
   await store.save({ message: "Updating Jira links" });
@@ -180,7 +211,10 @@ export async function runImportJob(job: ImportJob): Promise<void> {
       await importProject(job, store, index);
     }
     if (job.signal.aborted) error = stopReason(job.signal);
-    else await rewriteImportedJiraLinks(job, store);
+    else {
+      await rewriteImportedSourceReferences(job, store);
+      await rewriteImportedJiraLinks(job, store);
+    }
   } catch (unexpected) {
     logImportError("Import run failed", job.runId, unexpected);
     error = UNEXPECTED;

@@ -51,4 +51,25 @@ describe("rewriteAttachmentLinks", () => {
       "https://evil.test/secure/attachment/10000/shot.png and /secure/attachment/9999/x.png";
     expect(rewriteAttachmentLinks(text, rewrites)).toBe(text);
   });
+
+  it("keeps a longer id that starts with this one, and keeps query strings", () => {
+    const rewrites = buildAttachmentLinkRewrites(
+      [attachment],
+      () => KANEO_URL,
+    );
+
+    expect(
+      rewriteAttachmentLinks(
+        "Id 100001 differs: /secure/attachment/100001/other.png",
+        rewrites,
+      ),
+    ).toBe("Id 100001 differs: /secure/attachment/100001/other.png");
+
+    expect(
+      rewriteAttachmentLinks(
+        "[file](https://acme.atlassian.net/rest/api/3/attachment/content/10000?raw=1)",
+        rewrites,
+      ),
+    ).toBe(`[file](${KANEO_URL}?raw=1)`);
+  });
 });

@@ -36,6 +36,8 @@ export type WrittenImportAttachments = {
   rewrites: AttachmentLinkRewrite[];
   /** Asset rows to insert once the tasks they belong to exist. */
   rows: (typeof assetTable.$inferInsert)[];
+  /** Maps each attachment's source id to the asset it was written as. */
+  references: Array<{ sourceKey: string; assetId: string }>;
 };
 
 const NO_STORAGE_WARNING =
@@ -57,14 +59,21 @@ export async function writeImportAttachments(
   );
 
   if (withAttachments.length === 0) {
-    return { count: 0, warnings: [], rewrites: [], rows: [] };
+    return { count: 0, warnings: [], rewrites: [], rows: [], references: [] };
   }
 
   if (!download || !isStorageConfigured()) {
-    return { count: 0, warnings: [NO_STORAGE_WARNING], rewrites: [], rows: [] };
+    return {
+      count: 0,
+      warnings: [NO_STORAGE_WARNING],
+      rewrites: [],
+      rows: [],
+      references: [],
+    };
   }
 
   const rows: (typeof assetTable.$inferInsert)[] = [];
+  const references: WrittenImportAttachments["references"] = [];
   const urlById = new Map<string, string>();
   const failures: string[] = [];
   let done = 0;
@@ -89,6 +98,7 @@ export async function writeImportAttachments(
       });
       const assetId = createId();
       urlById.set(attachment.id, assetUrl(assetId));
+      references.push({ sourceKey: attachment.id, assetId });
       rows.push({
         id: assetId,
         workspaceId,
@@ -125,5 +135,6 @@ export async function writeImportAttachments(
     ],
     rewrites,
     rows,
+    references,
   };
 }
