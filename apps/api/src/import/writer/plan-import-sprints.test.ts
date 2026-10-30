@@ -53,7 +53,11 @@ describe("planImportSprints", () => {
 
   it("renames duplicate sprint names so the import cannot fail on the unique constraint", () => {
     const planned = planImportSprints(
-      [sprint("1", { name: "Rel" }), sprint("2", { name: "rel" }), sprint("3", { name: "" })],
+      [
+        sprint("1", { name: "Rel" }),
+        sprint("2", { name: "rel" }),
+        sprint("3", { name: "" }),
+      ],
       () => "id",
     );
 
@@ -66,7 +70,11 @@ describe("planImportSprints", () => {
 
   it("treats an unknown status as future", () => {
     const planned = planImportSprints(
-      [sprint("1", { status: "started" as unknown as ImportedSprint["status"] })],
+      [
+        sprint("1", {
+          status: "started" as unknown as ImportedSprint["status"],
+        }),
+      ],
       () => "id",
     );
     expect(planned[0]?.status).toBe("future");

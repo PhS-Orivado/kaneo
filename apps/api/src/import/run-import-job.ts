@@ -79,7 +79,10 @@ async function importProject(
 
   await store.save({
     message: `Reading ${entry.name}`,
-    projects: updateProject(job, index, { status: "running", stage: "reading" }),
+    projects: updateProject(job, index, {
+      status: "running",
+      stage: "reading",
+    }),
   });
 
   let project: ImportedProject;

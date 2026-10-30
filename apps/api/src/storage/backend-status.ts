@@ -30,9 +30,7 @@ export function getStorageBackendStatus(): StorageBackendStatus | null {
   return latestStatus;
 }
 
-export function storageConfigErrorStatus(
-  error: unknown,
-): StorageBackendStatus {
+export function storageConfigErrorStatus(error: unknown): StorageBackendStatus {
   const message =
     error instanceof Error ? error.message : "S3 storage is not configured.";
   return {
@@ -82,10 +80,9 @@ async function probeBucketAccess(): Promise<StorageBackendStatus> {
   const { config, client } = getStorageClient();
   const abortSignal = AbortSignal.timeout(PROBE_TIMEOUT_MS);
 
-  await client.send(
-    new HeadBucketCommand({ Bucket: config.bucket }),
-    { abortSignal },
-  );
+  await client.send(new HeadBucketCommand({ Bucket: config.bucket }), {
+    abortSignal,
+  });
 
   // Head success covers configuration and read access; only a written and
   // removed probe object proves uploads will work too.

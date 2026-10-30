@@ -419,9 +419,12 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
         );
       } catch (error) {
         if (error instanceof GiteaApiError) {
-          throw new HTTPException((error.status || 400) as ContentfulStatusCode, {
-            message: error.message,
-          });
+          throw new HTTPException(
+            (error.status || 400) as ContentfulStatusCode,
+            {
+              message: error.message,
+            },
+          );
         }
         throw error;
       }

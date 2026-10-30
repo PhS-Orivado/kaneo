@@ -73,7 +73,7 @@ function assetUrl(assetId: string) {
 }
 
 function markdownText(value: string) {
-  return value.replace(/[\[\]\\]/g, "\\$&");
+  return value.replace(/[[\]\\]/g, "\\$&");
 }
 
 export function attachmentMarkdown(
@@ -127,9 +127,7 @@ export async function writeImportAttachments(
   if (!download) return { imported: 0, warnings: [] };
 
   const status =
-    input.status !== undefined
-      ? input.status
-      : getStorageBackendStatus();
+    input.status !== undefined ? input.status : getStorageBackendStatus();
   if (!status?.available) {
     return {
       imported: 0,
@@ -210,10 +208,7 @@ export async function writeImportAttachments(
       await db
         .update(taskTable)
         .set({
-          description: appendAttachmentsToDescription(
-            task.description,
-            links,
-          ),
+          description: appendAttachmentsToDescription(task.description, links),
         })
         .where(eq(taskTable.id, task.taskId));
     }

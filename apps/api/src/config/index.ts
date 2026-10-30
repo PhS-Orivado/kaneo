@@ -22,7 +22,10 @@ const getConfigRoute = createRoute({
 
 const config = apiRouter().openapi(getConfigRoute, async (c) =>
   c.json(
-    { ...getSettings(await getInstanceSettings()), branding: await getBranding() },
+    {
+      ...getSettings(await getInstanceSettings()),
+      branding: await getBranding(),
+    },
     200,
   ),
 );

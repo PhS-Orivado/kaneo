@@ -13,7 +13,12 @@ import reorderSprints from "./controllers/reorder-sprints";
 import startSprint from "./controllers/start-sprint";
 import updateSprint from "./controllers/update-sprint";
 import updateTaskSprint from "./controllers/update-task-sprint";
-import { closeSprintResultSchema, sprintListSchema, sprintSchema, taskSprintSchema } from "./response";
+import {
+  closeSprintResultSchema,
+  sprintListSchema,
+  sprintSchema,
+  taskSprintSchema,
+} from "./response";
 import {
   closeSprintBody,
   createSprintBody,
@@ -186,10 +191,11 @@ const closeSprintRoute = createRoute({
     },
   },
   responses: {
-    200: jsonResponse("The closed sprint and the moved tasks", closeSprintResultSchema),
-    400: errorResponse(
-      "The target is not a future sprint of this project",
+    200: jsonResponse(
+      "The closed sprint and the moved tasks",
+      closeSprintResultSchema,
     ),
+    400: errorResponse("The target is not a future sprint of this project"),
     403: errorResponse(
       "No workspace access, or missing project:update permission",
     ),
@@ -224,9 +230,7 @@ const updateTaskSprintRoute = createRoute({
       "No workspace access, or missing task:update permission",
     ),
     404: errorResponse("Task or target sprint not found"),
-    409: errorResponse(
-      "The task or the target belongs to a closed sprint",
-    ),
+    409: errorResponse("The task or the target belongs to a closed sprint"),
   },
 });
 
@@ -267,7 +271,11 @@ const sprint = apiRouter()
     const { taskId } = c.req.valid("param");
     const { sprintId } = c.req.valid("json");
     return c.json(
-      await updateTaskSprint({ taskId, sprintId, currentUserId: c.get("userId") }),
+      await updateTaskSprint({
+        taskId,
+        sprintId,
+        currentUserId: c.get("userId"),
+      }),
       200,
     );
   });

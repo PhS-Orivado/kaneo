@@ -3,11 +3,11 @@ import { describe, expect, it } from "vite-plus/test";
 import type { AssignableMember } from "./match-assignees";
 import { planImportUsers } from "./plan-import-users";
 
-const member = (
-  id: string,
-  name: string,
-  email: string,
-): AssignableMember => ({ id, name, email });
+const member = (id: string, name: string, email: string): AssignableMember => ({
+  id,
+  name,
+  email,
+});
 
 const person = (
   name: string | undefined,
@@ -48,15 +48,15 @@ describe("planImportUsers", () => {
   });
 
   it("skips people without an email; they keep the unmatched warning", () => {
-    expect(planImportUsers(members, [person("Mystery Person", undefined)])).toEqual(
-      [],
-    );
+    expect(
+      planImportUsers(members, [person("Mystery Person", undefined)]),
+    ).toEqual([]);
   });
 
   it("ignores undefined and empty people", () => {
-    expect(
-      planImportUsers(members, [undefined, person("", " \t")]),
-    ).toEqual([]);
+    expect(planImportUsers(members, [undefined, person("", " \t")])).toEqual(
+      [],
+    );
   });
 
   it("plans a person whose email is unknown even when a member shares the name", () => {

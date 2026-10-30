@@ -194,10 +194,7 @@ function RouteComponent() {
         }
       />
       <div className="relative flex flex-col h-full min-h-0 overflow-hidden">
-        <BoardSprintBanner
-          projectId={projectId}
-          workspaceId={workspaceId}
-        />
+        <BoardSprintBanner projectId={projectId} workspaceId={workspaceId} />
         {descriptionSearch.isLoading && (
           <p role="status" className="px-4 py-2 text-sm text-muted-foreground">
             {t("tasks:descriptionSearchLoading")}

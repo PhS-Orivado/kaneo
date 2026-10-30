@@ -111,9 +111,7 @@ describe("writeImportAttachments", () => {
       workspaceId: "w1",
       projectId: "p1",
       userId: "u1",
-      tasks: [
-        { taskId: "t1", description: "", attachments: [attachment] },
-      ],
+      tasks: [{ taskId: "t1", description: "", attachments: [attachment] }],
       signal: new AbortController().signal,
       status: null,
     });

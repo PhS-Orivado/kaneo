@@ -100,7 +100,10 @@ export default function SprintDialog({
           </DialogHeader>
 
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor="sprint-name" className="text-xs text-muted-foreground">
+            <Label
+              htmlFor="sprint-name"
+              className="text-xs text-muted-foreground"
+            >
               {t("tasks:sprints.name")}
             </Label>
             <Input
@@ -113,7 +116,10 @@ export default function SprintDialog({
           </div>
 
           <div className="flex flex-col gap-1.5">
-            <Label htmlFor="sprint-goal" className="text-xs text-muted-foreground">
+            <Label
+              htmlFor="sprint-goal"
+              className="text-xs text-muted-foreground"
+            >
               {t("tasks:sprints.goal")}
             </Label>
             <Textarea
@@ -135,9 +141,7 @@ export default function SprintDialog({
             </Button>
             <Button type="submit" disabled={isPending}>
               {!sprint && <Plus className="h-4 w-4 mr-1" />}
-              {sprint
-                ? t("tasks:sprints.save")
-                : t("tasks:sprints.create")}
+              {sprint ? t("tasks:sprints.save") : t("tasks:sprints.create")}
             </Button>
           </DialogFooter>
         </form>

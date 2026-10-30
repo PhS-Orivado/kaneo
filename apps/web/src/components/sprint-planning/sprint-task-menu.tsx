@@ -510,8 +510,7 @@ export function SprintTaskContextMenuItems({ menu }: { menu: SprintTaskMenu }) {
       {menu.canEdit && (
         <ContextMenuItem onClick={menu.archive}>
           <Archive className="size-3.5 text-muted-foreground" />
-          <span>{t("tasks:actions.archive")}
-          </span>
+          <span>{t("tasks:actions.archive")}</span>
         </ContextMenuItem>
       )}
       {menu.canDelete && (

@@ -19,7 +19,11 @@ export function mapSprintStatus(
   state: string | null | undefined,
 ): ImportedSprintStatus {
   const value = state?.trim().toLowerCase();
-  return value === "active" ? "active" : value === "closed" ? "closed" : "future";
+  return value === "active"
+    ? "active"
+    : value === "closed"
+      ? "closed"
+      : "future";
 }
 
 export function toImportedSprint(sprint: JiraSprint): ImportedSprint {

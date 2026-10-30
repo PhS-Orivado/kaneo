@@ -125,7 +125,7 @@ export function planImportTasks({
       title: task.title.trim() || UNTITLED_TASK,
       description: task.description ?? "",
       ...placement,
-      sprintId: task.sprintKey ? sprints.get(task.sprintKey) ?? null : null,
+      sprintId: task.sprintKey ? (sprints.get(task.sprintKey) ?? null) : null,
       position,
       priority: importPriority(task.priority),
       startDate: parseImportDate(task.startDate),

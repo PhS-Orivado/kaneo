@@ -668,9 +668,8 @@ export const sprintTable = pgTable(
     endDate: timestamp("end_date", { mode: "date" }),
     // Snapshot of the unfinished tasks moved out when the sprint was closed;
     // kept as a report so the carried-over work stays traceable.
-    carryOverTasks: jsonb("carry_over_tasks").$type<
-      { id: string; title: string }[]
-    >(),
+    carryOverTasks:
+      jsonb("carry_over_tasks").$type<{ id: string; title: string }[]>(),
     position: integer("position").notNull().default(0),
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
@@ -683,10 +682,7 @@ export const sprintTable = pgTable(
   (table) => [
     index("sprint_projectId_idx").on(table.projectId),
     unique("sprint_project_name_unique").on(table.projectId, table.name),
-    index("sprint_projectId_position_idx").on(
-      table.projectId,
-      table.position,
-    ),
+    index("sprint_projectId_position_idx").on(table.projectId, table.position),
     uniqueIndex("sprint_project_active_unique")
       .on(table.projectId)
       .where(sql`status = 'active'`),

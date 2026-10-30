@@ -17,7 +17,8 @@ async function getGitlabIntegrations(projectId: string) {
   return data;
 }
 
-export type GitlabIntegration =
-  Awaited<ReturnType<typeof getGitlabIntegrations>>["integrations"][number];
+export type GitlabIntegration = Awaited<
+  ReturnType<typeof getGitlabIntegrations>
+>["integrations"][number];
 
 export default getGitlabIntegrations;

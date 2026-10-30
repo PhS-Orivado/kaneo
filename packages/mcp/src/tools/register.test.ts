@@ -611,11 +611,9 @@ describe("registerTools", () => {
     registerTools(server as never, { client: client as never });
 
     await tools.get("list_sprints")?.handler({ projectId: "project 1" });
-    expect(client.json).toHaveBeenNthCalledWith(
-      1,
-      "/api/sprint/project%201",
-      { method: "GET" },
-    );
+    expect(client.json).toHaveBeenNthCalledWith(1, "/api/sprint/project%201", {
+      method: "GET",
+    });
 
     await tools.get("create_sprint")?.handler({
       projectId: "project-1",
@@ -641,18 +639,15 @@ describe("registerTools", () => {
       ],
     });
 
-    expect(client.json).toHaveBeenCalledWith(
-      "/api/sprint/reorder/project-1",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          sprints: [
-            { id: "sprint-2", position: 0 },
-            { id: "sprint-1", position: 1 },
-          ],
-        }),
-      },
-    );
+    expect(client.json).toHaveBeenCalledWith("/api/sprint/reorder/project-1", {
+      method: "POST",
+      body: JSON.stringify({
+        sprints: [
+          { id: "sprint-2", position: 0 },
+          { id: "sprint-1", position: 1 },
+        ],
+      }),
+    });
   });
 
   it("starts a sprint without dates and closes it to the backlog", async () => {

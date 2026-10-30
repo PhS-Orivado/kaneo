@@ -60,9 +60,7 @@ export function toImportRunResponse(
     // Rows persisted before stages and the sprints/users counts existed miss
     // those fields, so every project passes through normalizeRunProject.
     projects: current.projects.map((project) =>
-      normalizeRunProject(
-        project as Parameters<typeof normalizeRunProject>[0],
-      ),
+      normalizeRunProject(project as Parameters<typeof normalizeRunProject>[0]),
     ),
     createdAt: current.createdAt,
     finishedAt: current.finishedAt,

@@ -2,12 +2,7 @@ import { Check, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/cn";
 
-export const IMPORT_STAGES = [
-  "reading",
-  "sprints",
-  "users",
-  "tasks",
-] as const;
+export const IMPORT_STAGES = ["reading", "sprints", "users", "tasks"] as const;
 
 export type DisplayedStage = (typeof IMPORT_STAGES)[number];
 

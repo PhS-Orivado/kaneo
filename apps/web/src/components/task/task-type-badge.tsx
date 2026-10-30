@@ -19,10 +19,7 @@ export default function TaskTypeBadge({ task, className }: TaskTypeBadgeProps) {
   return (
     <span
       title={t("tasks:type.label")}
-      className={cn(
-        "inline-flex h-7 items-center gap-1.5 px-1.5",
-        className,
-      )}
+      className={cn("inline-flex h-7 items-center gap-1.5 px-1.5", className)}
     >
       {isBug ? (
         <Bug className="h-3.5 w-3.5 shrink-0 text-destructive" />

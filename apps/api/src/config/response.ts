@@ -36,8 +36,7 @@ export const brandingSchema = z
         "Privacy policy URL shown on the sign-in screen. Defaults to kaneo.app/privacy.",
     }),
     showPoweredBy: z.boolean().openapi({
-      description:
-        "Whether the Kaneo attribution appears on public pages.",
+      description: "Whether the Kaneo attribution appears on public pages.",
     }),
   })
   .openapi("Branding");

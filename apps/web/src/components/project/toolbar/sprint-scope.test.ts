@@ -79,7 +79,9 @@ describe("sprintScopeTaskMatcher", () => {
   });
 
   it("does not restrict anything for the current scope without an active sprint", () => {
-    expect(sprintScopeTaskMatcher("current", [sprint({ status: "future" })])).toBeNull();
+    expect(
+      sprintScopeTaskMatcher("current", [sprint({ status: "future" })]),
+    ).toBeNull();
   });
 
   it("matches tasks without a sprint for the backlog scope", () => {

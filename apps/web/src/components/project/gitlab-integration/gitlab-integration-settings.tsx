@@ -15,12 +15,8 @@ export function GitlabIntegrationSettings({
   projectId,
 }: GitlabIntegrationSettingsProps) {
   const { t } = useTranslation();
-  const {
-    data,
-    isLoading,
-    error,
-    refetch,
-  } = useGetGitlabIntegrations(projectId);
+  const { data, isLoading, error, refetch } =
+    useGetGitlabIntegrations(projectId);
   const [adding, setAdding] = useState(false);
 
   if (isLoading) return <CodeHostingPanelSkeleton />;

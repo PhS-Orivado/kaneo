@@ -422,12 +422,17 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
           accessToken: trimmed,
           tokenType: nextTokenType,
         });
-        await gitlabClient.getProject(parseGitlabProjectPath(config.projectPath ?? ""));
+        await gitlabClient.getProject(
+          parseGitlabProjectPath(config.projectPath ?? ""),
+        );
       } catch (error) {
         if (error instanceof GitlabApiError) {
-          throw new HTTPException((error.status || 400) as ContentfulStatusCode, {
-            message: error.message,
-          });
+          throw new HTTPException(
+            (error.status || 400) as ContentfulStatusCode,
+            {
+              message: error.message,
+            },
+          );
         }
         throw error;
       }

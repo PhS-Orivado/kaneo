@@ -109,8 +109,7 @@ export default function SprintsListView({ projectId }: SprintsListViewProps) {
   const { t } = useTranslation();
   const { data: sprints = [] } = useGetSprints(projectId);
   const project = useProjectStore((state) => state.project);
-  const { mutateAsync: startSprint, isPending: isStarting } =
-    useStartSprint();
+  const { mutateAsync: startSprint, isPending: isStarting } = useStartSprint();
   const { mutateAsync: updateTaskSprint } = useUpdateTaskSprint();
   const operations = useBulkOperations();
 
@@ -139,12 +138,8 @@ export default function SprintsListView({ projectId }: SprintsListViewProps) {
   const clearFocus = useBulkSelectionStore((state) => state.clearFocus);
 
   const activeSprint = sprints.find((sprint) => sprint.status === "active");
-  const futureSprints = sprints.filter(
-    (sprint) => sprint.status === "future",
-  );
-  const closedSprints = sprints.filter(
-    (sprint) => sprint.status === "closed",
-  );
+  const futureSprints = sprints.filter((sprint) => sprint.status === "future");
+  const closedSprints = sprints.filter((sprint) => sprint.status === "closed");
 
   // Sprint tasks live in the board columns and the planned backlog; archived
   // tasks stay out of the sprint lists.
@@ -285,9 +280,7 @@ export default function SprintsListView({ projectId }: SprintsListViewProps) {
         await operations.bulkSprint({ taskIds, sprintId: targetSprintId });
         clearSelection();
       }
-      toast.success(
-        t("tasks:sprints.moveSuccess", { count: taskIds.length }),
-      );
+      toast.success(t("tasks:sprints.moveSuccess", { count: taskIds.length }));
     } catch (error) {
       toast.error(
         error instanceof Error
@@ -420,7 +413,9 @@ export default function SprintsListView({ projectId }: SprintsListViewProps) {
                 }
               >
                 {remainingDays > 0 &&
-                  t("tasks:sprints.daysRemaining", { remaining: remainingDays })}
+                  t("tasks:sprints.daysRemaining", {
+                    remaining: remainingDays,
+                  })}
                 {remainingDays === 0 && t("tasks:sprints.endsToday")}
                 {remainingDays < 0 &&
                   t("tasks:sprints.daysOverdue", {

@@ -1,8 +1,4 @@
-import {
-  createJsonClient,
-  type JsonClient,
-  SourceHttpError,
-} from "../http.js";
+import { createJsonClient, type JsonClient, SourceHttpError } from "../http.js";
 import type { FetchLike } from "../types.js";
 import type {
   JiraBoardConfiguration,
@@ -115,7 +111,10 @@ export class JiraClient {
     );
   }
 
-  boardSprints(boardId: number, startAt: number): Promise<JiraSprintPage | null> {
+  boardSprints(
+    boardId: number,
+    startAt: number,
+  ): Promise<JiraSprintPage | null> {
     const params = new URLSearchParams({
       startAt: String(startAt),
       maxResults: String(SPRINTS_PAGE_SIZE),
@@ -186,9 +185,7 @@ export class JiraClient {
     options: { signal?: AbortSignal } = {},
   ): Promise<{ contentType?: string; body: ArrayBuffer }> {
     if (!url.startsWith(`${this.options.site.baseUrl}/`)) {
-      throw new Error(
-        `Jira attachment URL is outside the Jira site: ${url}`,
-      );
+      throw new Error(`Jira attachment URL is outside the Jira site: ${url}`);
     }
 
     const signals = [

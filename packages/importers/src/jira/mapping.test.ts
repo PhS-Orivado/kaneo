@@ -87,10 +87,14 @@ describe("mapAttachments", () => {
               filename: "spec.pdf",
               mimeType: "application/pdf",
               size: "2048",
-              content: "https://acme.atlassian.net/secure/attachment/7/spec.pdf",
+              content:
+                "https://acme.atlassian.net/secure/attachment/7/spec.pdf",
             },
             { id: "8", filename: "no-url.png" },
-            { id: "9", content: "https://acme.atlassian.net/secure/attachment/9" },
+            {
+              id: "9",
+              content: "https://acme.atlassian.net/secure/attachment/9",
+            },
           ],
         },
       }),

@@ -37,7 +37,10 @@ const client = (pages: {
     },
   }) as never;
 
-const sprint = (id: number, overrides: Partial<JiraSprint> = {}): JiraSprint => ({
+const sprint = (
+  id: number,
+  overrides: Partial<JiraSprint> = {},
+): JiraSprint => ({
   id,
   name: `Sprint ${id}`,
   state: "closed",
@@ -74,9 +77,7 @@ describe("toImportedSprint", () => {
   });
 
   it("names unnamed sprints after their id", () => {
-    expect(toImportedSprint({ id: 3, state: "future" }).name).toBe(
-      "Sprint 3",
-    );
+    expect(toImportedSprint({ id: 3, state: "future" }).name).toBe("Sprint 3");
   });
 
   it("drops an empty sprint goal", () => {

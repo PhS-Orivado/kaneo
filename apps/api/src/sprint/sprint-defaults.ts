@@ -9,7 +9,9 @@ export function deriveSprintEndDate(
   defaultLengthDays: number,
 ): Date {
   const endDate = new Date(startDate.getTime());
-  endDate.setDate(endDate.getDate() + Math.max(1, Math.trunc(defaultLengthDays)));
+  endDate.setDate(
+    endDate.getDate() + Math.max(1, Math.trunc(defaultLengthDays)),
+  );
   return endDate;
 }
 

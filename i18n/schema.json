@@ -64,9 +64,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"toggleSidebar"
-					]
+					"required": ["toggleSidebar"]
 				},
 				"sidebar": {
 					"type": "object",
@@ -79,10 +77,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"mobileDescription"
-					]
+					"required": ["title", "mobileDescription"]
 				},
 				"empty": {
 					"type": "object",
@@ -92,9 +87,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"loading"
-					]
+					"required": ["loading"]
 				},
 				"pagination": {
 					"type": "object",
@@ -139,10 +132,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"label",
-						"more"
-					]
+					"required": ["label", "more"]
 				},
 				"language": {
 					"type": "object",
@@ -203,10 +193,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"someone",
-						"unknown"
-					]
+					"required": ["someone", "unknown"]
 				},
 				"error": {
 					"type": "object",
@@ -250,13 +237,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"cors",
-								"network",
-								"auth",
-								"server",
-								"unknown"
-							]
+							"required": ["cors", "network", "auth", "server", "unknown"]
 						},
 						"troubleshootingSteps": {
 							"type": "object",
@@ -315,10 +296,7 @@
 									]
 								}
 							},
-							"required": [
-								"cors",
-								"network"
-							]
+							"required": ["cors", "network"]
 						}
 					},
 					"required": [
@@ -634,11 +612,7 @@
 							]
 						}
 					},
-					"required": [
-						"createProject",
-						"createWorkspace",
-						"createTask"
-					]
+					"required": ["createProject", "createWorkspace", "createTask"]
 				},
 				"editor": {
 					"type": "object",
@@ -661,17 +635,10 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"placeholder",
-								"apply",
-								"remove"
-							]
+							"required": ["label", "placeholder", "apply", "remove"]
 						}
 					},
-					"required": [
-						"link"
-					]
+					"required": ["link"]
 				},
 				"boolean": {
 					"type": "object",
@@ -690,12 +657,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"false",
-						"notSet",
-						"true",
-						"undefined"
-					]
+					"required": ["false", "notSet", "true", "undefined"]
 				}
 			},
 			"required": [
@@ -810,11 +772,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"fallbackTitle",
-								"description"
-							]
+							"required": ["title", "fallbackTitle", "description"]
 						},
 						"footer": {
 							"type": "object",
@@ -872,13 +830,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"subtitle",
-								"opening",
-								"stuck",
-								"continue"
-							]
+							"required": ["title", "subtitle", "opening", "stuck", "continue"]
 						}
 					},
 					"required": [
@@ -1074,11 +1026,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"email",
-								"password",
-								"providers"
-							]
+							"required": ["email", "password", "providers"]
 						},
 						"invitation": {
 							"type": "object",
@@ -1088,9 +1036,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"description"
-							]
+							"required": ["description"]
 						},
 						"verifyEmail": {
 							"type": "string"
@@ -1128,9 +1074,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"codeLength"
-							]
+							"required": ["codeLength"]
 						},
 						"toast": {
 							"type": "object",
@@ -1207,9 +1151,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"sendFailed"
-					]
+					"required": ["sendFailed"]
 				},
 				"signInForm": {
 					"type": "object",
@@ -1222,10 +1164,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"failedSignIn",
-						"emailNotVerified"
-					]
+					"required": ["failedSignIn", "emailNotVerified"]
 				},
 				"invitation": {
 					"type": "object",
@@ -1260,10 +1199,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"acceptFailed",
-								"acceptSuccess"
-							]
+							"required": ["acceptFailed", "acceptSuccess"]
 						},
 						"description": {
 							"type": "string"
@@ -1303,10 +1239,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"expired": {
 							"type": "object",
@@ -1319,10 +1252,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"invalid": {
 							"type": "object",
@@ -1335,10 +1265,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"loadFailed": {
 							"type": "object",
@@ -1351,10 +1278,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						}
 					},
 					"required": [
@@ -1410,9 +1334,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"createFailed"
-							]
+							"required": ["createFailed"]
 						},
 						"validation": {
 							"type": "object",
@@ -1425,10 +1347,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"workspaceNameRequired",
-								"projectNameRequired"
-							]
+							"required": ["workspaceNameRequired", "projectNameRequired"]
 						},
 						"cloud": {
 							"type": "object",
@@ -1517,11 +1436,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"trialUsed",
-										"recommended",
-										"continueTrial"
-									]
+									"required": ["trialUsed", "recommended", "continueTrial"]
 								}
 							},
 							"required": [
@@ -1552,10 +1467,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description"
-									]
+									"required": ["title", "description"]
 								},
 								"details": {
 									"type": "object",
@@ -1568,10 +1480,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description"
-									]
+									"required": ["title", "description"]
 								},
 								"invite": {
 									"type": "object",
@@ -1584,10 +1493,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description"
-									]
+									"required": ["title", "description"]
 								},
 								"integrations": {
 									"type": "object",
@@ -1600,10 +1506,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description"
-									]
+									"required": ["title", "description"]
 								},
 								"create": {
 									"type": "object",
@@ -1616,10 +1519,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description"
-									]
+									"required": ["title", "description"]
 								}
 							},
 							"required": [
@@ -1659,10 +1559,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"usage": {
 							"type": "object",
@@ -1675,10 +1572,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"project": {
 							"type": "object",
@@ -1697,12 +1591,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"label",
-								"numbered"
-							]
+							"required": ["title", "description", "label", "numbered"]
 						},
 						"invite": {
 							"type": "object",
@@ -1739,12 +1628,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"label",
-								"sendNone"
-							]
+							"required": ["title", "description", "label", "sendNone"]
 						},
 						"plan": {
 							"type": "object",
@@ -1785,10 +1669,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"team",
-										"personal"
-									]
+									"required": ["team", "personal"]
 								},
 								"perUserMonth": {
 									"type": "string"
@@ -1910,12 +1791,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"live",
-								"liveNoName",
-								"ready",
-								"untitled"
-							]
+							"required": ["live", "liveNoName", "ready", "untitled"]
 						}
 					},
 					"required": [
@@ -1987,10 +1863,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"updateSuccess",
-								"updateFailed"
-							]
+							"required": ["updateSuccess", "updateFailed"]
 						},
 						"validation": {
 							"type": "object",
@@ -2003,10 +1876,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"nameRequired",
-								"nameShort"
-							]
+							"required": ["nameRequired", "nameShort"]
 						}
 					},
 					"required": [
@@ -2150,10 +2020,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"terms",
-						"privacy"
-					]
+					"required": ["terms", "privacy"]
 				},
 				"device": {
 					"type": "object",
@@ -2242,10 +2109,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"denied": {
 							"type": "object",
@@ -2258,10 +2122,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"openApp": {
 							"type": "string"
@@ -2280,11 +2141,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"enterCode"
-							]
+							"required": ["title", "description", "enterCode"]
 						},
 						"signIn": {
 							"type": "object",
@@ -2300,11 +2157,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"submit"
-							]
+							"required": ["title", "description", "submit"]
 						}
 					},
 					"required": [
@@ -2376,10 +2229,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"signIn": {
 							"type": "object",
@@ -2395,18 +2245,10 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"submit"
-							]
+							"required": ["title", "description", "submit"]
 						}
 					},
-					"required": [
-						"authorize",
-						"expired",
-						"signIn"
-					]
+					"required": ["authorize", "expired", "signIn"]
 				}
 			},
 			"required": [
@@ -2842,10 +2684,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"admin",
-								"user"
-							]
+							"required": ["admin", "user"]
 						},
 						"status": {
 							"type": "object",
@@ -2858,10 +2697,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"active",
-								"deactivated"
-							]
+							"required": ["active", "deactivated"]
 						},
 						"actions": {
 							"type": "object",
@@ -2964,11 +2800,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"action"
-									]
+									"required": ["title", "description", "action"]
 								},
 								"reactivate": {
 									"type": "object",
@@ -2984,11 +2816,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"action"
-									]
+									"required": ["title", "description", "action"]
 								},
 								"delete": {
 									"type": "object",
@@ -3004,11 +2832,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"action"
-									]
+									"required": ["title", "description", "action"]
 								},
 								"sendPasswordReset": {
 									"type": "object",
@@ -3021,10 +2845,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"action"
-									]
+									"required": ["title", "action"]
 								},
 								"sendVerification": {
 									"type": "object",
@@ -3037,10 +2858,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"action"
-									]
+									"required": ["title", "action"]
 								},
 								"markEmailVerified": {
 									"type": "object",
@@ -3053,10 +2871,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"action"
-									]
+									"required": ["title", "action"]
 								}
 							},
 							"required": [
@@ -3262,9 +3077,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"password"
-									]
+									"required": ["password"]
 								},
 								"uploadAvatar": {
 									"type": "string"
@@ -3652,11 +3465,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"action"
-									]
+									"required": ["title", "description", "action"]
 								},
 								"remove": {
 									"type": "object",
@@ -3672,11 +3481,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"action"
-									]
+									"required": ["title", "description", "action"]
 								},
 								"archive": {
 									"type": "object",
@@ -3692,11 +3497,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"action"
-									]
+									"required": ["title", "description", "action"]
 								},
 								"restore": {
 									"type": "object",
@@ -3709,10 +3510,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"action"
-									]
+									"required": ["title", "action"]
 								},
 								"delete": {
 									"type": "object",
@@ -3731,12 +3529,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"title",
-										"description",
-										"typeName",
-										"action"
-									]
+									"required": ["title", "description", "typeName", "action"]
 								}
 							},
 							"required": [
@@ -3829,11 +3622,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"open",
-								"archive",
-								"restore"
-							]
+							"required": ["open", "archive", "restore"]
 						}
 					},
 					"required": [
@@ -3970,12 +3759,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"action",
-								"actor",
-								"target",
-								"time"
-							]
+							"required": ["action", "actor", "target", "time"]
 						},
 						"targetTypes": {
 							"type": "object",
@@ -3997,13 +3781,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"user",
-								"workspace",
-								"role",
-								"instance",
-								"webhook"
-							]
+							"required": ["user", "workspace", "role", "instance", "webhook"]
 						},
 						"actions": {
 							"type": "object",
@@ -4158,12 +3936,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"name",
-								"email",
-								"emailVerified",
-								"image"
-							]
+							"required": ["name", "email", "emailVerified", "image"]
 						},
 						"details": {
 							"type": "object",
@@ -4293,10 +4066,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"nameRequired",
-								"nameShort"
-							]
+							"required": ["nameRequired", "nameShort"]
 						},
 						"avatar": {
 							"type": "object",
@@ -5087,10 +4857,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"note",
-						"edit"
-					]
+					"required": ["note", "edit"]
 				},
 				"developerPage": {
 					"type": "object",
@@ -5265,10 +5032,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"nameRequired",
-										"nameShort"
-									]
+									"required": ["nameRequired", "nameShort"]
 								}
 							},
 							"required": [
@@ -5322,12 +5086,7 @@
 							]
 						}
 					},
-					"required": [
-						"createdModal",
-						"table",
-						"createDialog",
-						"row"
-					]
+					"required": ["createdModal", "table", "createDialog", "row"]
 				},
 				"workspaceGeneral": {
 					"type": "object",
@@ -5395,10 +5154,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"nameRequired",
-								"nameShort"
-							]
+							"required": ["nameRequired", "nameShort"]
 						},
 						"transferOwnership": {
 							"type": "object",
@@ -5592,11 +5348,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"viewer",
-								"member",
-								"admin"
-							]
+							"required": ["viewer", "member", "admin"]
 						},
 						"resources": {
 							"type": "object",
@@ -5661,10 +5413,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"read": {
 											"type": "object",
@@ -5677,10 +5426,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -5693,10 +5439,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -5709,10 +5452,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"share": {
 											"type": "object",
@@ -5725,19 +5465,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"read",
-										"update",
-										"delete",
-										"share"
-									]
+									"required": ["create", "read", "update", "delete", "share"]
 								},
 								"task": {
 									"type": "object",
@@ -5754,10 +5485,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"read": {
 											"type": "object",
@@ -5770,10 +5498,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -5786,10 +5511,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -5802,10 +5524,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"assign": {
 											"type": "object",
@@ -5818,19 +5537,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"read",
-										"update",
-										"delete",
-										"assign"
-									]
+									"required": ["create", "read", "update", "delete", "assign"]
 								},
 								"label": {
 									"type": "object",
@@ -5847,10 +5557,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"read": {
 											"type": "object",
@@ -5863,10 +5570,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -5879,10 +5583,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -5895,18 +5596,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"read",
-										"update",
-										"delete"
-									]
+									"required": ["create", "read", "update", "delete"]
 								},
 								"workspace": {
 									"type": "object",
@@ -5923,10 +5616,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -5939,10 +5629,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -5955,10 +5642,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"manage_settings": {
 											"type": "object",
@@ -5971,18 +5655,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"read",
-										"update",
-										"delete",
-										"manage_settings"
-									]
+									"required": ["read", "update", "delete", "manage_settings"]
 								},
 								"organization": {
 									"type": "object",
@@ -5999,10 +5675,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -6015,16 +5688,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"update",
-										"delete"
-									]
+									"required": ["update", "delete"]
 								},
 								"member": {
 									"type": "object",
@@ -6041,10 +5708,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -6057,10 +5721,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -6073,17 +5734,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"update",
-										"delete"
-									]
+									"required": ["create", "update", "delete"]
 								},
 								"invitation": {
 									"type": "object",
@@ -6100,10 +5754,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"cancel": {
 											"type": "object",
@@ -6116,16 +5767,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"cancel"
-									]
+									"required": ["create", "cancel"]
 								},
 								"team": {
 									"type": "object",
@@ -6142,10 +5787,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -6158,10 +5800,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -6174,17 +5813,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"update",
-										"delete"
-									]
+									"required": ["create", "update", "delete"]
 								},
 								"ac": {
 									"type": "object",
@@ -6201,10 +5833,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"read": {
 											"type": "object",
@@ -6217,10 +5846,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"update": {
 											"type": "object",
@@ -6233,10 +5859,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										},
 										"delete": {
 											"type": "object",
@@ -6249,18 +5872,10 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"label",
-												"description"
-											]
+											"required": ["label", "description"]
 										}
 									},
-									"required": [
-										"create",
-										"read",
-										"update",
-										"delete"
-									]
+									"required": ["create", "read", "update", "delete"]
 								}
 							},
 							"required": [
@@ -6289,11 +5904,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"nameRequired",
-								"nameExists",
-								"permissionRequired"
-							]
+							"required": ["nameRequired", "nameExists", "permissionRequired"]
 						},
 						"toast": {
 							"type": "object",
@@ -6338,10 +5949,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						}
 					},
 					"required": [
@@ -6554,10 +6162,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"sources": {
 							"type": "object",
@@ -6586,10 +6191,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"description",
-										"intro"
-									]
+									"required": ["description", "intro"]
 								},
 								"jira": {
 									"type": "object",
@@ -6602,10 +6204,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"description",
-										"intro"
-									]
+									"required": ["description", "intro"]
 								},
 								"trello": {
 									"type": "object",
@@ -6618,10 +6217,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"description",
-										"intro"
-									]
+									"required": ["description", "intro"]
 								},
 								"plane": {
 									"type": "object",
@@ -6634,10 +6230,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"description",
-										"intro"
-									]
+									"required": ["description", "intro"]
 								},
 								"planka": {
 									"type": "object",
@@ -6650,10 +6243,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"description",
-										"intro"
-									]
+									"required": ["description", "intro"]
 								},
 								"kaneo": {
 									"type": "object",
@@ -6669,11 +6259,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"pickerName",
-										"description",
-										"intro"
-									]
+									"required": ["pickerName", "description", "intro"]
 								}
 							},
 							"required": [
@@ -6752,12 +6338,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"importing",
-								"partial",
-								"failed",
-								"imported"
-							]
+							"required": ["importing", "partial", "failed", "imported"]
 						},
 						"steps": {
 							"type": "object",
@@ -6776,12 +6357,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"connect",
-								"import",
-								"done"
-							]
+							"required": ["label", "connect", "import", "done"]
 						},
 						"back": {
 							"type": "object",
@@ -6797,11 +6373,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"allSources",
-								"changeKey",
-								"overview"
-							]
+							"required": ["allSources", "changeKey", "overview"]
 						},
 						"connect": {
 							"type": "object",
@@ -7311,13 +6883,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"step",
-										"section",
-										"pick",
-										"empty",
-										"limit"
-									]
+									"required": ["step", "section", "pick", "empty", "limit"]
 								},
 								"board": {
 									"type": "object",
@@ -7447,13 +7013,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"step",
-										"section",
-										"pick",
-										"empty",
-										"limit"
-									]
+									"required": ["step", "section", "pick", "empty", "limit"]
 								},
 								"project": {
 									"type": "object",
@@ -7583,20 +7143,10 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"step",
-										"section",
-										"pick",
-										"empty",
-										"limit"
-									]
+									"required": ["step", "section", "pick", "empty", "limit"]
 								}
 							},
-							"required": [
-								"team",
-								"board",
-								"project"
-							]
+							"required": ["team", "board", "project"]
 						},
 						"counts": {
 							"type": "object",
@@ -7899,11 +7449,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"finished",
-								"partial",
-								"failed"
-							]
+							"required": ["finished", "partial", "failed"]
 						},
 						"entry": {
 							"type": "object",
@@ -7942,12 +7488,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"reading",
-								"sprints",
-								"tasks",
-								"users"
-							]
+							"required": ["reading", "sprints", "tasks", "users"]
 						}
 					},
 					"required": [
@@ -8478,10 +8019,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"selectProject",
-						"noProjects"
-					]
+					"required": ["selectProject", "noProjects"]
 				},
 				"columnEditor": {
 					"type": "object",
@@ -9001,10 +8539,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"baseUrlRequired",
-								"baseUrlInvalid"
-							]
+							"required": ["baseUrlRequired", "baseUrlInvalid"]
 						},
 						"toast": {
 							"type": "object",
@@ -9138,11 +8673,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"baseUrlRequired",
-								"baseUrlInvalid",
-								"pathInvalid"
-							]
+							"required": ["baseUrlRequired", "baseUrlInvalid", "pathInvalid"]
 						},
 						"toast": {
 							"type": "object",
@@ -9306,9 +8837,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"webhookInvalid"
-							]
+							"required": ["webhookInvalid"]
 						},
 						"toast": {
 							"type": "object",
@@ -9380,9 +8909,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"webhookInvalid"
-							]
+							"required": ["webhookInvalid"]
 						},
 						"toast": {
 							"type": "object",
@@ -9454,9 +8981,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"webhookInvalid"
-							]
+							"required": ["webhookInvalid"]
 						},
 						"toast": {
 							"type": "object",
@@ -9531,10 +9056,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"webhookInvalid",
-								"leadTimeRange"
-							]
+							"required": ["webhookInvalid", "leadTimeRange"]
 						},
 						"toast": {
 							"type": "object",
@@ -10200,10 +9722,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"validation": {
 							"type": "object",
@@ -10470,9 +9989,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title"
-							]
+							"required": ["title"]
 						},
 						"foundingFree": {
 							"type": "object",
@@ -10488,11 +10005,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"badge",
-								"description"
-							]
+							"required": ["title", "badge", "description"]
 						},
 						"seats_one": {
 							"type": "string"
@@ -10580,10 +10093,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"subtitle"
-							]
+							"required": ["title", "subtitle"]
 						},
 						"interval": {
 							"type": "object",
@@ -10599,11 +10109,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"monthly",
-								"annual",
-								"annualBadge"
-							]
+							"required": ["monthly", "annual", "annualBadge"]
 						},
 						"mostPopular": {
 							"type": "string"
@@ -10671,10 +10177,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"name",
-										"tagline"
-									]
+									"required": ["name", "tagline"]
 								},
 								"team": {
 									"type": "object",
@@ -10687,16 +10190,10 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"name",
-										"tagline"
-									]
+									"required": ["name", "tagline"]
 								}
 							},
-							"required": [
-								"personal",
-								"team"
-							]
+							"required": ["personal", "team"]
 						},
 						"features": {
 							"type": "object",
@@ -10862,10 +10359,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						}
 					},
 					"required": [
@@ -11174,9 +10668,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"autosave"
-					]
+					"required": ["autosave"]
 				},
 				"projectCustomFields": {
 					"type": "object",
@@ -11313,12 +10805,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"ok",
-								"warning",
-								"not_configured",
-								"down"
-							]
+							"required": ["ok", "warning", "not_configured", "down"]
 						},
 						"setupStatus": {
 							"type": "object",
@@ -11337,12 +10824,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"ok",
-								"warning",
-								"not_configured",
-								"down"
-							]
+							"required": ["ok", "warning", "not_configured", "down"]
 						},
 						"instance": {
 							"type": "object",
@@ -11452,11 +10934,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"standalone",
-										"sentinel",
-										"cluster"
-									]
+									"required": ["standalone", "sentinel", "cluster"]
 								},
 								"storage": {
 									"type": "string"
@@ -11641,12 +11119,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"ok",
-										"warning",
-										"not_configured",
-										"down"
-									]
+									"required": ["ok", "warning", "not_configured", "down"]
 								}
 							},
 							"required": [
@@ -11667,10 +11140,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"testEmailSent",
-								"testEmailError"
-							]
+							"required": ["testEmailSent", "testEmailError"]
 						}
 					},
 					"required": [
@@ -11920,12 +11390,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"created",
-								"updated",
-								"deleted",
-								"error"
-							]
+							"required": ["created", "updated", "deleted", "error"]
 						},
 						"groups": {
 							"type": "object",
@@ -11941,11 +11406,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"users",
-								"workspaces",
-								"instance"
-							]
+							"required": ["users", "workspaces", "instance"]
 						},
 						"permissions": {
 							"type": "object",
@@ -12103,10 +11564,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"saved",
-								"error"
-							]
+							"required": ["saved", "error"]
 						}
 					},
 					"required": [
@@ -12416,10 +11874,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"saveError",
-								"saved"
-							]
+							"required": ["saveError", "saved"]
 						}
 					},
 					"required": [
@@ -12558,11 +12013,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"navigate",
-								"open",
-								"close"
-							]
+							"required": ["navigate", "open", "close"]
 						}
 					},
 					"required": [
@@ -12718,11 +12169,7 @@
 							]
 						}
 					},
-					"required": [
-						"inputPlaceholder",
-						"minCharsHint",
-						"groups"
-					]
+					"required": ["inputPlaceholder", "minCharsHint", "groups"]
 				},
 				"settingsLayout": {
 					"type": "object",
@@ -12735,10 +12182,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"toggleSidebar",
-						"back"
-					]
+					"required": ["toggleSidebar", "back"]
 				},
 				"userMenu": {
 					"type": "object",
@@ -12824,9 +12268,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"projectLabel"
-					]
+					"required": ["projectLabel"]
 				},
 				"shortcuts": {
 					"type": "object",
@@ -13562,10 +13004,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"workspace_created": {
 							"type": "object",
@@ -13578,10 +13017,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"task_status_changed": {
 							"type": "object",
@@ -13594,10 +13030,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"task_assignee_changed": {
 							"type": "object",
@@ -13610,10 +13043,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"task_mention": {
 							"type": "object",
@@ -13626,10 +13056,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"task_comment": {
 							"type": "object",
@@ -13642,10 +13069,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"due_date_reminder": {
 							"type": "object",
@@ -13658,10 +13082,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"task_overdue": {
 							"type": "object",
@@ -13674,10 +13095,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"content"
-							]
+							"required": ["title", "content"]
 						},
 						"time_entry_created": {
 							"type": "object",
@@ -13693,11 +13111,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"contentWithTask",
-								"contentWithoutTask"
-							]
+							"required": ["title", "contentWithTask", "contentWithoutTask"]
 						}
 					},
 					"required": [
@@ -13745,12 +13159,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"all",
-								"unread",
-								"mentions"
-							]
+							"required": ["label", "all", "unread", "mentions"]
 						},
 						"emptyFilter": {
 							"type": "string"
@@ -14172,9 +13581,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"renderFailed"
-									]
+									"required": ["renderFailed"]
 								}
 							},
 							"required": [
@@ -14488,10 +13895,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"markIncomplete",
-										"markComplete"
-									]
+									"required": ["markIncomplete", "markComplete"]
 								},
 								"upload": {
 									"type": "object",
@@ -14535,11 +13939,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"text",
-												"lists",
-												"insert"
-											]
+											"required": ["text", "lists", "insert"]
 										},
 										"empty": {
 											"type": "string"
@@ -14589,11 +13989,7 @@
 											]
 										}
 									},
-									"required": [
-										"groups",
-										"empty",
-										"commands"
-									]
+									"required": ["groups", "empty", "commands"]
 								},
 								"languages": {
 									"type": "object",
@@ -14766,10 +14162,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"embedVideo",
-												"keepAsLink"
-											]
+											"required": ["embedVideo", "keepAsLink"]
 										},
 										"inputPlaceholder": {
 											"type": "string"
@@ -14794,10 +14187,7 @@
 													"type": "string"
 												}
 											},
-											"required": [
-												"invalidUrl",
-												"onlyYoutube"
-											]
+											"required": ["invalidUrl", "onlyYoutube"]
 										},
 										"onlyYoutubeInline": {
 											"type": "string"
@@ -14821,9 +14211,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"renderFailed"
-									]
+									"required": ["renderFailed"]
 								},
 								"image": {
 									"type": "object",
@@ -14908,9 +14296,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"task"
-					]
+					"required": ["task"]
 				},
 				"relations": {
 					"type": "object",
@@ -14963,11 +14349,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"blocks",
-								"blocked_by",
-								"related"
-							]
+							"required": ["blocks", "blocked_by", "related"]
 						},
 						"blockedBy": {
 							"type": "string"
@@ -15168,10 +14550,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"unassigned",
-								"updateError"
-							]
+							"required": ["unassigned", "updateError"]
 						},
 						"status": {
 							"type": "object",
@@ -15181,9 +14560,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"updateError"
-							]
+							"required": ["updateError"]
 						},
 						"priority": {
 							"type": "object",
@@ -15193,9 +14570,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"updateError"
-							]
+							"required": ["updateError"]
 						},
 						"dueDate": {
 							"type": "object",
@@ -15208,10 +14583,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"updateError",
-								"clear"
-							]
+							"required": ["updateError", "clear"]
 						},
 						"recurrence": {
 							"type": "object",
@@ -15337,9 +14709,7 @@
 											"type": "string"
 										}
 									},
-									"required": [
-										"label"
-									]
+									"required": ["label"]
 								},
 								"onDays": {
 									"type": "string"
@@ -15374,10 +14744,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"updateError",
-								"clear"
-							]
+							"required": ["updateError", "clear"]
 						},
 						"labels": {
 							"type": "object",
@@ -15566,10 +14933,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"planned",
-								"archived"
-							]
+							"required": ["planned", "archived"]
 						},
 						"noTasksInSection": {
 							"type": "string"
@@ -15588,11 +14952,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"dueThisWeek",
-								"dueNextWeek",
-								"noDueDate"
-							]
+							"required": ["dueThisWeek", "dueNextWeek", "noDueDate"]
 						}
 					},
 					"required": [
@@ -15653,12 +15013,7 @@
 							]
 						}
 					},
-					"required": [
-						"direction",
-						"ascending",
-						"descending",
-						"fields"
-					]
+					"required": ["direction", "ascending", "descending", "fields"]
 				},
 				"boardFilters": {
 					"type": "object",
@@ -15948,13 +15303,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"description",
-						"action",
-						"success",
-						"error"
-					]
+					"required": ["title", "description", "action", "success", "error"]
 				},
 				"duplicate": {
 					"type": "object",
@@ -15970,11 +15319,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"titleSuffix",
-						"success",
-						"error"
-					]
+					"required": ["titleSuffix", "success", "error"]
 				},
 				"archive": {
 					"type": "object",
@@ -16023,9 +15368,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"confirmDescription"
-					]
+					"required": ["confirmDescription"]
 				},
 				"listView": {
 					"type": "object",
@@ -16074,10 +15417,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"addTask",
-						"automaticallySortedHint"
-					]
+					"required": ["addTask", "automaticallySortedHint"]
 				},
 				"pr": {
 					"type": "object",
@@ -16117,13 +15457,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"merged",
-						"draft",
-						"open",
-						"label",
-						"closed"
-					]
+					"required": ["merged", "draft", "open", "label", "closed"]
 				},
 				"assignee": {
 					"type": "object",
@@ -16136,10 +15470,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"label",
-						"unassigned"
-					]
+					"required": ["label", "unassigned"]
 				},
 				"dueDate": {
 					"type": "object",
@@ -16158,12 +15489,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"label",
-						"clear",
-						"updateError",
-						"clearError"
-					]
+					"required": ["label", "clear", "updateError", "clearError"]
 				},
 				"recurrence": {
 					"type": "object",
@@ -16245,9 +15571,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"onDays"
-					]
+					"required": ["onDays"]
 				},
 				"labels": {
 					"type": "object",
@@ -16257,9 +15581,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"empty"
-					]
+					"required": ["empty"]
 				},
 				"update": {
 					"type": "object",
@@ -16269,9 +15591,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"error"
-					]
+					"required": ["error"]
 				},
 				"contextMenu": {
 					"type": "object",
@@ -16284,10 +15604,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"copyLink",
-						"copyLinkSuccess"
-					]
+					"required": ["copyLink", "copyLinkSuccess"]
 				},
 				"actions": {
 					"type": "object",
@@ -16306,12 +15623,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"duplicate",
-						"archive",
-						"markAsPlanned",
-						"delete"
-					]
+					"required": ["duplicate", "archive", "markAsPlanned", "delete"]
 				},
 				"bulk": {
 					"type": "object",
@@ -16672,9 +15984,7 @@
 							]
 						}
 					},
-					"required": [
-						"table"
-					]
+					"required": ["table"]
 				},
 				"customFields": {
 					"type": "object",
@@ -16786,10 +16096,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"reorderFailed",
-						"keyboardInstructions"
-					]
+					"required": ["reorderFailed", "keyboardInstructions"]
 				},
 				"toolbar": {
 					"type": "object",
@@ -16838,10 +16145,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"search",
-						"clearSearch"
-					]
+					"required": ["search", "clearSearch"]
 				},
 				"display": {
 					"type": "object",
@@ -16925,11 +16229,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"addFilter",
-						"searchSubject",
-						"noResults"
-					]
+					"required": ["addFilter", "searchSubject", "noResults"]
 				},
 				"shortcuts": {
 					"type": "object",
@@ -17031,11 +16331,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"today",
-						"tomorrow",
-						"fullDate"
-					]
+					"required": ["today", "tomorrow", "fullDate"]
 				},
 				"datePicker": {
 					"type": "object",
@@ -17385,11 +16681,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"bug",
-						"label",
-						"task"
-					]
+					"required": ["bug", "label", "task"]
 				}
 			},
 			"required": [
@@ -17496,13 +16788,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"sentTo",
-								"instance",
-								"role",
-								"expires"
-							]
+							"required": ["title", "sentTo", "instance", "role", "expires"]
 						}
 					},
 					"required": [
@@ -17552,11 +16838,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"workspace",
-						"invitedBy",
-						"expires"
-					]
+					"required": ["workspace", "invitedBy", "expires"]
 				},
 				"toast": {
 					"type": "object",
@@ -17648,11 +16930,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"notStarted",
-								"complete",
-								"inProgress"
-							]
+							"required": ["notStarted", "complete", "inProgress"]
 						},
 						"noDueDate": {
 							"type": "string"
@@ -17873,11 +17151,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"morning",
-								"afternoon",
-								"evening"
-							]
+							"required": ["morning", "afternoon", "evening"]
 						},
 						"newTask": {
 							"type": "string"
@@ -17908,9 +17182,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"truncated"
-							]
+							"required": ["truncated"]
 						},
 						"upNext": {
 							"type": "object",
@@ -17941,10 +17213,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"viewAll"
-							]
+							"required": ["title", "viewAll"]
 						},
 						"projects": {
 							"type": "object",
@@ -17978,11 +17247,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"all",
-								"loadError"
-							]
+							"required": ["title", "all", "loadError"]
 						},
 						"activity": {
 							"type": "object",
@@ -18066,11 +17331,7 @@
 							]
 						}
 					},
-					"required": [
-						"empty",
-						"loadError",
-						"due"
-					]
+					"required": ["empty", "loadError", "due"]
 				},
 				"myTasks": {
 					"type": "object",
@@ -18096,22 +17357,13 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"dueDate",
-								"project"
-							]
+							"required": ["label", "dueDate", "project"]
 						},
 						"truncated": {
 							"type": "string"
 						}
 					},
-					"required": [
-						"pageTitle",
-						"emptyDescription",
-						"groupBy",
-						"truncated"
-					]
+					"required": ["pageTitle", "emptyDescription", "groupBy", "truncated"]
 				},
 				"archived": {
 					"type": "object",
@@ -18130,12 +17382,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"description",
-						"otherWorkspaces",
-						"manage"
-					]
+					"required": ["title", "description", "otherWorkspaces", "manage"]
 				}
 			},
 			"required": [
@@ -18169,12 +17416,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"owner",
-						"admin",
-						"member",
-						"viewer"
-					]
+					"required": ["owner", "admin", "member", "viewer"]
 				},
 				"members": {
 					"type": "object",
@@ -18190,11 +17432,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"pageTitle",
-						"inviteMember",
-						"you"
-					]
+					"required": ["pageTitle", "inviteMember", "you"]
 				},
 				"invitations": {
 					"type": "object",
@@ -18302,13 +17540,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"name",
-								"role",
-								"joined",
-								"actions",
-								"projects"
-							]
+							"required": ["name", "role", "joined", "actions", "projects"]
 						},
 						"memberRolePending": {
 							"type": "string"
@@ -18509,10 +17741,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"description"
-					]
+					"required": ["title", "description"]
 				},
 				"taskCard": {
 					"type": "object",
@@ -18522,9 +17751,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"viewDetailsAria"
-					]
+					"required": ["viewDetailsAria"]
 				},
 				"taskDetail": {
 					"type": "object",
@@ -18585,10 +17812,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"switchToLight",
-						"switchToDark"
-					]
+					"required": ["switchToLight", "switchToDark"]
 				},
 				"copyUrl": {
 					"type": "object",
@@ -18607,12 +17831,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"successToast",
-						"errorToast",
-						"copied",
-						"share"
-					]
+					"required": ["successToast", "errorToast", "copied", "share"]
 				},
 				"branding": {
 					"type": "object",
@@ -18622,9 +17841,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"poweredBy"
-					]
+					"required": ["poweredBy"]
 				}
 			},
 			"required": [
@@ -18819,9 +18036,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"ciSponsor"
-					]
+					"required": ["ciSponsor"]
 				},
 				"founder": {
 					"type": "object",
@@ -18840,12 +18055,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"intro",
-						"problem",
-						"principle"
-					]
+					"required": ["title", "intro", "problem", "principle"]
 				},
 				"hero": {
 					"type": "object",
@@ -19005,11 +18215,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"title",
-								"description"
-							]
+							"required": ["label", "title", "description"]
 						},
 						"github": {
 							"type": "object",
@@ -19028,12 +18234,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"title",
-								"description",
-								"link"
-							]
+							"required": ["label", "title", "description", "link"]
 						},
 						"hosting": {
 							"type": "object",
@@ -19049,11 +18250,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"link"
-							]
+							"required": ["title", "description", "link"]
 						},
 						"source": {
 							"type": "object",
@@ -19069,11 +18266,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description",
-								"link"
-							]
+							"required": ["title", "description", "link"]
 						},
 						"preview": {
 							"type": "object",
@@ -19197,11 +18390,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"label",
-								"title",
-								"description"
-							]
+							"required": ["label", "title", "description"]
 						}
 					},
 					"required": [
@@ -19224,10 +18413,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"description"
-					]
+					"required": ["title", "description"]
 				},
 				"resources": {
 					"type": "object",
@@ -19253,10 +18439,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"sso": {
 							"type": "object",
@@ -19269,10 +18452,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"mcp": {
 							"type": "object",
@@ -19285,10 +18465,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						},
 						"linear": {
 							"type": "object",
@@ -19301,10 +18478,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"description"
-							]
+							"required": ["title", "description"]
 						}
 					},
 					"required": [
@@ -19344,11 +18518,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"question",
-								"answer",
-								"link"
-							]
+							"required": ["question", "answer", "link"]
 						},
 						"planning": {
 							"type": "object",
@@ -19364,11 +18534,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"question",
-								"answer",
-								"link"
-							]
+							"required": ["question", "answer", "link"]
 						},
 						"sso": {
 							"type": "object",
@@ -19384,11 +18550,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"question",
-								"answer",
-								"link"
-							]
+							"required": ["question", "answer", "link"]
 						},
 						"agents": {
 							"type": "object",
@@ -19404,11 +18566,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"question",
-								"answer",
-								"link"
-							]
+							"required": ["question", "answer", "link"]
 						}
 					},
 					"required": [
@@ -19435,11 +18593,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"feature",
-						"yes",
-						"no"
-					]
+					"required": ["feature", "yes", "no"]
 				},
 				"selfHostingGuide": {
 					"type": "object",
@@ -19796,10 +18950,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"message",
-								"label"
-							]
+							"required": ["message", "label"]
 						},
 						"signUp": {
 							"type": "object",
@@ -19812,10 +18963,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"name",
-								"passwordHint"
-							]
+							"required": ["name", "passwordHint"]
 						},
 						"unlock": {
 							"type": "object",
@@ -19959,10 +19107,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"planned",
-								"archived"
-							]
+							"required": ["planned", "archived"]
 						},
 						"section": {
 							"type": "object",
@@ -19972,9 +19117,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"addTo"
-							]
+							"required": ["addTo"]
 						},
 						"fields": {
 							"type": "object",
@@ -19990,11 +19133,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"empty",
-								"none"
-							]
+							"required": ["title", "empty", "none"]
 						},
 						"subtasks": {
 							"type": "object",
@@ -20013,12 +19152,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"add",
-								"parent",
-								"empty"
-							]
+							"required": ["title", "add", "parent", "empty"]
 						},
 						"relations": {
 							"type": "object",
@@ -21298,10 +20432,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message"
-							]
+							"required": ["title", "message"]
 						},
 						"hideArchived": {
 							"type": "string"
@@ -21355,10 +20486,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message"
-							]
+							"required": ["title", "message"]
 						},
 						"today": {
 							"type": "string"
@@ -21386,11 +20514,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message",
-								"confirm"
-							]
+							"required": ["title", "message", "confirm"]
 						}
 					},
 					"required": [
@@ -21426,13 +20550,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"subtitle",
-						"empty",
-						"someone",
-						"commentedOn"
-					]
+					"required": ["title", "subtitle", "empty", "someone", "commentedOn"]
 				},
 				"myTasks": {
 					"type": "object",
@@ -21455,11 +20573,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"due",
-								"project",
-								"status"
-							]
+							"required": ["due", "project", "status"]
 						},
 						"due": {
 							"type": "object",
@@ -21481,13 +20595,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"overdue",
-								"today",
-								"thisWeek",
-								"later",
-								"none"
-							]
+							"required": ["overdue", "today", "thisWeek", "later", "none"]
 						},
 						"empty": {
 							"type": "object",
@@ -21500,10 +20608,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message"
-							]
+							"required": ["title", "message"]
 						},
 						"showing": {
 							"type": "string"
@@ -21527,13 +20632,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"title",
-						"by",
-						"due",
-						"empty",
-						"showing"
-					]
+					"required": ["title", "by", "due", "empty", "showing"]
 				},
 				"nav": {
 					"type": "object",
@@ -21573,12 +20672,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"home",
-						"tasks",
-						"inbox",
-						"activity"
-					]
+					"required": ["home", "tasks", "inbox", "activity"]
 				},
 				"workspaceSwitcher": {
 					"type": "object",
@@ -21642,13 +20736,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"all",
-								"tasks",
-								"projects",
-								"comments",
-								"activity"
-							]
+							"required": ["all", "tasks", "projects", "comments", "activity"]
 						},
 						"empty": {
 							"type": "object",
@@ -21661,10 +20749,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message"
-							]
+							"required": ["title", "message"]
 						},
 						"failed": {
 							"type": "string"
@@ -21844,10 +20929,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"channelName",
-						"channelDescription"
-					]
+					"required": ["channelName", "channelDescription"]
 				},
 				"ui": {
 					"type": "object",
@@ -21866,12 +20948,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"back",
-						"loadFailed",
-						"search",
-						"nothingMatches"
-					]
+					"required": ["back", "loadFailed", "search", "nothingMatches"]
 				},
 				"picker": {
 					"type": "object",
@@ -21890,12 +20967,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"clear",
-						"nextWeek",
-						"previousMonth",
-						"nextMonth"
-					]
+					"required": ["clear", "nextWeek", "previousMonth", "nextMonth"]
 				},
 				"time": {
 					"type": "object",
@@ -22091,13 +21163,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"noPriority",
-								"low",
-								"medium",
-								"high",
-								"urgent"
-							]
+							"required": ["noPriority", "low", "medium", "high", "urgent"]
 						},
 						"labelColor": {
 							"type": "object",
@@ -22176,12 +21242,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"owner",
-								"admin",
-								"member",
-								"viewer"
-							]
+							"required": ["owner", "admin", "member", "viewer"]
 						},
 						"roleHint": {
 							"type": "object",
@@ -22200,20 +21261,10 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"owner",
-								"admin",
-								"member",
-								"viewer"
-							]
+							"required": ["owner", "admin", "member", "viewer"]
 						}
 					},
-					"required": [
-						"priority",
-						"labelColor",
-						"role",
-						"roleHint"
-					]
+					"required": ["priority", "labelColor", "role", "roleHint"]
 				},
 				"account": {
 					"type": "object",
@@ -22339,11 +21390,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"button",
-								"title",
-								"message"
-							]
+							"required": ["button", "title", "message"]
 						},
 						"photoMenu": {
 							"type": "object",
@@ -22356,10 +21403,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"choose",
-								"remove"
-							]
+							"required": ["choose", "remove"]
 						},
 						"toast": {
 							"type": "object",
@@ -22685,13 +21729,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"name",
-								"description",
-								"slug",
-								"save"
-							]
+							"required": ["title", "name", "description", "slug", "save"]
 						},
 						"manage": {
 							"type": "object",
@@ -22707,11 +21745,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"members",
-								"labels"
-							]
+							"required": ["title", "members", "labels"]
 						},
 						"danger": {
 							"type": "object",
@@ -22783,11 +21817,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"updated",
-								"deleted",
-								"left"
-							]
+							"required": ["updated", "deleted", "left"]
 						}
 					},
 					"required": [
@@ -22846,11 +21876,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"expires",
-								"manage"
-							]
+							"required": ["title", "expires", "manage"]
 						},
 						"people": {
 							"type": "object",
@@ -22866,11 +21892,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"unknown",
-								"you"
-							]
+							"required": ["title", "unknown", "you"]
 						},
 						"memberMenu": {
 							"type": "object",
@@ -22886,11 +21908,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"fallbackTitle",
-								"changeRole",
-								"remove"
-							]
+							"required": ["fallbackTitle", "changeRole", "remove"]
 						},
 						"rolePicker": {
 							"type": "object",
@@ -22900,9 +21918,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title"
-							]
+							"required": ["title"]
 						},
 						"remove": {
 							"type": "object",
@@ -22921,12 +21937,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message",
-								"they",
-								"confirm"
-							]
+							"required": ["title", "message", "they", "confirm"]
 						},
 						"inviteMenu": {
 							"type": "object",
@@ -22942,11 +21953,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"fallbackTitle",
-								"resend",
-								"cancel"
-							]
+							"required": ["fallbackTitle", "resend", "cancel"]
 						},
 						"inviteForm": {
 							"type": "object",
@@ -22968,13 +21975,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"intro",
-								"email",
-								"role",
-								"send"
-							]
+							"required": ["title", "intro", "email", "role", "send"]
 						},
 						"toast": {
 							"type": "object",
@@ -23052,10 +22053,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"title",
-								"message"
-							]
+							"required": ["title", "message"]
 						},
 						"actions": {
 							"type": "string"
@@ -23077,10 +22075,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"name",
-								"color"
-							]
+							"required": ["name", "color"]
 						},
 						"toast": {
 							"type": "object",
@@ -23090,9 +22085,7 @@
 									"type": "string"
 								}
 							},
-							"required": [
-								"deleted"
-							]
+							"required": ["deleted"]
 						}
 					},
 					"required": [
@@ -23118,9 +22111,7 @@
 							"type": "string"
 						}
 					},
-					"required": [
-						"photos"
-					]
+					"required": ["photos"]
 				}
 			},
 			"required": [

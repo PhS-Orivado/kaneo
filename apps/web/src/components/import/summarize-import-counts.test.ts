@@ -27,9 +27,7 @@ describe("summarizeImportCounts", () => {
   });
 
   it("includes sprints and users once they were imported", () => {
-    expect(
-      summarizeImportCounts({ ...counts, sprints: 6, users: 2 }),
-    ).toEqual([
+    expect(summarizeImportCounts({ ...counts, sprints: 6, users: 2 })).toEqual([
       { key: "tasks", count: 412 },
       { key: "sprints", count: 6 },
       { key: "columns", count: 7 },

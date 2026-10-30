@@ -44,8 +44,7 @@ const ISSUES = [
         filename: "spec.pdf",
         mimeType: "application/pdf",
         size: 12,
-        content:
-          "https://acme.atlassian.net/secure/attachment/1/spec.pdf",
+        content: "https://acme.atlassian.net/secure/attachment/1/spec.pdf",
       },
       { id: "2" },
     ],
@@ -125,15 +124,17 @@ describe("mapJiraProject", () => {
       { sourceKey: "11", targetKey: "10", type: "subtask" },
       { sourceKey: "13", targetKey: "11", type: "blocks" },
     ]);
-    expect(result.tasks.find((task) => task.key === "10")?.attachments).toEqual([
-      {
-        key: "1",
-        filename: "spec.pdf",
-        mimeType: "application/pdf",
-        size: 12,
-        contentUrl: "https://acme.atlassian.net/secure/attachment/1/spec.pdf",
-      },
-    ]);
+    expect(result.tasks.find((task) => task.key === "10")?.attachments).toEqual(
+      [
+        {
+          key: "1",
+          filename: "spec.pdf",
+          mimeType: "application/pdf",
+          size: 12,
+          contentUrl: "https://acme.atlassian.net/secure/attachment/1/spec.pdf",
+        },
+      ],
+    );
     expect(result.warnings).toEqual([
       "1 parent or issue link points to another project, so it was not imported.",
     ]);

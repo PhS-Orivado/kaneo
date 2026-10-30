@@ -6,7 +6,10 @@ import { isDatabaseUniqueViolation } from "../../integrations/map-unique-violati
 import { publishEvent } from "../../events";
 import { getSprint } from "./get-sprints";
 import { nextSprintName } from "../sprint-defaults";
-import { validateAndParseDate, validateDateRange } from "../../utils/validate-dates";
+import {
+  validateAndParseDate,
+  validateDateRange,
+} from "../../utils/validate-dates";
 
 async function createSprint({
   projectId,
@@ -22,7 +25,9 @@ async function createSprint({
   endDate?: string;
 }) {
   const start =
-    startDate !== undefined ? validateAndParseDate(startDate, "Start date") : null;
+    startDate !== undefined
+      ? validateAndParseDate(startDate, "Start date")
+      : null;
   const end =
     endDate !== undefined ? validateAndParseDate(endDate, "End date") : null;
   validateDateRange(start, end);

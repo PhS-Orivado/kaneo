@@ -60,7 +60,11 @@ it("refreshes only the affected open comparison before accepting its new token",
     () => {
       useProjectWebSocket("project");
       const preview = useResumePreview(
-        { projectId: "project", provider: "github", integrationId: "integration-1" },
+        {
+          projectId: "project",
+          provider: "github",
+          integrationId: "integration-1",
+        },
         "link",
         "task",
       );
@@ -86,11 +90,23 @@ it("refreshes only the affected open comparison before accepting its new token",
   ]);
   const invalidation = vi.spyOn(client, "invalidateQueries");
   client.setQueryData(
-    ["integration-sync-review", "project", "github", "integration-1", "inactive"],
+    [
+      "integration-sync-review",
+      "project",
+      "github",
+      "integration-1",
+      "inactive",
+    ],
     initial,
   );
   client.setQueryData(
-    ["integration-sync-review", "other-project", "github", "integration-1", "link"],
+    [
+      "integration-sync-review",
+      "other-project",
+      "github",
+      "integration-1",
+      "link",
+    ],
     initial,
   );
   act(() => Socket.current.message("unrelated-task"));
@@ -183,7 +199,11 @@ it("replaces a pre-edit initial review fetch and ignores its late response", asy
     () => {
       useProjectWebSocket("project");
       const preview = useResumePreview(
-        { projectId: "project", provider: "github", integrationId: "integration-1" },
+        {
+          projectId: "project",
+          provider: "github",
+          integrationId: "integration-1",
+        },
         "link",
         "task",
       );

@@ -74,9 +74,7 @@ test("plan, run, and close a sprint around one backlog task", async ({
   await page
     .getByPlaceholder("Task title", { exact: true })
     .fill("Sprint planning chore");
-  await page
-    .getByRole("button", { name: "Create Task", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Create Task", exact: true }).click();
   await expect(
     page.getByText("Sprint planning chore", { exact: true }),
   ).toBeVisible();
@@ -110,16 +108,12 @@ test("plan, run, and close a sprint around one backlog task", async ({
   await page.getByRole("button", { name: "Close", exact: true }).click();
 
   // Start the sprint; it becomes the project's single active sprint.
-  await page
-    .getByRole("button", { name: "Start sprint", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Start sprint", exact: true }).click();
   await expect(page.getByText("Active", { exact: true })).toBeVisible();
 
   // Close the sprint. With no future sprint the unfinished task returns to
   // the backlog, and the sprint stays visible as closed history.
-  await page
-    .getByRole("button", { name: "Close sprint", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Close sprint", exact: true }).click();
   await page
     .getByRole("button", {
       name: "Close sprint and move unfinished tasks",

@@ -88,13 +88,10 @@ export const createTaskBody = z.object({
   priority,
   status: z.string().openapi({ description: "The target column's slug." }),
   type: taskType.optional(),
-  sprintId: z
-    .string()
-    .optional()
-    .openapi({
-      description:
-        "Active or future sprint of the project. Omit to apply the type-based default: bugs go to the active sprint, everything else to the backlog.",
-    }),
+  sprintId: z.string().optional().openapi({
+    description:
+      "Active or future sprint of the project. Omit to apply the type-based default: bugs go to the active sprint, everything else to the backlog.",
+  }),
   userId: z.string().optional().openapi({ description: "Assignee, if any." }),
   recurrence: taskRecurrenceSchema
     .optional()

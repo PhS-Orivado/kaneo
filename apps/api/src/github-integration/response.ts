@@ -46,11 +46,9 @@ export const githubIntegrationSchema = z
 // workspace's repository binding usage summary (WP10).
 export const githubIntegrationListSchema = z
   .object({
-    integrations: z
-      .array(githubIntegrationSchema)
-      .openapi({
-        description: "Every GitHub binding of the project, oldest first.",
-      }),
+    integrations: z.array(githubIntegrationSchema).openapi({
+      description: "Every GitHub binding of the project, oldest first.",
+    }),
     usage: repositoryBindingUsageSchema,
   })
   .openapi("GitHubIntegrationList");

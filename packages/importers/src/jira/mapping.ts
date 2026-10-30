@@ -52,9 +52,7 @@ export function issueDescription(
   return typeof raw === "string" ? raw.trim() : "";
 }
 
-export function mapAttachments(
-  issue: JiraIssue,
-): ImportedAttachment[] {
+export function mapAttachments(issue: JiraIssue): ImportedAttachment[] {
   const attachments = issue.fields?.attachment ?? [];
   const mapped: ImportedAttachment[] = [];
   for (const attachment of attachments) {
@@ -68,7 +66,9 @@ export function mapAttachments(
     mapped.push({
       key: attachment.id,
       filename,
-      ...(attachment.mimeType?.trim() ? { mimeType: attachment.mimeType.trim() } : {}),
+      ...(attachment.mimeType?.trim()
+        ? { mimeType: attachment.mimeType.trim() }
+        : {}),
       ...(typeof size === "number" && Number.isFinite(size) && size >= 0
         ? { size }
         : {}),

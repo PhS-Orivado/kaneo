@@ -836,7 +836,6 @@ export function registerTools(
       ),
   );
 
-
   registerTool(
     "update_task_recurrence",
     {
@@ -931,7 +930,9 @@ export function registerTools(
           body: JSON.stringify({
             ...(args.name !== undefined ? { name: args.name } : {}),
             ...(args.goal !== undefined ? { goal: args.goal } : {}),
-            ...(args.startDate !== undefined ? { startDate: args.startDate } : {}),
+            ...(args.startDate !== undefined
+              ? { startDate: args.startDate }
+              : {}),
             ...(args.endDate !== undefined ? { endDate: args.endDate } : {}),
           }),
         }),
@@ -946,17 +947,22 @@ export function registerTools(
       inputSchema: z.object({
         projectId: nonEmptyString,
         sprints: z
-          .array(z.object({ id: nonEmptyString, position: z.number().int().min(0) }))
+          .array(
+            z.object({ id: nonEmptyString, position: z.number().int().min(0) }),
+          )
           .min(1)
           .describe("Every future sprint with its new position"),
       }),
     },
     async (args) =>
       run(() =>
-        client.json(`/api/sprint/reorder/${encodeURIComponent(args.projectId)}`, {
-          method: "POST",
-          body: JSON.stringify({ sprints: args.sprints }),
-        }),
+        client.json(
+          `/api/sprint/reorder/${encodeURIComponent(args.projectId)}`,
+          {
+            method: "POST",
+            body: JSON.stringify({ sprints: args.sprints }),
+          },
+        ),
       ),
   );
 
@@ -1000,7 +1006,9 @@ export function registerTools(
         client.json(`/api/sprint/start/${encodeURIComponent(args.id)}`, {
           method: "POST",
           body: JSON.stringify({
-            ...(args.startDate !== undefined ? { startDate: args.startDate } : {}),
+            ...(args.startDate !== undefined
+              ? { startDate: args.startDate }
+              : {}),
             ...(args.endDate !== undefined ? { endDate: args.endDate } : {}),
           }),
         }),
@@ -1016,7 +1024,9 @@ export function registerTools(
         id: nonEmptyString,
         targetSprintId: nonEmptyString
           .nullable()
-          .describe("Future sprint that receives the unfinished tasks, or null for the backlog"),
+          .describe(
+            "Future sprint that receives the unfinished tasks, or null for the backlog",
+          ),
       }),
     },
     async (args) =>
@@ -1037,7 +1047,9 @@ export function registerTools(
         taskId: nonEmptyString,
         sprintId: nonEmptyString
           .nullable()
-          .describe("Target sprint ID, or null to move the task to the backlog"),
+          .describe(
+            "Target sprint ID, or null to move the task to the backlog",
+          ),
       }),
     },
     async (args) =>

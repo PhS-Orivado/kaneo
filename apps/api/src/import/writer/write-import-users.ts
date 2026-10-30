@@ -13,7 +13,10 @@ import {
   getWorkspaceInvitationEmailCopy,
 } from "../../utils/get-workspace-invitation-email-copy";
 import type { AssignableMember } from "./match-assignees";
-import type { ImportUserHandling, PlannedImportUser } from "./plan-import-users";
+import type {
+  ImportUserHandling,
+  PlannedImportUser,
+} from "./plan-import-users";
 
 type Transaction = Parameters<Parameters<typeof db.transaction>[0][0]>;
 
@@ -156,7 +159,11 @@ async function createUsers(
 
   for (const person of input.users) {
     const [existing] = await tx
-      .select({ id: userTable.id, name: userTable.name, email: userTable.email })
+      .select({
+        id: userTable.id,
+        name: userTable.name,
+        email: userTable.email,
+      })
       .from(userTable)
       .where(eq(userTable.email, person.email))
       .limit(1);

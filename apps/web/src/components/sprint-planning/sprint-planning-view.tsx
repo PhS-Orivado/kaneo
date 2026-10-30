@@ -127,8 +127,7 @@ export default function SprintPlanningView({
   const { t } = useTranslation();
   const { data: sprints = [] } = useGetSprints(projectId);
   const project = useProjectStore((state) => state.project);
-  const { mutateAsync: startSprint, isPending: isStarting } =
-    useStartSprint();
+  const { mutateAsync: startSprint, isPending: isStarting } = useStartSprint();
   const { mutateAsync: reorderSprints } = useReorderSprints();
 
   const [isSprintDialogOpen, setIsSprintDialogOpen] = useState(false);
@@ -141,9 +140,7 @@ export default function SprintPlanningView({
 
   const activeSprint = sprints.find((sprint) => sprint.status === "active");
   const futureSprints = sprints.filter((sprint) => sprint.status === "future");
-  const closedSprints = sprints.filter(
-    (sprint) => sprint.status === "closed",
-  );
+  const closedSprints = sprints.filter((sprint) => sprint.status === "closed");
 
   // Sprint tasks live in the board columns and the planned backlog; archived
   // tasks stay out of the sprint sections.
@@ -170,9 +167,7 @@ export default function SprintPlanningView({
         </span>
       );
     }
-    return tasks.map((task) => (
-      <SprintTaskRow key={task.id} task={task} />
-    ));
+    return tasks.map((task) => <SprintTaskRow key={task.id} task={task} />);
   };
 
   // The per-sprint report: planned work is what stayed plus what was moved
@@ -201,9 +196,7 @@ export default function SprintPlanningView({
           {t("tasks:sprints.carriedOver")}
         </span>
         {carriedOver.map((snapshot) => {
-          const liveTask = sprintTasks.find(
-            (task) => task.id === snapshot.id,
-          );
+          const liveTask = sprintTasks.find((task) => task.id === snapshot.id);
           return liveTask ? (
             <SprintTaskRow key={snapshot.id} task={liveTask} />
           ) : (
@@ -217,9 +210,7 @@ export default function SprintPlanningView({
   const handleStart = async (sprint: Sprint) => {
     try {
       await startSprint({ id: sprint.id, projectId });
-      toast.success(
-        t("tasks:sprints.startSuccess", { name: sprint.name }),
-      );
+      toast.success(t("tasks:sprints.startSuccess", { name: sprint.name }));
     } catch (error) {
       toast.error(
         error instanceof Error
@@ -229,10 +220,7 @@ export default function SprintPlanningView({
     }
   };
 
-  const handleReorder = async (
-    sprint: Sprint,
-    direction: "up" | "down",
-  ) => {
+  const handleReorder = async (sprint: Sprint, direction: "up" | "down") => {
     const index = futureSprints.findIndex((item) => item.id === sprint.id);
     const swapWith =
       direction === "up" ? futureSprints[index - 1] : futureSprints[index + 1];
@@ -363,14 +351,13 @@ export default function SprintPlanningView({
                       {activeRange}
                     </span>
                   )}
-                  {activeRemainingDays !== null &&
-                    activeRemainingDays > 0 && (
-                      <span className="text-xs font-medium text-primary">
-                        {t("tasks:sprints.daysRemaining", {
-                          remaining: activeRemainingDays,
-                        })}
-                      </span>
-                    )}
+                  {activeRemainingDays !== null && activeRemainingDays > 0 && (
+                    <span className="text-xs font-medium text-primary">
+                      {t("tasks:sprints.daysRemaining", {
+                        remaining: activeRemainingDays,
+                      })}
+                    </span>
+                  )}
                   {activeRemainingDays === 0 && (
                     <span className="text-xs font-medium text-primary">
                       {t("tasks:sprints.endsToday")}

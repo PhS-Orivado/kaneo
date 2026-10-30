@@ -632,9 +632,7 @@ describe("readProject on Jira Cloud", () => {
     );
     const project = await source.readProject("ABC", { includeComments: false });
 
-    expect(
-      jira.paths().some((path) => path.includes("/sprint")),
-    ).toBe(false);
+    expect(jira.paths().some((path) => path.includes("/sprint"))).toBe(false);
     expect(project.sprints).toBeUndefined();
   });
 

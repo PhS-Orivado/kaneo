@@ -17,7 +17,8 @@ async function getGiteaIntegrations(projectId: string) {
   return data;
 }
 
-export type GiteaIntegration =
-  Awaited<ReturnType<typeof getGiteaIntegrations>>["integrations"][number];
+export type GiteaIntegration = Awaited<
+  ReturnType<typeof getGiteaIntegrations>
+>["integrations"][number];
 
 export default getGiteaIntegrations;

@@ -15,10 +15,7 @@ import {
   planImportAttachments,
   type ImportTaskAttachments,
 } from "./write-import-attachments";
-import {
-  type ImportUserHandling,
-  planImportUsers,
-} from "./plan-import-users";
+import { type ImportUserHandling, planImportUsers } from "./plan-import-users";
 import { writeImportColumns } from "./write-import-columns";
 import { writeImportComments } from "./write-import-comments";
 import { writeImportLabels } from "./write-import-labels";

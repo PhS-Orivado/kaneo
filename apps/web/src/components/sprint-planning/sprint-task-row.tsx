@@ -9,11 +9,7 @@ import {
   ContextMenuContent,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-import {
-  Menu,
-  MenuPopup,
-  MenuTrigger,
-} from "@/components/ui/menu";
+import { Menu, MenuPopup, MenuTrigger } from "@/components/ui/menu";
 import { isOwnDomEvent } from "@/lib/is-own-dom-event";
 import { cn } from "@/lib/cn";
 import { getPriorityIcon } from "@/lib/priority";
@@ -52,7 +48,9 @@ export function SprintTaskItem({
   );
   const isSelected = selectedTaskIds.has(task.id);
   const isSelectMode = useBulkSelectionStore((state) => state.isSelectMode);
-  const toggleSelection = useBulkSelectionStore((state) => state.toggleSelection);
+  const toggleSelection = useBulkSelectionStore(
+    (state) => state.toggleSelection,
+  );
   const selectRange = useBulkSelectionStore((state) => state.selectRange);
   const setSelectionAnchor = useBulkSelectionStore(
     (state) => state.setSelectionAnchor,
@@ -142,12 +140,15 @@ export function SprintTaskItem({
         >
           <button
             type="button"
-            aria-label={isSelected ? t("tasks:bulk.clearSelection") : t("tasks:sprints.selectTask")}
+            aria-label={
+              isSelected
+                ? t("tasks:bulk.clearSelection")
+                : t("tasks:sprints.selectTask")
+            }
             className={cn(
               "flex h-4 w-4 shrink-0 items-center justify-center rounded border border-border text-transparent transition-colors hover:border-foreground",
               "pointer-events-none opacity-0 group-hover/row:pointer-events-auto group-hover/row:opacity-100",
-              (isSelectMode || isSelected) &&
-                "pointer-events-auto opacity-100",
+              (isSelectMode || isSelected) && "pointer-events-auto opacity-100",
               isSelected && "border-primary bg-primary text-primary-foreground",
             )}
             onClick={(event) => {
