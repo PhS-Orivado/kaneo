@@ -1199,7 +1199,9 @@
 			"missingOne": "Ada yang tidak muncul?",
 			"searching": "Mencari…",
 			"updated": "Diperbarui {{time}}",
-			"useRepository": "Gunakan repositori"
+			"useRepository": "Gunakan repositori",
+			"useSelected": "Gunakan yang dipilih",
+			"selectedCount": "{{count}} dipilih"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Ekspor tugas",
@@ -2298,7 +2300,9 @@
 			"chooseProjectTitle": "Pilih proyek",
 			"chooseRepositoryTitle": "Pilih repositori",
 			"connectProject": "Hubungkan proyek",
+			"connectProjects": "Hubungkan {{count}} proyek",
 			"connectRepository": "Hubungkan repositori",
+			"connectRepositories": "Hubungkan {{count}} repositori",
 			"copied": "Disalin",
 			"copyFailed": "Tidak dapat menyalin ke papan klip.",
 			"copySecret": "Salin rahasia",
@@ -2323,6 +2327,7 @@
 			"repositorySection": "Repositori",
 			"retry": "Coba lagi",
 			"saveToken": "Simpan token",
+			"selectedRepositories": "Repositori terpilih",
 			"showSecret": "Tampilkan rahasia",
 			"signInDescription": "Gunakan token yang dapat membaca proyek beserta issue-nya.",
 			"signInTitle": "Masuk ke instans Anda",

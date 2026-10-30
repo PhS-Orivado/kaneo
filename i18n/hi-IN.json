@@ -1452,7 +1452,9 @@
 			"missingOne": "कोई नहीं दिख रही?",
 			"searching": "खोजा जा रहा है…",
 			"updated": "अपडेट: {{time}}",
-			"useRepository": "रिपॉज़िटरी उपयोग करें"
+			"useRepository": "रिपॉज़िटरी उपयोग करें",
+			"useSelected": "चयनित का उपयोग करें",
+			"selectedCount": "{{count}} चयनित"
 		},
 		"tasksImportExport": {
 			"exportTasks": "कार्य निर्यात करें",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "प्रोजेक्ट चुनें",
 			"chooseRepositoryTitle": "रिपॉज़िटरी चुनें",
 			"connectProject": "प्रोजेक्ट कनेक्ट करें",
+			"connectProjects": "{{count}} प्रोजेक्ट कनेक्ट करें",
 			"connectRepository": "रिपॉज़िटरी कनेक्ट करें",
+			"connectRepositories": "{{count}} रिपॉज़िटरी कनेक्ट करें",
 			"copied": "कॉपी किया",
 			"copyFailed": "क्लिपबोर्ड पर कॉपी नहीं हो सका।",
 			"copySecret": "सीक्रेट कॉपी करें",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "रिपॉज़िटरी",
 			"retry": "पुनः प्रयास करें",
 			"saveToken": "टोकन सहेजें",
+			"selectedRepositories": "चयनित रिपॉज़िटरी",
 			"showSecret": "सीक्रेट दिखाएँ",
 			"signInDescription": "ऐसा टोकन उपयोग करें जो प्रोजेक्ट और उसके इश्यू पढ़ सके।",
 			"signInTitle": "अपने इंस्टेंस में साइन इन करें",
