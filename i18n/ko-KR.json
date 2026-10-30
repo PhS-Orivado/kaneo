@@ -1199,7 +1199,9 @@
 			"missingOne": "찾는 저장소가 없나요?",
 			"searching": "검색 중…",
 			"updated": "{{time}} 업데이트됨",
-			"useRepository": "저장소 사용"
+			"useRepository": "저장소 사용",
+			"useSelected": "선택 항목 사용",
+			"selectedCount": "{{count}}개 선택됨"
 		},
 		"tasksImportExport": {
 			"exportTasks": "작업 내보내기",
@@ -2298,7 +2300,9 @@
 			"chooseProjectTitle": "프로젝트 선택",
 			"chooseRepositoryTitle": "저장소 선택",
 			"connectProject": "프로젝트 연결",
+			"connectProjects": "프로젝트 {{count}}개 연결",
 			"connectRepository": "저장소 연결",
+			"connectRepositories": "리포지토리 {{count}}개 연결",
 			"copied": "복사됨",
 			"copyFailed": "클립보드에 복사하지 못했습니다.",
 			"copySecret": "시크릿 복사",
@@ -2323,6 +2327,7 @@
 			"repositorySection": "저장소",
 			"retry": "다시 시도",
 			"saveToken": "토큰 저장",
+			"selectedRepositories": "선택한 리포지토리",
 			"showSecret": "시크릿 표시",
 			"signInDescription": "프로젝트와 이슈를 읽을 수 있는 토큰을 사용하세요.",
 			"signInTitle": "인스턴스에 로그인",

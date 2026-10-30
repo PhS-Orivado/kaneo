@@ -1443,7 +1443,9 @@
 			"missingOne": "見つかりませんか？",
 			"searching": "検索しています…",
 			"updated": "更新: {{time}}",
-			"useRepository": "このリポジトリを使用"
+			"useRepository": "このリポジトリを使用",
+			"useSelected": "選択項目を使用",
+			"selectedCount": "選択中：{{count}}件"
 		},
 		"tasksImportExport": {
 			"exportTasks": "タスクをエクスポート",
@@ -2298,7 +2300,9 @@
 			"chooseProjectTitle": "プロジェクトを選択",
 			"chooseRepositoryTitle": "リポジトリを選択",
 			"connectProject": "プロジェクトを接続",
+			"connectProjects": "{{count}}件のプロジェクトを接続",
 			"connectRepository": "リポジトリを接続",
+			"connectRepositories": "{{count}}件のリポジトリを接続",
 			"copied": "コピーしました",
 			"copyFailed": "クリップボードにコピーできませんでした。",
 			"copySecret": "シークレットをコピー",
@@ -2323,6 +2327,7 @@
 			"repositorySection": "リポジトリ",
 			"retry": "再試行",
 			"saveToken": "トークンを保存",
+			"selectedRepositories": "選択したリポジトリ",
 			"showSecret": "シークレットを表示",
 			"signInDescription": "プロジェクトとその Issue を読み取れるトークンを使用してください。",
 			"signInTitle": "インスタンスにサインイン",

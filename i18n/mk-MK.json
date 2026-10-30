@@ -1207,7 +1207,9 @@
 			"missingOne": "Недостасува некој?",
 			"searching": "Се пребарува…",
 			"updated": "Ажурирано {{time}}",
-			"useRepository": "Користи репозиториум"
+			"useRepository": "Користи репозиториум",
+			"useSelected": "Користи избрани",
+			"selectedCount": "{{count}} избрани"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Извези задачи",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "Избери проект",
 			"chooseRepositoryTitle": "Избери репозиториум",
 			"connectProject": "Поврзи проект",
+			"connectProjects": "Поврзи {{count}} проекти",
 			"connectRepository": "Поврзи репозиториум",
+			"connectRepositories": "Поврзи {{count}} складишта",
 			"copied": "Копирано",
 			"copyFailed": "Не може да се копира во клипбордот.",
 			"copySecret": "Копирај тајна",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "Репозиториум",
 			"retry": "Обиди се повторно",
 			"saveToken": "Зачувај токен",
+			"selectedRepositories": "Избрани складишта",
 			"showSecret": "Прикажи тајна",
 			"signInDescription": "Користи токен што може да ги чита проектот и неговите issues.",
 			"signInTitle": "Најави се на твојата инстанца",
