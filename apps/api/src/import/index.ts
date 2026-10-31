@@ -12,16 +12,19 @@ import getImportRun from "./controllers/get-import-run";
 import listImportRuns from "./controllers/list-import-runs";
 import listSourceProjects from "./controllers/list-source-projects";
 import getTrelloAuthorizeUrl from "./controllers/get-trello-authorize-url";
+import rewriteJiraLinks from "./controllers/rewrite-jira-links";
 import startImportRun from "./controllers/start-import-run";
 import {
   importRunEnvelopeSchema,
   importRunListSchema,
   importSourceProjectListSchema,
+  jiraLinkRewriteSchema,
   trelloAuthorizeUrlSchema,
 } from "./response";
 import {
   importRunParam,
   listImportSourceProjectsBody,
+  rewriteJiraLinksBody,
   startImportRunBody,
   workspaceIdParam,
 } from "./schema";
@@ -171,6 +174,35 @@ const getTrelloAuthorizeUrlRoute = createRoute({
   },
 });
 
+
+const rewriteJiraLinksRoute = createRoute({
+  method: "post",
+  operationId: "rewriteJiraLinks",
+  path: "/jira-links/rewrite",
+  tags: ["Import"],
+  summary: "Rewrite Jira issue links",
+  description:
+    "Find Jira issue links (…/browse/KEY-123) in task descriptions and comments across the workspace and point them at the matching imported tasks: a Jira import keeps the Jira project key as the project slug and the issue number as the task number. With dryRun true nothing is written. Unresolvable links are reported and left unchanged.",
+  middleware: [
+    workspaceAccess.fromBody(),
+    importPermission,
+    requireEntitlement,
+  ] as const,
+  request: {
+    body: {
+      required: true,
+      content: { "application/json": { schema: rewriteJiraLinksBody } },
+    },
+  },
+  responses: {
+    200: jsonResponse("The link rewrite report", jiraLinkRewriteSchema),
+    400: errorResponse("Invalid body"),
+    402: errorResponse("Workspace plan has expired"),
+    403: forbidden,
+    404: errorResponse("Workspace not found"),
+  },
+});
+
 const importRoutes = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(listImportSourceProjectsRoute, async (c) => {
     const { connection } = c.req.valid("json");
@@ -204,6 +236,17 @@ const importRoutes = apiRouter<BaseVariables & { workspaceId: string }>()
   .openapi(getImportRunRoute, async (c) => {
     const { runId } = c.req.valid("param");
     return c.json(await getImportRun(c.get("workspaceId"), runId), 200);
+  })
+  .openapi(rewriteJiraLinksRoute, async (c) => {
+    const { workspaceId, dryRun } = c.req.valid("json");
+    return c.json(
+      await rewriteJiraLinks({
+        workspaceId,
+        userId: c.get("userId"),
+        dryRun,
+      }),
+      200,
+    );
   });
 
 export default importRoutes;
