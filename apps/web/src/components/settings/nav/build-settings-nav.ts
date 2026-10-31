@@ -7,6 +7,7 @@ import {
   Import,
   KeyRound,
   LayoutDashboard,
+  Mail,
   Palette,
   ScrollText,
   Server,
@@ -84,6 +85,12 @@ const ADMIN_LINKS = [
     labelKey: "settings:adminSettings.title",
     to: "/dashboard/settings/admin/settings",
     icon: Settings2,
+  },
+  {
+    id: "admin-instance-config",
+    labelKey: "settings:adminInstanceConfig.title",
+    to: "/dashboard/settings/admin/instance-config",
+    icon: Mail,
   },
   {
     id: "admin-webhooks",

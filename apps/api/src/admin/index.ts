@@ -5,8 +5,10 @@ import {
   jsonResponse,
 } from "../openapi";
 import { getBranding } from "../branding/get-branding";
+import { getInstanceConfig } from "../instance-config/get-instance-config";
+import { updateInstanceConfig } from "../instance-config/update-instance-config";
 import { updateBranding } from "../branding/update-branding";
-import { brandingSchema } from "../config/response";
+import { brandingSchema, instanceConfigSchema } from "../config/response";
 import { requireInstancePermission } from "./roles/require-instance-permission";
 import { requireUserSession } from "../utils/require-user-session";
 import { adminAuditRequest } from "./audit/admin-audit-request";
@@ -52,6 +54,7 @@ import {
   transferAdminWorkspaceOwnershipBody,
   updateAdminWorkspaceMemberRoleBody,
   updateBrandingBody,
+  updateInstanceConfigBody,
 } from "./schema";
 import {
   adminSystemStatusSchema,
@@ -488,6 +491,44 @@ const updateBrandingRoute = createRoute({
   },
 });
 
+
+const getInstanceConfigRoute = createRoute({
+  method: "get",
+  operationId: "getAdminInstanceConfig",
+  path: "/instance-config",
+  tags: ["Admin"],
+  summary: "Get instance email and storage config",
+  description:
+    "Read the SMTP email and S3 storage configuration in effect on this instance: the values saved by administrators, falling back to environment variables. Secrets are never returned; only whether one is set. Requires the instance:settings permission; API keys are rejected.",
+  middleware: [requireUserSession, requireInstancePermission("instance:settings")] as const,
+  responses: {
+    200: jsonResponse("Instance config", instanceConfigSchema),
+    403: forbidden,
+  },
+});
+
+const updateInstanceConfigRoute = createRoute({
+  method: "put",
+  operationId: "updateAdminInstanceConfig",
+  path: "/instance-config",
+  tags: ["Admin"],
+  summary: "Update instance email and storage config",
+  description:
+    "Save SMTP email and S3 storage settings for this instance. They take effect immediately and override the environment variables. Null clears a value back to the environment; null secrets keep the current one. Requires the instance:settings permission; API keys are rejected.",
+  middleware: [requireUserSession, requireInstancePermission("instance:settings")] as const,
+  request: {
+    body: {
+      required: true,
+      content: { "application/json": { schema: updateInstanceConfigBody } },
+    },
+  },
+  responses: {
+    200: jsonResponse("Updated instance config", instanceConfigSchema),
+    400: errorResponse("Invalid config values"),
+    403: forbidden,
+  },
+});
+
 const admin = apiRouter()
   .openapi(getOverviewRoute, async (c) => c.json(await getOverview(), 200))
   .openapi(getAccessRoute, async (c) => {
@@ -596,6 +637,12 @@ const admin = apiRouter()
   .openapi(getBrandingRoute, async (c) => c.json(await getBranding(), 200))
   .openapi(updateBrandingRoute, async (c) =>
     c.json(await updateBranding(c.req.valid("json")), 200),
+  )
+  .openapi(getInstanceConfigRoute, async (c) =>
+    c.json(await getInstanceConfig(), 200),
+  )
+  .openapi(updateInstanceConfigRoute, async (c) =>
+    c.json(await updateInstanceConfig(c.req.valid("json")), 200),
   );
 
 export default admin;

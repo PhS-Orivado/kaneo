@@ -48,6 +48,7 @@ import { Route as LayoutAuthenticatedDashboardSettingsAccountSecurityRouteImport
 import { Route as LayoutAuthenticatedDashboardSettingsAdminIndexRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/index'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminAuditLogRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/audit-log'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/branding'
+import { Route as LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/instance-config'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminOverviewRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/overview'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminRolesRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/roles'
 import { Route as LayoutAuthenticatedDashboardSettingsAdminSettingsRouteImport } from './routes/_layout/_authenticated/dashboard/settings/admin/settings'
@@ -296,6 +297,12 @@ const LayoutAuthenticatedDashboardSettingsAdminBrandingRoute =
   LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport.update({
     id: '/branding',
     path: '/branding',
+    getParentRoute: () => LayoutAuthenticatedDashboardSettingsAdminRoute,
+  } as any)
+const LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute =
+  LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRouteImport.update({
+    id: '/instance-config',
+    path: '/instance-config',
     getParentRoute: () => LayoutAuthenticatedDashboardSettingsAdminRoute,
   } as any)
 const LayoutAuthenticatedDashboardSettingsAdminOverviewRoute =
@@ -555,6 +562,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
   '/dashboard/settings/admin/audit-log': typeof LayoutAuthenticatedDashboardSettingsAdminAuditLogRoute
   '/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  '/dashboard/settings/admin/instance-config': typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   '/dashboard/settings/admin/overview': typeof LayoutAuthenticatedDashboardSettingsAdminOverviewRoute
   '/dashboard/settings/admin/roles': typeof LayoutAuthenticatedDashboardSettingsAdminRolesRoute
   '/dashboard/settings/admin/settings': typeof LayoutAuthenticatedDashboardSettingsAdminSettingsRoute
@@ -621,6 +629,7 @@ export interface FileRoutesByTo {
   '/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
   '/dashboard/settings/admin/audit-log': typeof LayoutAuthenticatedDashboardSettingsAdminAuditLogRoute
   '/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  '/dashboard/settings/admin/instance-config': typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   '/dashboard/settings/admin/overview': typeof LayoutAuthenticatedDashboardSettingsAdminOverviewRoute
   '/dashboard/settings/admin/roles': typeof LayoutAuthenticatedDashboardSettingsAdminRolesRoute
   '/dashboard/settings/admin/settings': typeof LayoutAuthenticatedDashboardSettingsAdminSettingsRoute
@@ -694,6 +703,7 @@ export interface FileRoutesById {
   '/_layout/_authenticated/dashboard/settings/account/security': typeof LayoutAuthenticatedDashboardSettingsAccountSecurityRoute
   '/_layout/_authenticated/dashboard/settings/admin/audit-log': typeof LayoutAuthenticatedDashboardSettingsAdminAuditLogRoute
   '/_layout/_authenticated/dashboard/settings/admin/branding': typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  '/_layout/_authenticated/dashboard/settings/admin/instance-config': typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   '/_layout/_authenticated/dashboard/settings/admin/overview': typeof LayoutAuthenticatedDashboardSettingsAdminOverviewRoute
   '/_layout/_authenticated/dashboard/settings/admin/roles': typeof LayoutAuthenticatedDashboardSettingsAdminRolesRoute
   '/_layout/_authenticated/dashboard/settings/admin/settings': typeof LayoutAuthenticatedDashboardSettingsAdminSettingsRoute
@@ -765,6 +775,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/account/preferences'
     | '/dashboard/settings/account/security'
     | '/dashboard/settings/admin/audit-log'
+    | '/dashboard/settings/admin/instance-config'
     | '/dashboard/settings/admin/overview'
     | '/dashboard/settings/admin/roles'
     | '/dashboard/settings/admin/settings'
@@ -830,6 +841,7 @@ export interface FileRouteTypes {
     | '/dashboard/settings/account/preferences'
     | '/dashboard/settings/account/security'
     | '/dashboard/settings/admin/audit-log'
+    | '/dashboard/settings/admin/instance-config'
     | '/dashboard/settings/admin/overview'
     | '/dashboard/settings/admin/roles'
     | '/dashboard/settings/admin/settings'
@@ -901,6 +913,7 @@ export interface FileRouteTypes {
     | '/_layout/_authenticated/dashboard/settings/account/preferences'
     | '/_layout/_authenticated/dashboard/settings/account/security'
     | '/_layout/_authenticated/dashboard/settings/admin/audit-log'
+    | '/_layout/_authenticated/dashboard/settings/admin/instance-config'
     | '/_layout/_authenticated/dashboard/settings/admin/overview'
     | '/_layout/_authenticated/dashboard/settings/admin/roles'
     | '/_layout/_authenticated/dashboard/settings/admin/settings'
@@ -1219,6 +1232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRouteImport
       parentRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRoute
     }
+    '/_layout/_authenticated/dashboard/settings/admin/instance-config': {
+      id: '/_layout/_authenticated/dashboard/settings/admin/instance-config'
+      path: '/instance-config'
+      fullPath: '/dashboard/settings/admin/instance-config'
+      preLoaderRoute: typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRouteImport
+      parentRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRoute
+    }
       parentRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRoute
     }
     '/_layout/_authenticated/dashboard/settings/admin/overview': {
@@ -1471,6 +1491,7 @@ const LayoutAuthenticatedDashboardSettingsAccountRouteWithChildren =
 interface LayoutAuthenticatedDashboardSettingsAdminRouteChildren {
   LayoutAuthenticatedDashboardSettingsAdminAuditLogRoute: typeof LayoutAuthenticatedDashboardSettingsAdminAuditLogRoute
   LayoutAuthenticatedDashboardSettingsAdminBrandingRoute: typeof LayoutAuthenticatedDashboardSettingsAdminBrandingRoute
+  LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute: typeof LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute
   LayoutAuthenticatedDashboardSettingsAdminOverviewRoute: typeof LayoutAuthenticatedDashboardSettingsAdminOverviewRoute
   LayoutAuthenticatedDashboardSettingsAdminRolesRoute: typeof LayoutAuthenticatedDashboardSettingsAdminRolesRoute
   LayoutAuthenticatedDashboardSettingsAdminSettingsRoute: typeof LayoutAuthenticatedDashboardSettingsAdminSettingsRoute
@@ -1487,6 +1508,8 @@ const LayoutAuthenticatedDashboardSettingsAdminRouteChildren: LayoutAuthenticate
       LayoutAuthenticatedDashboardSettingsAdminAuditLogRoute,
     LayoutAuthenticatedDashboardSettingsAdminBrandingRoute:
       LayoutAuthenticatedDashboardSettingsAdminBrandingRoute,
+    LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute:
+      LayoutAuthenticatedDashboardSettingsAdminInstanceConfigRoute,
     LayoutAuthenticatedDashboardSettingsAdminOverviewRoute:
       LayoutAuthenticatedDashboardSettingsAdminOverviewRoute,
     LayoutAuthenticatedDashboardSettingsAdminRolesRoute:

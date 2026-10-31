@@ -104,6 +104,8 @@ import { clientIpMiddleware } from "./utils/client-ip";
 import { runCustomOAuthCallback } from "./utils/custom-oauth-sign-in";
 import { migrateApiKeyReferenceId } from "./utils/migrate-apikey-reference-id";
 import { migrateBrandingSchema } from "./utils/migrate-branding-schema";
+import { migrateInstanceConfigSchema } from "./utils/migrate-instance-config-schema";
+import { applyStoredInstanceConfig } from "./instance-config/get-instance-config";
 import { migrateNotificationPreferencesSchema } from "./utils/migrate-notification-preferences-schema";
 import { migrateSessionColumn } from "./utils/migrate-session-column";
 import { migrateWorkspaceUserEmail } from "./utils/migrate-workspace-user-email";
@@ -1053,6 +1055,8 @@ export async function runStartupTasks() {
 
   await migrateNotificationPreferencesSchema();
   await migrateBrandingSchema();
+  await migrateInstanceConfigSchema();
+  await applyStoredInstanceConfig();
   await migrateGitHubIntegration();
   await migrateColumns();
   await seedDefaultWorkspaceRoles();

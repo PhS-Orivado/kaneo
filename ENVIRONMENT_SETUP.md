@@ -62,6 +62,7 @@ Use the [environment reference](https://kaneo.app/docs/core/installation/environ
 - **Sign-in providers:** configure OAuth credentials on the API and register the local callback URL with the provider.
 - **MCP:** the built-in endpoint uses `KANEO_INTERNAL_API_URL`, defaulting to `http://127.0.0.1:1337`, for internal tool requests. Device authorization allows `kaneo-cli` and `kaneo-mcp` by default.
 - **Private-network connections:** `KANEO_ALLOW_PRIVATE_WEBHOOK_DESTINATIONS=true` permits internal ntfy, Gotify, webhook, Gitea, GitLab, and import source (PLANKA, Plane, Kaneo) destinations. Only enable it on a trusted deployment.
+- **Email and uploads from the UI:** instance administrators can also set SMTP and S3 values under Settings, Administration, Email and storage. Saved values override the environment variables, take effect without a restart, and empty fields fall back to the environment.
 - **Trello imports:** `TRELLO_API_KEY` is the API key of a Trello Power-Up. Workspace admins starting a Trello import get a link to Trello's authorize page built from it; without it, they paste their own API key next to the token.
 - **Redis:** only needed to relay live updates between multiple API instances. Leave it unset for one local API process.
 - **CAPTCHA:** set `TURNSTILE_SECRET_KEY` in the root `.env` and the matching `VITE_TURNSTILE_SITE_KEY` in `apps/web/.env.local`. The secret enables verification independently of cloud mode. Configure a widget that accepts your development hostname.
