@@ -23,6 +23,7 @@ import { getPriorityIcon } from "@/lib/priority";
 import { useReorderSprints } from "@/hooks/mutations/sprint/use-reorder-sprints";
 import { useStartSprint } from "@/hooks/mutations/sprint/use-start-sprint";
 import { useGetSprints } from "@/hooks/queries/sprint/use-get-sprints";
+import { AssigneeAvatar } from "@/components/task/properties/assignee-avatar";
 import useProjectStore from "@/store/project";
 import { toast } from "@/lib/toast";
 import type Sprint from "@/types/sprint";
@@ -47,14 +48,18 @@ function formatSprintRange(sprint: Sprint, t: (key: string) => string) {
   return `${start} – ${end}`;
 }
 
-function SprintTaskRow({ task }: { task: Task }) {
+export function SprintTaskRow({ task }: { task: Task }) {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const projectSlug = useProjectStore((state) => state.project?.slug);
   const projectColumns = useProjectStore((state) => state.project?.columns);
   const isDone =
     projectColumns?.some(
       (column) => column.isFinal && column.id === task.status,
     ) ?? false;
+  const statusName =
+    projectColumns?.find((column) => column.id === task.status)?.name ??
+    (task.status === "planned" ? t("tasks:sprints.backlog") : null);
 
   return (
     <button
@@ -71,17 +76,41 @@ function SprintTaskRow({ task }: { task: Task }) {
         </span>
       )}
       <span
-        className={`truncate ${isDone ? "text-muted-foreground line-through" : ""}`}
+        className={`min-w-0 flex-1 truncate ${isDone ? "text-muted-foreground line-through" : ""}`}
       >
         {task.title}
       </span>
+      {statusName && (
+        <span className="ml-auto shrink-0 rounded-full bg-muted px-1.5 py-0.5 text-[10px] text-muted-foreground">
+          {statusName}
+        </span>
+      )}
+      {(task.userId || task.assigneeName) && (
+        <span
+          className="flex shrink-0 items-center gap-1"
+          title={task.assigneeName ?? undefined}
+        >
+          <AssigneeAvatar
+            name={task.assigneeName}
+            image={task.assigneeImage ?? null}
+            assigned={Boolean(task.userId)}
+            className="size-4"
+            fallbackClassName="text-[7px]"
+          />
+          {task.assigneeName && (
+            <span className="max-w-24 truncate text-[10px] text-muted-foreground">
+              {task.assigneeName}
+            </span>
+          )}
+        </span>
+      )}
     </button>
   );
 }
 
 // Carried-over tasks may have been deleted since the sprint closed, so the
 // frozen snapshot title is the fallback when no live task matches.
-function CarriedOverTaskRow({ title }: { title: string }) {
+export function CarriedOverTaskRow({ title }: { title: string }) {
   return (
     <span className="flex w-full items-center gap-2 rounded-md px-3 py-1 text-left text-xs text-muted-foreground">
       <span className="truncate">{title}</span>
@@ -98,8 +127,7 @@ export default function SprintPlanningView({
   const { t } = useTranslation();
   const { data: sprints = [] } = useGetSprints(projectId);
   const project = useProjectStore((state) => state.project);
-  const { mutateAsync: startSprint, isPending: isStarting } =
-    useStartSprint();
+  const { mutateAsync: startSprint, isPending: isStarting } = useStartSprint();
   const { mutateAsync: reorderSprints } = useReorderSprints();
 
   const [isSprintDialogOpen, setIsSprintDialogOpen] = useState(false);
@@ -112,9 +140,7 @@ export default function SprintPlanningView({
 
   const activeSprint = sprints.find((sprint) => sprint.status === "active");
   const futureSprints = sprints.filter((sprint) => sprint.status === "future");
-  const closedSprints = sprints.filter(
-    (sprint) => sprint.status === "closed",
-  );
+  const closedSprints = sprints.filter((sprint) => sprint.status === "closed");
 
   // Sprint tasks live in the board columns and the planned backlog; archived
   // tasks stay out of the sprint sections.
@@ -141,9 +167,7 @@ export default function SprintPlanningView({
         </span>
       );
     }
-    return tasks.map((task) => (
-      <SprintTaskRow key={task.id} task={task} />
-    ));
+    return tasks.map((task) => <SprintTaskRow key={task.id} task={task} />);
   };
 
   // The per-sprint report: planned work is what stayed plus what was moved
@@ -172,9 +196,7 @@ export default function SprintPlanningView({
           {t("tasks:sprints.carriedOver")}
         </span>
         {carriedOver.map((snapshot) => {
-          const liveTask = sprintTasks.find(
-            (task) => task.id === snapshot.id,
-          );
+          const liveTask = sprintTasks.find((task) => task.id === snapshot.id);
           return liveTask ? (
             <SprintTaskRow key={snapshot.id} task={liveTask} />
           ) : (
@@ -188,9 +210,7 @@ export default function SprintPlanningView({
   const handleStart = async (sprint: Sprint) => {
     try {
       await startSprint({ id: sprint.id, projectId });
-      toast.success(
-        t("tasks:sprints.startSuccess", { name: sprint.name }),
-      );
+      toast.success(t("tasks:sprints.startSuccess", { name: sprint.name }));
     } catch (error) {
       toast.error(
         error instanceof Error
@@ -200,10 +220,7 @@ export default function SprintPlanningView({
     }
   };
 
-  const handleReorder = async (
-    sprint: Sprint,
-    direction: "up" | "down",
-  ) => {
+  const handleReorder = async (sprint: Sprint, direction: "up" | "down") => {
     const index = futureSprints.findIndex((item) => item.id === sprint.id);
     const swapWith =
       direction === "up" ? futureSprints[index - 1] : futureSprints[index + 1];
@@ -334,14 +351,13 @@ export default function SprintPlanningView({
                       {activeRange}
                     </span>
                   )}
-                  {activeRemainingDays !== null &&
-                    activeRemainingDays > 0 && (
-                      <span className="text-xs font-medium text-primary">
-                        {t("tasks:sprints.daysRemaining", {
-                          remaining: activeRemainingDays,
-                        })}
-                      </span>
-                    )}
+                  {activeRemainingDays !== null && activeRemainingDays > 0 && (
+                    <span className="text-xs font-medium text-primary">
+                      {t("tasks:sprints.daysRemaining", {
+                        remaining: activeRemainingDays,
+                      })}
+                    </span>
+                  )}
                   {activeRemainingDays === 0 && (
                     <span className="text-xs font-medium text-primary">
                       {t("tasks:sprints.endsToday")}

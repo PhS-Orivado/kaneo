@@ -16,12 +16,8 @@ export function GitHubIntegrationSettings({
   projectId,
 }: GitHubIntegrationSettingsProps) {
   const { t } = useTranslation();
-  const {
-    data,
-    isLoading,
-    error,
-    refetch,
-  } = useGetGithubIntegrations(projectId);
+  const { data, isLoading, error, refetch } =
+    useGetGithubIntegrations(projectId);
   const { data: appInfo } = useGithubAppInfo();
   const [adding, setAdding] = useState(false);
 

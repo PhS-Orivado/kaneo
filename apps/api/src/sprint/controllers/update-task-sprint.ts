@@ -65,10 +65,16 @@ async function updateTaskSprint({
     .update(taskTable)
     .set({ sprintId })
     .where(eq(taskTable.id, taskId))
-    .returning({ id: taskTable.id, projectId: taskTable.projectId, sprintId: taskTable.sprintId });
+    .returning({
+      id: taskTable.id,
+      projectId: taskTable.projectId,
+      sprintId: taskTable.sprintId,
+    });
 
   if (!updated) {
-    throw new HTTPException(500, { message: "Failed to update the task's sprint" });
+    throw new HTTPException(500, {
+      message: "Failed to update the task's sprint",
+    });
   }
 
   await publishEvent("task.sprint_changed", {

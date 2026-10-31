@@ -23,7 +23,10 @@ type GiteaSetupPanelProps = {
   onConnected?: () => void;
 };
 
-export function GiteaSetupPanel({ projectId, onConnected }: GiteaSetupPanelProps) {
+export function GiteaSetupPanel({
+  projectId,
+  onConnected,
+}: GiteaSetupPanelProps) {
   const { t } = useTranslation();
   const [baseUrl, setBaseUrl] = useState("");
   const [token, setToken] = useState("");

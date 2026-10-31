@@ -1,3 +1,5 @@
+import type { TaskRecurrence } from "./recurrence";
+
 type TaskLabel = {
   id: string;
   name: string;
@@ -32,6 +34,7 @@ type Task = {
   type: string | null;
   startDate: string | null;
   dueDate: string | null;
+  recurrence?: TaskRecurrence | null;
   position: number | null;
   createdAt: string;
   updatedAt?: string;

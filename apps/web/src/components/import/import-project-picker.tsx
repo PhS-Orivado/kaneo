@@ -2,7 +2,10 @@ import { CircleAlert } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { ImportSourceDefinition } from "@/components/import/import-source-definitions";
-import { ImportOptionsCard } from "@/components/import/import-options-card";
+import {
+  ImportOptionsCard,
+  type ImportUserHandling,
+} from "@/components/import/import-options-card";
 import { ImportProjectOption } from "@/components/import/import-project-option";
 import { ImportStepLayout } from "@/components/import/import-step-layout";
 import { IMPORT_UNIT_COPY } from "@/components/import/import-unit-copy";
@@ -17,6 +20,8 @@ const MAX_IMPORT_PROJECTS = 50;
 export type ImportProjectSelection = {
   projectIds: string[];
   includeComments: boolean;
+  includeSprints: boolean;
+  userHandling: ImportUserHandling;
 };
 
 type ImportProjectPickerProps = {
@@ -43,6 +48,9 @@ export function ImportProjectPicker({
   const { t } = useTranslation();
   const [selected, setSelected] = useState<string[]>([]);
   const [includeComments, setIncludeComments] = useState(true);
+  const [includeSprints, setIncludeSprints] = useState(true);
+  const [userHandling, setUserHandling] =
+    useState<ImportUserHandling>("invite");
   const copy = IMPORT_UNIT_COPY[source.unit];
   const sectionTitle = t(copy.section);
   const allSelected =
@@ -68,7 +76,12 @@ export function ImportProjectPicker({
         onSubmit={(event) => {
           event.preventDefault();
           if (selected.length === 0 || overLimit) return;
-          onStart({ projectIds: selected, includeComments });
+          onStart({
+            projectIds: selected,
+            includeComments,
+            includeSprints,
+            userHandling,
+          });
         }}
       >
         <SettingsSectionHeader
@@ -109,6 +122,10 @@ export function ImportProjectPicker({
               workspaceName={workspaceName}
               includeComments={includeComments}
               onIncludeCommentsChange={setIncludeComments}
+              includeSprints={includeSprints}
+              onIncludeSprintsChange={setIncludeSprints}
+              userHandling={userHandling}
+              onUserHandlingChange={setUserHandling}
             />
           </>
         )}

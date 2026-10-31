@@ -61,6 +61,7 @@ services:
       - KANEO_CLIENT_URL=${KANEO_CLIENT_URL:?}
       - NEXT_PUBLIC_APP_URL=${KANEO_CLIENT_URL:?}
       - NEXT_PUBLIC_API_URL=${KANEO_CLIENT_URL:?}/api
+      - KANEO_API_PROXY_TARGET=api:1337
     depends_on:
       - api
     restart: unless-stopped

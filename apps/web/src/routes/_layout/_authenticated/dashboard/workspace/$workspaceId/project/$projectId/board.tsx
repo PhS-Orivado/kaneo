@@ -9,8 +9,10 @@ import { DisplaySection } from "@/components/project/display/display-section";
 import { TaskDisplayOptions } from "@/components/project/display/task-display-options";
 import { ActiveFiltersBar } from "@/components/project/task-filters/active-filters-bar";
 import { ProjectToolbar } from "@/components/project/toolbar/project-toolbar";
+import { SprintScopeSelect } from "@/components/project/toolbar/sprint-scope-select";
 import { TaskCount } from "@/components/project/toolbar/task-count";
 import { useProjectTaskView } from "@/components/project/toolbar/use-project-task-view";
+import { useSprintScope } from "@/components/project/toolbar/use-sprint-scope";
 import { LayoutSwitch } from "@/components/project/views/layout-switch";
 import CreateTaskModal from "@/components/shared/modals/create-task-modal";
 import BoardSprintBanner from "@/components/sprint-planning/board-sprint-banner";
@@ -86,6 +88,7 @@ function RouteComponent() {
     data,
     isError: boardError,
     isFetching: boardFetching,
+    isSuccess: boardLoaded,
     refetch: retryBoard,
   } = useGetTasks(projectId);
   const { project, setProject } = useProjectStore();
@@ -93,11 +96,13 @@ function RouteComponent() {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const { sort, setSort } = useBoardSort(projectId);
   const { background } = useBackgroundStore();
+  const [sprintScope, setSprintScope] = useSprintScope(projectId);
   const view = useProjectTaskView({
     project,
     projectId,
     workspaceId,
     scope: "board",
+    sprintScope,
   });
   const { descriptionSearch, filters } = view;
 
@@ -116,7 +121,9 @@ function RouteComponent() {
   }, [data, setProject]);
 
   const sortedProject = useMemo(() => {
-    const filteredProject = filters.filteredProject;
+    // The board shows the sprint slice picked in the sprint scope selector;
+    // the filter menu restrictions apply on top of it.
+    const filteredProject = view.filteredProject;
     if (!filteredProject || sort.field === "position") return filteredProject;
     return {
       ...filteredProject,
@@ -125,7 +132,7 @@ function RouteComponent() {
         tasks: sortTasks(column.tasks, sort),
       })),
     };
-  }, [filters.filteredProject, sort]);
+  }, [view.filteredProject, sort]);
 
   return (
     <ProjectLayout
@@ -135,6 +142,13 @@ function RouteComponent() {
       toolbar={
         <ProjectToolbar
           view={view}
+          sprintScope={
+            <SprintScopeSelect
+              projectId={projectId}
+              scope={sprintScope}
+              onChange={setSprintScope}
+            />
+          }
           display={
             <>
               <DisplaySection>
@@ -160,7 +174,7 @@ function RouteComponent() {
       }
       summary={
         <TaskCount
-          shown={countColumnTasks(filters.filteredProject)}
+          shown={countColumnTasks(view.filteredProject ?? null)}
           total={countColumnTasks(project)}
         />
       }
@@ -168,18 +182,19 @@ function RouteComponent() {
         <ActiveFiltersBar
           subjects={view.subjects}
           onClear={filters.clearFilters}
+          customFieldValues={filters.customFieldValues}
         />
       }
     >
       <PageTitle
-        title={`${project?.name} · ${viewMode === "board" ? t("tasks:view.board") : t("tasks:view.list")}`}
-        hideAppName
+        title={
+          project
+            ? `${project.name} / ${viewMode === "board" ? t("tasks:view.board") : t("tasks:view.list")}`
+            : undefined
+        }
       />
       <div className="relative flex flex-col h-full min-h-0 overflow-hidden">
-        <BoardSprintBanner
-          projectId={projectId}
-          workspaceId={workspaceId}
-        />
+        <BoardSprintBanner projectId={projectId} workspaceId={workspaceId} />
         {descriptionSearch.isLoading && (
           <p role="status" className="px-4 py-2 text-sm text-muted-foreground">
             {t("tasks:descriptionSearchLoading")}
@@ -221,7 +236,7 @@ function RouteComponent() {
                 project={sortedProject}
                 disableCollectionActions={boardFetching || boardError}
                 disableDragDrop={
-                  boardFetching ||
+                  (boardFetching && !boardLoaded) ||
                   boardError ||
                   (sort.field !== "position" &&
                     sort.field !== "number" &&

@@ -33,7 +33,8 @@ export function GiteaChangeToken({
     : null;
   const verification = useGiteaVerification(projectId, access);
   const verified = isAccessVerified(verification.result);
-  const { mutateAsync: update, isPending: saving } = useUpdateGiteaIntegration();
+  const { mutateAsync: update, isPending: saving } =
+    useUpdateGiteaIntegration();
 
   return (
     <ChangeTokenForm

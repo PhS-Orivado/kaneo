@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import useGetConfig from "@/hooks/queries/config/use-get-config";
+import { useInstanceNameStore } from "@/store/instance-name";
 
 type PageTitleProps = {
-  title: string;
+  title?: string;
   suffix?: string;
   hideAppName?: boolean;
 };
@@ -12,17 +12,18 @@ export default function PageTitle({
   suffix,
   hideAppName = false,
 }: PageTitleProps) {
+  const instanceName = useInstanceNameStore((state) => state.instanceName);
   const { data: config } = useGetConfig();
-  const resolvedSuffix = suffix ?? config?.branding?.appName ?? "Kaneo";
+  if (!title) return null;
 
-  useEffect(() => {
-    const formattedTitle = hideAppName
-      ? title
-      : resolvedSuffix
-        ? `${title} · ${resolvedSuffix}`
-        : title;
-    document.title = formattedTitle;
-  }, [title, resolvedSuffix, hideAppName]);
+  const appName = suffix ?? config?.branding?.appName;
+  const formattedTitle = hideAppName
+    ? title
+    : appName
+      ? `${title} · ${appName}`
+      : instanceName === "Kaneo"
+        ? title
+        : `${title} | ${instanceName}`;
 
-  return null;
+  return <title>{formattedTitle}</title>;
 }

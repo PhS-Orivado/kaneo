@@ -553,7 +553,10 @@ async function bulkUpdateTasks({
           });
         }
 
-        if (targetSprint.status !== "active" && targetSprint.status !== "future") {
+        if (
+          targetSprint.status !== "active" &&
+          targetSprint.status !== "future"
+        ) {
           throw new HTTPException(400, {
             message: "Target sprint is not an active or upcoming sprint",
           });
@@ -583,7 +586,9 @@ async function bulkUpdateTasks({
         );
         if (
           locked.length !== foundIds.length ||
-          locked.some((task) => task.projectId !== originalProjects.get(task.id))
+          locked.some(
+            (task) => task.projectId !== originalProjects.get(task.id),
+          )
         )
           throw new HTTPException(409, {
             message: "Tasks changed projects; retry the operation",
@@ -634,7 +639,9 @@ async function bulkUpdateTasks({
           userId,
         });
       }
-      for (const projectId of new Set(updatedTasks.map((task) => task.projectId))) {
+      for (const projectId of new Set(
+        updatedTasks.map((task) => task.projectId),
+      )) {
         await publishEvent("sprint.updated", { projectId });
       }
       break;

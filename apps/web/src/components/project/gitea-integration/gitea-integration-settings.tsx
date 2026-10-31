@@ -15,12 +15,8 @@ export function GiteaIntegrationSettings({
   projectId,
 }: GiteaIntegrationSettingsProps) {
   const { t } = useTranslation();
-  const {
-    data,
-    isLoading,
-    error,
-    refetch,
-  } = useGetGiteaIntegrations(projectId);
+  const { data, isLoading, error, refetch } =
+    useGetGiteaIntegrations(projectId);
   const [adding, setAdding] = useState(false);
 
   if (isLoading) return <CodeHostingPanelSkeleton />;

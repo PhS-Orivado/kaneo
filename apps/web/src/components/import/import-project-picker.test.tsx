@@ -76,6 +76,68 @@ describe("ImportProjectPicker", () => {
     expect(onStart).toHaveBeenCalledWith({
       projectIds: ["eng"],
       includeComments: true,
+      includeSprints: true,
+      userHandling: "invite",
+    });
+  });
+
+  it("does not offer the sprint switch for sources without sprints", () => {
+    renderPicker();
+
+    expect(
+      screen.queryByRole("switch", {
+        name: "settings:workspaceImport.select.sprintsLabel",
+      }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("lets the user opt out of sprints for Jira", () => {
+    const onStartJira = vi.fn();
+    render(
+      <ImportProjectPicker
+        source={getImportSource("jira")}
+        workspaceId="ws1"
+        workspaceName="Acme"
+        projects={projects}
+        error={null}
+        isStarting={false}
+        onBack={vi.fn()}
+        onStart={onStartJira}
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Engineering"));
+    fireEvent.click(
+      screen.getByRole("switch", {
+        name: "settings:workspaceImport.select.sprintsLabel",
+      }),
+    );
+    fireEvent.click(importButton(1));
+
+    expect(onStartJira).toHaveBeenCalledWith({
+      projectIds: ["eng"],
+      includeComments: true,
+      includeSprints: false,
+      userHandling: "invite",
+    });
+  });
+
+  it("lets the user create accounts instead of sending invitations", () => {
+    const onStart = renderPicker();
+
+    fireEvent.click(screen.getByText("Engineering"));
+    fireEvent.click(
+      screen.getByRole("radio", {
+        name: "settings:workspaceImport.select.usersCreateLabel",
+      }),
+    );
+    fireEvent.click(importButton(1));
+
+    expect(onStart).toHaveBeenCalledWith({
+      projectIds: ["eng"],
+      includeComments: true,
+      includeSprints: true,
+      userHandling: "create",
     });
   });
 
@@ -96,6 +158,8 @@ describe("ImportProjectPicker", () => {
     expect(onStart).toHaveBeenCalledWith({
       projectIds: ["eng", "des"],
       includeComments: false,
+      includeSprints: true,
+      userHandling: "invite",
     });
 
     fireEvent.click(

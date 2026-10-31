@@ -267,7 +267,13 @@ describe("advanced sync settings", () => {
       };
       act(() =>
         client.setQueryData(
-          ["integration-sync", param.projectId, param.provider, param.integrationId, ""],
+          [
+            "integration-sync",
+            param.projectId,
+            param.provider,
+            param.integrationId,
+            "",
+          ],
           {
             ...initial,
             rules: { outgoing: { mode: "all" }, incoming: { mode: "all" } },
@@ -309,7 +315,13 @@ describe("advanced sync settings", () => {
     await screen.findByRole("checkbox", { name: "sync" });
     act(() =>
       client.setQueryData(
-        ["integration-sync", param.projectId, param.provider, param.integrationId, ""],
+        [
+          "integration-sync",
+          param.projectId,
+          param.provider,
+          param.integrationId,
+          "",
+        ],
         {
           ...saved,
           rules: { outgoing: { mode: "all" }, incoming: { mode: "all" } },

@@ -19,9 +19,10 @@ function useCreateTask() {
       dueDate,
       priority,
       customFields,
-      draftAssetIds,
       type,
       sprintId,
+      draftAssetIds,
+      recurrence,
     }: CreateTaskRequest) =>
       createTask(
         title,
@@ -33,9 +34,10 @@ function useCreateTask() {
         dueDate ? new Date(dueDate) : undefined,
         priority,
         customFields,
-        draftAssetIds,
         type,
         sprintId,
+        draftAssetIds,
+        recurrence,
       ),
     onSuccess: (_data, variables) => {
       invalidateMyWork(queryClient);
