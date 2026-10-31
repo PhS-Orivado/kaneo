@@ -12,42 +12,43 @@ const counts = {
   comments: 1032,
   assignees: 30,
   relations: 4,
-  sprints: 2,
-  attachments: 5,
+  sprints: 0,
+  users: 0,
+  attachments: 0,
 };
 
 describe("summarizeImportCounts", () => {
-  it("lists tasks, columns, labels, comments, sprints and attachments and omits zeros", () => {
+  it("lists tasks, sprints, columns, labels, comments, users and attachments and omits zeros", () => {
     expect(summarizeImportCounts(counts)).toEqual([
       { key: "tasks", count: 412 },
       { key: "columns", count: 7 },
       { key: "comments", count: 1032 },
-      { key: "sprints", count: 2 },
-      { key: "attachments", count: 5 },
+    ]);
+  });
+
+  it("includes sprints and users once they were imported", () => {
+    expect(summarizeImportCounts({ ...counts, sprints: 6, users: 2 })).toEqual([
+      { key: "tasks", count: 412 },
+      { key: "sprints", count: 6 },
+      { key: "columns", count: 7 },
+      { key: "comments", count: 1032 },
+      { key: "users", count: 2 },
     ]);
   });
 
   it("follows the order of the keys it is given", () => {
     expect(
-      summarizeImportCounts({ ...counts, labels: 3, attachments: 9 }, TOTAL_COUNT_KEYS),
+      summarizeImportCounts({ ...counts, labels: 3 }, TOTAL_COUNT_KEYS),
     ).toEqual([
       { key: "tasks", count: 412 },
       { key: "comments", count: 1032 },
       { key: "labels", count: 3 },
-      { key: "attachments", count: 9 },
     ]);
   });
 
   it("is empty when nothing was imported", () => {
     expect(
-      summarizeImportCounts({
-        ...counts,
-        columns: 0,
-        tasks: 0,
-        comments: 0,
-        sprints: 0,
-        attachments: 0,
-      }),
+      summarizeImportCounts({ ...counts, columns: 0, tasks: 0, comments: 0 }),
     ).toEqual([]);
   });
 });
@@ -68,8 +69,9 @@ describe("sumImportCounts", () => {
       comments: 2064,
       assignees: 60,
       relations: 8,
-      sprints: 4,
-      attachments: 10,
+      sprints: 0,
+      users: 0,
+      attachments: 0,
     });
   });
 });

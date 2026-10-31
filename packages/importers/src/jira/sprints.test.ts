@@ -1,164 +1,168 @@
 import { describe, expect, it } from "vite-plus/test";
-import type { JiraSprint, JiraSprintPage } from "./api-types.js";
-import type { JiraClient } from "./client.js";
-import { mapSprint, mapSprintState, readBoardSprints } from "./sprints.js";
+import { SourceHttpError } from "../http.js";
+import type { JiraSprint } from "./api-types.js";
+import {
+  mapSprintStatus,
+  readBoardSprints,
+  SPRINTS_UNAVAILABLE_WARNING,
+  toImportedSprint,
+} from "./sprints.js";
 
-describe("mapSprintState", () => {
-  it.each([
-    ["active", "active"],
-    ["ACTIVE", "active"],
-    [" closed ", "closed"],
-    ["completed", "closed"],
-    ["future", "future"],
-    [null, "future"],
-    [undefined, "future"],
-  ])("maps %j to %s", (state, expected) => {
-    expect(mapSprintState(state)).toBe(expected);
-  });
+const client = (pages: {
+  sprints?: unknown[];
+  issues?: Record<string, unknown[][] | Error>;
+  issuesKey?: "issues" | "values";
+}) =>
+  ({
+    boardSprints: (_boardId: number, startAt: number) => {
+      const values = pages.sprints?.[startAt];
+      if (values === undefined) {
+        return Promise.resolve({ values: [], isLast: true });
+      }
+      if (values instanceof Error) return Promise.reject(values);
+      return Promise.resolve({ values, isLast: false });
+    },
+    sprintIssues: (sprintId: string, startAt: number) => {
+      const page = pages.issues?.[sprintId]?.[startAt];
+      if (page === undefined) {
+        return Promise.resolve({ issues: [], isLast: true });
+      }
+      if (page instanceof Error) return Promise.reject(page);
+      // Jira's agile issue search wraps its page in "issues", unlike the
+      // sprint pages that use "values".
+      return Promise.resolve({
+        [pages.issuesKey ?? "issues"]: page,
+        isLast: false,
+      });
+    },
+  }) as never;
+
+const sprint = (
+  id: number,
+  overrides: Partial<JiraSprint> = {},
+): JiraSprint => ({
+  id,
+  name: `Sprint ${id}`,
+  state: "closed",
+  ...overrides,
 });
 
-describe("mapSprint", () => {
-  it("maps a sprint with all optional fields", () => {
-    const sprint: JiraSprint = {
-      id: 5,
-      name: " Sprint 1 ",
-      state: "active",
-      goal: " Ship it ",
-      startDate: "2026-01-05T09:00:00.000Z",
-      endDate: "2026-01-19T17:00:00.000Z",
-    };
-
-    expect(mapSprint(sprint)).toEqual({
-      key: "5",
-      name: "Sprint 1",
-      state: "active",
-      goal: "Ship it",
-      startDate: "2026-01-05T09:00:00.000Z",
-      endDate: "2026-01-19T17:00:00.000Z",
-      taskKeys: [],
+describe("mapSprintStatus", () => {
+  it("maps Jira states and treats anything else as future", () => {
+    expect(mapSprintStatus("ACTIVE")).toBe("active");
+    expect(mapSprintStatus(" closed ")).toBe("closed");
+    expect(mapSprintStatus("future")).toBe("future");
+    expect(mapSprintStatus(undefined)).toBe("future");
+  });
+});
+describe("toImportedSprint", () => {
+  it("keeps the sprint id as key and maps the fields", () => {
+    expect(
+      toImportedSprint({
+        id: 9,
+        name: " Q3 ",
+        state: "active",
+        goal: " Ship the Q3 release ",
+        startDate: "2026-07-01T00:00:00.000Z",
+        endDate: "2026-07-14T00:00:00.000Z",
+      }),
+    ).toEqual({
+      key: "9",
+      name: "Q3",
+      status: "active",
+      goal: "Ship the Q3 release",
+      startDate: "2026-07-01T00:00:00.000Z",
+      endDate: "2026-07-14T00:00:00.000Z",
     });
   });
 
-  it("falls back to a generated name and drops empty fields", () => {
-    expect(mapSprint({ id: 7, state: "weird" })).toEqual({
-      key: "7",
-      name: "Sprint 7",
-      state: "future",
-      taskKeys: [],
-    });
+  it("names unnamed sprints after their id", () => {
+    expect(toImportedSprint({ id: 3, state: "future" }).name).toBe("Sprint 3");
+  });
+
+  it("drops an empty sprint goal", () => {
+    expect(
+      toImportedSprint({ id: 4, state: "future", goal: "  " }).goal,
+    ).toBeUndefined();
   });
 });
-
-function stubClient(
-  sprintPages: Record<number, JiraSprintPage>,
-  issuePages: Record<number, Record<number, Array<{ id?: string }>>>,
-): JiraClient {
-  return {
-    async boardSprints(_boardId: number, startAt: number) {
-      return sprintPages[startAt] ?? null;
-    },
-    async sprintIssues(sprintId: number, startAt: number) {
-      const pages = issuePages[sprintId] ?? {};
-      const issues = pages[startAt] ?? [];
-      const pageKeys = Object.keys(pages).map(Number);
-      return {
-        issues,
-        maxResults: 2,
-        isLast: pageKeys.every((key) => key <= startAt),
-      };
-    },
-  } as unknown as JiraClient;
-}
-
 describe("readBoardSprints", () => {
-  it("pages through sprints and their issues, mapping ids to sprint keys", async () => {
-    const sprint = (id: number, state: string): JiraSprint => ({
-      id,
-      name: `Sprint ${id}`,
-      state,
-    });
-    const client = stubClient(
-      {
-        0: {
-          values: [sprint(5, "active"), sprint(6, "closed")],
-          maxResults: 2,
-          total: 3,
-          isLast: false,
+  it("reads sprints and assigns issues to the later sprint", async () => {
+    const read = await readBoardSprints(
+      client({
+        sprints: [
+          [sprint(1), sprint(2, { state: "active", startDate: "2026-08-01" })],
+        ],
+        issues: {
+          "1": [[{ id: "101" }, { id: "102" }]],
+          "2": [[{ id: "101" }, { id: "103" }]],
         },
-        2: {
-          values: [sprint(7, "future")],
-          maxResults: 2,
-          total: 3,
-          isLast: true,
-        },
-      },
-      {
-        5: {
-          0: [{ id: "101" }, { id: "102" }],
-          2: [{ id: "103" }],
-        },
-        6: { 0: [{ id: "104" }] },
-        7: { 0: [] },
-      },
+      }),
+      7,
     );
 
-    const result = await readBoardSprints(client, 42);
-
-    expect(result.unavailable).toBe(false);
-    expect(result.sprints.map(({ key, name, state }) => ({ key, name, state })))
-      .toEqual([
-        { key: "5", name: "Sprint 5", state: "active" },
-        { key: "6", name: "Sprint 6", state: "closed" },
-        { key: "7", name: "Sprint 7", state: "future" },
-      ]);
-    expect(result.sprints.map(({ taskKeys }) => taskKeys)).toEqual([
-      ["101", "102", "103"],
-      ["104"],
-      [],
+    expect(read.sprints.map(({ key, status }) => ({ key, status }))).toEqual([
+      { key: "1", status: "closed" },
+      { key: "2", status: "active" },
     ]);
-    expect(result.taskSprintKeys).toEqual(
+    expect(read.issueSprint).toEqual(
       new Map([
-        ["101", "5"],
-        ["102", "5"],
-        ["103", "5"],
-        ["104", "6"],
+        ["101", "2"],
+        ["102", "1"],
+        ["103", "2"],
       ]),
     );
+    expect(read.warning).toBeNull();
   });
 
-  it("keeps an issue in the first sprint that lists it", async () => {
-    const client = stubClient(
-      {
-        0: {
-          values: [
-            { id: 5, name: "Sprint 5", state: "closed" },
-            { id: 6, name: "Sprint 6", state: "active" },
-          ],
-          maxResults: 2,
-          total: 2,
-          isLast: true,
+  it("warns and continues without sprints when Jira denies access", async () => {
+    const read = await readBoardSprints(
+      client({ sprints: [new SourceHttpError("denied", 403, null)] }),
+      7,
+    );
+
+    expect(read.sprints).toEqual([]);
+    expect(read.issueSprint).toEqual(new Map());
+    expect(read.warning).toBe(SPRINTS_UNAVAILABLE_WARNING);
+  });
+
+  it("drops only the assignments of a sprint it cannot read", async () => {
+    const read = await readBoardSprints(
+      client({
+        sprints: [[sprint(1), sprint(2)]],
+        issues: {
+          "1": [new SourceHttpError("gone", 404, null)],
+          "2": [[{ id: "101" }]],
         },
-      },
-      {
-        5: { 0: [{ id: "101" }] },
-        6: { 0: [{ id: "101" }] },
-      },
+      }),
+      7,
     );
 
-    const { taskSprintKeys } = await readBoardSprints(client, 1);
-
-    expect(taskSprintKeys).toEqual(new Map([["101", "5"]]));
+    expect(read.issueSprint).toEqual(new Map([["101", "2"]]));
   });
 
-  it("stops on an empty page and returns no sprints", async () => {
-    const client = stubClient(
-      { 0: { values: [], maxResults: 50, total: 0 } },
-      {},
+  it("still reads pages a gateway normalizes to the values key", async () => {
+    const read = await readBoardSprints(
+      client({
+        sprints: [[sprint(1)]],
+        issues: { "1": [[{ id: "101" }]] },
+        issuesKey: "values",
+      }),
+      7,
     );
 
-    const result = await readBoardSprints(client, 9);
+    expect(read.issueSprint).toEqual(new Map([["101", "1"]]));
+  });
 
-    expect(result.sprints).toEqual([]);
-    expect(result.taskSprintKeys.size).toBe(0);
+  it("normalizes numeric Jira issue ids to strings", async () => {
+    const read = await readBoardSprints(
+      client({
+        sprints: [[sprint(1)]],
+        issues: { "1": [[{ id: 101 }]] },
+      }),
+      7,
+    );
+
+    expect(read.issueSprint).toEqual(new Map([["101", "1"]]));
   });
 });

@@ -1,13 +1,9 @@
 export const BOARD_UNAVAILABLE_WARNING =
   "Jira did not share the board for this project, so columns follow its statuses.";
 
-export const SPRINTS_UNAVAILABLE_WARNING =
-  "Jira did not share the board's sprints, so none were imported.";
-
 export type WarningCounts = {
   externalLinks: number;
   boardUnavailable: boolean;
-  sprintsUnavailable: boolean;
 };
 
 export function buildWarnings(counts: WarningCounts): string[] {
@@ -20,6 +16,5 @@ export function buildWarnings(counts: WarningCounts): string[] {
     );
   }
   if (counts.boardUnavailable) warnings.push(BOARD_UNAVAILABLE_WARNING);
-  if (counts.sprintsUnavailable) warnings.push(SPRINTS_UNAVAILABLE_WARNING);
   return warnings;
 }

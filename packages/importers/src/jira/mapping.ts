@@ -1,10 +1,10 @@
 import { toIsoDate } from "../markdown.js";
 import type {
+  ImportedAttachment,
   ImportedComment,
   ImportedPriority,
   ImportedTask,
 } from "../types.js";
-import { mapAttachments, resolveJiraUrl } from "./attachments.js";
 import type { JiraIssue } from "./api-types.js";
 import type { HtmlToMarkdown } from "./html.js";
 import { issueLabels } from "./labels.js";
@@ -27,8 +27,7 @@ export type IssueContext = {
   columnKey: string | null;
   comments: ImportedComment[];
   toMarkdown: HtmlToMarkdown;
-  baseUrl: string;
-  sprintKey: string | null;
+  issueSprint?: ReadonlyMap<string, string>;
 };
 
 export function mapPriority(name: string | null | undefined): ImportedPriority {
@@ -53,6 +52,32 @@ export function issueDescription(
   return typeof raw === "string" ? raw.trim() : "";
 }
 
+export function mapAttachments(issue: JiraIssue): ImportedAttachment[] {
+  const attachments = issue.fields?.attachment ?? [];
+  const mapped: ImportedAttachment[] = [];
+  for (const attachment of attachments) {
+    const contentUrl = attachment.content?.trim();
+    const filename = attachment.filename?.trim();
+    if (!contentUrl || !filename || !attachment.id) continue;
+    const size =
+      typeof attachment.size === "string"
+        ? Number.parseInt(attachment.size, 10)
+        : attachment.size;
+    mapped.push({
+      key: attachment.id,
+      filename,
+      ...(attachment.mimeType?.trim()
+        ? { mimeType: attachment.mimeType.trim() }
+        : {}),
+      ...(typeof size === "number" && Number.isFinite(size) && size >= 0
+        ? { size }
+        : {}),
+      contentUrl,
+    });
+  }
+  return mapped;
+}
+
 export function mapIssue(
   issue: JiraIssue,
   context: IssueContext,
@@ -62,8 +87,8 @@ export function mapIssue(
   const dueDate = toIsoDate(fields.duedate);
   const createdAt = toIsoDate(fields.created);
   const assignee = toPerson(fields.assignee);
-  const label = issue.key?.trim();
-  const sourceUrl = label ? resolveJiraUrl(context.baseUrl, `browse/${label}`) : null;
+  const sprintKey = context.issueSprint?.get(issue.id) ?? null;
+  const attachments = mapAttachments(issue);
   return {
     key: issue.id,
     ...(number !== undefined ? { number } : {}),
@@ -74,11 +99,9 @@ export function mapIssue(
     ...(dueDate ? { dueDate } : {}),
     ...(createdAt ? { createdAt } : {}),
     ...(assignee ? { assignee } : {}),
-    ...(label ? { sourceLabel: label } : {}),
-    ...(sourceUrl ? { sourceUrl } : {}),
     labelKeys: issueLabels(issue),
     comments: context.comments,
-    attachments: mapAttachments(context.baseUrl, fields.attachment),
-    sprintKey: context.sprintKey,
+    ...(sprintKey ? { sprintKey } : {}),
+    ...(attachments.length ? { attachments } : {}),
   };
 }

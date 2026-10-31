@@ -55,8 +55,15 @@ export async function connectJira(
       );
     },
 
-    downloadAttachment(attachment) {
-      return client.downloadAttachment(attachment);
+    async downloadAttachment(attachment, options) {
+      if (!attachment.contentUrl) {
+        throw new Error(
+          `Jira did not share a download URL for "${attachment.filename}".`,
+        );
+      }
+      return client.download(attachment.contentUrl, {
+        signal: options?.signal,
+      });
     },
   };
 }

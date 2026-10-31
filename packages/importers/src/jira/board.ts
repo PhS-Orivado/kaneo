@@ -5,7 +5,6 @@ import type { JiraClient } from "./client.js";
 export type BoardRead = {
   columns: JiraBoardColumn[] | null;
   unavailable: boolean;
-  /** Jira board id, for reading sprints; null when no board was shared. */
   boardId: number | null;
 };
 

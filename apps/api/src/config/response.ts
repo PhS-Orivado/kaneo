@@ -1,4 +1,5 @@
 import { z } from "../openapi";
+import { MANAGED_PROFILE_FIELDS } from "../utils/custom-oauth-env";
 
 export const brandingSchema = z
   .object({
@@ -35,8 +36,7 @@ export const brandingSchema = z
         "Privacy policy URL shown on the sign-in screen. Defaults to kaneo.app/privacy.",
     }),
     showPoweredBy: z.boolean().openapi({
-      description:
-        "Whether the Kaneo attribution appears on public pages.",
+      description: "Whether the Kaneo attribution appears on public pages.",
     }),
   })
   .openapi("Branding");
@@ -44,10 +44,17 @@ export const brandingSchema = z
 export const configSchema = z
   .object({
     isCloud: z.boolean(),
+    instanceName: z.string().openapi({
+      description: "Name shown in page titles and emails. Defaults to Kaneo.",
+    }),
     disableRegistration: z.boolean(),
     disablePasswordRegistration: z.boolean(),
     disableEmailOtpSignIn: z.boolean(),
     disableWorkspaceCreation: z.boolean(),
+    disabledIntegrations: z.array(z.string()).openapi({
+      description:
+        "Integration provider types an administrator turned off, such as `slack`.",
+    }),
     isDemoMode: z.boolean(),
     hasSmtp: z.boolean(),
     hasImageUploads: z.boolean().openapi({
@@ -66,80 +73,17 @@ export const configSchema = z
     }),
     customOAuthAutoLogin: z.boolean(),
     customOAuthLogoutUrl: z.string().nullable(),
+    customOAuthManagedProfileFields: z
+      .array(z.enum(MANAGED_PROFILE_FIELDS))
+      .openapi({
+        description:
+          "Profile fields the custom OAuth/OIDC provider manages for people with a linked provider account.",
+      }),
+    customOAuthAccountUrl: z.string().nullable().openapi({
+      description:
+        "Account page of the custom OAuth/OIDC provider, where people change managed profile fields. Null when not configured.",
+    }),
     billingEnabled: z.boolean(),
     branding: brandingSchema,
   })
   .openapi("Config");
-
-const instanceSmtpConfigSchema = z
-  .object({
-    host: z.string().nullable().openapi({
-      description: "SMTP server host in effect.",
-    }),
-    port: z
-      .number()
-      .int()
-      .nullable()
-      .openapi({
-        description:
-          "SMTP server port in effect. Null lets the mail library pick the default for the security mode.",
-      }),
-    secure: z.boolean().openapi({
-      description: "Whether the connection starts in TLS mode.",
-    }),
-    requireTls: z.boolean().openapi({
-      description: "Whether STARTTLS is required on plaintext connections.",
-    }),
-    user: z.string().nullable().openapi({
-      description: "SMTP authentication user in effect.",
-    }),
-    password: z
-      .null()
-      .openapi({ description: "Never returned; see passwordSet." }),
-    passwordSet: z.boolean().openapi({
-      description: "Whether an SMTP password is stored.",
-    }),
-    from: z.string().nullable().openapi({
-      description: "Envelope sender address in effect.",
-    }),
-  })
-  .openapi("InstanceSmtpConfig");
-
-const instanceS3ConfigSchema = z
-  .object({
-    endpoint: z.string().nullable().openapi({
-      description: "S3-compatible endpoint URL in effect.",
-    }),
-    region: z.string().nullable().openapi({
-      description: "Bucket region in effect.",
-    }),
-    bucket: z.string().nullable().openapi({
-      description: "Bucket name in effect.",
-    }),
-    accessKeyId: z.string().nullable().openapi({
-      description: "Static access key id in effect.",
-    }),
-    secretAccessKey: z
-      .null()
-      .openapi({ description: "Never returned; see secretAccessKeySet." }),
-    secretAccessKeySet: z.boolean().openapi({
-      description: "Whether a secret access key is stored.",
-    }),
-    publicBaseUrl: z.string().nullable().openapi({
-      description: "Public base URL objects are served from, if any.",
-    }),
-    keyPrefix: z.string().nullable().openapi({
-      description: "Prefix prepended to object keys, if any.",
-    }),
-    forcePathStyle: z.boolean().openapi({
-      description: "Whether path-style URLs are used.",
-    }),
-  })
-  .openapi("InstanceS3Config");
-
-export const instanceConfigSchema = z
-  .object({
-    smtp: instanceSmtpConfigSchema,
-    s3: instanceS3ConfigSchema,
-  })
-  .openapi("InstanceConfig");

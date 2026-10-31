@@ -21,6 +21,7 @@ import { createJiraHtmlToMarkdown } from "./html.js";
 import { mapLabels } from "./labels.js";
 import { mapIssue } from "./mapping.js";
 import { mapRelations } from "./relations.js";
+import { SPRINTS_UNAVAILABLE_WARNING } from "./sprints.js";
 import { buildWarnings } from "./warnings.js";
 
 export type JiraProjectData = {
@@ -31,9 +32,9 @@ export type JiraProjectData = {
   boardUnavailable: boolean;
   issues: JiraIssue[];
   comments: ReadonlyMap<string, JiraComment[]>;
-  sprints: ImportedSprint[];
-  taskSprintKeys: ReadonlyMap<string, string>;
-  sprintsUnavailable: boolean;
+  sprints?: ImportedSprint[] | null;
+  issueSprint?: ReadonlyMap<string, string>;
+  sprintsUnavailable?: boolean;
 };
 
 export function mapJiraProject(data: JiraProjectData): ImportedProject {
@@ -49,7 +50,6 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
     name: data.project.name?.trim() || data.project.key,
     key: data.project.key,
     ...(description ? { description } : {}),
-    sourceUrl: data.baseUrl,
     columns: plan.columns,
     labels: mapLabels(data.issues),
     tasks: placed.map(({ issue, columnKey }) =>
@@ -57,17 +57,18 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
         columnKey,
         comments: mapComments(data.comments.get(issue.id) ?? [], toMarkdown),
         toMarkdown,
-        baseUrl: data.baseUrl,
-        sprintKey: data.taskSprintKeys.get(issue.id) ?? null,
+        ...(data.issueSprint ? { issueSprint: data.issueSprint } : {}),
       }),
     ),
     relations,
-    sprints: data.sprints,
-    warnings: buildWarnings({
-      externalLinks: external,
-      boardUnavailable: data.boardUnavailable,
-      sprintsUnavailable: data.sprintsUnavailable,
-    }),
+    warnings: [
+      ...buildWarnings({
+        externalLinks: external,
+        boardUnavailable: data.boardUnavailable,
+      }),
+      ...(data.sprintsUnavailable ? [SPRINTS_UNAVAILABLE_WARNING] : []),
+    ],
+    ...(data.sprints?.length ? { sprints: data.sprints } : {}),
   };
 }
 

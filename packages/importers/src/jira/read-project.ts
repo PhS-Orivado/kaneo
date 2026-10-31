@@ -5,7 +5,7 @@ import { readBoardColumns } from "./board.js";
 import type { JiraClient } from "./client.js";
 import { mapJiraProject } from "./project.js";
 import { readComments } from "./read-comments.js";
-import { readBoardSprints, type SprintRead } from "./sprints.js";
+import { readBoardSprints } from "./sprints.js";
 import { searchProjectIssues } from "./search.js";
 
 export async function readJiraProject(
@@ -21,6 +21,11 @@ export async function readJiraProject(
   const statusGroups = await client.projectStatuses(project.key);
   const board = await readBoardColumns(client, project.key);
 
+  const sprints =
+    options.includeSprints && board.boardId !== null
+      ? await readBoardSprints(client, board.boardId, onProgress)
+      : null;
+
   onProgress?.("Reading issues");
   const issues = await searchProjectIssues(client, project.key, {
     includeComments: options.includeComments,
@@ -32,8 +37,6 @@ export async function readJiraProject(
     comments = await readComments(client, issues, onProgress);
   }
 
-  const sprints = await readSprints(client, board.boardId, onProgress);
-
   return mapJiraProject({
     baseUrl,
     project,
@@ -42,36 +45,14 @@ export async function readJiraProject(
     boardUnavailable: board.unavailable,
     issues,
     comments,
-    sprints: sprints.sprints,
-    taskSprintKeys: sprints.taskSprintKeys,
-    sprintsUnavailable: sprints.unavailable,
+    ...(sprints
+      ? {
+          sprints: sprints.sprints,
+          issueSprint: sprints.issueSprint,
+          sprintsUnavailable: sprints.warning !== null,
+        }
+      : {}),
   });
-}
-
-async function readSprints(
-  client: JiraClient,
-  boardId: number | null,
-  onProgress: ReadProjectOptions["onProgress"],
-): Promise<SprintRead> {
-  // No board means no sprint data exists for this project, not a failure.
-  if (boardId === null) {
-    return { sprints: [], taskSprintKeys: new Map(), unavailable: false };
-  }
-  onProgress?.("Reading sprints");
-  try {
-    return await readBoardSprints(client, boardId);
-  } catch (error) {
-    // Sprints are a bonus: an agile API that denies access must not fail
-    // the whole project import.
-    if (deniedStatus(error) === undefined) throw error;
-    return { sprints: [], taskSprintKeys: new Map(), unavailable: true };
-  }
-}
-
-function deniedStatus(error: unknown): number | undefined {
-  return error instanceof SourceHttpError && [401, 403, 404].includes(error.status)
-    ? error.status
-    : undefined;
 }
 
 async function readProjectDetails(

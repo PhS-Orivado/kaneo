@@ -27,33 +27,34 @@ export type ImportedPerson = {
   email?: string;
 };
 
-export type ImportedAttachment = {
-  id: string;
-  filename: string;
-  mimeType: string;
-  size: number;
-  /** Absolute source URL to download the attachment bytes from. */
-  url: string;
+export type ImportedComment = {
+  author: ImportedPerson;
+  body: string;
+  createdAt?: string;
 };
 
-export type ImportedSprintState = "future" | "active" | "closed";
+export type ImportedSprintStatus = "future" | "active" | "closed";
 
 export type ImportedSprint = {
   key: string;
   name: string;
-  state: ImportedSprintState;
+  status: ImportedSprintStatus;
   goal?: string;
   startDate?: string;
   endDate?: string;
-  taskKeys: string[];
 };
 
-export type ImportedComment = {
-  /** Source comment id, when the source provides one; lets the import keep a reference to it. */
-  id?: string;
-  author: ImportedPerson;
-  body: string;
-  createdAt?: string;
+export type ImportedAttachment = {
+  key: string;
+  filename: string;
+  mimeType?: string;
+  size?: number;
+  contentUrl?: string;
+};
+
+export type DownloadedAttachment = {
+  contentType?: string;
+  body: ArrayBuffer;
 };
 
 export type ImportedTask = {
@@ -70,18 +71,8 @@ export type ImportedTask = {
   assignee?: ImportedPerson;
   labelKeys: string[];
   comments: ImportedComment[];
-  attachments?: ImportedAttachment[];
   sprintKey?: string | null;
-  /** Human key the source shows in text, e.g. "ABC-123". */
-  sourceLabel?: string;
-  /** Canonical source URL of the task, when the source has one. */
-  sourceUrl?: string;
-};
-
-export type DownloadedAttachment = {
-  body: ArrayBuffer;
-  contentType: string;
-  size: number;
+  attachments?: ImportedAttachment[];
 };
 
 export type ImportedRelationType = "subtask" | "blocks" | "related";
@@ -96,14 +87,12 @@ export type ImportedProject = {
   name: string;
   key?: string;
   description?: string;
-  /** Base URL of the source site, when known; lets the import rewrite links that point at it. */
-  sourceUrl?: string;
   columns: ImportedColumn[];
   labels: ImportedLabel[];
   tasks: ImportedTask[];
   relations: ImportedRelation[];
-  sprints?: ImportedSprint[];
   warnings: string[];
+  sprints?: ImportedSprint[];
 };
 
 export type SourceProject = {
@@ -114,6 +103,7 @@ export type SourceProject = {
 
 export type ReadProjectOptions = {
   includeComments: boolean;
+  includeSprints?: boolean;
   onProgress?: (message: string) => void;
   signal?: AbortSignal;
 };
@@ -124,9 +114,11 @@ export type ImportSource = {
     projectId: string,
     options: ReadProjectOptions,
   ): Promise<ImportedProject>;
-  /** Downloads attachment bytes with the source's credentials; absent when the source cannot serve them. */
+  // Sources that expose file downloads (Jira attachments) implement this so
+  // the importer can copy documents into the destination's storage backend.
   downloadAttachment?(
     attachment: ImportedAttachment,
+    options?: { signal?: AbortSignal },
   ): Promise<DownloadedAttachment>;
 };
 

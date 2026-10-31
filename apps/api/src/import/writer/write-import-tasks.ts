@@ -21,13 +21,13 @@ export async function writeImportTasks(
         description: task.description,
         status: task.status,
         columnId: task.columnId,
+        sprintId: task.sprintId,
         position: task.position,
         priority: task.priority,
         startDate: task.startDate,
         dueDate: task.dueDate,
         createdAt: task.createdAt,
         userId: task.userId,
-        sprintId: task.sprintId,
       })),
     );
 

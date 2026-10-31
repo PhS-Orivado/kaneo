@@ -1,5 +1,4 @@
 import type {
-  ImportedAttachment,
   ImportedComment,
   ImportedPerson,
   ImportedTask,
@@ -16,6 +15,7 @@ export type PlannedImportTask = {
   description: string;
   status: string;
   columnId: string | null;
+  sprintId: string | null;
   position: number;
   priority: string;
   startDate: Date | null;
@@ -24,12 +24,6 @@ export type PlannedImportTask = {
   userId: string | null;
   labelKeys: readonly string[];
   comments: readonly ImportedComment[];
-  attachments: readonly ImportedAttachment[];
-  sprintId: string | null;
-  /** Human key the source shows in text, e.g. "ABC-123"; null when the source has none. */
-  sourceLabel: string | null;
-  /** Canonical source URL of the task; null when the source has none. */
-  sourceUrl: string | null;
 };
 
 type PlanImportTasksInput = {
@@ -40,7 +34,15 @@ type PlanImportTasksInput = {
   now: Date;
   newId: () => string;
   assign: (person: ImportedPerson | undefined) => string | null;
-  sprints: ReadonlyMap<string, string>;
+  sprints?: ReadonlyMap<string, string>;
+  /** Source keys of the sprints imported as closed; their tasks import as done. */
+  closedSprints?: ReadonlySet<string>;
+  doneColumn?: BoardColumn | null;
+};
+
+type ClosedSprintPlacement = {
+  closedSprints: ReadonlySet<string>;
+  doneColumn: BoardColumn | null;
 };
 
 const UNTITLED_TASK = "Untitled task";
@@ -66,8 +68,19 @@ function placeTask(
   task: ImportedTask,
   columns: ReadonlyMap<string, BoardColumn>,
   fallbackColumn: BoardColumn | null,
+  closedSprintPlacement: ClosedSprintPlacement,
 ): { status: string; columnId: string | null } {
   if (task.archived) return { status: "archived", columnId: null };
+  const closedSprint =
+    task.sprintKey !== undefined &&
+    task.sprintKey !== null &&
+    closedSprintPlacement.closedSprints.has(task.sprintKey);
+  if (closedSprint && closedSprintPlacement.doneColumn) {
+    return {
+      status: closedSprintPlacement.doneColumn.slug,
+      columnId: closedSprintPlacement.doneColumn.id,
+    };
+  }
   if (task.columnKey === null) return { status: "planned", columnId: null };
   const column = columns.get(task.columnKey) ?? fallbackColumn;
   return column
@@ -83,16 +96,24 @@ export function planImportTasks({
   now,
   newId,
   assign,
-  sprints,
+  sprints = new Map(),
+  closedSprints = new Set(),
+  doneColumn = null,
 }: PlanImportTasksInput): PlannedImportTask[] {
   const positions = new Map<string, number>();
+  const closedSprintPlacement = { closedSprints, doneColumn };
 
   return tasks.map((task, index) => {
     const number = numbers[index];
     if (number === undefined) {
       throw new Error("Every imported task needs a number");
     }
-    const placement = placeTask(task, columns, fallbackColumn);
+    const placement = placeTask(
+      task,
+      columns,
+      fallbackColumn,
+      closedSprintPlacement,
+    );
     const bucket = placement.columnId ?? `status:${placement.status}`;
     const position = (positions.get(bucket) ?? 0) + 1;
     positions.set(bucket, position);
@@ -104,6 +125,7 @@ export function planImportTasks({
       title: task.title.trim() || UNTITLED_TASK,
       description: task.description ?? "",
       ...placement,
+      sprintId: task.sprintKey ? (sprints.get(task.sprintKey) ?? null) : null,
       position,
       priority: importPriority(task.priority),
       startDate: parseImportDate(task.startDate),
@@ -112,10 +134,6 @@ export function planImportTasks({
       userId: assign(task.assignee),
       labelKeys: task.labelKeys,
       comments: task.comments,
-      attachments: task.attachments ?? [],
-      sprintId: task.sprintKey ? (sprints.get(task.sprintKey) ?? null) : null,
-      sourceLabel: task.sourceLabel?.trim() || null,
-      sourceUrl: task.sourceUrl?.trim() || null,
     };
   });
 }

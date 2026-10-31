@@ -4,6 +4,7 @@ import { createJiraHtmlToMarkdown } from "./html.js";
 import {
   issueDescription,
   issueNumber,
+  mapAttachments,
   mapIssue,
   mapPriority,
 } from "./mapping.js";
@@ -73,6 +74,42 @@ describe("issueDescription", () => {
   });
 });
 
+describe("mapAttachments", () => {
+  it("keeps attachments with a download URL and skips the rest", () => {
+    expect(
+      mapAttachments({
+        id: "1",
+        key: "ABC-1",
+        fields: {
+          attachment: [
+            {
+              id: "7",
+              filename: "spec.pdf",
+              mimeType: "application/pdf",
+              size: "2048",
+              content:
+                "https://acme.atlassian.net/secure/attachment/7/spec.pdf",
+            },
+            { id: "8", filename: "no-url.png" },
+            {
+              id: "9",
+              content: "https://acme.atlassian.net/secure/attachment/9",
+            },
+          ],
+        },
+      }),
+    ).toEqual([
+      {
+        key: "7",
+        filename: "spec.pdf",
+        mimeType: "application/pdf",
+        size: 2048,
+        contentUrl: "https://acme.atlassian.net/secure/attachment/7/spec.pdf",
+      },
+    ]);
+  });
+});
+
 describe("mapIssue", () => {
   const issue: JiraIssue = {
     id: "10042",
@@ -99,8 +136,6 @@ describe("mapIssue", () => {
         columnKey: "column-2",
         comments: [{ author: { name: "Grace" }, body: "Hi" }],
         toMarkdown,
-        baseUrl: "https://acme.atlassian.net",
-        sprintKey: null,
       }),
     ).toEqual({
       key: "10042",
@@ -112,12 +147,8 @@ describe("mapIssue", () => {
       dueDate: "2024-05-01T00:00:00.000Z",
       createdAt: "2024-04-01T06:30:00.000Z",
       assignee: { name: "Ada Lovelace" },
-      sourceLabel: "ABC-42",
-      sourceUrl: "https://acme.atlassian.net/browse/ABC-42",
       labelKeys: ["auth", "ux"],
       comments: [{ author: { name: "Grace" }, body: "Hi" }],
-      attachments: [],
-      sprintKey: null,
     });
   });
 
@@ -125,13 +156,7 @@ describe("mapIssue", () => {
     expect(
       mapIssue(
         { id: "1", key: "ABC-1", fields: { summary: " " } },
-        {
-          columnKey: null,
-          comments: [],
-          toMarkdown,
-          baseUrl: "https://acme.atlassian.net",
-          sprintKey: null,
-        },
+        { columnKey: null, comments: [], toMarkdown },
       ),
     ).toEqual({
       key: "1",
@@ -140,55 +165,8 @@ describe("mapIssue", () => {
       title: "ABC-1",
       description: "",
       priority: "no-priority",
-      sourceLabel: "ABC-1",
-      sourceUrl: "https://acme.atlassian.net/browse/ABC-1",
       labelKeys: [],
       comments: [],
-      attachments: [],
-      sprintKey: null,
-    });
-  });
-
-  it("maps attachments and the sprint", () => {
-    expect(
-      mapIssue(
-        {
-          id: "2",
-          key: "ABC-2",
-          fields: {
-            summary: "Two",
-            attachment: [
-              {
-                id: "10000",
-                filename: "shot.png",
-                mimeType: "image/png",
-                size: 1234,
-                content: "https://acme.atlassian.net/rest/api/3/attachment/content/10000",
-              },
-              { id: "10001" },
-            ],
-          },
-        },
-        {
-          columnKey: null,
-          comments: [],
-          toMarkdown,
-          baseUrl: "https://acme.atlassian.net",
-          sprintKey: "5",
-        },
-      ),
-    ).toMatchObject({
-      key: "2",
-      attachments: [
-        {
-          id: "10000",
-          filename: "shot.png",
-          mimeType: "image/png",
-          size: 1234,
-          url: "https://acme.atlassian.net/rest/api/3/attachment/content/10000",
-        },
-      ],
-      sprintKey: "5",
     });
   });
 });
