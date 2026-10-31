@@ -1470,7 +1470,9 @@
 			"missingOne": "Axtardığınız yoxdur?",
 			"searching": "Axtarılır…",
 			"updated": "Yeniləndi: {{time}}",
-			"useRepository": "Repozitoriyadan istifadə et"
+			"useRepository": "Repozitoriyadan istifadə et",
+			"useSelected": "Seçilənlərdən istifadə et",
+			"selectedCount": "{{count}} seçilib"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Tapşırıqları ixrac et",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "Layihə seçin",
 			"chooseRepositoryTitle": "Repozitoriya seçin",
 			"connectProject": "Layihəni qoş",
+			"connectProjects": "{{count}} layihəni bağla",
 			"connectRepository": "Repozitoriyanı qoş",
+			"connectRepositories": "{{count}} repozitoriyanı bağla",
 			"copied": "Kopyalandı",
 			"copyFailed": "Mübadilə buferinə kopyalamaq alınmadı.",
 			"copySecret": "Sirri kopyala",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "Repozitoriya",
 			"retry": "Yenidən cəhd et",
 			"saveToken": "Giriş nişanını yadda saxla",
+			"selectedRepositories": "Seçilmiş repozitoriyalar",
 			"showSecret": "Sirri göstər",
 			"signInDescription": "Layihəni və onun məsələlərini oxuya bilən giriş nişanından istifadə edin.",
 			"signInTitle": "Serverinizə daxil olun",

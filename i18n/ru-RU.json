@@ -1223,7 +1223,9 @@
 			"missingOne": "Нет нужного?",
 			"searching": "Поиск…",
 			"updated": "Обновлён {{time}}",
-			"useRepository": "Использовать репозиторий"
+			"useRepository": "Использовать репозиторий",
+			"useSelected": "Использовать выбранные",
+			"selectedCount": "Выбрано: {{count}}"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Экспорт задач",
@@ -2432,7 +2434,9 @@
 			"chooseProjectTitle": "Выберите проект",
 			"chooseRepositoryTitle": "Выберите репозиторий",
 			"connectProject": "Подключить проект",
+			"connectProjects": "Подключить проекты ({{count}})",
 			"connectRepository": "Подключить репозиторий",
+			"connectRepositories": "Подключить репозитории ({{count}})",
 			"copied": "Скопировано",
 			"copyFailed": "Не удалось скопировать в буфер обмена.",
 			"copySecret": "Копировать секрет",
@@ -2457,6 +2461,7 @@
 			"repositorySection": "Репозиторий",
 			"retry": "Повторить",
 			"saveToken": "Сохранить токен",
+			"selectedRepositories": "Выбранные репозитории",
 			"showSecret": "Показать секрет",
 			"signInDescription": "Используйте токен, который может читать проект и его issues.",
 			"signInTitle": "Войдите в свой экземпляр",

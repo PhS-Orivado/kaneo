@@ -1023,7 +1023,9 @@
 			"missingOne": "Mis je er een?",
 			"searching": "Zoeken…",
 			"updated": "Bijgewerkt {{time}}",
-			"useRepository": "Repository gebruiken"
+			"useRepository": "Repository gebruiken",
+			"useSelected": "Selectie gebruiken",
+			"selectedCount": "{{count}} geselecteerd"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Taken exporteren",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "Kies een project",
 			"chooseRepositoryTitle": "Kies een repository",
 			"connectProject": "Project koppelen",
+			"connectProjects": "{{count}} projecten verbinden",
 			"connectRepository": "Repository koppelen",
+			"connectRepositories": "{{count}} repositories verbinden",
 			"copied": "Gekopieerd",
 			"copyFailed": "Kopiëren naar het klembord is mislukt.",
 			"copySecret": "Geheim kopiëren",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "Repository",
 			"retry": "Opnieuw proberen",
 			"saveToken": "Token opslaan",
+			"selectedRepositories": "Geselecteerde repositories",
 			"showSecret": "Geheim tonen",
 			"signInDescription": "Gebruik een token dat het project en de issues ervan kan lezen.",
 			"signInTitle": "Inloggen bij je instantie",

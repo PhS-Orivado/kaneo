@@ -2081,7 +2081,9 @@
 			"missingOne": "Missing one?",
 			"searching": "Searching…",
 			"updated": "Updated {{time}}",
-			"useRepository": "Use repository"
+			"useRepository": "Use repository",
+			"useSelected": "Use selected",
+			"selectedCount": "{{count}} selected"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Export tasks",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "Choose a project",
 			"chooseRepositoryTitle": "Choose a repository",
 			"connectProject": "Connect project",
+			"connectProjects": "Connect {{count}} projects",
 			"connectRepository": "Connect repository",
+			"connectRepositories": "Connect {{count}} repositories",
 			"copied": "Copied",
 			"copyFailed": "Couldn't copy to the clipboard.",
 			"copySecret": "Copy secret",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "Repository",
 			"retry": "Retry",
 			"saveToken": "Save token",
+			"selectedRepositories": "Selected repositories",
 			"showSecret": "Show secret",
 			"signInDescription": "Use a token that can read the project and its issues.",
 			"signInTitle": "Sign in to your instance",

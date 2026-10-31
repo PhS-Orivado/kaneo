@@ -1461,7 +1461,9 @@
 			"missingOne": "找不到？",
 			"searching": "正在搜索…",
 			"updated": "更新于 {{time}}",
-			"useRepository": "使用此仓库"
+			"useRepository": "使用此仓库",
+			"useSelected": "使用所选",
+			"selectedCount": "已选择 {{count}} 个"
 		},
 		"tasksImportExport": {
 			"exportTasks": "导出任务",
@@ -2298,7 +2300,9 @@
 			"chooseProjectTitle": "选择项目",
 			"chooseRepositoryTitle": "选择仓库",
 			"connectProject": "连接项目",
+			"connectProjects": "连接 {{count}} 个项目",
 			"connectRepository": "连接仓库",
+			"connectRepositories": "连接 {{count}} 个仓库",
 			"copied": "已复制",
 			"copyFailed": "无法复制到剪贴板。",
 			"copySecret": "复制密钥",
@@ -2323,6 +2327,7 @@
 			"repositorySection": "仓库",
 			"retry": "重试",
 			"saveToken": "保存令牌",
+			"selectedRepositories": "已选仓库",
 			"showSecret": "显示密钥",
 			"signInDescription": "请使用能读取该项目及其 Issue 的令牌。",
 			"signInTitle": "登录你的实例",

@@ -1207,7 +1207,9 @@
 			"missingOne": "Bir depo eksik mi?",
 			"searching": "Aranıyor…",
 			"updated": "{{time}} güncellendi",
-			"useRepository": "Depoyu kullan"
+			"useRepository": "Depoyu kullan",
+			"useSelected": "Seçilenleri kullan",
+			"selectedCount": "{{count}} seçili"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Talepleri dışa aktar",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "Bir proje seçin",
 			"chooseRepositoryTitle": "Bir depo seçin",
 			"connectProject": "Projeyi bağla",
+			"connectProjects": "{{count}} projeyi bağla",
 			"connectRepository": "Depoyu bağla",
+			"connectRepositories": "{{count}} depoyu bağla",
 			"copied": "Kopyalandı",
 			"copyFailed": "Panoya kopyalanamadı.",
 			"copySecret": "Gizli anahtarı kopyala",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "Depo",
 			"retry": "Tekrar dene",
 			"saveToken": "Belirteci kaydet",
+			"selectedRepositories": "Seçili depolar",
 			"showSecret": "Gizli anahtarı göster",
 			"signInDescription": "Projeyi ve sorunlarını okuyabilen bir belirteç kullanın.",
 			"signInTitle": "Sunucunuzda oturum açın",

@@ -12,6 +12,7 @@ type RepositoryChoiceStepProps = {
   disabled: boolean;
   browseDisabled: boolean;
   status: ReactNode;
+  extra?: ReactNode;
   onChange: (value: string) => void;
   onBlur: () => void;
   onBrowse: () => void;
@@ -27,6 +28,7 @@ export function RepositoryChoiceStep({
   disabled,
   browseDisabled,
   status,
+  extra,
   onChange,
   onBlur,
   onBrowse,
@@ -54,6 +56,7 @@ export function RepositoryChoiceStep({
       ) : (
         status
       )}
+      {extra}
     </IntegrationStep>
   );
 }

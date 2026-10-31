@@ -13,7 +13,7 @@ type GithubRepositoryPickerProps = {
   projectId: string;
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  onSelectRepository: (repository: { owner: string; name: string }) => void;
+  onSelectRepositories: (repositories: { owner: string; name: string }[]) => void;
   selectedRepository?: string;
 };
 
@@ -21,12 +21,12 @@ export function GithubRepositoryPicker({
   projectId,
   open,
   onOpenChange,
-  onSelectRepository,
+  onSelectRepositories,
   selectedRepository,
 }: GithubRepositoryPickerProps) {
   const { t } = useTranslation();
   const [term, setTerm] = useState("");
-  const [selected, setSelected] = useState<GithubRepository | null>(null);
+  const [selected, setSelected] = useState<GithubRepository[]>([]);
   const search = useDebouncedValue(term.trim(), 300);
   const { data: appInfo } = useGithubAppInfo(open);
   const results = useGithubRepositorySearch({
@@ -34,29 +34,46 @@ export function GithubRepositoryPicker({
     search,
     enabled: open,
   });
-  const selectedName = selected?.full_name ?? selectedRepository ?? null;
-  const chosen =
-    selected ??
-    results.repositories.find(
-      (repository) => repository.full_name === selectedRepository,
-    ) ??
-    null;
+  // Keep the repository already typed into the setup panel usable without a
+  // click, so confirming a single repository behaves exactly as before.
+  const implicit =
+    selected.length === 0 && selectedRepository
+      ? results.repositories.find(
+          (repository) => repository.full_name === selectedRepository,
+        ) ?? null
+      : null;
+  const effective = selected.length > 0 ? selected : implicit ? [implicit] : [];
+  const effectiveKeys = new Set(effective.map((repository) => repository.full_name));
 
   const changeOpen = (next: boolean) => {
     if (!next) {
       setTerm("");
-      setSelected(null);
+      setSelected([]);
     }
     onOpenChange(next);
   };
 
-  const use = (repository: GithubRepository | null) => {
-    if (!repository) return;
-    onSelectRepository({
-      owner: repository.owner.login,
-      name: repository.name,
-    });
+  const toggle = (repository: GithubRepository) => {
+    setSelected((current) =>
+      current.some((item) => item.full_name === repository.full_name)
+        ? current.filter((item) => item.full_name !== repository.full_name)
+        : [...current, repository],
+    );
+  };
+
+  const use = (list: GithubRepository[]) => {
+    if (list.length === 0) return;
+    onSelectRepositories(
+      list.map((repository) => ({
+        owner: repository.owner.login,
+        name: repository.name,
+      })),
+    );
     changeOpen(false);
+  };
+
+  const useRepository = (repository: GithubRepository) => {
+    use(effectiveKeys.has(repository.full_name) ? effective : [...effective, repository]);
   };
 
   return (
@@ -73,7 +90,12 @@ export function GithubRepositoryPicker({
         />
       }
       footerStart={
-        <span className="flex items-center gap-1.5">
+        <span className="flex flex-wrap items-center gap-1.5">
+          {effective.length > 0
+            ? t("settings:repositoryBrowser.selectedCount", {
+                count: effective.length,
+              })
+            : null}
           {t("settings:repositoryBrowser.missingOne")}
           <a
             href="https://github.com/settings/installations"
@@ -86,9 +108,13 @@ export function GithubRepositoryPicker({
           </a>
         </span>
       }
-      confirmLabel={t("settings:repositoryBrowser.useRepository")}
-      confirmDisabled={!chosen}
-      onConfirm={() => use(chosen)}
+      confirmLabel={
+        effective.length > 1
+          ? t("settings:repositoryBrowser.useSelected")
+          : t("settings:repositoryBrowser.useRepository")
+      }
+      confirmDisabled={effective.length === 0}
+      onConfirm={() => use(effective)}
     >
       <GithubRepositoryResults
         repositories={results.repositories}
@@ -99,9 +125,9 @@ export function GithubRepositoryPicker({
         hasNextPage={results.hasNextPage}
         fetchingMore={results.fetchingMore}
         appName={appInfo?.appName}
-        selected={selectedName}
-        onSelect={setSelected}
-        onConfirm={use}
+        selectedKeys={effectiveKeys}
+        onSelect={toggle}
+        onConfirm={useRepository}
         onRetry={() => void results.refetch()}
         onLoadMore={() => void results.fetchNextPage()}
       />

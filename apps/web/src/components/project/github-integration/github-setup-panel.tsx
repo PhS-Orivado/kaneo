@@ -6,6 +6,7 @@ import {
   GITHUB_OWNER_PATTERN,
   parseRepositoryPath,
 } from "@/components/project/code-hosting/parse-repository-path";
+import { SelectedRepositoriesList } from "@/components/project/code-hosting/selected-repositories-list";
 import { isGithubVerificationReady } from "@/components/project/github-integration/describe-github-verification";
 import { GithubAccountStep } from "@/components/project/github-integration/github-account-step";
 import { GithubRepositoryPicker } from "@/components/project/github-integration/github-repository-picker";
@@ -24,13 +25,11 @@ type GithubSetupPanelProps = {
   onConnected?: () => void;
 };
 
-export function GithubSetupPanel({
-  projectId,
-  appInfo,
-  onConnected,
-}: GithubSetupPanelProps) {
+export function GithubSetupPanel({ projectId, appInfo, onConnected }: GithubSetupPanelProps) {
   const { t } = useTranslation();
   const [value, setValue] = useState("");
+  const [selection, setSelection] = useState<string[]>([]);
+  const [connecting, setConnecting] = useState(false);
   const [touched, setTouched] = useState(false);
   const [browsing, setBrowsing] = useState(false);
   const linked = Boolean(appInfo?.accountConnected);
@@ -39,11 +38,48 @@ export function GithubSetupPanel({
     projectId,
     linked ? repository : null,
   );
-  const { connect, connecting } = useConnectGithubRepository(projectId);
+  const { connect, connecting: connectingRepository } = useConnectGithubRepository(projectId);
   const blocked =
     verification.result !== undefined &&
     !isGithubVerificationReady(verification.result);
   const invalid = touched && value.trim() !== "" && repository === null;
+  // Repositories picked in the browser connect together under the same
+  // installation; a typed path stays the single-repository flow.
+  const targets =
+    selection.length > 0
+      ? selection
+      : repository
+        ? [formatRepositoryPath(repository.owner, repository.name)]
+        : [];
+
+  const removeTarget = (target: string) => {
+    const remaining = selection.filter((item) => item !== target);
+    setSelection(remaining);
+    if (value === target) setValue(remaining[0] ?? "");
+  };
+
+  const connectRepositories = async () => {
+    if (targets.length === 0) return;
+    setConnecting(true);
+    // One integration per repository: each gets its own webhook and settings.
+    const connected: string[] = [];
+    for (const target of targets) {
+      const targetRepository = parseRepositoryPath(target, GITHUB_OWNER_PATTERN);
+      if (!targetRepository) continue;
+      const ok = await connect(targetRepository);
+      if (ok) connected.push(target);
+    }
+    setConnecting(false);
+    if (connected.length === 0) return;
+    const remaining = selection.filter((item) => !connected.includes(item));
+    if (remaining.length === 0) {
+      setSelection([]);
+      onConnected?.();
+    } else {
+      setSelection(remaining);
+      if (connected.includes(value)) setValue(remaining[0]);
+    }
+  };
 
   return (
     <>
@@ -61,10 +97,20 @@ export function GithubSetupPanel({
             invalidMessage={
               invalid ? t("settings:codeHosting.repositoryPathInvalid") : null
             }
-            disabled={connecting}
+            disabled={connectingRepository || connecting}
             browseDisabled={!linked}
             status={<GithubVerificationLine {...verification} />}
+            extra={
+              targets.length > 1 ? (
+                <SelectedRepositoriesList
+                  repositories={targets}
+                  disabled={connectingRepository || connecting}
+                  onRemove={removeTarget}
+                />
+              ) : null
+            }
             onChange={(next) => {
+              setSelection([]);
               setValue(next);
               if (parseRepositoryPath(next, GITHUB_OWNER_PATTERN))
                 setTouched(true);
@@ -76,16 +122,15 @@ export function GithubSetupPanel({
         <IntegrationPanelFooter>
           <Button
             type="button"
-            loading={connecting}
+            loading={connectingRepository || connecting}
             disabled={!linked || !repository || blocked}
-            onClick={() => {
-              if (repository)
-                void connect(repository).then((ok) => {
-                  if (ok) onConnected?.();
-                });
-            }}
+            onClick={() => void connectRepositories()}
           >
-            {t("settings:codeHosting.connectRepository")}
+            {targets.length > 1
+              ? t("settings:codeHosting.connectRepositories", {
+                  count: targets.length,
+                })
+              : t("settings:codeHosting.connectRepository")}
           </Button>
         </IntegrationPanelFooter>
       </IntegrationPanel>
@@ -98,8 +143,12 @@ export function GithubSetupPanel({
             ? formatRepositoryPath(repository.owner, repository.name)
             : undefined
         }
-        onSelectRepository={(selected) => {
-          setValue(formatRepositoryPath(selected.owner, selected.name));
+        onSelectRepositories={(repositories) => {
+          const paths = repositories.map((item) =>
+            formatRepositoryPath(item.owner, item.name),
+          );
+          setSelection(paths);
+          setValue(paths[0] ?? "");
           setTouched(true);
         }}
       />

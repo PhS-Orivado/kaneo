@@ -17,7 +17,7 @@ type GitlabProjectPickerProps = {
   open: boolean;
   projectId: string;
   onOpenChange: (open: boolean) => void;
-  onSelectProject: (projectPath: string) => void;
+  onSelectProjects: (projectPaths: string[]) => void;
   selectedProjectPath?: string;
   baseUrl: string;
   accessToken: string;
@@ -28,7 +28,7 @@ export function GitlabProjectPicker({
   open,
   projectId,
   onOpenChange,
-  onSelectProject,
+  onSelectProjects,
   selectedProjectPath,
   baseUrl,
   accessToken,
@@ -36,7 +36,7 @@ export function GitlabProjectPicker({
 }: GitlabProjectPickerProps) {
   const { t } = useTranslation();
   const [term, setTerm] = useState("");
-  const [selected, setSelected] = useState<GitlabProject | null>(null);
+  const [selected, setSelected] = useState<GitlabProject[]>([]);
   const canFetch =
     open && baseUrl.trim().length > 0 && accessToken.trim().length > 0;
 
@@ -59,25 +59,46 @@ export function GitlabProjectPicker({
     term,
     (project) => project.path_with_namespace,
   );
-  const chosen =
-    selected ??
-    data?.projects.find(
-      (project) => project.path_with_namespace === selectedProjectPath,
-    ) ??
-    null;
+  // Keep the project already typed into the setup panel usable without a
+  // click, so confirming a single project behaves exactly as before.
+  const implicit =
+    selected.length === 0 && selectedProjectPath
+      ? data?.projects.find(
+          (project) => project.path_with_namespace === selectedProjectPath,
+        ) ?? null
+      : null;
+  const effective = selected.length > 0 ? selected : implicit ? [implicit] : [];
+  const effectiveKeys = new Set(effective.map((project) => project.path_with_namespace));
 
   const changeOpen = (next: boolean) => {
     if (!next) {
       setTerm("");
-      setSelected(null);
+      setSelected([]);
     }
     onOpenChange(next);
   };
 
-  const use = (project: GitlabProject | null) => {
-    if (!project) return;
-    onSelectProject(project.path_with_namespace);
+  const toggle = (project: GitlabProject) => {
+    setSelected((current) =>
+      current.some(
+        (item) => item.path_with_namespace === project.path_with_namespace,
+      )
+        ? current.filter(
+            (item) =>
+              item.path_with_namespace !== project.path_with_namespace,
+          )
+        : [...current, project],
+    );
+  };
+
+  const use = (list: GitlabProject[]) => {
+    if (list.length === 0) return;
+    onSelectProjects(list.map((project) => project.path_with_namespace));
     changeOpen(false);
+  };
+
+  const useProject = (project: GitlabProject) => {
+    use(effectiveKeys.has(project.path_with_namespace) ? effective : [...effective, project]);
   };
 
   return (
@@ -93,9 +114,20 @@ export function GitlabProjectPicker({
           onChange={setTerm}
         />
       }
-      confirmLabel={t("settings:gitlabIntegration.useProject")}
-      confirmDisabled={!chosen || !canFetch}
-      onConfirm={() => use(chosen)}
+      footerStart={
+        effective.length > 0
+          ? t("settings:repositoryBrowser.selectedCount", {
+              count: effective.length,
+            })
+          : undefined
+      }
+      confirmLabel={
+        effective.length > 1
+          ? t("settings:repositoryBrowser.useSelected")
+          : t("settings:gitlabIntegration.useProject")
+      }
+      confirmDisabled={effective.length === 0 || !canFetch}
+      onConfirm={() => use(effective)}
     >
       <GitlabProjectResults
         canFetch={canFetch}
@@ -104,9 +136,9 @@ export function GitlabProjectPicker({
         loaded={canFetch && Boolean(data)}
         projects={projects}
         searching={term.trim() !== ""}
-        selected={chosen?.path_with_namespace ?? null}
-        onSelect={setSelected}
-        onConfirm={use}
+        selectedKeys={effectiveKeys}
+        onSelect={toggle}
+        onConfirm={useProject}
         onRetry={() => void refetch()}
       />
     </RepositoryPickerDialog>

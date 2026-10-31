@@ -1028,7 +1028,9 @@
 			"missingOne": "¿Falta alguno?",
 			"searching": "Buscando…",
 			"updated": "Actualizado {{time}}",
-			"useRepository": "Usar repositorio"
+			"useRepository": "Usar repositorio",
+			"useSelected": "Usar seleccionados",
+			"selectedCount": "{{count}} seleccionados"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Exportar tareas",
@@ -2382,7 +2384,9 @@
 			"chooseProjectTitle": "Elige un proyecto",
 			"chooseRepositoryTitle": "Elige un repositorio",
 			"connectProject": "Conectar proyecto",
+			"connectProjects": "Conectar {{count}} proyectos",
 			"connectRepository": "Conectar repositorio",
+			"connectRepositories": "Conectar {{count}} repositorios",
 			"copied": "Copiado",
 			"copyFailed": "No se ha podido copiar al portapapeles.",
 			"copySecret": "Copiar secreto",
@@ -2407,6 +2411,7 @@
 			"repositorySection": "Repositorio",
 			"retry": "Reintentar",
 			"saveToken": "Guardar token",
+			"selectedRepositories": "Repositorios seleccionados",
 			"showSecret": "Mostrar secreto",
 			"signInDescription": "Usa un token que pueda leer el proyecto y sus issues.",
 			"signInTitle": "Inicia sesión en tu instancia",

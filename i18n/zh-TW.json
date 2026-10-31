@@ -1460,7 +1460,9 @@
 			"missingOne": "找不到嗎？",
 			"searching": "正在搜尋…",
 			"updated": "更新於 {{time}}",
-			"useRepository": "使用此 Repo"
+			"useRepository": "使用此 Repo",
+			"useSelected": "使用所選",
+			"selectedCount": "已選擇 {{count}} 個"
 		},
 		"tasksImportExport": {
 			"exportTasks": "匯出任務",
@@ -2298,7 +2300,9 @@
 			"chooseProjectTitle": "選擇專案",
 			"chooseRepositoryTitle": "選擇 Repo",
 			"connectProject": "連接專案",
+			"connectProjects": "連接 {{count}} 個專案",
 			"connectRepository": "連接 Repo",
+			"connectRepositories": "連接 {{count}} 個儲存庫",
 			"copied": "已複製",
 			"copyFailed": "無法複製到剪貼簿。",
 			"copySecret": "複製密鑰",
@@ -2323,6 +2327,7 @@
 			"repositorySection": "Repo",
 			"retry": "重試",
 			"saveToken": "儲存 Token",
+			"selectedRepositories": "已選儲存庫",
 			"showSecret": "顯示密鑰",
 			"signInDescription": "請使用可讀取該專案及其 Issue 的 Token。",
 			"signInTitle": "登入你的執行個體",

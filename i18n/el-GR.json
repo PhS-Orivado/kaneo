@@ -1207,7 +1207,9 @@
 			"missingOne": "Λείπει κάποιο;",
 			"searching": "Γίνεται αναζήτηση…",
 			"updated": "Ενημερώθηκε {{time}}",
-			"useRepository": "Χρήση αποθετηρίου"
+			"useRepository": "Χρήση αποθετηρίου",
+			"useSelected": "Χρήση επιλεγμένων",
+			"selectedCount": "{{count}} επιλεγμένα"
 		},
 		"tasksImportExport": {
 			"exportTasks": "Εξαγωγή εργασιών",
@@ -2340,7 +2342,9 @@
 			"chooseProjectTitle": "Επιλέξτε έργο",
 			"chooseRepositoryTitle": "Επιλέξτε αποθετήριο",
 			"connectProject": "Σύνδεση έργου",
+			"connectProjects": "Σύνδεση {{count}} έργων",
 			"connectRepository": "Σύνδεση αποθετηρίου",
+			"connectRepositories": "Σύνδεση {{count}} αποθετηρίων",
 			"copied": "Αντιγράφηκε",
 			"copyFailed": "Δεν ήταν δυνατή η αντιγραφή στο πρόχειρο.",
 			"copySecret": "Αντιγραφή μυστικού",
@@ -2365,6 +2369,7 @@
 			"repositorySection": "Αποθετήριο",
 			"retry": "Επανάληψη",
 			"saveToken": "Αποθήκευση token",
+			"selectedRepositories": "Επιλεγμένα αποθετήρια",
 			"showSecret": "Εμφάνιση μυστικού",
 			"signInDescription": "Χρησιμοποιήστε ένα token που μπορεί να διαβάζει το έργο και τα issues του.",
 			"signInTitle": "Σύνδεση στην εγκατάστασή σας",

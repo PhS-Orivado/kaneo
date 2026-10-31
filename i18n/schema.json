@@ -8986,6 +8986,30 @@
 						},
 						"useRepository": {
 							"type": "string"
+						},
+						"useSelected": {
+							"type": "string"
+						},
+						"selectedCount": {
+							"type": "string"
+						},
+						"selectedCount_zero": {
+							"type": "string"
+						},
+						"selectedCount_one": {
+							"type": "string"
+						},
+						"selectedCount_two": {
+							"type": "string"
+						},
+						"selectedCount_few": {
+							"type": "string"
+						},
+						"selectedCount_many": {
+							"type": "string"
+						},
+						"selectedCount_other": {
+							"type": "string"
 						}
 					},
 					"required": [
@@ -9005,7 +9029,8 @@
 						"missingOne",
 						"searching",
 						"updated",
-						"useRepository"
+						"useRepository",
+						"useSelected"
 					]
 				},
 				"tasksImportExport": {
@@ -10110,7 +10135,49 @@
 						"connectProject": {
 							"type": "string"
 						},
+						"connectProjects": {
+							"type": "string"
+						},
+						"connectProjects_zero": {
+							"type": "string"
+						},
+						"connectProjects_one": {
+							"type": "string"
+						},
+						"connectProjects_two": {
+							"type": "string"
+						},
+						"connectProjects_few": {
+							"type": "string"
+						},
+						"connectProjects_many": {
+							"type": "string"
+						},
+						"connectProjects_other": {
+							"type": "string"
+						},
 						"connectRepository": {
+							"type": "string"
+						},
+						"connectRepositories": {
+							"type": "string"
+						},
+						"connectRepositories_zero": {
+							"type": "string"
+						},
+						"connectRepositories_one": {
+							"type": "string"
+						},
+						"connectRepositories_two": {
+							"type": "string"
+						},
+						"connectRepositories_few": {
+							"type": "string"
+						},
+						"connectRepositories_many": {
+							"type": "string"
+						},
+						"connectRepositories_other": {
 							"type": "string"
 						},
 						"copied": {
@@ -10185,6 +10252,9 @@
 						"saveToken": {
 							"type": "string"
 						},
+						"selectedRepositories": {
+							"type": "string"
+						},
 						"showSecret": {
 							"type": "string"
 						},
@@ -10245,6 +10315,7 @@
 						"repositorySection",
 						"retry",
 						"saveToken",
+						"selectedRepositories",
 						"showSecret",
 						"signInDescription",
 						"signInTitle",
