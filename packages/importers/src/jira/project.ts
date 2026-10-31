@@ -58,6 +58,7 @@ export function mapJiraProject(data: JiraProjectData): ImportedProject {
         comments: mapComments(data.comments.get(issue.id) ?? [], toMarkdown),
         toMarkdown,
         ...(data.issueSprint ? { issueSprint: data.issueSprint } : {}),
+        baseUrl: data.baseUrl,
       }),
     ),
     relations,

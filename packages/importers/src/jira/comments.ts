@@ -17,7 +17,6 @@ export function mapComments(
     const person = toPerson(comment.author);
     const createdAt = toIsoDate(comment.created);
     mapped.push({
-      ...(comment.id ? { id: comment.id } : {}),
       author: {
         name: person?.name ?? person?.email ?? FALLBACK_AUTHOR,
         ...(person?.email ? { email: person.email } : {}),

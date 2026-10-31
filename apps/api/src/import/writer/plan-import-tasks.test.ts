@@ -111,6 +111,31 @@ describe("planImportTasks", () => {
     });
   });
 
+  it("keeps the source label and URL for the reference writer", () => {
+    const planned = plan([
+      task("a", {
+        sourceLabel: "ABC-41",
+        sourceUrl: "https://acme.atlassian.net/browse/ABC-41",
+      }),
+      task("b", { sourceLabel: "  " }),
+    ]);
+
+    expect(
+      planned.map(({ key, sourceLabel, sourceUrl }) => ({
+        key,
+        sourceLabel,
+        sourceUrl,
+      })),
+    ).toEqual([
+      {
+        key: "a",
+        sourceLabel: "ABC-41",
+        sourceUrl: "https://acme.atlassian.net/browse/ABC-41",
+      },
+      { key: "b", sourceLabel: null, sourceUrl: null },
+    ]);
+  });
+
   it("cleans titles, priorities and dates", () => {
     const [planned] = plan([
       task("a", {

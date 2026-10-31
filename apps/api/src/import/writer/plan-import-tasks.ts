@@ -24,6 +24,8 @@ export type PlannedImportTask = {
   userId: string | null;
   labelKeys: readonly string[];
   comments: readonly ImportedComment[];
+  sourceLabel: string | null;
+  sourceUrl: string | null;
 };
 
 type PlanImportTasksInput = {
@@ -134,6 +136,8 @@ export function planImportTasks({
       userId: assign(task.assignee),
       labelKeys: task.labelKeys,
       comments: task.comments,
+      sourceLabel: task.sourceLabel?.trim() || null,
+      sourceUrl: task.sourceUrl?.trim() || null,
     };
   });
 }
