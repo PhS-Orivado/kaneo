@@ -453,29 +453,85 @@
     {
       "idx": 64,
       "version": "7",
-      "when": 1791800000000,
-      "tag": "0064_sprint_planning",
+      "when": 1792228916894,
+      "tag": "0064_custom_field_hidden_options",
       "breakpoints": true
     },
     {
       "idx": 65,
       "version": "7",
-      "when": 1791800000001,
-      "tag": "0065_sprint_carry_over",
+      "when": 1793006127458,
+      "tag": "0065_session_oidc_sid",
       "breakpoints": true
     },
     {
       "idx": 66,
       "version": "7",
-      "when": 1791817861615,
-      "tag": "0066_multi_repo_integrations",
+      "when": 1793038077476,
+      "tag": "0066_task_recurrence",
       "breakpoints": true
     },
     {
       "idx": 67,
       "version": "7",
-      "when": 1793321096240,
-      "tag": "0067_import_references",
+      "when": 1793094838163,
+      "tag": "0067_better_auth_team_membership",
+      "breakpoints": true
+    },
+    {
+      "idx": 68,
+      "version": "7",
+      "when": 1793128120924,
+      "tag": "0068_admin_audit_log",
+      "breakpoints": true
+    },
+    {
+      "idx": 69,
+      "version": "7",
+      "when": 1793128486906,
+      "tag": "0069_workspace_archive",
+      "breakpoints": true
+    },
+    {
+      "idx": 70,
+      "version": "7",
+      "when": 1793128577982,
+      "tag": "0070_instance_roles",
+      "breakpoints": true
+    },
+    {
+      "idx": 71,
+      "version": "7",
+      "when": 1793128646236,
+      "tag": "0071_instance_settings",
+      "breakpoints": true
+    },
+    {
+      "idx": 72,
+      "version": "7",
+      "when": 1793132486358,
+      "tag": "0072_instance_webhooks",
+      "breakpoints": true
+    },
+    {
+      "idx": 73,
+      "version": "7",
+      "when": 1791800000000,
+      "tag": "0073_sprint_planning",
+      "breakpoints": true
+    },
+    {
+      "idx": 74,
+      "version": "7",
+      "when": 1791800000001,
+      "tag": "0074_sprint_carry_over",
+      "breakpoints": true
+    },
+    {
+      "idx": 75,
+      "version": "7",
+      "when": 1791817861615,
+      "tag": "0075_multi_repo_integrations",
       "breakpoints": true
     }
   ]

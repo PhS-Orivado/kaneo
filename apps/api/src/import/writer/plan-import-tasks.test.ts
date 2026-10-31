@@ -33,10 +33,6 @@ function plan(tasks: ImportedTask[], numbers = tasks.map((_, i) => 41 + i)) {
     now,
     newId: () => `task-${++id}`,
     assign: (person) => (person?.email === "ana@example.com" ? "u-ana" : null),
-    sprints: new Map([
-      ["sprint-1", "sprint-id-1"],
-      ["sprint-2", "sprint-id-2"],
-    ]),
   });
 }
 
@@ -115,43 +111,6 @@ describe("planImportTasks", () => {
     });
   });
 
-  it("assigns the sprint and keeps attachments for the writer", () => {
-    const planned = plan([
-      task("a", { sprintKey: "sprint-1", attachments: [] }),
-      task("b", { sprintKey: "gone" }),
-    ]);
-
-    expect(planned.map(({ key, sprintId, attachments }) => ({ key, sprintId, attachments }))).toEqual([
-      { key: "a", sprintId: "sprint-id-1", attachments: [] },
-      { key: "b", sprintId: null, attachments: [] },
-    ]);
-  });
-
-  it("keeps the source label and URL for the reference writer", () => {
-    const planned = plan([
-      task("a", {
-        sourceLabel: "ABC-41",
-        sourceUrl: "https://acme.atlassian.net/browse/ABC-41",
-      }),
-      task("b", { sourceLabel: "  " }),
-    ]);
-
-    expect(
-      planned.map(({ key, sourceLabel, sourceUrl }) => ({
-        key,
-        sourceLabel,
-        sourceUrl,
-      })),
-    ).toEqual([
-      {
-        key: "a",
-        sourceLabel: "ABC-41",
-        sourceUrl: "https://acme.atlassian.net/browse/ABC-41",
-      },
-      { key: "b", sourceLabel: null, sourceUrl: null },
-    ]);
-  });
-
   it("cleans titles, priorities and dates", () => {
     const [planned] = plan([
       task("a", {
@@ -177,6 +136,102 @@ describe("planImportTasks", () => {
 
   it("dates tasks without a source date now", () => {
     expect(plan([task("a")])[0]?.createdAt).toEqual(now);
+  });
+
+  it("places tasks in their sprint and leaves unknown sprint keys unassigned", () => {
+    const planned = planImportTasks({
+      tasks: [
+        task("a", { sprintKey: "s1" }),
+        task("b", { sprintKey: "gone" }),
+        task("c", { sprintKey: null }),
+        task("d"),
+      ],
+      columns: new Map<string, { id: string; slug: string }>([
+        ["todo", { id: "col-todo", slug: "to-do" }],
+      ]),
+      fallbackColumn: { id: "col-todo", slug: "to-do" },
+      numbers: [41, 42, 43, 44],
+      now,
+      newId: () => "task-id",
+      assign: () => null,
+      sprints: new Map([["s1", "sprint-1"]]),
+    });
+
+    expect(planned.map(({ key, sprintId }) => ({ key, sprintId }))).toEqual([
+      { key: "a", sprintId: "sprint-1" },
+      { key: "b", sprintId: null },
+      { key: "c", sprintId: null },
+      { key: "d", sprintId: null },
+    ]);
+  });
+
+  it("imports tasks of closed sprints into the done column", () => {
+    const planned = planImportTasks({
+      tasks: [
+        task("a", { sprintKey: "s1", columnKey: "todo" }),
+        task("b", { sprintKey: "s1", columnKey: null }),
+        task("c", { sprintKey: "s2", columnKey: "todo" }),
+      ],
+      columns: new Map<string, { id: string; slug: string }>([
+        ["todo", { id: "col-todo", slug: "to-do" }],
+        ["done", { id: "col-done", slug: "done" }],
+      ]),
+      fallbackColumn: { id: "col-todo", slug: "to-do" },
+      numbers: [41, 42, 43],
+      now,
+      newId: () => "task-id",
+      assign: () => null,
+      sprints: new Map([
+        ["s1", "sprint-1"],
+        ["s2", "sprint-2"],
+      ]),
+      closedSprints: new Set(["s1"]),
+      doneColumn: { id: "col-done", slug: "done" },
+    });
+
+    expect(
+      planned.map(({ key, status, columnId, sprintId }) => ({
+        key,
+        status,
+        columnId,
+        sprintId,
+      })),
+    ).toEqual([
+      { key: "a", status: "done", columnId: "col-done", sprintId: "sprint-1" },
+      { key: "b", status: "done", columnId: "col-done", sprintId: "sprint-1" },
+      { key: "c", status: "to-do", columnId: "col-todo", sprintId: "sprint-2" },
+    ]);
+  });
+
+  it("keeps the source status of open sprints and of closed sprints without a done column", () => {
+    const planned = planImportTasks({
+      tasks: [
+        task("a", { sprintKey: "s1", columnKey: "todo" }),
+        task("b", { sprintKey: "s1", columnKey: null }),
+        task("c", { sprintKey: "s2", columnKey: "todo", archived: true }),
+      ],
+      columns: new Map<string, { id: string; slug: string }>([
+        ["todo", { id: "col-todo", slug: "to-do" }],
+        ["done", { id: "col-done", slug: "done" }],
+      ]),
+      fallbackColumn: { id: "col-todo", slug: "to-do" },
+      numbers: [41, 42, 43],
+      now,
+      newId: () => "task-id",
+      assign: () => null,
+      sprints: new Map([
+        ["s1", "sprint-1"],
+        ["s2", "sprint-2"],
+      ]),
+      closedSprints: new Set(["s1"]),
+      doneColumn: null,
+    });
+
+    expect(planned.map(({ key, status }) => ({ key, status }))).toEqual([
+      { key: "a", status: "to-do" },
+      { key: "b", status: "planned" },
+      { key: "c", status: "archived" },
+    ]);
   });
 });
 

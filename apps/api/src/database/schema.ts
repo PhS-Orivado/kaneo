@@ -13,8 +13,11 @@ import {
   unique,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
+import type { WEBHOOK_CATEGORIES } from "../admin/webhooks/categories";
+import type { AuditWebhookPayload } from "../admin/webhooks/audit-webhook-payload";
 import type { GitHubImportState } from "../github-integration/import-state";
 import type { ImportRunProject } from "../import/import-run-project";
+import type { TaskRecurrence } from "../task/recurrence/schema";
 
 // Timestamp columns without a time zone hold UTC (Drizzle reads and writes
 // them as UTC). A bare now() default would be cast through the session time
@@ -50,6 +53,10 @@ export const userTable = pgTable("user", {
   banned: boolean("banned").default(false),
   banReason: text("ban_reason"),
   banExpires: timestamp("ban_expires", { mode: "date" }),
+  // Set on password sign-ups while the instance requires email verification.
+  emailVerificationRequired: boolean("email_verification_required")
+    .default(false)
+    .notNull(),
 });
 
 export const sessionTable = pgTable(
@@ -72,8 +79,12 @@ export const sessionTable = pgTable(
     activeOrganizationId: text("active_organization_id"),
     activeTeamId: text("active_team_id"),
     impersonatedBy: text("impersonated_by"),
+    oidcSid: text("oidc_sid"),
   },
-  (table) => [index("session_userId_idx").on(table.userId)],
+  (table) => [
+    index("session_userId_idx").on(table.userId),
+    index("session_oidcSid_idx").on(table.oidcSid),
+  ],
 );
 
 export const accountTable = pgTable(
@@ -135,6 +146,146 @@ export const userAvatarTable = pgTable(
   (table) => [index("user_avatar_userId_idx").on(table.userId)],
 );
 
+// Instance administration history. Actor and target details are snapshots so
+// entries stay readable after the people or records involved are deleted.
+export const adminAuditLogTable = pgTable(
+  "admin_audit_log",
+  {
+    id: text("id")
+      .$defaultFn(() => createId())
+      .primaryKey(),
+    actorUserId: text("actor_user_id").references(() => userTable.id, {
+      onDelete: "set null",
+      onUpdate: "cascade",
+    }),
+    actorName: text("actor_name"),
+    actorEmail: text("actor_email"),
+    action: text("action").notNull(),
+    targetType: text("target_type").notNull(),
+    targetId: text("target_id"),
+    targetLabel: text("target_label"),
+    metadata: jsonb("metadata").$type<Record<string, unknown>>(),
+    ipAddress: text("ip_address"),
+    userAgent: text("user_agent"),
+    createdAt: timestamp("created_at", { mode: "date" })
+      .default(utcNow)
+      .notNull(),
+  },
+  (table) => [
+    index("admin_audit_log_createdAt_idx").on(
+      table.createdAt.desc(),
+      table.id.desc(),
+    ),
+    index("admin_audit_log_actorUserId_idx").on(table.actorUserId),
+    index("admin_audit_log_target_idx").on(table.targetType, table.targetId),
+  ],
+);
+
+export const instanceWebhookTable = pgTable("instance_webhook", {
+  id: text("id")
+    .$defaultFn(() => createId())
+    .primaryKey(),
+  url: text("url").notNull(),
+  categories: text("categories")
+    .array()
+    .$type<(typeof WEBHOOK_CATEGORIES)[number][]>()
+    .notNull(),
+  enabled: boolean("enabled").default(true).notNull(),
+  signingSecret: text("signing_secret").notNull(),
+  cancelPendingBefore: timestamp("cancel_pending_before", { mode: "date" }),
+  createdAt: timestamp("created_at", { mode: "date" })
+    .default(utcNow)
+    .notNull(),
+});
+
+export const instanceWebhookDeliveryTable = pgTable(
+  "instance_webhook_delivery",
+  {
+    id: text("id")
+      .$defaultFn(() => createId())
+      .primaryKey(),
+    webhookId: text("webhook_id")
+      .notNull()
+      .references(() => instanceWebhookTable.id, { onDelete: "cascade" }),
+    payload: jsonb("payload").$type<AuditWebhookPayload>().notNull(),
+    state: text("state")
+      .$type<"pending" | "succeeded" | "failed">()
+      .default("pending")
+      .notNull(),
+    attempts: integer("attempts").default(0).notNull(),
+    statusCode: integer("status_code"),
+    errorCode: text("error_code"),
+    nextAttemptAt: timestamp("next_attempt_at", { mode: "date" })
+      .default(utcNow)
+      .notNull(),
+    // Use the enqueue statement's snapshot time, even inside an older action transaction.
+    createdAt: timestamp("created_at", { mode: "date" })
+      .default(sql`(statement_timestamp() AT TIME ZONE 'utc')`)
+      .notNull(),
+  },
+  (table) => [
+    index("instance_webhook_delivery_due_idx").on(
+      table.state,
+      table.nextAttemptAt,
+    ),
+    index("instance_webhook_delivery_history_idx").on(
+      table.webhookId,
+      table.createdAt.desc(),
+      table.id.desc(),
+    ),
+  ],
+);
+
+// Custom instance roles. Users hold them by name in their comma-separated
+// `user.role`, next to the built-in `admin` and `user` roles.
+export const instanceRoleTable = pgTable("instance_role", {
+  id: text("id")
+    .$defaultFn(() => createId())
+    .primaryKey(),
+  name: text("name").notNull().unique(),
+  permissions: text("permissions")
+    .array()
+    .notNull()
+    .default(sql`'{}'`),
+  createdAt: timestamp("created_at", { mode: "date" })
+    .default(utcNow)
+    .notNull(),
+  updatedAt: timestamp("updated_at", { mode: "date" })
+    .default(utcNow)
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
+// A single row (id "instance"). Without it, every setting has its default.
+export const instanceSettingsTable = pgTable("instance_settings", {
+  id: text("id").primaryKey().default("instance"),
+  instanceName: text("instance_name"),
+  registrationEnabled: boolean("registration_enabled").default(true).notNull(),
+  passwordRegistrationEnabled: boolean("password_registration_enabled")
+    .default(true)
+    .notNull(),
+  requireEmailVerification: boolean("require_email_verification")
+    .default(false)
+    .notNull(),
+  defaultRoleId: text("default_role_id").references(
+    () => instanceRoleTable.id,
+    {
+      onDelete: "restrict",
+    },
+  ),
+  workspaceCreationRestricted: boolean("workspace_creation_restricted")
+    .default(false)
+    .notNull(),
+  disabledIntegrations: text("disabled_integrations")
+    .array()
+    .notNull()
+    .default(sql`'{}'`),
+  updatedAt: timestamp("updated_at", { mode: "date" })
+    .default(utcNow)
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
 export const verificationTable = pgTable(
   "verification",
   {
@@ -165,6 +316,12 @@ export const workspaceTable = pgTable("workspace", {
   metadata: text("metadata"),
   description: text("description"),
   createdAt: timestamp("created_at", { mode: "date" }).notNull(),
+  // Set by an instance administrator. Archived workspaces keep their data but
+  // members, API keys, integrations, and public links can no longer use them.
+  archivedAt: timestamp("archived_at", { mode: "date" }),
+  archivedBy: text("archived_by").references(() => userTable.id, {
+    onDelete: "set null",
+  }),
 });
 
 export const workspaceUserTable = pgTable(
@@ -266,6 +423,7 @@ export const teamTable = pgTable(
   {
     id: text("id").primaryKey(),
     name: text("name").notNull(),
+    memberCount: integer("member_count").default(0).notNull(),
     workspaceId: text("workspace_id")
       .notNull()
       .references(() => workspaceTable.id, { onDelete: "cascade" }),
@@ -287,6 +445,7 @@ export const teamMemberTable = pgTable(
     userId: text("user_id")
       .notNull()
       .references(() => userTable.id, { onDelete: "cascade" }),
+    membershipKey: text("membership_key").unique(),
     createdAt: timestamp("created_at"),
   },
   (table) => [
@@ -509,9 +668,8 @@ export const sprintTable = pgTable(
     endDate: timestamp("end_date", { mode: "date" }),
     // Snapshot of the unfinished tasks moved out when the sprint was closed;
     // kept as a report so the carried-over work stays traceable.
-    carryOverTasks: jsonb("carry_over_tasks").$type<
-      { id: string; title: string }[]
-    >(),
+    carryOverTasks:
+      jsonb("carry_over_tasks").$type<{ id: string; title: string }[]>(),
     position: integer("position").notNull().default(0),
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
@@ -524,10 +682,7 @@ export const sprintTable = pgTable(
   (table) => [
     index("sprint_projectId_idx").on(table.projectId),
     unique("sprint_project_name_unique").on(table.projectId, table.name),
-    index("sprint_projectId_position_idx").on(
-      table.projectId,
-      table.position,
-    ),
+    index("sprint_projectId_position_idx").on(table.projectId, table.position),
     uniqueIndex("sprint_project_active_unique")
       .on(table.projectId)
       .where(sql`status = 'active'`),
@@ -643,6 +798,7 @@ export const taskTable = pgTable(
     priority: text("priority").default("low").notNull(),
     startDate: timestamp("start_date", { mode: "date" }),
     dueDate: timestamp("due_date", { mode: "date" }),
+    recurrence: jsonb("recurrence").$type<TaskRecurrence>(),
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)
       .notNull(),
@@ -1213,76 +1369,6 @@ export const importRunTable = pgTable(
   ],
 );
 
-/**
- * Maps every imported Kaneo entity back to the source entity it came from,
- * with a foreign key to that entity. The import uses these rows to update
- * references and links in imported text to the internal Kaneo ones, and
- * removes the rows afterwards so no link to the source system remains.
- */
-export const importReferenceTable = pgTable(
-  "import_reference",
-  {
-    id: text("id")
-      .$defaultFn(() => createId())
-      .primaryKey(),
-    workspaceId: text("workspace_id")
-      .notNull()
-      .references(() => workspaceTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    projectId: text("project_id")
-      .notNull()
-      .references(() => projectTable.id, {
-        onDelete: "cascade",
-        onUpdate: "cascade",
-      }),
-    source: text("source").notNull(),
-    /** task | sprint | column | asset | comment */
-    entityType: text("entity_type").notNull(),
-    /** Canonical source id of the entity, e.g. the Jira issue id. */
-    sourceKey: text("source_key").notNull(),
-    /** Human form the source uses in text, e.g. "ABC-123"; null when there is none. */
-    sourceLabel: text("source_label"),
-    /** Canonical source URL of the entity; null when the source has none. */
-    sourceUrl: text("source_url"),
-    taskId: text("task_id").references(() => taskTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    sprintId: text("sprint_id").references(() => sprintTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    columnId: text("column_id").references(() => columnTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    assetId: text("asset_id").references(() => assetTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    activityId: text("activity_id").references(() => activityTable.id, {
-      onDelete: "cascade",
-      onUpdate: "cascade",
-    }),
-    createdAt: timestamp("created_at", { mode: "date" })
-      .default(utcNow)
-      .notNull(),
-  },
-  (table) => [
-    index("import_reference_workspaceId_idx").on(table.workspaceId),
-    index("import_reference_projectId_idx").on(table.projectId),
-    index("import_reference_taskId_idx").on(table.taskId),
-    unique("import_reference_source_key_unique").on(
-      table.projectId,
-      table.source,
-      table.entityType,
-      table.sourceKey,
-    ),
-  ],
-);
-
 export const externalLinkTable = pgTable(
   "external_link",
   {
@@ -1602,6 +1688,11 @@ export const customFieldDefinitionTable = pgTable(
     required: boolean("required").default(false).notNull(),
     defaultValue: text("default_value"),
     options: jsonb("options"),
+    // Options kept for tasks that already use them but no longer offered.
+    hiddenOptions: jsonb("hidden_options")
+      .$type<string[]>()
+      .default([])
+      .notNull(),
     position: integer("position").default(0).notNull(),
     createdAt: timestamp("created_at", { mode: "date" })
       .default(utcNow)

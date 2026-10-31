@@ -7,6 +7,7 @@ import {
 } from "./auth.js";
 import { connectJira } from "./index.js";
 import { NOT_JIRA_MESSAGE } from "./source.js";
+import { SPRINTS_UNAVAILABLE_WARNING } from "./sprints.js";
 import { BOARD_UNAVAILABLE_WARNING } from "./warnings.js";
 
 const TOKEN = "jira-secret-token";
@@ -224,28 +225,6 @@ function cloudRoutes(extra: Record<string, Handler | unknown> = {}) {
       ],
     },
     "GET /rest/agile/1.0/board/7/configuration": BOARD_CONFIG,
-    "GET /rest/agile/1.0/board/7/sprint": {
-      maxResults: 50,
-      startAt: 0,
-      total: 1,
-      isLast: true,
-      values: [
-        {
-          id: 5,
-          name: "Sprint 1",
-          state: "active",
-          goal: "Ship it",
-          startDate: "2024-01-01T10:00:00.000Z",
-          endDate: "2024-01-14T10:00:00.000Z",
-        },
-      ],
-    },
-    "GET /rest/agile/1.0/sprint/5/issue": {
-      maxResults: 100,
-      startAt: 0,
-      isLast: true,
-      issues: [{ id: "101", key: "ABC-1" }],
-    },
     "POST /rest/api/3/search/jql": (request: Request) =>
       request.body?.nextPageToken === "page-2"
         ? { issues: ISSUE_PAGE_2, isLast: true }
@@ -515,7 +494,6 @@ describe("readProject on Jira Cloud", () => {
       "Reading issues (2 so far)",
       "Reading issues (3 so far)",
       "Reading comments (1 of 1)",
-      "Reading sprints",
     ]);
 
     expect(project.name).toBe("Alpha");
@@ -542,12 +520,8 @@ describe("readProject on Jira Cloud", () => {
         description: "",
         priority: "low",
         createdAt: "2024-01-01T10:00:00.000Z",
-        sourceLabel: "ABC-2",
-        sourceUrl: "https://acme.atlassian.net/browse/ABC-2",
         labelKeys: [],
         comments: [],
-        attachments: [],
-        sprintKey: null,
       },
       {
         key: "101",
@@ -560,24 +534,18 @@ describe("readProject on Jira Cloud", () => {
         createdAt: "2024-01-01T10:00:00.000Z",
         assignee: { name: "Ada Lovelace", email: "ada@example.com" },
         labelKeys: ["frontend"],
-        sourceLabel: "ABC-1",
-        sourceUrl: "https://acme.atlassian.net/browse/ABC-1",
         comments: [
           {
-            id: "c1",
             author: { name: "Ada Lovelace", email: "ada@example.com" },
             body: "First **note**",
             createdAt: "2024-02-01T10:00:00.000Z",
           },
           {
-            id: "c2",
             author: { name: "Grace Hopper" },
             body: "Second",
             createdAt: "2024-02-02T10:00:00.000Z",
           },
         ],
-        attachments: [],
-        sprintKey: "5",
       },
       {
         key: "103",
@@ -587,32 +555,102 @@ describe("readProject on Jira Cloud", () => {
         description: "",
         priority: "medium",
         createdAt: "2024-01-01T10:00:00.000Z",
-        sourceLabel: "ABC-3",
-        sourceUrl: "https://acme.atlassian.net/browse/ABC-3",
         labelKeys: [],
         comments: [],
-        attachments: [],
-        sprintKey: null,
       },
     ]);
     expect(project.relations).toEqual([
       { sourceKey: "101", targetKey: "103", type: "blocks" },
       { sourceKey: "101", targetKey: "103", type: "subtask" },
     ]);
-    expect(project.sprints).toEqual([
-      {
-        key: "5",
-        name: "Sprint 1",
-        state: "active",
-        goal: "Ship it",
-        startDate: "2024-01-01T10:00:00.000Z",
-        endDate: "2024-01-14T10:00:00.000Z",
-        taskKeys: ["101"],
-      },
-    ]);
     expect(project.warnings).toEqual([
+      "1 issue has attachments, which are not imported.",
       "1 parent or issue link points to another project, so it was not imported.",
     ]);
+  });
+
+  it("reads sprints and keeps each issue in its sprint when asked", async () => {
+    const jira = fakeJira(
+      cloudRoutes({
+        "GET /rest/agile/1.0/board/7/sprint": {
+          values: [
+            {
+              id: 1,
+              name: "Sprint 1",
+              state: "closed",
+              startDate: "2026-01-01T00:00:00.000Z",
+              endDate: "2026-01-14T00:00:00.000Z",
+            },
+            { id: 2, name: "Sprint 2", state: "active" },
+          ],
+          isLast: true,
+        },
+        "GET /rest/agile/1.0/sprint/1/issue": {
+          values: [{ id: "101" }],
+          isLast: true,
+        },
+        "GET /rest/agile/1.0/sprint/2/issue": {
+          values: [{ id: "103" }],
+          isLast: true,
+        },
+      }),
+    );
+    const source = await connectJira(
+      { url: CLOUD_URL, email: "ada@example.com", apiToken: TOKEN },
+      { fetch: jira.fetch },
+    );
+    const project = await source.readProject("ABC", {
+      includeComments: false,
+      includeSprints: true,
+    });
+
+    expect(project.sprints).toEqual([
+      {
+        key: "1",
+        name: "Sprint 1",
+        status: "closed",
+        startDate: "2026-01-01T00:00:00.000Z",
+        endDate: "2026-01-14T00:00:00.000Z",
+      },
+      { key: "2", name: "Sprint 2", status: "active" },
+    ]);
+    expect(
+      project.tasks
+        .filter((task) => task.sprintKey)
+        .map((task) => [task.key, task.sprintKey]),
+    ).toEqual([
+      ["101", "1"],
+      ["103", "2"],
+    ]);
+  });
+
+  it("skips the sprint requests when sprints are not asked for", async () => {
+    const jira = fakeJira(cloudRoutes());
+    const source = await connectJira(
+      { url: CLOUD_URL, email: "ada@example.com", apiToken: TOKEN },
+      { fetch: jira.fetch },
+    );
+    const project = await source.readProject("ABC", { includeComments: false });
+
+    expect(jira.paths().some((path) => path.includes("/sprint"))).toBe(false);
+    expect(project.sprints).toBeUndefined();
+  });
+
+  it("imports with a warning when Jira denies sprint access", async () => {
+    const jira = fakeJira(
+      cloudRoutes({ "GET /rest/agile/1.0/board/7/sprint": new Reply(403) }),
+    );
+    const source = await connectJira(
+      { url: CLOUD_URL, email: "ada@example.com", apiToken: TOKEN },
+      { fetch: jira.fetch },
+    );
+    const project = await source.readProject("ABC", {
+      includeComments: false,
+      includeSprints: true,
+    });
+
+    expect(project.sprints).toBeUndefined();
+    expect(project.warnings).toContain(SPRINTS_UNAVAILABLE_WARNING);
   });
 
   it("leaves comments out of the search and skips the comment requests when not asked", async () => {
