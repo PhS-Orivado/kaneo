@@ -73,6 +73,10 @@ export type ImportedTask = {
   comments: ImportedComment[];
   sprintKey?: string | null;
   attachments?: ImportedAttachment[];
+  /** Human key the source shows in text, e.g. "ABC-123". */
+  sourceLabel?: string;
+  /** Canonical source URL of the task, when the source has one. */
+  sourceUrl?: string;
 };
 
 export type ImportedRelationType = "subtask" | "blocks" | "related";

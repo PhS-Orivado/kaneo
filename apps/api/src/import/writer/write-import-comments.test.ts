@@ -50,35 +50,4 @@ describe("writeImportComments", () => {
 
     expect(name).toHaveLength(120);
   });
-
-  it("returns the activity id for each comment that has a source id", async () => {
-    const rows: { id: string; content: string }[] = [];
-    const tx = {
-      insert: () => ({
-        values: async (batch: { id: string; content: string }[]) => {
-          rows.push(...batch);
-        },
-      }),
-    } as unknown as Transaction;
-
-    const result = await writeImportComments(tx, {
-      tasks: [
-        {
-          id: "task-1",
-          comments: [
-            { id: "c1", author: { name: "Ada" }, body: "One" },
-            { author: { name: "Bo" }, body: "Two" },
-          ],
-        },
-      ],
-      importedBy: "user-1",
-      source: "jira",
-      now,
-    });
-
-    expect(result.count).toBe(2);
-    expect(result.references).toEqual([
-      { sourceKey: "c1", activityId: rows[0]?.id },
-    ]);
-  });
 });

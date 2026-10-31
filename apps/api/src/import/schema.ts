@@ -159,3 +159,18 @@ export const importRunParam = z.object({
   workspaceId: z.string(),
   runId: z.string(),
 });
+
+export const rewriteJiraLinksBody = z.object({
+  workspaceId: z.string().min(1),
+  dryRun: z.boolean().openapi({
+    description:
+      "Report the planned replacements without writing anything. Send false to apply them.",
+  }),
+});
+
+export const workspaceIdParam = z.object({ workspaceId: z.string() });
+
+export const importRunParam = z.object({
+  workspaceId: z.string(),
+  runId: z.string(),
+});

@@ -153,7 +153,8 @@
 					"orchid": "오키드",
 					"sky": "스카이"
 				},
-				"statusLoadError": "Project statuses couldn’t be loaded."
+				"statusLoadError": "Project statuses couldn’t be loaded.",
+				"clearDueDate": "마감일 지우기"
 			}
 		},
 		"editor": {
@@ -2404,6 +2405,22 @@
 				"sprints": "Sprints",
 				"tasks": "Issues",
 				"users": "Users"
+			},
+			"jiraLinks": {
+				"title": "Jira links",
+				"description": "Point Jira issue links at the imported tasks.",
+				"cardDescription": "Replace Jira issue links in task descriptions and comments with links to the imported tasks. You see a preview before anything changes.",
+				"find": "Find Jira links",
+				"dialogTitle": "Replace Jira links",
+				"dialogDescription": "Links that match an imported task are shown below. Unmatched links stay unchanged.",
+				"summary": "{{count}} links in {{tasks}} tasks and {{comments}} comments point at imported tasks.",
+				"unresolved": "{{count}} links did not match an imported task and stay unchanged.",
+				"none": "No Jira issue links were found.",
+				"noneUnresolved": "{{count}} Jira issue links were found, but none match an imported task. Nothing changes.",
+				"apply": "Replace {{count}} links",
+				"successToast": "Replaced {{count}} Jira links.",
+				"loadError": "Jira links could not be checked.",
+				"applyError": "The links could not be replaced."
 			}
 		},
 		"chatIntegrations": {
@@ -2855,6 +2872,51 @@
 				"saveError": "Branding could not be saved.",
 				"saved": "Branding updated."
 			}
+		},
+		"adminInstanceConfig": {
+			"envHint": "Saved values take effect immediately and override the environment variables. Empty fields fall back to the environment configuration.",
+			"form": {
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving..."
+			},
+			"instanceBadge": "Instance",
+			"loadError": "Email and storage settings could not be loaded.",
+			"retry": "Retry",
+			"s3": {
+				"accessKeyId": "Access key ID",
+				"bucket": "Bucket",
+				"endpoint": "Endpoint URL",
+				"forcePathStyle": "Path-style URLs",
+				"forcePathStyleHint": "Enable for most self-hosted S3-compatible stores; disable for AWS S3 virtual-hosted buckets.",
+				"keyPrefix": "Key prefix",
+				"publicBaseUrl": "Public base URL",
+				"publicBaseUrlHint": "Optional URL objects are served from, for example a CDN in front of the bucket.",
+				"region": "Region",
+				"secretAccessKey": "Secret access key",
+				"secretSetHint": "A secret access key is saved. Leave the field empty to keep it; clear the access key ID to use the default AWS credential chain.",
+				"title": "File storage (S3)"
+			},
+			"smtp": {
+				"from": "Sender address",
+				"host": "SMTP host",
+				"password": "Password",
+				"port": "Port",
+				"portHint": "Leave empty to let the mail library choose the default for the security mode.",
+				"requireTls": "Require STARTTLS",
+				"requireTlsHint": "Reject plaintext connections that cannot upgrade to TLS.",
+				"secretSetHint": "A password is saved. Leave the field empty to keep it; clear the username to stop using authentication.",
+				"secure": "Use TLS from the start",
+				"secureHint": "Enable for connections that are encrypted from the first byte, such as port 465.",
+				"title": "Email (SMTP)",
+				"user": "Username"
+			},
+			"subtitle": "Configure SMTP email delivery and S3 file storage for everyone on this instance.",
+			"title": "Email and storage",
+			"toast": {
+				"saved": "Email and storage settings updated.",
+				"saveError": "Email and storage settings could not be saved."
+			}
 		}
 	},
 	"navigation": {
@@ -2935,7 +2997,8 @@
 		"page": {
 			"settingsTitle": "설정",
 			"backToWorkspace": "워크스페이스로 돌아가기",
-			"settingsWorkspaceTab": "워크스페이스"
+			"settingsWorkspaceTab": "워크스페이스",
+			"projectsTitle": "프로젝트"
 		},
 		"projectSettings": {
 			"projectLabel": "프로젝트"
@@ -4245,7 +4308,8 @@
 			"title": "Project management",
 			"titleAccent": "that doesn't become the project.",
 			"description": "Open-source project management with boards, Gantt charts, and GitHub integration. Self-host for free with SSO included, or let Kaneo Cloud handle the hosting.",
-			"pricingCta": "See pricing"
+			"pricingCta": "See pricing",
+			"selfHostCta": "Self-host Kaneo"
 		},
 		"navigation": {
 			"product": "Product",
@@ -4350,6 +4414,10 @@
 			"startups": {
 				"description": "What a startup needs from a tracker, and what Kaneo Cloud costs as you hire.",
 				"title": "Project management for startups"
+			},
+			"docker": {
+				"title": "Self-host with Docker",
+				"description": "Installation, backups, and updates for a setup you control."
 			}
 		},
 		"product": {

@@ -13,6 +13,7 @@ export const ADMIN_PAGE_PERMISSIONS = {
   "/dashboard/settings/admin/audit-log": ["audit:read"],
   "/dashboard/settings/admin/system": ["system:read"],
   "/dashboard/settings/admin/settings": ["instance:settings"],
+  "/dashboard/settings/admin/instance-config": ["instance:settings"],
   "/dashboard/settings/admin/webhooks": ["instance:settings"],
   "/dashboard/settings/admin/branding": ["instance:settings"],
 } as const satisfies Record<string, readonly InstancePermission[]>;

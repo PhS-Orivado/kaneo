@@ -2,9 +2,10 @@ import type { ImportedProject, ImportSourceId } from "@kaneo/importers";
 import { createId } from "@paralleldrive/cuid2";
 import { eq, sql } from "drizzle-orm";
 import type db from "../../database";
-import { projectTable } from "../../database/schema";
+import { importReferenceTable, projectTable } from "../../database/schema";
 import type { ImportCounts, ImportStage } from "../import-run-project";
 import { assignImportTaskNumbers } from "./assign-import-task-numbers";
+import { chunk } from "./chunk";
 import { loadAssignableMembers } from "./load-assignable-members";
 import { createAssigneeMatcher } from "./match-assignees";
 import { planImportColumns } from "./plan-import-columns";
@@ -125,6 +126,25 @@ export async function writeProjectContent(
     doneColumn,
   });
   await writeImportTasks(tx, projectId, userId, tasks);
+
+  // Keep a reference from every imported task back to its source entity so
+  // the post-import pass can rewrite source links to internal ones, then
+  // erase the mapping again.
+  const taskReferences = tasks
+    .filter((task) => task.sourceLabel || task.sourceUrl)
+    .map((task) => ({
+      workspaceId,
+      projectId,
+      source,
+      entityType: "task",
+      sourceKey: task.key,
+      sourceLabel: task.sourceLabel,
+      sourceUrl: task.sourceUrl,
+      taskId: task.id,
+    }));
+  for (const batch of chunk(taskReferences)) {
+    await tx.insert(importReferenceTable).values(batch);
+  }
 
   const labels = await writeImportLabels(
     tx,

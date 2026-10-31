@@ -522,6 +522,8 @@ describe("readProject on Jira Cloud", () => {
         createdAt: "2024-01-01T10:00:00.000Z",
         labelKeys: [],
         comments: [],
+        sourceLabel: "ABC-2",
+        sourceUrl: "https://acme.atlassian.net/browse/ABC-2",
       },
       {
         key: "101",
@@ -546,6 +548,8 @@ describe("readProject on Jira Cloud", () => {
             createdAt: "2024-02-02T10:00:00.000Z",
           },
         ],
+        sourceLabel: "ABC-1",
+        sourceUrl: "https://acme.atlassian.net/browse/ABC-1",
       },
       {
         key: "103",
@@ -557,6 +561,8 @@ describe("readProject on Jira Cloud", () => {
         createdAt: "2024-01-01T10:00:00.000Z",
         labelKeys: [],
         comments: [],
+        sourceLabel: "ABC-3",
+        sourceUrl: "https://acme.atlassian.net/browse/ABC-3",
       },
     ]);
     expect(project.relations).toEqual([

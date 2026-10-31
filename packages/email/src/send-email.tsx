@@ -33,7 +33,21 @@ import WorkspaceInvitationEmail, {
 
 config();
 
-const transporter = nodemailer.createTransport(getSmtpTransportOptions());
+type SmtpTransporter = ReturnType<typeof nodemailer.createTransport>;
+let transporter: { key: string; value: SmtpTransporter } | undefined;
+
+/**
+ * Rebuilt when the settings change (the instance config editor can update
+ * SMTP at runtime), cached otherwise so every send reuses one pool.
+ */
+function getTransporter() {
+  const options = getSmtpTransportOptions();
+  const key = JSON.stringify(options);
+  if (!transporter || transporter.key !== key) {
+    transporter = { key, value: nodemailer.createTransport(options) };
+  }
+  return transporter.value;
+}
 
 async function render(template: ReactElement, subject: EmailSubject) {
   const instanceName = await loadBrandName();
@@ -56,7 +70,7 @@ export const sendMagicLinkEmail = async (
     subject,
   );
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
@@ -76,7 +90,7 @@ export const sendOtpEmail = async (
     subject,
   );
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
@@ -102,7 +116,7 @@ export const sendPasswordResetEmail = async (
     return;
   }
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
@@ -134,7 +148,7 @@ export const sendWorkspaceInvitationEmail = async (
       WorkspaceInvitationEmail({ instance: instanceHost(), ...data, to }),
       subject,
     );
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
@@ -157,7 +171,7 @@ export const sendNotificationEmail = async (
 
   try {
     const email = await render(NotificationEmail(data), subject);
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
@@ -179,7 +193,7 @@ export const sendTrialReminderEmail = async (
     subject,
   );
   try {
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
@@ -204,7 +218,7 @@ async function sendAdministratorEmail(
   }
   try {
     const email = await render(template, subject);
-    await transporter.sendMail({
+    await getTransporter().sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,

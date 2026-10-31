@@ -28,7 +28,22 @@ export type IssueContext = {
   comments: ImportedComment[];
   toMarkdown: HtmlToMarkdown;
   issueSprint?: ReadonlyMap<string, string>;
+  /** Base URL of the Jira site, used to build source links. */
+  baseUrl: string;
 };
+
+/** Joins a Jira base URL with a site path, tolerating trailing slashes. */
+export function resolveJiraUrl(
+  baseUrl: string,
+  path: string | null | undefined,
+): string | null {
+  if (!path) return null;
+  try {
+    return new URL(path, `${baseUrl}/`).toString();
+  } catch {
+    return null;
+  }
+}
 
 export function mapPriority(name: string | null | undefined): ImportedPriority {
   return PRIORITIES.get(name?.trim().toLowerCase() ?? "") ?? "no-priority";
@@ -89,6 +104,10 @@ export function mapIssue(
   const assignee = toPerson(fields.assignee);
   const sprintKey = context.issueSprint?.get(issue.id) ?? null;
   const attachments = mapAttachments(issue);
+  const sourceLabel = issue.key?.trim();
+  const sourceUrl = sourceLabel
+    ? resolveJiraUrl(context.baseUrl, `browse/${sourceLabel}`)
+    : null;
   return {
     key: issue.id,
     ...(number !== undefined ? { number } : {}),
@@ -103,5 +122,7 @@ export function mapIssue(
     comments: context.comments,
     ...(sprintKey ? { sprintKey } : {}),
     ...(attachments.length ? { attachments } : {}),
+    ...(sourceLabel ? { sourceLabel } : {}),
+    ...(sourceUrl ? { sourceUrl } : {}),
   };
 }

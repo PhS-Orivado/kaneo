@@ -136,6 +136,7 @@ describe("mapIssue", () => {
         columnKey: "column-2",
         comments: [{ author: { name: "Grace" }, body: "Hi" }],
         toMarkdown,
+        baseUrl: "https://acme.atlassian.net",
       }),
     ).toEqual({
       key: "10042",
@@ -149,6 +150,8 @@ describe("mapIssue", () => {
       assignee: { name: "Ada Lovelace" },
       labelKeys: ["auth", "ux"],
       comments: [{ author: { name: "Grace" }, body: "Hi" }],
+      sourceLabel: "ABC-42",
+      sourceUrl: "https://acme.atlassian.net/browse/ABC-42",
     });
   });
 
@@ -156,7 +159,7 @@ describe("mapIssue", () => {
     expect(
       mapIssue(
         { id: "1", key: "ABC-1", fields: { summary: " " } },
-        { columnKey: null, comments: [], toMarkdown },
+        { columnKey: null, comments: [], toMarkdown, baseUrl: "https://acme.atlassian.net" },
       ),
     ).toEqual({
       key: "1",
@@ -167,6 +170,8 @@ describe("mapIssue", () => {
       priority: "no-priority",
       labelKeys: [],
       comments: [],
+      sourceLabel: "ABC-1",
+      sourceUrl: "https://acme.atlassian.net/browse/ABC-1",
     });
   });
 });
