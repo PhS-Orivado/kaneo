@@ -133,11 +133,7 @@ async function sprintSetup() {
 }
 
 // Creates and starts one sprint, the state most lifecycle rules build on.
-async function activeSprint(
-  app: App,
-  projectId: string,
-  name = "Sprint 1",
-) {
+async function activeSprint(app: App, projectId: string, name = "Sprint 1") {
   const { sprint } = await createSprintViaApi(app, projectId, { name });
   const started = await startSprintViaApi(app, sprint.id);
   expect(started.response.status).toBe(200);
@@ -258,9 +254,13 @@ describe("API integration: sprint lifecycle", () => {
       .where(eq(schema.projectTable.id, project.id));
 
     const { sprint } = await createSprintViaApi(app, project.id);
-    const { response, sprint: started } = await startSprintViaApi(app, sprint.id, {
-      startDate: "2026-05-01",
-    });
+    const { response, sprint: started } = await startSprintViaApi(
+      app,
+      sprint.id,
+      {
+        startDate: "2026-05-01",
+      },
+    );
 
     expect(response.status).toBe(200);
     expect(started).toMatchObject({ status: "active" });
@@ -279,7 +279,8 @@ describe("API integration: sprint lifecycle", () => {
     const secondStart = await startSprintViaApi(app, second.id);
     expect(secondStart.response.status).toBe(409);
     expect(await readErrorBody(secondStart.response)).toMatchObject({
-      message: 'Sprint "Sprint 1" is already active. Close it before starting another sprint.',
+      message:
+        'Sprint "Sprint 1" is already active. Close it before starting another sprint.',
       code: "CONFLICT",
     });
 
@@ -424,7 +425,9 @@ describe("API integration: sprint lifecycle", () => {
       sprintId: null,
     });
     expect(backlog.status).toBe(200);
-    expect(((await backlog.json()) as { sprintId: string | null }).sprintId).toBeNull();
+    expect(
+      ((await backlog.json()) as { sprintId: string | null }).sprintId,
+    ).toBeNull();
 
     // Close the sprint, then verify both closed-sprint guardrails.
     mockAuthenticatedSession(admin);

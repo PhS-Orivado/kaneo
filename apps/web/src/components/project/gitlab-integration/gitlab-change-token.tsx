@@ -38,7 +38,8 @@ export function GitlabChangeToken({
     : null;
   const verification = useGitlabVerification(projectId, access);
   const verified = isAccessVerified(verification.result);
-  const { mutateAsync: update, isPending: saving } = useUpdateGitlabIntegration();
+  const { mutateAsync: update, isPending: saving } =
+    useUpdateGitlabIntegration();
 
   return (
     <ChangeTokenForm

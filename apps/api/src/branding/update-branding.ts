@@ -2,9 +2,7 @@ import { sql } from "drizzle-orm";
 import db from "../database";
 import getBranding, { type Branding } from "./get-branding";
 
-export async function updateBranding(
-  branding: Branding,
-): Promise<Branding> {
+export async function updateBranding(branding: Branding): Promise<Branding> {
   await db.execute(sql`
     INSERT INTO instance_branding (
       id, app_name, logo_light_url, logo_dark_url, accent_color,

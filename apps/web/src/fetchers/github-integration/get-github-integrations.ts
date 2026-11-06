@@ -17,7 +17,8 @@ async function getGithubIntegrations(projectId: string) {
   return data;
 }
 
-export type GithubIntegration =
-  Awaited<ReturnType<typeof getGithubIntegrations>>["integrations"][number];
+export type GithubIntegration = Awaited<
+  ReturnType<typeof getGithubIntegrations>
+>["integrations"][number];
 
 export default getGithubIntegrations;

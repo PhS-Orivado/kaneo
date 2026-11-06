@@ -35,14 +35,10 @@ export const createGitlabBody = z.object({
 export const updateGitlabBody = z.object({
   isActive: z.boolean().optional(),
   commentTaskLinkOnGitlabIssue: z.boolean().optional(),
-  accessToken: z
-    .string()
-    .min(1)
-    .optional()
-    .openapi({
-      description:
-        "Replace this binding's stored token. Verified against the instance and the project before it is stored.",
-    }),
+  accessToken: z.string().min(1).optional().openapi({
+    description:
+      "Replace this binding's stored token. Verified against the instance and the project before it is stored.",
+  }),
   tokenType: tokenType.openapi({
     description:
       "How the replacement token is sent. Defaults to the binding's current type.",

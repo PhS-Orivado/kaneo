@@ -5,7 +5,10 @@ import { sprintTable } from "../../database/schema";
 import { isDatabaseUniqueViolation } from "../../integrations/map-unique-violation";
 import { publishEvent } from "../../events";
 import { getSprint } from "./get-sprints";
-import { validateAndParseDate, validateDateRange } from "../../utils/validate-dates";
+import {
+  validateAndParseDate,
+  validateDateRange,
+} from "../../utils/validate-dates";
 
 // Closed sprints are immutable history. The active sprint may only be renamed,
 // re-goal'ed or re-dated at its end; its start cannot move because it is
