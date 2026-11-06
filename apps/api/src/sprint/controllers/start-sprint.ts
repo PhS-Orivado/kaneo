@@ -9,7 +9,10 @@ import {
   DEFAULT_SPRINT_LENGTH_DAYS,
   deriveSprintEndDate,
 } from "../sprint-defaults";
-import { validateAndParseDate, validateDateRange } from "../../utils/validate-dates";
+import {
+  validateAndParseDate,
+  validateDateRange,
+} from "../../utils/validate-dates";
 
 // Starting a sprint is what Jira calls "start sprint": the future sprint
 // becomes the single active sprint of its project and gets concrete dates.

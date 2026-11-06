@@ -33,6 +33,30 @@ export type ImportedComment = {
   createdAt?: string;
 };
 
+export type ImportedSprintStatus = "future" | "active" | "closed";
+
+export type ImportedSprint = {
+  key: string;
+  name: string;
+  status: ImportedSprintStatus;
+  goal?: string;
+  startDate?: string;
+  endDate?: string;
+};
+
+export type ImportedAttachment = {
+  key: string;
+  filename: string;
+  mimeType?: string;
+  size?: number;
+  contentUrl?: string;
+};
+
+export type DownloadedAttachment = {
+  contentType?: string;
+  body: ArrayBuffer;
+};
+
 export type ImportedTask = {
   key: string;
   number?: number;
@@ -47,6 +71,8 @@ export type ImportedTask = {
   assignee?: ImportedPerson;
   labelKeys: string[];
   comments: ImportedComment[];
+  sprintKey?: string | null;
+  attachments?: ImportedAttachment[];
 };
 
 export type ImportedRelationType = "subtask" | "blocks" | "related";
@@ -66,6 +92,7 @@ export type ImportedProject = {
   tasks: ImportedTask[];
   relations: ImportedRelation[];
   warnings: string[];
+  sprints?: ImportedSprint[];
 };
 
 export type SourceProject = {
@@ -76,6 +103,7 @@ export type SourceProject = {
 
 export type ReadProjectOptions = {
   includeComments: boolean;
+  includeSprints?: boolean;
   onProgress?: (message: string) => void;
   signal?: AbortSignal;
 };
@@ -86,6 +114,12 @@ export type ImportSource = {
     projectId: string,
     options: ReadProjectOptions,
   ): Promise<ImportedProject>;
+  // Sources that expose file downloads (Jira attachments) implement this so
+  // the importer can copy documents into the destination's storage backend.
+  downloadAttachment?(
+    attachment: ImportedAttachment,
+    options?: { signal?: AbortSignal },
+  ): Promise<DownloadedAttachment>;
 };
 
 export type ConnectOptions = {

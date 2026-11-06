@@ -1,5 +1,6 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
+import { encodeCustomFieldValue } from "../kaneo/custom-field-value.js";
 import { buildFullTaskUpdateBody } from "../kaneo/task-helpers.js";
 import { errorResult, textResult } from "../utils/mcp-result.js";
 import { getCurrentUser } from "./get-current-user.js";
@@ -230,7 +231,7 @@ export function registerTools(
     "list_tasks",
     {
       description:
-        "List a bounded page of tasks for a project (50 by default, maximum 100). Use pagination.totalPages and page to retrieve the rest; filters and sorting apply before pagination. For every task page, also follow relatedPage through pagination.relatedTotalPages for complete labels, links and column metadata.",
+        "List a bounded page of tasks for a project (50 by default, maximum 100). Use pagination.totalPages and page to retrieve the rest; filters and sorting apply before pagination. For every task page, also follow relatedPage through pagination.relatedTotalPages for complete labels, links and column metadata. Custom field values are not included; use get_task_custom_field_values.",
       inputSchema: listTasksSchema,
     },
     async (args) => {
@@ -251,7 +252,8 @@ export function registerTools(
   registerTool(
     "get_task",
     {
-      description: "Get a task by ID.",
+      description:
+        "Get a task by ID. Custom field values are not included; use get_task_custom_field_values.",
       inputSchema: z.object({ taskId: nonEmptyString }),
     },
     async (args) =>
@@ -723,6 +725,63 @@ export function registerTools(
   );
 
   registerTool(
+    "list_project_custom_fields",
+    {
+      description:
+        "List a project's custom field definitions: id, name, type (text, number, date, dropdown, boolean, multiselect), required, options, and defaultValue.",
+      inputSchema: z.object({ projectId: nonEmptyString }),
+    },
+    async (args) =>
+      run(() =>
+        client.json(
+          `/api/custom-field/project/${encodeURIComponent(args.projectId)}`,
+        ),
+      ),
+  );
+
+  registerTool(
+    "get_task_custom_field_values",
+    {
+      description:
+        "List a task's custom field values with each field's name, type, and options. Fields without a value are omitted. Multiselect values are JSON array strings.",
+      inputSchema: z.object({ taskId: nonEmptyString }),
+    },
+    async (args) =>
+      run(() =>
+        client.json(
+          `/api/custom-field/task/${encodeURIComponent(args.taskId)}`,
+        ),
+      ),
+  );
+
+  registerTool(
+    "set_task_custom_field_value",
+    {
+      description:
+        "Set or clear one custom field value on a task. Get fieldId from list_project_custom_fields. Pass dates as YYYY-MM-DD, a dropdown value as one of its options, multiselect values as an array of options, and null to clear the value (required fields can't be cleared).",
+      inputSchema: z.object({
+        taskId: nonEmptyString,
+        fieldId: nonEmptyString,
+        value: z
+          .union([z.string(), z.number(), z.boolean(), z.array(z.string())])
+          .nullable()
+          .describe("New value, or null to clear it"),
+      }),
+    },
+    async (args) =>
+      run(() =>
+        client.json("/api/custom-field/value", {
+          method: "PUT",
+          body: JSON.stringify({
+            taskId: args.taskId,
+            fieldId: args.fieldId,
+            value: encodeCustomFieldValue(args.value),
+          }),
+        }),
+      ),
+  );
+
+  registerTool(
     "delete_task",
     {
       description: "Delete a task by ID.",
@@ -778,6 +837,63 @@ export function registerTools(
   );
 
   registerTool(
+    "update_task_recurrence",
+    {
+      description:
+        "Make a task repeat, or omit frequency to stop it repeating. When a repeating task moves into a final column, the next task is created in the first open column, due one step after the completed task's due date.",
+      inputSchema: z.object({
+        taskId: nonEmptyString,
+        frequency: z.enum(["daily", "weekly", "monthly", "yearly"]).optional(),
+        interval: z.number().int().min(1).max(99).default(1),
+        weekdays: z
+          .array(z.number().int().min(0).max(6))
+          .min(1)
+          .max(7)
+          .optional()
+          .describe(
+            "Weekly only: days to repeat on, 0 for Sunday to 6 for Saturday.",
+          ),
+        timeZone: nonEmptyString
+          .optional()
+          .describe(
+            "Required with frequency: the user's IANA time zone, such as Europe/Madrid. Weekdays and month ends are matched in this zone, so a wrong one moves the next task to another local day.",
+          ),
+      }),
+    },
+    async (args) => {
+      if (args.frequency && !args.timeZone)
+        return errorResult("timeZone is required with frequency");
+      return run(() =>
+        client.json(`/api/task/recurrence/${encodeURIComponent(args.taskId)}`, {
+          method: "PUT",
+          body: JSON.stringify({
+            recurrence: args.frequency
+              ? {
+                  frequency: args.frequency,
+                  interval: args.interval,
+                  ...(args.weekdays ? { weekdays: args.weekdays } : {}),
+                  timeZone: args.timeZone,
+                }
+              : null,
+          }),
+        }),
+      );
+    },
+  );
+
+  registerTool(
+    "list_task_time_entries",
+    {
+      description: "List the time entries logged against a task.",
+      inputSchema: z.object({ taskId: nonEmptyString }),
+    },
+    async (args) =>
+      run(() =>
+        client.json(`/api/time-entry/task/${encodeURIComponent(args.taskId)}`),
+      ),
+  );
+
+  registerTool(
     "list_sprints",
     {
       description:
@@ -814,7 +930,9 @@ export function registerTools(
           body: JSON.stringify({
             ...(args.name !== undefined ? { name: args.name } : {}),
             ...(args.goal !== undefined ? { goal: args.goal } : {}),
-            ...(args.startDate !== undefined ? { startDate: args.startDate } : {}),
+            ...(args.startDate !== undefined
+              ? { startDate: args.startDate }
+              : {}),
             ...(args.endDate !== undefined ? { endDate: args.endDate } : {}),
           }),
         }),
@@ -829,17 +947,22 @@ export function registerTools(
       inputSchema: z.object({
         projectId: nonEmptyString,
         sprints: z
-          .array(z.object({ id: nonEmptyString, position: z.number().int().min(0) }))
+          .array(
+            z.object({ id: nonEmptyString, position: z.number().int().min(0) }),
+          )
           .min(1)
           .describe("Every future sprint with its new position"),
       }),
     },
     async (args) =>
       run(() =>
-        client.json(`/api/sprint/reorder/${encodeURIComponent(args.projectId)}`, {
-          method: "POST",
-          body: JSON.stringify({ sprints: args.sprints }),
-        }),
+        client.json(
+          `/api/sprint/reorder/${encodeURIComponent(args.projectId)}`,
+          {
+            method: "POST",
+            body: JSON.stringify({ sprints: args.sprints }),
+          },
+        ),
       ),
   );
 
@@ -883,7 +1006,9 @@ export function registerTools(
         client.json(`/api/sprint/start/${encodeURIComponent(args.id)}`, {
           method: "POST",
           body: JSON.stringify({
-            ...(args.startDate !== undefined ? { startDate: args.startDate } : {}),
+            ...(args.startDate !== undefined
+              ? { startDate: args.startDate }
+              : {}),
             ...(args.endDate !== undefined ? { endDate: args.endDate } : {}),
           }),
         }),
@@ -899,7 +1024,9 @@ export function registerTools(
         id: nonEmptyString,
         targetSprintId: nonEmptyString
           .nullable()
-          .describe("Future sprint that receives the unfinished tasks, or null for the backlog"),
+          .describe(
+            "Future sprint that receives the unfinished tasks, or null for the backlog",
+          ),
       }),
     },
     async (args) =>
@@ -920,7 +1047,9 @@ export function registerTools(
         taskId: nonEmptyString,
         sprintId: nonEmptyString
           .nullable()
-          .describe("Target sprint ID, or null to move the task to the backlog"),
+          .describe(
+            "Target sprint ID, or null to move the task to the backlog",
+          ),
       }),
     },
     async (args) =>
@@ -929,18 +1058,6 @@ export function registerTools(
           method: "PUT",
           body: JSON.stringify({ sprintId: args.sprintId }),
         }),
-      ),
-  );
-
-  registerTool(
-    "list_task_time_entries",
-    {
-      description: "List the time entries logged against a task.",
-      inputSchema: z.object({ taskId: nonEmptyString }),
-    },
-    async (args) =>
-      run(() =>
-        client.json(`/api/time-entry/task/${encodeURIComponent(args.taskId)}`),
       ),
   );
 
