@@ -10,6 +10,7 @@ import {
 } from "../active-imports";
 import { logImportError } from "../log-import-error";
 import { type ImportJobState, runImportJob } from "../run-import-job";
+import type { ImportUserHandling } from "../writer/plan-import-users";
 import { assertNoRunningImport } from "../runs/assert-no-running-import";
 import { createImportRun } from "../runs/create-import-run";
 import { toImportRunResponse } from "../runs/to-import-run-response";
@@ -29,6 +30,8 @@ type StartImportRunInput = {
   connection: ImportConnectionInput;
   projectIds: string[];
   includeComments: boolean;
+  includeSprints: boolean;
+  userHandling: ImportUserHandling;
 };
 
 async function connectAndList(
@@ -59,6 +62,8 @@ async function startImportRun({
   connection,
   projectIds,
   includeComments,
+  includeSprints,
+  userHandling,
 }: StartImportRunInput) {
   const slot = reserveImportSlot();
   if (!slot) {
@@ -91,6 +96,8 @@ async function startImportRun({
         workspaceId,
         userId,
         includeComments,
+        includeSprints,
+        userHandling,
         opened,
         state,
         signal: slot.controller.signal,

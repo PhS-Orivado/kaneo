@@ -177,15 +177,20 @@ const getIntegrationRoute = createRoute({
   tags: ["GitLab"],
   summary: "Get GitLab integration",
   description:
-    "Compatibility shim: returns the project's first GitLab binding (lowest createdAt) until the new web client ships. Use GET /project/{projectId}/integrations and GET /integration/{integrationId}; this route is removed in the cleanup PR.",
-  middleware: [workspaceAccess.fromProject("projectId")] as const,
+    "Get the GitLab integration for a project, or null when none is configured. The masked access token and the webhook secret are included only for callers with workspace:manage_settings.",
+  middleware: [
+    workspaceAccess.fromProject("projectId"),
+    requireWorkspacePermission({ project: ["read"] }),
+  ] as const,
   request: { params: projectIdParam },
   responses: {
     200: jsonResponse(
       "GitLab integration details, or null",
       gitlabIntegrationSchema.nullable(),
     ),
-    403: errorResponse("No access to the project"),
+    403: errorResponse(
+      "No access to the project, or missing project:read permission",
+    ),
     404: errorResponse("Project not found"),
   },
 });
@@ -417,12 +422,17 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
           accessToken: trimmed,
           tokenType: nextTokenType,
         });
-        await gitlabClient.getProject(parseGitlabProjectPath(config.projectPath ?? ""));
+        await gitlabClient.getProject(
+          parseGitlabProjectPath(config.projectPath ?? ""),
+        );
       } catch (error) {
         if (error instanceof GitlabApiError) {
-          throw new HTTPException((error.status || 400) as ContentfulStatusCode, {
-            message: error.message,
-          });
+          throw new HTTPException(
+            (error.status || 400) as ContentfulStatusCode,
+            {
+              message: error.message,
+            },
+          );
         }
         throw error;
       }

@@ -12,7 +12,9 @@ export type SyncParams = {
   provider: InferRequestType<CompatSyncRoute["$get"]>["param"]["provider"];
   integrationId: string;
 };
-export type SyncRules = InferRequestType<BindingSyncRoute["$patch"]>["json"]["rules"];
+export type SyncRules = InferRequestType<
+  BindingSyncRoute["$patch"]
+>["json"]["rules"];
 export type LabelRule = SyncRules["outgoing"];
 export type SyncPreview = InferResponseType<BindingSyncRoute["$get"], 200>;
 export type ResumePreview = InferResponseType<

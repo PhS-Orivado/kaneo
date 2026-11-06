@@ -5,6 +5,7 @@ import { readBoardColumns } from "./board.js";
 import type { JiraClient } from "./client.js";
 import { mapJiraProject } from "./project.js";
 import { readComments } from "./read-comments.js";
+import { readBoardSprints } from "./sprints.js";
 import { searchProjectIssues } from "./search.js";
 
 export async function readJiraProject(
@@ -19,6 +20,11 @@ export async function readJiraProject(
   const project = await readProjectDetails(client, projectKey);
   const statusGroups = await client.projectStatuses(project.key);
   const board = await readBoardColumns(client, project.key);
+
+  const sprints =
+    options.includeSprints && board.boardId !== null
+      ? await readBoardSprints(client, board.boardId, onProgress)
+      : null;
 
   onProgress?.("Reading issues");
   const issues = await searchProjectIssues(client, project.key, {
@@ -39,6 +45,13 @@ export async function readJiraProject(
     boardUnavailable: board.unavailable,
     issues,
     comments,
+    ...(sprints
+      ? {
+          sprints: sprints.sprints,
+          issueSprint: sprints.issueSprint,
+          sprintsUnavailable: sprints.warning !== null,
+        }
+      : {}),
   });
 }
 
