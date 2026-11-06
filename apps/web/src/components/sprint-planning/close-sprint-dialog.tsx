@@ -88,17 +88,23 @@ export default function CloseSprintDialog({
         </DialogHeader>
 
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="close-target" className="text-xs text-muted-foreground">
+          <Label
+            htmlFor="close-target"
+            className="text-xs text-muted-foreground"
+          >
             {t("tasks:sprints.closeTarget", { count: unfinishedTaskCount })}
           </Label>
-          <Select value={target} onValueChange={(value) => setTarget(String(value ?? BACKLOG_VALUE))}>
+          <Select
+            value={target}
+            onValueChange={(value) => setTarget(String(value ?? BACKLOG_VALUE))}
+          >
             <SelectTrigger id="close-target" className="w-full">
               <SelectValue>
                 {target === BACKLOG_VALUE
                   ? t("tasks:sprints.backlog")
                   : futureSprints.find(
-                        (futureSprint) => futureSprint.id === target,
-                      )?.name}
+                      (futureSprint) => futureSprint.id === target,
+                    )?.name}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>

@@ -70,11 +70,13 @@ export default function ProjectLayout({
     activeView ??
     (location.pathname.includes("/backlog")
       ? "backlog"
-      : location.pathname.includes("/calendar")
-        ? "calendar"
-        : location.pathname.includes("/gantt")
-          ? "gantt"
-          : "board");
+      : location.pathname.includes("/sprints")
+        ? "sprints"
+        : location.pathname.includes("/calendar")
+          ? "calendar"
+          : location.pathname.includes("/gantt")
+            ? "gantt"
+            : "board");
   const currentView = resolveProjectView(resolvedRoute, viewMode);
   const showViews = showViewSwitcher && !unavailableReason;
 
@@ -96,7 +98,7 @@ export default function ProjectLayout({
   };
 
   return (
-    <Layout>
+    <>
       <Layout.Header
         className={cn("h-11 border-border/80 px-2", {
           "bg-card/90 backdrop-blur": !!background,
@@ -185,6 +187,6 @@ export default function ProjectLayout({
         open={isCreateProjectModalOpen}
         onClose={() => setIsCreateProjectModalOpen(false)}
       />
-    </Layout>
+    </>
   );
 }

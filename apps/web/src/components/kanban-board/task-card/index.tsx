@@ -1,7 +1,13 @@
 import { useRestoreTaskFocus } from "@/components/project/task-view-keys/use-restore-task-focus";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import type { CSSProperties } from "react";
+import {
+  type CSSProperties,
+  type TouchEvent,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
 import useBulkSelectionStore from "@/store/bulk-selection";
 import type Task from "@/types/task";
 import TaskCardContent from "./task-card-content";
@@ -34,6 +40,17 @@ function TaskCard({
     data: { isFinalColumn },
     transition: { duration: 200, easing: EASE_OUT_CSS },
   });
+  // The context menu trigger inside the card stops touchstart from bubbling,
+  // so the TouchSensor listens on that trigger instead of this wrapper.
+  const { onTouchStart, ...dragListeners } = listeners ?? {};
+  const touchStartRef = useRef(onTouchStart);
+  useEffect(() => {
+    touchStartRef.current = onTouchStart;
+  });
+  const handleDragTouchStart = useCallback(
+    (event: TouchEvent<HTMLElement>) => touchStartRef.current?.(event),
+    [],
+  );
   const { handleKeyDown } = useTaskCardClick(task);
   const hoverPrefetch = useTaskHoverPrefetch(task.id);
   const setFocusedTask = useBulkSelectionStore((state) => state.setFocusedTask);
@@ -55,7 +72,7 @@ function TaskCard({
       data-task-id={task.id}
       data-shortcut-surface
       {...attributes}
-      {...listeners}
+      {...dragListeners}
       {...hoverPrefetch}
       role="button"
       tabIndex={0}
@@ -64,13 +81,14 @@ function TaskCard({
         if (event.target !== event.currentTarget) return;
         setFocusedTask(isKeyboardFocus(event) ? task.id : null);
       }}
-      className="outline-none"
+      className="select-none outline-none"
     >
       <TaskCardContent
         task={task}
         disableDragDrop={disableDragDrop}
         isFinalColumn={isFinalColumn}
         isDragging={isDragging}
+        onDragTouchStart={handleDragTouchStart}
       />
     </div>
   );

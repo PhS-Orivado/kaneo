@@ -39,7 +39,8 @@ function optionalInput(value: string) {
 function BrandingSettingsPanel() {
   const { t } = useTranslation();
   const { data, isLoading, isError, refetch } = useGetBranding();
-  const { mutateAsync: saveBranding, isPending: isSaving } = useUpdateBranding();
+  const { mutateAsync: saveBranding, isPending: isSaving } =
+    useUpdateBranding();
   const [form, setForm] = useState<BrandingSettings>(DEFAULT_BRANDING);
 
   useEffect(() => {
