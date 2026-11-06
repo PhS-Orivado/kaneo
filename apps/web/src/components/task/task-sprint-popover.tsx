@@ -50,7 +50,9 @@ export default function TaskSprintPopover({
         toast.error(
           error instanceof Error
             ? error.message
-            : t("tasks:sprints.error", { defaultValue: "Sprint action failed" }),
+            : t("tasks:sprints.error", {
+                defaultValue: "Sprint action failed",
+              }),
         );
       }
     },
@@ -101,7 +103,9 @@ export default function TaskSprintPopover({
           >
             <span className="truncate">
               {sprint.name}
-              {sprint.status === "active" ? " · " + t("tasks:sprints.activeBadge") : ""}
+              {sprint.status === "active"
+                ? " · " + t("tasks:sprints.activeBadge")
+                : ""}
             </span>
             {task.sprintId === sprint.id && <Check className="h-3 w-3" />}
           </button>

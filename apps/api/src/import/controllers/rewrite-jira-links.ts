@@ -1,4 +1,4 @@
-import { and, eq, like } from "drizzle-orm";
+import { and, eq, inArray, like } from "drizzle-orm";
 import db from "../../database";
 import { activityTable, projectTable, taskTable } from "../../database/schema";
 import { publishEvent } from "../../events";
@@ -25,13 +25,20 @@ type RewriteJiraLinksInput = {
   workspaceId: string;
   userId: string;
   dryRun: boolean;
+  /** When set, only these projects' text is rewritten; links still resolve against the whole workspace. */
+  projectIds?: string[];
 };
 
 async function rewriteJiraLinks({
   workspaceId,
   userId,
   dryRun,
+  projectIds,
 }: RewriteJiraLinksInput): Promise<JiraLinkRewriteReport> {
+  const scoped = projectIds?.length
+    ? inArray(taskTable.projectId, projectIds)
+    : undefined;
+
   const projects = await db
     .select({ id: projectTable.id, slug: projectTable.slug })
     .from(projectTable)
@@ -71,6 +78,7 @@ async function rewriteJiraLinks({
       and(
         eq(projectTable.workspaceId, workspaceId),
         like(taskTable.description, "%/browse/%"),
+        ...(scoped ? [scoped] : []),
       ),
     );
 
@@ -89,6 +97,7 @@ async function rewriteJiraLinks({
         eq(projectTable.workspaceId, workspaceId),
         eq(activityTable.type, "comment"),
         like(activityTable.content, "%/browse/%"),
+        ...(scoped ? [scoped] : []),
       ),
     );
 

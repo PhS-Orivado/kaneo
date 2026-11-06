@@ -1,7 +1,8 @@
 import { Trash2Icon } from "lucide-react";
-import { memo, useMemo, useState } from "react";
+import { memo, type TouchEvent, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TaskPullRequests } from "@/components/task/task-pull-requests";
+import { TaskRecurrenceBadge } from "@/components/task/task-recurrence-badge";
 import {
   AlertDialog,
   AlertDialogClose,
@@ -36,12 +37,14 @@ import { useUserPreferencesStore } from "@/store/user-preferences";
 import type Task from "@/types/task";
 import TaskCardContextMenuContent from "../task-card-context-menu/task-card-context-menu-content";
 import { useTaskCardClick } from "./use-task-card-click";
+import { useTouchDragMenu } from "./use-touch-drag-menu";
 
 type TaskCardContentProps = {
   task: Task;
   disableDragDrop: boolean;
   isFinalColumn?: boolean;
   isDragging: boolean;
+  onDragTouchStart?: (event: TouchEvent<HTMLDivElement>) => void;
 };
 
 function TaskCardContent({
@@ -49,11 +52,16 @@ function TaskCardContent({
   disableDragDrop,
   isFinalColumn,
   isDragging,
+  onDragTouchStart,
 }: TaskCardContentProps) {
   const { t } = useTranslation();
-  const { project } = useProjectStore();
+  const columns = useProjectStore((state) =>
+    isFinalColumn === undefined ? state.project?.columns : undefined,
+  );
+  const projectId = useProjectStore((state) => state.project?.id);
+  const projectSlug = useProjectStore((state) => state.project?.slug);
   const taskIsCompleted =
-    isFinalColumn ?? isTaskCompleted(task.status, project?.columns);
+    isFinalColumn ?? isTaskCompleted(task.status, columns);
   const hasPriority = Boolean(task.priority) && task.priority !== "no-priority";
   const { data: workspace } = useActiveWorkspace();
   const workspaceId = workspace?.id ?? "";
@@ -91,6 +99,7 @@ function TaskCardContent({
   }, [workspaceUsers, task.userId]);
 
   const { handleClick } = useTaskCardClick(task);
+  const touchDragMenu = useTouchDragMenu(isDragging, onDragTouchStart);
 
   const handleDeleteTask = async () => {
     try {
@@ -106,7 +115,9 @@ function TaskCardContent({
   return (
     <>
       <ContextMenu
+        open={touchDragMenu.isMenuOpen}
         onOpenChange={(open) => {
+          touchDragMenu.setIsMenuOpen(open);
           if (open) setHasOpenedMenu(true);
         }}
       >
@@ -114,6 +125,8 @@ function TaskCardContent({
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events -- the focusable sortable wrapper owns keyboard access */}
           <div
             onClick={handleClick}
+            onTouchStart={touchDragMenu.onTouchStart}
+            onTouchMove={touchDragMenu.onTouchMove}
             onPointerDown={(event) => {
               if (isOwnDomEvent(event)) setIsPressed(true);
             }}
@@ -150,7 +163,7 @@ function TaskCardContent({
                           : "text-board-id",
                       )}
                     >
-                      {project?.slug}-{task.number}
+                      {projectSlug}-{task.number}
                     </span>
                   )}
                 </div>
@@ -186,6 +199,7 @@ function TaskCardContent({
               <div className="mt-2.5 flex flex-wrap items-center gap-1 empty:hidden">
                 {showPriority && hasPriority && <PriorityChip task={task} />}
                 {showDueDates && <DueDateChip task={task} />}
+                <TaskRecurrenceBadge task={task} />
                 <SubtasksChip task={task} workspaceId={workspaceId} />
                 {showTaskItemCounts && <ChecklistChip task={task} />}
                 <TaskPullRequests
@@ -205,11 +219,11 @@ function TaskCardContent({
           </div>
         </ContextMenuTrigger>
 
-        {hasOpenedMenu && project && workspace && (
+        {hasOpenedMenu && projectId && workspace && (
           <TaskCardContextMenuContent
             task={task}
             taskCardContext={{
-              projectId: project.id,
+              projectId,
               worskpaceId: workspace.id,
               workspaceSlug: workspace.slug,
             }}

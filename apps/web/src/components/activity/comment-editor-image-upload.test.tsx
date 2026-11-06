@@ -51,9 +51,6 @@ vi.mock("@/components/task/extensions/attachment-card", () => ({
 vi.mock("@/components/task/extensions/kaneo-issue-link", () => ({
   KaneoIssueLink: inert("kaneoIssueLinkStub"),
 }));
-vi.mock("@/components/task/extensions/kaneo-mention", () => ({
-  KaneoMention: inert("kaneoMentionStub"),
-}));
 vi.mock("@/components/task/extensions/mention-suggestion", () => ({
   MentionSuggestion: inert("mentionSuggestionStub"),
 }));
@@ -270,6 +267,37 @@ describe("CommentEditor image upload insertion", () => {
     expect(toastError).not.toHaveBeenCalled();
     expect(toast.success).not.toHaveBeenCalled();
     expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("uploads every file dropped at once (#2111)", async () => {
+    // jsdom has no layout, so give ProseMirror a drop position.
+    const posAtCoords = vi
+      .spyOn(EditorView.prototype, "posAtCoords")
+      .mockReturnValue({ pos: 1, inside: -1 });
+    uploadMock.mockImplementation(async ({ file }) => ({
+      ...asset,
+      url: `/api/asset/${file.name}`,
+      filename: file.name,
+    }));
+    try {
+      render(<CommentEditor value="" onChange={() => {}} taskId="task-1" />);
+      await waitFor(() => expect(latestEditor()).toBeDefined());
+      const editor = latestEditor();
+
+      const files = ["first.png", "second.png"].map(
+        (name) => new File(["bytes"], name, { type: "image/png" }),
+      );
+      fireEvent.drop(editor.view.dom, {
+        dataTransfer: { files, getData: () => "" },
+      });
+
+      await waitFor(() => expect(toast.success).toHaveBeenCalledTimes(2));
+      expect(uploadMock).toHaveBeenCalledTimes(2);
+      expect(editor.getHTML()).toContain("/api/asset/first.png");
+      expect(editor.getHTML()).toContain("/api/asset/second.png");
+    } finally {
+      posAtCoords.mockRestore();
+    }
   });
 
   it("reports an error when the insert command does not execute", async () => {
