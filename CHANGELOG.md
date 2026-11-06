@@ -1,3 +1,9 @@
+## Unreleased
+
+### Features
+
+- **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
+
 ### Bug Fixes
 
 - **importers:** remove a dead Jira attachments module that failed the TypeScript build: [b7640f2](https://github.com/PhS-Orivado/kaneo/commit/b7640f24ab01d50f5adb86fec6728a50a3e9d83c)
