@@ -48,9 +48,7 @@ async function closeSprint(id: string, targetSprintId: string | null) {
     const moved = await tx
       .update(taskTable)
       .set({ sprintId: targetSprintId })
-      .where(
-        and(eq(taskTable.sprintId, id), sql`not ${taskIsCompleted}`),
-      )
+      .where(and(eq(taskTable.sprintId, id), sql`not ${taskIsCompleted}`))
       .returning({ id: taskTable.id, title: taskTable.title });
 
     await tx

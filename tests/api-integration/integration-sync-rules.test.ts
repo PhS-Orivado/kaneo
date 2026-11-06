@@ -685,12 +685,7 @@ describe("reviewed sync resume", () => {
             return integration;
           },
         );
-        await lockResumeScope(
-          f.integration.id,
-          f.link.id,
-          f.workspace.id,
-          tx,
-        );
+        await lockResumeScope(f.integration.id, f.link.id, f.workspace.id, tx);
       }),
     ).rejects.toMatchObject({ status: 404, message: "Linked task not found" });
     expect(
@@ -1827,11 +1822,7 @@ describe("reviewed sync resume", () => {
     ).rejects.toMatchObject({ status: 409 });
     const other = await setup();
     await expect(
-      reviewSyncResume(
-        other.integration.id,
-        f.link.id,
-        other.workspace.id,
-      ),
+      reviewSyncResume(other.integration.id, f.link.id, other.workspace.id),
     ).rejects.toMatchObject({ status: 404 });
     expect(provider.read).not.toHaveBeenCalled();
   });

@@ -32,7 +32,7 @@ import {
 import type { MouseEvent as ReactMouseEvent } from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { KaneoMention } from "@/components/task/extensions/kaneo-mention";
+import { KaneoMention } from "@kaneo/editor";
 import type { MentionMember } from "@/components/task/extensions/mention-list";
 import { MentionSuggestion } from "@/components/task/extensions/mention-suggestion";
 import { SHIKI_CODEBLOCK_REFRESH_META } from "@/components/task/extensions/shiki-code-block";
@@ -578,7 +578,7 @@ export default function CommentEditor({
           }
 
           const plainText = event.clipboardData?.getData("text/plain") || "";
-          if (editor && pasteMarkdown(editor, event)) return true;
+          if (pasteMarkdown(view, event)) return true;
 
           const pastedText = plainText.trim();
           if (!pastedText || /\s/.test(pastedText)) return false;
@@ -637,25 +637,19 @@ export default function CommentEditor({
           }
           return false;
         },
-        handleDrop: (view, event) => {
+        handleDrop: (_view, event) => {
           if (readOnly || disabled) return false;
 
           const droppedFiles = Array.from(event.dataTransfer?.files || []);
-          const droppedFile = droppedFiles[0];
 
-          if (!droppedFile) return false;
+          if (droppedFiles.length === 0) return false;
 
           event.preventDefault();
-          const coordinates = view.posAtCoords({
-            left: event.clientX,
-            top: event.clientY,
-          });
-
-          const dropRange = coordinates
-            ? { from: coordinates.pos, to: coordinates.pos }
-            : undefined;
-
-          void handleAssetFileUpload(droppedFile, editor, dropRange);
+          // Each upload inserts after the previous one, the same way pasted
+          // files do, so a multi-file drop keeps every file.
+          for (const droppedFile of droppedFiles) {
+            void handleAssetFileUpload(droppedFile, editor);
+          }
           return true;
         },
         handleTextInput: (view, _from, _to, text) => {
@@ -1825,12 +1819,12 @@ export default function CommentEditor({
         }}
       >
         <DialogPopup
-          className="max-w-6xl border-0 bg-transparent p-0 shadow-none before:hidden"
+          className="w-auto max-w-6xl border-0 bg-transparent p-0 shadow-none before:hidden"
           showCloseButton={false}
           bottomStickOnMobile={false}
         >
           {previewImage && (
-            <div className="flex max-h-[90vh] items-center justify-center p-4">
+            <div className="flex max-h-[90vh] items-center justify-center">
               <img
                 src={previewImage.src}
                 alt={previewImage.alt}

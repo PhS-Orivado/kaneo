@@ -54,8 +54,7 @@ export default function BoardSprintBanner({
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { data: sprints = [] } = useGetSprints(projectId);
-  const { mutateAsync: startSprint, isPending: isStarting } =
-    useStartSprint();
+  const { mutateAsync: startSprint, isPending: isStarting } = useStartSprint();
 
   const [closingSprint, setClosingSprint] = useState<Sprint | null>(null);
   const [isStartDialogOpen, setIsStartDialogOpen] = useState(false);
@@ -148,7 +147,9 @@ export default function BoardSprintBanner({
             <div className="flex flex-col gap-1.5">
               <Select
                 value={selectedSprintId}
-                onValueChange={(value) => setSelectedSprintId(String(value ?? ""))}
+                onValueChange={(value) =>
+                  setSelectedSprintId(String(value ?? ""))
+                }
               >
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder={t("tasks:sprints.upcoming")}>
@@ -173,9 +174,7 @@ export default function BoardSprintBanner({
               </Button>
               <Button
                 disabled={!selectedSprint || isStarting}
-                onClick={() =>
-                  selectedSprint && handleStart(selectedSprint)
-                }
+                onClick={() => selectedSprint && handleStart(selectedSprint)}
               >
                 <Play className="h-4 w-4 mr-1" />
                 {t("tasks:sprints.start")}

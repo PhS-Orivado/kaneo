@@ -34,7 +34,11 @@ export function AuthLegalFooter() {
   const siteLink = branding?.footerUrl
     ? {
         href: branding.footerUrl,
-        label: linkLabel(hostname(branding.footerUrl), branding.footerUrl, branding.footerText),
+        label: linkLabel(
+          hostname(branding.footerUrl),
+          branding.footerUrl,
+          branding.footerText,
+        ),
       }
     : branding?.showPoweredBy === false
       ? null
@@ -42,10 +46,20 @@ export function AuthLegalFooter() {
 
   return (
     <footer className="flex justify-center gap-5 px-6 pb-8 text-muted-foreground text-xs">
-      <a href={termsHref} target="_blank" rel="noopener noreferrer" className={linkClassName}>
+      <a
+        href={termsHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClassName}
+      >
         {t("auth:page.terms")}
       </a>
-      <a href={privacyHref} target="_blank" rel="noopener noreferrer" className={linkClassName}>
+      <a
+        href={privacyHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={linkClassName}
+      >
         {t("auth:page.privacy")}
       </a>
       {siteLink ? (

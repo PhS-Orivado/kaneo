@@ -143,13 +143,13 @@ export const startImportRunBody = z.object({
   includeComments: z.boolean().default(true).openapi({
     description: "Import task comments too. Defaults to true.",
   }),
-});
-
-export const rewriteJiraLinksBody = z.object({
-  workspaceId: z.string().min(1),
-  dryRun: z.boolean().openapi({
+  includeSprints: z.boolean().default(true).openapi({
     description:
-      "Report the planned replacements without writing anything. Send false to apply them.",
+      "Import sprints too, when the source has them, and keep each task in its sprint. Defaults to true.",
+  }),
+  userHandling: z.enum(["invite", "create"]).default("invite").openapi({
+    description:
+      "What to do with assignees who are not workspace members yet: invite them by email, or create their account directly. Defaults to invite.",
   }),
 });
 
