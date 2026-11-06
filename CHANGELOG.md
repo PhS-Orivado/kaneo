@@ -1,3 +1,11 @@
+### Bug Fixes
+
+- **importers:** remove a dead Jira attachments module that failed the TypeScript build: [b7640f2](https://github.com/PhS-Orivado/kaneo/commit/b7640f24ab01d50f5adb86fec6728a50a3e9d83c)
+
+### Documentation
+
+- **importers:** document the shared import model and where Jira attachments are mapped: see `packages/importers/README.md` in the same commit range
+
 ### Features
 
 - **web:** steady boot, navigation and loading: [6a9f671](https://github.com/usekaneo/kaneo/commit/6a9f6715cac94f92b8e0e7e93319af74a4b7a77a)
