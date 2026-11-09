@@ -6,6 +6,7 @@
 
 ### Bug Fixes
 
+- **admin:** the test email endpoint no longer reports a bare "sent": the response now carries the SMTP server's acceptance line, the generated message ID, the recipient verdicts, and the transaction time, and fails with `SMTP_SEND_FAILED` when the relay resolves without accepting the recipient, so the UI toast shows what the server actually said instead of success for a message the relay may have dropped silently
 - **api:** repair silently skipped migrations 0073-0075: backdated `when` values in the Drizzle journal were older than migration 0072, so databases that had applied 0072 never received the sprint and multi-repository integration columns, which broke the `deferred-issue-edits` and `deferred-label-fields` cron jobs with `column externalLinkTable_integration.repository_key does not exist`; the journal timestamps were reordered and the migrations made idempotent so they replay safely on the next startup: see `docs/database/migration-journal-ordering.md`
 - **importers:** remove a dead Jira attachments module that failed the TypeScript build: [b7640f2](https://github.com/PhS-Orivado/kaneo/commit/b7640f24ab01d50f5adb86fec6728a50a3e9d83c)
 - **web:** close the unclosed loading placeholder in the backlog route that failed the web build with an adjacent-JSX-elements error
