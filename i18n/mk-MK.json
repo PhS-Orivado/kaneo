@@ -3883,7 +3883,9 @@
 			"showOnRows": "Прикажи во редовите",
 			"checklistProgress": "Напредок на списокот",
 			"projectBackground": "Позадина на проектот",
-			"layout": "Распоред"
+			"layout": "Распоред",
+			"includeSubtasks": "Вклучи подзадачи",
+			"useProjectDefault": "Користи ја стандардната поставка на проектот"
 		},
 		"filterBar": {
 			"label": "Активни филтри",
