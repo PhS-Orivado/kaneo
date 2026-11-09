@@ -1,1 +1,1 @@
-ALTER TABLE "sprint" ADD COLUMN "carry_over_tasks" jsonb;
+ALTER TABLE "sprint" ADD COLUMN IF NOT EXISTS "carry_over_tasks" jsonb;
