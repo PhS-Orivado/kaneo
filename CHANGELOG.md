@@ -3,6 +3,7 @@
 ### Features
 
 - **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
+- **sync:** migrate 25 upstream commits from `usekaneo/kaneo` main into this fork: the subtasks display toggle on projects (`include_subtasks`, #2140) with its calendar, project toolbar and settings follow-ups, the drizzle journal monotonic-`when` fix, React 19.3.1 (#2169), gesture-handler ~3.4.0 (#2172), GitHub Actions dependency updates (#2170), pnpm version alignment and the mellon observation workflow (#2203); upstream migration `0073_thick_talisman` was renumbered to `0076_thick_talisman` because this fork already owns migrations 0073-0075: see `docs/database/migration-journal-ordering.md`
 
 ### Bug Fixes
 
@@ -14,6 +15,7 @@
 ### Documentation
 
 - **importers:** document the shared import model and where Jira attachments are mapped: see `packages/importers/README.md` in the same commit range
+- **database:** document the renumbering of upstream migration `0073_thick_talisman` to `0076_thick_talisman` and its journal `when` value: see `docs/database/migration-journal-ordering.md`
 
 ### Features
 
