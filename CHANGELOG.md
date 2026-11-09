@@ -7,6 +7,7 @@
 ### Bug Fixes
 
 - **importers:** remove a dead Jira attachments module that failed the TypeScript build: [b7640f2](https://github.com/PhS-Orivado/kaneo/commit/b7640f24ab01d50f5adb86fec6728a50a3e9d83c)
+- **web:** close the unclosed loading placeholder in the backlog route that failed the web build with an adjacent-JSX-elements error
 
 ### Documentation
 
@@ -2857,3 +2858,4 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+

@@ -212,8 +212,8 @@ function RouteComponent() {
                   <div className="w-64 h-3 bg-muted rounded animate-pulse mx-auto" />
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         <CreateTaskModal
