@@ -3,6 +3,7 @@ import { act, cleanup, renderHook, waitFor } from "@testing-library/react";
 import type { ReactNode } from "react";
 import { afterEach, describe, expect, it, vi } from "vite-plus/test";
 import { sendAdminTestEmail } from "@/fetchers/admin/send-admin-test-email";
+import { toast } from "@/lib/toast";
 import useSendAdminTestEmail from "./use-send-admin-test-email";
 
 vi.mock("@/components/providers/auth-provider/hooks/use-auth", () => ({
@@ -45,6 +46,11 @@ describe("useSendAdminTestEmail", () => {
     vi.mocked(sendAdminTestEmail).mockResolvedValue({
       sent: true,
       to: "admin@example.test",
+      messageId: "<kaneo-1234@example.test>",
+      response: "250 2.0.0 Ok: queued as 4C1A2B",
+      acceptedRecipients: 1,
+      rejectedRecipients: 0,
+      elapsedMs: 12,
     });
     const { client, result } = renderSend();
 
@@ -52,6 +58,13 @@ describe("useSendAdminTestEmail", () => {
       await result.current.mutateAsync();
     });
 
+    expect(toast.success).toHaveBeenCalledWith(
+      "settings:adminSystem.toast.testEmailSent",
+      expect.objectContaining({
+        description:
+          "250 2.0.0 Ok: queued as 4C1A2B · message <kaneo-1234@example.test> · 12 ms",
+      }),
+    );
     await waitFor(() => {
       expect(client.getQueryData(auditKey)).toEqual({
         entries: [{ id: "sent" }],

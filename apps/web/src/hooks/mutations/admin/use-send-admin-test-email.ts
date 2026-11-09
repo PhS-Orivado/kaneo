@@ -11,13 +11,23 @@ function useSendAdminTestEmail() {
 
   return useMutation({
     mutationFn: sendAdminTestEmail,
-    onSuccess: ({ to }) => {
+    onSuccess: ({ to, response, messageId, elapsedMs }) => {
       void queryClient.invalidateQueries({
         queryKey: ADMIN_AUDIT_LOG_QUERY_KEY,
         refetchType: "all",
       });
+      // "Sent" only means the relay accepted the message. Show what the
+      // server actually said so acceptance can be checked in its logs.
+      const description = [
+        response,
+        messageId ? `message ${messageId}` : null,
+        typeof elapsedMs === "number" ? `${elapsedMs} ms` : null,
+      ]
+        .filter((part): part is string => Boolean(part))
+        .join(" · ");
       toast.success(t("settings:adminSystem.toast.testEmailSent", { to }), {
         icon: MailCheckIcon,
+        description: description || undefined,
       });
     },
     onError: (error) => {
