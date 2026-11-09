@@ -18,6 +18,7 @@ async function updateProject(
   workspaceId: string,
   canShare: boolean,
   defaultSprintLengthDays?: number,
+  includeSubtasks?: boolean,
 ) {
   return db.transaction(async (tx) => {
     await tx.execute(
@@ -68,6 +69,7 @@ async function updateProject(
         ...(defaultSprintLengthDays !== undefined && {
           defaultSprintLengthDays,
         }),
+        ...(includeSubtasks === undefined ? {} : { includeSubtasks }),
       })
       .where(eq(projectTable.id, id))
       .returning();
