@@ -28,6 +28,7 @@ export const updateProjectBody = z.object({
     description:
       "Default sprint length in days. Used to prefill a new sprint's end date when starting it. Omit to keep the current value.",
   }),
+  includeSubtasks: z.boolean().optional(),
 });
 
 export const reorderProjectsBody = z.object({
