@@ -163,12 +163,6 @@
 				"apply": "Terapkan tautan",
 				"remove": "Hapus tautan"
 			}
-		},
-		"boolean": {
-			"false": "False",
-			"notSet": "Not Set",
-			"true": "True",
-			"undefined": "Undefined"
 		}
 	},
 	"auth": {
@@ -922,14 +916,7 @@
 			"moveDialogTitle": "Pindahkan ke ruang kerja lain?",
 			"moveTargetLabel": "Ruang kerja",
 			"moving": "Memindahkan...",
-			"tasksTitle": "Tugas",
-			"sprintLength": "Durasi sprint bawaan",
-			"sprintLengthDescription": "Jumlah hari yang dicakup sprint baru secara bawaan.",
-			"sprintLengthError": "Tidak dapat menyimpan durasi sprint",
-			"sprintLengthSave": "Simpan durasi sprint",
-			"sprintLengthSaved": "Durasi sprint disimpan",
-			"sprints": "Sprint",
-			"sprintsSubtitle": "Rencanakan pekerjaan mendatang dalam iterasi dengan durasi tetap."
+			"tasksTitle": "Tugas"
 		},
 		"projectIntegrations": {
 			"pageTitle": "Integrasi",
@@ -2166,12 +2153,7 @@
 				"columns_other": "{{count, number}} columns",
 				"comments_other": "{{count, number}} comments",
 				"labels_other": "{{count, number}} labels",
-				"tasks_other": "{{count, number}} tasks",
-				"attachments_other": "{{count, number}} attachments",
-				"sprints_one": "{{count, number}} sprint",
-				"sprints_other": "{{count, number}} sprints",
-				"users_one": "{{count, number}} user",
-				"users_other": "{{count, number}} users"
+				"tasks_other": "{{count, number}} tasks"
 			},
 			"entry": {
 				"createProjectLink": "Import your projects",
@@ -2264,18 +2246,10 @@
 				"commentsDescription": "Keeps each comment's original author and date.",
 				"commentsLabel": "Import comments",
 				"inviteMembers": "Invite members",
-				"membersNote": "Assignees are matched to members of {{workspace}} by email. Anyone unknown gets an invitation or an account, as chosen above.",
-				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Anyone unknown gets an invitation or an account, as chosen above.",
+				"membersNote": "Assignees are matched to members of {{workspace}} by email. Invite your team first so their tasks stay assigned.",
+				"membersNoteTrello": "Assignees are matched to members of {{workspace}} by email, or by full name for Trello. Invite your team first so their tasks stay assigned.",
 				"selectAll": "Select all",
-				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Anyone unknown gets an invitation or an account, as chosen above.",
-				"sprintsDescription": "Creates the project's sprints and keeps each issue in its sprint.",
-				"sprintsLabel": "Import sprints",
-				"usersCreateDescription": "Accounts are created directly and added as members, so their tasks are assigned right away. They sign in with their email.",
-				"usersCreateLabel": "Create their account",
-				"usersDescription": "What happens to assignees who are not members of this workspace yet.",
-				"usersInviteDescription": "They receive an email invitation and join once they accept. Their tasks stay unassigned until then.",
-				"usersInviteLabel": "Send an invitation",
-				"usersLabel": "New users"
+				"membersNoteJira": "Assignees are matched to members of {{workspace}} by email, or by full name when Jira hides the email. Invite your team first so their tasks stay assigned."
 			},
 			"sources": {
 				"connect": "Connect",
@@ -2395,12 +2369,6 @@
 				"urlDescription": "Copy it from your browser. Data Center works too.",
 				"urlLabel": "Jira site URL",
 				"urlPlaceholder": "https://your-site.atlassian.net"
-			},
-			"stages": {
-				"reading": "Reading",
-				"sprints": "Sprints",
-				"tasks": "Issues",
-				"users": "Users"
 			}
 		},
 		"chatIntegrations": {
@@ -2467,8 +2435,7 @@
 			"tokenTitle": "Token akses",
 			"webhookSecret": "Rahasia",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL",
-			"addAnotherRepository": "Add another repository"
+			"webhookUrl": "URL"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Seret untuk mengubah urutan tampilannya di tugas.",
@@ -2821,37 +2788,6 @@
 			"title": "Webhooks",
 			"url": "URL",
 			"save": "Save"
-		},
-		"adminBranding": {
-			"form": {
-				"accentColor": "Accent color",
-				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
-				"appName": "Application name",
-				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
-				"footerDescription": "Shown in the footer instead of the application name.",
-				"footerText": "Footer text",
-				"footerUrl": "Footer link URL",
-				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
-				"logoDarkUrl": "Dark-mode logo URL",
-				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
-				"logoLightUrl": "Light-mode logo URL",
-				"privacyUrl": "Privacy policy URL",
-				"reset": "Reset",
-				"save": "Save changes",
-				"saving": "Saving...",
-				"showPoweredBy": "Show \"Powered by Kaneo\"",
-				"showPoweredByDescription": "Displays a small attribution link in the footer.",
-				"termsUrl": "Terms of service URL"
-			},
-			"instanceBadge": "Instance",
-			"loadError": "Branding settings could not be loaded.",
-			"retry": "Retry",
-			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
-			"title": "Branding",
-			"toast": {
-				"saveError": "Branding could not be saved.",
-				"saved": "Branding updated."
-			}
 		}
 	},
 	"navigation": {
@@ -3052,37 +2988,6 @@
 			"then": "lalu",
 			"or": "atau",
 			"thenEllipsis": "lalu…"
-		},
-		"keyboardShortcuts": {
-			"categories": {
-				"create": "Buat",
-				"general": "Umum",
-				"navigation": "Navigasi",
-				"quickSelect": "Pilih Cepat (di popover)",
-				"views": "Tampilan"
-			},
-			"footer": "Tekan <kbd>Escape</kbd> untuk menutup",
-			"items": {
-				"backlogView": "Beralih ke tampilan backlog",
-				"boardView": "Beralih ke tampilan papan",
-				"calendarView": "Beralih ke tampilan kalender",
-				"closeModal": "Tutup modal/popover",
-				"createProject": "Buat proyek",
-				"createTask": "Buat tugas",
-				"createWorkspace": "Buat ruang kerja",
-				"globalSearch": "Pencarian global",
-				"listView": "Beralih ke tampilan daftar",
-				"nextTask": "Tugas berikutnya",
-				"openCommandPalette": "Buka palet perintah",
-				"openTask": "Buka tugas terpilih",
-				"prevTask": "Tugas sebelumnya",
-				"quickSelectNumber": "Pilih opsi berdasarkan nomor",
-				"showShortcuts": "Tampilkan pintasan keyboard",
-				"toggleSidebar": "Tampilkan/sembunyikan panel samping"
-			},
-			"searchPlaceholder": "Cari pintasan...",
-			"subtitle": "Percepat alur kerja Anda dengan pintasan keyboard",
-			"title": "Pintasan Keyboard"
 		}
 	},
 	"notifications": {
@@ -3297,8 +3202,7 @@
 			"list": "Daftar",
 			"backlog": "Backlog",
 			"gantt": "Gantt",
-			"heading": "Tampilan",
-			"sprints": "Sprints"
+			"heading": "Tampilan"
 		},
 		"common": {
 			"selectTask": "Pilih tugas",
@@ -3597,8 +3501,7 @@
 				"priority": "Prioritas",
 				"assignee": "Penanggung jawab",
 				"dueDate": "Tenggat",
-				"labels": "Label",
-				"sprint": "Sprint"
+				"labels": "Label"
 			},
 			"operators": {
 				"isAnyOf": "adalah salah satu dari",
@@ -3611,8 +3514,7 @@
 			},
 			"allCustomFieldValues": "All values",
 			"noCustomFieldValues": "No custom field values",
-			"noValuesUsedYet": "No values used yet",
-			"allSprints": "Semua sprint"
+			"noValuesUsedYet": "No values used yet"
 		},
 		"gantt": {
 			"searchPlaceholder": "Cari tiket terjadwal...",
@@ -3736,9 +3638,7 @@
 			"priorityPlaceholder": "Atur prioritas…",
 			"assigneePlaceholder": "Tugaskan ke…",
 			"labelPlaceholder": "Tambah label…",
-			"columnPlaceholder": "Pindahkan ke kolom…",
-			"moveToSprint": "Pindahkan ke sprint",
-			"updateSprintError": "Gagal memindahkan tugas ke sprint"
+			"columnPlaceholder": "Pindahkan ke kolom…"
 		},
 		"editor": {
 			"table": {
@@ -3813,7 +3713,9 @@
 			"showOnRows": "Tampilkan di baris",
 			"checklistProgress": "Progres daftar periksa",
 			"projectBackground": "Latar belakang proyek",
-			"layout": "Tata letak"
+			"layout": "Tata letak",
+			"includeSubtasks": "Sertakan subtugas",
+			"useProjectDefault": "Gunakan pengaturan bawaan proyek"
 		},
 		"filterBar": {
 			"label": "Filter aktif",
@@ -3854,63 +3756,6 @@
 			"startsOn": "Mulai {{date}}",
 			"beforeStart": "{{date}} sebelum tanggal mulai",
 			"afterDue": "{{date}} setelah tenggat"
-		},
-		"sprints": {
-			"activeBadge": "Aktif",
-			"backlog": "Backlog",
-			"backlogDescription": "Tasks without a sprint",
-			"backlogEmpty": "No unscheduled tasks",
-			"carriedOver": "Dipindahkan",
-			"close": "Tutup sprint",
-			"closeConfirm": "Tutup sprint dan pindahkan tugas yang belum selesai",
-			"closeSuccess": "Sprint ditutup, {{count}} tugas yang belum selesai dipindahkan",
-			"closeSummary": "{{name}} memiliki {{total}} tugas, {{completed}} di antaranya selesai.",
-			"closeTarget": "Pindahkan {{count}} tugas yang belum selesai ke",
-			"closeTitle": "Tutup sprint",
-			"closedLocked": "Tugas ini bagian dari sprint yang ditutup dan tetap di sana sebagai riwayat",
-			"completedCount": "{{count}} selesai",
-			"create": "Buat sprint",
-			"createDescription": "Rencanakan sprint mendatang dengan nama, tujuan, dan tanggal.",
-			"createTitle": "Buat sprint",
-			"daysOverdue": "Terlambat {{remaining}} hari",
-			"daysRemaining": "{{remaining}} hari tersisa",
-			"edit": "Edit sprint",
-			"editDescription": "Perbarui nama, tujuan, dan tanggal sprint.",
-			"editTitle": "Edit sprint",
-			"endsToday": "Berakhir hari ini",
-			"error": "Tindakan sprint gagal",
-			"goal": "Tujuan sprint",
-			"goalPlaceholder": "Apa yang ingin dicapai sprint ini?",
-			"history": "Sprint yang ditutup ({{count}})",
-			"moveDown": "Turunkan",
-			"moveSuccess_other": "{{count}} tasks moved",
-			"moveUp": "Naikkan",
-			"name": "Nama sprint",
-			"namePlaceholder": "Sprint 1",
-			"noActive": "Tidak ada sprint yang aktif. Mulai sprint mendatang untuk beriterasi.",
-			"noTasks": "Belum ada tugas dalam sprint ini",
-			"openTaskMenu": "Open task menu",
-			"reportSummary": "Direncanakan {{planned}}, selesai {{completed}}, dipindahkan {{carriedOver}}",
-			"save": "Simpan perubahan",
-			"scopeCurrent": "Current sprint",
-			"scopeTitle": "Sprint scope",
-			"selectTask": "Select task",
-			"start": "Mulai sprint",
-			"startSuccess": "Sprint {{name}} dimulai",
-			"taskCounts": "{{completed}} dari {{total}} selesai",
-			"title": "Sprint",
-			"toggleTasks": "Tampilkan tugas sprint",
-			"unscheduled": "Belum dijadwalkan",
-			"upcoming": "Sprint mendatang",
-			"viewEmptyDescription": "Create a sprint to plan work in iterations and track it from here.",
-			"viewEmptyTitle": "No sprints yet",
-			"viewHeading": "All sprints",
-			"viewPageTitle": "Sprints · {{name}}"
-		},
-		"type": {
-			"bug": "Bug",
-			"label": "Tipe",
-			"task": "Tugas"
 		}
 	},
 	"invitations": {
