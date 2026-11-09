@@ -1,5 +1,8 @@
 import type { EmailSubject } from "../../../packages/email/src/brand";
-import type { EmailResult } from "../../../packages/email/src/send-email";
+import type {
+  EmailResult,
+  TestEmailResult,
+} from "../../../packages/email/src/send-email";
 import type { SmtpVerification } from "../../../packages/email/src/verify-smtp-connection";
 
 export { OTP_EXPIRY_SECONDS } from "../../../packages/email/src/otp-expiry";
@@ -61,7 +64,7 @@ export async function sendTestEmail(
   _to: string,
   _subject: EmailSubject,
   _data: unknown,
-): Promise<EmailResult> {
+): Promise<TestEmailResult> {
   return { success: false, reason: "SMTP_NOT_CONFIGURED" };
 }
 

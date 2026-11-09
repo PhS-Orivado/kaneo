@@ -6626,11 +6626,39 @@
           "to": {
             "type": "string",
             "description": "The administrator's own address, the only recipient."
+          },
+          "messageId": {
+            "type": "string",
+            "description": "The message ID Kaneo generated, so the message can be traced in the SMTP server's own logs."
+          },
+          "response": {
+            "type": "string",
+            "description": "The SMTP server's final acceptance line (for example `250 2.0.0 Ok: queued as 4C1A2B`), collapsed to one line and length-capped. Never the full SMTP dialogue."
+          },
+          "acceptedRecipients": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Recipients the SMTP server accepted. Always 1 here: the administrator's own address."
+          },
+          "rejectedRecipients": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Recipients the SMTP server rejected. Always 0 here; a rejected recipient fails the request instead."
+          },
+          "elapsedMs": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How long the SMTP transaction took, in milliseconds. A slow relay here hints at why mail arrives late."
           }
         },
         "required": [
           "sent",
-          "to"
+          "to",
+          "messageId",
+          "response",
+          "acceptedRecipients",
+          "rejectedRecipients",
+          "elapsedMs"
         ]
       },
       "AdminWorkspaceArchiveState": {
@@ -26885,7 +26913,7 @@
           "Admin"
         ],
         "summary": "Send a test email",
-        "description": "Send a test email to the calling administrator's own address to check the SMTP settings. There is no recipient parameter. Limited to 5 per administrator every 10 minutes on each API instance. Requires the `system:read` instance permission; API keys are rejected.",
+        "description": "Send a test email to the calling administrator's own address to check the SMTP settings. There is no recipient parameter. The response reports what the SMTP server said: the acceptance line, the generated message ID, the recipient verdicts, and how long the transaction took, so acceptance can be verified in the relay's own logs. Acceptance still does not prove final delivery. Limited to 5 per administrator every 10 minutes on each API instance. Requires the `system:read` instance permission; API keys are rejected.",
         "responses": {
           "200": {
             "description": "The mail server accepted the test email",

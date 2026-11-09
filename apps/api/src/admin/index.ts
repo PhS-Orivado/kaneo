@@ -404,7 +404,7 @@ const sendTestEmailRoute = createRoute({
   tags: ["Admin"],
   summary: "Send a test email",
   description:
-    "Send a test email to the calling administrator's own address to check the SMTP settings. There is no recipient parameter. Limited to 5 per administrator every 10 minutes on each API instance. Requires the `system:read` instance permission; API keys are rejected.",
+    "Send a test email to the calling administrator's own address to check the SMTP settings. There is no recipient parameter. The response reports what the SMTP server said: the acceptance line, the generated message ID, the recipient verdicts, and how long the transaction took, so acceptance can be verified in the relay's own logs. Acceptance still does not prove final delivery. Limited to 5 per administrator every 10 minutes on each API instance. Requires the `system:read` instance permission; API keys are rejected.",
   middleware: [
     requireUserSession,
     requireInstancePermission("system:read"),

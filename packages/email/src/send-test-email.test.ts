@@ -40,4 +40,41 @@ describe("sendTestEmail", () => {
     expect(smtp.sharedSend).not.toHaveBeenCalled();
     expect(smtp.close).toHaveBeenCalledOnce();
   });
+
+  it("reports the acceptance line, message ID, recipient verdicts and timing", async () => {
+    vi.stubEnv("SMTP_HOST", "smtp.example.test");
+    vi.stubEnv("SMTP_FROM", "kaneo@example.test");
+    smtp.testSend.mockResolvedValue({
+      messageId: "<kaneo-1234@example.test>",
+      response: "250  2.0.0  Ok: queued as 4C1A2B\n250 bye",
+      accepted: ["admin@example.test"],
+      rejected: [],
+    });
+
+    const result = await sendTestEmail("admin@example.test", "Test", {});
+
+    expect(result).toEqual({
+      success: true,
+      messageId: "<kaneo-1234@example.test>",
+      response: "250 2.0.0 Ok: queued as 4C1A2B 250 bye",
+      acceptedRecipients: 1,
+      rejectedRecipients: 0,
+      elapsedMs: expect.any(Number),
+    });
+  });
+
+  it("fails when the relay resolves without accepting the only recipient", async () => {
+    vi.stubEnv("SMTP_HOST", "smtp.example.test");
+    vi.stubEnv("SMTP_FROM", "kaneo@example.test");
+    smtp.testSend.mockResolvedValue({
+      messageId: "<kaneo-1234@example.test>",
+      response: "250 Ok",
+      accepted: [],
+      rejected: ["admin@example.test"],
+    });
+
+    await expect(
+      sendTestEmail("admin@example.test", "Test", {}),
+    ).rejects.toMatchObject({ code: "EENVELOPE" });
+  });
 });

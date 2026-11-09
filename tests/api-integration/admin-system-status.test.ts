@@ -12,7 +12,14 @@ import { projectAccessApi } from "./helpers/project-access/project-access-api";
 
 const smtp = vi.hoisted(() => ({
   configured: vi.fn(() => false),
-  send: vi.fn(async () => ({ success: true })),
+  send: vi.fn(async () => ({
+    success: true,
+    messageId: "<kaneo-test@example.test>",
+    response: "250 2.0.0 Ok: queued as 4C1A2B",
+    acceptedRecipients: 1,
+    rejectedRecipients: 0,
+    elapsedMs: 12,
+  })),
   verify: vi.fn(async () => ({ status: "not_configured" })),
 }));
 
@@ -37,7 +44,14 @@ vi.mock("../../apps/api/src/redis", async (importOriginal) => ({
 beforeEach(async () => {
   await resetTestDatabase();
   smtp.configured.mockReset().mockReturnValue(false);
-  smtp.send.mockReset().mockResolvedValue({ success: true });
+  smtp.send.mockReset().mockResolvedValue({
+    success: true,
+    messageId: "<kaneo-test@example.test>",
+    response: "250 2.0.0 Ok: queued as 4C1A2B",
+    acceptedRecipients: 1,
+    rejectedRecipients: 0,
+    elapsedMs: 12,
+  });
   smtp.verify.mockReset().mockResolvedValue({ status: "not_configured" });
   redis.ping.mockReset().mockResolvedValue("PONG");
 });
@@ -360,7 +374,15 @@ describe("admin test email", () => {
     });
 
     expect(response.status).toBe(200);
-    expect(await response.json()).toEqual({ sent: true, to: admin.email });
+    expect(await response.json()).toEqual({
+      sent: true,
+      to: admin.email,
+      messageId: "<kaneo-test@example.test>",
+      response: "250 2.0.0 Ok: queued as 4C1A2B",
+      acceptedRecipients: 1,
+      rejectedRecipients: 0,
+      elapsedMs: 12,
+    });
     expect(smtp.send).toHaveBeenCalledTimes(1);
     expect(smtp.send.mock.calls[0]?.[0]).toBe(admin.email);
     const calls = JSON.stringify(smtp.send.mock.calls);
@@ -398,7 +420,15 @@ describe("admin test email", () => {
     });
 
     expect(response.status).toBe(200);
-    expect(await response.json()).toEqual({ sent: true, to: admin.email });
+    expect(await response.json()).toEqual({
+      sent: true,
+      to: admin.email,
+      messageId: "<kaneo-test@example.test>",
+      response: "250 2.0.0 Ok: queued as 4C1A2B",
+      acceptedRecipients: 1,
+      rejectedRecipients: 0,
+      elapsedMs: 12,
+    });
     expect(smtp.send).toHaveBeenCalledTimes(1);
     expect(log).toHaveBeenCalledWith(
       "Admin audit entry could not be recorded:",
@@ -438,9 +468,39 @@ describe("admin test email", () => {
     expect(await readAuditLog()).toEqual([]);
   });
 
+  it("fails instead of reporting success when the recipient was rejected", async () => {
+    smtp.configured.mockReturnValue(true);
+    // A relay can resolve the send while refusing the only recipient. The
+    // endpoint must not turn that into a success toast.
+    smtp.send.mockResolvedValue({
+      success: true,
+      messageId: "<kaneo-test@example.test>",
+      response: "250 2.0.0 Ok: queued as 4C1A2B",
+      acceptedRecipients: 0,
+      rejectedRecipients: 1,
+      elapsedMs: 3,
+    });
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const admin = await createInstanceAdmin();
+    mockAuthenticatedSession(admin);
+
+    const response = await projectAccessApi()("/admin/system/test-email", {
+      method: "POST",
+    });
+
+    expect(response.status).toBe(502);
+    const text = await response.text();
+    expect(text).toContain("SMTP_SEND_FAILED");
+    expect(text).toContain("EENVELOPE");
+    expect(await readAuditLog()).toEqual([]);
+  });
+
   it("does not record an audit entry when delivery reports no success", async () => {
     smtp.configured.mockReturnValue(true);
-    smtp.send.mockResolvedValue({ success: false });
+    smtp.send.mockResolvedValue({
+      success: false,
+      reason: "SMTP_NOT_CONFIGURED",
+    });
     const admin = await createInstanceAdmin();
     mockAuthenticatedSession(admin);
 
