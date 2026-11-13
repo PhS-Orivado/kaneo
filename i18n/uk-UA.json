@@ -3444,6 +3444,20 @@
 	},
 	"tasks": {
 		"title": "Завдання",
+		"dateFilter": {
+			"startDate": "Дата початку",
+			"noDate": "Без дати",
+			"condition": "Умова за датою",
+			"exact": "Точна дата",
+			"range": "Діапазон дат",
+			"before": "До",
+			"after": "Після",
+			"apply": "Застосувати фільтр за датою",
+			"exactValue": "На {{date}}",
+			"beforeValue": "До {{date}}",
+			"afterValue": "Після {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Статус",
 			"to-do": "До виконання",

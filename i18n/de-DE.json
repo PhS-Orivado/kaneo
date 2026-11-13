@@ -3330,6 +3330,20 @@
 	},
 	"tasks": {
 		"title": "Aufgaben",
+		"dateFilter": {
+			"startDate": "Startdatum",
+			"noDate": "Kein Datum",
+			"condition": "Datumsbedingung",
+			"exact": "Genaues Datum",
+			"range": "Datumsbereich",
+			"before": "Vor",
+			"after": "Nach",
+			"apply": "Datumsfilter anwenden",
+			"exactValue": "Am {{date}}",
+			"beforeValue": "Vor dem {{date}}",
+			"afterValue": "Nach dem {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Status",
 			"to-do": "Zu erledigen",

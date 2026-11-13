@@ -3330,6 +3330,20 @@
 	},
 	"tasks": {
 		"title": "Задачи",
+		"dateFilter": {
+			"startDate": "Почетен датум",
+			"noDate": "Без датум",
+			"condition": "Услов за датум",
+			"exact": "Точен датум",
+			"range": "Опсег на датуми",
+			"before": "Пред",
+			"after": "По",
+			"apply": "Примени филтер за датум",
+			"exactValue": "На {{date}}",
+			"beforeValue": "Пред {{date}}",
+			"afterValue": "По {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Статус",
 			"to-do": "За правење",

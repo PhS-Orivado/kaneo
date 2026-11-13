@@ -3275,6 +3275,20 @@
 	},
 	"tasks": {
 		"title": "Nhiệm vụ",
+		"dateFilter": {
+			"startDate": "Ngày bắt đầu",
+			"noDate": "Không có ngày",
+			"condition": "Điều kiện ngày",
+			"exact": "Ngày cụ thể",
+			"range": "Khoảng ngày",
+			"before": "Trước",
+			"after": "Sau",
+			"apply": "Áp dụng bộ lọc ngày",
+			"exactValue": "Vào {{date}}",
+			"beforeValue": "Trước {{date}}",
+			"afterValue": "Sau {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Trạng thái",
 			"to-do": "Cần làm",

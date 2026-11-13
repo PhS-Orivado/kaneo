@@ -3330,6 +3330,20 @@
 	},
 	"tasks": {
 		"title": "Taken",
+		"dateFilter": {
+			"startDate": "Startdatum",
+			"noDate": "Geen datum",
+			"condition": "Datumvoorwaarde",
+			"exact": "Exacte datum",
+			"range": "Datumbereik",
+			"before": "Vóór",
+			"after": "Na",
+			"apply": "Datumfilter toepassen",
+			"exactValue": "Op {{date}}",
+			"beforeValue": "Vóór {{date}}",
+			"afterValue": "Na {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Status",
 			"to-do": "Te doen",
