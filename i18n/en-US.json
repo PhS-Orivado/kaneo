@@ -3331,6 +3331,20 @@
 	"tasks": {
 		"checklistProgress": "{{completed}} of {{total}} checklist items completed",
 		"title": "Tasks",
+		"dateFilter": {
+			"startDate": "Start date",
+			"noDate": "No date",
+			"condition": "Date condition",
+			"exact": "On",
+			"range": "Between",
+			"before": "Before",
+			"after": "After",
+			"apply": "Apply date filter",
+			"exactValue": "On {{date}}",
+			"beforeValue": "Before {{date}}",
+			"afterValue": "After {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Status",
 			"to-do": "To Do",
