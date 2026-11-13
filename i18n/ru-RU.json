@@ -3452,6 +3452,20 @@
 	},
 	"tasks": {
 		"title": "Задачи",
+		"dateFilter": {
+			"startDate": "Дата начала",
+			"noDate": "Без даты",
+			"condition": "Условие по дате",
+			"exact": "Точная дата",
+			"range": "Диапазон дат",
+			"before": "До",
+			"after": "После",
+			"apply": "Применить фильтр по дате",
+			"exactValue": "На {{date}}",
+			"beforeValue": "До {{date}}",
+			"afterValue": "После {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Статус",
 			"to-do": "К выполнению",

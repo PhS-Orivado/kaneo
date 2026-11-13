@@ -3387,6 +3387,20 @@
 	},
 	"tasks": {
 		"title": "Tarefas",
+		"dateFilter": {
+			"startDate": "Data de início",
+			"noDate": "Sem data",
+			"condition": "Condição de data",
+			"exact": "Data exata",
+			"range": "Intervalo de datas",
+			"before": "Antes de",
+			"after": "Depois de",
+			"apply": "Aplicar filtro de data",
+			"exactValue": "Em {{date}}",
+			"beforeValue": "Antes de {{date}}",
+			"afterValue": "Depois de {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Status",
 			"to-do": "A Fazer",
