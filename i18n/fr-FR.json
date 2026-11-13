@@ -3387,6 +3387,20 @@
 	},
 	"tasks": {
 		"title": "Tâches",
+		"dateFilter": {
+			"startDate": "Date de début",
+			"noDate": "Aucune date",
+			"condition": "Condition de date",
+			"exact": "Date exacte",
+			"range": "Plage de dates",
+			"before": "Avant",
+			"after": "Après",
+			"apply": "Appliquer le filtre de date",
+			"exactValue": "Le {{date}}",
+			"beforeValue": "Avant le {{date}}",
+			"afterValue": "Après le {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Statut",
 			"to-do": "À faire",
