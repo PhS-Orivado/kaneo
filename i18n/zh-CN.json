@@ -3323,6 +3323,20 @@
 	},
 	"tasks": {
 		"title": "任务",
+		"dateFilter": {
+			"startDate": "开始日期",
+			"noDate": "无日期",
+			"condition": "日期条件",
+			"exact": "指定日期",
+			"range": "日期范围",
+			"before": "早于",
+			"after": "晚于",
+			"apply": "应用日期筛选",
+			"exactValue": "在 {{date}}",
+			"beforeValue": "早于 {{date}}",
+			"afterValue": "晚于 {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "状态",
 			"to-do": "待办",
