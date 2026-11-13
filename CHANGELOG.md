@@ -3,6 +3,7 @@
 ### Features
 
 - **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
+- **ci:** add a manual dispatch workflow that builds and pushes a selectable subset of the container images to GHCR from any branch: see `docs/ci/build-images-selected.md`
 
 ### Bug Fixes
 
