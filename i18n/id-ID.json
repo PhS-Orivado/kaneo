@@ -3275,6 +3275,20 @@
 	},
 	"tasks": {
 		"title": "Tugas",
+		"dateFilter": {
+			"startDate": "Tanggal mulai",
+			"noDate": "Tanpa tanggal",
+			"condition": "Kondisi tanggal",
+			"exact": "Tanggal tertentu",
+			"range": "Rentang tanggal",
+			"before": "Sebelum",
+			"after": "Setelah",
+			"apply": "Terapkan filter tanggal",
+			"exactValue": "Pada {{date}}",
+			"beforeValue": "Sebelum {{date}}",
+			"afterValue": "Setelah {{date}}",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Status",
 			"to-do": "Perlu Dikerjakan",

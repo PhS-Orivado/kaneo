@@ -3330,6 +3330,20 @@
 	},
 	"tasks": {
 		"title": "कार्य",
+		"dateFilter": {
+			"startDate": "आरंभ तिथि",
+			"noDate": "कोई तिथि नहीं",
+			"condition": "तिथि की शर्त",
+			"exact": "निश्चित तिथि",
+			"range": "तिथि सीमा",
+			"before": "से पहले",
+			"after": "के बाद",
+			"apply": "तिथि फ़िल्टर लागू करें",
+			"exactValue": "{{date}} को",
+			"beforeValue": "{{date}} से पहले",
+			"afterValue": "{{date}} के बाद",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "स्थिति",
 			"to-do": "करना है",
