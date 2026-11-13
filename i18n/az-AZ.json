@@ -3330,6 +3330,20 @@
 	},
 	"tasks": {
 		"title": "Tapşırıqlar",
+		"dateFilter": {
+			"startDate": "Başlama tarixi",
+			"noDate": "Tarix yoxdur",
+			"condition": "Tarix şərti",
+			"exact": "Dəqiq tarix",
+			"range": "Tarix aralığı",
+			"before": "Əvvəl",
+			"after": "Sonra",
+			"apply": "Tarix filtrini tətbiq et",
+			"exactValue": "{{date}} tarixində",
+			"beforeValue": "{{date}} tarixindən əvvəl",
+			"afterValue": "{{date}} tarixindən sonra",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "Vəziyyət",
 			"to-do": "Görüləcək",
