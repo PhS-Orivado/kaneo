@@ -3275,6 +3275,20 @@
 	},
 	"tasks": {
 		"title": "작업",
+		"dateFilter": {
+			"startDate": "시작일",
+			"noDate": "날짜 없음",
+			"condition": "날짜 조건",
+			"exact": "특정 날짜",
+			"range": "날짜 범위",
+			"before": "지정일 이전",
+			"after": "지정일 이후",
+			"apply": "날짜 필터 적용",
+			"exactValue": "{{date}} 당일",
+			"beforeValue": "{{date}} 이전",
+			"afterValue": "{{date}} 이후",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "상태",
 			"to-do": "할 일",
