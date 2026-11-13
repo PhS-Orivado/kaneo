@@ -3275,6 +3275,20 @@
 	},
 	"tasks": {
 		"title": "タスク",
+		"dateFilter": {
+			"startDate": "開始日",
+			"noDate": "日付なし",
+			"condition": "日付の条件",
+			"exact": "指定日",
+			"range": "日付範囲",
+			"before": "指定日より前",
+			"after": "指定日より後",
+			"apply": "日付フィルターを適用",
+			"exactValue": "{{date}}",
+			"beforeValue": "{{date}}より前",
+			"afterValue": "{{date}}より後",
+			"rangeValue": "{{date}} – {{end}}"
+		},
 		"status": {
 			"label": "ステータス",
 			"to-do": "To Do",
