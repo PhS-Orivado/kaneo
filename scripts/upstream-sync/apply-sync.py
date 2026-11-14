@@ -317,6 +317,12 @@ def main():
             continue
         head_blob = git("rev-parse", "%s:%s" % (branch_ref, path), check=False)
         head_blob = head_blob.stdout.strip() if head_blob.returncode == 0 else ""
+        if not head_blob:
+            # Path is intentionally absent from the branch (the fork renamed
+            # or deleted it). It must stay absent from the working tree.
+            if os.path.exists(path):
+                fail("keep-fork path reappeared: %s" % path)
+            continue
         if not os.path.exists(path):
             fail("keep-fork path vanished: %s" % path)
         with open(path, "rb") as fh:
