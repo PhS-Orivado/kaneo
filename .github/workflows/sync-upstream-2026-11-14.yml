@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: sync-upstream-2026-11-14
@@ -16,7 +17,7 @@ jobs:
   apply:
     name: Apply upstream sync
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout sync branch
         uses: actions/checkout@v4

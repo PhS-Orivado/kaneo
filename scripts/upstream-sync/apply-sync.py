@@ -1,26 +1,11 @@
 #!/usr/bin/env python3
-"""One-shot upstream sync applier for branch sync/upstream-2026-11-14.
-
-Merges upstream usekaneo/kaneo main (adfd2082) into the fork's deploy-based
-sync branch with the following resolution policy:
-
-- Paths upstream changed that the fork never customized since the last
-  sync are taken verbatim from upstream.
-- Paths the fork customized and upstream has NOT touched since the last
-  sync keep the fork version.
-- apps/web/src/hooks/use-project-websocket.ts is hand-merged (fork's
-  SPRINT_UPDATED handler + upstream's TASK_MOVED relation invalidation).
-- apps/api/drizzle/0073_thick_talisman.sql is skipped: the fork already
-  applied that migration as 0076_thick_talisman.sql with its own chain.
-
-The result is committed as a true merge commit (parents: current branch
-head + upstream tip), then pushed. The script verifies the working tree
-against expectations and refuses to push on any mismatch.
-"""
+"""One-shot upstream sync applier for branch sync/upstream-2026-11-14."""
 import hashlib
+import json
 import os
 import subprocess
 import sys
+import traceback
 
 BRANCH = "sync/upstream-2026-11-14"
 BASE_SHA = "265f1fd548d0cfe9686990b692abbcdfc15e3604"
@@ -97,9 +82,50 @@ KEEP_FORK = {
     "i18n/zh-TW.json",
 }
 
+PROGRESS = []
+
+
+def note(msg):
+    PROGRESS.append(msg)
+    print(msg)
+    summary = os.environ.get("GITHUB_STEP_SUMMARY")
+    if summary:
+        with open(summary, "a") as fh:
+            fh.write(msg + "\n")
+
+
+def post_issue(title, body):
+    token = os.environ.get("GITHUB_TOKEN", "")
+    if not token:
+        note("GITHUB_TOKEN not available, cannot post diagnostics issue")
+        return
+    import urllib.request
+
+    payload = json.dumps({"title": title, "body": body}).encode()
+    req = urllib.request.Request(
+        "https://api.github.com/repos/PhS-Orivado/kaneo/issues",
+        data=payload,
+        headers={
+            "Authorization": "token " + token,
+            "Accept": "application/vnd.github+json",
+            "User-Agent": "sync-applier",
+            "Content-Type": "application/json",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            note("diagnostics issue posted: " + resp.read().decode()[:200])
+    except Exception as exc:
+        note("failed to post diagnostics issue: %r" % (exc,))
+
 
 def fail(msg):
     print("SYNC FAILED: " + msg)
+    post_issue(
+        "Upstream sync failed on " + BRANCH,
+        "Automated diagnostics from the sync workflow run.\n\n"
+        "**Error:** " + msg + "\n\n**Progress log:**\n" + "\n".join(PROGRESS),
+    )
     sys.exit(1)
 
 
@@ -109,7 +135,7 @@ def git(*args, check=True):
         print("git command failed:", " ".join(args))
         print("stdout:", result.stdout)
         print("stderr:", result.stderr)
-        fail("git error, see log above")
+        fail("git error: " + " ".join(args))
     return result
 
 
@@ -119,15 +145,12 @@ def blob_sha(data):
 
 
 def read_ref_blob_bytes(rev, path):
-    result = subprocess.run(
-        ["git", "show", "%s:%s" % (rev, path)], capture_output=True
-    )
+    result = subprocess.run(["git", "show", "%s:%s" % (rev, path)], capture_output=True)
     if result.returncode != 0:
         return None
     return result.stdout
 
 
-# --- diff3 three-way merge (identical algorithm to the local analysis) ---
 def matching_blocks(a, b):
     import difflib
 
@@ -189,25 +212,26 @@ def merge3(base, a, b):
 
 
 def main():
-    print("== upstream sync applier: %s ==" % BRANCH)
+    note("== upstream sync applier: %s ==" % BRANCH)
     branch_ref = "refs/heads/" + BRANCH
     head_sha = git("rev-parse", branch_ref).stdout.strip()
-    print("branch head:", head_sha)
+    note("branch head: " + head_sha)
 
     if "upstream" not in git("remote").stdout.split():
         git("remote", "add", "upstream", UPSTREAM_URL)
+    note("fetching upstream...")
     git("fetch", "upstream", "main", "--no-tags")
     up_sha = git("rev-parse", "upstream/main").stdout.strip()
     if up_sha != UPSTREAM_SHA:
         fail("upstream/main has moved to %s, expected %s" % (up_sha, UPSTREAM_SHA))
     git("cat-file", "-e", BASE_SHA)
     git("cat-file", "-e", LAST_SYNC_SHA)
-    print("upstream/main verified:", up_sha)
+    note("upstream/main verified: " + up_sha)
 
     changed = [
         p for p in git("diff", "--name-only", "-z", BASE_SHA, UPSTREAM_SHA).stdout.split("\0") if p
     ]
-    print("upstream-changed paths since merge-base:", len(changed))
+    note("upstream-changed paths since merge-base: %d" % len(changed))
 
     expected_staged = set()
     taken = 0
@@ -230,9 +254,8 @@ def main():
             fail("blob mismatch after checkout for %s" % path)
         expected_staged.add(path)
         taken += 1
-    print("paths taken from upstream:", taken, "| kept fork:", kept)
+    note("paths taken from upstream: %d | kept fork: %d" % (taken, kept))
 
-    # Hand-merged file: fork SPRINT_UPDATED + upstream TASK_MOVED invalidation.
     base_lines = read_ref_blob_bytes(LAST_SYNC_SHA, MERGED_PATH)
     ours_lines = read_ref_blob_bytes(head_sha, MERGED_PATH)
     theirs_lines = read_ref_blob_bytes(UPSTREAM_SHA, MERGED_PATH)
@@ -254,7 +277,7 @@ def main():
     with open(MERGED_PATH, "wb") as fh:
         fh.write(merged)
     expected_staged.add(MERGED_PATH)
-    print("hand-merged:", MERGED_PATH)
+    note("hand-merged: " + MERGED_PATH)
 
     for helper in HELPERS:
         if os.path.exists(helper):
@@ -280,7 +303,11 @@ def main():
         print("staged set mismatch")
         print("missing from index:", sorted(expected_staged - staged))
         print("unexpected in index:", sorted(staged - expected_staged))
-        fail("working tree does not match the expected merge result")
+        fail(
+            "working tree does not match expected merge result; missing=%s extra=%s"
+            % (sorted(expected_staged - staged), sorted(staged - expected_staged))
+        )
+    note("staged tree verified: %d paths" % len(staged))
 
     for path in KEEP_FORK:
         if path not in changed:
@@ -292,12 +319,13 @@ def main():
         with open(path, "rb") as fh:
             if blob_sha(fh.read()) != head_blob:
                 fail("keep-fork path was modified: %s" % path)
-    print("keep-fork paths verified untouched")
+    note("keep-fork paths verified untouched")
 
     tree = git("write-tree").stdout.strip()
     current = git("rev-parse", branch_ref).stdout.strip()
     if current != head_sha:
         fail("branch moved during the run")
+    note("creating merge commit with tree " + tree)
     commit = subprocess.run(
         [
             "git",
@@ -324,10 +352,28 @@ def main():
         print(commit.stdout, commit.stderr)
         fail("commit-tree failed")
     new_sha = commit.stdout.strip()
+    note("merge commit created: " + new_sha)
     git("update-ref", branch_ref, new_sha)
-    git("push", "origin", branch_ref)
-    print("PUSHED MERGE COMMIT:", new_sha)
+    push = git("push", "origin", branch_ref, check=False)
+    if push.returncode != 0:
+        print(push.stdout)
+        print(push.stderr)
+        fail("git push failed: " + push.stderr[-1500:])
+    note("PUSHED MERGE COMMIT: " + new_sha)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit:
+        raise
+    except Exception:
+        tb = traceback.format_exc()
+        print(tb)
+        post_issue(
+            "Upstream sync crashed on " + BRANCH,
+            "Unexpected exception in the sync workflow.\n\n**Traceback:**\n~~~\n"
+            + tb
+            + "\n~~~\n\n**Progress log:**\n" + "\n".join(PROGRESS),
+        )
+        sys.exit(1)
