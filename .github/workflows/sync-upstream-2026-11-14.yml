@@ -25,3 +25,5 @@ jobs:
           fetch-depth: 0
       - name: Apply upstream changes
         run: python3 scripts/upstream-sync/apply-sync.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

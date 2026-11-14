@@ -121,6 +121,9 @@ def post_issue(title, body):
 
 def fail(msg):
     print("SYNC FAILED: " + msg)
+    print("::error title=Sync failed::%s" % msg[:200].replace("\n", " "))
+    for i, line in enumerate(PROGRESS[-8:]):
+        print("::error title=Progress %d::%s" % (i + 1, line[:220].replace("\n", " ")))
     post_issue(
         "Upstream sync failed on " + BRANCH,
         "Automated diagnostics from the sync workflow run.\n\n"
@@ -370,6 +373,7 @@ if __name__ == "__main__":
     except Exception:
         tb = traceback.format_exc()
         print(tb)
+        print("::error title=Sync crashed::%s" % tb[-200:].replace("\n", " "))
         post_issue(
             "Upstream sync crashed on " + BRANCH,
             "Unexpected exception in the sync workflow.\n\n**Traceback:**\n~~~\n"
