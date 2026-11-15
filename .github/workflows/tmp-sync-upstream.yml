@@ -1,0 +1,51 @@
+name: Temporary upstream sync helper (self-removing)
+
+on:
+  push:
+    branches:
+      - sync/upstream-2026-11-15
+    paths:
+      - ".github/workflows/tmp-sync-upstream.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-sync-upstream-2026-11-15
+  cancel-in-progress: false
+
+jobs:
+  merge-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sync branch (full history)
+        uses: actions/checkout@v4
+        with:
+          ref: sync/upstream-2026-11-15
+          fetch-depth: 0
+
+      - name: Merge upstream main
+        run: |
+          set -euo pipefail
+          git config user.name "PhS-Orivado"
+          git config user.email "89846465+PhS-Orivado@users.noreply.github.com"
+          git remote add upstream https://github.com/usekaneo/kaneo.git
+          git fetch upstream main
+          git merge --no-ff --no-edit \
+            -m "sync: merge upstream usekaneo/kaneo@1e6cd4c into deploy (2026-11-15)" \
+            -m "Applies upstream main 1e6cd4c3807798a91e159782f887e4c71e211f82 (the @hono/node-server 2.1.7 security bump, the new scripts/security/dependency-node-server.test.mjs adapter test, and the GitLab settings test mock path fix) on top of the previous sync head 270c85b (PR #103, upstream adfd208)." \
+            -m "- pnpm-lock.yaml is taken verbatim from upstream: the fork version is identical to the previous upstream tip adfd208." \
+            -m "- scripts/security/dependency-node-server.test.mjs is a new upstream file and is added verbatim." \
+            -m "- .trufflehog-exclude is net-unchanged upstream (the temporary exclusion added in 560d347 was reverted in 56ce0a2) and keeps the fork version." \
+            -m "- gitlab-integration-settings.test.tsx auto-merges: the fork keeps its multi-integration test customizations and adopts upstream's ./gitlab-project-picker mock path." \
+            -m "- This helper workflow file removes itself in this merge commit." \
+            upstream/main
+
+      - name: Remove helper workflow in the merge commit and push
+        run: |
+          set -euo pipefail
+          git rm --quiet .github/workflows/tmp-sync-upstream.yml
+          git commit --amend --no-edit --quiet
+          git push origin HEAD:refs/heads/sync/upstream-2026-11-15
+          echo "New branch head (sha parents):"
+          git log -1 --format='%H %P'
