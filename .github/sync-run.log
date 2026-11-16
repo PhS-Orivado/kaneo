@@ -71,9 +71,10 @@ resolved: i18n/zh-CN.json
 resolved: i18n/zh-TW.json
 resolved: i18n/schema.json
 i18n resolution complete
-[sync/upstream-2026-11-16 7b330c2b] sync: merge upstream usekaneo/kaneo@9012ea8 into deploy (2026-11-16)
+[sync/upstream-2026-11-16 3aa917ee] sync: merge upstream usekaneo/kaneo@9012ea8 into deploy (2026-11-16)
 merge commit created:
-7b330c2b3f4d811d14005a5755840d45c76e60ec cca42df887680d2c1c1b799cd614b43425e138c1 9012ea878f23342cec6121d604496c5395867761
+3aa917ee318d2b42d60c94860aa249c6267cc0f5 c8377f95bb6978fec448177822dad191b5d764e1 9012ea878f23342cec6121d604496c5395867761
 To https://github.com/PhS-Orivado/kaneo
- ! [remote rejected]   HEAD -> sync/upstream-2026-11-16 (refusing to allow a GitHub App to create or update workflow `.github/workflows/mellon.yml` without `workflows` permission)
-error: failed to push some refs to 'https://github.com/PhS-Orivado/kaneo'
+   c8377f95..5768d7fb  HEAD -> sync/upstream-2026-11-16
+New branch head (sha parents):
+5768d7fbf45de341da16b0a971c70360191d2c7f c8377f95bb6978fec448177822dad191b5d764e1 9012ea878f23342cec6121d604496c5395867761
