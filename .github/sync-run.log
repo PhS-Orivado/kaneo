@@ -1,0 +1,79 @@
+From https://github.com/usekaneo/kaneo
+ * branch              main       -> FETCH_HEAD
+ * [new branch]        main       -> upstream/main
+Auto-merging i18n/az-AZ.json
+CONFLICT (content): Merge conflict in i18n/az-AZ.json
+Auto-merging i18n/de-DE.json
+CONFLICT (content): Merge conflict in i18n/de-DE.json
+Auto-merging i18n/el-GR.json
+CONFLICT (content): Merge conflict in i18n/el-GR.json
+Auto-merging i18n/en-US.json
+CONFLICT (content): Merge conflict in i18n/en-US.json
+Auto-merging i18n/es-ES.json
+CONFLICT (content): Merge conflict in i18n/es-ES.json
+Auto-merging i18n/fr-FR.json
+CONFLICT (content): Merge conflict in i18n/fr-FR.json
+Auto-merging i18n/hi-IN.json
+CONFLICT (content): Merge conflict in i18n/hi-IN.json
+Auto-merging i18n/id-ID.json
+CONFLICT (content): Merge conflict in i18n/id-ID.json
+Auto-merging i18n/it-IT.json
+CONFLICT (content): Merge conflict in i18n/it-IT.json
+Auto-merging i18n/ja-JP.json
+CONFLICT (content): Merge conflict in i18n/ja-JP.json
+Auto-merging i18n/ko-KR.json
+CONFLICT (content): Merge conflict in i18n/ko-KR.json
+Auto-merging i18n/mk-MK.json
+CONFLICT (content): Merge conflict in i18n/mk-MK.json
+Auto-merging i18n/nl-NL.json
+CONFLICT (content): Merge conflict in i18n/nl-NL.json
+Auto-merging i18n/pl-PL.json
+CONFLICT (content): Merge conflict in i18n/pl-PL.json
+Auto-merging i18n/pt-BR.json
+CONFLICT (content): Merge conflict in i18n/pt-BR.json
+Auto-merging i18n/ru-RU.json
+CONFLICT (content): Merge conflict in i18n/ru-RU.json
+Auto-merging i18n/schema.json
+CONFLICT (content): Merge conflict in i18n/schema.json
+Auto-merging i18n/tr-TR.json
+CONFLICT (content): Merge conflict in i18n/tr-TR.json
+Auto-merging i18n/uk-UA.json
+CONFLICT (content): Merge conflict in i18n/uk-UA.json
+Auto-merging i18n/vi-VN.json
+CONFLICT (content): Merge conflict in i18n/vi-VN.json
+Auto-merging i18n/zh-CN.json
+CONFLICT (content): Merge conflict in i18n/zh-CN.json
+Auto-merging i18n/zh-TW.json
+CONFLICT (content): Merge conflict in i18n/zh-TW.json
+Automatic merge failed; fix conflicts and then commit the result.
+merge exit status: 1 (1 = conflicts, expected on i18n)
+merge base: 1e6cd4c3807798a91e159782f887e4c71e211f82
+resolved: i18n/az-AZ.json
+resolved: i18n/de-DE.json
+resolved: i18n/el-GR.json
+resolved: i18n/en-US.json
+resolved: i18n/es-ES.json
+resolved: i18n/fr-FR.json
+resolved: i18n/hi-IN.json
+resolved: i18n/id-ID.json
+resolved: i18n/it-IT.json
+resolved: i18n/ja-JP.json
+resolved: i18n/ko-KR.json
+resolved: i18n/mk-MK.json
+resolved: i18n/nl-NL.json
+resolved: i18n/pl-PL.json
+resolved: i18n/pt-BR.json
+resolved: i18n/ru-RU.json
+resolved: i18n/tr-TR.json
+resolved: i18n/uk-UA.json
+resolved: i18n/vi-VN.json
+resolved: i18n/zh-CN.json
+resolved: i18n/zh-TW.json
+resolved: i18n/schema.json
+i18n resolution complete
+[sync/upstream-2026-11-16 7b330c2b] sync: merge upstream usekaneo/kaneo@9012ea8 into deploy (2026-11-16)
+merge commit created:
+7b330c2b3f4d811d14005a5755840d45c76e60ec cca42df887680d2c1c1b799cd614b43425e138c1 9012ea878f23342cec6121d604496c5395867761
+To https://github.com/PhS-Orivado/kaneo
+ ! [remote rejected]   HEAD -> sync/upstream-2026-11-16 (refusing to allow a GitHub App to create or update workflow `.github/workflows/mellon.yml` without `workflows` permission)
+error: failed to push some refs to 'https://github.com/PhS-Orivado/kaneo'
