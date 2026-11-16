@@ -1,0 +1,244 @@
+name: Temporary upstream sync helper (self-removing)
+
+on:
+  push:
+    branches:
+      - sync/upstream-2026-11-16
+    paths:
+      - ".github/workflows/tmp-sync-upstream.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tmp-sync-upstream-2026-11-16
+  cancel-in-progress: false
+
+jobs:
+  merge-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sync branch (full history)
+        uses: actions/checkout@v4
+        with:
+          ref: sync/upstream-2026-11-16
+          fetch-depth: 0
+
+      - name: Merge upstream main
+        run: |
+          set -euo pipefail
+          git config user.name "PhS-Orivado"
+          git config user.email "89846465+PhS-Orivado@users.noreply.github.com"
+          git remote add upstream https://github.com/usekaneo/kaneo.git
+          git fetch upstream main
+          set +e
+          git merge --no-ff --no-edit --no-commit 9012ea878f23342cec6121d604496c5395867761
+          merge_status=$?
+          set -e
+          echo "merge exit status: $merge_status (1 = conflicts, expected on i18n)"
+          if [ "$merge_status" -ne 0 ] && [ "$merge_status" -ne 1 ]; then
+            exit "$merge_status"
+          fi
+
+      - name: Resolve i18n conflicts deterministically
+        run: |
+          set -euo pipefail
+          python3 <<'PYEOF'
+          import json, subprocess, re, sys
+
+          def git(*args):
+              return subprocess.check_output(['git'] + list(args)).decode('utf-8')
+
+          def check(cond, msg):
+              if not cond:
+                  raise SystemExit('FAIL: ' + msg)
+
+          def merge3(base, ours, theirs):
+              if ours == theirs: return ours
+              if ours == base: return theirs
+              if theirs == base: return ours
+              if isinstance(ours, dict) and isinstance(theirs, dict):
+                  b = base if isinstance(base, dict) else {}
+                  okeys = list(ours.keys()); tkeys = list(theirs.keys())
+                  up_only = [k for k in tkeys if k not in ours]
+                  inserts = {}
+                  for k in up_only:
+                      ti = tkeys.index(k)
+                      pred = next((tkeys[j] for j in range(ti-1, -1, -1) if tkeys[j] in ours), None)
+                      inserts.setdefault(pred, []).append(k)
+                  out = {}
+                  for k in okeys:
+                      if k in theirs:
+                          out[k] = merge3(b.get(k), ours[k], theirs[k])
+                      elif ours[k] == b.get(k):
+                          pass
+                      else:
+                          out[k] = ours[k]
+                      if k in inserts:
+                          for nk in inserts[k]:
+                              out[nk] = merge3(b.get(nk), ours.get(nk), theirs[nk])
+                  for k in up_only:
+                      if k not in out:
+                          out[k] = merge3(b.get(k), None, theirs[k])
+                  return out
+              if isinstance(ours, list) and isinstance(theirs, list):
+                  out = list(ours)
+                  tlist = list(theirs)
+                  added = [x for x in tlist if x not in out]
+                  for x in reversed(added):
+                      ti = tlist.index(x)
+                      pred = next((tlist[j] for j in range(ti-1, -1, -1) if tlist[j] in out), None)
+                      if pred is not None:
+                          out.insert(out.index(pred)+1, x)
+                      else:
+                          out.append(x)
+                  return out
+              print('SCALAR CONFLICT, fork wins')
+              return ours
+
+          def find_span(raw, start):
+              depth = 0; i = start; instr = False; esc = False
+              while i < len(raw):
+                  c = raw[i]
+                  if instr:
+                      if esc: esc = False
+                      elif c == '\\': esc = True
+                      elif c == '"': instr = False
+                  else:
+                      if c == '"': instr = True
+                      elif c == '{': depth += 1
+                      elif c == '}':
+                          depth -= 1
+                          if depth == 0: return start, i
+                  i += 1
+              raise ValueError('unbalanced')
+
+          def resolve_schema(ours_raw, theirs_raw):
+              o_tasks_anchor = ours_raw.index('\n\t\t"tasks": {')
+              o_open = ours_raw.index('{', o_tasks_anchor)
+              _, o_close = find_span(ours_raw, o_open)
+              t_tasks_anchor = theirs_raw.index('\n\t\t"tasks": {')
+              t_open = theirs_raw.index('{', t_tasks_anchor)
+              _, t_close = find_span(theirs_raw, t_open)
+              o_tasks = ours_raw[o_tasks_anchor:o_close+1]
+              t_tasks = theirs_raw[t_tasks_anchor:t_close+1]
+              assert o_tasks.count('\n\t\t\t\t"board": {') == 1, 'fork tasks board block not unique'
+              assert t_tasks.count('\n\t\t\t\t"timeTracking": {') == 1, 'upstream timeTracking block not unique in tasks span'
+              tt_start = t_tasks.index('\n\t\t\t\t"timeTracking": {')
+              tt_open = t_tasks.index('{', tt_start)
+              _, tt_close = find_span(t_tasks, tt_open)
+              tt_block = t_tasks[tt_start:tt_close+1]
+              b_start = o_tasks.index('\n\t\t\t\t"board": {')
+              b_open = o_tasks.index('{', b_start)
+              _, b_close = find_span(o_tasks, b_open)
+              insert_at = b_close + 1
+              assert o_tasks[insert_at] == ',', 'expected comma after fork board block'
+              new_o_tasks = o_tasks[:insert_at] + ',' + tt_block + o_tasks[insert_at:]
+              reqs = list(re.finditer(r'\n\t\t\t"required": \[', new_o_tasks))
+              assert len(reqs) == 1, 'tasks.required not found uniquely (depth anchor)'
+              m = reqs[0]
+              arr_open = new_o_tasks.index('[', m.start())
+              depth = 0; i = arr_open; instr = False; esc = False
+              while True:
+                  c = new_o_tasks[i]
+                  if instr:
+                      if esc: esc = False
+                      elif c == '\\': esc = True
+                      elif c == '"': instr = False
+                  else:
+                      if c == '"': instr = True
+                      elif c == '[': depth += 1
+                      elif c == ']':
+                          depth -= 1
+                          if depth == 0: break
+                  i += 1
+              arr_close = i
+              arr = new_o_tasks[arr_open:arr_close+1]
+              if '"timeTracking"' not in arr:
+                  board_line = '\n\t\t\t\t"board",'
+                  assert board_line in arr, 'board entry line not found in tasks.required'
+                  arr_new = arr.replace(board_line, board_line + '\n\t\t\t\t"timeTracking",', 1)
+                  new_o_tasks = new_o_tasks[:arr_open] + arr_new + new_o_tasks[arr_close+1:]
+              return ours_raw[:o_tasks_anchor] + new_o_tasks + ours_raw[o_close+1:]
+
+          MERGE_SHA = '9012ea878f23342cec6121d604496c5395867761'
+          merge_base = git('merge-base', 'HEAD', MERGE_SHA).strip()
+          print('merge base:', merge_base)
+          check(merge_base == '1e6cd4c3807798a91e159782f887e4c71e211f82', 'unexpected merge base: ' + merge_base)
+
+          LOCALES = ['az-AZ','de-DE','el-GR','en-US','es-ES','fr-FR','hi-IN','id-ID','it-IT','ja-JP','ko-KR','mk-MK','nl-NL','pl-PL','pt-BR','ru-RU','tr-TR','uk-UA','vi-VN','zh-CN','zh-TW']
+
+          def flat(d, p=''):
+              r = {}
+              for k, v in d.items():
+                  kk = f'{p}.{k}' if p else k
+                  if isinstance(v, dict): r.update(flat(v, kk))
+                  else: r[kk] = v
+              return r
+
+          for name in LOCALES:
+              path = 'i18n/%s.json' % name
+              b = json.loads(git('show', merge_base + ':' + path))
+              o = json.loads(git('show', 'HEAD:' + path))
+              t = json.loads(git('show', MERGE_SHA + ':' + path))
+              merged = merge3(b, o, t)
+              text = json.dumps(merged, indent='\t', ensure_ascii=False) + '\n'
+              check(json.loads(text) == merged, name + ' roundtrip')
+              if 'timeTracking' in t.get('tasks', {}):
+                  check(merged['tasks'].get('timeTracking') == t['tasks']['timeTracking'], name + ' timeTracking values')
+              fo, fm = flat(o), flat(merged)
+              missing = [k for k in fo if k not in fm]
+              changed = [k for k in fo if k in fm and fm[k] != fo[k]]
+              check(not missing, name + ' fork keys missing: %s' % missing[:5])
+              check(not changed, name + ' fork keys changed: %s' % changed[:5])
+              current = open(path, encoding='utf-8').read()
+              if current != text:
+                  open(path, 'w', encoding='utf-8').write(text)
+                  print('resolved:', path)
+              else:
+                  print('already merged:', path)
+
+          ours_raw = git('show', 'HEAD:i18n/schema.json')
+          theirs_raw = git('show', MERGE_SHA + ':i18n/schema.json')
+          new_schema = resolve_schema(ours_raw, theirs_raw)
+          d = json.loads(new_schema)
+          o = json.loads(ours_raw); t = json.loads(theirs_raw)
+          keys = list(d['properties']['tasks']['properties'].keys())
+          check(keys.index('timeTracking') == keys.index('board') + 1, 'schema timeTracking position')
+          check(d['properties']['tasks']['properties']['timeTracking'] == t['properties']['tasks']['properties']['timeTracking'], 'schema timeTracking content')
+          req = d['properties']['tasks']['required']
+          check(req.index('timeTracking') == req.index('board') + 1, 'schema required position')
+          d2 = json.loads(new_schema)
+          d2['properties']['tasks']['properties'].pop('timeTracking')
+          d2['properties']['tasks']['required'].remove('timeTracking')
+          check(d2 == o, 'schema everything else identical to fork')
+          current = open('i18n/schema.json', encoding='utf-8').read()
+          if current != new_schema:
+              open('i18n/schema.json', 'w', encoding='utf-8').write(new_schema)
+              print('resolved: i18n/schema.json')
+          else:
+              print('already merged: i18n/schema.json')
+          print('i18n resolution complete')
+          PYEOF
+          git add i18n/*.json
+          remaining=$(git diff --name-only --diff-filter=U || true)
+          if [ -n "$remaining" ]; then
+            echo "Unresolved conflicts remain:"
+            echo "$remaining"
+            exit 1
+          fi
+
+      - name: Remove helper workflow, commit merge, push
+        run: |
+          set -euo pipefail
+          git rm --quiet .github/workflows/tmp-sync-upstream.yml
+          git commit \
+            -m "sync: merge upstream usekaneo/kaneo@9012ea8 into deploy (2026-11-16)" \
+            -m "Applies upstream main 9012ea878f23342cec6121d604496c5395867761 (time tracking from task details, usekaneo PR #2218, and the mellon app chores, usekaneo PR #2219) on top of the previous sync head 1b6741e (PR #104, upstream 1e6cd4c)." \
+            -m "- The 22 i18n files (21 locales plus schema.json) conflict because both sides add keys under tasks. They are resolved with a key-level 3-way merge: the fork keeps every fork key and value, and adopts upstream's new tasks.timeTracking keys in upstream's position." \
+            -m "- i18n/schema.json is merged surgically: upstream's tasks.properties.timeTracking block is inserted after the fork's board block and timeTracking is added to tasks.required after board." \
+            -m "- The upstream code changes (task time tracking components, time-entry hooks, mellon workflow) touch files the fork never customized and merge cleanly." \
+            -m "- This helper workflow file removes itself in this merge commit."
+          git push origin HEAD:refs/heads/sync/upstream-2026-11-16
+          echo "New branch head (sha parents):"
+          git log -1 --format='%H %P'
