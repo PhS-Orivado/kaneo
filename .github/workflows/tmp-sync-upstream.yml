@@ -234,15 +234,21 @@ jobs:
             -m "Applies upstream main 9012ea878f23342cec6121d604496c5395867761 (time tracking from task details, usekaneo PR #2218, and the mellon app chores, usekaneo PR #2219) on top of the previous sync head 1b6741e (PR #104, upstream 1e6cd4c)." \
             -m "- The 22 i18n files (21 locales plus schema.json) conflict because both sides add keys under tasks. They are resolved with a key-level 3-way merge: the fork keeps every fork key and value, and adopts upstream's new tasks.timeTracking keys in upstream's position." \
             -m "- i18n/schema.json is merged surgically: upstream's tasks.properties.timeTracking block is inserted after the fork's board block and timeTracking is added to tasks.required after board." \
-            -m "- The upstream code changes (task time tracking components, time-entry hooks, mellon workflow) touch files the fork never customized and merge cleanly."
+            -m "- The upstream code changes (task time tracking components, time-entry hooks) touch files the fork never customized and merge cleanly." \
+            -m "- .github/workflows/mellon.yml and the removal of the temporary helper workflow are applied in follow-up commits: the Actions runtime token cannot push workflow-file changes."
           echo "merge commit created:"
           git log -1 --format='%H %P'
 
-      - name: Remove helper workflow in the merge commit and push
+      - name: Neutralize workflow changes for the runtime token push, then push
         run: |
           set -euo pipefail
           exec > >(tee -a /tmp/sync.log) 2>&1
-          git rm --quiet .github/workflows/tmp-sync-upstream.yml
+          # The Actions runtime token cannot push workflow-file modifications
+          # ("refusing to allow a GitHub App to create or update workflow ...").
+          # Restore the branch's workflow files inside the merge commit; the
+          # upstream mellon.yml delta and the removal of this helper workflow
+          # are applied afterwards through the API by the maintainer side.
+          git checkout HEAD^1 -- .github/workflows/
           git commit --amend --no-edit --quiet
           git push origin HEAD:refs/heads/sync/upstream-2026-11-16
           echo "New branch head (sha parents):"
