@@ -27,6 +27,7 @@ jobs:
       - name: Merge upstream main
         run: |
           set -euo pipefail
+          exec > >(tee -a /tmp/sync.log) 2>&1
           git config user.name "PhS-Orivado"
           git config user.email "89846465+PhS-Orivado@users.noreply.github.com"
           git remote add upstream https://github.com/usekaneo/kaneo.git
@@ -40,9 +41,10 @@ jobs:
             exit "$merge_status"
           fi
 
-      - name: Resolve i18n conflicts deterministically
+      - name: Resolve i18n conflicts and commit the merge
         run: |
           set -euo pipefail
+          exec > >(tee -a /tmp/sync.log) 2>&1
           python3 <<'PYEOF'
           import json, subprocess, re, sys
 
@@ -227,18 +229,61 @@ jobs:
             echo "$remaining"
             exit 1
           fi
-
-      - name: Remove helper workflow, commit merge, push
-        run: |
-          set -euo pipefail
-          git rm --quiet .github/workflows/tmp-sync-upstream.yml
           git commit \
             -m "sync: merge upstream usekaneo/kaneo@9012ea8 into deploy (2026-11-16)" \
             -m "Applies upstream main 9012ea878f23342cec6121d604496c5395867761 (time tracking from task details, usekaneo PR #2218, and the mellon app chores, usekaneo PR #2219) on top of the previous sync head 1b6741e (PR #104, upstream 1e6cd4c)." \
             -m "- The 22 i18n files (21 locales plus schema.json) conflict because both sides add keys under tasks. They are resolved with a key-level 3-way merge: the fork keeps every fork key and value, and adopts upstream's new tasks.timeTracking keys in upstream's position." \
             -m "- i18n/schema.json is merged surgically: upstream's tasks.properties.timeTracking block is inserted after the fork's board block and timeTracking is added to tasks.required after board." \
-            -m "- The upstream code changes (task time tracking components, time-entry hooks, mellon workflow) touch files the fork never customized and merge cleanly." \
-            -m "- This helper workflow file removes itself in this merge commit."
+            -m "- The upstream code changes (task time tracking components, time-entry hooks, mellon workflow) touch files the fork never customized and merge cleanly."
+          echo "merge commit created:"
+          git log -1 --format='%H %P'
+
+      - name: Remove helper workflow in the merge commit and push
+        run: |
+          set -euo pipefail
+          exec > >(tee -a /tmp/sync.log) 2>&1
+          git rm --quiet .github/workflows/tmp-sync-upstream.yml
+          git commit --amend --no-edit --quiet
           git push origin HEAD:refs/heads/sync/upstream-2026-11-16
           echo "New branch head (sha parents):"
           git log -1 --format='%H %P'
+
+      - name: Publish run log (diagnostics)
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -uo pipefail
+          if [ ! -f /tmp/sync.log ]; then echo "no log file" > /tmp/sync.log; fi
+          python3 - <<'PYD'
+          import base64, json, os, urllib.request, urllib.error
+          token = os.environ['GH_TOKEN']
+          repo = 'PhS-Orivado/kaneo'
+          branch = 'tmp/sync-diag'
+          def api(path, data=None, method='GET'):
+              req = urllib.request.Request('https://api.github.com/repos/%s/%s' % (repo, path),
+                  data=json.dumps(data).encode() if data is not None else None, method=method,
+                  headers={'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json'})
+              try:
+                  return urllib.request.urlopen(req)
+              except urllib.error.HTTPError as e:
+                  return e
+          r = api('git/ref/heads/sync/upstream-2026-11-16')
+          try:
+              sha = json.load(r)['object']['sha']
+          except Exception:
+              sha = None
+          if sha:
+              api('git/refs', {'ref': 'refs/heads/' + branch, 'sha': sha}, 'POST')
+          content = base64.b64encode(open('/tmp/sync.log', 'rb').read()).decode()
+          body = {'message': 'chore: upstream sync run log (temporary)', 'content': content, 'branch': branch}
+          try:
+              r = api('contents/.github/sync-run.log?ref=' + branch.replace('/', '%2F'))
+              existing = json.load(r)['sha']
+              body['sha'] = existing
+          except Exception:
+              pass
+          r = api('contents/.github/sync-run.log', body, 'PUT')
+          code = r.getcode() if hasattr(r, 'getcode') else getattr(r, 'code', '?')
+          print('diag log push status:', code)
+          PYD
