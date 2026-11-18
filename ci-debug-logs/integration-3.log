@@ -11,150 +11,150 @@
 [1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/apps/api[39m
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains failed provider reads and retries without sender redelivery
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'eir2y4h9y5n93wurms9xgl66'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'ggh519i2vxjzb8cza5kl0zh7'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the final github value when colliding-version webhooks arrive in reverse
 [22m[39mSkipping title update - already synced from Kaneo
-No updates needed for task t4vq3vjiia6mgath6wbnf10m from issue #1
+No updates needed for task hjsfcd9zjeg5lzlftdidpsm8 from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the final github value when colliding-version webhooks arrive in reverse
 [22m[39mSkipping title update - already synced from Kaneo
-No updates needed for task t4vq3vjiia6mgath6wbnf10m from issue #1
+No updates needed for task hjsfcd9zjeg5lzlftdidpsm8 from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the final github value when colliding-version webhooks arrive in reverse
 [22m[39mUpdating task title from GitHub: "A" → "B"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the final github value when colliding-version webhooks arrive in reverse
-[22m[39mSynced title from GitHub issue #1 to task t4vq3vjiia6mgath6wbnf10m
+[22m[39mSynced title from GitHub issue #1 to task hjsfcd9zjeg5lzlftdidpsm8
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains a deferred issue read after HTTP 403
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'erhjq25yw28oyyvcamy4kclr'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'ipvcikvlw9m54b74e3wtg0zv'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains a deferred issue read after HTTP 429
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'h1q05ytkttlspsd7hbidov8m'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'i308nt37e05a6yl6ia2y102g'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains a deferred issue read after HTTP 500
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'xjv62y2obzthcgkqohojr6br'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'l9rgim2b86l3an6333znca2w'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains a deferred issue read after HTTP 408
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'zcy93nhz94iieexrkzr3ia23'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'mm3q6dumh8iidsab9kfnaf8u'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=false)
 [22m[39mUpdating task title from GitHub: "before" → "remote-new"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=false)
-[22m[39mSynced title from GitHub issue #1 to task um96c0c3avb16pka4plq14s8
+[22m[39mSynced title from GitHub issue #1 to task ip9so6cf1hiiba236c580jbu
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=false)
 [22m[39mSkipping title update - already synced from Kaneo
-No updates needed for task um96c0c3avb16pka4plq14s8 from issue #1
+No updates needed for task ip9so6cf1hiiba236c580jbu from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=false)
 [22m[39mUpdating task title from GitHub: "before" → "remote-old"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=false)
-[22m[39mSynced title from GitHub issue #1 to task um96c0c3avb16pka4plq14s8
+[22m[39mSynced title from GitHub issue #1 to task ip9so6cf1hiiba236c580jbu
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=true)
 [22m[39mUpdating task title from GitHub: "before" → "remote-new"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=true)
-[22m[39mSynced title from GitHub issue #1 to task m1cvv7zadvdr0slvgrou5qag
+[22m[39mSynced title from GitHub issue #1 to task t3kkia4pbi0xdi4mzog8cwxe
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=true)
 [22m[39mSkipping title update - already synced from Kaneo
-No updates needed for task m1cvv7zadvdr0slvgrou5qag from issue #1
+No updates needed for task t3kkia4pbi0xdi4mzog8cwxe from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=true)
 [22m[39mUpdating task title from GitHub: "before" → "remote-old"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github title delivery (sameVersion=true)
-[22m[39mSynced title from GitHub issue #1 to task m1cvv7zadvdr0slvgrou5qag
+[22m[39mSynced title from GitHub issue #1 to task t3kkia4pbi0xdi4mzog8cwxe
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=false)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=false)
-[22m[39mSynced description from GitHub issue #1 to task aiokd40jviyim1if9vvc2899
+[22m[39mSynced description from GitHub issue #1 to task udzu61zfnyv61sc7qm5r93cp
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=false)
 [22m[39mSkipping description update - already synced from Kaneo
-No updates needed for task aiokd40jviyim1if9vvc2899 from issue #1
+No updates needed for task udzu61zfnyv61sc7qm5r93cp from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=false)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=false)
-[22m[39mSynced description from GitHub issue #1 to task aiokd40jviyim1if9vvc2899
+[22m[39mSynced description from GitHub issue #1 to task udzu61zfnyv61sc7qm5r93cp
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=true)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=true)
-[22m[39mSynced description from GitHub issue #1 to task d3gwvr0nhf0ovsw5yi4jmej7
+[22m[39mSynced description from GitHub issue #1 to task okjyll7xeee2l0gam4jucxey
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=true)
 [22m[39mSkipping description update - already synced from Kaneo
-No updates needed for task d3gwvr0nhf0ovsw5yi4jmej7 from issue #1
+No updates needed for task okjyll7xeee2l0gam4jucxey from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=true)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves the latest genuine github description delivery (sameVersion=true)
-[22m[39mSynced description from GitHub issue #1 to task d3gwvr0nhf0ovsw5yi4jmej7
+[22m[39mSynced description from GitHub issue #1 to task okjyll7xeee2l0gam4jucxey
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github title write without reverting the newer local value (uncertain=1)
 [22m[39mUpdating task title from GitHub: "before" → "remote-old"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github title write without reverting the newer local value (uncertain=1)
-[22m[39mSynced title from GitHub issue #1 to task f0mcbnz8dwa76ptisb16torj
+[22m[39mSynced title from GitHub issue #1 to task uzalfyfv91zb9uah74lfrtfq
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github title write without reverting the newer local value (uncertain=2)
 [22m[39mUpdating task title from GitHub: "before" → "remote-old"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github title write without reverting the newer local value (uncertain=2)
-[22m[39mSynced title from GitHub issue #1 to task xdzgzdkgyx3k8d9co52gdbxh
+[22m[39mSynced title from GitHub issue #1 to task d1q4uqkfng0627rigl5b1076
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github description write without reverting the newer local value (uncertain=1)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github description write without reverting the newer local value (uncertain=1)
-[22m[39mSynced description from GitHub issue #1 to task h42e890lp3cxlqnb6z2km5z4
+[22m[39mSynced description from GitHub issue #1 to task w1y8bc14ljq4xvxv8nuyt2q0
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github description write without reverting the newer local value (uncertain=2)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrepairs a late timed-out github description write without reverting the newer local value (uncertain=2)
-[22m[39mSynced description from GitHub issue #1 to task h7zns7ipjy688h0gbu1hs5o9
+[22m[39mSynced description from GitHub issue #1 to task aoleqxt87cd0kd901ko2j3j3
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains the uncertain intent and job when corrective provider HTTP fails
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'pahtdnk3wisa62pabcxv75w6'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'sygpba17cy7565vr2g7cpvgt'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrechecks a stale github title confirmation after a newer colliding webhook
 [22m[39mUpdating task title from GitHub: "before" → "C"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrechecks a stale github title confirmation after a newer colliding webhook
-[22m[39mSynced title from GitHub issue #1 to task q2lql8bwq4zs4tbsaj6x7o09
+[22m[39mSynced title from GitHub issue #1 to task yhvcz02yqjinyes8f7jcqzkr
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrechecks a stale github title confirmation after a newer colliding webhook
 [22m[39mSkipping title update - already synced from Kaneo
-No updates needed for task q2lql8bwq4zs4tbsaj6x7o09 from issue #1
+No updates needed for task yhvcz02yqjinyes8f7jcqzkr from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrechecks a stale github description confirmation after a newer colliding webhook
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrechecks a stale github description confirmation after a newer colliding webhook
-[22m[39mSynced description from GitHub issue #1 to task nf4zvdo21ikh1d2q8b8qtui6
+[22m[39mSynced description from GitHub issue #1 to task t4j2wspj6fi6syojlw1twkv8
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mrechecks a stale github description confirmation after a newer colliding webhook
 [22m[39mSkipping description update - already synced from Kaneo
-No updates needed for task nf4zvdo21ikh1d2q8b8qtui6 from issue #1
+No updates needed for task t4j2wspj6fi6syojlw1twkv8 from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mvalidates each changed github field when a shared confirmation GET becomes stale
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mvalidates each changed github field when a shared confirmation GET becomes stale
-[22m[39mSynced description from GitHub issue #1 to task jr3bx2v3k2wkyx2xm3ijl27s
+[22m[39mSynced description from GitHub issue #1 to task jn5uzbvot1rde4vz4x732kt9
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mvalidates each changed github field when a shared confirmation GET becomes stale
 [22m[39mUpdating task title from GitHub: "A" → "B"
@@ -164,155 +164,155 @@ No updates needed for task nf4zvdo21ikh1d2q8b8qtui6 from issue #1
 Skipping description update - already synced from Kaneo
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mvalidates each changed github field when a shared confirmation GET becomes stale
-[22m[39mSynced title from GitHub issue #1 to task jr3bx2v3k2wkyx2xm3ijl27s
+[22m[39mSynced title from GitHub issue #1 to task jn5uzbvot1rde4vz4x732kt9
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mpreserves a newer local edit committed during github provider confirmation
 [22m[39mSkipping title update - already synced from Kaneo
-No updates needed for task b2wkguf6d0s66wwqajp96dpf from issue #1
+No updates needed for task d962lp19245u5xqh4qosw0yn from issue #1
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains failed queued corrections and retries the current task value
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'wybxv055chwai24ds093snx6'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'rrmvsgx196ojsoi8x9dw70ej'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires uncertain intents after queued github correction so future genuine edits apply (uncertain=1)
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires uncertain intents after queued github correction so future genuine edits apply (uncertain=1)
-[22m[39mSynced title from GitHub issue #1 to task v60zmyi106in47hv6fzhilaa
+[22m[39mSynced title from GitHub issue #1 to task f5osi8b2piy3cm663y8euz6d
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires uncertain intents after queued github correction so future genuine edits apply (uncertain=2)
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires uncertain intents after queued github correction so future genuine edits apply (uncertain=2)
-[22m[39mSynced title from GitHub issue #1 to task yfrtghx2wpmcuxt71oauhl0l
+[22m[39mSynced title from GitHub issue #1 to task uk9nwyo9qkejmvwg0b2gs19v
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretains every captured uncertain intent when the corrective provider write fails
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'yfbgcm5kifr79vslhv8jvujw'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'b470x1th8sluboqp1ueb82kq'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mguards the github title confirmation after its integration is credentials
 [22m[39mUpdating task title from GitHub: "before" → "B"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mguards the github title confirmation after its integration is credentials
-[22m[39mSynced title from GitHub issue #1 to task cusw2hw7pgbwyv7b2dqs8h8l
+[22m[39mSynced title from GitHub issue #1 to task grc1y1oeuidry7rkx39c3h1z
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mguards the github description confirmation after its integration is credentials
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mguards the github description confirmation after its integration is credentials
-[22m[39mSynced description from GitHub issue #1 to task etdd7to90lmo6qvx9lrd4iu5
+[22m[39mSynced description from GitHub issue #1 to task cjd4yqn0rlsydmzg58sfi4rc
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/title repairs before a later field fails (inbound)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'wvwbaghh4b1fyd3znjszcul9'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'bq3d2lyd349uulobov9vhh3d'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/title repairs before a later field fails (inbound)
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/title repairs before a later field fails (inbound)
-[22m[39mSynced title from GitHub issue #1 to task t9l4jv79qoc7fqyqzt2vbc62
+[22m[39mSynced title from GitHub issue #1 to task ismfaasm2kp0hbw2iazoiigm
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/title repairs before a later field fails (queued)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'jwxxv5if07jmi61nx9zgp84g'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'c5uvtughmic97lx399tf1rdw'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/title repairs before a later field fails (queued)
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/title repairs before a later field fails (queued)
-[22m[39mSynced title from GitHub issue #1 to task g2ge5i4hx0fnk4cyzbal5k1i
+[22m[39mSynced title from GitHub issue #1 to task ulnegui2ydal4phkjkg6de1x
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/description repairs before a later field fails (inbound)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'qbru7y3acj57ye2dstytpj1p'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'd2h1uer2qg0lsr4w6l8i7yvt'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/description repairs before a later field fails (inbound)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/description repairs before a later field fails (inbound)
-[22m[39mSynced description from GitHub issue #1 to task koz3vnw3r3e56egs0g3skf0w
+[22m[39mSynced description from GitHub issue #1 to task ypt3y6hspyy78trstqzxmkom
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/description repairs before a later field fails (queued)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'l3qx9v3q9f64bo3lkwpi4rzy'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'zt83bmeb1m5ljbjn5gwcw1mt'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/description repairs before a later field fails (queued)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/description repairs before a later field fails (queued)
-[22m[39mSynced description from GitHub issue #1 to task fqjyysbcobn41lbdf1lzlp1t
+[22m[39mSynced description from GitHub issue #1 to task njt9kix6zue1cf122qrlj75u
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/state repairs before a later field fails (inbound)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'eaa9lhfvs73uxf66627rmug4'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'mw0s8bohx29023zwd8es3nlv'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful github/state repairs before a later field fails (queued)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'lg3pwo64ykzc4ykhsqau5abz'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'xw2nzefejwy89m7zkydcnjdf'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful gitea/title repairs before a later field fails (inbound)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'o5obtkh2r3418s6gkv5liqsr'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'ksynrmscu7vykl02q54214nr'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful gitea/title repairs before a later field fails (queued)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'alv8oi8szdzuhajz2n5hgdom'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'jqmx2d29rar28mfx02jjpb6o'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful gitea/description repairs before a later field fails (inbound)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'd5r9lw0b5d6ggzqeeuirrolw'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'v5awrhl9ri19uaiifz8a2h2i'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful gitea/description repairs before a later field fails (queued)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'dlqyijwlpkdjah84eouurhjm'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'jxxv29jpgeiwz1s9a7acw64t'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful gitea/state repairs before a later field fails (inbound)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'xbrknamhhibxburgte4tx4kv'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'csuwylmf32r2z0isjeih6ezh'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires successful gitea/state repairs before a later field fails (queued)
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'q5wchedi3sge6o534g7o15nn'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'gin4my08hxjq0en5nzx2k1vq'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2msettles a github/title write that becomes uncertain during correction before later genuine edits
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2msettles a github/title write that becomes uncertain during correction before later genuine edits
-[22m[39mSynced title from GitHub issue #1 to task s19tlznbc6zq2ze2x6s5oj2m
+[22m[39mSynced title from GitHub issue #1 to task c8bg87j5wplvbgimkjael961
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2msettles a github/description write that becomes uncertain during correction before later genuine edits
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2msettles a github/description write that becomes uncertain during correction before later genuine edits
-[22m[39mSynced description from GitHub issue #1 to task ip3a0ltjgqt57yfzwjyfcx4k
+[22m[39mSynced description from GitHub issue #1 to task v6ckug98ao01p0qmo5m7wbxa
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mqueues an intent inserted after the repair receipt for a fresh correction
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mqueues an intent inserted after the repair receipt for a fresh correction
-[22m[39mSynced title from GitHub issue #1 to task zblkh237vrrriu6ib0maa3wu
+[22m[39mSynced title from GitHub issue #1 to task nkg3do6dubeiw1f5ez5pn2de
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mdurably queues an uncertain standalone writer and later settles it
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mdurably queues an uncertain standalone writer and later settles it
-[22m[39mSynced title from GitHub issue #1 to task kn3g3yq0ju90vfa4if2c1h7p
+[22m[39mSynced title from GitHub issue #1 to task olsdle7ziwhgvssayy69r450
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps a github task archived when a settled echo's job retries a failed repair
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'mm2ehn7w20hdpo7ibsu4slvt'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'ftyo2rh6gnipjydtigw3hq9n'[39m }
 
 [90mstderr[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps a gitea task archived when a settled echo's job retries a failed repair
-[22m[39mDeferred issue edit failed { externalLinkId: [32m'm6ozpx6aazz8zypjqkvv3n24'[39m }
+[22m[39mDeferred issue edit failed { externalLinkId: [32m'ds4wkrqmftdv97h7yt4p5t1f'[39m }
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github title intent after repository reconfiguration (failed=false)
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github title intent after repository reconfiguration (failed=false)
-[22m[39mSynced title from GitHub issue #1 to task drj879fyv1ivbb6tu0yynu39
+[22m[39mSynced title from GitHub issue #1 to task zsnoxxbfmjs31oe4szflp6m9
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github title intent after repository reconfiguration (failed=true)
 [22m[39mUpdating task title from GitHub: "before" → "A"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github title intent after repository reconfiguration (failed=true)
-[22m[39mSynced title from GitHub issue #1 to task yi2azvs8vjpgjm2vvsulvqq1
+[22m[39mSynced title from GitHub issue #1 to task pnk5mfx3nfp0mhdx9glxlul9
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github description intent after repository reconfiguration (failed=false)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github description intent after repository reconfiguration (failed=false)
-[22m[39mSynced description from GitHub issue #1 to task v0l3jg0sg3z3d80yj8clxhdb
+[22m[39mSynced description from GitHub issue #1 to task y5l6sfxpg69vsmc8y82fbgg9
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github description intent after repository reconfiguration (failed=true)
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mretires an old github description intent after repository reconfiguration (failed=true)
-[22m[39mSynced description from GitHub issue #1 to task xcacz61nfkh6mirm7wmnsav5
+[22m[39mSynced description from GitHub issue #1 to task yvjgscso63ycdilfzub5i8mk
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github title webhook version when only the other field is confirmed
 [22m[39mUpdating task title from GitHub: "title-0" → "title-1"
@@ -322,105 +322,106 @@ No updates needed for task b2wkguf6d0s66wwqajp96dpf from issue #1
 Updating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github title webhook version when only the other field is confirmed
-[22m[39mSynced title, description from GitHub issue #1 to task tibu5ipweij9tj4hlg2y4qa9
+[22m[39mSynced title, description from GitHub issue #1 to task o98bhoc1h68s1rb4g56pysn4
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github title webhook version when only the other field is confirmed
 [22m[39mUpdating task title from GitHub: "before" → "title-2"
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github title webhook version when only the other field is confirmed
-[22m[39mSynced title from GitHub issue #1 to task tibu5ipweij9tj4hlg2y4qa9
+[22m[39mSynced title from GitHub issue #1 to task o98bhoc1h68s1rb4g56pysn4
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github description webhook version when only the other field is confirmed
 [22m[39mUpdating task title from GitHub: "title-0" → "title-1"
 Updating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github description webhook version when only the other field is confirmed
-[22m[39mSynced title, description from GitHub issue #1 to task ztqc493f1ukij0fca0chp2ay
+[22m[39mSynced title, description from GitHub issue #1 to task xk04on6ph3efgunkcffe6l52
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github description webhook version when only the other field is confirmed
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/deferred-issue-edits.test.ts[2m > [22m[2mkeeps the github description webhook version when only the other field is confirmed
-[22m[39mSynced description from GitHub issue #1 to task ztqc493f1ukij0fca0chp2ay
+[22m[39mSynced description from GitHub issue #1 to task xk04on6ph3efgunkcffe6l52
 
- [32m✓[39m ../../tests/api-integration/deferred-issue-edits.test.ts [2m([22m[2m178 tests[22m[2m)[22m[33m 29038[2mms[22m[39m
-   [33m[2m✓[22m[39m durably acknowledges an orphaned delivery and later recovers every changed field[33m 5585[2mms[22m[39m
-   [33m[2m✓[22m[39m retires uncertain intents after queued github correction so future genuine edits apply (uncertain=2)[33m 363[2mms[22m[39m
-   [33m[2m✓[22m[39m retires uncertain intents after queued gitea correction so future genuine edits apply (uncertain=1)[33m 614[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/deferred-issue-edits.test.ts [2m([22m[2m178 tests[22m[2m)[22m[33m 30041[2mms[22m[39m
+   [33m[2m✓[22m[39m durably acknowledges an orphaned delivery and later recovers every changed field[33m 5592[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds sustained gitea/title correction and durably syncs the latest task[33m 544[2mms[22m[39m
+   [33m[2m✓[22m[39m bounds sustained gitea/description correction and durably syncs the latest task[33m 715[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/github-import-bounds.test.ts
-[22m[39m[2m2026-11-18T21:45:46.401Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:45:46.402Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:45:46.402Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:26:20.447Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:26:20.448Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:26:20.448Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [31m❯[39m ../../tests/api-integration/github-import-bounds.test.ts [2m([22m[2m32 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 4343[2mms[22m[39m
-   [31m❯[39m bounded resumable GitHub import [2m(30)[22m
-     [32m✓[39m fails closed for invalid stored rules (linked=false)[32m 240[2mms[22m[39m
-[31m     [31m×[31m fails closed for invalid stored rules (linked=true)[39m[32m 90[2mms[22m[39m
-     [32m✓[39m preserves provider colors when rule checks import labels before the page[32m 158[2mms[22m[39m
-     [32m✓[39m pauses a newly imported issue that misses the outgoing rule before announcing it[32m 135[2mms[22m[39m
-     [32m✓[39m preserves new issue history across import requests[32m 213[2mms[22m[39m
-     [32m✓[39m preserves legacy-new issue history across import requests[32m 209[2mms[22m[39m
-     [32m✓[39m preserves legacy-existing issue history across import requests[32m 190[2mms[22m[39m
-     [32m✓[39m rejects an incoming rule change while fetching a page before creating tasks or consuming its cursor[32m 106[2mms[22m[39m
-     [32m✓[39m bounds each HTTP step, persists resumable state, imports every issue and retries completion without restarting[32m 238[2mms[22m[39m
-     [32m✓[39m resumes after provider failure without replaying committed pages or leaking provider errors[32m 170[2mms[22m[39m
-     [33m[2m✓[22m[39m processes all label and comment pages, applies late system labels and deduplicates comments on reimport[33m 355[2mms[22m[39m
-     [32m✓[39m does not chase comments added after the initial count or issues after the import boundary[32m 121[2mms[22m[39m
-     [32m✓[39m rolls back task, link, comments, number allocation and cursor together when saving progress fails[32m 115[2mms[22m[39m
-     [32m✓[39m rechecks workspace access on every continuation and keeps state scoped to its integration[32m 127[2mms[22m[39m
-     [32m✓[39m rejects wrong run IDs and changed repository identities without consuming old cursors[32m 128[2mms[22m[39m
-     [32m✓[39m does not commit a fetched page after the integration is disabled[32m 87[2mms[22m[39m
-     [32m✓[39m rejects invalid provider identity without advancing saved progress[32m 86[2mms[22m[39m
-     [32m✓[39m rejects invalid provider cursor without advancing saved progress[32m 91[2mms[22m[39m
-     [32m✓[39m rejects invalid provider oversized without advancing saved progress[32m 87[2mms[22m[39m
-     [32m✓[39m pauses on an empty unfinished page instead of silently dropping remaining issues[32m 87[2mms[22m[39m
-     [32m✓[39m does not loop on a repeated cursor and retains earlier pages[32m 92[2mms[22m[39m
-     [32m✓[39m finishes a disappeared source without losing other issues or modifying another project's task[32m 103[2mms[22m[39m
-     [32m✓[39m deleting an integration removes its saved progress but preserves imported tasks[32m 111[2mms[22m[39m
-     [32m✓[39m limits simultaneous imports across processes and releases slots after failure[32m 69[2mms[22m[39m
-     [32m✓[39m rejects overlapping steps for one project and permits later continuation[32m 115[2mms[22m[39m
-     [32m✓[39m coordinates webhook creation with imports so both paths create only one task and link[32m 119[2mms[22m[39m
-     [32m✓[39m announces a webhook task only after its task and link commit[32m 97[2mms[22m[39m
-     [32m✓[39m imports pull request links for tasks with excluded issue sync[32m 103[2mms[22m[39m
-     [32m✓[39m imports pull request links for tasks with paused issue sync[32m 92[2mms[22m[39m
-     [32m✓[39m continues all pull request pages and links only matching tasks in this project[32m 156[2mms[22m[39m
-   [32m✓[39m skips unlinked GitHub labels continuation data after a task moves away and back[32m 131[2mms[22m[39m
-   [32m✓[39m skips unlinked GitHub comments continuation data after a task moves away and back[32m 121[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/github-import-bounds.test.ts [2m([22m[2m32 tests[22m[2m)[22m[33m 4348[2mms[22m[39m
+   [32m✓[39m bounded resumable GitHub import [2m(30)[22m
+     [33m[2m✓[22m[39m processes all label and comment pages, applies late system labels and deduplicates comments on reimport[33m 347[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-instance-webhooks.test.ts
-[22m[39m[2m2026-11-18T21:45:55.244Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:45:55.245Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:45:55.245Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:26:29.268Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:26:29.269Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:26:29.269Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-instance-webhooks.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 7469[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-instance-webhooks.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 7532[2mms[22m[39m
    [32m✓[39m instance webhook administration [2m(7)[22m
-     [33m[2m✓[22m[39m gates every endpoint by session and instance:settings, rejecting API keys[33m 910[2mms[22m[39m
-     [33m[2m✓[22m[39m returns the normal error when a concurrent disable wins before a test enqueue[33m 342[2mms[22m[39m
-     [33m[2m✓[22m[39m returns the normal error when a concurrent delete wins before a test enqueue[33m 334[2mms[22m[39m
-     [33m[2m✓[22m[39m shows secrets once, encrypts storage, and audits create/update/rotate/delete without secrets[33m 361[2mms[22m[39m
-     [33m[2m✓[22m[39m requires encryption configuration and validates categories and destinations on create and edit[33m 327[2mms[22m[39m
+     [33m[2m✓[22m[39m gates every endpoint by session and instance:settings, rejecting API keys[33m 922[2mms[22m[39m
+     [33m[2m✓[22m[39m disables an unchanged destination during DNS failure while still validating changed URLs and re-enabling[33m 310[2mms[22m[39m
+     [33m[2m✓[22m[39m returns the normal error when a concurrent disable wins before a test enqueue[33m 340[2mms[22m[39m
+     [33m[2m✓[22m[39m returns the normal error when a concurrent delete wins before a test enqueue[33m 338[2mms[22m[39m
+     [33m[2m✓[22m[39m shows secrets once, encrypts storage, and audits create/update/rotate/delete without secrets[33m 332[2mms[22m[39m
+     [33m[2m✓[22m[39m creates and rotates webhook secrets with a file-backed encryption key[33m 303[2mms[22m[39m
+     [33m[2m✓[22m[39m requires encryption configuration and validates categories and destinations on create and edit[33m 331[2mms[22m[39m
    [32m✓[39m instance webhook delivery [2m(14)[22m
-     [33m[2m✓[22m[39m cancels an uncommitted enqueue even if it commits after disable and re-enable[33m 335[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves a committed auth change and its audit row when enqueue fails, but rolls back transactional actions[33m 492[2mms[22m[39m
-     [33m[2m✓[22m[39m delivers better-auth audit hooks and test events even when the category is unselected[33m 478[2mms[22m[39m
-     [33m[2m✓[22m[39m claims across workers once, recovers an expired lease, and bounds interrupted attempts[33m 305[2mms[22m[39m
-     [33m[2m✓[22m[39m uses rotated secrets, cancels disabled jobs, and retains only 20 completed deliveries[33m 433[2mms[22m[39m
+     [33m[2m✓[22m[39m cancels an uncommitted enqueue even if it commits after disable and re-enable[33m 326[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves a committed auth change and its audit row when enqueue fails, but rolls back transactional actions[33m 480[2mms[22m[39m
+     [33m[2m✓[22m[39m delivers better-auth audit hooks and test events even when the category is unselected[33m 482[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps actions successful when a receiver is down, retries with backoff, and stops after three attempts[33m 303[2mms[22m[39m
+     [33m[2m✓[22m[39m claims across workers once, recovers an expired lease, and bounds interrupted attempts[33m 313[2mms[22m[39m
+     [33m[2m✓[22m[39m uses rotated secrets, cancels disabled jobs, and retains only 20 completed deliveries[33m 446[2mms[22m[39m
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mmoves the task back to progress for a new branch
 [22m[39m[Push] Processing branch: kan-42-slice-2
 
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mmoves the task back to progress for a new branch
-[22m[39m[Push] No integrations found for acme/repo
+[22m[39m[Push] Found 1 integration(s) for this repo
+[Push] Trying project: KAN, pattern: {slug}-{number}
+[Push] Extracted task number: 42 for project KAN
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mmoves the task back to progress for a new branch
+[22m[39m[Push] Found task: wfq7yyxyqc6plsus7mgoo72i, current status: done
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mmoves the task back to progress for a new branch
+[22m[39m[Push] Target status: in-progress, current: done
+[Push] Updating task wfq7yyxyqc6plsus7mgoo72i status from done to in-progress
 
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
 [22m[39m[Push] Processing branch: kan-42-slice-2
 
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
-[22m[39m[Push] No integrations found for acme/repo
+[22m[39m[Push] Found 1 integration(s) for this repo
+[Push] Trying project: KAN, pattern: {slug}-{number}
+[Push] Extracted task number: 42 for project KAN
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[Push] Found task: tqx1k0rgyojmu9psapd84tn6, current status: done
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[Push] Target status: in-progress, current: done
+[Push] Updating task tqx1k0rgyojmu9psapd84tn6 status from done to in-progress
 
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
 [22m[39m[Push] Processing branch: kan-42-slice-2
 
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
-[22m[39m[Push] No integrations found for acme/repo
+[22m[39m[Push] Found 1 integration(s) for this repo
+[Push] Trying project: KAN, pattern: {slug}-{number}
+[Push] Extracted task number: 42 for project KAN
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[Push] Found task: tqx1k0rgyojmu9psapd84tn6, current status: done
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[Push] Target status: in-progress, current: done
+
+[90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgithub pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[Push] Skipping status update - already done
 
 [90mstdout[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgitea pull request task identity[2m > [22m[2mpushes to a completed task[2m > [22m[2mmoves the task back to progress for a new branch
 [22m[39m[Gitea Push] Processing branch: kan-42-slice-2
@@ -441,121 +442,45 @@ Updating task description from GitHub
 [22m[39m[Gitea Webhook] Event: pull_request
 
 [90mstderr[2m | ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22m[2mgitea pull request task identity[2m > [22m[2mrejects a signed integration that does not match the repository
-[22m[39m[Gitea Webhook] Signed integration repository mismatch { integrationId: [32m'fxtl9tw59uztmlq52jfynn6c'[39m }
+[22m[39m[Gitea Webhook] Signed integration repository mismatch { integrationId: [32m'p1ave4jjhs92h9ds21w5v35t'[39m }
 
- [31m❯[39m ../../tests/api-integration/pull-request-task-links.test.ts [2m([22m[2m71 tests[22m[2m | [22m[31m17 failed[39m[2m)[22m[33m 6251[2mms[22m[39m
-   [31m❯[39m github pull request task identity [2m(33)[22m
-[31m     [31m×[31m links remote issue 61 to task 42 without advancing local task 61[39m[32m 165[2mms[22m[39m
-[31m     [31m×[31m checks for an existing PR link only once per integration[39m[32m 88[2mms[22m[39m
-[31m     [31m×[31m does not let a separatorless task label override the linked issue[39m[32m 84[2mms[22m[39m
-[31m     [31m×[31m merges the mapped task without completing the same-numbered local task[39m[32m 89[2mms[22m[39m
-     [32m✓[39m imports a PR using the remote issue mapping[32m 116[2mms[22m[39m
-     [32m✓[39m imports an explicit task key without an issue link[32m 96[2mms[22m[39m
-     [32m✓[39m resolves issue links written inside the import transaction[32m 102[2mms[22m[39m
-     [32m✓[39m does not import a PR without a matching issue link[32m 93[2mms[22m[39m
-     [32m✓[39m preserves an existing PR association during import[32m 93[2mms[22m[39m
-[31m     [31m×[31m accepts duplicate issue links pointing to the same task[39m[32m 84[2mms[22m[39m
-[31m     [31m×[31m recognizes a project key in a conventional commit title[39m[32m 79[2mms[22m[39m
-[31m     [31m×[31m links a PR whose description contains the task link[39m[32m 84[2mms[22m[39m
-[31m     [31m×[31m prefers a mapped issue reference over a task link[39m[32m 87[2mms[22m[39m
-     [32m✓[39m skips a PR that links two tasks[32m 90[2mms[22m[39m
-     [32m✓[39m skips a PR that also links a task in another project[32m 88[2mms[22m[39m
-[31m     [31m×[31m falls back to the task link when the task key is stale[39m[32m 79[2mms[22m[39m
-     [32m✓[39m does not follow a task link into another project[32m 89[2mms[22m[39m
-     [32m✓[39m does not infer a local task from an unmapped remote issue[32m 81[2mms[22m[39m
-     [32m✓[39m does not use an issue link from another integration[32m 89[2mms[22m[39m
-     [32m✓[39m does not use a branch link as an issue link[32m 81[2mms[22m[39m
-     [32m✓[39m does not use an issue link whose task belongs to another project[32m 89[2mms[22m[39m
-     [32m✓[39m skips conflicting duplicate issue links[32m 83[2mms[22m[39m
-     [32m✓[39m skips closing references mapped to different tasks[32m 84[2mms[22m[39m
-[31m     [31m×[31m accepts multiple issue links to the same task[39m[32m 81[2mms[22m[39m
-[31m     [31m×[31m preserves explicit branch precedence over an issue reference[39m[32m 81[2mms[22m[39m
-     [32m✓[39m preserves an existing PR association on a reopened delivery[32m 83[2mms[22m[39m
-[31m     [31m×[31m moves a completed task back to review when a new PR opens[39m[32m 83[2mms[22m[39m
-     [31m❯[39m pushes to a completed task [2m(4)[22m
-[31m       [31m×[31m moves the task back to progress for a new branch[39m[32m 86[2mms[22m[39m
-       [32m✓[39m ignores a tag push[32m 79[2mms[22m[39m
-       [32m✓[39m ignores a push that deletes the branch[32m 77[2mms[22m[39m
-       [32m✓[39m keeps the task done for a push to an already linked branch[32m 83[2mms[22m[39m
-     [32m✓[39m skips ambiguous candidates across repository integrations for an unscoped delivery[32m 91[2mms[22m[39m
-     [32m✓[39m preserves an existing PR association in another integration for an unscoped delivery[32m 89[2mms[22m[39m
-   [31m❯[39m gitea pull request task identity [2m(38)[22m
-     [32m✓[39m links remote issue 61 to task 42 without advancing local task 61[32m 94[2mms[22m[39m
-     [32m✓[39m checks for an existing PR link only once per integration[32m 88[2mms[22m[39m
-     [32m✓[39m does not let a separatorless task label override the linked issue[32m 87[2mms[22m[39m
-     [32m✓[39m merges the mapped task without completing the same-numbered local task[32m 97[2mms[22m[39m
-[31m     [31m×[31m imports a PR using the remote issue mapping[39m[32m 79[2mms[22m[39m
-[31m     [31m×[31m imports an explicit task key without an issue link[39m[32m 79[2mms[22m[39m
-     [32m✓[39m resolves issue links written inside the import transaction[32m 77[2mms[22m[39m
-[31m     [31m×[31m does not import a PR without a matching issue link[39m[32m 75[2mms[22m[39m
-[31m     [31m×[31m preserves an existing PR association during import[39m[32m 80[2mms[22m[39m
-     [32m✓[39m accepts duplicate issue links pointing to the same task[32m 90[2mms[22m[39m
-     [32m✓[39m recognizes a project key in a conventional commit title[32m 89[2mms[22m[39m
-     [32m✓[39m links a PR whose description contains the task link[32m 91[2mms[22m[39m
-     [32m✓[39m prefers a mapped issue reference over a task link[32m 88[2mms[22m[39m
-     [32m✓[39m skips a PR that links two tasks[32m 78[2mms[22m[39m
-     [32m✓[39m skips a PR that also links a task in another project[32m 88[2mms[22m[39m
-     [32m✓[39m falls back to the task link when the task key is stale[32m 88[2mms[22m[39m
-     [32m✓[39m does not follow a task link into another project[32m 88[2mms[22m[39m
-     [32m✓[39m does not infer a local task from an unmapped remote issue[32m 79[2mms[22m[39m
-     [32m✓[39m does not use an issue link from another integration[32m 89[2mms[22m[39m
-     [32m✓[39m does not use a branch link as an issue link[32m 81[2mms[22m[39m
-     [32m✓[39m does not use an issue link whose task belongs to another project[32m 91[2mms[22m[39m
-     [32m✓[39m skips conflicting duplicate issue links[32m 85[2mms[22m[39m
-     [32m✓[39m skips closing references mapped to different tasks[32m 82[2mms[22m[39m
-     [32m✓[39m accepts multiple issue links to the same task[32m 88[2mms[22m[39m
-     [32m✓[39m preserves explicit branch precedence over an issue reference[32m 89[2mms[22m[39m
-     [32m✓[39m preserves an existing PR association on a reopened delivery[32m 102[2mms[22m[39m
-     [32m✓[39m moves a completed task back to review when a new PR opens[32m 94[2mms[22m[39m
-     [32m✓[39m pushes to a completed task [2m(4)[22m
-       [32m✓[39m moves the task back to progress for a new branch[32m 87[2mms[22m[39m
-       [32m✓[39m ignores a tag push[32m 76[2mms[22m[39m
-       [32m✓[39m ignores a push that deletes the branch[32m 76[2mms[22m[39m
-       [32m✓[39m keeps the task done for a push to an already linked branch[32m 93[2mms[22m[39m
-     [32m✓[39m skips ambiguous candidates across repository integrations for an unscoped delivery[32m 91[2mms[22m[39m
-     [32m✓[39m preserves an existing PR association in another integration for an unscoped delivery[32m 89[2mms[22m[39m
-     [32m✓[39m resolves a signed delivery within its integration despite another project's candidate[32m 99[2mms[22m[39m
-     [32m✓[39m does not let another integration's PR link block a signed delivery[32m 98[2mms[22m[39m
-     [32m✓[39m does not mutate another integration with the signed integration's authority[32m 91[2mms[22m[39m
-     [32m✓[39m rejects a signed integration that does not match the repository[32m 88[2mms[22m[39m
-     [32m✓[39m rejects an inactive signed integration[32m 80[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/pull-request-task-links.test.ts [2m([22m[2m71 tests[22m[2m)[22m[33m 6532[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-instance-settings.test.ts
-[22m[39m[2m2026-11-18T21:46:13.830Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:13.830Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:13.831Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:26:48.180Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:26:48.181Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:26:48.181Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/admin-instance-settings.test.ts[2m > [22m[2memail verification[2m > [22m[2mholds new password sign-ups back until the address is confirmed
-[22m[39m[2m2026-11-18T21:46:21.240Z[0m [33mWARN[0m [1m[Better Auth]:[0m Invalid password
+[22m[39m[2m2026-11-18T22:26:55.533Z[0m [33mWARN[0m [1m[Better Auth]:[0m Invalid password
 
 [90mstderr[2m | ../../tests/api-integration/admin-instance-settings.test.ts[2m > [22m[2mintegration providers[2m > [22m[2mstop acting and can't be connected while turned off
 [22m[39mFailed to deliver notification {
-  notificationId: [32m'pxc8efvlw9xhe30z43sfj5yy'[39m,
+  notificationId: [32m'rg3nia1ln9oz24c4bgoqj9pj'[39m,
   error: [32m'Outbound request failed'[39m
 }
 
- [32m✓[39m ../../tests/api-integration/admin-instance-settings.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 8014[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-instance-settings.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 7949[2mms[22m[39m
    [32m✓[39m instance settings API [2m(7)[22m
-     [33m[2m✓[22m[39m returns today's behavior on a fresh install[33m 398[2mms[22m[39m
-     [33m[2m✓[22m[39m rejects users without instance:settings and API keys[33m 519[2mms[22m[39m
-     [33m[2m✓[22m[39m saves changes, shows them in config, and audits only what changed[33m 319[2mms[22m[39m
-     [33m[2m✓[22m[39m validates values[33m 304[2mms[22m[39m
+     [33m[2m✓[22m[39m returns today's behavior on a fresh install[33m 401[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects users without instance:settings and API keys[33m 520[2mms[22m[39m
+     [33m[2m✓[22m[39m saves changes, shows them in config, and audits only what changed[33m 304[2mms[22m[39m
    [32m✓[39m registration settings [2m(2)[22m
-     [33m[2m✓[22m[39m turns off password sign-up but keeps single sign-on[33m 315[2mms[22m[39m
+     [33m[2m✓[22m[39m turns off password sign-up but keeps single sign-on[33m 325[2mms[22m[39m
    [32m✓[39m default role [2m(4)[22m
-     [33m[2m✓[22m[39m applies to password and OIDC sign-ups and admin-created users[33m 428[2mms[22m[39m
-     [33m[2m✓[22m[39m can't be a role with permissions the caller lacks[33m 478[2mms[22m[39m
+     [33m[2m✓[22m[39m applies to password and OIDC sign-ups and admin-created users[33m 419[2mms[22m[39m
+     [33m[2m✓[22m[39m can't be a role with permissions the caller lacks[33m 468[2mms[22m[39m
    [32m✓[39m email verification [2m(3)[22m
-     [33m[2m✓[22m[39m holds new password sign-ups back until the address is confirmed[33m 933[2mms[22m[39m
-     [33m[2m✓[22m[39m does not reveal existing accounts on sign-up[33m 362[2mms[22m[39m
-     [33m[2m✓[22m[39m lets marked accounts in once the setting is off[33m 472[2mms[22m[39m
+     [33m[2m✓[22m[39m holds new password sign-ups back until the address is confirmed[33m 930[2mms[22m[39m
+     [33m[2m✓[22m[39m does not reveal existing accounts on sign-up[33m 357[2mms[22m[39m
+     [33m[2m✓[22m[39m lets marked accounts in once the setting is off[33m 473[2mms[22m[39m
    [32m✓[39m workspace creation [2m(1)[22m
-     [33m[2m✓[22m[39m restricts creating workspaces to administrators[33m 501[2mms[22m[39m
+     [33m[2m✓[22m[39m restricts creating workspaces to administrators[33m 490[2mms[22m[39m
    [32m✓[39m integration providers [2m(1)[22m
-     [33m[2m✓[22m[39m stop acting and can't be connected while turned off[33m 1362[2mms[22m[39m
+     [33m[2m✓[22m[39m stop acting and can't be connected while turned off[33m 1353[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/calendar-feed.test.ts
-[22m[39m[2m2026-11-18T21:46:26.481Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:26.482Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:26.482Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:00.694Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:00.694Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:00.695Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/calendar-feed.test.ts[2m > [22m[2mAPI integration: calendar feeds[2m > [22m[2mpreserves label renames and never broadens the feed when labels are deleted
 [22m[39mbroadcastToProject called before adapter initialization
@@ -578,37 +503,62 @@ Updating task description from GitHub
 [90mstderr[2m | ../../tests/api-integration/calendar-feed.test.ts[2m > [22m[2mAPI integration: calendar feeds[2m > [22m[2mkeeps feeds stable after a task label is removed (workspace definition: false)
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/calendar-feed.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 2283[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/calendar-feed.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 2245[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-instance-roles.test.ts
-[22m[39m[2m2026-11-18T21:46:31.726Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:31.727Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:31.727Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:05.836Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:05.837Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:05.837Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/admin-instance-roles.test.ts[2m > [22m[2minstance role escalation[2m > [22m[2mlets better-auth admin endpoints assign only known roles
-[22m[39m[2m2026-11-18T21:46:37.811Z[0m [31mERROR[0m [1m[Better Auth]:[0m This role does not exist.
+[22m[39m[2m2026-11-18T22:27:11.888Z[0m [31mERROR[0m [1m[Better Auth]:[0m This role does not exist.
 
 [90mstderr[2m | ../../tests/api-integration/admin-instance-roles.test.ts[2m > [22m[2minstance role escalation[2m > [22m[2mlets better-auth admin endpoints assign only known roles
-[22m[39m[2m2026-11-18T21:46:37.813Z[0m [31mERROR[0m [1m[Better Auth]:[0m This role does not exist.
+[22m[39m[2m2026-11-18T22:27:11.890Z[0m [31mERROR[0m [1m[Better Auth]:[0m This role does not exist.
 
 [90mstderr[2m | ../../tests/api-integration/admin-instance-roles.test.ts[2m > [22m[2minstance role escalation[2m > [22m[2mlets better-auth admin endpoints assign only known roles
-[22m[39m[2m2026-11-18T21:46:37.815Z[0m [31mERROR[0m [1m[Better Auth]:[0m This role does not exist.
+[22m[39m[2m2026-11-18T22:27:11.892Z[0m [31mERROR[0m [1m[Better Auth]:[0m This role does not exist.
 
- [32m✓[39m ../../tests/api-integration/admin-instance-roles.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 4907[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-instance-roles.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 4897[2mms[22m[39m
    [32m✓[39m custom instance roles [2m(7)[22m
-     [33m[2m✓[22m[39m are created, renamed with their users, and deleted once unassigned, with audit entries[33m 444[2mms[22m[39m
-     [33m[2m✓[22m[39m reject reserved, taken, and invalid names and role management permissions[33m 321[2mms[22m[39m
-     [33m[2m✓[22m[39m grant only their permissions through the access endpoint[33m 671[2mms[22m[39m
+     [33m[2m✓[22m[39m are created, renamed with their users, and deleted once unassigned, with audit entries[33m 440[2mms[22m[39m
+     [33m[2m✓[22m[39m reject reserved, taken, and invalid names and role management permissions[33m 338[2mms[22m[39m
+     [33m[2m✓[22m[39m are listed with their user counts and filter the user directory[33m 302[2mms[22m[39m
+     [33m[2m✓[22m[39m grant only their permissions through the access endpoint[33m 666[2mms[22m[39m
      [33m[2m✓[22m[39m reject API keys, even from administrators[33m 316[2mms[22m[39m
    [32m✓[39m instance role escalation [2m(5)[22m
-     [33m[2m✓[22m[39m lets a custom role assign only roles within its own permissions[33m 309[2mms[22m[39m
-     [33m[2m✓[22m[39m keeps a custom role away from users with more permissions[33m 326[2mms[22m[39m
-     [33m[2m✓[22m[39m does not let a custom role manage roles or use better-auth admin endpoints[33m 310[2mms[22m[39m
+     [33m[2m✓[22m[39m lets a custom role assign only roles within its own permissions[33m 310[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps a custom role away from users with more permissions[33m 313[2mms[22m[39m
+     [33m[2m✓[22m[39m does not let a custom role manage roles or use better-auth admin endpoints[33m 308[2mms[22m[39m
    [32m✓[39m admin account actions [2m(2)[22m
-     [33m[2m✓[22m[39m update, deactivate, reactivate, and delete a user with one audit entry each[33m 509[2mms[22m[39m
+     [33m[2m✓[22m[39m update, deactivate, reactivate, and delete a user with one audit entry each[33m 504[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/websocket-security.test.ts
+[22m[39m[2m2026-11-18T22:27:14.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:14.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:14.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstdout[2m | ../../tests/api-integration/websocket-security.test.ts[2m > [22m[2mproject WebSocket read authorization[2m > [22m[2mstops delivery after an API key is scope without revoking the owner's cookie connection
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api-integration/websocket-security.test.ts[2m > [22m[2mproject WebSocket read authorization[2m > [22m[2mstops delivery after an API key is disabled without revoking the owner's cookie connection
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api-integration/websocket-security.test.ts[2m > [22m[2mproject WebSocket read authorization[2m > [22m[2mstops delivery after an API key is expired without revoking the owner's cookie connection
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api-integration/websocket-security.test.ts[2m > [22m[2mproject WebSocket read authorization[2m > [22m[2mstops delivery after an API key is deleted without revoking the owner's cookie connection
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api-integration/websocket-security.test.ts[2m > [22m[2mproject WebSocket read authorization[2m > [22m[2mstops delivery after a role's read grants are removed
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api-integration/websocket-security.test.ts[2m > [22m[2marchived workspaces[2m > [22m[2mcloses project sockets a missed revocation left open
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api-integration/websocket-security.test.ts [2m([22m[2m35 tests[22m[2m)[22m[33m 4094[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/authorization-boundaries.test.ts
-[22m[39m[2m2026-11-18T21:46:41.223Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:41.223Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:41.224Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:23.126Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:23.127Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:23.127Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/authorization-boundaries.test.ts[2m > [22m[2mevery assignee write path is workspace scoped[2m > [22m[2mimports the valid tasks and fails only the one with a bad assignee
 [22m[39mbroadcastToProject called before adapter initialization
@@ -622,11 +572,11 @@ Updating task description from GitHub
 [90mstderr[2m | ../../tests/api-integration/authorization-boundaries.test.ts[2m > [22m[2mevery assignee write path is workspace scoped[2m > [22m[2massigns a padded but valid member id
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/authorization-boundaries.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 1550[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/authorization-boundaries.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 1534[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task.test.ts
-[22m[39m[2m2026-11-18T21:46:46.545Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:46.546Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:46.546Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:28.381Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:28.382Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:28.382Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/task.test.ts[2m > [22m[2mAPI integration: task creation[2m > [22m[2mcreates a task with the matching column, assignee, and next number
 [22m[39mbroadcastToProject called before adapter initialization
@@ -646,19 +596,20 @@ Updating task description from GitHub
 [90mstderr[2m | ../../tests/api-integration/task.test.ts[2m > [22m[2mAPI integration: task creation[2m > [22m[2mcreates an unassigned task when the assignee userId is whitespace only
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/task.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1082[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1062[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/device-authorization.test.ts
-[22m[39m[2m2026-11-18T21:46:51.374Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:51.375Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:51.375Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:33.202Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:33.203Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:33.203Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/device-authorization.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1252[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/device-authorization.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1276[2mms[22m[39m
    [32m✓[39m API integration: device authorization (RFC 8628) [2m(7)[22m
-     [33m[2m✓[22m[39m issues an access token after approval and allows API access with Bearer[33m 424[2mms[22m[39m
+     [33m[2m✓[22m[39m issues an access token after approval and allows API access with Bearer[33m 431[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects an invalid Bearer token even when a valid session cookie is present[32m 300[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-access.test.ts
-[22m[39m[2m2026-11-18T21:46:55.542Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:46:55.543Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:46:55.543Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:37.402Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:37.403Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:37.403Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/project-access.test.ts[2m > [22m[2mproject access enforcement[2m > [22m[2munassigns a task moved into a project its assignee can't see
 [22m[39mbroadcastToProject called before adapter initialization
@@ -680,110 +631,98 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/project-access.test.ts[2m > [22m[2mproject access enforcement[2m > [22m[2mkeeps tasks editable after their assignee loses access
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/project-access.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1735[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-access.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1839[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/manual-external-links.test.ts
-[22m[39m[2m2026-11-18T21:47:02.019Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:02.020Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:02.020Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:44.009Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:44.010Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:44.010Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/manual-external-links.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 1600[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/manual-external-links.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 1621[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-user-sessions-api-keys.test.ts
-[22m[39m[2m2026-11-18T21:47:06.508Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:06.508Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:06.509Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:48.517Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:48.518Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:48.518Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-user-sessions-api-keys.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 5400[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-user-sessions-api-keys.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 5423[2mms[22m[39m
    [32m✓[39m API integration: admin access to sessions and API keys [2m(9)[22m
      [33m[2m✓[22m[39m rejects non-admins, API keys, and anonymous callers on every route[33m 755[2mms[22m[39m
-     [33m[2m✓[22m[39m lists a user's sessions without tokens[33m 554[2mms[22m[39m
-     [33m[2m✓[22m[39m signs out one session at once and audits it once, without the token[33m 559[2mms[22m[39m
-     [33m[2m✓[22m[39m refuses the admin's current session and sessions of other users[33m 655[2mms[22m[39m
-     [33m[2m✓[22m[39m signs out every session of a user and audits it once[33m 573[2mms[22m[39m
-     [33m[2m✓[22m[39m keeps the admin's own current session when they sign themselves out everywhere[33m 644[2mms[22m[39m
-     [33m[2m✓[22m[39m lists API keys as metadata only[33m 552[2mms[22m[39m
-     [33m[2m✓[22m[39m revokes a user's API key at once and audits it once[33m 556[2mms[22m[39m
-     [33m[2m✓[22m[39m does not revoke a key through another user's path[33m 550[2mms[22m[39m
+     [33m[2m✓[22m[39m lists a user's sessions without tokens[33m 562[2mms[22m[39m
+     [33m[2m✓[22m[39m signs out one session at once and audits it once, without the token[33m 564[2mms[22m[39m
+     [33m[2m✓[22m[39m refuses the admin's current session and sessions of other users[33m 664[2mms[22m[39m
+     [33m[2m✓[22m[39m signs out every session of a user and audits it once[33m 572[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the admin's own current session when they sign themselves out everywhere[33m 643[2mms[22m[39m
+     [33m[2m✓[22m[39m lists API keys as metadata only[33m 550[2mms[22m[39m
+     [33m[2m✓[22m[39m revokes a user's API key at once and audits it once[33m 568[2mms[22m[39m
+     [33m[2m✓[22m[39m does not revoke a key through another user's path[33m 542[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-reorder.test.ts
-[22m[39m[2m2026-11-18T21:47:16.413Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:16.414Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:16.414Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:27:58.472Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:27:58.473Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:27:58.473Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/project-reorder.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1327[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-reorder.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1340[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-user-listing.test.ts
-[22m[39m[2m2026-11-18T21:47:21.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:21.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:21.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:03.551Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:03.552Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:03.552Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-user-listing.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 921[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-user-listing.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 927[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-imported-link.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1267[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-related-pages.test.ts
-[22m[39m[2m2026-11-18T21:47:26.129Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:26.130Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:26.130Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:10.181Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:10.182Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:10.183Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/task-related-pages.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 5391[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-related-pages.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 5362[2mms[22m[39m
    [32m✓[39m bounded board related pages [2m(6)[22m
-     [33m[2m✓[22m[39m returns bounded rows and all related records on the public=false path[33m 371[2mms[22m[39m
-     [33m[2m✓[22m[39m limits expensive list queries with a retryable database timeout[33m 3145[2mms[22m[39m
- [31m❯[39m ../../tests/api-integration/integration-sync-imported-link.test.ts [2m([22m[2m12 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[33m 1260[2mms[22m[39m
-   [32m✓[39m gitea manual refresh commits its final label eligibility before publishing[32m 183[2mms[22m[39m
-   [32m✓[39m gitlab manual refresh commits its final label eligibility before publishing[32m 100[2mms[22m[39m
-[31m   [31m×[31m github webhook imports links with their committed outgoing scope (qualifying=true)[39m[32m 88[2mms[22m[39m
-[31m   [31m×[31m github webhook imports links with their committed outgoing scope (qualifying=false)[39m[32m 86[2mms[22m[39m
-   [32m✓[39m gitea webhook imports links with their committed outgoing scope (qualifying=true)[32m 104[2mms[22m[39m
-   [32m✓[39m gitea manual imports links with their committed outgoing scope (qualifying=true)[32m 96[2mms[22m[39m
-   [32m✓[39m gitea webhook imports links with their committed outgoing scope (qualifying=false)[32m 102[2mms[22m[39m
-   [32m✓[39m gitea manual imports links with their committed outgoing scope (qualifying=false)[32m 108[2mms[22m[39m
-   [32m✓[39m gitlab webhook imports links with their committed outgoing scope (qualifying=true)[32m 96[2mms[22m[39m
-   [32m✓[39m gitlab manual imports links with their committed outgoing scope (qualifying=true)[32m 94[2mms[22m[39m
-   [32m✓[39m gitlab webhook imports links with their committed outgoing scope (qualifying=false)[32m 99[2mms[22m[39m
-   [32m✓[39m gitlab manual imports links with their committed outgoing scope (qualifying=false)[32m 101[2mms[22m[39m
+     [33m[2m✓[22m[39m returns bounded rows and all related records on the public=false path[33m 359[2mms[22m[39m
+     [33m[2m✓[22m[39m limits expensive list queries with a retryable database timeout[33m 3140[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/notification-read-permissions.test.ts
-[22m[39m[2m2026-11-18T21:47:37.215Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:37.216Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:37.216Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:19.263Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:19.264Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:19.264Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/notification-read-permissions.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 2329[2mms[22m[39m
-   [32m✓[39m notification response current read grants [2m(16)[22m
-     [33m[2m✓[22m[39m api-key filters full rows with {}[33m 341[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/notification-read-permissions.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 2337[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/invitation-owner-api-key.test.ts
-[22m[39m[2m2026-11-18T21:47:43.368Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:43.368Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:43.369Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:25.444Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:25.444Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:25.445Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/invitation-owner-api-key.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 4692[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/invitation-owner-api-key.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 4666[2mms[22m[39m
    [32m✓[39m invitation ownership with API keys [2m(4)[22m
-     [33m[2m✓[22m[39m checks the key owner's current membership despite an owner cookie (bearer=false)[33m 696[2mms[22m[39m
-     [33m[2m✓[22m[39m checks the key owner's current membership despite an owner cookie (bearer=true)[33m 552[2mms[22m[39m
-     [33m[2m✓[22m[39m enforces invitation scope before owner grants and preserves scoped/legacy owner keys (bearer=false)[33m 540[2mms[22m[39m
-     [33m[2m✓[22m[39m enforces invitation scope before owner grants and preserves scoped/legacy owner keys (bearer=true)[33m 536[2mms[22m[39m
+     [33m[2m✓[22m[39m checks the key owner's current membership despite an owner cookie (bearer=false)[33m 698[2mms[22m[39m
+     [33m[2m✓[22m[39m checks the key owner's current membership despite an owner cookie (bearer=true)[33m 538[2mms[22m[39m
+     [33m[2m✓[22m[39m enforces invitation scope before owner grants and preserves scoped/legacy owner keys (bearer=false)[33m 543[2mms[22m[39m
+     [33m[2m✓[22m[39m enforces invitation scope before owner grants and preserves scoped/legacy owner keys (bearer=true)[33m 537[2mms[22m[39m
    [32m✓[39m API key invitation and removal targets [2m(4)[22m
-     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=false, role=admin, owner)[33m 611[2mms[22m[39m
-     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=false, role=owner)[33m 585[2mms[22m[39m
-     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=true, role=admin, owner)[33m 590[2mms[22m[39m
-     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=true, role=owner)[33m 580[2mms[22m[39m
+     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=false, role=admin, owner)[33m 608[2mms[22m[39m
+     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=false, role=owner)[33m 581[2mms[22m[39m
+     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=true, role=admin, owner)[33m 587[2mms[22m[39m
+     [33m[2m✓[22m[39m does not inherit an active workspace (bearer=true, role=owner)[33m 572[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/not-found-status-codes.test.ts
-[22m[39m[2m2026-11-18T21:47:51.132Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:51.133Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:51.133Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:33.136Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:33.136Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:33.137Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/not-found-status-codes.test.ts[2m > [22m[2mmissing and deleted resources return 404[2m > [22m[2mreturns 404 for a deleted task
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/not-found-status-codes.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1552[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/not-found-status-codes.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1572[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/read-permissions.test.ts
-[22m[39m[2m2026-11-18T21:47:57.275Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:47:57.276Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:47:57.277Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:39.280Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:39.280Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:39.281Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/read-permissions.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 3621[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/read-permissions.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 3753[2mms[22m[39m
    [32m✓[39m workspace read permissions [2m(15)[22m
-     [33m[2m✓[22m[39m api-key enforces read grants {}[33m 471[2mms[22m[39m
-     [33m[2m✓[22m[39m api-key enforces read grants {"project":["read"]}[33m 320[2mms[22m[39m
-     [33m[2m✓[22m[39m api-key enforces read grants {"project":["read"],"task":["read"],"label":["read"],"workspace":["read"]}[33m 349[2mms[22m[39m
+     [33m[2m✓[22m[39m api-key enforces read grants {}[33m 458[2mms[22m[39m
+     [33m[2m✓[22m[39m api-key enforces read grants {"label":["read"]}[33m 385[2mms[22m[39m
+     [33m[2m✓[22m[39m api-key enforces read grants {"project":["read"]}[33m 331[2mms[22m[39m
+     [33m[2m✓[22m[39m api-key enforces read grants {"project":["read"],"task":["read"],"label":["read"],"workspace":["read"]}[33m 344[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1908[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project.test.ts
-[22m[39m[2m2026-11-18T21:48:04.673Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:04.674Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:04.674Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:49.429Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:49.430Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:49.430Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/project.test.ts[2m > [22m[2mAPI integration: project creation[2m > [22m[2mrejects renaming a project to a key already used in the workspace
 [22m[39mbroadcastToProject called before adapter initialization
@@ -791,82 +730,66 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/project.test.ts[2m > [22m[2mAPI integration: project creation[2m > [22m[2mrejects renaming a project to a key already used in the workspace
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/project.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 807[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 827[2mms[22m[39m
 [90mstdout[2m | ../../tests/api-integration/provider-board-live-updates.test.ts[2m > [22m[2mannounces committed github text edits to observing boards
 [22m[39mUpdating task title from GitHub: "Before" → "After"
 Updating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/provider-board-live-updates.test.ts[2m > [22m[2mannounces committed github text edits to observing boards
-[22m[39mSynced title, description from GitHub issue #1 to task dgcxn3jh12aj1w2gj2v1wsnv
+[22m[39mSynced title, description from GitHub issue #1 to task axg1974q4xub1536uxs3ne9d
 
- [32m✓[39m ../../tests/api-integration/provider-board-live-updates.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1259[2mms[22m[39m
- [31m❯[39m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts [2m([22m[2m15 tests[22m[2m | [22m[31m5 failed[39m[2m)[22m[33m 1724[2mms[22m[39m
-[31m   [31m×[31m guards github issue-opened writes in the excluded case[39m[32m 159[2mms[22m[39m
-[31m   [31m×[31m guards github issue-opened writes in the eligible case[39m[32m 88[2mms[22m[39m
-[31m   [31m×[31m guards github issue-opened writes in the before-write case[39m[32m 86[2mms[22m[39m
-[31m   [31m×[31m guards github issue-opened writes in the after-label case[39m[32m 83[2mms[22m[39m
-[31m   [31m×[31m guards github issue-opened writes in the failure case[39m[32m 83[2mms[22m[39m
-   [32m✓[39m guards gitea issue-opened writes in the excluded case[32m 106[2mms[22m[39m
-   [32m✓[39m guards gitea issue-opened writes in the eligible case[32m 126[2mms[22m[39m
-   [32m✓[39m guards gitea issue-opened writes in the before-write case[32m 116[2mms[22m[39m
-   [32m✓[39m guards gitea issue-opened writes in the after-label case[32m 130[2mms[22m[39m
-   [32m✓[39m guards gitea issue-opened writes in the failure case[32m 125[2mms[22m[39m
-   [32m✓[39m guards gitlab issue-opened writes in the excluded case[32m 94[2mms[22m[39m
-   [32m✓[39m guards gitlab issue-opened writes in the eligible case[32m 128[2mms[22m[39m
-   [32m✓[39m guards gitlab issue-opened writes in the before-write case[32m 108[2mms[22m[39m
-   [32m✓[39m guards gitlab issue-opened writes in the after-label case[32m 171[2mms[22m[39m
-   [32m✓[39m guards gitlab issue-opened writes in the failure case[32m 118[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/provider-board-live-updates.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1247[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/workspace-activity.test.ts
-[22m[39m[2m2026-11-18T21:48:13.949Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:13.950Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:13.950Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:28:56.321Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:28:56.322Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:28:56.322Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/workspace-activity.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 848[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/workspace-activity.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 868[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-role.test.ts
-[22m[39m[2m2026-11-18T21:48:17.720Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:17.721Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:17.721Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:00.063Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:00.064Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:00.064Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-role.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 7245[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-role.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 7281[2mms[22m[39m
    [32m✓[39m API integration: /admin/set-role [2m(10)[22m
-     [33m[2m✓[22m[39m rejects setting your own role to user[33m 390[2mms[22m[39m
-     [33m[2m✓[22m[39m allows managing another user but preserves the remaining admin[33m 491[2mms[22m[39m
-     [33m[2m✓[22m[39m counts an admin stored as a role list as remaining[33m 461[2mms[22m[39m
-     [33m[2m✓[22m[39m denies a demoted admin even with their old session cookie[33m 450[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves an administrator when admins concurrently demote each other[33m 459[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects setting your own role to user[33m 386[2mms[22m[39m
+     [33m[2m✓[22m[39m allows managing another user but preserves the remaining admin[33m 480[2mms[22m[39m
+     [33m[2m✓[22m[39m counts an admin stored as a role list as remaining[33m 465[2mms[22m[39m
+     [33m[2m✓[22m[39m denies a demoted admin even with their old session cookie[33m 456[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves an administrator when admins concurrently demote each other[33m 465[2mms[22m[39m
    [32m✓[39m API integration: /admin/update-user [2m(10)[22m
-     [33m[2m✓[22m[39m allows managing another user but preserves the remaining admin[33m 467[2mms[22m[39m
-     [33m[2m✓[22m[39m counts an admin stored as a role list as remaining[33m 451[2mms[22m[39m
-     [33m[2m✓[22m[39m denies a demoted admin even with their old session cookie[33m 447[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves an administrator when admins concurrently demote each other[33m 453[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/label-live-updates.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 498[2mms[22m[39m
+     [33m[2m✓[22m[39m allows managing another user but preserves the remaining admin[33m 470[2mms[22m[39m
+     [33m[2m✓[22m[39m counts an admin stored as a role list as remaining[33m 477[2mms[22m[39m
+     [33m[2m✓[22m[39m denies a demoted admin even with their old session cookie[33m 449[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves an administrator when admins concurrently demote each other[33m 455[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/label-live-updates.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 492[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-user-creation.test.ts
-[22m[39m[2m2026-11-18T21:48:28.937Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:28.938Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:28.938Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:11.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:11.288Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:11.288Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-user-creation.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 4033[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-user-creation.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 4045[2mms[22m[39m
    [32m✓[39m POST /api/admin/users [2m(8)[22m
-     [33m[2m✓[22m[39m creates the account without a password and emails a link to set one[33m 792[2mms[22m[39m
-     [33m[2m✓[22m[39m rejects a duplicate email regardless of case[33m 459[2mms[22m[39m
-     [33m[2m✓[22m[39m rejects invalid input[33m 467[2mms[22m[39m
-     [33m[2m✓[22m[39m tells the administrator when email delivery is not configured[33m 457[2mms[22m[39m
-     [33m[2m✓[22m[39m reports a failed delivery but keeps the account[33m 488[2mms[22m[39m
-     [33m[2m✓[22m[39m creates single sign-on accounts when password registration is disabled[33m 456[2mms[22m[39m
-     [33m[2m✓[22m[39m is not blocked by closed registration[33m 461[2mms[22m[39m
-     [33m[2m✓[22m[39m rejects disposable addresses on Kaneo Cloud[33m 451[2mms[22m[39m
+     [33m[2m✓[22m[39m creates the account without a password and emails a link to set one[33m 803[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects a duplicate email regardless of case[33m 466[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects invalid input[33m 477[2mms[22m[39m
+     [33m[2m✓[22m[39m tells the administrator when email delivery is not configured[33m 462[2mms[22m[39m
+     [33m[2m✓[22m[39m reports a failed delivery but keeps the account[33m 467[2mms[22m[39m
+     [33m[2m✓[22m[39m creates single sign-on accounts when password registration is disabled[33m 458[2mms[22m[39m
+     [33m[2m✓[22m[39m is not blocked by closed registration[33m 463[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects disposable addresses on Kaneo Cloud[33m 448[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-user-account-guards.test.ts
-[22m[39m[2m2026-11-18T21:48:36.792Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:36.793Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:36.793Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:19.175Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:19.176Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:19.176Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-user-account-guards.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 748[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-user-account-guards.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 756[2mms[22m[39m
    [32m✓[39m admin account guards [2m(4)[22m
-     [33m[2m✓[22m[39m rejects self-reactivation without changing the account or audit log[33m 331[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects self-reactivation without changing the account or audit log[33m 337[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/asset-finalization.test.ts
-[22m[39m[2m2026-11-18T21:48:41.310Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:41.311Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:41.311Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:23.688Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:23.689Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:23.689Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/asset-finalization.test.ts[2m > [22m[2masset finalization proof[2m > [22m[2mfails closed without provider details when head fails
 [22m[39mUnable to verify uploaded object: { name: [32m'Error'[39m }
@@ -874,78 +797,78 @@ Updating task description from GitHub
 [90mstderr[2m | ../../tests/api-integration/asset-finalization.test.ts[2m > [22m[2masset finalization proof[2m > [22m[2mfails closed without provider details when delete fails
 [22m[39mUnable to remove oversized uploaded object: { name: [32m'Error'[39m }
 
- [32m✓[39m ../../tests/api-integration/asset-finalization.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1245[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/date-only-reminders.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1018[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/task-reorder.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 848[2mms[22m[39m
-   [33m[2m✓[22m[39m atomically reorders more than 1,000 supported cards[33m 424[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/asset-finalization.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1261[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/date-only-reminders.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1046[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-reorder.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 855[2mms[22m[39m
+   [33m[2m✓[22m[39m atomically reorders more than 1,000 supported cards[33m 426[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/invitation-owner-authorization.test.ts
-[22m[39m[2m2026-11-18T21:48:49.861Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:48:49.862Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:48:49.862Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:32.217Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:32.218Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:32.218Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/invitation-owner-authorization.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 8038[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/invitation-owner-authorization.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 8088[2mms[22m[39m
    [32m✓[39m invitation ownership authorization [2m(13)[22m
-     [33m[2m✓[22m[39m denies all owner role shapes before persistence or email for admin[33m 923[2mms[22m[39m
-     [33m[2m✓[22m[39m denies all owner role shapes before persistence or email for recruiter[33m 666[2mms[22m[39m
-     [33m[2m✓[22m[39m checks bearer sessions and the active workspace before provider validation[33m 505[2mms[22m[39m
-     [33m[2m✓[22m[39m allows a true owner to grant normalized multi-role ownership[33m 707[2mms[22m[39m
-     [33m[2m✓[22m[39m allows a true member,owner to grant normalized multi-role ownership[33m 719[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves regular invitations, multiple roles and selected project access (member)[33m 698[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves regular invitations, multiple roles and selected project access ( member, recruiter )[33m 710[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves regular invitations, multiple roles and selected project access ([ 'member', ' recruiter ' ])[33m 688[2mms[22m[39m
-     [33m[2m✓[22m[39m normalizes ownership before enforcing the owner project-access invariant[33m 498[2mms[22m[39m
-     [33m[2m✓[22m[39m retains provider validation for malformed role shapes (null)[33m 476[2mms[22m[39m
-     [33m[2m✓[22m[39m retains provider validation for malformed role shapes (3)[33m 470[2mms[22m[39m
-     [33m[2m✓[22m[39m retains provider validation for malformed role shapes ({ role: 'owner' })[33m 484[2mms[22m[39m
-     [33m[2m✓[22m[39m retains provider validation for malformed role shapes ([ 'member', 3 ])[33m 493[2mms[22m[39m
+     [33m[2m✓[22m[39m denies all owner role shapes before persistence or email for admin[33m 926[2mms[22m[39m
+     [33m[2m✓[22m[39m denies all owner role shapes before persistence or email for recruiter[33m 691[2mms[22m[39m
+     [33m[2m✓[22m[39m checks bearer sessions and the active workspace before provider validation[33m 490[2mms[22m[39m
+     [33m[2m✓[22m[39m allows a true owner to grant normalized multi-role ownership[33m 719[2mms[22m[39m
+     [33m[2m✓[22m[39m allows a true member,owner to grant normalized multi-role ownership[33m 713[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves regular invitations, multiple roles and selected project access (member)[33m 714[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves regular invitations, multiple roles and selected project access ( member, recruiter )[33m 699[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves regular invitations, multiple roles and selected project access ([ 'member', ' recruiter ' ])[33m 695[2mms[22m[39m
+     [33m[2m✓[22m[39m normalizes ownership before enforcing the owner project-access invariant[33m 497[2mms[22m[39m
+     [33m[2m✓[22m[39m retains provider validation for malformed role shapes (null)[33m 480[2mms[22m[39m
+     [33m[2m✓[22m[39m retains provider validation for malformed role shapes (3)[33m 477[2mms[22m[39m
+     [33m[2m✓[22m[39m retains provider validation for malformed role shapes ({ role: 'owner' })[33m 501[2mms[22m[39m
+     [33m[2m✓[22m[39m retains provider validation for malformed role shapes ([ 'member', 3 ])[33m 485[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/custom-field-hidden-options.test.ts
-[22m[39m[2m2026-11-18T21:49:01.624Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:01.625Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:01.625Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:44.074Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:44.075Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:44.075Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/custom-field-hidden-options.test.ts[2m > [22m[2mhidden custom field options[2m > [22m[2mrejects a hidden option on a dropdown and in task creation
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/custom-field-hidden-options.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 936[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/billing-webhook.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 445[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/custom-field-hidden-options.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 948[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/billing-webhook.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 457[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/billing-delete-guard.test.ts
-[22m[39m[2m2026-11-18T21:49:07.334Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:07.335Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:07.335Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:49.829Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:49.829Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:49.830Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
  [32m✓[39m ../../tests/api-integration/billing-delete-guard.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 711[2mms[22m[39m
    [32m✓[39m API integration: deleting paid workspaces [2m(4)[22m
-     [33m[2m✓[22m[39m refuses workspace deletion through the API while the subscription is active[33m 386[2mms[22m[39m
+     [33m[2m✓[22m[39m refuses workspace deletion through the API while the subscription is active[33m 388[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/asset-read-permissions.test.ts
-[22m[39m[2m2026-11-18T21:49:11.842Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:11.843Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:11.843Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:29:54.286Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:29:54.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:29:54.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/asset-read-permissions.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1730[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/asset-read-permissions.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1746[2mms[22m[39m
    [32m✓[39m private asset current grants [2m(12)[22m
-     [33m[2m✓[22m[39m api-key enforces private surface grants {}[33m 312[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/inbound-state-echo.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 521[2mms[22m[39m
+     [33m[2m✓[22m[39m api-key enforces private surface grants {}[33m 326[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/inbound-state-echo.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 524[2mms[22m[39m
 [90mstdout[2m | ../../tests/api-integration/github-description-sync.test.ts[2m > [22m[2mGitHub description round trip[2m > [22m[2mignores the echoed body even after the two-second sync window
 [22m[39mSkipping description update - already synced from Kaneo
-No updates needed for task f5rj8mwid8zxvzdebgwcxfct from issue #1
+No updates needed for task dxk6n9ywt2g3f7c4xv34eoo4 from issue #1
 
 [90mstdout[2m | ../../tests/api-integration/github-description-sync.test.ts[2m > [22m[2mGitHub description round trip[2m > [22m[2maccepts a real GitHub edit without importing the generated footer
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/github-description-sync.test.ts[2m > [22m[2mGitHub description round trip[2m > [22m[2maccepts a real GitHub edit without importing the generated footer
-[22m[39mSynced description from GitHub issue #1 to task lifyzeay3okk7md53kukjvq7
+[22m[39mSynced description from GitHub issue #1 to task pzg59r9k1w5019aycv4p91nn
 
 [90mstdout[2m | ../../tests/api-integration/github-description-sync.test.ts[2m > [22m[2mGitHub description round trip[2m > [22m[2mpreserves a footer mentioning a different task
 [22m[39mUpdating task description from GitHub
 
 [90mstdout[2m | ../../tests/api-integration/github-description-sync.test.ts[2m > [22m[2mGitHub description round trip[2m > [22m[2mpreserves a footer mentioning a different task
-[22m[39mSynced description from GitHub issue #1 to task j4nyqswnc0oua0jk3u1gg83b
+[22m[39mSynced description from GitHub issue #1 to task xvrs9x24swsa4varxsqb0xow
 
- [32m✓[39m ../../tests/api-integration/github-description-sync.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 367[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/github-description-sync.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 363[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/column-slug.test.ts
-[22m[39m[2m2026-11-18T21:49:19.998Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:20.000Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:20.000Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:02.422Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:02.423Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:02.423Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/column-slug.test.ts[2m > [22m[2mcolumn slugs[2m > [22m[2mkeeps the slug and task statuses when a column is renamed
 [22m[39mbroadcastToProject called before adapter initialization
@@ -974,11 +897,11 @@ No updates needed for task f5rj8mwid8zxvzdebgwcxfct from issue #1
 [90mstderr[2m | ../../tests/api-integration/column-slug.test.ts[2m > [22m[2mcolumn slugs[2m > [22m[2mgives concurrent creates distinct slugs and positions
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/column-slug.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 612[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/column-slug.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 576[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/comment-attribution.test.ts
-[22m[39m[2m2026-11-18T21:49:24.361Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:24.362Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:24.362Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:06.728Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:06.729Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:06.729Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/comment-attribution.test.ts[2m > [22m[2mexternal comment attribution[2m > [22m[2mblocks ordinary member impersonation through planka but allows their own comments
 [22m[39mbroadcastToProject called before adapter initialization
@@ -992,44 +915,44 @@ No updates needed for task f5rj8mwid8zxvzdebgwcxfct from issue #1
 [90mstderr[2m | ../../tests/api-integration/comment-attribution.test.ts[2m > [22m[2mexternal comment attribution[2m > [22m[2mrequires explicit import permission on an admin's API key (granted=true)
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/comment-attribution.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 684[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/comment-attribution.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 705[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/file-backed-secrets.test.ts
-[22m[39m[2m2026-11-18T21:49:28.846Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:28.847Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:28.847Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:11.203Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:11.203Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:11.204Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
  [32m✓[39m ../../tests/api-integration/file-backed-secrets.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 92[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-email-change.test.ts
-[22m[39m[2m2026-11-18T21:49:32.646Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:32.647Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:32.647Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:15.047Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:15.048Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:15.048Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-email-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1077[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-email-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1039[2mms[22m[39m
    [32m✓[39m API integration: admin email change [2m(3)[22m
-     [33m[2m✓[22m[39m clears emailVerified when an administrator changes a user's email[33m 501[2mms[22m[39m
+     [33m[2m✓[22m[39m clears emailVerified when an administrator changes a user's email[33m 465[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/config.test.ts
-[22m[39m[2m2026-11-18T21:49:37.459Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:37.460Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:37.460Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:19.807Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:19.808Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:19.808Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/config.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 165[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/config.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 158[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/custom-oauth-id-token.test.ts
-[22m[39m[2m2026-11-18T21:49:41.365Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:41.366Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:41.366Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:23.744Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:23.745Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:23.745Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/custom-oauth-id-token.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 366[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/instance-admin-workspace-access.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 280[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/custom-oauth-id-token.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 370[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/instance-admin-workspace-access.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 285[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/workflow-rule-event-type.test.ts
-[22m[39m[2m2026-11-18T21:49:45.607Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:45.608Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:45.608Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:27.977Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:27.978Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:27.978Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/workflow-rule-event-type.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 304[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/workflow-rule-event-type.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 309[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-import-order.test.ts
-[22m[39m[2m2026-11-18T21:49:50.511Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:50.512Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:50.512Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:30:32.890Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:32.891Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:32.891Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/task-import-order.test.ts[2m > [22m[2mtask import[2m > [22m[2mkeeps the file order and appends after existing tasks
 [22m[39mbroadcastToProject called before adapter initialization
@@ -1043,460 +966,23 @@ No updates needed for task f5rj8mwid8zxvzdebgwcxfct from issue #1
 [90mstderr[2m | ../../tests/api-integration/task-import-order.test.ts[2m > [22m[2mtask import[2m > [22m[2mkeeps the file order and appends after existing tasks
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/task-import-order.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 314[2mms[22m[39m
-   [32m✓[39m task import [2m(1)[22m
-     [33m[2m✓[22m[39m keeps the file order and appends after existing tasks[33m 312[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-import-order.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 290[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/password-reset-disabled.test.ts
-[22m[39m[2m2026-11-18T21:49:53.721Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T21:49:53.722Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T21:49:53.722Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
-
- [32m✓[39m ../../tests/api-integration/password-reset-disabled.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 36[2mms[22m[39m
-
-[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 25 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/github-import-bounds.test.ts[2m > [22mbounded resumable GitHub import[2m > [22mfails closed for invalid stored rules (linked=true)
-[31m[1mReferenceError[22m: project is not defined[39m
-[36m [2m❯[22m ../../tests/api-integration/github-import-bounds.test.ts:[2m173:24[22m[39m
-    [90m171|[39m           .insert(schema.taskTable)
-    [90m172|[39m           .values({
-    [90m173|[39m             projectId: project.id,
-    [90m   |[39m                        [31m^[39m
-    [90m174|[39m             title: "Existing task",
-    [90m175|[39m             number: 1,
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-imported-link.test.ts[2m > [22mgithub webhook imports links with their committed outgoing scope (qualifying=true)
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-imported-link.test.ts[2m > [22mgithub webhook imports links with their committed outgoing scope (qualifying=false)
-[31m[1mAssertionError[22m: expected undefined to be defined[39m
-[36m [2m❯[22m ../../tests/api-integration/integration-sync-imported-link.test.ts:[2m266:18[22m[39m
-    [90m264|[39m       );
-    [90m265|[39m     const link = (await db.query.externalLinkTable.findMany())[0]!;
-    [90m266|[39m     expect(link).toBeDefined();
-    [90m   |[39m                  [31m^[39m
-    [90m267|[39m     expect(JSON.parse(link.metadata!).syncFilterPaused === true).toBe(
-    [90m268|[39m       !qualifying,
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts[2m > [22mguards github issue-opened writes in the excluded case
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts[2m > [22mguards github issue-opened writes in the eligible case
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts[2m > [22mguards github issue-opened writes in the before-write case
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts[2m > [22mguards github issue-opened writes in the after-label case
-[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts[2m > [22mguards github issue-opened writes in the failure case
-[31m[1mAssertionError[22m: expected [] to have a length of 1 but got +0[39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- 1[39m
-[31m+ 0[39m
-
-[36m [2m❯[22m ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts:[2m209:19[22m[39m
-    [90m207|[39m       where: eq(schema.taskTable.projectId, project.id),
-    [90m208|[39m     });
-    [90m209|[39m     expect(tasks).toHaveLength(1);
-    [90m   |[39m                   [31m^[39m
-    [90m210|[39m     expect(tasks[0]).toMatchObject({ title: issue.title });
-    [90m211|[39m     const link = await db.query.externalLinkTable.findFirst({
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mlinks remote issue 61 to task 42 without advancing local task 61
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "ywe44ka5kvpgklu4gzy66z11",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m235:29[22m[39m
-    [90m233|[39m       await linkIssue(fixture.intended.id);
-    [90m234|[39m       await open();
-    [90m235|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m236|[39m       expect(await task(fixture.intended.id)).toMatchObject({
-    [90m237|[39m         status: "in-review",
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mchecks for an existing PR link only once per integration
-[31m[1mAssertionError[22m: expected "findFirst" to be called 1 times, but got 0 times[39m
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m247:22[22m[39m
-    [90m245|[39m       const lookup = vi.spyOn(db.query.externalLinkTable, "findFirst");
-    [90m246|[39m       await open();
-    [90m247|[39m       expect(lookup).toHaveBeenCalledTimes(1);
-    [90m   |[39m                      [31m^[39m
-    [90m248|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m249|[39m     });
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mdoes not let a separatorless task label override the linked issue
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "z1yndvdod4x3h5kb7fi8x69x",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m254:29[22m[39m
-    [90m252|[39m       await linkIssue(fixture.intended.id);
-    [90m253|[39m       await open(payload("Refactor task61 renderer"));
-    [90m254|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m255|[39m       expect((await task(fixture.unrelated.id))?.status).toBe("to-do");
-    [90m256|[39m     });
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mmerges the mapped task without completing the same-numbered local task
-[31m[1mAssertionError[22m: expected 'to-do' to be 'done' // Object.is equality[39m
-
-Expected: [32m"do[7mne[27m"[39m
-Received: [31m"[7mto-[27mdo"[39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m274:57[22m[39m
-    [90m272|[39m       if (provider === "github") await handlePullRequestClosed(closed);
-    [90m273|[39m       else await handleGiteaPullRequestClosed(closed);
-    [90m274|[39m       expect((await task(fixture.intended.id))?.status).toBe("done");
-    [90m   |[39m                                                         [31m^[39m
-    [90m275|[39m       expect((await task(fixture.unrelated.id))?.status).toBe("to-do");
-    [90m276|[39m     });
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22maccepts duplicate issue links pointing to the same task
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "qi9j72e09kpkglm0774qy2p0",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m339:29[22m[39m
-    [90m337|[39m       await linkIssue(fixture.intended.id);
-    [90m338|[39m       await open();
-    [90m339|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m340|[39m     });
-    [90m341|[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mrecognizes a project key in a conventional commit title
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "m7pnpimj7vwjz6o0p56gft87",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m350:29[22m[39m
-    [90m348|[39m         ),
-    [90m349|[39m       );
-    [90m350|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m351|[39m       expect((await task(fixture.unrelated.id))?.status).toBe("to-do");
-    [90m352|[39m     });
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mlinks a PR whose description contains the task link
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "awi7v42c1ydqg6uecxzr22iw",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m357:29[22m[39m
-    [90m355|[39m       const taskLink = `https://kaneo.example.com/dashboard/workspace/…
-    [90m356|[39m       await open(payload("Copy message text", `Implements ${taskLink}`…
-    [90m357|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m358|[39m       expect((await task(fixture.unrelated.id))?.status).toBe("to-do");
-    [90m359|[39m     });
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mprefers a mapped issue reference over a task link
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "c0kdmcjzlej93d4d1tjp3oc4",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m365:29[22m[39m
-    [90m363|[39m       const taskLink = `https://kaneo.example.com/dashboard/workspace/…
-    [90m364|[39m       await open(payload("Copy message text", `Closes #61\n\n${taskLin…
-    [90m365|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m366|[39m     });
-    [90m367|[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mfalls back to the task link when the task key is stale
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "hulubagp7rbzd0xjnrd1hzn6",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m396:29[22m[39m
-    [90m394|[39m       const taskLink = `https://kaneo.example.com/dashboard/workspace/…
-    [90m395|[39m       await open(payload("KAN-999: copy message text", taskLink));
-    [90m396|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m397|[39m     });
-    [90m398|[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22maccepts multiple issue links to the same task
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "o5l85e1mu64tlf7ry4ppafi0",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m456:29[22m[39m
-    [90m454|[39m       await linkIssue(fixture.intended.id, "88");
-    [90m455|[39m       await open(payload("Copy message text", "Closes #61, fixes #88")…
-    [90m456|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m457|[39m     });
-    [90m458|[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mpreserves explicit branch precedence over an issue reference
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "dpoaoetou9sng88lqrrx3d1b",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m462:29[22m[39m
-    [90m460|[39m       await linkIssue(fixture.unrelated.id);
-    [90m461|[39m       await open(payload("Copy message text", "Closes #61", "kan-42-co…
-    [90m462|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m463|[39m     });
-    [90m464|[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mmoves a completed task back to review when a new PR opens
-[31m[1mAssertionError[22m: expected [] to match object [ Array(1) ][39m
-
-[32m- Expected[39m
-[31m+ Received[39m
-
-[32m- [[39m
-[32m-   {[39m
-[32m-     "taskId": "obg8x9egufzba7c2tmnb91pd",[39m
-[32m-   },[39m
-[32m- ][39m
-[31m+ [][39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m488:29[22m[39m
-    [90m486|[39m         .where(eq(schema.taskTable.id, fixture.intended.id));
-    [90m487|[39m       await open();
-    [90m488|[39m       expect(await links()).toMatchObject([{ taskId: fixture.intended.…
-    [90m   |[39m                             [31m^[39m
-    [90m489|[39m       expect(await task(fixture.intended.id)).toMatchObject({
-    [90m490|[39m         status: "in-review",
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgithub pull request task identity[2m > [22mpushes to a completed task[2m > [22mmoves the task back to progress for a new branch
-[31m[1mAssertionError[22m: expected 'done' to be 'in-progress' // Object.is equality[39m
-
-Expected: [32m"in-progress"[39m
-Received: [31m"done"[39m
-
-[36m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m519:59[22m[39m
-    [90m517|[39m       it("moves the task back to progress for a new branch", async () …
-    [90m518|[39m         await push();
-    [90m519|[39m         expect((await task(fixture.intended.id))?.status).toBe("in-pro…
-    [90m   |[39m                                                           [31m^[39m
-    [90m520|[39m       });
-    [90m521|[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgitea pull request task identity[2m > [22mimports a PR using the remote issue mapping
-[31m[1mError[22m: Gitea integration not found[39m
-[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
-    [90m 75|[39m
-    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
-    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
-    [90m   |[39m           [31m^[39m
-    [90m 78|[39m   }
-    [90m 79|[39m
-[90m [2m❯[22m runImport ../../tests/api-integration/pull-request-task-links.test.ts:[2m159:24[22m[39m
-[90m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m280:7[22m[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgitea pull request task identity[2m > [22mimports an explicit task key without an issue link
-[31m[1mError[22m: Gitea integration not found[39m
-[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
-    [90m 75|[39m
-    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
-    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
-    [90m   |[39m           [31m^[39m
-    [90m 78|[39m   }
-    [90m 79|[39m
-[90m [2m❯[22m runImport ../../tests/api-integration/pull-request-task-links.test.ts:[2m159:24[22m[39m
-[90m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m289:7[22m[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgitea pull request task identity[2m > [22mdoes not import a PR without a matching issue link
-[31m[1mError[22m: Gitea integration not found[39m
-[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
-    [90m 75|[39m
-    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
-    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
-    [90m   |[39m           [31m^[39m
-    [90m 78|[39m   }
-    [90m 79|[39m
-[90m [2m❯[22m runImport ../../tests/api-integration/pull-request-task-links.test.ts:[2m159:24[22m[39m
-[90m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m317:7[22m[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/25]⎯[22m[39m
-
-[41m[1m FAIL [22m[49m ../../tests/api-integration/pull-request-task-links.test.ts[2m > [22mgitea pull request task identity[2m > [22mpreserves an existing PR association during import
-[31m[1mError[22m: Gitea integration not found[39m
-[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
-    [90m 75|[39m
-    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
-    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
-    [90m   |[39m           [31m^[39m
-    [90m 78|[39m   }
-    [90m 79|[39m
-[90m [2m❯[22m runImport ../../tests/api-integration/pull-request-task-links.test.ts:[2m159:24[22m[39m
-[90m [2m❯[22m ../../tests/api-integration/pull-request-task-links.test.ts:[2m329:7[22m[39m
-
-[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/25]⎯[22m[39m
-
-
-[2m Test Files [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m45 passed[39m[22m[90m (49)[39m
-[2m      Tests [22m [1m[31m25 failed[39m[22m[2m | [22m[1m[32m674 passed[39m[22m[90m (699)[39m
-[2m   Start at [22m 21:45:11
-[2m   Duration [22m 281.82s[2m (import 50%, tests 48%, transform 2%)[22m
-
-[2m     Import [22m [33m1027 modules were evaluated 3820 times[39m[2m · 137.37s total, 50% of tracked time[22m
-[2m            [22m [2m~100.44s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[22m[39m[2m2026-11-18T22:30:36.103Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:30:36.104Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:30:36.104Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/password-reset-disabled.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m50 passed[39m[22m[90m (50)[39m
+[2m      Tests [22m [1m[32m734 passed[39m[22m[90m (734)[39m
+[2m   Start at [22m 22:25:44
+[2m   Duration [22m 291.27s[2m (import 49%, tests 49%, transform 2%)[22m
+
+[2m     Import [22m [33m1028 modules were evaluated 3825 times[39m[2m · 140.60s total, 49% of tracked time[22m
+[2m            [22m [2m~102.81s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
 [2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m
 
 
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/github-import-bounds.test.ts,title=../../tests/api-integration/github-import-bounds.test.ts > bounded resumable GitHub import > fails closed for invalid stored rules (linked=true),line=173,column=24::ReferenceError: project is not defined%0A ❯ ../../tests/api-integration/github-import-bounds.test.ts:173:24%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-imported-link.test.ts,title=../../tests/api-integration/integration-sync-imported-link.test.ts > github webhook imports links with their committed outgoing scope (qualifying=true),line=266,column=18::AssertionError: expected undefined to be defined%0A ❯ ../../tests/api-integration/integration-sync-imported-link.test.ts:266:18%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-imported-link.test.ts,title=../../tests/api-integration/integration-sync-imported-link.test.ts > github webhook imports links with their committed outgoing scope (qualifying=false),line=266,column=18::AssertionError: expected undefined to be defined%0A ❯ ../../tests/api-integration/integration-sync-imported-link.test.ts:266:18%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-issue-opened-writes.test.ts,title=../../tests/api-integration/integration-sync-issue-opened-writes.test.ts > guards github issue-opened writes in the excluded case,line=209,column=19::AssertionError: expected [] to have a length of 1 but got +0%0A%0A- Expected%0A+ Received%0A%0A- 1%0A+ 0%0A%0A ❯ ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts:209:19%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-issue-opened-writes.test.ts,title=../../tests/api-integration/integration-sync-issue-opened-writes.test.ts > guards github issue-opened writes in the eligible case,line=209,column=19::AssertionError: expected [] to have a length of 1 but got +0%0A%0A- Expected%0A+ Received%0A%0A- 1%0A+ 0%0A%0A ❯ ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts:209:19%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-issue-opened-writes.test.ts,title=../../tests/api-integration/integration-sync-issue-opened-writes.test.ts > guards github issue-opened writes in the before-write case,line=209,column=19::AssertionError: expected [] to have a length of 1 but got +0%0A%0A- Expected%0A+ Received%0A%0A- 1%0A+ 0%0A%0A ❯ ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts:209:19%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-issue-opened-writes.test.ts,title=../../tests/api-integration/integration-sync-issue-opened-writes.test.ts > guards github issue-opened writes in the after-label case,line=209,column=19::AssertionError: expected [] to have a length of 1 but got +0%0A%0A- Expected%0A+ Received%0A%0A- 1%0A+ 0%0A%0A ❯ ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts:209:19%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-issue-opened-writes.test.ts,title=../../tests/api-integration/integration-sync-issue-opened-writes.test.ts > guards github issue-opened writes in the failure case,line=209,column=19::AssertionError: expected [] to have a length of 1 but got +0%0A%0A- Expected%0A+ Received%0A%0A- 1%0A+ 0%0A%0A ❯ ../../tests/api-integration/integration-sync-issue-opened-writes.test.ts:209:19%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > links remote issue 61 to task 42 without advancing local task 61,line=235,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "ywe44ka5kvpgklu4gzy66z11",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:235:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > checks for an existing PR link only once per integration,line=247,column=22::AssertionError: expected "findFirst" to be called 1 times, but got 0 times%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:247:22%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > does not let a separatorless task label override the linked issue,line=254,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "z1yndvdod4x3h5kb7fi8x69x",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:254:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > merges the mapped task without completing the same-numbered local task,line=274,column=57::AssertionError: expected 'to-do' to be 'done' // Object.is equality%0A%0AExpected: "done"%0AReceived: "to-do"%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:274:57%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > accepts duplicate issue links pointing to the same task,line=339,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "qi9j72e09kpkglm0774qy2p0",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:339:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > recognizes a project key in a conventional commit title,line=350,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "m7pnpimj7vwjz6o0p56gft87",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:350:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > links a PR whose description contains the task link,line=357,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "awi7v42c1ydqg6uecxzr22iw",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:357:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > prefers a mapped issue reference over a task link,line=365,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "c0kdmcjzlej93d4d1tjp3oc4",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:365:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > falls back to the task link when the task key is stale,line=396,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "hulubagp7rbzd0xjnrd1hzn6",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:396:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > accepts multiple issue links to the same task,line=456,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "o5l85e1mu64tlf7ry4ppafi0",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:456:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > preserves explicit branch precedence over an issue reference,line=462,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "dpoaoetou9sng88lqrrx3d1b",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:462:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > moves a completed task back to review when a new PR opens,line=488,column=29::AssertionError: expected [] to match object [ Array(1) ]%0A%0A- Expected%0A+ Received%0A%0A- [%0A-   {%0A-     "taskId": "obg8x9egufzba7c2tmnb91pd",%0A-   },%0A- ]%0A+ []%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:488:29%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/tests/api-integration/pull-request-task-links.test.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > github pull request task identity > pushes to a completed task > moves the task back to progress for a new branch,line=519,column=59::AssertionError: expected 'done' to be 'in-progress' // Object.is equality%0A%0AExpected: "in-progress"%0AReceived: "done"%0A%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:519:59%0A%0A
-
-::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > gitea pull request task identity > imports a PR using the remote issue mapping,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ runImport ../../tests/api-integration/pull-request-task-links.test.ts:159:24%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:280:7%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
-
-::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > gitea pull request task identity > imports an explicit task key without an issue link,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ runImport ../../tests/api-integration/pull-request-task-links.test.ts:159:24%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:289:7%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
-
-::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > gitea pull request task identity > does not import a PR without a matching issue link,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ runImport ../../tests/api-integration/pull-request-task-links.test.ts:159:24%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:317:7%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
-
-::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/pull-request-task-links.test.ts > gitea pull request task identity > preserves an existing PR association during import,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ runImport ../../tests/api-integration/pull-request-task-links.test.ts:159:24%0A ❯ ../../tests/api-integration/pull-request-task-links.test.ts:329:7%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
-
 ---
-vp run: 0/4 cache hit (0%), 4/5 successful. (Run `vp run --last-details` for full details)
-Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
-
-  × "pnpm recursive exec" failed in /home/runner/work/kaneo/kaneo/apps/api
-
+vp run: 0/4 cache hit (0%), 5/5 successful. (Run `vp run --last-details` for full details)
