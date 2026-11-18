@@ -34,8 +34,7 @@ export const Route = createFileRoute(
   "/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/backlog",
 )({
   component: RouteComponent,
-  validateSearc
-h: (search: Record<string, unknown>): BacklogSearchParams => ({
+  validateSearch: (search: Record<string, unknown>): BacklogSearchParams => ({
     taskId: typeof search.taskId === "string" ? search.taskId : undefined,
   }),
 });
@@ -97,8 +96,7 @@ function RouteComponent() {
     };
   }, [filters.filteredProject, sort]);
 
-  const 
-handleMoveAllPlannedToTodo = () => {
+  const handleMoveAllPlannedToTodo = () => {
     if (!project) return;
 
     const plannedTasks = project.plannedTasks || [];
@@ -178,8 +176,7 @@ handleMoveAllPlannedToTodo = () => {
         />
       }
       filterBar={
-        <ActiveFilt
-ersBar
+        <ActiveFiltersBar
           subjects={view.subjects}
           onClear={filters.clearFilters}
           customFieldValues={filters.customFieldValues}
@@ -238,8 +235,7 @@ ersBar
         <TaskDetailsSheet
           taskId={taskId}
           projectId={projectId}
-          workspaceId={workspaceId
-}
+          workspaceId={workspaceId}
           onClose={handleCloseTaskSheet}
         />
       </div>
