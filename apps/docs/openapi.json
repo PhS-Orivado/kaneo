@@ -5260,7 +5260,10 @@
           "labels",
           "comments",
           "assignees",
-          "relations"
+          "relations",
+          "sprints",
+          "users",
+          "attachments"
         ]
       },
       "ImportRunList": {

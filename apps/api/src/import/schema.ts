@@ -143,6 +143,14 @@ export const startImportRunBody = z.object({
   includeComments: z.boolean().default(true).openapi({
     description: "Import task comments too. Defaults to true.",
   }),
+  includeSprints: z.boolean().default(true).openapi({
+    description:
+      "Import sprints too, when the source has them, and keep each task in its sprint. Defaults to true.",
+  }),
+  userHandling: z.enum(["invite", "create"]).default("invite").openapi({
+    description:
+      "What to do with assignees who are not workspace members yet: invite them by email, or create their account directly. Defaults to invite.",
+  }),
 });
 
 export const workspaceIdParam = z.object({ workspaceId: z.string() });

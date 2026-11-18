@@ -55,6 +55,39 @@ export type JiraBoardConfiguration = {
   columnConfig?: { columns?: JiraBoardColumn[] | null } | null;
 };
 
+export type JiraSprint = {
+  id: number;
+  name?: string | null;
+  state?: string | null;
+  goal?: string | null;
+  startDate?: string | null;
+  endDate?: string | null;
+};
+
+export type JiraSprintPage = {
+  values?: JiraSprint[] | null;
+  startAt?: number | null;
+  maxResults?: number | null;
+  total?: number | null;
+  isLast?: boolean | null;
+};
+
+export type JiraSprintIssue = {
+  id?: string | null;
+  key?: string | null;
+};
+
+export type JiraSprintIssuePage = {
+  // The agile issue searches wrap their page in "issues"; "values" is only
+  // kept for gateways that normalize it to the sprint page shape.
+  issues?: JiraSprintIssue[] | null;
+  values?: JiraSprintIssue[] | null;
+  startAt?: number | null;
+  maxResults?: number | null;
+  total?: number | null;
+  isLast?: boolean | null;
+};
+
 export type JiraLinkedIssue = {
   id: string;
   key?: string | null;
@@ -70,6 +103,14 @@ export type JiraIssueLink = {
   outwardIssue?: JiraLinkedIssue | null;
 };
 
+export type JiraAttachment = {
+  id: string;
+  filename?: string | null;
+  mimeType?: string | null;
+  size?: number | string | null;
+  content?: string | null;
+};
+
 export type JiraIssueFields = {
   summary?: string | null;
   description?: unknown;
@@ -81,7 +122,7 @@ export type JiraIssueFields = {
   created?: string | null;
   parent?: JiraLinkedIssue | null;
   issuelinks?: JiraIssueLink[] | null;
-  attachment?: unknown[] | null;
+  attachment?: JiraAttachment[] | null;
   comment?: { total?: number | null } | null;
 };
 
