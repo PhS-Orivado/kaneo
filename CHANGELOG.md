@@ -1,5 +1,10 @@
 ## Unreleased
 
+### Tests
+
+- **api:** unit-test the sprint controllers: create, start, close, update, reorder, and task-sprint assignment now have colocated tests that pin the lifecycle guardrails (single active sprint, closed-sprint immutability, carry-over to a future target or the backlog), date validation, the duplicate-name 409 and the concurrent-create race mapped by the unique constraints, and the published events: see `docs/sprints/testing.md`
+- **web:** unit-test the sprint fetchers and React Query hooks: each typed-client call shape is pinned to `@kaneo/libs`, API failures assert `HttpError` status and message propagation, and every mutation hook asserts the `sprints`, `tasks`, and `task` cache invalidations the sprint views rely on: see `docs/sprints/testing.md`
+
 ### Features
 
 - **ci:** add a local script that builds the kaneo, web and api images and pushes them to GHCR from a developer checkout, mirroring the manual workflow's tagging and Sentry handling: see `docs/ci/build-images-locally.md`
@@ -16,6 +21,7 @@
 ### Documentation
 
 - **importers:** document the shared import model and where Jira attachments are mapped: see `packages/importers/README.md` in the same commit range
+- **sprints:** add `docs/sprints/testing.md`, mapping the sprint unit test coverage to the testing strategy of the requirements and implementation plan, and link it from the sprint planning overview
 
 ### Features
 
