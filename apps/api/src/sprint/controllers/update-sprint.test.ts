@@ -25,71 +25,166 @@ vi.mock("../../database", () => ({
   },
 }));
 
-viKؚۛʈˋˋˋٝٛݜȋ
+vi.mock("../../events", () => ({ publishEvent: mockPublishEvent }));
 
-HOȊȜXۚ\ڑ]ٛݎț[ؚԝXۚ\ڑ]݈ٛJJNݚKؚۛʈˋٙ]\ܜڛݜȋ
+vi.mock("./get-sprints", () => ({
+  getSprint: mockGetSprint,
+  getSprintList: vi.fn(),
+  default: vi.fn(),
+}));
 
-HOȊٝܜڛݎț[ؚљ]ܜڛ݋Ȉٝܜڛݓ\ݎȝڋٛʊKȈY؝[ȝڋٛʊKߊJNڛ\ܝ\]Tܜڛ݈ܛۈˋݜ]K\ܜڛ݈΂ۛܝݝ\ٔܜڛ݈HYȈܜڛ݋LH˂Ȉۚ٘ݒYȈܜۚ٘݋LH˂Ȉ؛YNȈԜڛ݈H˂Ȉۘ[țݛȈݘ]\Έٝ]\و˂Ȉݘ\ݑ]NțݛȈ[ّ]NțݛȈܚ][ێȌKȈ؜ܞSݙ\՘\ڜΈݛȈܙX]Y]țٝȑ]J̌͋LKLU̌̌̌ȊKȈ\]Y]țٝȑ]J̌͋LKLU̌̌̌ȊKߎٝ[؝[ۈ[ڜ]YUڛۘ][ۊۛܝؚ[ݎȜݜڛيHٝ\ۈؚ٘݋؜ܚYۊٝȑ\ܛ܊ٝ\X؝HٞHʋۙNȈ̌͌H˂Ȉۛܝؚ[݋ȈJNBّٙۜXXڊ
+import updateSprint from "./update-sprint";
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ٝ
+const futureSprint = {
+  id: "sprint-1",
+  projectId: "project-1",
+  name: "Sprint 1",
+  goal: null,
+  status: "future",
+  startDate: null,
+  endDate: null,
+  position: 1,
+  carryOverTasks: null,
+  createdAt: new Date("2025-01-01T00:00:00.000Z"),
+  updatedAt: new Date("2025-01-01T00:00:00.000Z"),
+};
 
-N[ؚӘ[YPۘ\ڔٛX݋ؚۛԙ\ٝ
+function uniqueViolation(constraint: string) {
+  return Object.assign(new Error("duplicate key"), {
+    code: "23505",
+    constraint,
+  });
+}
 
-N[ؚ՜]Kؚۛԙ\ٝ
+beforeEach(() => {
+  mockSprintFindFirst.mockReset();
+  mockNameClashSelect.mockReset();
+  mockUpdate.mockReset();
+  mockPublishEvent.mockReset();
+  mockGetSprint.mockReset();
+});
+describe("updateSprint", () => {
+  it("updates only the fields that are provided", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(futureSprint);
+    mockUpdate.mockResolvedValueOnce([{ ...futureSprint, goal: "New goal" }]);
+    const updated = { id: "sprint-1", goal: "New goal", taskCount: 0 };
+    mockGetSprint.mockResolvedValueOnce(updated);
 
-N[ؚԝXۚ\ڑ]ٛ݋ؚۛԙ\ٝ
+    const result = await updateSprint("sprint-1", { goal: "New goal" });
 
-N[ؚљ]ܜڛ݋ؚۛԙ\ٝ
+    expect(result).toBe(updated);
+    expect(Object.keys(mockUpdate.mock.calls[0][0])).toEqual(["goal"]);
+    expect(mockPublishEvent).toHaveBeenCalledWith("sprint.updated", {
+      projectId: "project-1",
+      sprintId: "sprint-1",
+    });
+  });
 
-NJNٙ\؜ژيݜ]Tܜڛ݈ˈ
+  it("rejects an unknown sprint with 404", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(undefined);
 
-HOȞ]
-ݜ]\țۛHHڙ[ȝ]\و۝ڙYˈ\ޛ؈
+    await expect(
+      updateSprint("missing", { goal: "New goal" }),
+    ).rejects.toMatchObject({
+      status: 404,
+      message: "Sprint not found",
+    });
+  });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيݝ\ٔܜڛ݊N[ؚ՜]Kؚۛԙ\ۛٙ؛YSۘيވˋٝ]\ٔܜڛ݋ۘ[Ȉә]șۘ[ȟWJNۛܝ\]YHȚYȈܜڛ݋LHˈۘ[Ȉә]șۘ[ˈ\ڐ۝[ݎȌN[ؚљ]ܜڛ݋ؚۛԙ\ۛٙ؛YSۘي\]Y
-NȈۛܝٜݛH]ؚ]\]Tܜڛ݊ܜڛ݋LHˈșۘ[Ȉә]șۘ[ȟJNȈ^X݊ٜݛ
-KݛЙJ\]Y
-N^X݊ؚ٘݋ڙ^\ʛ[ؚ՜]Kؚۛ˘؛֌V̗JJKݛќ]X[
-șۘ[׊N^X݊[ؚԝXۚ\ڑ]ٛ݊KݛҘ]ِٙ[И[Yڝ
-ܜڛ݋ݜ]Yˈۚ٘ݒYȈܜۚ٘݋LH˂ȈܜڛݒYȈܜڛ݋LH˂ȈJNJNȈ]
-ܙZ٘ݜȘ[ȝ[ڛ۝ۈܜڛ݈ڝˈ\ޛ؈
+  it("rejects editing a closed sprint with 409", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce({
+      ...futureSprint,
+      status: "closed",
+    });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘي[ٙYڛٙ
-NȈ]ؚ]^X݊Ȉ\]Tܜڛ݊ۚ\ܚ[وˈșۘ[Ȉә]șۘ[ȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈȈY\ܘYَȈԜڛ݈۝۝[و˂ȈJNJNȈ]
-ܙZ٘ݜșY][وHۛܙYܜڛ݈ڝHˈ\ޛ؈
+    await expect(
+      updateSprint("sprint-1", { name: "Renamed" }),
+    ).rejects.toMatchObject({
+      status: 409,
+      message:
+        "Closed sprints are immutable. Their tasks stay as the history of what was implemented.",
+    });
+    expect(mockUpdate).not.toHaveBeenCalled();
+  });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيˋٝ]\ٔܜڛ݋Ȉݘ]\Έ؛ܙY˂ȈJNȈ]ؚ]^X݊Ȉ\]Tܜڛ݊ܜڛ݋LHˈț؛YNȈԙ[؛YYȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈKȈY\ܘYَЛܙYܜڛݜȘ\و[[]]XۙKȕZ\ȝ\ڜȜݘ^H\ȝH\ݛܞHوژ]؜Ț[\[Y[ݙYȋȈJN^X݊[ؚ՜]JKۛ݋ݛҘ]ِٙ[И[Y
+  it("rejects moving the start date of the active sprint with 400", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce({
+      ...futureSprint,
+      status: "active",
+      startDate: new Date("2025-01-15T00:00:00.000Z"),
+    });
 
-NJNȈ]
-ܙZ٘ݜț[ݚ[وHݘ\݈]HوHXݚ]وܜڛ݈ڝˈ\ޛ؈
+    await expect(
+      updateSprint("sprint-1", { startDate: "2025-02-01" }),
+    ).rejects.toMatchObject({
+      status: 400,
+      message:
+        "Only future sprints can change their start date; the active sprint is already running",
+    });
+    expect(mockUpdate).not.toHaveBeenCalled();
+  });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيˋٝ]\ٔܜڛ݋Ȉݘ]\Έؘݚ]و˂Ȉݘ\ݑ]Nțٝȑ]J̌͋LKLMU̌̌̌ȊKȈJNȈ]ؚ]^X݊Ȉ\]Tܜڛ݊ܜڛ݋LHˈȜݘ\ݑ]NȈ̌͋LˌHȟVГӓҐГғԑTՒSїJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈȈY\ܘYَӛ۞Hݝ\وܜڛݜȘ؛Șژ[ٙHZ\Ȝݘ\݈]NȝHXݚ]وܜڛ݈\Ș[٘YHݛۚ[و˂ȈJN^X݊[ؚ՜]JKۛ݋ݛҘ]ِٙ[И[Y
+  it("moves the start date of a future sprint within a valid range", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(futureSprint);
+    mockUpdate.mockResolvedValueOnce([{ ...futureSprint }]);
+    mockGetSprint.mockResolvedValueOnce({ id: "sprint-1" });
 
-NJNȈ]
-ۛݙ\ȝHݘ\݈]HوHݝ\وܜڛ݈ڝ[ȘH؛Y؛ٙHˈ\ޛ؈
+    await updateSprint("sprint-1", {
+      startDate: "2025-02-01",
+      endDate: "2025-02-15",
+    });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيݝ\ٔܜڛ݊N[ؚ՜]Kؚۛԙ\ۛٙ؛YSۘيވˋٝ]\ٔܜڛ݈WJN[ؚљ]ܜڛ݋ؚۛԙ\ۛٙ؛YSۘيȚYȈܜڛ݋LHȟJNȈ]ؚ]\]Tܜڛ݊ܜڛ݋LHˈݘ\ݑ]NȈ̌͋LˌH˂Ȉ[ّ]NȈ̌͋LˌMH˂ȈJNȈ^X݊[ؚ՜]JKݛҘ]ِٙ[И[Yڝ
-ݘ\ݑ]Nțٝȑ]J̌͋LˌHʋȈ[ّ]Nțٝȑ]J̌͋LˌMHʋȈJNJNȈ]
-؛X\܈H[و]Hڙ[țݛ\Ȝ݈ٛˈ\ޛ؈
+    expect(mockUpdate).toHaveBeenCalledWith({
+      startDate: new Date("2025-02-01"),
+      endDate: new Date("2025-02-15"),
+    });
+  });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيݝ\ٔܜڛ݊N[ؚ՜]Kؚۛԙ\ۛٙ؛YSۘيވˋٝ]\ٔܜڛ݈WJN[ؚљ]ܜڛ݋ؚۛԙ\ۛٙ؛YSۘيȚYȈܜڛ݋LHȟJNȈ]ؚ]\]Tܜڛ݊ܜڛ݋LHˈș[ّ]NțݛJNȈ^X݊[ؚ՜]JKݛҘ]ِٙ[И[Yڝ
-ș[ّ]NțݛJNJNȈ]
-ܙZ٘ݜȜٛ؛Z[وȘH؛YH][٘YH^\ݜȝڝHˈ\ޛ؈
+  it("clears the end date when null is sent", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(futureSprint);
+    mockUpdate.mockResolvedValueOnce([{ ...futureSprint }]);
+    mockGetSprint.mockResolvedValueOnce({ id: "sprint-1" });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيݝ\ٔܜڛ݊N[ؚӘ[YPۘ\ڔٛX݋ؚۛԙ\ۛٙ؛YSۘيވYȈܜڛ݋LȈWJNȈ]ؚ]^X݊Ȉ\]Tܜڛ݊ܜڛ݋LHˈț؛YNȈԜڛ݈ȈJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈKȈY\ܘYَȉԜڛ݈Ԝڛ݈Ȉ[٘YH^\ݜȚ[ȝ\Ȝۚ٘݉˂ȈJN^X݊[ؚ՜]JKۛ݋ݛҘ]ِٙ[И[Y
+    await updateSprint("sprint-1", { endDate: null });
 
-NJNȈ]
-ܚڜȝHۘ\ڈڙXڈڙ[ȝH؛YHٜț۝ژ[ٙHˈ\ޛ؈
+    expect(mockUpdate).toHaveBeenCalledWith({ endDate: null });
+  });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيݝ\ٔܜڛ݊N[ؚ՜]Kؚۛԙ\ۛٙ؛YSۘيވˋٝ]\ٔܜڛ݈WJN[ؚљ]ܜڛ݋ؚۛԙ\ۛٙ؛YSۘيȚYȈܜڛ݋LHȟJNȈ]ؚ]\]Tܜڛ݊ܜڛ݋LHˈț؛YNȈԜڛ݈Hˈۘ[ȈԘ[YH؛YHȟJNȈ^X݊[ؚӘ[YPۘ\ڔٛX݊Kۛ݋ݛҘ]ِٙ[И[Y
+  it("rejects renaming to a name that already exists with 409", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(futureSprint);
+    mockNameClashSelect.mockResolvedValueOnce([{ id: "sprint-2" }]);
 
-NJNȈ]
-ۘ\ȘHۛ؝\ܙ[݈ٛ؛YHؘڛوHۘ\ڈڙXڈȍHˈ\ޛ؈
+    await expect(
+      updateSprint("sprint-1", { name: "Sprint 2" }),
+    ).rejects.toMatchObject({
+      status: 409,
+      message: 'Sprint "Sprint 2" already exists in this project',
+    });
+    expect(mockUpdate).not.toHaveBeenCalled();
+  });
 
-HOȞ[ؚԜڛݑڛّڜܝؚۛԙ\ۛٙ؛YSۘيݝ\ٔܜڛ݊N[ؚӘ[YPۘ\ڔٛX݋ؚۛԙ\ۛٙ؛YSۘي׊N[ؚ՜]KؚۛԙZ٘ݙY؛YSۘيȈ[ڜ]YUڛۘ][ۊܜڛݗܜۚ٘ݗۘ[YWݛڜ]YHʋȈ
-NȈ]ؚ]^X݊Ȉ\]Tܜڛ݊ܜڛ݋LHˈț؛YNȈԜڛ݈ȈJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈKȈY\ܘYَȉԜڛ݈Ԝڛ݈Ȉ[٘YH^\ݜȚ[ȝ\Ȝۚ٘݉˂ȈJNJNJN
+  it("skips the clash check when the name does not change", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(futureSprint);
+    mockUpdate.mockResolvedValueOnce([{ ...futureSprint }]);
+    mockGetSprint.mockResolvedValueOnce({ id: "sprint-1" });
+
+    await updateSprint("sprint-1", { name: "Sprint 1", goal: "Same name" });
+
+    expect(mockNameClashSelect).not.toHaveBeenCalled();
+  });
+
+  it("maps a concurrent rename racing the clash check to 409", async () => {
+    mockSprintFindFirst.mockResolvedValueOnce(futureSprint);
+    mockNameClashSelect.mockResolvedValueOnce([]);
+    mockUpdate.mockRejectedValueOnce(
+      uniqueViolation("sprint_project_name_unique"),
+    );
+
+    await expect(
+      updateSprint("sprint-1", { name: "Sprint 2" }),
+    ).rejects.toMatchObject({
+      status: 409,
+      message: 'Sprint "Sprint 2" already exists in this project',
+    });
+  });
+});
