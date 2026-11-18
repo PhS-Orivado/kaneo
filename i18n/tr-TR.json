@@ -2837,6 +2837,37 @@
 			"title": "Webhooks",
 			"url": "URL",
 			"save": "Save"
+		},
+		"adminBranding": {
+			"form": {
+				"accentColor": "Accent color",
+				"accentColorDescription": "Hex color (for example #4f46e5) applied to primary buttons and highlights.",
+				"appName": "Application name",
+				"appNameDescription": "Replaces \"Kaneo\" across the interface. Leave empty to use the default name.",
+				"footerDescription": "Shown in the footer instead of the application name.",
+				"footerText": "Footer text",
+				"footerUrl": "Footer link URL",
+				"legalDescription": "Shown on the sign-in and sign-up pages below the form.",
+				"logoDarkUrl": "Dark-mode logo URL",
+				"logoDescription": "Shown instead of the default logo. Use a transparent SVG or PNG around 128 by 32 pixels.",
+				"logoLightUrl": "Light-mode logo URL",
+				"privacyUrl": "Privacy policy URL",
+				"reset": "Reset",
+				"save": "Save changes",
+				"saving": "Saving...",
+				"showPoweredBy": "Show \"Powered by Kaneo\"",
+				"showPoweredByDescription": "Displays a small attribution link in the footer.",
+				"termsUrl": "Terms of service URL"
+			},
+			"instanceBadge": "Instance",
+			"loadError": "Branding settings could not be loaded.",
+			"retry": "Retry",
+			"subtitle": "Customize how this Kaneo instance looks for everyone on it.",
+			"title": "Branding",
+			"toast": {
+				"saveError": "Branding could not be saved.",
+				"saved": "Branding updated."
+			}
 		}
 	},
 	"navigation": {

@@ -7,6 +7,11 @@ type LogoProps = {
 
 export function Logo({ className = "" }: LogoProps) {
   const { setProject } = useProjectStore();
+  const { data: config } = useGetConfig();
+  const branding = config?.branding;
+  const lightThemeLogo = branding?.logoLightUrl ?? "/logo-dark.svg";
+  const darkThemeLogo = branding?.logoDarkUrl ?? "/logo-light.svg";
+  const appName = branding?.appName ?? "Kaneo";
 
   return (
     <Link

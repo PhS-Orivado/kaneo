@@ -1,5 +1,6 @@
 import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
+import { BrandingStyle } from "@/components/common/branding-style";
 import { InstanceNameSync } from "@/components/instance-name/instance-name-sync";
 import { ToastProvider } from "@/components/ui/toast";
 import type { User } from "@/types/user";
@@ -15,6 +16,7 @@ function RootComponent() {
   return (
     <ToastProvider position="bottom-right">
       <InstanceNameSync />
+      <BrandingStyle />
       <div className="flex h-svh w-full flex-row overflow-x-hidden overflow-y-hidden bg-background scrollbar-thin scrollbar-thumb-border scrollbar-track-muted">
         <Outlet />
       </div>
