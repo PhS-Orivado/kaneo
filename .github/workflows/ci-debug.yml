@@ -44,6 +44,16 @@ jobs:
           pnpm typecheck > typecheck.log 2>&1 || true
           pnpm openapi:check:fix > openapi.log 2>&1 || true
           cp apps/docs/openapi.json openapi.regenerated.json || true
+          pnpm format > format.log 2>&1 || true
+
+      - name: Pack the formatter output
+        run: |
+          git -c core.pager=cat diff > format.diff
+          mkdir -p formatted
+          for f in $(git diff --name-only); do
+            mkdir -p "formatted/$(dirname "$f")"
+            cp "$f" "formatted/$f"
+          done
 
       - name: Re-emit diagnostics as annotations
         run: node .github/scripts/parse-lint-log.mjs lint.log typecheck.log openapi.log || true
@@ -67,7 +77,10 @@ jobs:
             lint.log
             typecheck.log
             openapi.log
+            format.log
+            format.diff
             openapi.regenerated.json
+            formatted
           if-no-files-found: ignore
 
   unit:
@@ -204,15 +217,25 @@ jobs:
         run: |
           mkdir -p ci-debug-logs
           cp dl/*.log ci-debug-logs/ || true
+          if [ -f dl/format.diff ]; then
+            cp dl/format.diff ci-debug-logs/format.diff
+          fi
           if [ -f dl/openapi.regenerated.json ]; then
             cp dl/openapi.regenerated.json apps/docs/openapi.json
+          fi
+          # Overlay the files rewritten by `vp fmt` so the formatting can be
+          # replayed onto the feature branch without a local install.
+          if [ -d dl/formatted ]; then
+            cp -r dl/formatted/. .
           fi
 
       - name: Commit captured state
         run: |
           git config user.name "kaneo-debug-bot"
           git config user.email "action@users.noreply.github.com"
-          git add apps/docs/openapi.json ci-debug-logs
+          # -A covers the logs, the regenerated schema, and every file the
+          # formatted overlay rewrote.
+          git add -A
           if git diff --cached --quiet; then
             echo "nothing to commit"
           else
