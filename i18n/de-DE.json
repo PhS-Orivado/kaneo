@@ -3038,6 +3038,37 @@
 			"then": "dann",
 			"or": "oder",
 			"thenEllipsis": "dann…"
+		},
+		"keyboardShortcuts": {
+			"categories": {
+				"create": "Erstellen",
+				"general": "Allgemein",
+				"navigation": "Navigation",
+				"quickSelect": "Schnellauswahl (in Popovers)",
+				"views": "Ansichten"
+			},
+			"footer": "Drücke <kbd>Escape</kbd>, um zu schließen",
+			"items": {
+				"backlogView": "Zur Backlog-Ansicht wechseln",
+				"boardView": "Zur Board-Ansicht wechseln",
+				"calendarView": "Zur Kalenderansicht wechseln",
+				"closeModal": "Modal/Popover schließen",
+				"createProject": "Projekt erstellen",
+				"createTask": "Aufgabe erstellen",
+				"createWorkspace": "Workspace erstellen",
+				"globalSearch": "Globale Suche",
+				"listView": "Zur Listenansicht wechseln",
+				"nextTask": "Nächste Aufgabe",
+				"openCommandPalette": "Befehlspalette öffnen",
+				"openTask": "Ausgewählte Aufgabe öffnen",
+				"prevTask": "Vorherige Aufgabe",
+				"quickSelectNumber": "Option per Nummer auswählen",
+				"showShortcuts": "Tastenkürzel anzeigen",
+				"toggleSidebar": "Sidebar umschalten"
+			},
+			"searchPlaceholder": "Tastenkürzel suchen...",
+			"subtitle": "Beschleunige deinen Workflow mit Tastenkürzeln",
+			"title": "Tastenkürzel"
 		}
 	},
 	"notifications": {

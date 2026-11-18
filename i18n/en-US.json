@@ -3038,6 +3038,37 @@
 			"then": "then",
 			"or": "or",
 			"thenEllipsis": "then…"
+		},
+		"keyboardShortcuts": {
+			"categories": {
+				"create": "Create",
+				"general": "General",
+				"navigation": "Navigation",
+				"quickSelect": "Quick Select (in popovers)",
+				"views": "Views"
+			},
+			"footer": "Press <kbd>Escape</kbd> to close",
+			"items": {
+				"backlogView": "Switch to backlog view",
+				"boardView": "Switch to board view",
+				"calendarView": "Switch to calendar view",
+				"closeModal": "Close modal/popover",
+				"createProject": "Create project",
+				"createTask": "Create task",
+				"createWorkspace": "Create workspace",
+				"globalSearch": "Global search",
+				"listView": "Switch to list view",
+				"nextTask": "Next task",
+				"openCommandPalette": "Open command palette",
+				"openTask": "Open selected task",
+				"prevTask": "Previous task",
+				"quickSelectNumber": "Select option by number",
+				"showShortcuts": "Show keyboard shortcuts",
+				"toggleSidebar": "Toggle sidebar"
+			},
+			"searchPlaceholder": "Search shortcuts...",
+			"subtitle": "Speed up your workflow with keyboard shortcuts",
+			"title": "Keyboard Shortcuts"
 		}
 	},
 	"notifications": {

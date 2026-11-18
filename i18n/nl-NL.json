@@ -3038,6 +3038,37 @@
 			"then": "dan",
 			"or": "of",
 			"thenEllipsis": "dan…"
+		},
+		"keyboardShortcuts": {
+			"categories": {
+				"create": "Aanmaken",
+				"general": "Algemeen",
+				"navigation": "Navigatie",
+				"quickSelect": "Snelkeuze (in popovers)",
+				"views": "Weergaven"
+			},
+			"footer": "Druk op <kbd>Escape</kbd> om te sluiten",
+			"items": {
+				"backlogView": "Wissel naar backlog-weergave",
+				"boardView": "Wissel naar bordweergave",
+				"calendarView": "Naar kalenderweergave schakelen",
+				"closeModal": "Venster/popover sluiten",
+				"createProject": "Project aanmaken",
+				"createTask": "Taak aanmaken",
+				"createWorkspace": "Werkruimte aanmaken",
+				"globalSearch": "Globaal zoeken",
+				"listView": "Wissel naar lijstweergave",
+				"nextTask": "Volgende taak",
+				"openCommandPalette": "Opdrachtpalet openen",
+				"openTask": "Geselecteerde taak openen",
+				"prevTask": "Vorige taak",
+				"quickSelectNumber": "Selecteer optie via nummer",
+				"showShortcuts": "Sneltoetsen tonen",
+				"toggleSidebar": "Zijbalk in-/uitschakelen"
+			},
+			"searchPlaceholder": "Sneltoetsen zoeken...",
+			"subtitle": "Versnel je workflow met sneltoetsen",
+			"title": "Sneltoetsen"
 		}
 	},
 	"notifications": {

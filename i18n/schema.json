@@ -6956,15 +6956,21 @@
 						"title",
 						"subtitle",
 						"sectionTitle",
-						"sectionSubtitle",
 						"publicAccess",
 						"publicAccessHint",
 						"publicUrl",
-						"publicUrlHint",
 						"copy",
-						"copiedToast",
 						"toastUpdated",
-						"toastUpdateError"
+						"toastUpdateError",
+						"thisWorkspace",
+						"membersTitle",
+						"membersDescription",
+						"always",
+						"on",
+						"copied",
+						"copyError",
+						"openPublicPage",
+						"offNote"
 					]
 				},
 				"projectWorkflow": {
