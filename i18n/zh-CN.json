@@ -2352,7 +2352,13 @@
 					"runTitle_other": "{{source}}，{{count}} 个团队",
 					"section": "团队",
 					"someImported_other": "已导入 {{done}}/{{count}} 个团队。",
-					"step": "选择团队"
+					"step": "选择团队",
+					"allImported_one": "{{count}} team imported.",
+					"found_one": "{{count}} team found. If you pick it, it becomes a new project in {{workspace}}.",
+					"importButton_one": "Import {{count}} team",
+					"progress_one": "{{done}} of {{count}} team imported",
+					"runTitle_one": "{{source}}, {{count}} team",
+					"someImported_one": "{{done}} of {{count}} team imported."
 				}
 			},
 			"jira": {

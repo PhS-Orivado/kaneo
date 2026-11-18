@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { JiraLinkRewrite } from "@/components/import/jira-link-rewrite";
 import { ImportRunHistory } from "@/components/import/import-run-history";
 import { ImportSourcePicker } from "@/components/import/import-source-picker";
 import { SettingsPage } from "@/components/settings/settings-page";
@@ -22,6 +23,7 @@ export function ImportOverview({
       })}
     >
       <ImportSourcePicker />
+      <JiraLinkRewrite workspaceId={workspaceId} />
       <ImportRunHistory workspaceId={workspaceId} />
     </SettingsPage>
   );
