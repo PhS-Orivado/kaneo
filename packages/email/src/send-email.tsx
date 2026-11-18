@@ -120,6 +120,27 @@ export type EmailResult = {
   reason?: "SMTP_NOT_CONFIGURED";
 };
 
+/**
+ * What the SMTP server reported about an administrator's test email.
+ * `response` is the server's final acceptance line (for example
+ * `250 2.0.0 Ok: queued as 4C1A2B`), bounded to a single line, and
+ * `messageId` is the ID Kaneo generated so the message can be traced in the
+ * relay's logs. Acceptance is not final delivery.
+ */
+export type TestEmailResult =
+  | {
+      success: true;
+      messageId: string;
+      response: string;
+      acceptedRecipients: number;
+      rejectedRecipients: number;
+      elapsedMs: number;
+    }
+  | {
+      success: false;
+      reason: "SMTP_NOT_CONFIGURED";
+    };
+
 export const sendWorkspaceInvitationEmail = async (
   to: string,
   subject: EmailSubject,
@@ -240,15 +261,34 @@ export const sendEmailVerificationEmail = (
     EmailVerificationEmail({ email: to, instance: instanceHost(), ...data }),
   );
 
+// SMTP dialogue lines can be long and occasionally contain stray control
+// characters or echoed envelope data. Keep only a bounded, single-line excerpt
+// so logs and API responses stay readable and never carry a full transcript.
+function smtpExcerpt(value: unknown, maxLength = 300): string {
+  const text =
+    typeof value === "string" || typeof value === "number"
+      ? String(value)
+      : "";
+  return text.replace(/\s+/gu, " ").trim().slice(0, maxLength);
+}
+
+function recipientCount(value: unknown): number {
+  return Array.isArray(value) ? value.length : 0;
+}
+
 /**
  * Send the administrator's SMTP test. It throws the SMTP error itself so the
- * caller can tell the administrator what went wrong.
+ * caller can tell the administrator what went wrong, and reports what the
+ * mail server actually said: the acceptance line, the generated message ID,
+ * the recipient verdicts, and how long the transaction took. Acceptance by
+ * the relay still does not prove final delivery; the message ID lets an
+ * administrator trace the message in the relay's own logs.
  */
 export const sendTestEmail = async (
   to: string,
   subject: EmailSubject,
   data: Omit<TestEmailProps, "email" | "instance">,
-): Promise<EmailResult> => {
+): Promise<TestEmailResult> => {
   if (!isSmtpConfigured()) {
     return { success: false, reason: "SMTP_NOT_CONFIGURED" };
   }
@@ -263,13 +303,31 @@ export const sendTestEmail = async (
     greetingTimeout: 10_000,
     socketTimeout: 10_000,
   });
+  const startedAt = Date.now();
   try {
-    await testTransport.sendMail({
+    const info = await testTransport.sendMail({
       from: process.env.SMTP_FROM,
       to,
       ...email,
     });
-    return { success: true };
+    const accepted = recipientCount(info?.accepted);
+    const rejected = recipientCount(info?.rejected);
+    if (accepted === 0 || rejected > 0) {
+      // A relay that refuses the only recipient has not delivered anything,
+      // even when nodemailer resolves instead of throwing.
+      throw Object.assign(
+        new Error("The SMTP server rejected the test email recipient"),
+        { code: "EENVELOPE" },
+      );
+    }
+    return {
+      success: true,
+      messageId: smtpExcerpt(info?.messageId, 255),
+      response: smtpExcerpt(info?.response),
+      acceptedRecipients: accepted,
+      rejectedRecipients: rejected,
+      elapsedMs: Date.now() - startedAt,
+    };
   } finally {
     testTransport.close();
   }

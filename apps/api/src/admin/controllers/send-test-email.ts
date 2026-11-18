@@ -90,7 +90,18 @@ async function sendAdminTestEmail(
     });
   }
 
-  return { sent: true as const, to: email };
+  // Acceptance by the relay is the most an SMTP transaction can prove. The
+  // response carries what the server actually said so the administrator can
+  // trace the message with `messageId` instead of trusting a bare "sent".
+  return {
+    sent: true as const,
+    to: email,
+    messageId: result.messageId,
+    response: result.response,
+    acceptedRecipients: result.acceptedRecipients,
+    rejectedRecipients: result.rejectedRecipients,
+    elapsedMs: result.elapsedMs,
+  };
 }
 
 export default sendAdminTestEmail;

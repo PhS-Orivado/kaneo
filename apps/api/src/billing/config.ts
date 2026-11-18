@@ -16,7 +16,9 @@ const PRODUCT_ENV_KEYS: Record<Plan, Record<BillingInterval, string>> = {
 };
 
 export function isBillingEnabled() {
-  return Boolean(isCloud() && creemApiKey() && creemWebhookSecret());
+  return Boolean(
+    isCloud() && process.env.CREEM_API_KEY && process.env.CREEM_WEBHOOK_SECRET,
+  );
 }
 
 export function creemApiBaseUrl() {
@@ -26,11 +28,11 @@ export function creemApiBaseUrl() {
 }
 
 export function creemApiKey() {
-  return resolveFileSecret("CREEM_API_KEY") ?? "";
+  return process.env.CREEM_API_KEY ?? "";
 }
 
 export function creemWebhookSecret() {
-  return resolveFileSecret("CREEM_WEBHOOK_SECRET") ?? "";
+  return process.env.CREEM_WEBHOOK_SECRET ?? "";
 }
 
 export function trialDays() {

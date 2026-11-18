@@ -12,7 +12,6 @@ import {
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { createId } from "@paralleldrive/cuid2";
 import { config } from "dotenv-mono";
-import { resolveFileSecret } from "../utils/file-secret";
 import { describeStorageError } from "./describe-storage-error";
 import {
   headUploadedObject,
@@ -146,26 +145,17 @@ export function resolveS3Credentials(
   return undefined;
 }
 
-// Upload routes return this error to clients, so keep the file path out of it.
-function storageSecret(name: string) {
-  try {
-    return resolveFileSecret(name)?.trim() || "";
-  } catch {
-    throw new Error(`S3 uploads are not configured. ${name}_FILE is invalid.`);
-  }
-}
-
 function getStorageConfig(): StorageConfig {
   const endpoint = env("S3_ENDPOINT");
   const bucket = env("S3_BUCKET");
+  const accessKeyId = env("S3_ACCESS_KEY_ID");
+  const secretAccessKey = env("S3_SECRET_ACCESS_KEY");
+
   if (!endpoint || !bucket) {
     throw new Error(
       "S3 uploads are not configured. Set S3_ENDPOINT and S3_BUCKET (and either both S3_ACCESS_KEY_ID and S3_SECRET_ACCESS_KEY, or neither to use the default AWS credential provider chain / IAM role).",
     );
   }
-
-  const accessKeyId = storageSecret("S3_ACCESS_KEY_ID");
-  const secretAccessKey = storageSecret("S3_SECRET_ACCESS_KEY");
 
   // Validate the access key pair early so misconfiguration surfaces here rather
   // than as an opaque signing error later.
@@ -196,6 +186,10 @@ function getMaxImageUploadBytes() {
     process.env.S3_MAX_IMAGE_UPLOAD_BYTES,
     DEFAULT_MAX_IMAGE_UPLOAD_BYTES,
   );
+}
+
+export function taskAssetUploadLimitBytes() {
+  return getMaxImageUploadBytes();
 }
 
 function getClient(config: StorageConfig) {
@@ -515,6 +509,35 @@ export async function headStorageBucket(abortSignal: AbortSignal) {
       abortSignal,
     },
   );
+}
+
+// Resolves the configured bucket and an authorized client for it. Throws the
+// configuration error when S3 uploads are not set up.
+export function getStorageClient() {
+  const config = getStorageConfig();
+  return { config, client: getClient(config) };
+}
+
+// Uploads an object the server itself downloaded (an imported attachment)
+// under the same per-task key scheme the presigned browser uploads use.
+export async function putImportedTaskAsset(
+  context: TaskImageUploadContext & { body: Uint8Array },
+): Promise<string> {
+  const config = getStorageConfig();
+  const client = getClient(config);
+  const key = applyKeyPrefix(config.keyPrefix, buildObjectKey(context));
+
+  await client.send(
+    new PutObjectCommand({
+      Bucket: config.bucket,
+      Key: key,
+      ContentType: context.contentType,
+      Body: context.body,
+    }),
+    { abortSignal: AbortSignal.timeout(120_000) },
+  );
+
+  return key;
 }
 
 export function assertTaskImageKeyMatchesContext(

@@ -92,5 +92,25 @@ export const adminTestEmailResultSchema = z
     to: z.string().openapi({
       description: "The administrator's own address, the only recipient.",
     }),
+    messageId: z.string().openapi({
+      description:
+        "The message ID Kaneo generated, so the message can be traced in the SMTP server's own logs.",
+    }),
+    response: z.string().openapi({
+      description:
+        "The SMTP server's final acceptance line (for example `250 2.0.0 Ok: queued as 4C1A2B`), collapsed to one line and length-capped. Never the full SMTP dialogue.",
+    }),
+    acceptedRecipients: z.number().int().nonnegative().openapi({
+      description:
+        "Recipients the SMTP server accepted. Always 1 here: the administrator's own address.",
+    }),
+    rejectedRecipients: z.number().int().nonnegative().openapi({
+      description:
+        "Recipients the SMTP server rejected. Always 0 here; a rejected recipient fails the request instead.",
+    }),
+    elapsedMs: z.number().int().nonnegative().openapi({
+      description:
+        "How long the SMTP transaction took, in milliseconds. A slow relay here hints at why mail arrives late.",
+    }),
   })
   .openapi("AdminTestEmailResult");

@@ -177,7 +177,9 @@ When you run more than one API instance behind a load balancer, the checks and c
 
 ### Send a test email
 
-Choose **Send test email** to send a short test message to your own account's address. Kaneo can't send it to anyone else. If the mail server rejects it, you see the error category (for example `EAUTH 535` for a wrong password), and the API logs the same. You can send 5 test emails every 10 minutes. Test email connections, greetings, and idle sockets time out after 10 seconds.
+Choose **Send test email** to send a short test message to your own account's address. Kaneo can't send it to anyone else. You can send 5 test emails every 10 minutes. Test email connections, greetings, and idle sockets time out after 10 seconds.
+
+When the mail server rejects the message, you see the error category (for example `EAUTH 535` for a wrong password), and the API logs the same. A server can also accept a message and still not deliver it: a relay can swallow mail after `250 Ok`, or it can land in a spam folder. That is why a successful send reports what the server actually said: the acceptance line (for example `250 2.0.0 Ok: queued as 4C1A2B`), the message ID Kaneo generated, and how long the transaction took. Acceptance by your relay is not final delivery; use the message ID to trace the message in the relay's own logs before assuming Kaneo misbehaved.
 
 The button is disabled until `SMTP_HOST` and `SMTP_FROM` are set. See [SMTP configuration](/core/installation/environment-variables#smtp-configuration) for the settings.
 
