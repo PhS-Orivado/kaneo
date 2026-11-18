@@ -58,7 +58,7 @@ scripts/images/build-and-push.sh --no-push
 
 ## Sentry source maps
 
-Identical to the workflows: the web image receives the `SENTRY_ORG` and `SENTRY_PROJECT` build arguments when exported, and the `SENTRY_AUTH_TOKEN` is mounted as a build secret when present. Without the token the Dockerfile skips the source-map upload. The other images never receive these inputs.
+The script never passes the Sentry build inputs. Source-map upload stays with CI, matching the workflow behavior when `SENTRY_AUTH_TOKEN` is absent: the web Dockerfile simply skips the upload. Local builds therefore never need `SENTRY_ORG`, `SENTRY_PROJECT`, or `SENTRY_AUTH_TOKEN`.
 
 ## Safety rails
 

@@ -22,10 +22,6 @@
 #   --login-user <user> Log in to ghcr.io as <user> using $GHCR_TOKEN before building.
 #                       Requires a token with write:packages scope.
 #   -h, --help          Print this help and exit.
-#
-# Sentry source-map upload (web image only) is enabled by exporting SENTRY_ORG
-# and SENTRY_PROJECT, plus SENTRY_AUTH_TOKEN for the upload itself, mirroring
-# the workflow behavior. Without the token the build skips the upload.
 
 set -euo pipefail
 
@@ -105,32 +101,14 @@ if [ "$PUSH" = "true" ]; then
     die "not logged in to ghcr.io: run 'docker login ghcr.io' or pass --login-user with GHCR_TOKEN"
 fi
 
-# Sentry build inputs for the web image only, mirroring the workflow: CI
-# passes the build args to every matrix entry but mounts the secret only for
-# web. The auth token is optional: without it the Dockerfile skips the upload.
-SENTRY_SECRET_ARGS=()
-if [ -n "${SENTRY_AUTH_TOKEN:-}" ]; then
-  SENTRY_FILE="$(mktemp)"
-  printf '%s' "$SENTRY_AUTH_TOKEN" > "$SENTRY_FILE"
-  chmod 600 "$SENTRY_FILE"
-  SENTRY_SECRET_ARGS=(--secret "id=SENTRY_AUTH_TOKEN,src=${SENTRY_FILE}")
-fi
-trap '[ -n "${SENTRY_FILE:-}" ] && rm -f "$SENTRY_FILE"' EXIT
+# Source-map upload stays with CI: local builds never pass the Sentry build
+# inputs, matching the workflow's behavior when SENTRY_AUTH_TOKEN is absent.
 
 OCI_LABELS=(
   --label "org.opencontainers.image.source=https://github.com/PhS-Orivado/kaneo"
   --label "org.opencontainers.image.version=${TAG}"
 )
 [ -n "$REVISION" ] && OCI_LABELS+=("--label" "org.opencontainers.image.revision=${REVISION}")
-
-SENTRY_ARGS_FOR_IMAGE=()
-build_sentry_args() {
-  SENTRY_ARGS_FOR_IMAGE=()
-  [ "$1" != "web" ] && return
-  [ -n "${SENTRY_ORG:-}" ] && SENTRY_ARGS_FOR_IMAGE=("--build-arg" "SENTRY_ORG=${SENTRY_ORG}")
-  [ -n "${SENTRY_PROJECT:-}" ] && SENTRY_ARGS_FOR_IMAGE+=("--build-arg" "SENTRY_PROJECT=${SENTRY_PROJECT}")
-  [ "${#SENTRY_SECRET_ARGS[@]}" -gt 0 ] && SENTRY_ARGS_FOR_IMAGE+=("${SENTRY_SECRET_ARGS[@]}")
-}
 
 PUSH_MODE_ARGS=()
 if [ "$PUSH" = "true" ]; then
@@ -164,14 +142,12 @@ for entry in "${BUILD[@]}"; do
   [ "${LATEST:-}" = "true" ] && tags+=(--tag "${image_ref}:latest")
 
   echo "==> Building ${image_ref}:${TAG} from ${dockerfile}"
-  build_sentry_args "$name"
   # shellcheck disable=SC2086
   docker buildx build \
     --file "$dockerfile" \
     --platform "$PLATFORMS" \
     "${tags[@]}" \
     "${OCI_LABELS[@]}" \
-    ${SENTRY_ARGS_FOR_IMAGE[@]+"${SENTRY_ARGS_FOR_IMAGE[@]}"} \
     "${PUSH_MODE_ARGS[@]}" \
     .
 done
