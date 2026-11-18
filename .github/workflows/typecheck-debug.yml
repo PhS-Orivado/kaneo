@@ -1,0 +1,46 @@
+name: typecheck debug
+
+# Temporary: run in this fork only, on pushes to the debug branch, to surface
+# typecheck diagnostics with file/line annotations. Safe to delete.
+on:
+  push:
+    branches: [multi-repo-typecheck-debug]
+
+jobs:
+  typecheck:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run lint/typecheck, keep going
+        run: |
+          set +e
+          pnpm lint > lint.log 2>&1
+          echo "lint_exit=$?" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Emit annotations for type errors
+        run: |
+          set +e
+          grep -nE 'error TS[0-9]+' lint.log | head -100 > type-errors.txt || true
+          while IFS= read -r line; do
+            file=$(echo "$line" | sed -E 's/^([^: \t]+)\([0-9]+,[0-9]+\).*/\1/')
+            lineNo=$(echo "$line" | sed -E 's/^[^: \t]+\(([0-9]+),[0-9]+\).*/\1/')
+            col=$(echo "$line" | sed -E 's/^[^: \t]+\([0-9]+,([0-9]+)\).*/\1/')
+            msg=$(echo "$line" | sed -E 's/.*error TS[0-9]+: //')
+            echo "::error file=${file},line=${lineNo},col=${col}::${msg}"
+          done < type-errors.txt
+          cat lint.log | tail -c 6000
