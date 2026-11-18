@@ -17,62 +17,132 @@ vi.mock("../../database", () => ({
       }),
     }),
   },
+}));
+
+vi.mock("../../events", () => ({ publishEvent: mockPublishEvent }));
+
+vi.mock("./get-sprints", () => ({
+  getSprint: mockGetSprint,
+  getSprintList: vi.fn(),
+  default: vi.fn(),
+}));
+
+import createSprint from "./create-sprint";
+
+function uniqueViolation(constraint: string) {
+  return Object.assign(new Error("duplicate key"), {
+    code: "23505",
+    constraint,
+  });
+}
+
+beforeEach(() => {
+  mockSelect.mockReset();
+  mockInsert.mockReset();
+  mockPublishEvent.mockReset();
+  mockGetSprint.mockReset();
 });
 
-viKؚۛʈˋˋˋٝٛݜȋ
+describe("createSprint", () => {
+  it("creates the next future sprint at the end of the list", async () => {
+    mockSelect
+      .mockResolvedValueOnce([{ id: "s1", name: "Sprint 1" }])
+      .mockResolvedValueOnce([{ maxPosition: 2 }]);
+    mockInsert.mockResolvedValueOnce([
+      { id: "s2", projectId: "project-1", name: "Sprint 2" },
+    ]);
+    const created = { id: "s2", name: "Sprint 2", taskCount: 0 };
+    mockGetSprint.mockResolvedValueOnce(created);
+    mockPublishEvent.mockResolvedValueOnce(undefined);
 
-HOȊȜXۚ\ڑ]ٛݎț[ؚԝXۚ\ڑ]݈ٛJJNݚKؚۛʈˋٙ]\ܜڛݜȋ
+    const result = await createSprint({
+      projectId: "project-1",
+      goal: "Ship the backlog view",
+      startDate: "2025-01-15",
+      endDate: "2025-01-29",
+    });
 
-HOȊٝܜڛݎț[ؚљ]ܜڛ݋Ȉٝܜڛݓ\ݎȝڋٛʊKȈY؝[ȝڋٛʊKߊJNڛ\ܝܙX]Tܜڛ݈ܛۈˋ؜٘]K\ܜڛ݈΂ݛ؝[ۈ[ڜ]YUڛۘ][ۊۛܝؚ[ݎȜݜڛيHٝ\ۈؚ٘݋؜ܚYۊٝȑ\ܛ܊ٝ\X؝HٞHʋۙNȈ̌͌H˂Ȉۛܝؚ[݋ȈJNBّٙۜXXڊ
+    expect(result).toBe(created);
+    expect(mockInsert).toHaveBeenCalledWith({
+      projectId: "project-1",
+      name: "Sprint 2",
+      goal: "Ship the backlog view",
+      status: "future",
+      startDate: new Date("2025-01-15"),
+      endDate: new Date("2025-01-29"),
+      position: 3,
+    });
+    expect(mockPublishEvent).toHaveBeenCalledWith("sprint.updated", {
+      projectId: "project-1",
+      sprintId: "s2",
+    });
+  });
 
-HOȞ[ؚԙ[X݋ؚۛԙ\ٝ
+  it("rejects a name that already exists in the project with 409", async () => {
+    mockSelect.mockResolvedValueOnce([{ id: "s1", name: "Release 1.0" }]);
 
-N[ؚқܙ\݋ؚۛԙ\ٝ
+    await expect(
+      createSprint({ projectId: "project-1", name: "Release 1.0" }),
+    ).rejects.toMatchObject({
+      status: 409,
+      message: 'Sprint "Release 1.0" already exists in this project',
+    });
+    expect(mockInsert).not.toHaveBeenCalled();
+  });
 
-N[ؚԝXۚ\ڑ]ٛ݋ؚۛԙ\ٝ
+  it("maps a concurrent duplicate-name insert to 409 instead of a 500", async () => {
+    mockSelect
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([{ maxPosition: -1 }]);
+    mockInsert.mockRejectedValueOnce(
+      uniqueViolation("sprint_project_name_unique"),
+    );
 
-N[ؚљ]ܜڛ݋ؚۛԙ\ٝ
+    await expect(
+      createSprint({ projectId: "project-1", name: "Sprint 1" }),
+    ).rejects.toMatchObject({ status: 409 });
+  });
 
-NJNٙ\؜ژي؜٘]Tܜڛ݈ˈ
+  it("rethrows insert errors that are not name conflicts", async () => {
+    mockSelect
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([{ maxPosition: -1 }]);
+    mockInsert.mockRejectedValueOnce(new Error("connection reset"));
 
-HOȞ]
-؜٘]\ȝHٞݝ\وܜڛ݈]H[ووH\݈ˈ\ޛ؈
+    await expect(
+      createSprint({ projectId: "project-1" }),
+    ).rejects.toMatchObject({ message: "connection reset" });
+  });
 
-HOȞ[ؚԙ[X݂Ȉؚۛԙ\ۛٙ؛YSۘيވYȈ܌Hˈ؛YNȈԜڛ݈HȟWJBȈؚۛԙ\ۛٙ؛YSۘيވX^ܚ][ێȌȟWJN[ؚқܙ\݋ؚۛԙ\ۛٙ؛YSۘيȚYȈ܌ȋۚ٘ݒYȈܜۚ٘݋LHˈ؛YNȈԜڛ݈ȈKȈJNۛܝܙX]YHȚYȈ܌ȋ؛YNȈԜڛ݈ȋ\ڐ۝[ݎȌN[ؚљ]ܜڛ݋ؚۛԙ\ۛٙ؛YSۘيܙX]Y
-N[ؚԝXۚ\ڑ]ٛ݋ؚۛԙ\ۛٙ؛YSۘي[ٙYڛٙ
-NȈۛܝٜݛH]ؚ]ܙX]Tܜڛ݊ۚ٘ݒYȈܜۚ٘݋LH˂Ȉۘ[ȈԚ\Hؘڛوڙ]ȋȈݘ\ݑ]NȈ̌͋LKLMH˂Ȉ[ّ]NȈ̌͋LKLΈ˂ȈJNȈ^X݊ٜݛ
-KݛЙJܙX]Y
-N^X݊[ؚқܙ\݊KݛҘ]ِٙ[И[Yڝ
-ۚ٘ݒYȈܜۚ٘݋LH˂Ȉ؛YNȈԜڛ݈ȋȈۘ[ȈԚ\Hؘڛوڙ]ȋȈݘ]\Έٝ]\و˂Ȉݘ\ݑ]Nțٝȑ]J̌͋LKLMHʋȈ[ّ]Nțٝȑ]J̌͋LKLΈʋȈܚ][ێȌ˂ȈJN^X݊[ؚԝXۚ\ڑ]ٛ݊KݛҘ]ِٙ[И[Yڝ
-ܜڛ݋ݜ]Yˈۚ٘ݒYȈܜۚ٘݋LH˂ȈܜڛݒYȈ܌ȋȈJNJNȈ]
-ܙZ٘ݜȘH؛YH][٘YH^\ݜȚ[ȝH݈ۚ٘ڝHˈ\ޛ؈
+  it("rejects an unparseable start date with 400", async () => {
+    await expect(
+      createSprint({ projectId: "project-1", startDate: "not-a-date" }),
+    ).rejects.toMatchObject({ status: 400 });
+    expect(mockInsert).not.toHaveBeenCalled();
+  });
 
-HOȞ[ؚԙ[X݋ؚۛԙ\ۛٙ؛YSۘيވYȈ܌Hˈ؛YNȈԙ[X\وK̈ȟWJNȈ]ؚ]^X݊ȈܙX]Tܜڛ݊Ȝۚ٘ݒYȈܜۚ٘݋LHˈ؛YNȈԙ[X\وK̈ȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈKȈY\ܘYَȉԜڛ݈ԙ[X\وK̈Ș[٘YH^\ݜȚ[ȝ\Ȝۚ٘݉˂ȈJN^X݊[ؚқܙ\݊Kۛ݋ݛҘ]ِٙ[И[Y
+  it("rejects a start date after the end date with 400", async () => {
+    await expect(
+      createSprint({
+        projectId: "project-1",
+        startDate: "2025-02-01",
+        endDate: "2025-01-15",
+      }),
+    ).rejects.toMatchObject({
+      status: 400,
+      message: "Start date cannot be after due date. Please adjust the date range.",
+    });
+    expect(mockInsert).not.toHaveBeenCalled();
+  });
 
-NJNȈ]
-ۘ\ȘHۛ؝\ܙ[݈\X؝K[؛YH[ܙ\݈ȍH[ܝXYوHLˈ\ޛ؈
+  it("fails loudly when the insert returns no row", async () => {
+    mockSelect
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([{ maxPosition: -1 }]);
+    mockInsert.mockResolvedValueOnce([]);
 
-HOȞ[ؚԙ[X݂Ȉؚۛԙ\ۛٙ؛YSۘي׊BȈؚۛԙ\ۛٙ؛YSۘيވX^ܚ][ێȋLHWJN[ؚқܙ\݋ؚۛԙZ٘ݙY؛YSۘيȈ[ڜ]YUڛۘ][ۊܜڛݗܜۚ٘ݗۘ[YWݛڜ]YHʋȈ
-NȈ]ؚ]^X݊ȈܙX]Tܜڛ݊Ȝۚ٘ݒYȈܜۚ٘݋LHˈ؛YNȈԜڛ݈HȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊Ȝݘ]\ΈHJNJNȈ]
-ܙ]۝܈[ܙ\݈\ܛܜȝ]\و۝؛YHۛٛXݜȋ\ޛ؈
-
-HOȞ[ؚԙ[X݂Ȉؚۛԙ\ۛٙ؛YSۘي׊BȈؚۛԙ\ۛٙ؛YSۘيވX^ܚ][ێȋLHWJN[ؚқܙ\݋ؚۛԙZ٘ݙY؛YSۘيٝȑ\ܛ܊؛ۛ٘ݚ[ۈٜٝʊNȈ]ؚ]^X݊ȈܙX]Tܜڛ݊Ȝۚ٘ݒYȈܜۚ٘݋LHȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊țY\ܘYَȈ؛ۛ٘ݚ[ۈٜٝȟJNJNȈ]
-ܙZ٘ݜȘ[ȝ[ܘ\ܙXXۙHݘ\݈]Hڝˈ\ޛ؈
-
-HOȞ]ؚ]^X݊ȈܙX]Tܜڛ݊Ȝۚ٘ݒYȈܜۚ٘݋LHˈݘ\ݑ]NȈۛ݋XKY]HȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊Ȝݘ]\ΈJN^X݊[ؚқܙ\݊Kۛ݋ݛҘ]ِٙ[И[Y
-
-NJNȈ]
-ܙZ٘ݜȘHݘ\݈]HYݙ\ȝH[و]Hڝˈ\ޛ؈
-
-HOȞ]ؚ]^X݊ȈܙX]Tܜڛ݊ۚ٘ݒYȈܜۚ٘݋LH˂Ȉݘ\ݑ]NȈ̌͋LˌH˂Ȉ[ّ]NȈ̌͋LKLMH˂ȈJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊ݘ]\ΈȈY\ܘYَȈԝ\݈]H؛݈ۛوYݙ\șYH]KȔX\وYݜ݈H]H؛ٙKȋȈJN^X݊[ؚқܙ\݊Kۛ݋ݛҘ]ِٙ[И[Y
-
-NJNȈ]
-٘Z[țݙHڙ[ȝH[ܙ\݈ٝ\ۜțۈ۝ȋ\ޛ؈
-
-HOȞ[ؚԙ[X݂Ȉؚۛԙ\ۛٙ؛YSۘي׊BȈؚۛԙ\ۛٙ؛YSۘيވX^ܚ][ێȋLHWJN[ؚқܙ\݋ؚۛԙ\ۛٙ؛YSۘي׊NȈ]ؚ]^X݊ȈܙX]Tܜڛ݊Ȝۚ٘ݒYȈܜۚ٘݋LHȟJKȈ
-KܙZ٘ݜ˝Ә]ړؚ٘݊Ȝݘ]\ΈLY\ܘYَȈјZ[YȘܙX]Hܜڛ݈ȟJNJNJN
+    await expect(
+      createSprint({ projectId: "project-1" }),
+    ).rejects.toMatchObject({ status: 500, message: "Failed to create sprint" });
+  });
+});
