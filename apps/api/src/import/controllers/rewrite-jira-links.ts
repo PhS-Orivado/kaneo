@@ -176,7 +176,10 @@ async function rewriteJiraLinks({
         .update(activityTable)
         .set({ content })
         .where(
-          and(eq(activityTable.id, commentId), eq(activityTable.type, "comment")),
+          and(
+            eq(activityTable.id, commentId),
+            eq(activityTable.type, "comment"),
+          ),
         )
         .returning();
 

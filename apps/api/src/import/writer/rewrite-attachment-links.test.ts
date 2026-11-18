@@ -17,10 +17,7 @@ const KANEO_URL = "https://kaneo.example.com/api/asset/abc";
 
 describe("rewriteAttachmentLinks", () => {
   it("rewrites browse and content URLs, absolute and relative", () => {
-    const rewrites = buildAttachmentLinkRewrites(
-      [attachment],
-      () => KANEO_URL,
-    );
+    const rewrites = buildAttachmentLinkRewrites([attachment], () => KANEO_URL);
 
     const text = [
       "![shot](https://acme.atlassian.net/secure/attachment/10000/shot.png)",
@@ -42,10 +39,7 @@ describe("rewriteAttachmentLinks", () => {
   });
 
   it("leaves other hosts and other attachments alone", () => {
-    const rewrites = buildAttachmentLinkRewrites(
-      [attachment],
-      () => KANEO_URL,
-    );
+    const rewrites = buildAttachmentLinkRewrites([attachment], () => KANEO_URL);
 
     const text =
       "https://evil.test/secure/attachment/10000/shot.png and /secure/attachment/9999/x.png";
@@ -53,10 +47,7 @@ describe("rewriteAttachmentLinks", () => {
   });
 
   it("keeps a longer id that starts with this one, and keeps query strings", () => {
-    const rewrites = buildAttachmentLinkRewrites(
-      [attachment],
-      () => KANEO_URL,
-    );
+    const rewrites = buildAttachmentLinkRewrites([attachment], () => KANEO_URL);
 
     expect(
       rewriteAttachmentLinks(

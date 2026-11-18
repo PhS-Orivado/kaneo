@@ -141,8 +141,10 @@ export async function rewriteImportedReferences({
     );
 
   const clientUrl = process.env.KANEO_CLIENT_URL || "http://localhost:5173";
-  const rewrites = buildReferenceLinkRewrites(taskReferences, (reference) =>
-    `${clientUrl}/dashboard/workspace/${workspaceId}/project/${reference.projectId}/task/${reference.taskId}`,
+  const rewrites = buildReferenceLinkRewrites(
+    taskReferences,
+    (reference) =>
+      `${clientUrl}/dashboard/workspace/${workspaceId}/project/${reference.projectId}/task/${reference.taskId}`,
   );
 
   let updatedTasks = 0;

@@ -127,24 +127,22 @@ describe("JiraLinkRewrite", () => {
   });
 
   it("applies the rewrite when the dialog button is used", async () => {
-    m.mutateAsync
-      .mockResolvedValueOnce(report({}))
-      .mockResolvedValueOnce(
-        report({
-          dryRun: false,
-          replacements: [
-            {
-              sourceUrl: "https://jira.example.com/browse/ABC-1",
-              targetUrl:
-                "http://localhost:5173/dashboard/workspace/ws1/project/p1/task/t1",
-              targetTicketId: "ABC-1",
-              targetTitle: "Fix login",
-              taskId: "t1",
-              commentId: null,
-            },
-          ],
-        }),
-      );
+    m.mutateAsync.mockResolvedValueOnce(report({})).mockResolvedValueOnce(
+      report({
+        dryRun: false,
+        replacements: [
+          {
+            sourceUrl: "https://jira.example.com/browse/ABC-1",
+            targetUrl:
+              "http://localhost:5173/dashboard/workspace/ws1/project/p1/task/t1",
+            targetTicketId: "ABC-1",
+            targetTitle: "Fix login",
+            taskId: "t1",
+            commentId: null,
+          },
+        ],
+      }),
+    );
 
     renderSection();
     fireEvent.click(findButton());

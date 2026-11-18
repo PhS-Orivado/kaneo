@@ -5,7 +5,8 @@ import {
   rewriteReferenceLinks,
 } from "./rewrite-imported-references";
 
-const INTERNAL_URL = "https://kaneo.test/dashboard/workspace/ws/project/p1/task/t1";
+const INTERNAL_URL =
+  "https://kaneo.test/dashboard/workspace/ws/project/p1/task/t1";
 
 const reference: ImportedTaskReference = {
   sourceLabel: "ABC-1",
@@ -37,9 +38,9 @@ describe("buildReferenceLinkRewrites", () => {
   it("turns bare keys into Markdown links to the internal task", () => {
     const result = rewrites([reference]);
 
-    expect(
-      rewriteReferenceLinks("blocked by ABC-1 today", result),
-    ).toBe(`blocked by [ABC-1](${INTERNAL_URL}) today`);
+    expect(rewriteReferenceLinks("blocked by ABC-1 today", result)).toBe(
+      `blocked by [ABC-1](${INTERNAL_URL}) today`,
+    );
   });
 
   it("leaves longer keys, other hosts and embedded keys alone", () => {

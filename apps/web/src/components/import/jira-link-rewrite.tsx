@@ -26,9 +26,7 @@ export function JiraLinkRewrite({ workspaceId }: JiraLinkRewriteProps) {
 
   const findLinks = async () => {
     try {
-      setReport(
-        await mutateAsync({ workspaceId, dryRun: true }),
-      );
+      setReport(await mutateAsync({ workspaceId, dryRun: true }));
     } catch (error) {
       toast.error(
         error instanceof Error

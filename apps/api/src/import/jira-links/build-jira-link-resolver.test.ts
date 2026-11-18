@@ -34,9 +34,7 @@ describe("buildJiraLinkResolver", () => {
         { id: "q1", slug: "XYZ" },
         { id: "q2", slug: "XYZ-2" },
       ],
-      [
-        { id: "u1", projectId: "q2", number: 5 },
-      ],
+      [{ id: "u1", projectId: "q2", number: 5 }],
     );
 
     expect(suffixed("XYZ", 5)).toEqual({ taskId: "u1", projectId: "q2" });
