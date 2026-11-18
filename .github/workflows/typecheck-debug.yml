@@ -1,17 +1,25 @@
 name: typecheck debug
 
-# Temporary: fork-only debug branch. Runs the same lint/typecheck as upstream CI
-# and re-emits every type error as a GitHub annotation with file/line location.
+# Temporary: fork-only debug branch. Reproduces the upstream quality gates
+# (vp check, typecheck, openapi reference check), re-emits every diagnostic as
+# a GitHub annotation with file/line location, and commits the regenerated
+# OpenAPI spec to this branch so it can be reviewed and copied over to the
+# feature branch without a local toolchain.
 on:
   push:
     branches: [multi-repo-typecheck-debug]
 
+permissions:
+  contents: write
+
 jobs:
   typecheck:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
       - uses: pnpm/action-setup@v6.1.1
         with:
@@ -25,12 +33,33 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run lint and typecheck, capture output, never fail early
-        run: pnpm lint > lint.log 2>&1 || true
+      - name: Capture quality gates, never fail early
+        run: |
+          pnpm lint > lint.log 2>&1 || true
+          pnpm typecheck > typecheck.log 2>&1 || true
+          pnpm openapi:check:fix > openapi.log 2>&1 || true
 
       - name: Re-emit diagnostics as annotations
-        run: node .github/scripts/parse-lint-log.mjs
+        run: node .github/scripts/parse-lint-log.mjs lint.log typecheck.log openapi.log
 
-      - name: Show lint output tail
+      - name: Show output tails
         if: always()
-        run: tail -c 4000 lint.log || true
+        run: |
+          echo '=== lint tail ==='
+          tail -c 3000 lint.log || true
+          echo '=== typecheck tail ==='
+          tail -c 6000 typecheck.log || true
+          echo '=== openapi tail ==='
+          tail -c 3000 openapi.log || true
+
+      - name: Commit regenerated OpenAPI spec when it drifted
+        run: |
+          git config user.name "kaneo-debug-bot"
+          git config user.email "action@users.noreply.github.com"
+          git add apps/docs/openapi.json
+          if git diff --cached --quiet; then
+            echo "openapi.json is in sync with the routes"
+          else
+            git commit -m "chore: regenerate openapi.json (debug branch)"
+            git push
+          fi
