@@ -192,6 +192,16 @@ async function setup(type: "github" | "gitea" | "gitlab") {
       projectId: project.id,
       isActive: true,
       config: JSON.stringify(config),
+      // GitHub webhook resolution matches rows by the numeric repository
+      // key, so the fixture carries the repository identity columns.
+      ...(type === "github"
+        ? {
+            repositoryKey: "github:1",
+            repositoryOwner: "team",
+            repositoryName: "repo",
+            repositoryId: 1,
+          }
+        : {}),
     })
     .returning();
   await db
@@ -636,15 +646,13 @@ describe.each(["github", "gitea", "gitlab"] as const)(
             labels: [],
           });
           const review = await reviewSyncResume(
-            f.project.id,
-            type,
+            f.integration.id,
             link.id,
             f.workspace.id,
           );
           expect(review.local.state).toBe("closed");
           await resumeSync(
-            f.project.id,
-            type,
+            f.integration.id,
             link.id,
             review.token,
             source,
