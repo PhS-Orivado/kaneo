@@ -1,7 +1,8 @@
 name: typecheck debug
 
-# Temporary: run in this fork only, on pushes to the debug branch, to surface
-# typecheck diagnostics with file/line annotations. Safe to delete.
+# Temporary: fork-only debug branch. Runs the same lint/typecheck as the
+# upstream CI and re-emits every type error as a GitHub annotation with a
+# file/line so the diagnostics can be read from the public run page.
 on:
   push:
     branches: [multi-repo-typecheck-debug]
@@ -25,22 +26,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Run lint/typecheck, keep going
-        run: |
-          set +e
-          pnpm lint > lint.log 2>&1
-          echo "lint_exit=$?" >> "$GITHUB_OUTPUT"
-          exit 0
+      - name: Run lint and typecheck, capture output, never fail early
+        run: pnpm lint > lint.log 2>&1 || true
 
-      - name: Emit annotations for type errors
+      - name: Re-emit diagnostics as annotations
         run: |
-          set +e
-          grep -nE 'error TS[0-9]+' lint.log | head -100 > type-errors.txt || true
-          while IFS= read -r line; do
-            file=$(echo "$line" | sed -E 's/^([^: \t]+)\([0-9]+,[0-9]+\).*/\1/')
-            lineNo=$(echo "$line" | sed -E 's/^[^: \t]+\(([0-9]+),[0-9]+\).*/\1/')
-            col=$(echo "$line" | sed -E 's/^[^: \t]+\([0-9]+,([0-9]+)\).*/\1/')
-            msg=$(echo "$line" | sed -E 's/.*error TS[0-9]+: //')
-            echo "::error file=${file},line=${lineNo},col=${col}::${msg}"
-          done < type-errors.txt
-          cat lint.log | tail -c 6000
+          node -e '
+            const fs = require("fs");
+            const log = fs.readFileSync("lint.log", "utf8");
+            const lines = log.split(/?
+/);
+            const structured = /([^:s]+?)((d+),(d+)): error TSd+: (.*)/;
+            const seen = new Set();
+            for (const line of lines) {
+              if (!line.includes("error TS")) continue;
+              if (seen.has(line)) continue;
+              seen.add(line);
+              const m = line.match(structured);
+              if (m) {
+                console.log("::error file=" + m[1] + ",line=" + m[2] + ",col=" + m[3] + "::" + m[4]);
+              } else {
+                console.log("::error::" + line.slice(0, 240));
+              }
+              if (seen.size >= 150) break;
+            }
+            console.log("TOTAL_ERROR_LINES=" + seen.size);
+          '
+      - name: Show lint output tail
+        if: always()
+        run: tail -c 4000 lint.log || true
