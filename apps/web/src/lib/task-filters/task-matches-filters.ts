@@ -135,16 +135,6 @@ export function taskMatchesFilters(
         }) ?? false,
     ],
     [
-      "sprint",
-      filters.sprint,
-      () =>
-        filters.sprint?.some((sprintFilter) =>
-          sprintFilter === SPRINT_FILTER_VALUES.backlog
-            ? task.sprintId == null
-            : task.sprintId === sprintFilter,
-        ) ?? false,
-    ],
-    [
       "labels",
       filters.labels,
       () =>
