@@ -1,5 +1,5 @@
 $ node ./scripts/openapi/check.mjs --fix
-[2m2026-11-18T22:41:17.123Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:41:17.124Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:41:17.124Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[2m2026-11-18T23:13:30.724Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T23:13:30.724Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T23:13:30.725Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 apps/docs/openapi.json is up to date

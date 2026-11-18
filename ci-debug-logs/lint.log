@@ -3,11 +3,11 @@ error: Formatting issues found
 [38;2;244;191;117;1m.github/scripts/parse-lint-log.mjs[0m (0ms)
 [38;2;244;191;117;1mapps/api/src/gitea-integration/controllers/create-gitea-integration.ts[0m (0ms)
 [38;2;244;191;117;1mapps/api/src/gitea-integration/controllers/get-gitea-integration.ts[0m (0ms)
-[38;2;244;191;117;1mapps/api/src/gitea-integration/index.ts[0m (1ms)
+[38;2;244;191;117;1mapps/api/src/gitea-integration/index.ts[0m (0ms)
 [38;2;244;191;117;1mapps/api/src/github-integration/controllers/get-github-integration.ts[0m (0ms)
-[38;2;244;191;117;1mapps/api/src/github-integration/index.ts[0m (1ms)
+[38;2;244;191;117;1mapps/api/src/github-integration/index.ts[0m (0ms)
 [38;2;244;191;117;1mapps/api/src/gitlab-integration/controllers/get-gitlab-integration.ts[0m (0ms)
-[38;2;244;191;117;1mapps/api/src/gitlab-integration/index.ts[0m (1ms)
+[38;2;244;191;117;1mapps/api/src/gitlab-integration/index.ts[0m (0ms)
 [38;2;244;191;117;1mapps/api/src/integrations/map-unique-violation.ts[0m (0ms)
 [38;2;244;191;117;1mapps/web/src/hooks/mutations/use-disconnect-integration.test.tsx[0m (0ms)
 [38;2;244;191;117;1mtests/api-integration/github-rebind.test.ts[0m (0ms)
@@ -15,5 +15,5 @@ error: Formatting issues found
 [38;2;244;191;117;1mtests/api/gitlab-integration/import-gitlab-issues.test.ts[0m (0ms)
 [38;2;244;191;117;1mtests/api/plan-limits/repository-binding-quota-lock.test.ts[0m (0ms)
 
-Found formatting issues in 14 files (532ms, 4 threads). Run `vp check --fix` to fix them.
+Found formatting issues in 14 files (420ms, 4 threads). Run `vp check --fix` to fix them.
 [ELIFECYCLE] Command failed with exit code 1.

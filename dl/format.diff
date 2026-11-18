@@ -1,0 +1,375 @@
+diff --git a/.github/scripts/parse-lint-log.mjs b/.github/scripts/parse-lint-log.mjs
+index e037b7f..4b351b5 100644
+--- a/.github/scripts/parse-lint-log.mjs
++++ b/.github/scripts/parse-lint-log.mjs
+@@ -7,10 +7,8 @@ import { readFileSync } from "node:fs";
+ // The openapi log gets a wider filter because its failures are textual
+ // ("out of date", "regenerated"). Never exit non-zero: a broken annotation
+ // must not take the debug job down.
+-const structuredParens =
+-  /^([^\s(]+)\((\d+),(\d+)\): error TS(\d+): (.*)$/;
+-const structuredPretty =
+-  /^([^\s:]+\.tsx?):(\d+):(\d+) - error TS(\d+): (.*)$/;
++const structuredParens = /^([^\s(]+)\((\d+),(\d+)\): error TS(\d+): (.*)$/;
++const structuredPretty = /^([^\s:]+\.tsx?):(\d+):(\d+) - error TS(\d+): (.*)$/;
+ 
+ let emitted = 0;
+ const MAX = 150;
+diff --git a/apps/api/src/gitea-integration/controllers/create-gitea-integration.ts b/apps/api/src/gitea-integration/controllers/create-gitea-integration.ts
+index 642b0c7..aeb75b8 100644
+--- a/apps/api/src/gitea-integration/controllers/create-gitea-integration.ts
++++ b/apps/api/src/gitea-integration/controllers/create-gitea-integration.ts
+@@ -98,8 +98,7 @@ function findReconcilableGiteaRow<T extends ReconcilableRow>(
+       storedGiteaBaseUrl(stored.baseUrl) === baseUrl &&
+       typeof stored.repositoryOwner === "string" &&
+       typeof stored.repositoryName === "string" &&
+-      stored.repositoryOwner.toLowerCase() ===
+-        repositoryOwner.toLowerCase() &&
++      stored.repositoryOwner.toLowerCase() === repositoryOwner.toLowerCase() &&
+       stored.repositoryName.toLowerCase() === repositoryName.toLowerCase()
+     ) {
+       return row;
+diff --git a/apps/api/src/gitea-integration/controllers/get-gitea-integration.ts b/apps/api/src/gitea-integration/controllers/get-gitea-integration.ts
+index daaede3..fa57310 100644
+--- a/apps/api/src/gitea-integration/controllers/get-gitea-integration.ts
++++ b/apps/api/src/gitea-integration/controllers/get-gitea-integration.ts
+@@ -78,10 +78,7 @@ async function getGiteaIntegrationById(
+   integrationId: string,
+   includeWebhookSecret = false,
+ ) {
+-  const integration = await findIntegrationByIdAndType(
+-    integrationId,
+-    "gitea",
+-  );
++  const integration = await findIntegrationByIdAndType(integrationId, "gitea");
+   if (!integration) {
+     return null;
+   }
+diff --git a/apps/api/src/gitea-integration/index.ts b/apps/api/src/gitea-integration/index.ts
+index 9a301fb..f3b8482 100644
+--- a/apps/api/src/gitea-integration/index.ts
++++ b/apps/api/src/gitea-integration/index.ts
+@@ -369,10 +369,7 @@ const giteaIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
+     const { integrationId } = c.req.valid("param");
+     const body = c.req.valid("json");
+ 
+-    const row = await findIntegrationByIdAndType(
+-      integrationId,
+-      "gitea",
+-    );
++    const row = await findIntegrationByIdAndType(integrationId, "gitea");
+ 
+     if (!row) {
+       throw new HTTPException(404, { message: "Integration not found" });
+diff --git a/apps/api/src/github-integration/controllers/get-github-integration.ts b/apps/api/src/github-integration/controllers/get-github-integration.ts
+index d04b65c..76f9b4f 100644
+--- a/apps/api/src/github-integration/controllers/get-github-integration.ts
++++ b/apps/api/src/github-integration/controllers/get-github-integration.ts
+@@ -74,10 +74,7 @@ async function listGithubIntegrations(projectId: string) {
+ 
+ /** Single lookup by primary key (id-keyed routes). */
+ async function getGithubIntegrationById(integrationId: string) {
+-  const integration = await findIntegrationByIdAndType(
+-    integrationId,
+-    "github",
+-  );
++  const integration = await findIntegrationByIdAndType(integrationId, "github");
+   if (!integration) {
+     return null;
+   }
+diff --git a/apps/api/src/github-integration/index.ts b/apps/api/src/github-integration/index.ts
+index 8678bf6..19d93a8 100644
+--- a/apps/api/src/github-integration/index.ts
++++ b/apps/api/src/github-integration/index.ts
+@@ -418,10 +418,7 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
+     const { integrationId } = c.req.valid("param");
+     const body = c.req.valid("json");
+ 
+-    const row = await findIntegrationByIdAndType(
+-      integrationId,
+-      "github",
+-    );
++    const row = await findIntegrationByIdAndType(integrationId, "github");
+ 
+     if (!row) {
+       throw new HTTPException(404, { message: "Integration not found" });
+@@ -469,7 +466,9 @@ const githubIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
+           .set({
+             config: JSON.stringify(config),
+             isActive:
+-              body.isActive !== undefined ? body.isActive : (row.isActive ?? true),
++              body.isActive !== undefined
++                ? body.isActive
++                : (row.isActive ?? true),
+             updatedAt: new Date(),
+           })
+           .where(
+diff --git a/apps/api/src/gitlab-integration/controllers/get-gitlab-integration.ts b/apps/api/src/gitlab-integration/controllers/get-gitlab-integration.ts
+index 3cb24e1..6a5acd0 100644
+--- a/apps/api/src/gitlab-integration/controllers/get-gitlab-integration.ts
++++ b/apps/api/src/gitlab-integration/controllers/get-gitlab-integration.ts
+@@ -77,10 +77,7 @@ async function getGitlabIntegrationById(
+   integrationId: string,
+   includeSecrets = false,
+ ) {
+-  const integration = await findIntegrationByIdAndType(
+-    integrationId,
+-    "gitlab",
+-  );
++  const integration = await findIntegrationByIdAndType(integrationId, "gitlab");
+   if (!integration) {
+     return null;
+   }
+diff --git a/apps/api/src/gitlab-integration/index.ts b/apps/api/src/gitlab-integration/index.ts
+index 1fea327..58c5716 100644
+--- a/apps/api/src/gitlab-integration/index.ts
++++ b/apps/api/src/gitlab-integration/index.ts
+@@ -372,10 +372,7 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
+     const { integrationId } = c.req.valid("param");
+     const body = c.req.valid("json");
+ 
+-    const row = await findIntegrationByIdAndType(
+-      integrationId,
+-      "gitlab",
+-    );
++    const row = await findIntegrationByIdAndType(integrationId, "gitlab");
+ 
+     if (!row) {
+       throw new HTTPException(404, { message: "Integration not found" });
+diff --git a/apps/api/src/integrations/map-unique-violation.ts b/apps/api/src/integrations/map-unique-violation.ts
+index 5a997a4..6da81c9 100644
+--- a/apps/api/src/integrations/map-unique-violation.ts
++++ b/apps/api/src/integrations/map-unique-violation.ts
+@@ -25,7 +25,11 @@ type PostgresUniqueViolation = Error & {
+  */
+ function findPgError(error: unknown): PostgresUniqueViolation | null {
+   let current: unknown = error;
+-  for (let depth = 0; depth < 10 && typeof current === "object" && current !== null; depth += 1) {
++  for (
++    let depth = 0;
++    depth < 10 && typeof current === "object" && current !== null;
++    depth += 1
++  ) {
+     const candidate = current as PostgresUniqueViolation;
+     if (candidate.code === "23505") return candidate;
+     current = (candidate as { cause?: unknown }).cause;
+diff --git a/apps/web/src/hooks/mutations/use-disconnect-integration.test.tsx b/apps/web/src/hooks/mutations/use-disconnect-integration.test.tsx
+index ec8bcb1..41b76c1 100644
+--- a/apps/web/src/hooks/mutations/use-disconnect-integration.test.tsx
++++ b/apps/web/src/hooks/mutations/use-disconnect-integration.test.tsx
+@@ -1,7 +1,14 @@
+ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+ import { cleanup, renderHook } from "@testing-library/react";
+ import type { PropsWithChildren } from "react";
+-import { afterEach, beforeEach, describe, expect, it, vi } from "vite-plus/test";
++import {
++  afterEach,
++  beforeEach,
++  describe,
++  expect,
++  it,
++  vi,
++} from "vite-plus/test";
+ import deleteDiscordIntegration from "@/fetchers/discord-integration/delete-discord-integration";
+ import deleteGenericWebhookIntegration from "@/fetchers/generic-webhook-integration/delete-generic-webhook-integration";
+ import deleteGiteaIntegration from "@/fetchers/gitea-integration/delete-gitea-integration";
+@@ -43,9 +50,12 @@ vi.mock("@/fetchers/slack-integration/delete-slack-integration", () => ({
+ vi.mock("@/fetchers/discord-integration/delete-discord-integration", () => ({
+   default: vi.fn(),
+ }));
+-vi.mock("@/fetchers/mattermost-integration/delete-mattermost-integration", () => ({
+-  default: vi.fn(),
+-}));
++vi.mock(
++  "@/fetchers/mattermost-integration/delete-mattermost-integration",
++  () => ({
++    default: vi.fn(),
++  }),
++);
+ vi.mock("@/fetchers/telegram-integration/delete-telegram-integration", () => ({
+   default: vi.fn(),
+ }));
+@@ -74,13 +84,19 @@ afterEach(() => {
+ });
+ 
+ describe("useDisconnectIntegration", () => {
+-  it.each(
+-    [
+-      { id: "github", list: getGithubIntegrations, remove: deleteGithubIntegration },
+-      { id: "gitea", list: getGiteaIntegrations, remove: deleteGiteaIntegration },
+-      { id: "gitlab", list: getGitlabIntegrations, remove: deleteGitlabIntegration },
+-    ] as const,
+-  )(
++  it.each([
++    {
++      id: "github",
++      list: getGithubIntegrations,
++      remove: deleteGithubIntegration,
++    },
++    { id: "gitea", list: getGiteaIntegrations, remove: deleteGiteaIntegration },
++    {
++      id: "gitlab",
++      list: getGitlabIntegrations,
++      remove: deleteGitlabIntegration,
++    },
++  ] as const)(
+     "$id resolves the project's bindings and deletes each by id",
+     async ({ id, list, remove }) => {
+       const invalidate = vi.spyOn(queryClient, "invalidateQueries");
+@@ -114,16 +130,19 @@ describe("useDisconnectIntegration", () => {
+     { id: "mattermost", remove: deleteMattermostIntegration },
+     { id: "telegram", remove: deleteTelegramIntegration },
+     { id: "webhook", remove: deleteGenericWebhookIntegration },
+-  ] as const)("$id keeps passing the projectId through", async ({ id, remove }) => {
+-    const mockedRemove = vi.mocked(remove);
+-    mockedRemove.mockResolvedValue({ success: true } as never);
++  ] as const)(
++    "$id keeps passing the projectId through",
++    async ({ id, remove }) => {
++      const mockedRemove = vi.mocked(remove);
++      mockedRemove.mockResolvedValue({ success: true } as never);
+ 
+-    const { result } = renderHook(() => useDisconnectIntegration(id), {
+-      wrapper: Wrapper,
+-    });
+-    await result.current.mutateAsync("p1");
++      const { result } = renderHook(() => useDisconnectIntegration(id), {
++        wrapper: Wrapper,
++      });
++      await result.current.mutateAsync("p1");
+ 
+-    expect(mockedRemove).toHaveBeenCalledWith("p1");
+-    expect(mockedRemove).toHaveBeenCalledTimes(1);
+-  });
++      expect(mockedRemove).toHaveBeenCalledWith("p1");
++      expect(mockedRemove).toHaveBeenCalledTimes(1);
++    },
++  );
+ });
+diff --git a/tests/api-integration/github-rebind.test.ts b/tests/api-integration/github-rebind.test.ts
+index a9d6bfb..d48adc1 100644
+--- a/tests/api-integration/github-rebind.test.ts
++++ b/tests/api-integration/github-rebind.test.ts
+@@ -121,9 +121,9 @@ describe("GitHub repository changes preserve link ownership", () => {
+       ]),
+     );
+     expect(await db.query.externalLinkTable.findFirst()).toMatchObject(link);
+-    expect(
+-      await db.query.githubImportTable.findFirst(),
+-    ).toMatchObject({ integrationId: integration.id });
++    expect(await db.query.githubImportTable.findFirst()).toMatchObject({
++      integrationId: integration.id,
++    });
+   });
+   it("preserves links, pending imports and settings when the same repository is renamed or reinstalled", async () => {
+     const { config, integration, link, connect } = await setup();
+@@ -195,9 +195,9 @@ describe("GitHub repository changes preserve link ownership", () => {
+       integrationId: integration.id,
+       taskId: task.id,
+     });
+-    expect(
+-      await db.query.githubImportTable.findFirst(),
+-    ).toMatchObject({ integrationId: integration.id });
++    expect(await db.query.githubImportTable.findFirst()).toMatchObject({
++      integrationId: integration.id,
++    });
+   });
+   it("heals a legacy row with an unparseable config when its repository is relinked", async () => {
+     const { integration, connect } = await setup();
+@@ -217,9 +217,11 @@ describe("GitHub repository changes preserve link ownership", () => {
+     expect(await connect()).toMatchObject({ id: integration.id });
+     expect(
+       JSON.parse(
+-        (await db.query.integrationTable.findFirst({
+-          where: eq(schema.integrationTable.id, integration.id),
+-        }))?.config ?? "{}",
++        (
++          await db.query.integrationTable.findFirst({
++            where: eq(schema.integrationTable.id, integration.id),
++          })
++        )?.config ?? "{}",
+       ),
+     ).toMatchObject({ repositoryOwner: "owner", repositoryId: 2 });
+     expect(await db.query.externalLinkTable.findFirst()).toBeDefined();
+@@ -269,21 +271,19 @@ describe("GitHub repository changes preserve link ownership", () => {
+         // reconcile lookup so the row changes on another connection
+         // between the read and the guarded write; READ COMMITTED then
+         // lets the guarded update see the new config and match zero rows.
+-        transactionSpy.mockImplementation(
+-          (async (fn) => {
+-            return runOriginalTransaction(async (tx) => {
+-              const original = tx.query.integrationTable.findFirst.bind(
+-                tx.query.integrationTable,
+-              );
+-              tx.query.integrationTable.findFirst = async (...args) => {
+-                const row = await original(...args);
+-                if (row) await changeRowConcurrently();
+-                return row;
+-              };
+-              return fn(tx);
+-            });
+-          }) as typeof db.transaction,
+-        );
++        transactionSpy.mockImplementation((async (fn) => {
++          return runOriginalTransaction(async (tx) => {
++            const original = tx.query.integrationTable.findFirst.bind(
++              tx.query.integrationTable,
++            );
++            tx.query.integrationTable.findFirst = async (...args) => {
++              const row = await original(...args);
++              if (row) await changeRowConcurrently();
++              return row;
++            };
++            return fn(tx);
++          });
++        }) as typeof db.transaction);
+       }
+ 
+       const find = db.query.integrationTable.findFirst.bind(
+diff --git a/tests/api/github-integration/repository-binding.test.ts b/tests/api/github-integration/repository-binding.test.ts
+index 413c23d..9242c0e 100644
+--- a/tests/api/github-integration/repository-binding.test.ts
++++ b/tests/api/github-integration/repository-binding.test.ts
+@@ -102,9 +102,7 @@ const { default: createIntegration } =
+ const { findAllIntegrationsByRepo } =
+   await import("../../../apps/api/src/plugins/github/services/task-service");
+ const { assertRepositoryBindingQuota, withRepositoryBindingQuotaLock } =
+-  await import(
+-    "../../../apps/api/src/plan-limits/repository-binding-quota"
+-  );
++  await import("../../../apps/api/src/plan-limits/repository-binding-quota");
+ const binding = {
+   repositoryOwner: "Victim",
+   repositoryName: "Private",
+diff --git a/tests/api/gitlab-integration/import-gitlab-issues.test.ts b/tests/api/gitlab-integration/import-gitlab-issues.test.ts
+index 830c5f9..6f714e1 100644
+--- a/tests/api/gitlab-integration/import-gitlab-issues.test.ts
++++ b/tests/api/gitlab-integration/import-gitlab-issues.test.ts
+@@ -106,7 +106,10 @@ describe("importGitlabIssues labels on an already linked task", () => {
+       linkedIssue(["bug", "priority:high"]),
+     ]);
+ 
+-    await importGitlabIssues({ integrationId: "integration-1", projectId: "project-1" });
++    await importGitlabIssues({
++      integrationId: "integration-1",
++      projectId: "project-1",
++    });
+ 
+     expect(mocks.deleteLabels).not.toHaveBeenCalled();
+     expect(mocks.insertValues).toHaveBeenCalledWith(
+diff --git a/tests/api/plan-limits/repository-binding-quota-lock.test.ts b/tests/api/plan-limits/repository-binding-quota-lock.test.ts
+index c5f9f13..35de8af 100644
+--- a/tests/api/plan-limits/repository-binding-quota-lock.test.ts
++++ b/tests/api/plan-limits/repository-binding-quota-lock.test.ts
+@@ -15,9 +15,8 @@ vi.mock("../../../apps/api/src/database", () => ({
+   },
+ }));
+ 
+-const { withRepositoryBindingQuotaLock } = await import(
+-  "../../../apps/api/src/plan-limits/repository-binding-quota"
+-);
++const { withRepositoryBindingQuotaLock } =
++  await import("../../../apps/api/src/plan-limits/repository-binding-quota");
+ 
+ const PROJECT = "project-1";
+ 

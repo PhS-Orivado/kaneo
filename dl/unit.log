@@ -1,0 +1,1955 @@
+$ vp run -r test
+~/packages/mcp$ vp test run --config vitest.config.ts ⊘ cache disabled
+~/packages/email$ vp test run --config vitest.config.ts ⊘ cache disabled
+~/packages/importers$ vp test run --config vitest.config.ts ⊘ cache disabled
+~/packages/editor$ vp test run --config vitest.config.ts ⊘ cache disabled
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/importers[39m
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/email[39m
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/editor[39m
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/mcp[39m
+
+ [32m✓[39m src/kaneo/client.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 81[2mms[22m[39m
+ [32m✓[39m src/smtp-config.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m src/auth/device-flow.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 313[2mms[22m[39m
+ [32m✓[39m src/tools/register.test.ts [2m([22m[2m29 tests[22m[2m)[22m[33m 302[2mms[22m[39m
+ [32m✓[39m src/kaneo/source.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 349[2mms[22m[39m
+[90mstderr[2m | src/auth/auth-service.test.ts[2m > [22m[2mAuthService[2m > [22m[2mclears the cached token and starts device auth after a 401
+[22m[39m[kaneo-mcp] Open https://verify.example.com and approve this device. User code: ABCD-EFGH
+
+ [32m✓[39m src/auth/auth-service.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 250[2mms[22m[39m
+ [32m✓[39m src/plane/source.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 475[2mms[22m[39m
+ [32m✓[39m src/install/merge-config.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/jira/source.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 450[2mms[22m[39m
+ [32m✓[39m src/install/parse-install-args.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/kaneo/custom-field-value.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/trello/source.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 398[2mms[22m[39m
+ [32m✓[39m src/kaneo/task-helpers.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/utils/normalize-base-url.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m      Tests [22m [1m[32m61 passed[39m[22m[90m (61)[39m
+[2m   Start at [22m 23:12:37
+[2m   Duration [22m 2.87s[2m (tests 40%, import 27%, transform 25%, worker 7%)[22m
+
+[2m    Isolate [22m [33m9 workers spawned[39m[2m · ~529ms startup each (spawn + environment, per file)[22m
+[2m            [22m [2mat least ~1.06s faster with [22m[33misolate: false[39m[2m — reuses workers across files instead of one per file[22m
+
+
+~/packages/permissions$ vp test run --config vitest.config.ts ⊘ cache disabled
+ [32m✓[39m src/planka/source.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 361[2mms[22m[39m
+ [32m✓[39m src/linear/source.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 300[2mms[22m[39m
+ [32m✓[39m src/trello/mapping.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/linear/mapping.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 108[2mms[22m[39m
+ [32m✓[39m src/safe-hard-break.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 474[2mms[22m[39m
+   [32m✓[39m SafeHardBreak (Fixes KANEO-WEB-6) [2m(3)[22m
+     [33m[2m✓[22m[39m treats Shift+Enter as a no-op in a readOnly editor and does not throw[33m 317[2mms[22m[39m
+ [32m✓[39m src/kaneo/mapping.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+[90mstderr[2m | src/send-email-brand.test.ts[2m > [22m[2memail instance name[2m > [22m[2mpreserves Kaneo in a task title in the notification subject
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/permissions[39m
+
+[90mstderr[2m | src/templates/workspace-invitation.test.ts[2m > [22m[2mWorkspaceInvitationEmail[2m > [22m[2mrenders the invitation in French for a French locale
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/plane/mapping.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 170[2mms[22m[39m
+[90mstderr[2m | src/templates/otp.test.ts[2m > [22m[2mOtpEmail[2m > [22m[2mrenders OTP and verification copy in HTML
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/planka/client.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 166[2mms[22m[39m
+ [32m✓[39m src/templates/workspace-invitation.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 488[2mms[22m[39m
+ [32m✓[39m src/base-extensions.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 744[2mms[22m[39m
+   [32m✓[39m createBaseExtensions [2m(2)[22m
+     [33m[2m✓[22m[39m round-trips Kaneo markdown without changes[33m 704[2mms[22m[39m
+ [32m✓[39m src/send-email-brand.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 392[2mms[22m[39m
+ [32m✓[39m src/templates/otp.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 396[2mms[22m[39m
+ [32m✓[39m src/planka/mapping.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m src/jira/html.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 130[2mms[22m[39m
+ [32m✓[39m src/capabilities.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m src/instance.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m src/index.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m22 passed[39m[22m[90m (22)[39m
+[2m   Start at [22m 23:12:41
+[2m   Duration [22m 1.01s[2m (transform 48%, import 27%, tests 14%, worker 10%)[22m
+
+ [32m✓[39m src/linear/graphql.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 189[2mms[22m[39m
+
+ [32m✓[39m src/smtp-transport.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 107[2mms[22m[39m
+~/packages/mcp$ tsc -p tsconfig.json
+ [32m✓[39m src/jira/project.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m src/jira/columns.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/kaneo-image.test.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 1845[2mms[22m[39m
+   [32m✓[39m KaneoImage [2m(18)[22m
+     [33m[2m✓[22m[39m keeps an unresized image as plain markdown[33m 462[2mms[22m[39m
+ [32m✓[39m src/plane/pacing.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 101[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m23 passed[39m[22m[90m (23)[39m
+[2m   Start at [22m 23:12:37
+[2m   Duration [22m 5.69s[2m (environment 66%, tests 24%, import 6%, transform 4%)[22m
+
+
+~/packages/editor$ tsc
+ [32m✓[39m src/verify-smtp-connection.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 344[2mms[22m[39m
+ [32m✓[39m src/plane/html.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+ [32m✓[39m src/keys.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+[90mstderr[2m | src/templates/notification.test.ts[2m > [22m[2mNotificationEmail[2m > [22m[2mrenders Japanese chrome for a Japanese locale
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/jira/relations.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/templates/notification.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 413[2mms[22m[39m
+ [32m✓[39m src/jira/mapping.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m src/kaneo/board.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+
+~/packages/cli$ vp test run --config vitest.config.ts ⊘ cache disabled
+ [32m✓[39m src/jira/url.test.ts [2m([22m[2m29 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+
+~/apps/mobile$ vp test run --config vitest.config.ts ⊘ cache disabled
+ [32m✓[39m src/plane/url.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m src/jira/auth.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/trello/comments.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+[90mstderr[2m | src/send-test-email.test.ts[2m > [22m[2msendTestEmail[2m > [22m[2mbounds only the test transport and closes it after a stalled send fails
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/jira/errors.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/send-test-email.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 151[2mms[22m[39m
+ [32m✓[39m src/jira/comments.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/apps/mobile[39m
+
+ [32m✓[39m src/trello/colors.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/jira/labels.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/cli[39m
+
+ [32m✓[39m src/jira/warnings.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+[90mstderr[2m | src/templates/account-password.test.ts[2m > [22m[2mAccountPasswordEmail[2m > [22m[2minvites a new account to set a password instead of resetting one
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/templates/account-password.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 353[2mms[22m[39m
+   [32m✓[39m AccountPasswordEmail [2m(2)[22m
+     [33m[2m✓[22m[39m invites a new account to set a password instead of resetting one[33m 317[2mms[22m[39m
+ [32m✓[39m src/kaneo/colors.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/kaneo/url.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m src/features/project/field-form.test.ts [2m([22m[2m42 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+[90mstderr[2m | src/templates/password-reset.test.ts[2m > [22m[2mPasswordResetEmail[2m > [22m[2mrenders Japanese copy for a Japanese locale
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/templates/password-reset.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 272[2mms[22m[39m
+ [32m✓[39m src/trello/projects.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m src/smtp-error-details.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/tasks/plain-description.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 189[2mms[22m[39m
+ [32m✓[39m src/trello/authorize.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/jira/board.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m36 passed[39m[22m[90m (36)[39m
+[2m      Tests [22m [1m[32m373 passed[39m[22m[90m (373)[39m
+[2m   Start at [22m 23:12:37
+[2m   Duration [22m 9.09s[2m (tests 35%, transform 33%, import 26%, worker 5%)[22m
+
+[2m    Isolate [22m [33m36 workers spawned[39m[2m · ~391ms startup each (spawn + environment, per file)[22m
+[2m            [22m [2mat least ~4.30s faster with [22m[33misolate: false[39m[2m — reuses workers across files instead of one per file[22m
+
+ [32m✓[39m src/features/board/model.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+
+~/packages/importers$ tsc -p tsconfig.json
+ [32m✓[39m src/lib/format.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 137[2mms[22m[39m
+ [32m✓[39m src/lib/legacy-html.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/features/task/relation-link.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/lib/realtime-connection.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 80[2mms[22m[39m
+[90mstderr[2m | src/templates/email-verification.test.ts[2m > [22m[2mEmailVerificationEmail[2m > [22m[2masks the person to confirm their address
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/templates/email-verification.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 152[2mms[22m[39m
+ [32m✓[39m src/lib/workspace-description.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+
+~/packages/planka-import$ vp test run --config vitest.config.ts ⊘ cache disabled
+ [32m✓[39m src/tasks/render-task-detail.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 185[2mms[22m[39m
+[90mstderr[2m | src/templates/magic-link.test.ts[2m > [22m[2mMagicLinkEmail[2m > [22m[2mrenders Japanese copy for a Japanese locale
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/features/task/new-task-fields.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/templates/magic-link.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 187[2mms[22m[39m
+ [32m✓[39m src/lib/task-item.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/lib/device-link.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/api/kaneo-api.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 293[2mms[22m[39m
+[90mstderr[2m | src/templates/test-email.test.ts[2m > [22m[2mTestEmail[2m > [22m[2mnames the recipient and instance without any links into Kaneo
+[22m[39mYour app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform
+
+ [32m✓[39m src/templates/test-email.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 165[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m14 passed[39m[22m[90m (14)[39m
+[2m      Tests [22m [1m[32m57 passed[39m[22m[90m (57)[39m
+[2m   Start at [22m 23:12:37
+[2m   Duration [22m 11.06s[2m (import 74%, tests 14%, transform 11%, worker 1%)[22m
+
+[2m    Isolate [22m [33m14 workers spawned[39m[2m · ~428ms startup each (spawn + environment, per file)[22m
+[2m            [22m [2mat least ~1.57s faster with [22m[33misolate: false[39m[2m — reuses workers across files instead of one per file[22m
+
+ [32m✓[39m src/features/account/is-delete-confirmation-valid.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/lib/i18n/resolve-locale.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/lib/style.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m      Tests [22m [1m[32m116 passed[39m[22m[90m (116)[39m
+[2m   Start at [22m 23:12:44
+[2m   Duration [22m 3.39s[2m (transform 44%, import 36%, tests 14%, worker 6%)[22m
+
+[2m    Isolate [22m [33m13 workers spawned[39m[2m · ~434ms startup each (spawn + environment, per file)[22m
+[2m            [22m [2mat least ~1.45s faster with [22m[33misolate: false[39m[2m — reuses workers across files instead of one per file[22m
+
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/planka-import[39m
+
+~/packages/mcp$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/permissions$ tsc
+~/packages/importers$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/email$ tsc --incremental false
+
+ [32m✓[39m src/args.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/task-view/render-task-sections.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 295[2mms[22m[39m
+ [32m✓[39m src/tasks/list-query.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m src/retry-after.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/migrate.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+ [32m✓[39m src/kaneo.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 155[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m32 passed[39m[22m[90m (32)[39m
+[2m   Start at [22m 23:12:48
+[2m   Duration [22m 1.04s[2m (transform 48%, import 23%, tests 20%, worker 7%, environment 1%)[22m
+
+ [32m✓[39m src/search/search-results.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+
+ [32m✓[39m src/comments/describe-activity.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 122[2mms[22m[39m
+
+
+~/apps/api$ vp test run --config vitest.config.ts ⊘ cache disabled
+ [32m✓[39m src/screens/screens.test.ts [2m([22m[2m33 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m src/task-view/task-view-json.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/apps/api[39m
+
+ [32m✓[39m src/context/provenance.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/projects/render-project-view.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/task-view/load-task-view.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 259[2mms[22m[39m
+ [32m✓[39m src/fields/render-fields.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/images/fetch-image.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 197[2mms[22m[39m
+ [32m✓[39m ../../tests/api/storage/s3.test.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mcloses local connections and discards queued updates without touching another project
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mrejects stale workspace connections even when revocation was missed
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mskips delivery without revoking access on transient lookup failure
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mskips delivery without revoking access on transient lookup failure
+[22m[39mFailed to validate project broadcast access: Error: Database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:163:39
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mskips delivery without revoking access on transient members failure
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mskips delivery without revoking access on transient members failure
+[22m[39mFailed to validate broadcast membership: Error: Database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:163:39
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mskips delivery without revoking access on transient projectAccess failure
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mskips delivery without revoking access on transient projectAccess failure
+[22m[39mFailed to validate broadcast membership: Error: Database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:163:39
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mdoes not send an in-flight update after local revocation
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mrevokes sockets when a move arrives through Redis
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mcloses local sockets even if Redis publication fails
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject move revocation[2m > [22m[2mcloses local sockets even if Redis publication fails
+[22m[39mFailed to publish project move: Error: Redis unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:211:37
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mworkspace membership revocation[2m > [22m[2mpreserves instance-admin access after membership removal, but forces account revocation
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mworkspace membership revocation[2m > [22m[2mnotifies user sockets even without an open project
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mworkspace membership revocation[2m > [22m[2mkeeps instance admins connected without workspace membership
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mworkspace membership revocation[2m > [22m[2mstops broadcasts after membership removal even when fan-out was missed
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mworkspace membership revocation[2m > [22m[2mcloses only the removed member's workspace subscriptions
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mworkspace membership revocation[2m > [22m[2mrevokes remote subscriptions through the user Redis channel
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+ [32m✓[39m src/fields/field-value.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/github-integration/repository-binding.test.ts [2m([22m[2m28 tests[22m[2m)[22m[32m 104[2mms[22m[39m
+ [32m✓[39m src/relations/link-subtask.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 149[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mstops broadcasts to a member who lost project access even when the change was missed
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mcloses only the inaccessible project sockets and notifies every tab
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mkeeps project sockets open when the access check fails
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mkeeps project sockets open when the access check fails
+[22m[39mFailed to verify project access: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:345:42
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mfans the change out to other instances through the user Redis channel
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mrevokes remote project sockets on a Redis project access change
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mdoes not let a pending project access change replace a workspace revocation
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mrechecks local project sockets once per user after Redis reconnects
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mkeeps project sockets open when the reconnect recheck fails
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mproject access revocation[2m > [22m[2mkeeps project sockets open when the reconnect recheck fails
+[22m[39mFailed to verify project access: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:467:42
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mcoalesces authorization checks across a bulk broadcast burst
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mdoes not reuse an older flush's membership snapshot for a later Redis broadcast
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+ [32m✓[39m src/notifications/normalize-notification.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mstill revokes local subscriptions when the post-removal role lookup fails
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mstill revokes local subscriptions when the post-removal role lookup fails
+[22m[39mFailed to read role after membership removal: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/project-move.test.ts:535:34
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mretries revocation delivery after Redis recovers without a project broadcast
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mdrops a queued membership revocation when access is restored before Redis recovery
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mretries a membership revocation while access remains absent
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mreturns after local revocation while Redis PUBLISH remains queued
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/project-move.test.ts[2m > [22m[2mrevokes all remote subscriptions on a deleted-user Redis message
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/project-move.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 583[2mms[22m[39m
+ [32m✓[39m src/commands/task/mine.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/relations/relation-types.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/images/image-protocol.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/relations/group-relations.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mdelivers to local sockets without waiting on redis
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mstill delivers locally when the publish fails
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mstill delivers locally when the publish fails
+[22m[39mFailed to publish a user broadcast: Error: redis is down
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/user-broadcast-redis-failure.test.ts:140:31
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:1632:35
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:26
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3338:20
+    at new Promise (<anonymous>)
+    at runWithCancel (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3333:10)
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3318:20
+    at new Promise (<anonymous>)
+    at runWithTimeout (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3276:10)
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3904:64
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mignores its own echo so the socket is written once
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mdelivers a broadcast published by another instance
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mdrops a message whose payload disagrees with its channel
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mbroadcastToUser with the redis adapter[2m > [22m[2mdrops a message whose payload disagrees with its channel
+[22m[39mUser broadcast channel and payload disagree
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mended sessions with the redis adapter[2m > [22m[2mpublishes the ended session IDs to the other instances
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mended sessions with the redis adapter[2m > [22m[2mcloses only the ended session's sockets when another instance ends it
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mended sessions with the redis adapter[2m > [22m[2mcloses the sockets of sessions that ended while the subscriber was away
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mrevoked API keys with the redis adapter[2m > [22m[2mpublishes the revoked key IDs to the other instances
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mrevoked API keys with the redis adapter[2m > [22m[2mcloses only the key's sockets when another instance revokes it
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mrevoked API keys with the redis adapter[2m > [22m[2mcloses the sockets of keys revoked while the subscriber was away
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+ [32m✓[39m src/transfer/render-import-report.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mresynchronizes healthy browser sockets after the Redis subscriber recovers
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mignores an offline-queued revocation after the member regains access
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+ [32m✓[39m src/api/uploads.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 93[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mretries incoming revocation validation without evicting on database errors (restored=true)
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mretries incoming revocation validation without evicting on database errors (restored=true)
+[22m[39mFailed to verify received workspace revocation: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/user-broadcast-redis-failure.test.ts:467:33
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mretries incoming revocation validation without evicting on database errors (restored=false)
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mretries incoming revocation validation without evicting on database errors (restored=false)
+[22m[39mFailed to verify received workspace revocation: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/user-broadcast-redis-failure.test.ts:467:33
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mvalidates a delayed archive revocation against current state (archived=true)
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mvalidates a delayed archive revocation against current state (archived=true)
+[22m[39mFailed to verify received workspace revocation: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/user-broadcast-redis-failure.test.ts:511:37
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mvalidates a delayed archive revocation against current state (archived=false)
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+[90mstderr[2m | ../../tests/api/ws/user-broadcast-redis-failure.test.ts[2m > [22m[2mvalidates a delayed archive revocation against current state (archived=false)
+[22m[39mFailed to verify received workspace revocation: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/user-broadcast-redis-failure.test.ts:511:37
+    at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+
+ [32m✓[39m ../../tests/api/ws/user-broadcast-redis-failure.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 328[2mms[22m[39m
+ [32m✓[39m src/images/image-art.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 103[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/outbound-intent.test.ts [2m([22m[2m26 tests[22m[2m)[22m[33m 654[2mms[22m[39m
+ [32m✓[39m src/labels/label-colors.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/projects/render-project-list.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 77[2mms[22m[39m
+ [32m✓[39m src/render/capabilities.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/config/repo-config.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/bulk/render-bulk-result.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 101[2mms[22m[39m
+ [32m✓[39m ../../tests/api/mcp-stateless.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 423[2mms[22m[39m
+ [32m✓[39m src/auth/wait-for-approval.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m src/admin/render-invitation-list.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m ../../tests/api/mcp-oauth-security.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 153[2mms[22m[39m
+ [32m✓[39m ../../tests/api/github-integration/verify-github-installation.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+ [32m✓[39m src/services/session.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/branch-matcher.test.ts [2m([22m[2m47 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m src/notifications/render-notification-list.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/images/render-images.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 183[2mms[22m[39m
+ [32m✓[39m src/search/render-search.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 76[2mms[22m[39m
+ [32m✓[39m ../../tests/api/label/assign-and-unassign-label.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+ [32m✓[39m src/labels/match-label.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitea/rapid-text-sync.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 177[2mms[22m[39m
+ [32m✓[39m src/labels/delete-label-fully.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 73[2mms[22m[39m
+ [32m✓[39m src/output/report-failure.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/relations/render-relation-list.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/verify-logout-token.test.ts [2m([22m[2m51 tests[22m[2m)[22m[32m 242[2mms[22m[39m
+ [32m✓[39m src/comments/render-activity.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 64[2mms[22m[39m
+ [32m✓[39m ../../tests/api/mcp-tools.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 152[2mms[22m[39m
+ [32m✓[39m src/comments/render-comment-list.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m src/projects-write/project-edits.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/images/extract-images.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitlab-integration/create-gitlab-integration.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+ [32m✓[39m src/tasks/task-detail-json.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/projects-write/project-key.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m src/external-links/render-link-list.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+ [32m✓[39m src/tasks/parse-date.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mdelivers messages to connected clients after batch timeout
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mexcludes connections matching excludeInitiatorId
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mdeduplicates messages with the same key in a batch window
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mbroadcasts project updates to connected clients
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m src/errors/describe.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mpreserves a link refresh when a later unrelated project update shares its batch
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m src/bulk/bulk-change.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/admin/roles.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mkeeps title-change hints through batching without broadcasting private titles
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mdoes not deliver to connections on a different project
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/mcp-request-bounds.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 146[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/broadcast.test.ts[2m > [22m[2mbroadcastToProject[2m > [22m[2mwarns when called before adapter initialization
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/broadcast.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 862[2mms[22m[39m
+ [32m✓[39m src/context/render-context.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitea/comment-sync.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/render/table.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/admin/render-invitation-change.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/admin/match-org-member.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/import/guarded-fetch.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 112[2mms[22m[39m
+ [32m✓[39m src/projects-write/render-project-change.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m src/images/blocks.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/transfer/import-plan.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/commands/workspace/render-workspace-list.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m src/commands/profile/profile-config.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/route.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 185[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrapid github text edits[2m > [22m[2msends a second local title even immediately after the first sync
+[22m[39mSynced task title to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrapid github text edits[2m > [22m[2msends a different title immediately after an incoming github title
+[22m[39mSynced task title to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrapid github text edits[2m > [22m[2mkeeps suppressing an exact incoming echo
+[22m[39mSkipping title sync - already synced from GitHub
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrapid github text edits[2m > [22m[2msends a second local description immediately after the first sync
+[22m[39mSynced task description to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs github title when an older request completes after the latest edit
+[22m[39mSynced task title to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs github title when an older request completes after the latest edit
+[22m[39mSynced task title to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs github description when an older request completes after the latest edit
+[22m[39mSynced task description to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs github description when an older request completes after the latest edit
+[22m[39mSynced task description to GitHub issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs gitea title when an older request completes after the latest edit
+[22m[39mSynced task title to Gitea issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs gitea title when an older request completes after the latest edit
+[22m[39mSynced task title to Gitea issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs gitea description when an older request completes after the latest edit
+[22m[39mSynced task description to Gitea issue #1
+
+[90mstdout[2m | ../../tests/api/plugins/github/rapid-text-sync.test.ts[2m > [22m[2mrepairs gitea description when an older request completes after the latest edit
+[22m[39mSynced task description to Gitea issue #1
+
+ [32m✓[39m ../../tests/api/plugins/github/rapid-text-sync.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m src/workflow/render-rules.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m src/columns/plan-column-move.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/time/duration.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/authorize-asset-access.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/images/image-url.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest merge request opened[2m > [22m[2mlinks a draft merge request without moving the task
+[22m[39m[GitLab Webhook] Event: merge_request
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest merge request opened[2m > [22m[2mmoves the task when a merge request is opened ready for review
+[22m[39m[GitLab Webhook] Event: merge_request
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest merge request updates[2m > [22m[2mrefreshes the link without moving the task when a merge request becomes a draft
+[22m[39m[GitLab Webhook] Event: merge_request
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest merge request updates[2m > [22m[2mmoves the task when a merge request is taken out of draft
+[22m[39m[GitLab Webhook] Event: merge_request
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest merge request updates[2m > [22m[2mignores an update that does not touch the draft flag
+[22m[39m[GitLab Webhook] Event: merge_request
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest handler failures[2m > [22m[2mreports a failing handler as a server error without its details
+[22m[39m[GitLab Webhook] Event: issue
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest confidential issues[2m > [22m[2mpasses a regular issue update to the handler
+[22m[39m[GitLab Webhook] Event: issue
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest confidential issues[2m > [22m[2mdrops an update to an issue that was made confidential
+[22m[39m[GitLab Webhook] Event: issue
+
+[90mstdout[2m | ../../tests/api/plugins/gitlab/webhook-handler.test.ts[2m > [22m[2mhandleGitlabWebhookRequest confidential issues[2m > [22m[2mdrops a confidential issue even without the event type
+[22m[39m[GitLab Webhook] Event: issue
+
+ [32m✓[39m ../../tests/api/plugins/gitlab/webhook-handler.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+ [32m✓[39m src/commands/workspace/remember-workspace.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/images/kitty.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/admin/workspace-slug.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/transfer/parse-import-file.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/tasks/match-column.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/workspace-access-middleware.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 90[2mms[22m[39m
+ [32m✓[39m src/projects/progress-bar.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/config/config-store.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 90[2mms[22m[39m
+ [32m✓[39m ../../tests/api/redis/redis-config.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/doctor/compare-operations.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/images/image-info.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m src/time/render-time-entries.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m src/api/to-api-failure.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/images/attachment-markdown.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/transfer/import-report.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m ../../tests/api/file-secret-call-sites.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m src/labels/pick-labels.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/fields/field-types.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/webhooks/issue-updated.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/comments/relative-time.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 68[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitea/webhooks/issue-opened.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/github-integration/repository-search.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/utils/rate-limit-headers.test.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/jq/compile-jq.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+ [32m✓[39m src/workflow/events.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m src/task-view/time-summary.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/passthrough/parse-fields.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/github-integration/bounded-fetch.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1120[2mms[22m[39m
+   [32m✓[39m bounded GitHub import transport [2m(8)[22m
+     [33m[2m✓[22m[39m applies bounded transport to real App authentication and installation clients without SDK retries[33m 839[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/webhooks/issue-opened.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/admin/render-member-list.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/relations/render-relation-change.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+ [32m✓[39m src/notifications/notification-json.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/tasks/create-status.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/database/resolve-database-url.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/time/time-entry-json.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+[90mstderr[2m | ../../tests/api/plugins/github/webhooks/issue-opened.test.ts[2m > [22m[2mhandleIssueOpened[2m > [22m[2mpersists a valid default priority when the issue has no priority: label
+[22m[39mGitHub imported issue linking write failed {
+  projectId: [32m'project-1'[39m,
+  taskId: [32m'task-1'[39m,
+  integrationId: [32m'integration-1'[39m,
+  linkId: [32m'link-1'[39m
+}
+
+[90mstderr[2m | ../../tests/api/plugins/github/webhooks/issue-opened.test.ts[2m > [22m[2mhandleIssueOpened[2m > [22m[2mpersists the extracted priority label when present
+[22m[39mGitHub imported issue linking write failed {
+  projectId: [32m'project-1'[39m,
+  taskId: [32m'task-1'[39m,
+  integrationId: [32m'integration-1'[39m,
+  linkId: [32m'link-1'[39m
+}
+
+ [32m✓[39m ../../tests/api/plugins/github/webhooks/issue-opened.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+ [32m✓[39m src/admin/render-workspace-change.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/columns/render-column-list.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/database/prepare-database-startup.test.ts[2m > [22m[2mprepare-database-startup[2m > [22m[2msurfaces safe database details and skips migrations when readiness fails
+[22m[39m🔄 Preparing database startup {
+  source: [32m'POSTGRES_ENV'[39m,
+  host: [32m'postgres'[39m,
+  port: [33m5432[39m,
+  database: [32m'kaneo'[39m,
+  username: [32m'kaneo'[39m,
+  poolMax: [33m10[39m
+}
+
+[90mstdout[2m | ../../tests/api/database/prepare-database-startup.test.ts[2m > [22m[2mprepare-database-startup[2m > [22m[2mlogs migration failures separately from readiness failures
+[22m[39m🔄 Preparing database startup {
+  source: [32m'POSTGRES_ENV'[39m,
+  host: [32m'postgres'[39m,
+  port: [33m5432[39m,
+  database: [32m'kaneo'[39m,
+  username: [32m'kaneo'[39m,
+  poolMax: [33m10[39m
+}
+
+ [32m✓[39m ../../tests/api/database/prepare-database-startup.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/commands/workspace/match-workspace.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/bulk/bulk-status.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/utils/role-permissions.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitea-integration/verify-gitea-access-fetch.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/tasks/build-recurrence.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/outbound-request.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 401[2mms[22m[39m
+ [32m✓[39m src/labels/render-label-list.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/provider-metadata.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 69[2mms[22m[39m
+ [32m✓[39m src/labels/plan-task-labels.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/render/label-chip.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/provider-jwks.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 128[2mms[22m[39m
+ [32m✓[39m src/images/fit-image.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/services/device-auth.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/comments/comment-json.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/render/sanitize.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/bulk/preflight.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/render/width.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/workspace-access-from-integration.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m src/workflow/match-rule.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/time/log-range.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/webhooks/note-created.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m src/task-view/section-result.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+ [32m✓[39m ../../tests/api/calendar-feed/ical.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 177[2mms[22m[39m
+ [32m✓[39m src/images/decode-image.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+[90mstderr[2m | ../../tests/api/plugins/github/issue-reopened.test.ts[2m > [22m[2mcontinues through all linked rows when metadata is null
+[22m[39mIgnoring GitHub external link metadata that is not an object {
+  externalLinkId: [32m'first'[39m,
+  source: [32m'issue_reopened'[39m,
+  metadataType: [32m'null'[39m
+}
+
+[90mstderr[2m | ../../tests/api/plugins/github/issue-reopened.test.ts[2m > [22m[2mcontinues through all linked rows when metadata is []
+[22m[39mIgnoring GitHub external link metadata that is not an object {
+  externalLinkId: [32m'first'[39m,
+  source: [32m'issue_reopened'[39m,
+  metadataType: [32m'object'[39m
+}
+
+[90mstderr[2m | ../../tests/api/plugins/github/issue-reopened.test.ts[2m > [22m[2mcontinues through all linked rows when metadata is 42
+[22m[39mIgnoring GitHub external link metadata that is not an object {
+  externalLinkId: [32m'first'[39m,
+  source: [32m'issue_reopened'[39m,
+  metadataType: [32m'number'[39m
+}
+
+[90mstderr[2m | ../../tests/api/plugins/github/issue-reopened.test.ts[2m > [22m[2mcontinues through all linked rows when metadata is "text"
+[22m[39mIgnoring GitHub external link metadata that is not an object {
+  externalLinkId: [32m'first'[39m,
+  source: [32m'issue_reopened'[39m,
+  metadataType: [32m'string'[39m
+}
+
+[90mstderr[2m | ../../tests/api/plugins/github/issue-reopened.test.ts[2m > [22m[2mcontinues through all linked rows when metadata is invalid JSON
+[22m[39mFailed to parse GitHub external link metadata {
+  externalLinkId: [32m'first'[39m,
+  source: [32m'issue_reopened'[39m,
+  error: SyntaxError: Unexpected token 'i', "invalid JSON" is not valid JSON
+      at JSON.parse (<anonymous>)
+      at parseLinkMetadata [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/github/utils/parse-link-metadata.ts:20:19[90m)[39m
+      at [90m/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/github/webhooks/issue-reopened.ts:90:38
+  [90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
+      at withIntegrationTask (/home/runner/work/kaneo/kaneo/tests/api/plugins/github/issue-reopened.test.ts:126:24)
+      at withEchoConfirmation [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/github/utils/inbound-echo.ts:149:22[90m)[39m
+      at Module.handleIssueReopened [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/github/webhooks/issue-reopened.ts:70:5[90m)[39m
+      at /home/runner/work/kaneo/kaneo/tests/api/plugins/github/issue-reopened.test.ts:73:5
+      at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+}
+
+ [32m✓[39m ../../tests/api/plugins/github/issue-reopened.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+ [32m✓[39m src/images/image-target.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+[90mstderr[2m | ../../tests/api/plugins/gitlab/events/task-status-changed.test.ts[2m > [22m[2mhandleTaskStatusChanged link metadata[2m > [22m[2mstill records the outbound close when stored metadata is malformed
+[22m[39mFailed to parse GitLab external link metadata {
+  externalLinkId: [32m'link-1'[39m,
+  field: [32m'state'[39m,
+  error: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+      at JSON.parse (<anonymous>)
+      at parseLinkSyncMetadata [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/gitlab/utils/link-sync.ts:45:25[90m)[39m
+      at handleTaskStatusChanged [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/gitlab/events/task-status-changed.ts:91:12[90m)[39m
+  [90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
+      at /home/runner/work/kaneo/kaneo/tests/api/plugins/gitlab/events/task-status-changed.test.ts:75:5
+      at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
+}
+
+ [32m✓[39m ../../tests/api/plugins/gitlab/events/task-status-changed.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/tasks/render-status-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/screens/task-view.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+ [32m✓[39m src/tasks/render-comment-added.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+ [32m✓[39m src/render/theme.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plan-limits/repository-binding-quota.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 122[2mms[22m[39m
+ [32m✓[39m src/tasks/render-task-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/doctor/render-doctor.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/config/format.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/task-view/time-value.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/comments/render-comment-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 79[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/utils/issue-updates.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m src/images/render-image-links.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 55[2mms[22m[39m
+ [32m✓[39m src/api/error-body.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/task-view/label-chips.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/webhooks/issue-reopened.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/time/timer-pointers.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/external-link/create-external-link.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/images/render-image-block.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/time/entry-seconds.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/user/avatar.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m src/images/placeholder.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitea-integration/verify-gitea-access.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/fields/match-field.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/time/running-entries.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/prompts/confirm-destructive.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m ../../tests/api/user/managed-profile.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/images/avatar-layout.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/utils/pinned-outbound.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 269[2mms[22m[39m
+ [32m✓[39m src/projects/description-preview.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/images/content-type.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/passthrough/normalize-api-path.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/images/resize-rgba.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/admin/render-member-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m src/labels/deletion-step.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/state-echo.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitea-integration/create-gitea-integration.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/admin/audit/describe-auth-admin-action.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/render/box.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 76[2mms[22m[39m
+ [32m✓[39m src/external-links/link-input.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/commands/workspace/override-notice.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/images/render-attached.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/output/output-mode.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/notifications/match-notification.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/sensitive-outbound.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 3158[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps credentials out of actual Sentry events, breadcrumbs and spans while retaining ordinary HTTP telemetry[33m 3149[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/label-deletion-backpressure.test.ts[2m > [22m[2mawaited label deletion broadcasts[2m > [22m[2mdelivers immediately through the real in-memory adapter and excludes the initiator
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/label-deletion-backpressure.test.ts[2m > [22m[2mawaited label deletion broadcasts[2m > [22m[2mdoes not complete the event while the real Redis adapter is awaiting publication
+[22m[39m📡 WebSockets Initialized using: "RedisBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/label-deletion-backpressure.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/rapid-state-sync.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/bulk/label-for-removal.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/columns/find-column.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/labels/render-label-change.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/external-links/match-link.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/input/shell-safe.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/tasks/render-task-duplicated.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m src/tasks/render-open-task.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitlab-integration/import-gitlab-issues.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/time/render-timer-status.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/notifications/relative-time.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/end-provider-sessions.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m src/tasks/render-task-move.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+ [32m✓[39m src/tasks/date-range.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/task-view/task-fields-json.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/generic-webhook/events.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/tasks/format-recurrence.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/tasks/keep-current-rule.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/tasks/parse-weekdays.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/columns/render-column-change.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/time/render-timer-change.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/tasks/comment-text.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/admin/description-metadata.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab-ssrf.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/external-links/link-json.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m src/images/render-images-heading.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/custom-oauth-profile.test.ts [2m([22m[2m24 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/notifications/render-notifications-read.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/images/ansi-color.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/events/publish-event.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/task/recurrence/next-occurrence-date.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m ../../tests/api/time-entry/update-time-entry.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/admin/parse-emails.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/output/exit-on-closed-pipe.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/render/logo.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/jq/format-jq-output.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/images/iterm.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m ../../tests/api/redis/redis-priority.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/tasks/render-assignment.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/projects-write/match-project.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/tasks/read-stdin.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/images/side-by-side.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/transfer/render-exported.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/images/tmux.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m ../../tests/api/billing/creem-seat-update.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+ [32m✓[39m src/tasks/render-task-deleted.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/projects-write/key-conflict.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/columns/parse-color.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/transfer/batches.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/api/unwrap-member.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/import/writer/plan-import-tasks.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/input/read-text-input.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m179 passed[39m[22m[90m (179)[39m
+[2m      Tests [22m [1m[32m857 passed[39m[22m[90m (857)[39m
+[2m   Start at [22m 23:12:45
+[2m   Duration [22m 41.82s[2m (import 80%, tests 9%, transform 9%, worker 2%)[22m
+
+[2m     Import [22m [33m437 modules were evaluated 857 times[39m[2m · 60.78s total, 80% of tracked time[22m
+[2m            [22m [2m~6.81s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m
+
+
+ [32m✓[39m ../../tests/api/billing/entitlement.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/database/session-lock-budget.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m src/import/source/describe-import-error.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/notification-preferences/delivery-copy.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/verify-turnstile.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m ../../tests/api/user/account-deletion.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/workspace-permission-grants.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/integration-task-scope.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/session-connections.test.ts[2m > [22m[2mrevokeSessionConnections[2m > [22m[2mcloses only the sockets of the ended session and keeps delivering to the others
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/session-connections.test.ts[2m > [22m[2mrevokeSessionConnections[2m > [22m[2mdoes nothing without session IDs
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/session-connections.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+ [32m✓[39m src/import/destination-lookup.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m ../../tests/api/billing/session-required.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m src/import/writer/create-import-project.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/client-ip.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 77[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/utils/sync-label-to-gitlab.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/assert-public-destination.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+ [32m✓[39m ../../tests/api/notification/resource-access.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+[90mstderr[2m | ../../tests/api/plugins/gitlab/utils/link-sync.test.ts[2m > [22m[2mparseLinkSyncMetadata[2m > [22m[2mreturns an empty object rather than throwing on unparseable metadata
+[22m[39mFailed to parse GitLab external link metadata {
+  externalLinkId: [32m'link-1'[39m,
+  field: [32m'title'[39m,
+  error: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+      at JSON.parse (<anonymous>)
+      at parseLinkSyncMetadata [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/gitlab/utils/link-sync.ts:45:25[90m)[39m
+      at /home/runner/work/kaneo/kaneo/tests/api/plugins/gitlab/utils/link-sync.test.ts:75:12
+      at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:1632:35
+      at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:26
+      at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3338:20
+      at new Promise (<anonymous>)
+      at runWithCancel (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3333:10)
+      at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3318:20
+      at new Promise (<anonymous>)
+}
+
+ [32m✓[39m ../../tests/api/plugins/gitlab/utils/link-sync.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/mcp-internal-api-url.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1065[2mms[22m[39m
+   [32m✓[39m MCP API URLs [2m(3)[22m
+     [33m[2m✓[22m[39m advertises the public URL while fetching tools through the internal URL[33m 980[2mms[22m[39m
+ [32m✓[39m ../../tests/api/storage/head-uploaded-object.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/utils/api-key-usage.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/import/writer/create-with-unique-key.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m ../../tests/api/ws/in-memory-broadcast-adapter.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/import/runs/to-import-run-response.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/integrations/map-unique-violation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m src/errors/http-exception-response.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m src/import/source/resolve-import-connection.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitlab-integration/verify-gitlab-access.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/plugins/discord/events.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/import/runs/stop-active-imports.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 746[2mms[22m[39m
+   [32m✓[39m stopActiveImports [2m(4)[22m
+     [33m[2m✓[22m[39m refuses new imports even when nothing is running[33m 704[2mms[22m[39m
+ [32m✓[39m src/import/runs/import-run-store.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m ../../tests/api/project/delete-project.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/config.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m ../../tests/api/backchannel-logout/sign-in-session-id.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plan-limits/repository-binding-quota-lock.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/user-broadcast.test.ts[2m > [22m[2mbroadcastToUser[2m > [22m[2mdelivers a message to every socket the user has open
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast.test.ts[2m > [22m[2mbroadcastToUser[2m > [22m[2mdoes not deliver a message to a different user
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/user-broadcast.test.ts[2m > [22m[2mbroadcastToUser[2m > [22m[2mstill delivers locally when no adapter is initialised
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/connections.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/user-broadcast.test.ts[2m > [22m[2mbroadcastToUser[2m > [22m[2mstill delivers locally when no adapter is initialised
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/user-broadcast.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/credential-webhooks.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m ../../tests/api/billing/config.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/auth-secret.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/validate-dates.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/task/resolve-import-task-status.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+[90mstderr[2m | ../../tests/api/ws/workspace-access.test.ts[2m > [22m[2mrequires a reconnect if access synchronization fails
+[22m[39mFailed to synchronize workspace access: Error: database unavailable
+    at /home/runner/work/kaneo/kaneo/tests/api/ws/workspace-access.test.ts:51:39
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:1632:35
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:26
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3338:20
+    at new Promise (<anonymous>)
+    at runWithCancel (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3333:10)
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3318:20
+    at new Promise (<anonymous>)
+    at runWithTimeout (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3276:10)
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3904:64
+
+ [32m✓[39m ../../tests/api/ws/workspace-access.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/resolve-private-key.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+[90mstderr[2m | ../../tests/api/plugins/github/utils/labels.test.ts[2m > [22m[2mgithub labels helpers[2m > [22m[2mrethrows unexpected label removal errors
+[22m[39mFailed to remove label "status:done" from issue: Error: gone
+    at /home/runner/work/kaneo/kaneo/tests/api/plugins/github/utils/labels.test.ts:80:19
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:1632:35
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:26
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3338:20
+    at new Promise (<anonymous>)
+    at runWithCancel (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3333:10)
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3318:20
+    at new Promise (<anonymous>)
+    at runWithTimeout (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3276:10)
+    at file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:3904:64
+
+ [32m✓[39m ../../tests/api/plugins/github/utils/labels.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/user/managed-avatar-guards.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/custom-field/resolve-field-update.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/custom-oauth-env.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/telegram-logging.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/import/writer/match-assignees.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/import/writer/plan-import-columns.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/parse-link-metadata.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/user/assert-managed-profile-unchanged.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+[90mstdout[2m | ../../tests/api/ws/reorder-delivery.test.ts[2m > [22m[2mdelivers 1 committed reorder batch through the real subscriber and local adapter
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+[90mstdout[2m | ../../tests/api/ws/reorder-delivery.test.ts[2m > [22m[2mdelivers 2 committed reorder batch through the real subscriber and local adapter
+[22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
+
+ [32m✓[39m ../../tests/api/ws/reorder-delivery.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m ../../tests/api/file-secret.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/import/active-imports.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m ../../tests/api/database/wait-for-database.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/utils/normalize-custom-oauth-request.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/issue-references.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/utils/apply-api-key-headers.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 53[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/get-invitation-email-subject.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/password-reset-delivery.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/github-sso-env.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/errors/validation-issues.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/plugins/sync/provider-issue.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m ../../tests/api/github-integration/outbound-binding.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/import/runs/mark-stale-runs.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/format.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/sign-in-email-tasks.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/workspace/resolve-workspace-description.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/import/writer/assign-import-task-numbers.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/custom-field/choice-options.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m ../../tests/api/scheduler/reminder-timing.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitea-ssrf.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/utils/api-key-rejection.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m src/notification-preferences/email-task-format.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/errors/rate-limit-response.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m src/utils/parse-user-agent.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/ws/security.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m src/workspace/can-read-workspace.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/import/writer/plan-import-relations.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/utils/issue-description.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m ../../tests/api/external-link/schema.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/get-default-cookie-attributes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/create-fk-supporting-indexes.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/is-disposable-email.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/storage/describe-storage-error.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/errors/validation-error.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/admin/system/describe-auth.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/admin/system/with-timeout.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/mattermost-config.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/extract-priority.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/config.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m ../../tests/api/custom-field/plan-choice-value-changes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/import/writer/write-import-comments.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/activity/comment-excerpt.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/check-workspace-name.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m ../../tests/api/column/to-slug.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/project/controllers/public-external-link.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/admin/system/probe-database.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m ../../tests/api/billing/trial-identity.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/instance-settings/resolve-instance-settings.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitlab-integration/get-gitlab-integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/generic-webhook/config-reminders.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/ws/redis-link-refresh.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/admin/system/attempt-limiter.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m ../../tests/api/ws/revocation-delivery.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/admin/webhooks/start-webhook-worker.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/import/runs/progress-throttle.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/custom-oauth-sign-in.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/plugins/sync/changed-label-fields.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/utils/webhook-project.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/database/pool-config.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/supported-locales.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/admin/system/safe-error-code.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/import/source/select-source-projects.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/utils/split-roles.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/search/task-short-id-pattern.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/utils/missing-permissions.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/github/utils/task-references.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m ../../tests/api/plugins/gitlab/utils/verify-token.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/admin/audit/sanitize-audit-metadata.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/billing/subscription-state.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/admin/overview/configuration-warnings.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/errors/not-found-response.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m ../../tests/api/search/like-pattern.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/admin/system/probe-redis.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/errors/error-code.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/user-ban.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/openapi-spec.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/admin/system/realtime-status.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/plugins/sync/transient-provider-error.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/external-link/pull-request-number.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/workspace-members/normalize-invitation-role.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m ../../tests/api/gitlab-integration/list-gitlab-projects.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/admin/system/probe-email.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/generate-demo-name.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/admin/system/probe-storage.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/admin/system/credential-set-status.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/workspace-members/assert-stored-owner-role-safe.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/is-local-sign-in-path.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/to-normal-case.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/column/available-slug.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m ../../tests/api/utils/instance-admin-role.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m212 passed[39m[22m[90m (212)[39m
+[2m      Tests [22m [1m[32m1677 passed[39m[22m[90m (1677)[39m
+[2m   Start at [22m 23:12:50
+[2m   Duration [22m 54.86s[2m (import 78%, tests 12%, transform 8%, worker 1%)[22m
+
+[2m     Import [22m [33m668 modules were evaluated 1156 times[39m[2m · 96.80s total, 78% of tracked time[22m
+[2m            [22m [2m~7.37s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m
+
+
+~/apps/api$ node --import tsx scripts/mcp-tool-input-bounds.test.ts ⊘ cache disabled
+MCP native bounds: 8 protocol/input cases passed
+
+~/packages/mcp$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/permissions$ tsc ◉ cache hit, replaying
+
+~/packages/importers$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/email$ tsc --incremental false ◉ cache hit, replaying
+
+~/apps/api$ esbuild src/index.ts --bundle --platform=node --outdir=dist --format=esm --packages=external --external:fs --external:path --external:crypto --external:os --external:util --external:stream --external:buffer --external:events --external:url --external:querystring --external:http --external:https --external:net --external:tls --external:zlib --external:@modelcontextprotocol/sdk
+
+  dist/index.js  8.0mb ⚠️
+
+⚡ Done in 263ms
+
+~/packages/libs$ vp test run --config vitest.config.ts ⊘ cache disabled
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/packages/libs[39m
+
+ [32m✓[39m src/api-url.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 23:13:46
+[2m   Duration [22m 152ms[2m (transform 56%, import 25%, worker 10%, tests 9%)[22m
+
+
+~/packages/editor$ tsc ◉ cache hit, replaying
+
+~/packages/permissions$ tsc ◉ cache hit, replaying
+
+~/apps/web$ vp test run --config vitest.config.ts ⊘ cache disabled
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/apps/web[39m
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mboard realtime races[2m > [22m[2mclears a completed task's repeat rule and refreshes for its successor
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mboard realtime races[2m > [22m[2mdiscards a task refresh started before TASKS_REORDERED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mboard realtime races[2m > [22m[2mdiscards a task refresh started before PROJECT_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mboard realtime races[2m > [22m[2mdiscards a task refresh started before TASK_RELATION_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mboard realtime races[2m > [22m[2mcoalesces updates while pagination finishes without restarting page one
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mboard realtime races[2m > [22m[2mrefreshes a project-wide task update with no task id
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreconciles the initial handshake after active pagination completes
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mpreserves distinct task effects across pagination and a disconnect before replay
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mdoes not overwrite a parent's newer progress with an older child's response
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mpreserves newer parent progress when an earlier parent refresh finishes last
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mbounds per-task reads during a thousand-event burst and reconciles once
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mapplies remote reorders to virtual task buckets
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreconciles a remote read superseded by a narrow local mutation
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mapplies a remote reorder across virtual buckets without waiting for HTTP
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreconciles page boundaries after TASK_CREATED arrives during pagination
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreconciles page boundaries after TASK_DELETED arrives during pagination
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreconciles page boundaries after TASK_MOVED arrives during pagination
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreconciles page boundaries after TASKS_REORDERED arrives during pagination
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mkeeps detail invalidation without board-only reads for TASK_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mkeeps detail invalidation without board-only reads for TASK_CREATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mkeeps detail invalidation without board-only reads for TASK_MOVED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mkeeps detail invalidation without board-only reads for TASK_LABEL_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mdrains queued detail events after retries fall back to polling
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes workspace label filters when a remote project event changes labels
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes the project's column list when a remote project event arrives
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes task link details when a project event explicitly changes links
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes saved scopes and draft impact after PROJECT_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes saved scopes and draft impact after TASK_LABEL_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes saved scopes and draft impact after TASK_CREATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes saved scopes and draft impact after TASK_DELETED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes saved scopes and draft impact after TASK_MOVED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mkeeps sync comparisons and scope queries stable during unrelated task edits
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mpatches affected task names from the normal task refresh without querying sync scope
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mreads affected task names through the authorized API without a loaded board
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes sync previews for TASK_CREATED during a board fetch
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes sync previews for TASK_DELETED during a board fetch
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mrefreshes sync previews for TASK_MOVED during a board fetch
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mdoes not fetch a changed title absent from cached sync samples
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mkeeps cached names unchanged when the task API denies the title read
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-cache.test.tsx[2m > [22m[2mshares one authorized task read between the board and sync samples
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+ [32m✓[39m src/hooks/use-project-websocket-cache.test.tsx [2m([22m[2m40 tests[22m[2m)[22m[33m 417[2mms[22m[39m
+ [32m✓[39m src/components/project/sync-rules/sync-rules.test.tsx [2m([22m[2m20 tests[22m[2m)[22m[33m 2510[2mms[22m[39m
+   [32m✓[39m advanced sync settings [2m(20)[22m
+     [33m[2m✓[22m[39m keeps a dirty rule draft while loading another paused-task page[33m 599[2mms[22m[39m
+     [33m[2m✓[22m[39m stops at 50 labels while allowing a selected label to be removed[33m 426[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/user-management-panel.test.tsx [2m([22m[2m19 tests[22m[2m)[22m[33m 3684[2mms[22m[39m
+   [32m✓[39m UserManagementPanel [2m(19)[22m
+     [33m[2m✓[22m[39m keeps the current page when the query fails[33m 558[2mms[22m[39m
+     [33m[2m✓[22m[39m treats a comma-separated role containing admin as an instance admin[33m 350[2mms[22m[39m
+     [33m[2m✓[22m[39m gives a demoted multi-role admin the chosen role[33m 395[2mms[22m[39m
+     [33m[2m✓[22m[39m gives a promoted user the admin role[33m 355[2mms[22m[39m
+ [32m✓[39m src/components/shared/modals/create-task-modal.test.tsx [2m([22m[2m29 tests[22m[2m)[22m[33m 5252[2mms[22m[39m
+   [32m✓[39m CreateTaskModal [2m(19)[22m
+     [33m[2m✓[22m[39m stops offering recurrence when the target changes to a final column[33m 971[2mms[22m[39m
+     [33m[2m✓[22m[39m shows a translated clear-date action and clears the selected due date[33m 595[2mms[22m[39m
+     [33m[2m✓[22m[39m closes single-choice pickers after a selection[33m 479[2mms[22m[39m
+     [33m[2m✓[22m[39m creates a repeating task from the due date picker[33m 323[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/filtered-drag.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[32m 214[2mms[22m[39m
+ [32m✓[39m src/components/admin/workspace-management/workspace-management-panel.test.tsx [2m([22m[2m15 tests[22m[2m)[22m[33m 2155[2mms[22m[39m
+ [32m✓[39m src/hooks/use-user-websocket-lifecycle.test.tsx [2m([22m[2m23 tests[22m[2m)[22m[32m 112[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/personal-work-refresh.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 620[2mms[22m[39m
+ [32m✓[39m src/components/list-view/task-row.test.tsx [2m([22m[2m25 tests[22m[2m)[22m[33m 636[2mms[22m[39m
+ [32m✓[39m src/components/project/github-integration/github-integration-settings.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[33m 1975[2mms[22m[39m
+   [32m✓[39m GitHub repository step [2m(3)[22m
+     [33m[2m✓[22m[39m verifies a typed owner/name automatically and connects it[33m 503[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks connecting when the App is missing permissions and links to its settings[33m 444[2mms[22m[39m
+   [32m✓[39m connected GitHub repository [2m(5)[22m
+     [33m[2m✓[22m[39m shows the App status for an active repository[33m 442[2mms[22m[39m
+[90mstderr[2m | src/components/task/task-description.test.tsx[2m > [22m[2mTaskDescription[2m > [22m[2muploads every file dropped at once (#2111)
+[22m[39mTextSelection endpoint not pointing into a node with inline content (doc)
+
+ [32m✓[39m src/hooks/use-task-filters-with-labels-support.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m src/components/onboarding/onboarding-flow.test.tsx [2m([22m[2m26 tests[22m[2m)[22m[33m 14948[2mms[22m[39m
+   [32m✓[39m OnboardingFlow steps [2m(8)[22m
+     [33m[2m✓[22m[39m builds the preview from the answers before anything is created[33m 1067[2mms[22m[39m
+     [33m[2m✓[22m[39m creates the workspace and starter project once, then opens it from Ready[33m 1130[2mms[22m[39m
+     [33m[2m✓[22m[39m skips invites on a self-hosted instance that cannot send email[33m 920[2mms[22m[39m
+     [33m[2m✓[22m[39m stays on the project step and keeps the answers when creation fails[33m 617[2mms[22m[39m
+   [32m✓[39m OnboardingFlow invites [2m(4)[22m
+     [33m[2m✓[22m[39m invites each filled address once and moves on[33m 1269[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps only failed addresses for a retry[33m 1216[2mms[22m[39m
+     [33m[2m✓[22m[39m holds the invite step on a malformed address[33m 893[2mms[22m[39m
+     [33m[2m✓[22m[39m can skip invites[33m 1175[2mms[22m[39m
+   [32m✓[39m OnboardingFlow plan step [2m(6)[22m
+     [33m[2m✓[22m[39m offers the trial or a plan on cloud, and the trial opens the workspace[33m 1104[2mms[22m[39m
+     [33m[2m✓[22m[39m subscribes to the recommended plan right away[33m 860[2mms[22m[39m
+     [33m[2m✓[22m[39m puts a plan picked on the pricing page first and clears it[33m 866[2mms[22m[39m
+     [33m[2m✓[22m[39m drops a pricing-page plan when the person chooses the trial[33m 1091[2mms[22m[39m
+     [33m[2m✓[22m[39m only offers subscribing once the trial is used[33m 874[2mms[22m[39m
+     [33m[2m✓[22m[39m ends on Ready when billing cannot be read[33m 835[2mms[22m[39m
+   [32m✓[39m OnboardingFlow access [2m(8)[22m
+     [33m[2m✓[22m[39m does not bring the first step back if config recovers after creation[33m 849[2mms[22m[39m
+[90mstderr[2m | src/components/task/task-description.test.tsx[2m > [22m[2mTaskDescription[2m > [22m[2mshrinks the image preview popup to the image (#2174)
+[22m[39mflushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.
+flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.
+
+ [32m✓[39m src/components/task/task-description.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 5285[2mms[22m[39m
+   [32m✓[39m TaskDescription [2m(7)[22m
+     [33m[2m✓[22m[39m pastes Markdown after a language change recreates the editor (#2037)[33m 1075[2mms[22m[39m
+     [33m[2m✓[22m[39m uploads every file dropped at once (#2111)[33m 837[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves bold Markdown when pasting, saving and reopening a checklist (#1779)[33m 841[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves blank paragraphs when editing, saving and reopening (#2017)[33m 2375[2mms[22m[39m
+ [32m✓[39m src/components/task/task-description-save.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 2961[2mms[22m[39m
+   [32m✓[39m TaskDescription pending saves [2m(6)[22m
+     [33m[2m✓[22m[39m inserts an uploaded image into a replacement editor and saves it[33m 1044[2mms[22m[39m
+     [33m[2m✓[22m[39m saves an edit to the task it was typed in, not the one navigated to[33m 774[2mms[22m[39m
+     [33m[2m✓[22m[39m does not let an edit in one task cancel another task's pending save[33m 815[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/gantt.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 560[2mms[22m[39m
+   [32m✓[39m Gantt jump-to-today [2m(6)[22m
+     [33m[2m✓[22m[39m centers a new project after a search stops hiding its timeline[33m 312[2mms[22m[39m
+ [32m✓[39m src/fetchers/task/board-fetchers.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+[90mstderr[2m | src/components/activity/comment-editor-image-upload.test.tsx[2m > [22m[2mCommentEditor image upload insertion[2m > [22m[2muploads every file dropped at once (#2111)
+[22m[39mTextSelection endpoint not pointing into a node with inline content (doc)
+
+ [32m✓[39m src/components/activity/comment-editor-image-upload.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 849[2mms[22m[39m
+   [32m✓[39m CommentEditor image upload insertion [2m(7)[22m
+     [33m[2m✓[22m[39m inserts into the current editor when it is recreated mid-upload[33m 337[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/task/$taskId_.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 1023[2mms[22m[39m
+   [32m✓[39m task page switching tasks in place (#2149) [2m(10)[22m
+     [33m[2m✓[22m[39m shows the parent's properties after coming back from a subtask[33m 381[2mms[22m[39m
+ [32m✓[39m src/lib/subtask-tree.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/settings/workspace/labels.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 1222[2mms[22m[39m
+   [32m✓[39m creating and editing labels [2m(2)[22m
+     [33m[2m✓[22m[39m requires a name and creates the label with the chosen color[33m 330[2mms[22m[39m
+     [33m[2m✓[22m[39m opens the edit dialog from the row menu and from the row itself[33m 330[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/use-sign-out.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 52[2mms[22m[39m
+ [32m✓[39m src/components/task/task-subtasks.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 596[2mms[22m[39m
+ [32m✓[39m src/components/calendar/month-grid-model.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/hooks/use-project-websocket-access.test.tsx [2m([22m[2m12 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+ [32m✓[39m src/components/project/calendar-feeds/calendar-feed-settings.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 1144[2mms[22m[39m
+   [32m✓[39m CalendarFeedSettings [2m(7)[22m
+     [33m[2m✓[22m[39m creates a feed from multiple labels using definition IDs instead of task copies[33m 658[2mms[22m[39m
+ [32m✓[39m src/fetchers/task/load-board-pages.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/components/backlog-list-view/backlog-task-row.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 490[2mms[22m[39m
+ [32m✓[39m src/components/team/members-table.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 1116[2mms[22m[39m
+   [32m✓[39m MembersTable pending invitation row menu [2m(3)[22m
+     [33m[2m✓[22m[39m copies the invitation link for that invitation when 'Copy link' is clicked[33m 428[2mms[22m[39m
+ [32m✓[39m src/routes/auth/password-reset.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 697[2mms[22m[39m
+   [32m✓[39m password recovery [2m(11)[22m
+     [33m[2m✓[22m[39m shows the login link only when password reset is available[33m 337[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/generic-webhook/generic-webhook-integration-settings.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 1257[2mms[22m[39m
+   [32m✓[39m GenericWebhookIntegrationSettings [2m(7)[22m
+     [33m[2m✓[22m[39m lists all twelve events and shows reminder timing only when reminders are on[33m 367[2mms[22m[39m
+ [32m✓[39m src/components/project/github-integration/github-repository-picker.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 1629[2mms[22m[39m
+   [32m✓[39m GitHub repository picker [2m(6)[22m
+     [33m[2m✓[22m[39m loads more pages on demand and keeps earlier results[33m 453[2mms[22m[39m
+     [33m[2m✓[22m[39m searches on the server and keeps scanning until enough matches load[33m 429[2mms[22m[39m
+     [33m[2m✓[22m[39m caps automatic search requests and offers to load more[33m 479[2mms[22m[39m
+[90mstderr[2m | src/components/list-view/index.test.tsx[2m > [22m[2mdisables keyboard sensors and rejects drag completion on a partial board
+[22m[39mreact-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. { code: [32m'NO_I18NEXT_INSTANCE'[39m }
+
+ [32m✓[39m src/components/project/gitea-integration/gitea-integration-settings.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 3159[2mms[22m[39m
+   [32m✓[39m connected Gitea repository [2m(5)[22m
+     [33m[2m✓[22m[39m verifies the saved token automatically without exposing or reentering it[33m 736[2mms[22m[39m
+     [33m[2m✓[22m[39m shows verification errors and keeps importing disabled[33m 455[2mms[22m[39m
+     [33m[2m✓[22m[39m rotates the token after verifying the new one[33m 475[2mms[22m[39m
+   [32m✓[39m Gitea setup [2m(1)[22m
+     [33m[2m✓[22m[39m maps owner/name to the existing fields and connects once access is verified[33m 457[2mms[22m[39m
+   [33m[2m✓[22m[39m disables verified Gitea imports without create permission[33m 460[2mms[22m[39m
+   [33m[2m✓[22m[39m disables verified Gitea imports without update permission[33m 440[2mms[22m[39m
+ [32m✓[39m src/components/list-view/index.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 394[2mms[22m[39m
+ [32m✓[39m src/components/task/task-time-tracking.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 477[2mms[22m[39m
+ [32m✓[39m src/components/task/task-shortcuts.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[32m 123[2mms[22m[39m
+ [32m✓[39m src/components/project/custom-fields/field-dialog/custom-field-dialog.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 1244[2mms[22m[39m
+   [32m✓[39m CustomFieldDialog [2m(6)[22m
+     [33m[2m✓[22m[39m creates a dropdown with options added from the keyboard[33m 585[2mms[22m[39m
+ [32m✓[39m src/components/backlog-list-view/index.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 540[2mms[22m[39m
+ [32m✓[39m src/components/settings/api-keys/api-keys-settings.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 1169[2mms[22m[39m
+   [32m✓[39m creating API keys [2m(2)[22m
+     [33m[2m✓[22m[39m validates the name, sends the chosen expiry and keeps Done disabled until the key is copied[33m 353[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/chat-webhook/chat-webhook-settings.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 808[2mms[22m[39m
+ [32m✓[39m src/hooks/use-project-websocket-resume.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 264[2mms[22m[39m
+ [32m✓[39m src/hooks/use-custom-field-filters.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 418[2mms[22m[39m
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefreshes the project relations when the socket opens
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefreshes the project relations while polling without a socket
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefreshes the project relations on a real relation change
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefetches both ends' relations even when they are not open
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefreshes the project relations on TASK_DELETED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefreshes the project relations on TASK_MOVED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mrefreshes cached task relations when a linked task moves
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mdoes not refresh the project relations on a status refresh
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mstill refreshes the per-task relations on a status refresh
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mleaves the project relations alone on TASK_CREATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mleaves the project relations alone on TASK_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mleaves the project relations alone on TASK_LABEL_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mleaves the project relations alone on COMMENT_UPDATED
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-relations.test.tsx[2m > [22m[2museProjectWebSocket relation invalidation[2m > [22m[2mignores a malformed message
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+ [32m✓[39m src/hooks/use-project-websocket-relations.test.tsx [2m([22m[2m14 tests[22m[2m)[22m[32m 128[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-general/use-project-autosave.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 71[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/use-integration-statuses.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 633[2mms[22m[39m
+ [32m✓[39m src/components/team/invite-team-member-modal.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 686[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/task-matches-filters.test.ts [2m([22m[2m65 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/external-links/external-links-accordion.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 709[2mms[22m[39m
+   [32m✓[39m manual task resources [2m(4)[22m
+     [33m[2m✓[22m[39m clears canceled values before reopening the form[33m 404[2mms[22m[39m
+ [32m✓[39m src/components/project/task-view-keys/use-task-view-shortcuts.test.tsx [2m([22m[2m10 tests[22m[2m)[22m[33m 328[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/admin/user-security-cache.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 108[2mms[22m[39m
+Not implemented: navigation to another Document
+Not implemented: navigation to another Document
+ [32m✓[39m src/lib/i18n/index.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/channels/channels-section.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 529[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/task-card.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 2234[2mms[22m[39m
+   [33m[2m✓[22m[39m starts a drag when the card body is held[33m 647[2mms[22m[39m
+   [33m[2m✓[22m[39m opens a chip's picker on tap without starting a drag[33m 506[2mms[22m[39m
+   [33m[2m✓[22m[39m doesn't start a drag when a chip is held[33m 319[2mms[22m[39m
+   [33m[2m✓[22m[39m doesn't start a drag when the hidden custom fields button is held[33m 329[2mms[22m[39m
+   [33m[2m✓[22m[39m doesn't start a drag when the portaled picker is held[33m 400[2mms[22m[39m
+ [32m✓[39m src/lib/shortcuts/registry.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m src/hooks/use-live-label-filter.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/task/use-get-tasks.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 673[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/label/sync-task-labels-cache.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/project/custom-fields/field-dialog/field-form.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/move-task.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/components/project/gitlab-integration/gitlab-integration-settings.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 831[2mms[22m[39m
+   [32m✓[39m GitLab setup [2m(2)[22m
+     [33m[2m✓[22m[39m starts on GitLab.com and connects a verified project path[33m 734[2mms[22m[39m
+ [32m✓[39m src/components/project/gitea-integration/gitea-repository-picker.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 726[2mms[22m[39m
+   [32m✓[39m Gitea repository credential isolation [2m(5)[22m
+     [33m[2m✓[22m[39m hides privileged cached repositories immediately when a token changes, including on errors[33m 325[2mms[22m[39m
+ [32m✓[39m src/components/gantt/gantt-window.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 742[2mms[22m[39m
+   [32m✓[39m Gantt window UI [2m(3)[22m
+     [33m[2m✓[22m[39m renders a bounded grid for a centuries-long legacy task and makes clipped bars safe to open[33m 388[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/integration-row.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 463[2mms[22m[39m
+   [32m✓[39m IntegrationRow [2m(8)[22m
+     [33m[2m✓[22m[39m keeps only disconnect available for a connected provider turned off by an administrator[33m 319[2mms[22m[39m
+ [32m✓[39m src/lib/calendar-tasks.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+[90mstderr[2m | src/hooks/use-project-websocket-lifecycle.test.tsx[2m > [22m[2mproject WebSocket lifecycle[2m > [22m[2mignores late old-project events without stopping the new project's keepalive
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+Warning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-lifecycle.test.tsx[2m > [22m[2mproject WebSocket lifecycle[2m > [22m[2mcancels scheduled reconnects on logout and starts a fresh connection on login
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+Warning: useRouter must be used inside a <RouterProvider> component!
+Warning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-lifecycle.test.tsx[2m > [22m[2mproject WebSocket lifecycle[2m > [22m[2mrefreshes project and task caches when the workspace changes
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-lifecycle.test.tsx[2m > [22m[2mproject WebSocket lifecycle[2m > [22m[2mrefreshes task resources after a task move
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+[90mstderr[2m | src/hooks/use-project-websocket-lifecycle.test.tsx[2m > [22m[2mproject WebSocket lifecycle[2m > [22m[2mpreserves bounded exponential reconnects and active message invalidation
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+ [32m✓[39m src/hooks/use-project-websocket-lifecycle.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m src/components/project/task-view-keys/use-task-action-shortcuts.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 76[2mms[22m[39m
+ [32m✓[39m src/components/inbox/inbox-task.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 230[2mms[22m[39m
+ [32m✓[39m src/components/project/columns/column-list.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 423[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/task/use-description-matches.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 646[2mms[22m[39m
+   [32m✓[39m deferred description search [2m(5)[22m
+     [33m[2m✓[22m[39m does not reuse another query's IDs, exposes search errors and supports retry[33m 411[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/invitations.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 205[2mms[22m[39m
+ [32m✓[39m src/routes/invitation/accept.$inviteId.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 442[2mms[22m[39m
+ [32m✓[39m src/routes/auth/captcha-flow.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 888[2mms[22m[39m
+ [32m✓[39m src/lib/http-error.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mkeeps the shortcut off without task deletion permission
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mdeletes after confirmation and reports success
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mopens the confirmation from the keyboard shortcut
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mignores the shortcut while typing in an input
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mignores the shortcut while typing in a textarea
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mignores the shortcut while typing in the task editor
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mleaves the shortcut off while the view has it disabled
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mcloses the confirmation when the view switches to another task
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+[90mstderr[2m | src/components/task/task-delete-dialog.test.tsx[2m > [22m[2mTaskDeleteDialog[2m > [22m[2mkeeps the current view open and reports a failed deletion
+[22m[39mBase UI: DialogHandle.close() was called while no root using this handle is mounted. The call was ignored.
+
+ [32m✓[39m src/components/task/task-delete-dialog.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[33m 488[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/workspaces/workspaces-section.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 749[2mms[22m[39m
+   [32m✓[39m WorkspacesSection [2m(3)[22m
+     [33m[2m✓[22m[39m sets up a rule with only available channels and selected projects[33m 305[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/use-disconnect-integration.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m src/fetchers/task/description-pages.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/components/list-view/keyboard.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 456[2mms[22m[39m
+ [32m✓[39m src/lib/evict-workspace-cache.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/task-card-context-menu/task-card-context-menu-content.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 554[2mms[22m[39m
+ [32m✓[39m src/components/account/change-password/change-password-settings.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 849[2mms[22m[39m
+   [32m✓[39m ChangePasswordSettings [2m(6)[22m
+     [33m[2m✓[22m[39m opens the dialog with labelled password fields and a disabled submit[33m 368[2mms[22m[39m
+ [32m✓[39m src/components/activity/comment-editor-markdown-paste.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 594[2mms[22m[39m
+   [32m✓[39m CommentEditor Markdown paste [2m(3)[22m
+     [33m[2m✓[22m[39m inserts Status
+---
+22/tcp ALLOW Anywhere into the replacement editor[33m 380[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/events/notify-me-section.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 595[2mms[22m[39m
+   [32m✓[39m NotifyMeSection [2m(6)[22m
+     [33m[2m✓[22m[39m saves a switch immediately and quietly, without a save button[33m 340[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/calendar.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 219[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/label/label-sorting.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 210[2mms[22m[39m
+ [32m✓[39m src/components/admin/system/system-status-panel.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 448[2mms[22m[39m
+ [32m✓[39m src/components/project/automations/automations-section.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 592[2mms[22m[39m
+ [32m✓[39m src/components/import/build-connection.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/project/custom-fields/custom-field-list.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 545[2mms[22m[39m
+   [32m✓[39m CustomFieldList [2m(5)[22m
+     [33m[2m✓[22m[39m edits from the row menu and deletes only after confirming[33m 371[2mms[22m[39m
+ [32m✓[39m src/components/inbox/use-inbox-shortcuts.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 72[2mms[22m[39m
+ [32m✓[39m src/lib/copy-to-clipboard.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/user/prefetch-managed-profile-fields.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 1259[2mms[22m[39m
+   [32m✓[39m prefetchManagedProfileFields [2m(7)[22m
+     [33m[2m✓[22m[39m rides out a single failed config request[33m 305[2mms[22m[39m
+     [33m[2m✓[22m[39m rides out a single failed user lookup[33m 304[2mms[22m[39m
+     [33m[2m✓[22m[39m lets the page open when the server keeps failing[33m 606[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/date-filter-editor.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[33m 1652[2mms[22m[39m
+ [32m✓[39m src/components/admin/overview/admin-overview-panel.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 404[2mms[22m[39m
+ [32m✓[39m src/fetchers/github-integration/import-github-issues.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/components/activity/comment-card.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 336[2mms[22m[39m
+ [32m✓[39m src/components/calendar/day-overflow-popover.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 788[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/task/use-delete-task.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 41[2mms[22m[39m
+ [32m✓[39m src/routes/auth/verify-otp.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 867[2mms[22m[39m
+   [32m✓[39m VerifyOtp [2m(4)[22m
+     [33m[2m✓[22m[39m forwards the invitation so a first OTP sign-in can create the account[33m 390[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/settings/account/managed-profile-fields.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 173[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/active-filters-bar.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[33m 755[2mms[22m[39m
+   [33m[2m✓[22m[39m closes the date filter popup after applying from an active chip[33m 373[2mms[22m[39m
+ [32m✓[39m src/components/settings/nav/should-leave-on-escape.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 75[2mms[22m[39m
+[90mstderr[2m | src/lib/description-save-queue.test.ts[2m > [22m[2mdescription save queue[2m > [22m[2mretains failed content for a visible retry and keeps task queues independent
+[22m[39mDescription save failed { taskId: [32m'a'[39m, errorName: [32m'Error'[39m, status: [90mundefined[39m }
+
+[90mstderr[2m | src/lib/description-save-queue.test.ts[2m > [22m[2msends a newer pending edit even when the older request fails
+[22m[39mDescription save failed { taskId: [32m'task'[39m, errorName: [32m'Error'[39m, status: [90mundefined[39m }
+
+[90mstderr[2m | src/lib/description-save-queue.test.ts[2m > [22m[2mdrains an unexpired debounce before sign-out and retains a failed drain for retry
+[22m[39mDescription save failed { taskId: [32m'task'[39m, errorName: [32m'Error'[39m, status: [90mundefined[39m }
+
+ [32m✓[39m src/lib/description-save-queue.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/common/project-layout.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m src/components/settings/profile/profile-page.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 498[2mms[22m[39m
+   [32m✓[39m ProfilePage [2m(4)[22m
+     [33m[2m✓[22m[39m keeps the name and picture editable when nothing is managed[33m 360[2mms[22m[39m
+ [32m✓[39m src/components/admin/audit-log/get-audit-entry-detail.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/settings/nav/build-settings-nav.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/fetchers/label/delete-label.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/components/billing/current-plan-card.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 265[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/telegram/telegram-integration-settings.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 543[2mms[22m[39m
+ [32m✓[39m src/components/list-view/focus.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 447[2mms[22m[39m
+   [32m✓[39m ListView focus [2m(2)[22m
+     [33m[2m✓[22m[39m retains the focused toggle when expanding and collapsing parent and nested rows[33m 366[2mms[22m[39m
+ [32m✓[39m src/lib/patch-board-task.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/components/task/task-progress-badges.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 306[2mms[22m[39m
+ [32m✓[39m src/components/settings/workspace-general/workspace-general-page.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 1424[2mms[22m[39m
+   [32m✓[39m WorkspaceGeneralPage [2m(4)[22m
+     [33m[2m✓[22m[39m saves the name without a success toast[33m 1065[2mms[22m[39m
+ [32m✓[39m src/components/auth/auth-methods.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/hooks/use-workspace-permission.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 192[2mms[22m[39m
+ [32m✓[39m src/components/public-project/task-detail-modal.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 270[2mms[22m[39m
+ [32m✓[39m src/lib/paste-markdown.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 350[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/use-board-move-queue.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 33[2mms[22m[39m
+ [32m✓[39m src/routes/device/approve.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 275[2mms[22m[39m
+ [32m✓[39m src/components/task/task-pull-requests/index.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 606[2mms[22m[39m
+   [32m✓[39m TaskPullRequests [2m(4)[22m
+     [33m[2m✓[22m[39m lists every pull request in the hover card[33m 341[2mms[22m[39m
+ [32m✓[39m src/components/task/task-details-content.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 234[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/custom-field-chip.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 565[2mms[22m[39m
+ [32m✓[39m src/components/import/import-run-project-row.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 242[2mms[22m[39m
+ [32m✓[39m src/components/project/toolbar/use-project-task-view.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/routes/public-project.$projectId.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 142[2mms[22m[39m
+ [32m✓[39m src/lib/task-schedule.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/settings/workspace/roles.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 1187[2mms[22m[39m
+   [32m✓[39m workspace role permission editing [2m(3)[22m
+     [33m[2m✓[22m[39m shows role administration, membership and invitations in read-only role details[33m 488[2mms[22m[39m
+     [33m[2m✓[22m[39m can remove every permission, including all provider administrative rights[33m 610[2mms[22m[39m
+ [32m✓[39m src/lib/shortcuts/key-combo.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/fetchers/project/background.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/components/import/import-project-picker.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 424[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-general/project-danger-zone.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 399[2mms[22m[39m
+   [32m✓[39m ProjectDangerZone [2m(3)[22m
+     [33m[2m✓[22m[39m asks before deleting and deletes on confirm[33m 306[2mms[22m[39m
+[90mstderr[2m | src/components/task/task-move-popover.test.tsx[2m > [22m[2mTaskMovePopover[2m > [22m[2mmoves right away when the destination has the same status
+[22m[39mThe current testing environment is not configured to support act(...)
+
+[90mstderr[2m | src/components/task/task-move-popover.test.tsx[2m > [22m[2mTaskMovePopover[2m > [22m[2mmoves right away when the destination has the same status
+[22m[39mThe current testing environment is not configured to support act(...)
+
+[90mstderr[2m | src/components/task/task-move-popover.test.tsx[2m > [22m[2mTaskMovePopover[2m > [22m[2masks for a status when the destination workflow lacks it
+[22m[39mThe current testing environment is not configured to support act(...)
+
+[90mstderr[2m | src/components/task/task-move-popover.test.tsx[2m > [22m[2mTaskMovePopover[2m > [22m[2masks for a status when the destination workflow lacks it
+[22m[39mThe current testing environment is not configured to support act(...)
+
+ [32m✓[39m src/components/task/task-move-popover.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 605[2mms[22m[39m
+   [32m✓[39m TaskMovePopover [2m(2)[22m
+     [33m[2m✓[22m[39m moves right away when the destination has the same status[33m 448[2mms[22m[39m
+ [32m✓[39m src/components/calendar/calendar-task-bar.test.tsx [2m([22m[2m7 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m src/components/project/custom-fields/describe-custom-field.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/invitation/use-pending-invitations.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m src/components/settings/profile/avatar-row.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 241[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/workspaces/get-workspace-rule-summary.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/import/get-import-run-progress.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/editor/editor-keymap.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 264[2mms[22m[39m
+ [32m✓[39m src/components/project/task-view-keys/task-groups.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/dashboard/workspace/$workspaceId/project/$projectId/board.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 216[2mms[22m[39m
+ [32m✓[39m src/components/import/connect-forms/trello-connect-form.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 299[2mms[22m[39m
+ [32m✓[39m src/components/gantt/timeline.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m src/components/task/task-status-popover.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 497[2mms[22m[39m
+   [32m✓[39m TaskStatusPopover [2m(3)[22m
+     [33m[2m✓[22m[39m loads status options for the task project without relying on board state[33m 366[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/user/use-managed-profile-fields.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 211[2mms[22m[39m
+ [32m✓[39m src/routes/mcp.authorize.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 250[2mms[22m[39m
+ [32m✓[39m src/components/home/describe-activity.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/query-client/index.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m src/components/settings/profile/delete-account-section.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 403[2mms[22m[39m
+   [32m✓[39m DeleteAccountSection [2m(2)[22m
+     [33m[2m✓[22m[39m keeps the confirm disabled until the email is typed[33m 345[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-visibility/project-visibility-page.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 316[2mms[22m[39m
+[90mstderr[2m | src/hooks/use-project-websocket.test.ts[2m > [22m[2mrefreshes resource links when another client updates a task
+[22m[39mWarning: useRouter must be used inside a <RouterProvider> component!
+
+ [32m✓[39m src/hooks/use-project-websocket.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/board-collision-detection.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/label-groups.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/components/task/task-action-target.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 200[2mms[22m[39m
+ [32m✓[39m src/components/shortcuts/shortcuts-panel.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 1003[2mms[22m[39m
+   [32m✓[39m ShortcutsPanel [2m(3)[22m
+     [33m[2m✓[22m[39m opens with ? and lists the catalog by section[33m 477[2mms[22m[39m
+     [33m[2m✓[22m[39m filters by label and by key name[32m 300[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/custom-field/use-get-all-custom-field-values-by-project.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 89[2mms[22m[39m
+ [32m✓[39m src/components/bulk-selection/use-bulk-selection-keys.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/label/use-delete-label.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 184[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/delivery-panel/delivery-footer.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 373[2mms[22m[39m
+ [32m✓[39m src/lib/expanded-rows-storage.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/routes/auth.test.tsx [2m([22m[2m9 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/admin/use-send-admin-test-email.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m src/lib/normalize-comment-markdown.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m src/components/task/task-due-date-picker.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 407[2mms[22m[39m
+   [32m✓[39m TaskDueDatePicker permissions [2m(3)[22m
+     [33m[2m✓[22m[39m selects the implicit weekday in the rule's time zone[33m 326[2mms[22m[39m
+ [32m✓[39m src/components/task/custom-fields/use-task-custom-fields.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 29[2mms[22m[39m
+ [32m✓[39m src/lib/evict-project-cache.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 64[2mms[22m[39m
+ [32m✓[39m src/lib/get-task-item-stats.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/components/my-work/group-assigned-tasks.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/components/project/github-integration/describe-github-verification.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/get-integration-status.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/hooks/use-workspace-creation-access.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 184[2mms[22m[39m
+ [32m✓[39m src/components/home/up-next.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 219[2mms[22m[39m
+[90mstderr[2m | src/components/kanban-board/column/column-header.test.tsx[2m > [22m[2mprevents archive confirmation while the board is partial and uses the completed column afterward
+[22m[39mreact-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. { code: [32m'NO_I18NEXT_INSTANCE'[39m }
+
+ [32m✓[39m src/components/kanban-board/column/column-header.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 72[2mms[22m[39m
+ [32m✓[39m src/components/command-palette/index.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 470[2mms[22m[39m
+   [32m✓[39m CommandPalette [2m(2)[22m
+     [33m[2m✓[22m[39m opens the members page of the active workspace[33m 353[2mms[22m[39m
+ [32m✓[39m src/components/settings/preferences/language-row.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 313[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/filter-entries.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/label/use-update-label.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/lib/generate-project-id.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/lib/due-date-status.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/chat-webhook/build-chat-webhook-request.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/time-entry/use-update-time-entry.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 44[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/task/share-board-tasks.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/lib/invalidate-task-relations.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/fetchers/admin/get-admin-users.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/use-filter-shortcuts.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 58[2mms[22m[39m
+ [32m✓[39m src/fetchers/admin/get-admin-workspaces.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/telegram/build-telegram-request.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/store/bulk-selection.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/column/virtual-card-list.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/github-integration/use-import-github-issues.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 139[2mms[22m[39m
+ [32m✓[39m src/lib/upload-task-image.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/edit-user-values.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/calendar/calendar-group-rendering.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 87[2mms[22m[39m
+ [32m✓[39m src/components/task/task-relation-link.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/place-moved-task.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/settings/nav/settings-nav-project.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 294[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-general/move-project-row.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 433[2mms[22m[39m
+   [32m✓[39m MoveProjectRow [2m(2)[22m
+     [33m[2m✓[22m[39m asks for a workspace before the move can be confirmed[33m 347[2mms[22m[39m
+ [32m✓[39m src/components/team/invitation-link-field.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m src/components/settings/managed-profile-note.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 186[2mms[22m[39m
+ [32m✓[39m src/components/admin/webhooks/webhook-dialog.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 392[2mms[22m[39m
+   [32m✓[39m WebhookDialog [2m(1)[22m
+     [33m[2m✓[22m[39m labels Save and submits the edited enabled state without displaying a secret[33m 391[2mms[22m[39m
+ [32m✓[39m src/components/import/connect-forms/jira-connect-form.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 274[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/chat-webhook/chat-webhook-providers.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/notification/notification-text.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/card-field-list.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 275[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-visibility/public-link-url-row.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[33m 306[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/generic-webhook/build-generic-webhook-request.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/hooks/filter-storage-failure.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 45[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/task-card/use-touch-drag-menu.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/hooks/use-board-sort.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m src/components/task/extensions/task-item-with-checkbox.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 362[2mms[22m[39m
+ [32m✓[39m src/components/project/toolbar/project-toolbar.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 200[2mms[22m[39m
+ [32m✓[39m src/components/home/build-week.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/get-user-action-types.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/hooks/use-stored-state.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-general/project-background-row.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 204[2mms[22m[39m
+ [32m✓[39m src/components/inbox/group-notifications.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/event-checklist/event-checklist.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 251[2mms[22m[39m
+ [32m✓[39m src/components/public-project/project-description.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m src/hooks/use-project-background.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/workspaces/workspace-rule-state.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/admin/admin-page-access.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/project/views/layout-switch.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 242[2mms[22m[39m
+ [32m✓[39m src/lib/dompurify.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m src/components/common/option-menu/option-menu.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[33m 334[2mms[22m[39m
+ [32m✓[39m src/components/bulk-selection/bulk-option-popover.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 545[2mms[22m[39m
+   [32m✓[39m BulkOptionPopover [2m(2)[22m
+     [33m[2m✓[22m[39m opens when a keyboard request names its picker[33m 420[2mms[22m[39m
+ [32m✓[39m src/lib/error-handler.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/project/code-hosting/use-debounced-check.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m src/components/editor/detect-code-language.test.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/task-relation/use-create-task-relation.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/lib/relative-due-date.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/column/use-create-column.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/components/account/sessions/session-row.test.tsx [2m([22m[2m11 tests[22m[2m)[22m[33m 305[2mms[22m[39m
+ [32m✓[39m src/components/task/extensions/resizable-image-controls.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 367[2mms[22m[39m
+   [33m[2m✓[22m[39m updates resize controls when editing permission changes without replacing the image[33m 365[2mms[22m[39m
+ [32m✓[39m src/components/settings/preferences/priority-icons-row.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 281[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/task/remove-task-from-project.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/task-relation/use-delete-task-relation.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 28[2mms[22m[39m
+ [32m✓[39m src/lib/is-in-codeblock-language-picker.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/missing-required-fields.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/import/summarize-import-counts.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/pull-request.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/admin/sync-admin-workspace-members.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/lib/patch-sync-task-titles.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+[90mstderr[2m | src/components/search-command-menu/index.test.tsx[2m > [22m[2mSearchCommandMenu[2m > [22m[2mshows a task found by its key even when its text does not contain the key
+[22m[39mreact-i18next:: useTranslation: You will need to pass in an i18next instance by using initReactI18next or by passing it via props or context. In monorepo setups, make sure there is only one instance of react-i18next. { code: [32m'NO_I18NEXT_INSTANCE'[39m }
+Warning: useRouter must be used inside a <RouterProvider> component!
+Warning: useRouter must be used inside a <RouterProvider> component!
+
+ [32m✓[39m src/components/search-command-menu/index.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 294[2mms[22m[39m
+ [32m✓[39m src/components/project/display/custom-field-toggles.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 211[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/card-fields.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/fetchers/task/create-task.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/env.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/components/onboarding/onboarding-steps.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lib/analytics/activation.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/create-user-values.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/fetchers/admin/get-admin-audit-log.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/lib/format-recurrence.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m src/routes/_layout/_authenticated/onboarding.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/settings/nav/get-settings-breadcrumb.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/option-field-editor.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 278[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/admin/use-admin-overview.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 86[2mms[22m[39m
+ [32m✓[39m src/components/page-title.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m src/lib/get-task-label-options.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/settings/project-general/project-form-values.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/events/lead-time.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/lib/label-color.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/lib/parse-api-error-body.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/hooks/use-debounced-value.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/components/common/date-picker/parse-date-query.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/components/project/code-hosting/access-verification-tone.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/task-labels.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 188[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/custom-field/use-get-custom-field-values-by-task.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 82[2mms[22m[39m
+ [32m✓[39m src/components/calendar/month-agenda-model.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/task/remove-task-from-relations.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/hooks/use-local-day.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 97[2mms[22m[39m
+ [32m✓[39m src/components/shortcuts/match-shortcut.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/hooks/mutations/task-relation/invalidate-relation-task-project.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/project/code-hosting/parse-repository-path.test.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/get-channel-availability.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/format-custom-field-value.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/components/project/sortable/apply-order.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lib/external-url.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/select-reorder-board.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lib/onboarding/starter-tasks.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/project/toolbar/project-search.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 275[2mms[22m[39m
+ [32m✓[39m src/lib/i18n/get-locale-label.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/lib/get-initials.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lib/utils/create-workspace-slug.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/auth/turnstile.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 139[2mms[22m[39m
+ [32m✓[39m src/components/auth/auto-login-redirect.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 198[2mms[22m[39m
+ [32m✓[39m src/hooks/queries/external-link/use-external-links.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 88[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/filter-enabled-integrations.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/next-occurrence-date.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/components/editor/normalize-link-href.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/project/calendar-feeds/get-calendar-label-options.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m src/components/project/tasks-import-export/tasks-import-file.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/project/gitlab-integration/gitlab-access.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lib/invitation-link.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/settings/workspace-general/workspace-form-values.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/admin/workspace-management/get-assignable-role-options.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/drag-preview/get-visual-task-placement.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/task/format-tracked-duration.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/components/task/menus/assignee-menu-options.test.tsx [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/settings/workspace-general/get-ownership-candidates.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/settings/preferences/task-details-section.test.tsx [2m([22m[2m1 test[22m[2m)[22m[33m 309[2mms[22m[39m
+   [32m✓[39m TaskDetailsSection [2m(1)[22m
+     [33m[2m✓[22m[39m toggles a detail and resets them all[33m 307[2mms[22m[39m
+ [32m✓[39m src/lib/column.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m src/components/project/automations/plan-rule-change.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/common/date-picker/quick-dates.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/drag-preview/get-preview-drop-placement.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/lib/analytics/track.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/account/sessions/get-session-device-label.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/is-own-dom-event.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/fetchers/admin/get-admin-access.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/resolve-avatar-src.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/shortcuts/format-binding.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/get-assignable-roles.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/settings/api-keys/get-api-key-expiry.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/filter-project-tasks.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/get-sign-in-method-label.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/collect-cached-projects.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/components/import/use-completion-linger.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m src/lib/prepare-avatar-image.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/import/import-run-minutes.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/lib/instance-admin.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/components/billing/get-billing-status-tone.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/date-condition.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/admin/workspace-management/get-workspace-role-label.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/drag-preview/move-into-hovered-column.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/components/settings/api-keys/api-key-expirations.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/lib/project-unavailable-reason.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/my-work/due-date-text.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 202[2mms[22m[39m
+ [32m✓[39m src/lib/analytics/is-new-signup.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/lib/toast.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/team/project-access/find-member-project-access.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/kanban-board/drag-preview/get-hovered-other-column-id.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/find-removed-project-ids.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/can-manage-user.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/is-workspace-archived-error.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/track-filter-order.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/components/billing/checkout-success-callout.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 218[2mms[22m[39m
+ [32m✓[39m src/components/settings/notifications/get-url-host.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/task/header/branch-name.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/auth/verify-otp-path.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/project/automations/format-provider-list.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+ [32m✓[39m src/lib/relation-query-keys.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/team/project-access/to-project-access-request.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/invite-emails.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/user-filters.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/project/toolbar/scope-tasks.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/project/integrations/integration-trigger-label.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/lib/analytics/subscription-revenue.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/team/project-access/get-invitation-project-access.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/admin/workspace-management/matches-workspace-name.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/bulk-selection/use-toolbar-presence.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/components/project/views/project-views.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/analytics/pending-purchase.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/import/trello-authorize-url.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/settings/profile/is-delete-confirmation-valid.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/admin/workspace-management/sort-workspace-members.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/project/calendar-feeds/resolve-feed-labels.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/intersect-by-id.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/custom-fields/parse-multiselect.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/token-fingerprint.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/team/project-access/is-project-access-complete.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/format-date-condition.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 33[2mms[22m[39m
+ [32m✓[39m src/components/admin/system/service-status-tone.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/operator-labels.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/external-links/link-host.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/admin/system/format-uptime.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/set-subject-negated.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/count-tasks.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/auth/device-code.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/project/github-integration/collect-repositories.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/project/code-hosting/picker/filter-by-name.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/admin/roles/permission-groups.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/lib/strip-line-breaks.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/project/task-filters/format-chip-value.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/components/admin/user-management/get-primary-instance-role.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/components/admin/workspace-management/is-workspace-owner-role.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/admin/directory/get-page-count.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/count-active-filters.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/toggle-filter-value.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/components/project/code-hosting/is-valid-url.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/lib/task-filters/count-values.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/lib/cn.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/components/ui/separator.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 125[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m381 passed[39m[22m[90m (381)[39m
+[2m      Tests [22m [1m[32m1984 passed[39m[22m[90m (1984)[39m
+[2m   Start at [22m 23:13:47
+[2m   Duration [22m 235.06s[2m (environment 50%, import 21%, tests 17%, setup 9%, transform 3%)[22m
+
+[2mEnvironment [22m [33mjsdom was created 381 times[39m[2m · 321.15s total, 50% of tracked time[22m
+[2m            [22m [2mcreate it once per worker with [22m[33mpool: 'vmThreads'[39m[2m (keeps per-file isolation) or [22m[33misolate: false[39m[2m (shares it across files)[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-environments[22m
+
+
+---
+vp run: 8/14 cache hit (57%), 26/26 successful, 9.66s saved. (Run `vp run --last-details` for full details)
