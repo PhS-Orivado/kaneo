@@ -83,3 +83,19 @@ mention tables owned by another feature; the actual schema/module code is
 split correctly. `pnpm-lock.yaml` and fork-vs-upstream drift (calendar,
 time-tracking, mellon, generic workflows, README/CHANGELOG) are deliberately
 excluded from all branches.
+
+## Check results (per branch, after fixup commits)
+
+- `pnpm lint`: **passes** on multi-repo, instance-branding, task-type-badge,
+  admin-instance-config, web-proxy-deploy, ci-images. sprint-planning and
+  import-improvement each have only errors that also exist on `develop`
+  (a11y in sprint-task-row.tsx / sprints-list-view.tsx, label a11y in
+  import-options-card.tsx).
+- `pnpm test` (unit): all branches at parity with `develop` (which itself has
+  pre-existing failures, e.g. `source.test.ts` "reads the board, pages
+  issues" and several multi-repo integration tests failing with
+  `database.select is not a function` in test mocks).
+- `pnpm typecheck`: `develop` itself has ~80 pre-existing errors, so branches
+  are not fully green standalone; each branch was fixed up until its
+  remaining errors match the develop baseline plus unavoidable shared-file
+  coupling (schema/migrations are kept atomic per branch to stay consistent).
