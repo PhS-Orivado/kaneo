@@ -4,6 +4,9 @@ import {
   errorResponse,
   jsonResponse,
 } from "../openapi";
+import { getBranding } from "../branding/get-branding";
+import { updateBranding } from "../branding/update-branding";
+import { brandingSchema } from "../config/response";
 import { requireInstancePermission } from "./roles/require-instance-permission";
 import { requireUserSession } from "../utils/require-user-session";
 import { adminAuditRequest } from "./audit/admin-audit-request";
@@ -437,6 +440,49 @@ const getOverviewRoute = createRoute({
   responses: {
     200: jsonResponse("Instance overview", adminOverviewSchema),
     401: errorResponse("Authentication required"),
+    403: forbidden,
+  },
+});
+
+const getBrandingRoute = createRoute({
+  method: "get",
+  operationId: "getAdminBranding",
+  path: "/branding",
+  tags: ["Admin"],
+  summary: "Get instance branding",
+  description:
+    "Read the white-label branding applied to this instance: application name, logos, accent color, footer, and legal links. Requires an instance administrator session; API keys are rejected.",
+  middleware: [
+    requireUserSession,
+    requireInstancePermission("instance:settings"),
+  ] as const,
+  responses: {
+    200: jsonResponse("Instance branding", brandingSchema),
+    403: forbidden,
+  },
+});
+
+const updateBrandingRoute = createRoute({
+  method: "put",
+  operationId: "updateAdminBranding",
+  path: "/branding",
+  tags: ["Admin"],
+  summary: "Update instance branding",
+  description:
+    "Replace the white-label branding for this instance. Null values restore the default Kaneo branding. Requires an instance administrator session; API keys are rejected.",
+  middleware: [
+    requireUserSession,
+    requireInstancePermission("instance:settings"),
+  ] as const,
+  request: {
+    body: {
+      required: true,
+      content: { "application/json": { schema: updateBrandingBody } },
+    },
+  },
+  responses: {
+    200: jsonResponse("Updated instance branding", brandingSchema),
+    400: errorResponse("Invalid branding values"),
     403: forbidden,
   },
 });
