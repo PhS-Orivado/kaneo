@@ -1,6 +1,10 @@
+### Tests
+
+- **api:** restore the multi-repository binding suites lost from the deploy tree in the PR #98 upstream merge: gitea and gitlab binding routes, workflow-rule binding scoping, integration-sync routes keyed by binding, the repository binding quota lifecycle, concurrent cross-project creates, and the GitHub webhooks fan-out (RFC 0001 WP2, WP5, WP6, WP10, decision D1): see `rfc/plans/0001-multi-repo/wp9-tests.md` section 7
+- **web:** assert one settings panel per repository binding and the add-another-repository flow for github, gitea and gitlab: `apps/web/src/components/project/code-hosting/repository-binding-settings.test.tsx`
+
 ### Bug Fixes
 
-- **web:** repair the broken JSX in the backlog route that failed the web image build: the loading-skeleton branch lost its closing `</div>` and kept an orphaned closing tag, so the route could not be parsed (restores the file to match the develop branch)
 - **db:** resolve the upstream merge conflicts from PR #98 on deploy, repair migration journal ordering, and renumber the upstream project subtasks migration to 0076_thick_talisman
 - **importers:** remove a dead Jira attachments module that failed the TypeScript build: [b7640f2](https://github.com/PhS-Orivado/kaneo/commit/b7640f24ab01d50f5adb86fec6728a50a3e9d83c)
 
