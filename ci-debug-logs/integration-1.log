@@ -23,10 +23,10 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgithub label-filtered sync[2m > [22m[2mretries incomplete state initialization without recreating the issue
 [22m[39mIssue state initialization failed {
-  projectId: [32m'dz2vbnf40g5dgjag7dn0qgp5'[39m,
-  taskId: [32m'ivgfj5q75dk65fz0nzsgzrdk'[39m,
-  integrationId: [32m'dct9ycuddliw4vetaktm7rdy'[39m,
-  linkId: [32m'kq1l2dq0ci9pvvdcxxwhddd7'[39m
+  projectId: [32m'a9tpm5oi6d265v53k5pboh1h'[39m,
+  taskId: [32m'y3vtg5ee38nf3xacwsqgq85n'[39m,
+  integrationId: [32m'gkhjrl79o4nztnvyoymiomw1'[39m,
+  linkId: [32m'q865rwnzqjm8paq2arki02ug'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgithub label-filtered sync[2m > [22m[2mretries incomplete state initialization without recreating the issue
@@ -44,8 +44,8 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgithub label-filtered sync[2m > [22m[2mretries incomplete labels initialization without recreating the issue
 [22m[39mIssue field label synchronization failed {
-  integrationId: [32m'u8ph3n71ifdo69sw1ptvxhvf'[39m,
-  linkId: [32m'e86dzqhqmmviqaivsm43g0gu'[39m,
+  integrationId: [32m'x9btgpi7iuuocee1l91fc1pw'[39m,
+  linkId: [32m'rhp9yo0mkxd6gjxo6nr0ippe'[39m,
   field: [32m'initialization'[39m
 }
 
@@ -141,10 +141,10 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgitea label-filtered sync[2m > [22m[2mretries incomplete state initialization without recreating the issue
 [22m[39mIssue state initialization failed {
-  projectId: [32m'ahp643sr5c6nprnez7hrcgle'[39m,
-  taskId: [32m'dfao2wa1sdbcld9e4v90dc79'[39m,
-  integrationId: [32m'bd46ywboikwdsn84xbfz8a3s'[39m,
-  linkId: [32m'x8f80x22g09czv9f9levf470'[39m
+  projectId: [32m'b6fqg7j3qkdwpz4l8vc0vme8'[39m,
+  taskId: [32m'xgvc50brlb4smku5r4tehinz'[39m,
+  integrationId: [32m'w5zsv16k8dno9bfrwosnyf9p'[39m,
+  linkId: [32m'ykfmaz74u5wbu037gjyf5us4'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgitea label-filtered sync[2m > [22m[2mretries incomplete state initialization without recreating the issue
@@ -162,8 +162,8 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgitea label-filtered sync[2m > [22m[2mretries incomplete labels initialization without recreating the issue
 [22m[39mIssue field label synchronization failed {
-  integrationId: [32m's3fyx1v76zgg4vlq3dsgsd16'[39m,
-  linkId: [32m'fqtv1yaminfix17n71gxg4mk'[39m,
+  integrationId: [32m'b0ipa51hngfz3e6332fkh417'[39m,
+  linkId: [32m'vswohtjmivzfdcd32u713ije'[39m,
   field: [32m'initialization'[39m
 }
 
@@ -188,10 +188,10 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgitlab label-filtered sync[2m > [22m[2mretries incomplete state initialization without recreating the issue
 [22m[39mIssue state initialization failed {
-  projectId: [32m'd776qq48vcczb7e8q9dn35cw'[39m,
-  taskId: [32m'jcbpz0hjhbqyabu3l7gelmod'[39m,
-  integrationId: [32m'nt9kxsepfy6dfceif0iwsa1j'[39m,
-  linkId: [32m'ubrqm59q000m8l33w9oabcoh'[39m
+  projectId: [32m'ew9xcg18uzicu7zp924lsvhe'[39m,
+  taskId: [32m'uy1e06sev7tao8qcf76huw3t'[39m,
+  integrationId: [32m'eccp7zne9p9j792xojluraif'[39m,
+  linkId: [32m'jgy7byafu57mkexj5bkbg7wz'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgitlab label-filtered sync[2m > [22m[2mretries incomplete state initialization without recreating the issue
@@ -209,8 +209,8 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-providers.test.ts[2m > [22m[2mgitlab label-filtered sync[2m > [22m[2mretries incomplete labels initialization without recreating the issue
 [22m[39mIssue field label synchronization failed {
-  integrationId: [32m'uo2ctg1mqxs2uj0kmgd4w83q'[39m,
-  linkId: [32m'aftk28ey6z02air5vshbglul'[39m,
+  integrationId: [32m'xfoyxqkkry9q591dwuuo7asi'[39m,
+  linkId: [32m't1e0t2i1cebqq8em89nib6jj'[39m,
   field: [32m'initialization'[39m
 }
 
@@ -231,32 +231,17 @@
 [22m[39mFailed to create Gitea issue: Error: Temporary provider failure
     at Object.<anonymous> (/home/runner/work/kaneo/kaneo/tests/api-integration/integration-sync-providers.test.ts:1894:11)
 
- [32m✓[39m ../../tests/api-integration/integration-sync-providers.test.ts [2m([22m[2m115 tests[22m[2m | [22m[33m3 skipped[39m[2m)[22m[33m 23905[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-providers.test.ts [2m([22m[2m115 tests[22m[2m | [22m[33m3 skipped[39m[2m)[22m[33m 14990[2mms[22m[39m
    [32m✓[39m github label-filtered sync [2m(38)[22m
-     [33m[2m✓[22m[39m commits an inbound scope-label removal with a paused link before publishing[33m 481[2mms[22m[39m
-     [33m[2m✓[22m[39m reopens and closes exported issues when moving out of and into a custom final column[33m 355[2mms[22m[39m
-     [33m[2m✓[22m[39m replays edits made during creation and retries failed text initialization (failure=false)[33m 443[2mms[22m[39m
-     [33m[2m✓[22m[39m replays edits made during creation and retries failed text initialization (failure=true)[33m 428[2mms[22m[39m
-     [33m[2m✓[22m[39m pauses a dispatched creation after deactivation change without follow-up writes[33m 444[2mms[22m[39m
-     [33m[2m✓[22m[39m retries incomplete state initialization without recreating the issue[33m 587[2mms[22m[39m
+     [33m[2m✓[22m[39m commits an inbound scope-label removal with a paused link before publishing[33m 453[2mms[22m[39m
+     [33m[2m✓[22m[39m reopens and closes exported issues when moving out of and into a custom final column[33m 491[2mms[22m[39m
    [32m✓[39m gitea label-filtered sync [2m(33)[22m
-     [33m[2m✓[22m[39m replays edits made during creation and retries failed text initialization (failure=true)[33m 1341[2mms[22m[39m
-     [33m[2m✓[22m[39m pauses a dispatched creation after labels change without follow-up writes[33m 501[2mms[22m[39m
-     [33m[2m✓[22m[39m pauses a dispatched creation after rules change without follow-up writes[33m 448[2mms[22m[39m
-     [33m[2m✓[22m[39m pauses a dispatched creation after deactivation change without follow-up writes[33m 1253[2mms[22m[39m
-     [33m[2m✓[22m[39m retries incomplete state initialization without recreating the issue[33m 715[2mms[22m[39m
-     [33m[2m✓[22m[39m retries incomplete labels initialization without recreating the issue[33m 309[2mms[22m[39m
-   [32m✓[39m gitlab label-filtered sync [2m(35)[22m
-     [33m[2m✓[22m[39m exports newly eligible tasks once, including their custom labels[33m 491[2mms[22m[39m
-     [33m[2m✓[22m[39m replays edits made during creation and retries failed text initialization (failure=false)[33m 467[2mms[22m[39m
-     [33m[2m✓[22m[39m pauses a dispatched creation after rules change without follow-up writes[33m 343[2mms[22m[39m
-     [33m[2m✓[22m[39m adopts the configured closed workflow target when resuming[33m 323[2mms[22m[39m
-   [33m[2m✓[22m[39m exports a burst larger than the database pool without exhausting lease connections[33m 502[2mms[22m[39m
-   [33m[2m✓[22m[39m waits for another instance's creation lease instead of dropping the export[33m 392[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves unreviewed fields after resuming with provider and accepts later label changes[33m 307[2mms[22m[39m
+   [33m[2m✓[22m[39m waits for another instance's creation lease instead of dropping the export[33m 363[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts
-[22m[39m[2m2026-11-18T22:26:11.326Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:11.327Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:11.327Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:10.527Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:10.527Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:10.527Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mintegration label policies[2m > [22m[2msaves a reviewed label rule after an unrelated rename change
 [22m[39mbroadcastToProject called before adapter initialization
@@ -323,16 +308,16 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses again when a repository edit's webhook was discarded during resume
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'kw830wk2tohpkja914wiey8x'[39m,
-  integrationId: [32m'trf1q9p9178c8lc3ythqiomp'[39m,
-  linkId: [32m'c4cq9f6h8rzuazrpzuolukjf'[39m
+  projectId: [32m'ihzng9zz0uc1a1en9wyhef21'[39m,
+  integrationId: [32m'niatrkwmbd32oowlbnsbq14y'[39m,
+  linkId: [32m'jjkb6du95s25qwv1lhx463f3'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when partial-write leaves title different from the selected values
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'r849it3qssu3ten9k214f4pd'[39m,
-  integrationId: [32m'sdek06uxlwycrxnakrl045xj'[39m,
-  linkId: [32m'f2s8phpxpi30xpvkh0qs080c'[39m
+  projectId: [32m'l5jgqiu1w6k1373ehqc67dr5'[39m,
+  integrationId: [32m'wmgjb3pixqzpj0g3vz8v8sit'[39m,
+  linkId: [32m'z8lxix1bfygp11us3m6yhi9f'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when partial-write leaves title different from the selected values
@@ -343,9 +328,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when concurrent-edit leaves title different from the selected values
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'p04p1ch83zwo5e1wxz5rob7f'[39m,
-  integrationId: [32m'e1r5vaqfoa3whvocjujj4f8w'[39m,
-  linkId: [32m'eku6ojxqm0tg489epvazld2l'[39m
+  projectId: [32m'yoz7g1d0mx51c4b3anvb61ow'[39m,
+  integrationId: [32m'emledqs0p5ko0ub51tdca43z'[39m,
+  linkId: [32m'vqxx9llou3zu3rdcmuaqpuvh'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when concurrent-edit leaves title different from the selected values
@@ -356,9 +341,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when partial-write leaves description different from the selected values
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'mmbes7b2musszcfb2rh4eets'[39m,
-  integrationId: [32m'nk3c6wh9rztax0pk5e75tvaj'[39m,
-  linkId: [32m'el6mjnkgeyfms55veao915wx'[39m
+  projectId: [32m'ljexmey5ip6q4yzngp8dt31c'[39m,
+  integrationId: [32m'ac7vbet7ba9ces5ohne3vz7n'[39m,
+  linkId: [32m'vokfkw23mnkyphiteikegn4f'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when partial-write leaves description different from the selected values
@@ -369,9 +354,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when concurrent-edit leaves description different from the selected values
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'ipp0ry4zt3zorqflqxn3umbp'[39m,
-  integrationId: [32m'wyed61hiydsx4nzu2fv6jby1'[39m,
-  linkId: [32m'xle3ixyp11en7sa1dbdd37i9'[39m
+  projectId: [32m'z5fc4dyh7a3mc5bwx7g7rtlk'[39m,
+  integrationId: [32m'lfxlk3fuaaxs26btjkitqi2x'[39m,
+  linkId: [32m'wyk5gq0zu5w4nttq0h5on6r8'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when concurrent-edit leaves description different from the selected values
@@ -382,9 +367,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when partial-write leaves state different from the selected values
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'nhod10pj2l4320n1p3xki1ue'[39m,
-  integrationId: [32m'ny1vfju71o4myjkeqe9ksieg'[39m,
-  linkId: [32m'e7lkponujsdbozot2jimmmbj'[39m
+  projectId: [32m'g0l2mflxcemi7c2w4b0wzj0l'[39m,
+  integrationId: [32m'yj0cmupf80esriwcs8vo89xx'[39m,
+  linkId: [32m'z7htbd0yn1hi1is8dk1wqfyy'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when partial-write leaves state different from the selected values
@@ -395,9 +380,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when concurrent-edit leaves state different from the selected values
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'd7ye55arwawnp68uioz3jx64'[39m,
-  integrationId: [32m'oyfimwy6frgj5l032yjcbnph'[39m,
-  linkId: [32m'h5vin9n8dhbpqapiopx3a9tr'[39m
+  projectId: [32m'mfplcpgebb1ftc9kffd5ause'[39m,
+  integrationId: [32m'orowynuoyevib09bulpalcf7'[39m,
+  linkId: [32m'xnaheyyvog11p7176bfv31i1'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses Kaneo resume when concurrent-edit leaves state different from the selected values
@@ -426,9 +411,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses kaneo resume when priority labels change during the handoff
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'rvxxnrrlku2f9vmob40t1qua'[39m,
-  integrationId: [32m'nlq8c568vwu246mpm4e6yvrn'[39m,
-  linkId: [32m'q0ztyrwyyy3h9kcw5ljrfwk2'[39m
+  projectId: [32m'dhaa37yhaerygqy6brjk9ybf'[39m,
+  integrationId: [32m'agcmyc7mhwvwyor4fn7kqd35'[39m,
+  linkId: [32m'ayquhwv33gwr4t9nvyr6fzp3'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses kaneo resume when priority labels change during the handoff
@@ -439,9 +424,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses kaneo resume when status labels change during the handoff
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'fekjnh8b2wn520u385948ugn'[39m,
-  integrationId: [32m'r42h6h2w4tr80l6de4p1vrus'[39m,
-  linkId: [32m'fafwnygs845qi4wifc3zs6tx'[39m
+  projectId: [32m'vypzeo7uybnfya0c62t8p1ea'[39m,
+  integrationId: [32m'ivmpx3zd937zyf9llgru6dpc'[39m,
+  linkId: [32m'pa55gyasmrznkwqdocz5h7qi'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses kaneo resume when status labels change during the handoff
@@ -452,9 +437,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses kaneo resume when custom labels change during the handoff
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'dy0t8w97rn8iuo25h7fw8ku6'[39m,
-  integrationId: [32m'bliqca5u85eafrfaqocetdut'[39m,
-  linkId: [32m'dsueauc1y29gg2snqy47xncn'[39m
+  projectId: [32m'hzvcaaqex2h2r1c53s6ibym0'[39m,
+  integrationId: [32m'x7taa8s86n2zhs6he5u4viiw'[39m,
+  linkId: [32m'uzbv1aqew7h0z116kxb0y7vn'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses kaneo resume when custom labels change during the handoff
@@ -465,9 +450,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses provider resume when priority labels change during the handoff
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'o1viebta3q9rh9slyqxzy5be'[39m,
-  integrationId: [32m'ml5y5xs126mcikb29q2wxdyj'[39m,
-  linkId: [32m'u359y253kskxve9b882foa6d'[39m
+  projectId: [32m'nc5evfotw98rgzx67wrlg1do'[39m,
+  integrationId: [32m'dkcarz9g2no2yng65dbdmz8c'[39m,
+  linkId: [32m'pn0eykgq26xjpsrte65igwbe'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses provider resume when priority labels change during the handoff
@@ -484,9 +469,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses provider resume when status labels change during the handoff
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'jqcn2hnricp98679lr2wog5z'[39m,
-  integrationId: [32m'wkyndbg9x81u3oru40hqxtot'[39m,
-  linkId: [32m'jukkx0b9jwzh7sczjy750cnc'[39m
+  projectId: [32m'p4m1qhja8wp3q5kcvq1hpbz3'[39m,
+  integrationId: [32m'csqaj9qi51k9yomcpea3ddxe'[39m,
+  linkId: [32m'oavi8nnjiml62su3f2g5og6g'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses provider resume when status labels change during the handoff
@@ -503,9 +488,9 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses provider resume when custom labels change during the handoff
 [22m[39mSync resume provider verification failed {
-  projectId: [32m'pw0az4obsfyxwtsk9c1emhjp'[39m,
-  integrationId: [32m'w4m8ih3vmqclfy6q4e76kduz'[39m,
-  linkId: [32m'spm4dc2w1ung85qk7ib2ndpb'[39m
+  projectId: [32m'f6yhu4tcxeahrdvfujgdiqqz'[39m,
+  integrationId: [32m'zbke2t56pcy8me2huof7cj84'[39m,
+  linkId: [32m'xkyixmustsnrpie3ufpyalmu'[39m
 }
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mpauses provider resume when custom labels change during the handoff
@@ -564,20 +549,18 @@
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-rules.test.ts[2m > [22m[2mreviewed sync resume[2m > [22m[2mkeeps the link paused when a provider request fails
 [22m[39mSync resume provider write failed {
-  projectId: [32m'ym04wa1ppk11mbydpy72ztyv'[39m,
-  integrationId: [32m'ldo2lmwtw6fixxhw7k7yednc'[39m,
-  linkId: [32m'pyk4zk7weujf933wra61k6le'[39m
+  projectId: [32m'u2uwyer10l2g4gowwcouhqda'[39m,
+  integrationId: [32m'm2bnqa7e7xdsee9pp5i6a9pt'[39m,
+  linkId: [32m'ycxtek3r0f74zbj10bj9fity'[39m
 }
 
- [32m✓[39m ../../tests/api-integration/integration-sync-rules.test.ts [2m([22m[2m71 tests[22m[2m)[22m[33m 13017[2mms[22m[39m
-   [33m[2m✓[22m[39m pages a large paused scope and preserves metadata across batched rule saves[32m 300[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-rules.test.ts [2m([22m[2m71 tests[22m[2m)[22m[33m 10840[2mms[22m[39m
    [32m✓[39m reviewed sync resume [2m(53)[22m
-     [33m[2m✓[22m[39m returns a retryable conflict when another instance retains the resume lease[33m 5078[2mms[22m[39m
-     [33m[2m✓[22m[39m allows integration edits during a provider write and retains an uncertain paused link[33m 367[2mms[22m[39m
+     [33m[2m✓[22m[39m returns a retryable conflict when another instance retains the resume lease[33m 5056[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-duplicate.test.ts
-[22m[39m[2m2026-11-18T22:26:28.652Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:28.653Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:28.653Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:25.162Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:25.163Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:25.163Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/task-duplicate.test.ts[2m > [22m[2mAPI integration: task duplication[2m > [22m[2mcleans up partial asset copies and returns a safe error
 [22m[39mFailed to copy task attachments: Error: private bucket details
@@ -585,11 +568,11 @@
 [90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
     at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/run.BPv-BBRv.js:2801:20
 
- [32m✓[39m ../../tests/api-integration/task-duplicate.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1655[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-duplicate.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1229[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-move.test.ts
-[22m[39m[2m2026-11-18T22:26:33.217Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:33.218Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:33.218Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:28.958Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:28.958Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:28.958Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/project-move.test.ts[2m > [22m[2mAPI integration: moving a project between workspaces[2m > [22m[2mallows a move when only the source workspace uses that key
 [22m[39mbroadcastToProject called before adapter initialization
@@ -618,33 +601,33 @@
 [90mstderr[2m | ../../tests/api-integration/project-move.test.ts[2m > [22m[2mproject move concurrency and realtime access[2m > [22m[2mcloses old project sockets even when there are no tasks to unassign
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/project-move.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1656[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-move.test.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1172[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/native-auth-boundary.test.ts
-[22m[39m[2m2026-11-18T22:26:37.822Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:37.822Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:37.822Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:32.700Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:32.701Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:32.701Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/native-auth-boundary.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 6709[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/native-auth-boundary.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 5612[2mms[22m[39m
    [32m✓[39m native auth credential boundary [2m(6)[22m
-     [33m[2m✓[22m[39m keeps scoped and legacy keys out of account, session and admin management (null)[33m 958[2mms[22m[39m
-     [33m[2m✓[22m[39m keeps scoped and legacy keys out of account, session and admin management ({"label":["read"]})[33m 734[2mms[22m[39m
-     [33m[2m✓[22m[39m returns only the virtual key session with a valid cookie (null)[33m 396[2mms[22m[39m
-     [33m[2m✓[22m[39m returns only the virtual key session with a valid cookie ({"label":["read"]})[33m 424[2mms[22m[39m
-     [33m[2m✓[22m[39m checks the actual slug/active workspace and the key owner's current role[33m 587[2mms[22m[39m
-     [33m[2m✓[22m[39m preserves real bearer and cookie credential management and native admin session issuance[33m 432[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps scoped and legacy keys out of account, session and admin management (null)[33m 732[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps scoped and legacy keys out of account, session and admin management ({"label":["read"]})[33m 555[2mms[22m[39m
+     [33m[2m✓[22m[39m returns only the virtual key session with a valid cookie (null)[33m 356[2mms[22m[39m
+     [33m[2m✓[22m[39m returns only the virtual key session with a valid cookie ({"label":["read"]})[33m 350[2mms[22m[39m
+     [33m[2m✓[22m[39m checks the actual slug/active workspace and the key owner's current role[33m 380[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves real bearer and cookie credential management and native admin session issuance[33m 379[2mms[22m[39m
    [32m✓[39m native organization scope and current workspace grants [2m(7)[22m
-     [33m[2m✓[22m[39m batches list grants without bypassing current workspace roles for instance admins[33m 418[2mms[22m[39m
-     [33m[2m✓[22m[39m denies limited roles through IDs, slugs and active workspace (bearer=false)[33m 427[2mms[22m[39m
-     [33m[2m✓[22m[39m denies limited roles through IDs, slugs and active workspace (bearer=true)[33m 466[2mms[22m[39m
-     [33m[2m✓[22m[39m enforces organization key scopes with a valid cookie present (bearer=false)[33m 500[2mms[22m[39m
-     [33m[2m✓[22m[39m enforces organization key scopes with a valid cookie present (bearer=true)[33m 492[2mms[22m[39m
-     [33m[2m✓[22m[39m requires native mutation scopes and retains CLI invitation/update operations[33m 452[2mms[22m[39m
-     [33m[2m✓[22m[39m keeps stored owner-resend checks for bearer sessions and scoped inviter keys[33m 424[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/notification-access.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 1075[2mms[22m[39m
+     [33m[2m✓[22m[39m batches list grants without bypassing current workspace roles for instance admins[33m 368[2mms[22m[39m
+     [33m[2m✓[22m[39m denies limited roles through IDs, slugs and active workspace (bearer=false)[33m 402[2mms[22m[39m
+     [33m[2m✓[22m[39m denies limited roles through IDs, slugs and active workspace (bearer=true)[33m 413[2mms[22m[39m
+     [33m[2m✓[22m[39m enforces organization key scopes with a valid cookie present (bearer=false)[33m 451[2mms[22m[39m
+     [33m[2m✓[22m[39m enforces organization key scopes with a valid cookie present (bearer=true)[33m 445[2mms[22m[39m
+     [33m[2m✓[22m[39m requires native mutation scopes and retains CLI invitation/update operations[33m 409[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps stored owner-resend checks for bearer sessions and scoped inviter keys[33m 371[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/notification-access.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 819[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/subtask-counts.test.ts
-[22m[39m[2m2026-11-18T22:26:49.660Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:49.661Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:49.661Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:42.650Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:42.651Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:42.651Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/subtask-counts.test.ts[2m > [22m[2mAPI integration: subtask counters[2m > [22m[2mreturns zero for empty tasks and reflects completion, reopening, unlinking, and deletion
 [22m[39mbroadcastToProject called before adapter initialization
@@ -688,40 +671,40 @@
 [90mstdout[2m | ../../tests/api-integration/subtask-counts.test.ts[2m > [22m[2msubtask counter mutation paths[2m > [22m[2mrefreshes same-project parents in other windows after child deletion
 [22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
 
- [32m✓[39m ../../tests/api-integration/subtask-counts.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 2766[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/subtask-counts.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 2556[2mms[22m[39m
    [32m✓[39m API integration: subtask counters [2m(9)[22m
-     [33m[2m✓[22m[39m refreshes a parent board when a child in another project is completed or deleted[33m 376[2mms[22m[39m
-     [33m[2m✓[22m[39m refreshes parent boards when a child's column is marked final or reopened[33m 384[2mms[22m[39m
+     [33m[2m✓[22m[39m refreshes a parent board when a child in another project is completed or deleted[33m 366[2mms[22m[39m
+     [33m[2m✓[22m[39m refreshes parent boards when a child's column is marked final or reopened[33m 369[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-system-status.test.ts
-[22m[39m[2m2026-11-18T22:26:54.725Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:54.725Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:54.725Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:47.194Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:47.195Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:47.195Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-system-status.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 1110[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-system-status.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 898[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/account-deletion.test.ts
-[22m[39m[2m2026-11-18T22:26:58.937Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:26:58.938Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:26:58.938Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:50.862Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:50.863Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:50.863Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/account-deletion.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 1304[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/account-deletion.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 857[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/api-key-rate-limit.test.ts
-[22m[39m[2m2026-11-18T22:27:03.214Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:03.215Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:03.215Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:41:54.279Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:41:54.279Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:41:54.279Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/api-key-rate-limit.test.ts [2m([22m[2m20 tests[22m[2m)[22m[33m 1735[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/outbound-intent-correlation.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 7991[2mms[22m[39m
-   [33m[2m✓[22m[39m correlates observed edits without losing intervening edits (collision=true, legitimate=true, timeout=true)[33m 5131[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/api-key-rate-limit.test.ts [2m([22m[2m20 tests[22m[2m)[22m[33m 1184[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/outbound-intent-correlation.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 7308[2mms[22m[39m
+   [33m[2m✓[22m[39m correlates observed edits without losing intervening edits (collision=true, legitimate=true, timeout=true)[33m 5115[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-pagination.test.ts
-[22m[39m[2m2026-11-18T22:27:17.130Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:17.131Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:17.131Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:06.379Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:06.380Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:06.380Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/task-pagination.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1905[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-pagination.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1545[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-description-pages.test.ts
-[22m[39m[2m2026-11-18T22:27:21.945Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:21.945Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:21.946Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:10.432Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:10.432Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:10.432Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/task-description-pages.test.ts[2m > [22m[2mlarge task descriptions[2m > [22m[2mmoves a summarized task without replacing its stored description and accepts an explicit clear
 [22m[39mbroadcastToProject called before adapter initialization
@@ -738,10 +721,10 @@
 [90mstderr[2m | ../../tests/api-integration/task-description-pages.test.ts[2m > [22m[2mlarge task descriptions[2m > [22m[2mmoves a summarized task without replacing its stored description and accepts an explicit clear
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/task-description-pages.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 4413[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-description-pages.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 4043[2mms[22m[39m
    [32m✓[39m large task descriptions [2m(9)[22m
-     [33m[2m✓[22m[39m finds literal description matches on every bounded page, only within the project[33m 409[2mms[22m[39m
-     [33m[2m✓[22m[39m bounds description database work and returns a retryable error after a statement timeout[33m 3064[2mms[22m[39m
+     [33m[2m✓[22m[39m finds literal description matches on every bounded page, only within the project[33m 326[2mms[22m[39m
+     [33m[2m✓[22m[39m bounds description database work and returns a retryable error after a statement timeout[33m 3046[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-storage-cleanup.test.ts[2m > [22m[2mkeeps attachment and background keys after cascading project deletion until storage recovers
 [22m[39mStorage cleanup failed { name: [32m'Error'[39m, code: [90mundefined[39m, status: [90mundefined[39m }
 
@@ -1948,26 +1931,26 @@
 [90mstderr[2m | ../../tests/api-integration/project-storage-cleanup.test.ts[2m > [22m[2mgives new objects a turn despite a full batch of permanent retries
 [22m[39mStorage cleanup failed { name: [32m'Error'[39m, code: [90mundefined[39m, status: [90mundefined[39m }
 
- [32m✓[39m ../../tests/api-integration/project-storage-cleanup.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 3065[2mms[22m[39m
-   [33m[2m✓[22m[39m does not let a batch of failing objects starve later cleanup[33m 503[2mms[22m[39m
-   [33m[2m✓[22m[39m queues more than the PostgreSQL parameter limit without rolling back[33m 1361[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-storage-cleanup.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 2499[2mms[22m[39m
+   [33m[2m✓[22m[39m does not let a batch of failing objects starve later cleanup[33m 425[2mms[22m[39m
+   [33m[2m✓[22m[39m queues more than the PostgreSQL parameter limit without rolling back[33m 1180[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/time-entry-duration.test.ts
-[22m[39m[2m2026-11-18T22:27:33.408Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:33.409Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:33.409Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:20.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:20.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:20.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/time-entry-duration.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1148[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/integration-sync-field-labels.test.ts [2m([22m[2m32 tests[22m[2m)[22m[33m 4887[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/time-entry-duration.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 812[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-field-labels.test.ts [2m([22m[2m32 tests[22m[2m)[22m[33m 4136[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/backchannel-logout.test.ts
-[22m[39m[2m2026-11-18T22:27:42.323Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:42.324Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:42.324Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:27.882Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:27.883Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:27.883Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/backchannel-logout.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 1253[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/backchannel-logout.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 615[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/comment.test.ts
-[22m[39m[2m2026-11-18T22:27:47.276Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:47.276Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:47.277Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:31.735Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:31.735Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:31.735Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/comment.test.ts[2m > [22m[2mAPI integration: task comments[2m > [22m[2mshares comments between the activity UI and comment API
 [22m[39mbroadcastToProject called before adapter initialization
@@ -1993,43 +1976,42 @@
 [90mstderr[2m | ../../tests/api-integration/comment.test.ts[2m > [22m[2mAPI integration: task comments[2m > [22m[2mignores an external name with no source, so it cannot look like a real user
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/comment.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 837[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/integration-pr-task-ownership.test.ts [2m([22m[2m45 tests[22m[2m)[22m[33m 3332[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/comment.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 645[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-pr-task-ownership.test.ts [2m([22m[2m45 tests[22m[2m)[22m[33m 2443[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/password-reset.test.ts
-[22m[39m[2m2026-11-18T22:27:54.286Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:54.286Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:54.286Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:37.260Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:37.261Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:37.261Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/password-reset.test.ts[2m > [22m[2mpassword reset with email OTP disabled[2m > [22m[2memails a one-hour link, changes the password, revokes sessions and rejects reuse
-[22m[39m[2m2026-11-18T22:27:56.556Z[0m [33mWARN[0m [1m[Better Auth]:[0m Invalid password
+[22m[39m[2m2026-11-18T22:42:39.305Z[0m [33mWARN[0m [1m[Better Auth]:[0m Invalid password
 
 [90mstderr[2m | ../../tests/api-integration/password-reset.test.ts[2m > [22m[2mpassword reset with email OTP disabled[2m > [22m[2mgives the same confirmation for existing and unknown accounts without sending unknown-account mail
-[22m[39m[2m2026-11-18T22:27:57.403Z[0m [33mWARN[0m [1m[Better Auth]:[0m Reset Password: User not found
+[22m[39m[2m2026-11-18T22:42:39.952Z[0m [33mWARN[0m [1m[Better Auth]:[0m Reset Password: User not found
 
 [90mstderr[2m | ../../tests/api-integration/password-reset.test.ts[2m > [22m[2mpassword reset with email OTP disabled[2m > [22m[2mvalidates passwords without consuming the reset token
-[22m[39m[2m2026-11-18T22:27:57.917Z[0m [33mWARN[0m [1m[Better Auth]:[0m Password is too short
+[22m[39m[2m2026-11-18T22:42:40.409Z[0m [33mWARN[0m [1m[Better Auth]:[0m Password is too short
 
 [90mstderr[2m | ../../tests/api-integration/password-reset.test.ts[2m > [22m[2mpassword reset with email OTP disabled[2m > [22m[2mvalidates passwords without consuming the reset token
-[22m[39m[2m2026-11-18T22:27:57.923Z[0m [33mWARN[0m [1m[Better Auth]:[0m Password is too long
+[22m[39m[2m2026-11-18T22:42:40.414Z[0m [33mWARN[0m [1m[Better Auth]:[0m Password is too long
 
 [90mstderr[2m | ../../tests/api-integration/password-reset.test.ts[2m > [22m[2mpassword reset with email OTP disabled[2m > [22m[2mrejects untrusted redirects and requests without SMTP
-[22m[39m[2m2026-11-18T22:27:58.149Z[0m [31mERROR[0m [1m[Better Auth]:[0m Invalid redirectURL: https://untrusted.example/reset
+[22m[39m[2m2026-11-18T22:42:40.609Z[0m [31mERROR[0m [1m[Better Auth]:[0m Invalid redirectURL: https://untrusted.example/reset
 
- [32m✓[39m ../../tests/api-integration/password-reset.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 2105[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/password-reset.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1760[2mms[22m[39m
    [32m✓[39m password reset with email OTP disabled [2m(6)[22m
-     [33m[2m✓[22m[39m emails a one-hour link, changes the password, revokes sessions and rejects reuse[33m 597[2mms[22m[39m
-     [33m[2m✓[22m[39m immediately rejects old cached cookies on session and protected API requests[33m 529[2mms[22m[39m
-     [33m[2m✓[22m[39m validates passwords without consuming the reset token[33m 304[2mms[22m[39m
+     [33m[2m✓[22m[39m emails a one-hour link, changes the password, revokes sessions and rejects reuse[33m 533[2mms[22m[39m
+     [33m[2m✓[22m[39m immediately rejects old cached cookies on session and protected API requests[33m 359[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-relation-project.test.ts
-[22m[39m[2m2026-11-18T22:27:59.981Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:27:59.982Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:27:59.982Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:42.185Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:42.185Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:42.185Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/task-relation-project.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 723[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-relation-project.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 551[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-workspaces.test.ts
-[22m[39m[2m2026-11-18T22:28:03.007Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:03.008Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:03.008Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:44.735Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:44.735Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:44.735Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/admin-workspaces.test.ts[2m > [22m[2minstance admin workspace management[2m > [22m[2mtransfers ownership to a member and makes the previous owner an admin
 [22m[39mbroadcastToProject called before adapter initialization
@@ -2046,24 +2028,24 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/admin-workspaces.test.ts[2m > [22m[2minstance admin workspace management[2m > [22m[2mlets an instance admin limit a member's projects without joining
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/admin-workspaces.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 941[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-workspaces.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 701[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/tenant-resource-boundaries.test.ts
-[22m[39m[2m2026-11-18T22:28:07.556Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:07.557Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:07.557Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:48.613Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:48.614Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:48.614Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/tenant-resource-boundaries.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 579[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/tenant-resource-boundaries.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 498[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/openapi.test.ts
-[22m[39m[2m2026-11-18T22:28:11.030Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:11.031Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:11.031Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:51.662Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:51.662Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:51.662Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/openapi.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 140[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/github-import-status.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 640[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/openapi.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 111[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/github-import-status.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 505[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/custom-field-security.test.ts
-[22m[39m[2m2026-11-18T22:28:15.286Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:15.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:15.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:55.315Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:55.315Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:55.315Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/custom-field-security.test.ts[2m > [22m[2mdate defaults[2m > [22m[2maccepts 2028-02-29 and uses it for existing and newly created tasks
 [22m[39mbroadcastToProject called before adapter initialization
@@ -2074,32 +2056,29 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/custom-field-security.test.ts[2m > [22m[2mdate defaults[2m > [22m[2maccepts  2028-02-29  and uses it for existing and newly created tasks
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/custom-field-security.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 1696[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/custom-field-security.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 1308[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/api-key-accounting.test.ts
-[22m[39m[2m2026-11-18T22:28:19.254Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:19.255Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:19.255Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:42:58.602Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:42:58.603Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:42:58.603Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/api-key-accounting.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 3696[2mms[22m[39m
-   [33m[2m✓[22m[39m charges an auth request once when the identity guard precedes Better Auth[33m 1873[2mms[22m[39m
-   [33m[2m✓[22m[39m rejects a key that expires while waiting for its row lock[33m 1302[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/api-key-accounting.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 3274[2mms[22m[39m
+   [33m[2m✓[22m[39m charges an auth request once when the identity guard precedes Better Auth[33m 1666[2mms[22m[39m
+   [33m[2m✓[22m[39m rejects a key that expires while waiting for its row lock[33m 1284[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/user-sessions.test.ts
-[22m[39m[2m2026-11-18T22:28:24.153Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:24.154Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:24.154Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:02.904Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:02.904Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:02.904Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/user-sessions.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 2186[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/user-sessions.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1919[2mms[22m[39m
    [32m✓[39m API integration: own sessions [2m(6)[22m
-     [33m[2m✓[22m[39m lists the caller's sessions without tokens, current first[33m 424[2mms[22m[39m
-     [33m[2m✓[22m[39m signs out another session at once, closing only its sockets[33m 335[2mms[22m[39m
-     [33m[2m✓[22m[39m refuses to end the current session; that is signing out[33m 304[2mms[22m[39m
-     [33m[2m✓[22m[39m cannot see or end another user's sessions[33m 475[2mms[22m[39m
-     [33m[2m✓[22m[39m rejects API keys and anonymous callers[33m 331[2mms[22m[39m
-     [33m[2m✓[22m[39m closes the sockets of sessions ended by revoke-other-sessions[33m 315[2mms[22m[39m
+     [33m[2m✓[22m[39m lists the caller's sessions without tokens, current first[33m 385[2mms[22m[39m
+     [33m[2m✓[22m[39m signs out another session at once, closing only its sockets[33m 307[2mms[22m[39m
+     [33m[2m✓[22m[39m cannot see or end another user's sessions[33m 412[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-background.test.ts
-[22m[39m[2m2026-11-18T22:28:29.967Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:29.967Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:29.967Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:08.011Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:08.011Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:08.011Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstdout[2m | ../../tests/api-integration/project-background.test.ts[2m > [22m[2mAPI integration: project backgrounds[2m > [22m[2mpublishes upload and removal to another connected session without leaking storage fields
 [22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
@@ -2107,17 +2086,15 @@ broadcastToProject called before adapter initialization
 [90mstdout[2m | ../../tests/api-integration/project-background.test.ts[2m > [22m[2mAPI integration: project backgrounds[2m > [22m[2mrejects background mutations without project update permission
 [22m[39m📡 WebSockets Initialized using: "InMemoryBroadcastAdapter"
 
- [32m✓[39m ../../tests/api-integration/project-background.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 567[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-background.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 516[2mms[22m[39m
    [32m✓[39m API integration: project backgrounds [2m(2)[22m
-     [33m[2m✓[22m[39m publishes upload and removal to another connected session without leaking storage fields[33m 482[2mms[22m[39m
+     [33m[2m✓[22m[39m publishes upload and removal to another connected session without leaking storage fields[33m 450[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/notification-mutation-permissions.test.ts
-[22m[39m[2m2026-11-18T22:28:33.502Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:33.503Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:33.503Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:11.100Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:11.101Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:11.101Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/notification-mutation-permissions.test.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 3072[2mms[22m[39m
-   [32m✓[39m notification mutation current read grants [2m(24)[22m
-     [33m[2m✓[22m[39m api-key filters writes with {} and workspace query false[33m 370[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/notification-mutation-permissions.test.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 2199[2mms[22m[39m
 [90mstdout[2m | ../../tests/api-integration/integration-sync-task-moved.test.ts
 [22m[39m✓ Registered plugin: GitHub
 ✓ Registered plugin: Gitea
@@ -2126,8 +2103,8 @@ broadcastToProject called before adapter initialization
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-task-moved.test.ts[2m > [22m[2mgithub reconciles moved tasks in the destination project (qualifying=true)
 [22m[39mIssue field label synchronization failed {
-  integrationId: [32m'xnouq4z1v094wihbxvc36237'[39m,
-  linkId: [32m'ct5fl8ck3cz4d72tzfpcgckb'[39m,
+  integrationId: [32m'r3k2ct59zdv0fa0bs7gl12se'[39m,
+  linkId: [32m'qym5ugkxgvd0hff1th5zjfjb'[39m,
   field: [32m'initialization'[39m
 }
 
@@ -2146,8 +2123,8 @@ broadcastToProject called before adapter initialization
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-task-moved.test.ts[2m > [22m[2mgitea reconciles moved tasks in the destination project (qualifying=true)
 [22m[39mIssue field label synchronization failed {
-  integrationId: [32m'scnorpyxek33e88h6k1n5d8t'[39m,
-  linkId: [32m'jqm9kpt58d45kw892uk3v62m'[39m,
+  integrationId: [32m'fgew36brsn5qj3oqvq20y2om'[39m,
+  linkId: [32m'uwfor1rek4z2mspqe34m08o4'[39m,
   field: [32m'initialization'[39m
 }
 
@@ -2166,8 +2143,8 @@ broadcastToProject called before adapter initialization
 
 [90mstderr[2m | ../../tests/api-integration/integration-sync-task-moved.test.ts[2m > [22m[2mgitlab reconciles moved tasks in the destination project (qualifying=true)
 [22m[39mIssue field label synchronization failed {
-  integrationId: [32m'zuto2i5raztw78jjpjwpvxjc'[39m,
-  linkId: [32m'nlywnjnrwx2f0li5auw908h6'[39m,
+  integrationId: [32m'sop198z18kei8ene4evihdjf'[39m,
+  linkId: [32m'yxwkxmqu4jbn8cvv9p2ipu36'[39m,
   field: [32m'initialization'[39m
 }
 
@@ -2184,19 +2161,19 @@ broadcastToProject called before adapter initialization
     at reconcileTaskWithIntegrations [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/sync/reconcile.ts:63:7[90m)[39m
     at reconcileTaskSync [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/plugins/sync/reconcile.ts:22:7[90m)[39m
 
- [32m✓[39m ../../tests/api-integration/integration-sync-task-moved.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 655[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-task-moved.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 530[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/api-key-mixed-credentials.test.ts
-[22m[39m[2m2026-11-18T22:28:40.087Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:40.088Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:40.088Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:16.310Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:16.310Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:16.311Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/api-key-mixed-credentials.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 477[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/api-key-mixed-credentials.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 330[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-list.test.ts
-[22m[39m[2m2026-11-18T22:28:44.203Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:44.204Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:44.204Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:19.792Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:19.793Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:19.793Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/project-list.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 455[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-list.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 357[2mms[22m[39m
 [90mstdout[2m | ../../tests/api-integration/billing-seat-reconciliation.test.ts[2m > [22m[2mAPI integration: seat reconciliation[2m > [22m[2mrepairs a workspace whose seat count drifted from its membership
 [22m[39mbilling: seat reconciliation resynced 1/1 workspaces
 
@@ -2204,7 +2181,7 @@ broadcastToProject called before adapter initialization
 [22m[39mbilling: seat reconciliation resynced 1/1 workspaces
 
 [90mstderr[2m | ../../tests/api-integration/billing-seat-reconciliation.test.ts[2m > [22m[2mAPI integration: seat reconciliation[2m > [22m[2mkeeps going when one workspace fails to sync
-[22m[39mbilling: seat reconciliation failed for workspace workspace-754ae023-7bcc-4501-beb8-6f636795b75d Error: provider unavailable
+[22m[39mbilling: seat reconciliation failed for workspace workspace-1f10e91b-a98d-48e9-a3d2-4a122bd3a670 Error: provider unavailable
     at /home/runner/work/kaneo/kaneo/tests/api-integration/billing-seat-reconciliation.test.ts:143:13
     at Mock (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/vitest@5.0.5_@opentelemetry+api@1.9.1_@types+node@26.6.5_@vitest+browser-preview@5.0.5__a47eed2e7529ad007e6c93759be7b2ae/node_modules/[4mvitest[24m/dist/chunks/spy.DDMXghXv.js:353:40)
     at syncWorkspaceSeats [90m(/home/runner/work/kaneo/kaneo/apps/api/[39msrc/billing/controllers/sync-seats.ts:43:9[90m)[39m
@@ -2217,7 +2194,7 @@ broadcastToProject called before adapter initialization
 [90mstdout[2m | ../../tests/api-integration/billing-seat-reconciliation.test.ts[2m > [22m[2mAPI integration: seat reconciliation[2m > [22m[2mkeeps going when one workspace fails to sync
 [22m[39mbilling: seat reconciliation resynced 1/2 workspaces
 
- [32m✓[39m ../../tests/api-integration/billing-seat-reconciliation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 363[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/billing-seat-reconciliation.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 254[2mms[22m[39m
 [90mstdout[2m | ../../tests/api-integration/integration-sync-project-moved.test.ts
 [22m[39m✓ Plugin event subscriptions initialized
 
@@ -2257,39 +2234,36 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/integration-sync-project-moved.test.ts[2m > [22m[2mgitlab reconciles a project move (restricted=false)
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/integration-sync-project-moved.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 576[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-sync-project-moved.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 443[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/public-project-metadata.test.ts
-[22m[39m[2m2026-11-18T22:28:49.663Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:49.663Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:49.663Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:24.294Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:24.294Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:24.295Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/public-project-metadata.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 459[2mms[22m[39m
-   [32m✓[39m public project link metadata [2m(1)[22m
-     [33m[2m✓[22m[39m redacts internal metadata in all task buckets and related pages[33m 457[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/public-project-metadata.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 237[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/workspace-capabilities.test.ts
-[22m[39m[2m2026-11-18T22:28:53.230Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:53.231Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:53.231Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:27.082Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:27.083Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:27.083Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/workspace-capabilities.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 881[2mms[22m[39m
-   [33m[2m✓[22m[39m reports every capability for the caller's role in one response[33m 494[2mms[22m[39m
-   [33m[2m✓[22m[39m does not reveal capabilities in a workspace the caller isn't in[33m 386[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/workspace-capabilities.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 613[2mms[22m[39m
+   [33m[2m✓[22m[39m reports every capability for the caller's role in one response[33m 417[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/task-ticket-read-permissions.test.ts
-[22m[39m[2m2026-11-18T22:28:57.123Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:28:57.124Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:28:57.124Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:30.248Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:30.249Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:30.249Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/task-ticket-read-permissions.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 949[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/task-ticket-read-permissions.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 734[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/integration-import-permissions.test.ts
-[22m[39m[2m2026-11-18T22:29:01.025Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:01.026Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:01.026Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:33.536Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:33.537Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:33.537Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/integration-import-permissions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 334[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/integration-import-permissions.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 311[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/billing-enforcement.test.ts
-[22m[39m[2m2026-11-18T22:29:04.323Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:04.324Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:04.324Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:36.405Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:36.406Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:36.406Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/billing-enforcement.test.ts[2m > [22m[2mAPI integration: billing enforcement[2m > [22m[2mallows task creation during an active trial
 [22m[39mbroadcastToProject called before adapter initialization
@@ -2300,21 +2274,21 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/billing-enforcement.test.ts[2m > [22m[2mAPI integration: billing enforcement[2m > [22m[2mallows task creation with an active subscription
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/billing-enforcement.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 471[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/billing-enforcement.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 373[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/admin-user-avatar.test.ts
-[22m[39m[2m2026-11-18T22:29:07.768Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:07.769Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:07.769Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:39.347Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:39.347Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:39.348Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/admin-user-avatar.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 1686[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/admin-user-avatar.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 1489[2mms[22m[39m
    [32m✓[39m admin avatar management [2m(4)[22m
-     [33m[2m✓[22m[39m sets and removes another user's avatar, recording each once[33m 509[2mms[22m[39m
-     [33m[2m✓[22m[39m rejects images that are not what they claim[33m 387[2mms[22m[39m
-     [33m[2m✓[22m[39m keeps a picture the identity provider manages[33m 398[2mms[22m[39m
-     [33m[2m✓[22m[39m can still withdraw an earlier Kaneo upload when the provider manages pictures[33m 391[2mms[22m[39m
+     [33m[2m✓[22m[39m sets and removes another user's avatar, recording each once[33m 457[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects images that are not what they claim[33m 336[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps a picture the identity provider manages[33m 348[2mms[22m[39m
+     [33m[2m✓[22m[39m can still withdraw an earlier Kaneo upload when the provider manages pictures[33m 346[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/reminder-atomicity.test.ts[2m > [22m[2mrolls back both writes after a successful notification insert, then retries once
 [22m[39mFailed to process due date reminder {
-  taskId: [32m'e0fjgf6pmvxvxju8t554scu4'[39m,
+  taskId: [32m'q7g7glc9sol1diihk3nqtqsz'[39m,
   reminderType: [32m'configured_before'[39m,
   error: Error: temporary notification failure after insert
       at persistNotification (/home/runner/work/kaneo/kaneo/tests/api-integration/reminder-atomicity.test.ts:17:17)
@@ -2329,10 +2303,10 @@ broadcastToProject called before adapter initialization
 
 [90mstderr[2m | ../../tests/api-integration/reminder-atomicity.test.ts[2m > [22m[2mreleases the reminder claim after PostgreSQL rejects the notification insert
 [22m[39mFailed to process due date reminder {
-  taskId: [32m'pjml18mn7yo0kvglhly4mr5z'[39m,
+  taskId: [32m'g4w118e0pn86e7udzbghr6lq'[39m,
   reminderType: [32m'configured_before'[39m,
   error: DrizzleQueryError: Failed query: insert into "notification" ("id", "user_id", "title", "content", "type", "event_data", "is_read", "resource_id", "resource_type", "created_at", "updated_at") values ($1, $2, $3, $4, $5, $6, default, $7, $8, default, default) returning "id", "user_id", "title", "content", "type", "event_data", "is_read", "resource_id", "resource_type", "created_at", "updated_at"
-  params: ddjw3yvpslqbqx494601qdsr,user-48cfe621-b226-4c12-a3c5-678413fa09fa,,,due_date_reminder,{"taskTitle":"test reminder","reminderType":"configured_before","leadTimeMinutes":1440,"dueDate":"2026-11-18T22:24:11.622Z"},pjml18mn7yo0kvglhly4mr5z,task
+  params: dp5ajrydewistt3mfjyoo8h9,user-85e6a3f8-6760-4b74-9a59-f02fc6898e17,,,due_date_reminder,{"taskTitle":"test reminder","reminderType":"configured_before","leadTimeMinutes":1440,"dueDate":"2026-11-18T22:38:42.780Z"},g4w118e0pn86e7udzbghr6lq,task
       at NodePgPreparedQuery.queryWithCache (file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/drizzle-orm@0.45.4_@electric-sql+pglite@0.3.15_@opentelemetry+api@1.9.1_@prisma+client@_9ad3526b96fcb8059e62f8e632fec488/node_modules/[4mdrizzle-orm[24m/pg-core/session.js:41:15)
   [90m    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)[39m
       at async file:///home/runner/work/kaneo/kaneo/node_modules/[4m.pnpm[24m/drizzle-orm@0.45.4_@electric-sql+pglite@0.3.15_@opentelemetry+api@1.9.1_@prisma+client@_9ad3526b96fcb8059e62f8e632fec488/node_modules/[4mdrizzle-orm[24m/node-postgres/session.js:117:22
@@ -2342,13 +2316,13 @@ broadcastToProject called before adapter initialization
       at /home/runner/work/kaneo/kaneo/tests/api-integration/reminder-atomicity.test.ts:72:12 {
     query: [32m'insert into "notification" ("id", "user_id", "title", "content", "type", "event_data", "is_read", "resource_id", "resource_type", "created_at", "updated_at") values ($1, $2, $3, $4, $5, $6, default, $7, $8, default, default) returning "id", "user_id", "title", "content", "type", "event_data", "is_read", "resource_id", "resource_type", "created_at", "updated_at"'[39m,
     params: [
-      [32m'ddjw3yvpslqbqx494601qdsr'[39m,
-      [32m'user-48cfe621-b226-4c12-a3c5-678413fa09fa'[39m,
+      [32m'dp5ajrydewistt3mfjyoo8h9'[39m,
+      [32m'user-85e6a3f8-6760-4b74-9a59-f02fc6898e17'[39m,
       [1mnull[22m,
       [1mnull[22m,
       [32m'due_date_reminder'[39m,
-      [32m'{"taskTitle":"test reminder","reminderType":"configured_before","leadTimeMinutes":1440,"dueDate":"2026-11-18T22:24:11.622Z"}'[39m,
-      [32m'pjml18mn7yo0kvglhly4mr5z'[39m,
+      [32m'{"taskTitle":"test reminder","reminderType":"configured_before","leadTimeMinutes":1440,"dueDate":"2026-11-18T22:38:42.780Z"}'[39m,
+      [32m'g4w118e0pn86e7udzbghr6lq'[39m,
       [32m'task'[39m
     ],
     cause: error: test notification insert failure
@@ -2383,36 +2357,36 @@ broadcastToProject called before adapter initialization
   }
 }
 
- [32m✓[39m ../../tests/api-integration/reminder-atomicity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 243[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/reminder-atomicity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 197[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/session-lock-budget.test.ts
-[22m[39m[2m2026-11-18T22:29:13.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:13.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:13.479Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:44.382Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:44.383Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:44.383Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/session-lock-budget.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 249[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/session-lock-budget.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 181[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/asset-visibility.test.ts
-[22m[39m[2m2026-11-18T22:29:16.675Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:16.676Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:16.676Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:47.140Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:47.141Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:47.141Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/asset-visibility.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 227[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/asset-visibility.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 181[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/staged-upload-permissions.test.ts
-[22m[39m[2m2026-11-18T22:29:19.821Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:19.821Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:19.822Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:49.856Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:49.857Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:49.857Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/staged-upload-permissions.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 400[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/mcp-oauth-shared-state.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 148[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/staged-upload-permissions.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 320[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/mcp-oauth-shared-state.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 122[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/session-client-ip.test.ts
-[22m[39m[2m2026-11-18T22:29:23.759Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:23.760Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:23.760Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:53.236Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:53.237Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:53.237Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/session-client-ip.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 441[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/session-client-ip.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 346[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/comment-bounds.test.ts
-[22m[39m[2m2026-11-18T22:29:27.141Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:27.141Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:27.142Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:56.152Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:56.153Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:56.153Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
 [90mstderr[2m | ../../tests/api-integration/comment-bounds.test.ts[2m > [22m[2mbounds both writes on the comment API without changing stored content
 [22m[39mbroadcastToProject called before adapter initialization
@@ -2426,22 +2400,22 @@ broadcastToProject called before adapter initialization
 [90mstderr[2m | ../../tests/api-integration/comment-bounds.test.ts[2m > [22m[2mbounds both writes on the activity API without changing stored content
 [22m[39mbroadcastToProject called before adapter initialization
 
- [32m✓[39m ../../tests/api-integration/comment-bounds.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 332[2mms[22m[39m
- [32m✓[39m ../../tests/api-integration/database-utc-defaults.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 97[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/comment-bounds.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 279[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/database-utc-defaults.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 71[2mms[22m[39m
 [90mstderr[2m | ../../tests/api-integration/project-detail-payload.test.ts
-[22m[39m[2m2026-11-18T22:29:31.001Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
-[2m2026-11-18T22:29:31.002Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
-[2m2026-11-18T22:29:31.002Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+[22m[39m[2m2026-11-18T22:43:59.456Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T22:43:59.456Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T22:43:59.457Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
 
- [32m✓[39m ../../tests/api-integration/project-detail-payload.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 212[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/project-detail-payload.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 148[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m50 passed[39m[22m[90m (50)[39m
 [2m      Tests [22m [1m[32m653 passed[39m[22m[2m | [22m[33m3 skipped[39m[90m (656)[39m
-[2m   Start at [22m 22:25:42
-[2m   Duration [22m 229.75s[2m (import 49%, tests 49%, transform 2%)[22m
+[2m   Start at [22m 22:40:51
+[2m   Duration [22m 189.43s[2m (import 52%, tests 46%, transform 2%)[22m
 
-[2m     Import [22m [33m1030 modules were evaluated 2964 times[39m[2m · 110.62s total, 49% of tracked time[22m
-[2m            [22m [2m~72.18s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[2m     Import [22m [33m1030 modules were evaluated 2964 times[39m[2m · 95.61s total, 52% of tracked time[22m
+[2m            [22m [2m~62.39s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
 [2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m
 
 

@@ -7,12 +7,12 @@ $ vp run -r typecheck
 ~/packages/importers$ tsc -p tsconfig.json
 ~/packages/email$ tsc --incremental false
 
-
-
 ~/apps/mobile$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
 
 
+
 ~/packages/cli$ tsc -p tsconfig.json ⊘ cache disabled
+
 
 ~/apps/api$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
 
@@ -35,7 +35,7 @@ $ vp run -r typecheck
 
   dist/index.js  8.0mb ⚠️
 
-⚡ Done in 202ms
+⚡ Done in 261ms
 
 ~/packages/libs$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
 
@@ -44,12 +44,8 @@ $ vp run -r typecheck
 ~/packages/permissions$ tsc ◉ cache hit, replaying
 
 ~/apps/web$ tsc --noEmit -p tsconfig.app.json ⊘ cache disabled
-src/fetchers/github-integration/import-github-issues.test.ts(45,40): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
-src/fetchers/github-integration/import-github-issues.test.ts(69,30): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; runId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
-src/fetchers/github-integration/import-github-issues.test.ts(78,37): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
-src/fetchers/github-integration/import-github-issues.test.ts(94,40): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
-src/fetchers/github-integration/import-github-issues.test.ts(115,26): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; runId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
+
+~/apps/web$ tsc --noEmit -p tsconfig.node.json ⊘ cache disabled
 
 ---
-vp run: 7/14 cache hit (50%), 20/21 successful, 8.46s saved. (Run `vp run --last-details` for full details)
-[ELIFECYCLE] Command failed with exit code 1.
+vp run: 7/14 cache hit (50%), 22/22 successful, 12s saved. (Run `vp run --last-details` for full details)
