@@ -58,13 +58,28 @@ categories below.
 ## Branch inventory (all at `fb8b0b49` = `usekaneo/main`)
 
 ```
-base-upstream          fb8b0b49  tracks usekaneo/main
-multi-repo             fb8b0b49  category 1
-sprint-planning        fb8b0b49  category 2
-import-improvement     fb8b0b49  category 3
-instance-branding      fb8b0b49  category 4  (new)
-admin-instance-config  fb8b0b49  category 5  (new)
-web-proxy-deploy       fb8b0b49  category 6  (new)
-ci-images              fb8b0b49  category 7  (new)
-task-type-badge        fb8b0b49  category 8  (new)
+Each feature branch carries its changes as 2-3 commits on top of
+`base-upstream` (`fb8b0b49`), grouped as api/packages, web/i18n, tests/docs.
+The split was produced by scoping the `base-upstream..develop` diff per
+feature (whole files by path, shared files such as `schema.ts`, the drizzle
+journal, `openapi.json` and `i18n/*.json` per diff hunk by keyword), because
+the raw fork history interleaves upstream syncs and does not cherry-pick
+cleanly onto `usekaneo/main`.
+
 ```
+base-upstream          fb8b0b49  tracks usekaneo/main
+multi-repo             +3 commits, 162 files  category 1
+sprint-planning        +3 commits, 181 files  category 2
+import-improvement     +3 commits,  68 files  category 3
+instance-branding      +2 commits,  42 files  category 4
+admin-instance-config  +3 commits,  69 files  category 5
+web-proxy-deploy       +3 commits,  10 files  category 6
+ci-images              +3 commits,  13 files  category 7
+task-type-badge        +2 commits,   6 files  category 8
+```
+
+Note: drizzle meta snapshots are whole-file per category, so a snapshot may
+mention tables owned by another feature; the actual schema/module code is
+split correctly. `pnpm-lock.yaml` and fork-vs-upstream drift (calendar,
+time-tracking, mellon, generic workflows, README/CHANGELOG) are deliberately
+excluded from all branches.
