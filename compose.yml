@@ -15,10 +15,12 @@ services:
       timeout: 5s
       retries: 5
 
-  kaneo:
-    image: ghcr.io/usekaneo/kaneo:latest
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
     ports:
-      - "5173:5173"
+      - "1337:1337"
     env_file:
       - .env
     depends_on:
@@ -26,7 +28,25 @@ services:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:5173/api/health"]
+      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:1337/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s
+      retries: 3
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    ports:
+      - "5173:5173"
+    env_file:
+      - .env
+    depends_on:
+      - api
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-Y", "off", "--no-verbose", "--tries=1", "--spider", "http://127.0.0.1:5173"]
       interval: 30s
       timeout: 5s
       start_period: 60s

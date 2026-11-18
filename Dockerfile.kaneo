@@ -134,6 +134,9 @@ ENV TMPDIR=/var/lib/kaneo/tmp
 USER 1001:0
 EXPOSE 5173
 
+# Bundled image: the API process runs in this container on loopback.
+ENV KANEO_API_PROXY_TARGET=127.0.0.1:1337
+
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
   CMD wget -Y off --no-verbose --tries=1 --spider http://127.0.0.1:5173/api/health || exit 1
 
