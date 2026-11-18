@@ -2519,7 +2519,8 @@
 			"tokenTitle": "Jeton d'accès",
 			"webhookSecret": "Secret",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "Faites glisser pour changer leur ordre d'affichage sur une tâche.",

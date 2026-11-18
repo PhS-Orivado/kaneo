@@ -2570,7 +2570,8 @@
 			"tokenTitle": "Access token",
 			"webhookSecret": "Secret",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"shared": {
 			"autosave": "Changes save automatically"

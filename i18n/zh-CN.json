@@ -2026,7 +2026,8 @@
 			"pausedSummary_other": "有 {{count}} 个任务不再符合同步规则，已停止同步。",
 			"providerToKaneo": "{{provider}} → Kaneo",
 			"reviewPaused": "查看",
-			"tasksLabelled": "带有标签的任务："
+			"tasksLabelled": "带有标签的任务：",
+			"pausedSummary_one": "{{count}} task stopped syncing because it no longer matched the sync rules."
 		},
 		"advancedSettingsDescription": "显示更多控件，例如集成同步规则。仅对当前浏览器生效。",
 		"adminWorkspaces": {
@@ -2131,7 +2132,8 @@
 				"open": "Actions for {{name}}",
 				"restore": "Restore workspace"
 			},
-			"archived": "Archived"
+			"archived": "Archived",
+			"searchCount_one": "{{count}} matching workspace"
 		},
 		"workspaceImport": {
 			"back": {
@@ -2435,7 +2437,8 @@
 			"tokenTitle": "访问令牌",
 			"webhookSecret": "密钥",
 			"webhookSection": "Webhook",
-			"webhookUrl": "URL"
+			"webhookUrl": "URL",
+			"addAnotherRepository": "Add another repository"
 		},
 		"projectCustomFields": {
 			"fieldsDescription": "拖动以调整它们在任务中的显示顺序。",
@@ -3579,7 +3582,8 @@
 		"archive": {
 			"success": "已归档 {{count}} 个任务",
 			"confirmTitle_other": "归档 {{count}} 个已完成的任务？",
-			"confirmDescription": "这些任务将离开看板，移至待办中的“已归档”分区。"
+			"confirmDescription": "这些任务将离开看板，移至待办中的“已归档”分区。",
+			"confirmTitle_one": "Archive {{count}} completed task?"
 		},
 		"listView": {
 			"addTask": "添加任务",
@@ -4020,7 +4024,8 @@
 			"updateError": "更新项目访问权限失败",
 			"updateSuccess": "项目访问权限已更新",
 			"archived": "已归档",
-			"allProjectsUnavailable": "你自己的访问权限有限，所以只能授予指定项目。"
+			"allProjectsUnavailable": "你自己的访问权限有限，所以只能授予指定项目。",
+			"projectCount_one": "{{count}} project"
 		}
 	},
 	"publicProject": {

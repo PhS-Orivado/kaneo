@@ -90,6 +90,12 @@ const ADMIN_LINKS = [
     to: "/dashboard/settings/admin/webhooks",
     icon: Webhook,
   },
+  {
+    id: "admin-branding",
+    labelKey: "settings:adminBranding.title",
+    to: "/dashboard/settings/admin/branding",
+    icon: Palette,
+  },
 ] as const satisfies readonly {
   id: string;
   labelKey: string;

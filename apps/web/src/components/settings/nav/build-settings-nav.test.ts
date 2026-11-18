@@ -87,6 +87,7 @@ describe("buildSettingsNav", () => {
     ).toEqual([
       "/dashboard/settings/admin/settings",
       "/dashboard/settings/admin/webhooks",
+      "/dashboard/settings/admin/branding",
     ]);
   });
 
