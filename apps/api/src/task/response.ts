@@ -47,7 +47,6 @@ export const taskWithAssigneeSchema = taskSchema
       description:
         "The referenced workflow column; null for virtual statuses and legacy tasks without a column reference.",
     }),
-    isSubtask: z.boolean().optional(),
     subtaskCounts: z
       .object({ completed: z.number(), total: z.number() })
       .optional(),

@@ -1410,9 +1410,6 @@
                 ],
                 "description": "The referenced workflow column; null for virtual statuses and legacy tasks without a column reference."
               },
-              "isSubtask": {
-                "type": "boolean"
-              },
               "subtaskCounts": {
                 "type": "object",
                 "properties": {
