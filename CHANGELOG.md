@@ -2,6 +2,7 @@
 
 ### Features
 
+- **ci:** add a local script that builds the kaneo, web and api images and pushes them to GHCR from a developer checkout, mirroring the manual workflow's tagging and Sentry handling: see `docs/ci/build-images-locally.md`
 - **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
 - **ci:** add a manual dispatch workflow that builds and pushes a selectable subset of the container images to GHCR from any branch: see `docs/ci/build-images-selected.md`
 
