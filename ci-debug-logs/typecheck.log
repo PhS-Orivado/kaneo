@@ -1,0 +1,55 @@
+$ vp run -r typecheck
+~/packages/mcp$ tsc -p tsconfig.json
+~/packages/permissions$ tsc
+~/packages/mcp$ tsc -p tsconfig.json
+~/apps/site$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
+~/packages/editor$ tsc
+~/packages/importers$ tsc -p tsconfig.json
+~/packages/email$ tsc --incremental false
+
+
+~/apps/mobile$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
+
+
+
+~/apps/api$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
+
+~/packages/cli$ tsc -p tsconfig.json ⊘ cache disabled
+
+~/packages/importers$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/planka-import$ tsc -p tsconfig.json ⊘ cache disabled
+
+
+
+
+~/packages/mcp$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/permissions$ tsc ◉ cache hit, replaying
+
+~/packages/importers$ tsc -p tsconfig.json ◉ cache hit, replaying
+
+~/packages/email$ tsc --incremental false ◉ cache hit, replaying
+
+~/apps/api$ esbuild src/index.ts --bundle --platform=node --outdir=dist --format=esm --packages=external --external:fs --external:path --external:crypto --external:os --external:util --external:stream --external:buffer --external:events --external:url --external:querystring --external:http --external:https --external:net --external:tls --external:zlib --external:@modelcontextprotocol/sdk
+
+  dist/index.js  8.0mb ⚠️
+
+⚡ Done in 216ms
+
+~/packages/libs$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
+
+~/packages/editor$ tsc ◉ cache hit, replaying
+
+~/packages/permissions$ tsc ◉ cache hit, replaying
+
+~/apps/web$ tsc --noEmit -p tsconfig.app.json ⊘ cache disabled
+src/fetchers/github-integration/import-github-issues.test.ts(45,40): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
+src/fetchers/github-integration/import-github-issues.test.ts(69,30): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; runId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
+src/fetchers/github-integration/import-github-issues.test.ts(78,37): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
+src/fetchers/github-integration/import-github-issues.test.ts(94,40): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
+src/fetchers/github-integration/import-github-issues.test.ts(115,26): error TS2741: Property 'integrationId' is missing in type '{ projectId: string; runId: string; }' but required in type '{ integrationId: string; projectId?: string | undefined; runId?: string | undefined; }'.
+
+---
+vp run: 7/14 cache hit (50%), 20/21 successful, 10.11s saved. (Run `vp run --last-details` for full details)
+[ELIFECYCLE] Command failed with exit code 1.

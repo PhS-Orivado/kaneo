@@ -1,0 +1,873 @@
+~/packages/mcp$ tsc -p tsconfig.json
+~/packages/permissions$ tsc
+~/packages/importers$ tsc -p tsconfig.json
+~/packages/email$ tsc --incremental false
+
+
+
+
+~/apps/api$ vp test run --config vitest.integration.config.ts --shard=4/4 ⊘ cache disabled
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.5 [39m[90m/home/runner/work/kaneo/kaneo/apps/api[39m
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts
+[22m[39m[2m2026-11-18T21:45:22.074Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:45:22.075Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:45:22.075Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbuilt-in roles[2m > [22m[2mallows a member to create a task (member role grants task:create)
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbuilt-in roles[2m > [22m[2mallows an admin to delete a task (admin role grants task:delete)
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbuilt-in roles[2m > [22m[2mallows an owner to delete a task from To Do
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbuilt-in roles[2m > [22m[2mallows an owner to delete a task from In Progress
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbuilt-in roles[2m > [22m[2mallows an owner to delete a task from In Review
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbuilt-in roles[2m > [22m[2mallows an owner to delete a task from Done
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbulk task mutations[2m > [22m[2mallows a member to change task priority in bulk
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mbulk task mutations[2m > [22m[2mallows an admin to assign a task in bulk
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mcustom workspace roles[2m > [22m[2mallows a custom role that grants task:create to create a task
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mcustom workspace roles[2m > [22m[2mlets a workspace_role row override the built-in viewer permissions
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mcustom workspace roles[2m > [22m[2mdrops malformed permission entries instead of throwing
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mcustom workspace roles[2m > [22m[2mallows a member with several roles when any role grants the permission
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mcustom workspace roles[2m > [22m[2mallows a role when any duplicate workspace_role row grants the permission
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mcustom workspace roles[2m > [22m[2mfalls back to built-in role when no workspace_role row exists for the name
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update a task
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update a task
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update a task
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update a task
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update an assigned task without changing its assignee
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update an assigned task without changing its assignee
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update an assigned task without changing its assignee
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows a member to update an assigned task without changing its assignee
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows an admin to assign a task through full update
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows an admin to assign a task through full update
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows an admin to assign a task through full update
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:update[2m > [22m[2mallows an admin to assign a task through full update
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: task:assign[2m > [22m[2mallows an admin to assign a task
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2mresource coverage: project:create / update / delete[2m > [22m[2mallows an admin to update a project
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/workspace-rbac.test.ts[2m > [22m[2mAPI integration: workspace RBAC enforcement[2m > [22m[2minstance admin bypass[2m > [22m[2mbypasses the workspace permission check when user.role === 'admin'
+[22m[39mbroadcastToProject called before adapter initialization
+
+ [32m✓[39m ../../tests/api-integration/workspace-rbac.test.ts [2m([22m[2m50 tests[22m[2m)[22m[33m 5419[2mms[22m[39m
+   [32m✓[39m API integration: workspace RBAC enforcement [2m(50)[22m
+     [32m✓[39m built-in roles [2m(10)[22m
+       [33m[2m✓[22m[39m allows a member to create a task (member role grants task:create)[33m 593[2mms[22m[39m
+ [31m❯[39m ../../tests/api-integration/integration-task-ownership.test.ts [2m([22m[2m22 tests[22m[2m | [22m[31m10 failed[39m[2m)[22m[33m 3244[2mms[22m[39m
+   [31m❯[39m integration task ownership [2m(12)[22m
+[31m     [31m×[31m gitea imports new issues from formatted configuration JSON[39m[32m 184[2mms[22m[39m
+[31m     [31m×[31m gitlab imports new issues from formatted configuration JSON[39m[32m 99[2mms[22m[39m
+[31m     [31m×[31m gitea import cannot modify a moved task through an old link[39m[32m 121[2mms[22m[39m
+[31m     [31m×[31m gitlab import cannot modify a moved task through an old link[39m[32m 90[2mms[22m[39m
+[31m     [31m×[31m gitea comment fetching leaves task moves unlocked and rechecks scope afterwards[39m[32m 88[2mms[22m[39m
+[31m     [31m×[31m gitlab comment fetching leaves task moves unlocked and rechecks scope afterwards[39m[32m 98[2mms[22m[39m
+[31m     [31m×[31m gitea import cannot revive a removed link after a task moves away and back[39m[32m 88[2mms[22m[39m
+[31m     [31m×[31m gitlab import cannot revive a removed link after a task moves away and back[39m[32m 85[2mms[22m[39m
+     [32m✓[39m gitea edits, labels and comments cannot follow stale links[32m 102[2mms[22m[39m
+     [32m✓[39m moving a task removes links to its previous project's integration atomically[32m 101[2mms[22m[39m
+     [32m✓[39m moving a project removes legacy links owned by another project[32m 98[2mms[22m[39m
+     [32m✓[39m a concurrent task move waits for scoped integration writes to commit[32m 127[2mms[22m[39m
+   [32m✓[39m reports a concurrent move as a conflict without deleting links[32m 102[2mms[22m[39m
+   [32m✓[39m preserves legacy links belonging to the destination integration when moving back[32m 101[2mms[22m[39m
+   [33m[2m✓[22m[39m preserves outbound history and unrelated fields across concurrent sync completions[33m 671[2mms[22m[39m
+   [33m[2m✓[22m[39m keeps outbound history committed during an inbound provider read[33m 435[2mms[22m[39m
+   [32m✓[39m ignores a stale edit webhook after its link is removed during a move and return[32m 118[2mms[22m[39m
+   [32m✓[39m ignores a stale labels webhook after its link is removed during a move and return[32m 109[2mms[22m[39m
+   [32m✓[39m ignores a stale comment webhook after its link is removed during a move and return[32m 110[2mms[22m[39m
+[31m   [31m×[31m announces committed gitea reimport updates to task and resource caches[39m[32m 84[2mms[22m[39m
+[31m   [31m×[31m announces committed gitlab reimport updates to task and resource caches[39m[32m 85[2mms[22m[39m
+   [32m✓[39m does not apply a webhook after its link is paused while waiting for the link lock[32m 146[2mms[22m[39m
+[90mstdout[2m | ../../tests/api-integration/integration-label-echo-loop.test.ts
+[22m[39m✓ Registered plugin: GitHub
+✓ Registered plugin: Gitea
+
+ [32m✓[39m ../../tests/api-integration/integration-label-echo-loop.test.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 37514[2mms[22m[39m
+   [33m[2m✓[22m[39m github replays a provider change when the label lease stays busy[33m 3109[2mms[22m[39m
+   [33m[2m✓[22m[39m gitea replays a provider change when the label lease stays busy[33m 3109[2mms[22m[39m
+   [33m[2m✓[22m[39m github replays a deferred change on a resumed link[33m 3110[2mms[22m[39m
+   [33m[2m✓[22m[39m gitea replays a deferred change on a resumed link[33m 3109[2mms[22m[39m
+   [33m[2m✓[22m[39m github defers a provider read that outlives the delivery budget[33m 8172[2mms[22m[39m
+   [33m[2m✓[22m[39m github replays the event's label for a deferred link without a record[33m 3108[2mms[22m[39m
+   [33m[2m✓[22m[39m github shares one delivery budget across integrations[33m 8173[2mms[22m[39m
+   [33m[2m✓[22m[39m github keeps an addition deferred while another read is running[33m 3174[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-workspace-lifecycle.test.ts
+[22m[39m[2m2026-11-18T21:46:15.406Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:15.407Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:15.408Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/admin-workspace-lifecycle.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 1936[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-image-upload.test.ts
+[22m[39m[2m2026-11-18T21:46:22.428Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:22.429Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:22.429Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/task-image-upload.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 926[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-ticket-id.test.ts
+[22m[39m[2m2026-11-18T21:46:27.105Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:27.106Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:27.106Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/task-ticket-id.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1046[2mms[22m[39m
+   [32m✓[39m API integration: task ticket ID lookup [2m(8)[22m
+     [33m[2m✓[22m[39m returns the exact accessible task with full details[33m 302[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/custom-oauth-profile-refresh.test.ts
+[22m[39m[2m2026-11-18T21:46:31.936Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:31.937Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:31.937Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/custom-oauth-profile-refresh.test.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1894[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/error-shape.test.ts
+[22m[39m[2m2026-11-18T21:46:37.687Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:37.688Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:37.688Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/error-shape.test.ts[2m > [22m[2mAPI integration: error shape[2m > [22m[2mreturns Better Auth errors with a message and code
+[22m[39m[2m2026-11-18T21:46:40.536Z[0m [33mWARN[0m [1m[Better Auth]:[0m User not found
+
+ [32m✓[39m ../../tests/api-integration/error-shape.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 1473[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/integration-label-dispatch.test.ts[2m > [22m[2mgithub initialization does not create labels after a pause during label lookup
+[22m[39mIssue field label synchronization failed {
+  integrationId: [32m'rq38yoi7y62kc3q971keiua9'[39m,
+  linkId: [32m'zb9vtfm2c6ulfoswt0et8dwy'[39m,
+  field: [32m'initialization'[39m
+}
+
+[90mstderr[2m | ../../tests/api-integration/integration-label-dispatch.test.ts[2m > [22m[2mgitea initialization does not create labels after a pause during label lookup
+[22m[39mIssue field label synchronization failed {
+  integrationId: [32m'i31g1s2bkpaj2l7belqnfib9'[39m,
+  linkId: [32m'mg5mnv0ogx5km4gqrx529kys'[39m,
+  field: [32m'initialization'[39m
+}
+
+[90mstderr[2m | ../../tests/api-integration/integration-label-dispatch.test.ts[2m > [22m[2mgitlab initialization does not create labels after a pause during label lookup
+[22m[39mIssue field label synchronization failed {
+  integrationId: [32m'jqeosa2j736rvmm46g4a1adm'[39m,
+  linkId: [32m'q0m5yt3a1qe1kjoupuws1qv7'[39m,
+  field: [32m'initialization'[39m
+}
+
+ [32m✓[39m ../../tests/api-integration/integration-label-dispatch.test.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 2032[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/staged-task-attachments.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1149[2mms[22m[39m
+   [33m[2m✓[22m[39m drains an expired backlog across multiple bounded transactions[33m 447[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-audit-log-auth-actions.test.ts
+[22m[39m[2m2026-11-18T21:46:46.664Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:46.665Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:46.665Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/admin-audit-log-auth-actions.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 5366[2mms[22m[39m
+   [32m✓[39m audit of better-auth admin endpoints [2m(10)[22m
+     [33m[2m✓[22m[39m records role changes separately from other profile updates[33m 607[2mms[22m[39m
+     [33m[2m✓[22m[39m records nothing when an update changes nothing[33m 491[2mms[22m[39m
+     [33m[2m✓[22m[39m records set-role, deactivation, and reactivation[33m 493[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps a temporary deactivation's expiry[33m 463[2mms[22m[39m
+     [33m[2m✓[22m[39m records administrators who authenticate with a bearer token[33m 473[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the label of a deleted user[33m 474[2mms[22m[39m
+     [33m[2m✓[22m[39m never stores passwords or session tokens[33m 863[2mms[22m[39m
+     [33m[2m✓[22m[39m records nothing for forbidden or failed admin calls[33m 521[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the actor snapshot after the administrator is deleted[33m 467[2mms[22m[39m
+     [33m[2m✓[22m[39m records the client address resolved from the transport[33m 511[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/invitation-visibility.test.ts
+[22m[39m[2m2026-11-18T21:46:55.848Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:46:55.849Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:46:55.849Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/invitation-visibility.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 6354[2mms[22m[39m
+   [32m✓[39m workspace invitation visibility [2m(12)[22m
+     [33m[2m✓[22m[39m hides invitations from a viewer without invitation:create on both endpoints[33m 704[2mms[22m[39m
+     [33m[2m✓[22m[39m hides invitations from a member without invitation:create on both endpoints[33m 541[2mms[22m[39m
+     [33m[2m✓[22m[39m hides invitations from a demoted-admin without invitation:create on both endpoints[33m 509[2mms[22m[39m
+     [33m[2m✓[22m[39m preserves invitation visibility for a custom inviter role[33m 523[2mms[22m[39m
+     [33m[2m✓[22m[39m hides owner invitation credentials from a custom inviter who cannot assign owner[33m 539[2mms[22m[39m
+     [33m[2m✓[22m[39m hides member,owner invitation credentials from a custom inviter who cannot assign owner[33m 549[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks owner resends with an empty workspace ID and an active workspace (bearer=false)[33m 457[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks member,owner resends with an empty workspace ID and an active workspace (bearer=false)[33m 463[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks owner resends with an empty workspace ID and an active workspace (bearer=true)[33m 471[2mms[22m[39m
+     [33m[2m✓[22m[39m blocks member,owner resends with an empty workspace ID and an active workspace (bearer=true)[33m 466[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps link-based onboarding available without email delivery (invite-only=false)[33m 563[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps link-based onboarding available without email delivery (invite-only=true)[33m 567[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts
+[22m[39m[2m2026-11-18T21:47:06.802Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:06.803Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:06.803Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves member emails to opaque user IDs and preserves ID and unassigned imports
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves member emails to opaque user IDs and preserves ID and unassigned imports
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves member emails to opaque user IDs and preserves ID and unassigned imports
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves member emails to opaque user IDs and preserves ID and unassigned imports
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves member emails to opaque user IDs and preserves ID and unassigned imports
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves an email when the same user has duplicate workspace memberships
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mresolves an email when the same user has duplicate workspace memberships
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mprefers an actual user ID over another eligible user's matching email
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mprefers an actual user ID over another eligible user's matching email
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mrejects an ineligible user ID instead of resolving another user's matching email
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mrejects an ineligible user ID instead of resolving another user's matching email
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mpreserves instance-admin assignment outside workspace membership
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mpreserves instance-admin assignment outside workspace membership
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-assignees.test.ts[2m > [22m[2mJSON import assignees[2m > [22m[2mdoes not pick an arbitrary member when emails differ only by case
+[22m[39mbroadcastToProject called before adapter initialization
+
+ [32m✓[39m ../../tests/api-integration/task-import-assignees.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1158[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/custom-field-update.test.ts
+[22m[39m[2m2026-11-18T21:47:11.739Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:11.740Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:11.740Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/custom-field-update.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1157[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/assigned-tasks.test.ts
+[22m[39m[2m2026-11-18T21:47:16.662Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:16.662Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:16.663Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/assigned-tasks.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 794[2mms[22m[39m
+   [32m✓[39m API integration: assigned tasks [2m(6)[22m
+     [33m[2m✓[22m[39m lists the caller's open tasks across projects, soonest due first[33m 321[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-instance-permissions.test.ts
+[22m[39m[2m2026-11-18T21:47:21.217Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:21.218Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:21.218Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/admin-instance-permissions.test.ts [2m([22m[2m40 tests[22m[2m)[22m[33m 18352[2mms[22m[39m
+   [32m✓[39m instance permissions on admin routes [2m(40)[22m
+     [33m[2m✓[22m[39m users:read: GET /overview needs its permission[33m 567[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:read: GET /overview needs its permission[33m 546[2mms[22m[39m
+     [33m[2m✓[22m[39m audit:read: GET /overview needs its permission[33m 470[2mms[22m[39m
+     [33m[2m✓[22m[39m system:read: GET /overview needs its permission[33m 466[2mms[22m[39m
+     [33m[2m✓[22m[39m users:read: GET /users needs its permission[33m 469[2mms[22m[39m
+     [33m[2m✓[22m[39m users:read: GET /roles needs its permission[33m 468[2mms[22m[39m
+     [33m[2m✓[22m[39m users:create: POST /users needs its permission[33m 468[2mms[22m[39m
+     [33m[2m✓[22m[39m users:update: PATCH /users/:userId needs its permission[33m 468[2mms[22m[39m
+     [33m[2m✓[22m[39m users:update: PUT /users/:userId/avatar needs its permission[33m 470[2mms[22m[39m
+     [33m[2m✓[22m[39m users:update: DELETE /users/:userId/avatar needs its permission[33m 471[2mms[22m[39m
+     [33m[2m✓[22m[39m users:disable: POST /users/:userId/deactivate needs its permission[33m 462[2mms[22m[39m
+     [33m[2m✓[22m[39m users:disable: POST /users/:userId/reactivate needs its permission[33m 458[2mms[22m[39m
+     [33m[2m✓[22m[39m users:delete: DELETE /users/:userId needs its permission[33m 479[2mms[22m[39m
+     [33m[2m✓[22m[39m users:credentials: POST /users/:userId/password-reset-email needs its permission[33m 461[2mms[22m[39m
+     [33m[2m✓[22m[39m users:credentials: POST /users/:userId/verification-email needs its permission[33m 457[2mms[22m[39m
+     [33m[2m✓[22m[39m users:credentials: PUT /users/:userId/email-verified needs its permission[33m 455[2mms[22m[39m
+     [33m[2m✓[22m[39m users:sessions: GET /users/:userId/sessions needs its permission[33m 459[2mms[22m[39m
+     [33m[2m✓[22m[39m users:sessions: DELETE /users/:userId/sessions needs its permission[33m 471[2mms[22m[39m
+     [33m[2m✓[22m[39m users:sessions: DELETE /users/:userId/sessions/missing needs its permission[33m 459[2mms[22m[39m
+     [33m[2m✓[22m[39m users:api_keys: GET /users/:userId/api-keys needs its permission[33m 463[2mms[22m[39m
+     [33m[2m✓[22m[39m users:api_keys: DELETE /users/:userId/api-keys/missing needs its permission[33m 468[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:read: GET /workspaces needs its permission[33m 459[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:read: GET /workspaces/:workspaceId/members needs its permission[33m 463[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:read: GET /workspaces/:workspaceId/roles needs its permission[33m 454[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:manage: POST /workspaces/:workspaceId/members needs its permission[33m 471[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:manage: PUT /workspaces/:workspaceId/members/:userId/role needs its permission[33m 454[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:manage: DELETE /workspaces/:workspaceId/members/:userId needs its permission[33m 460[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:manage: PUT /workspaces/:workspaceId/owner needs its permission[33m 453[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:archive: POST /workspaces/:workspaceId/archive needs its permission[33m 465[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:archive: POST /workspaces/:workspaceId/restore needs its permission[33m 462[2mms[22m[39m
+     [33m[2m✓[22m[39m workspaces:delete: DELETE /workspaces/:workspaceId needs its permission[33m 459[2mms[22m[39m
+     [33m[2m✓[22m[39m audit:read: GET /audit-log needs its permission[33m 453[2mms[22m[39m
+     [33m[2m✓[22m[39m system:read: GET /system needs its permission[33m 459[2mms[22m[39m
+     [33m[2m✓[22m[39m system:read: POST /system/test-email needs its permission[33m 461[2mms[22m[39m
+     [33m[2m✓[22m[39m instance:settings: GET /settings needs its permission[33m 460[2mms[22m[39m
+     [33m[2m✓[22m[39m instance:settings: PATCH /settings needs its permission[33m 467[2mms[22m[39m
+     [33m[2m✓[22m[39m roles:manage: POST /roles needs its permission[33m 462[2mms[22m[39m
+     [33m[2m✓[22m[39m roles:manage: PUT /roles/:roleId needs its permission[33m 462[2mms[22m[39m
+     [33m[2m✓[22m[39m roles:manage: DELETE /roles/:roleId needs its permission[33m 453[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-user-removal.test.ts
+[22m[39m[2m2026-11-18T21:47:43.321Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:43.322Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:43.322Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/admin-user-removal.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1944[2mms[22m[39m
+   [32m✓[39m API integration: admin user removal [2m(6)[22m
+     [33m[2m✓[22m[39m deletes the workspace a sole member owned together with the user[33m 454[2mms[22m[39m
+     [33m[2m✓[22m[39m refuses to remove the only owner of a shared workspace and keeps the account intact[33m 317[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects callers who are not instance administrators without touching data[33m 526[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/due-date-reminders.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 869[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts
+[22m[39m[2m2026-11-18T21:47:51.154Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:51.155Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:51.155Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcustom-role needs task:create to set a rule but only task:update to clear it
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcustom-role needs task:create to set a rule but only task:update to clear it
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mapi-key needs task:create to set a rule but only task:update to clear it
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mapi-key needs task:create to set a rule but only task:update to clear it
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's done column
+[22m[39mbroadcastToProject called before adapter initialization
+broadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's done column
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's done column
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's to-do column
+[22m[39mbroadcastToProject called before adapter initialization
+broadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's to-do column
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's to-do column
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's to-do column
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-recurrence-regressions.test.ts[2m > [22m[2mAPI integration: recurrence permissions and project moves[2m > [22m[2mcontinues a recurring task moved to another project's to-do column
+[22m[39mbroadcastToProject called before adapter initialization
+
+ [32m✓[39m ../../tests/api-integration/task-recurrence-regressions.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 816[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/github-binding-routes.test.ts
+[22m[39m[2m2026-11-18T21:47:55.672Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:47:55.673Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:47:55.673Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/github-binding-routes.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 650[2mms[22m[39m
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mwarns the owner before the trial ends
+[22m[39mSent 1 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2memails once the trial has lapsed
+[22m[39mSent 1 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mnever sends the same reminder twice
+[22m[39mSent 1 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mrecords what it sent so a later run can be audited
+[22m[39mSent 1 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mcaps how many it sends per run so the provider is not flooded
+[22m[39mSent 2 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mshares one cap across both reminder types and leaves unsent rows for the next run
+[22m[39mSent 2 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mshares one cap across both reminder types and leaves unsent rows for the next run
+[22m[39mSent 2 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mspends only the remaining budget on the second reminder type
+[22m[39mSent 2 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2msends the most urgent trials first
+[22m[39mSent 2 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2memails an owner once no matter how many workspaces they have
+[22m[39mSent 1 trial reminder email(s)
+
+[90mstdout[2m | ../../tests/api-integration/trial-reminders.test.ts[2m > [22m[2mtrial reminder emails[2m > [22m[2mstill emails every distinct owner
+[22m[39mSent 2 trial reminder email(s)
+
+ [32m✓[39m ../../tests/api-integration/trial-reminders.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 4765[2mms[22m[39m
+   [32m✓[39m trial reminder emails [2m(12)[22m
+     [33m[2m✓[22m[39m caps how many it sends per run so the provider is not flooded[33m 697[2mms[22m[39m
+     [33m[2m✓[22m[39m shares one cap across both reminder types and leaves unsent rows for the next run[33m 1295[2mms[22m[39m
+     [33m[2m✓[22m[39m spends only the remaining budget on the second reminder type[33m 688[2mms[22m[39m
+     [33m[2m✓[22m[39m sends the most urgent trials first[33m 685[2mms[22m[39m
+     [33m[2m✓[22m[39m still emails every distinct owner[33m 680[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/column-migration-once.test.ts[2m > [22m[2mskips malformed legacy configuration without blocking startup
+[22m[39mSkipping invalid legacy integration config cgn08bcsbrs4x1xkhca0qcea
+
+[90mstderr[2m | ../../tests/api-integration/column-migration-once.test.ts[2m > [22m[2mresumes malformed legacy integrations after repair without remigrating completed projects
+[22m[39mSkipping invalid legacy integration config ef8yzyk7seouphft4r2uiv6a
+
+[90mstderr[2m | ../../tests/api-integration/column-migration-once.test.ts[2m > [22m[2mkeeps malformed transitions "invalid" pending until repaired
+[22m[39mSkipping invalid legacy integration config k21xwxy4cswvtoh5waa14z6v
+
+[90mstderr[2m | ../../tests/api-integration/column-migration-once.test.ts[2m > [22m[2mkeeps malformed transitions null pending until repaired
+[22m[39mSkipping invalid legacy integration config tqe4uzod1rnxzascgryeug71
+
+[90mstderr[2m | ../../tests/api-integration/column-migration-once.test.ts[2m > [22m[2mkeeps malformed transitions undefined pending until repaired
+[22m[39mSkipping invalid legacy integration config sqxv12viszyzyayi0rvlasu4
+
+[90mstderr[2m | ../../tests/api-integration/column-migration-once.test.ts[2m > [22m[2mkeeps malformed transitions {"onPROpen":1} pending until repaired
+[22m[39mSkipping invalid legacy integration config eeivs4wlw1uz36d8ls0l58cc
+
+ [32m✓[39m ../../tests/api-integration/column-migration-once.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1018[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/mcp-oauth-bounds.test.ts
+[22m[39m[2m2026-11-18T21:48:06.383Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:06.384Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:06.384Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/mcp-oauth-bounds.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 1007[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/api-key-banned-user.test.ts
+[22m[39m[2m2026-11-18T21:48:09.784Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:09.784Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:09.785Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/api-key-banned-user.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1747[2mms[22m[39m
+   [32m✓[39m API integration: API keys of banned users [2m(9)[22m
+     [32m✓[39m through Better Auth routes [2m(3)[22m
+       [33m[2m✓[22m[39m resolves a session for an active key and refuses it once banned[33m 355[2mms[22m[39m
+       [33m[2m✓[22m[39m does not let a browser cookie rescue a banned bearer key[33m 580[2mms[22m[39m
+[90mstdout[2m | ../../tests/api-integration/gitlab-completed-task-status.test.ts[2m > [22m[2mGitLab pushes to a completed task[2m > [22m[2mmoves the task back to progress for a new branch
+[22m[39m[GitLab Push] Processing branch: kan-42-slice-2
+
+[90mstdout[2m | ../../tests/api-integration/gitlab-completed-task-status.test.ts[2m > [22m[2mGitLab pushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[GitLab Push] Processing branch: kan-42-slice-2
+
+[90mstdout[2m | ../../tests/api-integration/gitlab-completed-task-status.test.ts[2m > [22m[2mGitLab pushes to a completed task[2m > [22m[2mkeeps the task done for a push to an already linked branch
+[22m[39m[GitLab Push] Processing branch: kan-42-slice-2
+
+ [32m✓[39m ../../tests/api-integration/gitlab-completed-task-status.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 755[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-relation-boundaries.test.ts
+[22m[39m[2m2026-11-18T21:48:16.696Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:16.697Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:16.697Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/task-relation-boundaries.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 917[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-position-bounds.test.ts
+[22m[39m[2m2026-11-18T21:48:21.422Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:21.423Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:21.436Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/task-position-bounds.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 956[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/leader-lock.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 194[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/gitea-verification.test.ts
+[22m[39m[2m2026-11-18T21:48:26.943Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:26.944Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:26.944Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/gitea-verification.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1001[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-audit-log-listing.test.ts
+[22m[39m[2m2026-11-18T21:48:30.881Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:30.882Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:30.882Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/admin-audit-log-listing.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 612[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/auth-captcha.test.ts
+[22m[39m[2m2026-11-18T21:48:36.123Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:36.124Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:36.124Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/auth-captcha.test.ts[2m > [22m[2mserver-side auth CAPTCHA enforcement[2m > [22m[2mdoes not redeem a second token at an OAuth callback
+[22m[39m[2m2026-11-18T21:48:39.418Z[0m [31mERROR[0m [1m[Better Auth]:[0m Failed to parse state [StateError [BetterAuthError]: State mismatch: verification not found] {
+  code: [32m'state_mismatch'[39m,
+  details: { state: [32m'invalid'[39m },
+  errorURL: [90mundefined[39m
+}
+
+ [32m✓[39m ../../tests/api-integration/auth-captcha.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 1868[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-audit-log-workspace-actions.test.ts
+[22m[39m[2m2026-11-18T21:48:40.939Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:40.940Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:40.940Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/admin-audit-log-workspace-actions.test.ts[2m > [22m[2maudit of admin workspace membership changes[2m > [22m[2mrecords add, role change, ownership transfer, and removal
+[22m[39mbroadcastToProject called before adapter initialization
+broadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/admin-audit-log-workspace-actions.test.ts[2m > [22m[2maudit of admin workspace membership changes[2m > [22m[2mrecords add, role change, ownership transfer, and removal
+[22m[39mbroadcastToProject called before adapter initialization
+broadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/admin-audit-log-workspace-actions.test.ts[2m > [22m[2maudit of admin workspace membership changes[2m > [22m[2mrecords add, role change, ownership transfer, and removal
+[22m[39mbroadcastToProject called before adapter initialization
+broadcastToProject called before adapter initialization
+
+ [32m✓[39m ../../tests/api-integration/admin-audit-log-workspace-actions.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 414[2mms[22m[39m
+ [31m❯[39m ../../tests/api-integration/gitea-task-numbering.test.ts [2m([22m[2m4 tests[22m[2m | [22m[31m3 failed[39m[2m)[22m[33m 411[2mms[22m[39m
+   [31m❯[39m Gitea import task numbers [2m(4)[22m
+[31m     [31m×[31m advances the shared counter before a normal task is created[39m[32m 149[2mms[22m[39m
+[31m     [31m×[31m serializes import and concurrent ordinary creation through one counter[39m[32m 84[2mms[22m[39m
+     [32m✓[39m repairs a legacy counter without renumbering existing references, and is idempotent[32m 96[2mms[22m[39m
+[31m     [31m×[31m never lowers a high-water counter when the highest task was deleted[39m[32m 81[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/mattermost-integration.test.ts
+[22m[39m[2m2026-11-18T21:48:47.080Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:47.081Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:47.081Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/mattermost-integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 452[2mms[22m[39m
+   [32m✓[39m API integration: Mattermost [2m(2)[22m
+     [33m[2m✓[22m[39m preserves webhook validation and settings across the OpenAPI routes[33m 337[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/project-visibility-scope.test.ts
+[22m[39m[2m2026-11-18T21:48:51.286Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:51.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:51.287Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/project-visibility-scope.test.ts[2m > [22m[2mproject visibility authorization[2m > [22m[2mallows an unrelated edit without project:share
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/project-visibility-scope.test.ts[2m > [22m[2mproject visibility authorization[2m > [22m[2mallows publishing with project:share
+[22m[39mbroadcastToProject called before adapter initialization
+
+ [32m✓[39m ../../tests/api-integration/project-visibility-scope.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 669[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/helpers/database.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 678[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/bulk-task-atomic-status.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 347[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/legacy-auth-migration.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 404[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/session-freshness.test.ts
+[22m[39m[2m2026-11-18T21:48:59.825Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:48:59.826Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:48:59.826Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/session-freshness.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 571[2mms[22m[39m
+   [32m✓[39m API integration: session freshness after profile updates [2m(2)[22m
+     [33m[2m✓[22m[39m serves the updated user with and without a cookie-cache bypass[33m 376[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/instance-admin-migration.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 545[2mms[22m[39m
+ [32m✓[39m ../../tests/api-integration/bulk-task-events.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 241[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/custom-oauth-discovery.test.ts
+[22m[39m[2m2026-11-18T21:49:06.092Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:06.093Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:06.093Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/custom-oauth-discovery.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 10[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/external-link-secrets.test.ts
+[22m[39m[2m2026-11-18T21:49:08.477Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:08.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:08.478Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/external-link-secrets.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 221[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/admin-user-lifecycle-access.test.ts
+[22m[39m[2m2026-11-18T21:49:11.638Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:11.639Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:11.639Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/admin-user-lifecycle-access.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 1165[2mms[22m[39m
+   [32m✓[39m admin user lifecycle endpoints [2m(2)[22m
+     [33m[2m✓[22m[39m reject anonymous callers, regular users, and administrator API keys[33m 662[2mms[22m[39m
+     [33m[2m✓[22m[39m answer 404 for an unknown user[33m 502[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts
+[22m[39m[2m2026-11-18T21:49:17.580Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:17.581Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:17.581Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts[2m > [22m[2mJSON imports after column renames[2m > [22m[2maccepts the renamed name and its slug while retaining stored status identities
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts[2m > [22m[2mJSON imports after column renames[2m > [22m[2maccepts the renamed name and its slug while retaining stored status identities
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts[2m > [22m[2mJSON imports after column renames[2m > [22m[2maccepts the renamed name and its slug while retaining stored status identities
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts[2m > [22m[2mJSON imports after column renames[2m > [22m[2maccepts the renamed name and its slug while retaining stored status identities
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts[2m > [22m[2mJSON imports after column renames[2m > [22m[2maccepts the renamed name and its slug while retaining stored status identities
+[22m[39mbroadcastToProject called before adapter initialization
+
+[90mstderr[2m | ../../tests/api-integration/task-import-status.test.ts[2m > [22m[2mJSON imports after column renames[2m > [22m[2maccepts the renamed name and its slug while retaining stored status identities
+[22m[39mbroadcastToProject called before adapter initialization
+
+ [32m✓[39m ../../tests/api-integration/task-import-status.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 283[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/auth-client-ip.test.ts
+[22m[39m[2m2026-11-18T21:49:21.722Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:21.723Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:21.723Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/auth-client-ip.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 341[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/search-bounds.test.ts
+[22m[39m[2m2026-11-18T21:49:25.869Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:25.870Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:25.871Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/search-bounds.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 298[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/search-workspace-dedup.test.ts
+[22m[39m[2m2026-11-18T21:49:29.941Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:29.942Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:29.942Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/search-workspace-dedup.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 259[2mms[22m[39m
+[90mstderr[2m | ../../tests/api-integration/health.test.ts
+[22m[39m[2m2026-11-18T21:49:33.912Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider github is missing clientId or clientSecret
+[2m2026-11-18T21:49:33.913Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider google is missing clientId or clientSecret
+[2m2026-11-18T21:49:33.913Z[0m [33mWARN[0m [1m[Better Auth]:[0m Social provider discord is missing clientId or clientSecret
+
+ [32m✓[39m ../../tests/api-integration/health.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 49[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 13 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/gitea-task-numbering.test.ts[2m > [22mGitea import task numbers[2m > [22madvances the shared counter before a normal task is created
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/gitea-task-numbering.test.ts:[2m61:12[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/gitea-task-numbering.test.ts[2m > [22mGitea import task numbers[2m > [22mserializes import and concurrent ordinary creation through one counter
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/gitea-task-numbering.test.ts:[2m78:24[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/gitea-task-numbering.test.ts[2m > [22mGitea import task numbers[2m > [22mnever lowers a high-water counter when the highest task was deleted
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/gitea-task-numbering.test.ts:[2m123:12[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitea imports new issues from formatted configuration JSON
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m185:9[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitlab imports new issues from formatted configuration JSON
+[31m[1mError[22m: GitLab integration not found[39m
+[36m [2m❯[22m importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:[2m74:11[22m[39m
+    [90m 72|[39m
+    [90m 73|[39m   if (!integration || integration.type !== "gitlab") {
+    [90m 74|[39m     throw new HTTPException(404, { message: "GitLab integration not fo…
+    [90m   |[39m           [31m^[39m
+    [90m 75|[39m   }
+    [90m 76|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m185:9[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitea import cannot modify a moved task through an old link
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m197:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitlab import cannot modify a moved task through an old link
+[31m[1mError[22m: GitLab integration not found[39m
+[36m [2m❯[22m importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:[2m74:11[22m[39m
+    [90m 72|[39m
+    [90m 73|[39m   if (!integration || integration.type !== "gitlab") {
+    [90m 74|[39m     throw new HTTPException(404, { message: "GitLab integration not fo…
+    [90m   |[39m           [31m^[39m
+    [90m 75|[39m   }
+    [90m 76|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m197:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitea comment fetching leaves task moves unlocked and rechecks scope afterwards
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m218:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitlab comment fetching leaves task moves unlocked and rechecks scope afterwards
+[31m[1mError[22m: GitLab integration not found[39m
+[36m [2m❯[22m importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:[2m74:11[22m[39m
+    [90m 72|[39m
+    [90m 73|[39m   if (!integration || integration.type !== "gitlab") {
+    [90m 74|[39m     throw new HTTPException(404, { message: "GitLab integration not fo…
+    [90m   |[39m           [31m^[39m
+    [90m 75|[39m   }
+    [90m 76|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m218:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitea import cannot revive a removed link after a task moves away and back
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m252:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mintegration task ownership[2m > [22mgitlab import cannot revive a removed link after a task moves away and back
+[31m[1mError[22m: GitLab integration not found[39m
+[36m [2m❯[22m importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:[2m74:11[22m[39m
+    [90m 72|[39m
+    [90m 73|[39m   if (!integration || integration.type !== "gitlab") {
+    [90m 74|[39m     throw new HTTPException(404, { message: "GitLab integration not fo…
+    [90m   |[39m           [31m^[39m
+    [90m 75|[39m   }
+    [90m 76|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m252:22[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mannounces committed gitea reimport updates to task and resource caches
+[31m[1mError[22m: Gitea integration not found[39m
+[36m [2m❯[22m importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:[2m77:11[22m[39m
+    [90m 75|[39m
+    [90m 76|[39m   if (!integration || integration.type !== "gitea") {
+    [90m 77|[39m     throw new HTTPException(404, { message: "Gitea integration not fou…
+    [90m   |[39m           [31m^[39m
+    [90m 78|[39m   }
+    [90m 79|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m652:20[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/13]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m ../../tests/api-integration/integration-task-ownership.test.ts[2m > [22mannounces committed gitlab reimport updates to task and resource caches
+[31m[1mError[22m: GitLab integration not found[39m
+[36m [2m❯[22m importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:[2m74:11[22m[39m
+    [90m 72|[39m
+    [90m 73|[39m   if (!integration || integration.type !== "gitlab") {
+    [90m 74|[39m     throw new HTTPException(404, { message: "GitLab integration not fo…
+    [90m   |[39m           [31m^[39m
+    [90m 75|[39m   }
+    [90m 76|[39m
+[90m [2m❯[22m ../../tests/api-integration/integration-task-ownership.test.ts:[2m652:20[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/13]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m47 passed[39m[22m[90m (49)[39m
+[2m      Tests [22m [1m[31m13 failed[39m[22m[2m | [22m[1m[32m434 passed[39m[22m[90m (447)[39m
+[2m   Start at [22m 21:45:18
+[2m   Duration [22m 257.29s[2m (import 51%, tests 46%, transform 2%)[22m
+
+[2m     Import [22m [33m1024 modules were evaluated 1974 times[39m[2m · 129.56s total, 51% of tracked time[22m
+[2m            [22m [2m~62.35s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m
+
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/gitea-task-numbering.test.ts > Gitea import task numbers > advances the shared counter before a normal task is created,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/gitea-task-numbering.test.ts:61:12%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/gitea-task-numbering.test.ts > Gitea import task numbers > serializes import and concurrent ordinary creation through one counter,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/gitea-task-numbering.test.ts:78:24%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/gitea-task-numbering.test.ts > Gitea import task numbers > never lowers a high-water counter when the highest task was deleted,line=77,column=11::Error: Gitea integration not found%0A ❯ Module.importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/gitea-task-numbering.test.ts:123:12%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitea imports new issues from formatted configuration JSON,line=77,column=11::Error: Gitea integration not found%0A ❯ importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:185:9%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitlab-integration/controllers/import-gitlab-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitlab imports new issues from formatted configuration JSON,line=74,column=11::Error: GitLab integration not found%0A ❯ importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:74:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:185:9%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitea import cannot modify a moved task through an old link,line=77,column=11::Error: Gitea integration not found%0A ❯ importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:197:22%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitlab-integration/controllers/import-gitlab-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitlab import cannot modify a moved task through an old link,line=74,column=11::Error: GitLab integration not found%0A ❯ importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:74:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:197:22%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitea comment fetching leaves task moves unlocked and rechecks scope afterwards,line=77,column=11::Error: Gitea integration not found%0A ❯ importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:218:22%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitlab-integration/controllers/import-gitlab-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitlab comment fetching leaves task moves unlocked and rechecks scope afterwards,line=74,column=11::Error: GitLab integration not found%0A ❯ importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:74:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:218:22%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitea import cannot revive a removed link after a task moves away and back,line=77,column=11::Error: Gitea integration not found%0A ❯ importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:252:22%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitlab-integration/controllers/import-gitlab-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > integration task ownership > gitlab import cannot revive a removed link after a task moves away and back,line=74,column=11::Error: GitLab integration not found%0A ❯ importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:74:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:252:22%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitea-integration/controllers/import-gitea-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > announces committed gitea reimport updates to task and resource caches,line=77,column=11::Error: Gitea integration not found%0A ❯ importGiteaIssues src/gitea-integration/controllers/import-gitea-issues.ts:77:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:652:20%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+::error file=/home/runner/work/kaneo/kaneo/apps/api/src/gitlab-integration/controllers/import-gitlab-issues.ts,title=../../tests/api-integration/integration-task-ownership.test.ts > announces committed gitlab reimport updates to task and resource caches,line=74,column=11::Error: GitLab integration not found%0A ❯ importGitlabIssues src/gitlab-integration/controllers/import-gitlab-issues.ts:74:11%0A ❯ ../../tests/api-integration/integration-task-ownership.test.ts:652:20%0A%0A⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯%0ASerialized Error: { res: undefined, status: 404, getResponse: 'Function<getResponse>' }%0A
+
+---
+vp run: 0/4 cache hit (0%), 4/5 successful. (Run `vp run --last-details` for full details)
+Error: ERR_PNPM_RECURSIVE_EXEC_FIRST_FAIL
+
+  × "pnpm recursive exec" failed in /home/runner/work/kaneo/kaneo/apps/api
+

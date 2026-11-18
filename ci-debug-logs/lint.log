@@ -1,0 +1,48 @@
+$ vp check
+error: Formatting could not start
+Checking formatting...
+
+[38;2;244;191;117;1m.github/scripts/parse-lint-log.mjs[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/gitea-integration/controllers/create-gitea-integration.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/gitea-integration/controllers/get-gitea-integration.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/gitea-integration/index.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/github-integration/controllers/get-github-integration.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/github-integration/index.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/gitlab-integration/controllers/get-gitlab-integration.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/gitlab-integration/index.ts[0m (0ms)
+[38;2;244;191;117;1mapps/api/src/integrations/map-unique-violation.ts[0m (0ms)
+[38;2;244;191;117;1mapps/web/src/hooks/mutations/use-disconnect-integration.test.tsx[0m (0ms)
+[38;2;244;191;117;1mtests/api/github-integration/repository-binding.test.ts[0m (1ms)
+[38;2;244;191;117;1mtests/api/gitlab-integration/import-gitlab-issues.test.ts[0m (0ms)
+[38;2;244;191;117;1mtests/api/plan-limits/repository-binding-quota-lock.test.ts[0m (0ms)
+
+  [38;2;225;80;80;1m×[0m [38;2;225;80;80;1mExpected `,` or `)` but found `as`[0m
+     ╭─[[38;2;92;157;255;1mtests/api-integration/github-rebind.test.ts[0m:281:15]
+ [2m264[0m │         operation === "reconnect"
+ [2m265[0m │           ? vi.spyOn(db, "transaction").mockImplementation(async (fn) => {
+     · [38;2;246;87;248m                                                          ┬[0m
+     ·                                                           [38;2;246;87;248m╰── [38;2;246;87;248mOpened here[0m[0m
+ [2m266[0m │               // Run the real transaction, but wrap its reconcile lookup so
+ [2m267[0m │               // the row changes on another connection between the read and
+ [2m268[0m │               // the guarded write; READ COMMITTED then lets the guarded
+ [2m269[0m │               // update see the new config and match zero rows.
+ [2m270[0m │               return runOriginalTransaction(async (tx) => {
+ [2m271[0m │                 const original = tx.query.integrationTable.findFirst.bind(
+ [2m272[0m │                   tx.query.integrationTable,
+ [2m273[0m │                 );
+ [2m274[0m │                 tx.query.integrationTable.findFirst = async (...args) => {
+ [2m275[0m │                   const row = await original(...args);
+ [2m276[0m │                   if (row) await changeRowConcurrently();
+ [2m277[0m │                   return row;
+ [2m278[0m │                 };
+ [2m279[0m │                 return fn(tx);
+ [2m280[0m │               });
+ [2m281[0m │             } as typeof db.transaction)
+     · [38;2;30;201;212m              ─┬[0m
+     ·                [38;2;30;201;212m╰── [38;2;30;201;212m`,` or `)` expected[0m[0m
+ [2m282[0m │           : null;
+     ╰────
+Error occurred when checking code style in the above files.
+
+Formatting failed before analysis started
+[ELIFECYCLE] Command failed with exit code 2.

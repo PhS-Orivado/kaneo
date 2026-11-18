@@ -2906,6 +2906,9 @@
           "installation_id": {
             "type": "number",
             "description": "Which App installation this repository came through."
+          },
+          "linkedTo": {
+            "$ref": "#/components/schemas/RepositoryLinkedTo"
           }
         },
         "required": [
@@ -2917,7 +2920,8 @@
           "description",
           "html_url",
           "updated_at",
-          "installation_id"
+          "installation_id",
+          "linkedTo"
         ]
       },
       "GitHubRepositoryOwner": {
@@ -2957,6 +2961,32 @@
           "push",
           "pull"
         ]
+      },
+      "RepositoryLinkedTo": {
+        "type": [
+          "object",
+          "null"
+        ],
+        "properties": {
+          "integrationId": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "projectName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "integrationId",
+          "projectId",
+          "projectName"
+        ],
+        "description": "The binding that already links this repository within the calling project, or null. Only the calling project's own bindings are reported, so no other project's identity is disclosed."
       },
       "GitHubInstallation": {
         "type": "object",
@@ -3161,6 +3191,43 @@
           "skipped"
         ]
       },
+      "GitHubIntegrationList": {
+        "type": "object",
+        "properties": {
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GitHubIntegration"
+            },
+            "description": "Every GitHub binding of the project, oldest first."
+          },
+          "usage": {
+            "$ref": "#/components/schemas/RepositoryBindingUsage"
+          }
+        },
+        "required": [
+          "integrations",
+          "usage"
+        ]
+      },
+      "RepositoryBindingUsage": {
+        "type": "object",
+        "properties": {
+          "used": {
+            "type": "number"
+          },
+          "limit": {
+            "type": [
+              "number",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "used",
+          "limit"
+        ]
+      },
       "CreatedGitHubIntegration": {
         "type": "object",
         "properties": {
@@ -3268,6 +3335,32 @@
           },
           "html_url": {
             "type": "string"
+          },
+          "linkedTo": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "integrationId": {
+                "type": "string"
+              },
+              "projectId": {
+                "type": "string"
+              },
+              "projectName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "integrationId",
+              "projectId",
+              "projectName"
+            ],
+            "description": "The binding that already links this repository within the calling project, when any. Only the calling project's own bindings are reported, so no other project's identity is disclosed."
           }
         },
         "required": [
@@ -3342,11 +3435,26 @@
           "failureReason"
         ]
       },
+      "GiteaIntegrationList": {
+        "type": "object",
+        "properties": {
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GiteaIntegration"
+            }
+          },
+          "usage": {
+            "$ref": "#/components/schemas/RepositoryBindingUsage"
+          }
+        },
+        "required": [
+          "integrations",
+          "usage"
+        ]
+      },
       "GiteaIntegration": {
-        "type": [
-          "object",
-          "null"
-        ],
+        "type": "object",
         "properties": {
           "id": {
             "type": "string"
@@ -3369,11 +3477,11 @@
           },
           "webhookUrl": {
             "type": "string",
-            "description": "Where Gitea should POST events for this project."
+            "description": "Where Gitea should POST events for this binding."
           },
           "webhookSecret": {
             "type": "string",
-            "description": "Only returned to callers with workspace:manage_settings, so the value can be pasted into Gitea."
+            "description": "Only returned to callers with workspace:manage_settings, so the value can be pasted into Gitea. Per binding."
           },
           "branchPattern": {
             "type": "string"
@@ -3484,6 +3592,32 @@
           },
           "web_url": {
             "type": "string"
+          },
+          "linkedTo": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "properties": {
+              "integrationId": {
+                "type": "string"
+              },
+              "projectId": {
+                "type": "string"
+              },
+              "projectName": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "integrationId",
+              "projectId",
+              "projectName"
+            ],
+            "description": "The binding that already links this GitLab project within the calling project, when any. Only the calling project's own bindings are reported, so no other project's identity is disclosed."
           }
         },
         "required": [
@@ -3548,11 +3682,26 @@
           "failureReason"
         ]
       },
+      "GitlabIntegrationList": {
+        "type": "object",
+        "properties": {
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GitlabIntegration"
+            }
+          },
+          "usage": {
+            "$ref": "#/components/schemas/RepositoryBindingUsage"
+          }
+        },
+        "required": [
+          "integrations",
+          "usage"
+        ]
+      },
       "GitlabIntegration": {
-        "type": [
-          "object",
-          "null"
-        ],
+        "type": "object",
         "properties": {
           "id": {
             "type": "string"
@@ -3581,11 +3730,11 @@
           },
           "webhookUrl": {
             "type": "string",
-            "description": "Where GitLab should POST events for this project."
+            "description": "Where GitLab should POST events for this binding."
           },
           "webhookSecret": {
             "type": "string",
-            "description": "Only returned to callers with workspace:manage_settings, so the value can be pasted into GitLab."
+            "description": "Only returned to callers with workspace:manage_settings, so the value can be pasted into GitLab. Per binding."
           },
           "branchPattern": {
             "type": "string"
@@ -4323,6 +4472,13 @@
             "type": "string",
             "description": "The integration that emits the event, e.g. `github`."
           },
+          "integrationId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The repository binding this rule is scoped to, or `null` for a type-wide rule that applies to every repository of that type in the project (RFC 0001)."
+          },
           "eventType": {
             "type": "string",
             "description": "The Kaneo event that triggers the move: `branch_push`, `pr_opened`, `pr_merged`, `issue_opened`, `issue_closed` or `issue_reopened`."
@@ -4356,6 +4512,7 @@
           "id",
           "projectId",
           "integrationType",
+          "integrationId",
           "eventType",
           "columnId",
           "columnName",
@@ -4376,6 +4533,13 @@
           "integrationType": {
             "type": "string"
           },
+          "integrationId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The repository binding this rule is scoped to, or `null` for a type-wide rule (RFC 0001)."
+          },
           "eventType": {
             "type": "string"
           },
@@ -4395,6 +4559,7 @@
           "id",
           "projectId",
           "integrationType",
+          "integrationId",
           "eventType",
           "columnId",
           "createdAt",
@@ -17909,6 +18074,777 @@
         }
       }
     },
+    "/integration-sync/integration/{integrationId}": {
+      "get": {
+        "operationId": "getIntegrationSyncRulesById",
+        "tags": [
+          "Integration sync"
+        ],
+        "summary": "Get sync rules and current task scope for one binding",
+        "description": "Workspace members with project and task read permissions can inspect saved rules of one repository binding. Rules remain active when advanced mode is hidden. Paused issue links are preserved; eligible paused tasks require review before resuming.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "name": "after",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Saved rules and scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationSyncPreview"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid rule or workspace label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing required permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, integration, or linked task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Configuration, impact or comparison changed; review again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "saveIntegrationSyncRulesById",
+        "tags": [
+          "Integration sync"
+        ],
+        "summary": "Apply a previewed sync rule to one binding",
+        "description": "Save one repository binding's rules only if its preview is still current. Excluded links are paused, never deleted. Newly matching unlinked tasks are exported through the integration event path. Paused links require explicit review to resume.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "outgoing": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "all"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "mode"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "labels"
+                                ]
+                              },
+                              "match": {
+                                "type": "string",
+                                "enum": [
+                                  "any",
+                                  "all"
+                                ]
+                              },
+                              "labels": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "mode",
+                              "match",
+                              "labels"
+                            ]
+                          }
+                        ],
+                        "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
+                      },
+                      "incoming": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "all"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "mode"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "labels"
+                                ]
+                              },
+                              "match": {
+                                "type": "string",
+                                "enum": [
+                                  "any",
+                                  "all"
+                                ]
+                              },
+                              "labels": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "mode",
+                              "match",
+                              "labels"
+                            ]
+                          }
+                        ],
+                        "description": "Exact repository label names controlling which issues can be imported."
+                      }
+                    },
+                    "required": [
+                      "outgoing",
+                      "incoming"
+                    ]
+                  },
+                  "previewToken": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64
+                  }
+                },
+                "required": [
+                  "rules",
+                  "previewToken"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Saved rules and current scope",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationSyncPreview"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid rule or workspace label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing required permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, integration, or linked task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Configuration, impact or comparison changed; review again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/integration-sync/integration/{integrationId}/preview": {
+      "post": {
+        "operationId": "previewIntegrationSyncRulesById",
+        "tags": [
+          "Integration sync"
+        ],
+        "summary": "Preview a sync rule change for one binding",
+        "description": "Returns matching tasks, new exports, paused links and a token bound to the addressed binding and impact. Outgoing labels are workspace label IDs; incoming labels are exact repository label names.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "rules": {
+                    "type": "object",
+                    "properties": {
+                      "outgoing": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "all"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "mode"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "labels"
+                                ]
+                              },
+                              "match": {
+                                "type": "string",
+                                "enum": [
+                                  "any",
+                                  "all"
+                                ]
+                              },
+                              "labels": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "mode",
+                              "match",
+                              "labels"
+                            ]
+                          }
+                        ],
+                        "description": "Kaneo workspace label IDs controlling task sync. Missing labels pause sync."
+                      },
+                      "incoming": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "all"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "mode"
+                            ]
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "mode": {
+                                "type": "string",
+                                "enum": [
+                                  "labels"
+                                ]
+                              },
+                              "match": {
+                                "type": "string",
+                                "enum": [
+                                  "any",
+                                  "all"
+                                ]
+                              },
+                              "labels": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string",
+                                  "minLength": 1,
+                                  "maxLength": 128
+                                },
+                                "minItems": 1,
+                                "maxItems": 50
+                              }
+                            },
+                            "required": [
+                              "mode",
+                              "match",
+                              "labels"
+                            ]
+                          }
+                        ],
+                        "description": "Exact repository label names controlling which issues can be imported."
+                      }
+                    },
+                    "required": [
+                      "outgoing",
+                      "incoming"
+                    ]
+                  }
+                },
+                "required": [
+                  "rules"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Proposed rule impact",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationSyncPreview"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid rule or workspace label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing required permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, integration, or linked task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Configuration, impact or comparison changed; review again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/integration-sync/integration/{integrationId}/links/{linkId}/review": {
+      "get": {
+        "operationId": "reviewIntegrationSyncResumeById",
+        "tags": [
+          "Integration sync"
+        ],
+        "summary": "Compare a paused task with its external issue for one binding",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "linkId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Current values and comparison token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationSyncResumePreview"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid rule or workspace label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing required permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, integration, or linked task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Configuration, impact or comparison changed; review again",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          },
+          "502": {
+            "description": "External issue unavailable; sync remains paused",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/integration-sync/integration/{integrationId}/links/{linkId}/resume": {
+      "post": {
+        "operationId": "resumeIntegrationSyncById",
+        "tags": [
+          "Integration sync"
+        ],
+        "summary": "Resume a reviewed issue link of one binding",
+        "description": "Explicitly choose the current Kaneo or repository title, description and open/closed state. Existing links are reused; historical comments are not replayed. The task must still match its outgoing rule. A changed comparison requires another review.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          },
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "required": true,
+            "name": "linkId",
+            "in": "path"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64
+                  },
+                  "source": {
+                    "type": "string",
+                    "enum": [
+                      "kaneo",
+                      "provider"
+                    ]
+                  }
+                },
+                "required": [
+                  "token",
+                  "source"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sync resumed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "success"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid rule or workspace label",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing required permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project, integration, or linked task not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Comparison changed or synchronization is busy; review or retry",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          },
+          "502": {
+            "description": "External issue unavailable; sync remains paused",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/integration-sync/project/{projectId}/{provider}": {
       "get": {
         "operationId": "getIntegrationSyncRules",
@@ -17916,7 +18852,7 @@
           "Integration sync"
         ],
         "summary": "Get sync rules and current task scope",
-        "description": "Workspace members with project and task read permissions can inspect saved rules. Rules remain active when advanced mode is hidden. Paused issue links are preserved; eligible paused tasks require review before resuming.",
+        "description": "Compatibility shim: resolves the project's first binding for the provider (lowest createdAt). Use GET /integration/{integrationId}; this route is removed in the cleanup PR.",
         "parameters": [
           {
             "schema": {
@@ -18021,7 +18957,7 @@
           "Integration sync"
         ],
         "summary": "Apply a previewed sync rule",
-        "description": "Save shared integration rules only if the preview is still current. Excluded links are paused, never deleted. Newly matching unlinked tasks are exported through the integration event path. Paused links require explicit review to resume.",
+        "description": "Compatibility shim: saves the project's first binding for the provider. Use PATCH /integration/{integrationId}; this route is removed in the cleanup PR.",
         "parameters": [
           {
             "schema": {
@@ -18254,7 +19190,7 @@
           "Integration sync"
         ],
         "summary": "Preview a sync rule change",
-        "description": "Returns matching tasks, new exports, paused links and a token bound to the current integration and impact. Outgoing labels are workspace label IDs; incoming labels are exact repository label names.",
+        "description": "Compatibility shim: previews against the project's first binding for the provider. Use POST /integration/{integrationId}/preview; this route is removed in the cleanup PR.",
         "parameters": [
           {
             "schema": {
@@ -18481,6 +19417,7 @@
           "Integration sync"
         ],
         "summary": "Compare a paused task with its external issue",
+        "description": "Compatibility shim: reviews a link of the project's first binding for the provider. Use GET /integration/{integrationId}/links/{linkId}/review; this route is removed in the cleanup PR.",
         "parameters": [
           {
             "schema": {
@@ -18598,7 +19535,7 @@
           "Integration sync"
         ],
         "summary": "Resume a reviewed issue link",
-        "description": "Explicitly choose the current Kaneo or repository title, description and open/closed state. Existing links are reused; historical comments are not replayed. The task must still match its outgoing rule. A changed comparison requires another review.",
+        "description": "Compatibility shim: resumes a link of the project's first binding for the provider. Use POST /integration/{integrationId}/links/{linkId}/resume; this route is removed in the cleanup PR.",
         "parameters": [
           {
             "schema": {
@@ -19042,7 +19979,7 @@
           "GitHub"
         ],
         "summary": "Create GitHub integration",
-        "description": "Link a project to a GitHub repository. Disconnect first to switch repositories; existing issue and pull request links cannot be reused for another repository.",
+        "description": "Link a project to one GitHub repository. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Existing issue and pull request links are kept per binding.",
         "parameters": [
           {
             "schema": {
@@ -19110,6 +20047,16 @@
               }
             }
           },
+          "402": {
+            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
@@ -19131,7 +20078,139 @@
             }
           },
           "409": {
-            "description": "Integration changed or another repository is already linked",
+            "description": "The repository is already linked to this project (repository_already_linked)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/github-integration/project/{projectId}/integrations": {
+      "get": {
+        "operationId": "listGitHubIntegrations",
+        "tags": [
+          "GitHub"
+        ],
+        "summary": "List GitHub integrations",
+        "description": "List every GitHub repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The project's GitHub bindings and the repository binding usage",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubIntegrationList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No workspace access, or missing workspace:manage_settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/github-integration/integration/{integrationId}": {
+      "get": {
+        "operationId": "getGitHubIntegrationById",
+        "tags": [
+          "GitHub"
+        ],
+        "summary": "Get a GitHub integration by id",
+        "description": "Get one GitHub repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "required": true,
+            "name": "integrationId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GitHub integration details, or null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitHubIntegration"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the integration's workspace",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Integration not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -19151,14 +20230,16 @@
           "GitHub"
         ],
         "summary": "Update GitHub integration",
-        "description": "Update the GitHub integration. Omitted fields keep their current value.",
+        "description": "Update one GitHub repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
@@ -19211,6 +20292,16 @@
               }
             }
           },
+          "402": {
+            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
@@ -19232,7 +20323,7 @@
             }
           },
           "409": {
-            "description": "Integration changed or another repository is already linked",
+            "description": "Integration changed; refresh before updating",
             "content": {
               "application/json": {
                 "schema": {
@@ -19252,14 +20343,16 @@
           "GitHub"
         ],
         "summary": "Delete GitHub integration",
-        "description": "Unlink a project from its GitHub repository.",
+        "description": "Unlink one GitHub repository binding. Its issue and pull request links and import state are removed with it; tasks created from its issues remain in the project.",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
@@ -19317,7 +20410,7 @@
           "GitHub"
         ],
         "summary": "Import GitHub issues",
-        "description": "Import open issues and link open pull requests in bounded steps. Existing tasks are updated. Continue 202 responses with the returned runId until 200; the same runId safely retries completion. Progress is saved after each page. New calls without runId resume an unfinished import or start a new one after completion.",
+        "description": "Import open issues and link open pull requests for one repository binding (integrationId) in bounded steps. Existing tasks are updated. Continue 202 responses with the returned runId until 200; the same runId safely retries completion. Progress is saved after each page and is per binding. A projectId in the body is accepted for compat and must match the binding's project.",
         "requestBody": {
           "required": true,
           "content": {
@@ -19325,6 +20418,11 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "integrationId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128
+                  },
                   "projectId": {
                     "type": "string",
                     "minLength": 1,
@@ -19337,7 +20435,7 @@
                   }
                 },
                 "required": [
-                  "projectId"
+                  "integrationId"
                 ]
               }
             }
@@ -19365,7 +20463,7 @@
             }
           },
           "400": {
-            "description": "projectId is required",
+            "description": "integrationId is required",
             "content": {
               "application/json": {
                 "schema": {
@@ -19395,7 +20493,7 @@
             }
           },
           "404": {
-            "description": "Project not found",
+            "description": "Integration not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -19444,7 +20542,7 @@
           "Gitea"
         ],
         "summary": "List Gitea repositories",
-        "description": "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL.",
+        "description": "List the repositories a Gitea token can reach, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each repository is annotated with its linked state (linkedTo): bindings of the calling project itself, which block re-selection in the picker. Bindings owned by other projects are never reported.",
         "requestBody": {
           "required": true,
           "content": {
@@ -19645,14 +20743,14 @@
         }
       }
     },
-    "/gitea-integration/project/{projectId}": {
+    "/gitea-integration/project/{projectId}/integrations": {
       "get": {
-        "operationId": "getGiteaIntegration",
+        "operationId": "listGiteaIntegrations",
         "tags": [
           "Gitea"
         ],
-        "summary": "Get Gitea integration",
-        "description": "Get the Gitea integration for a project, or null when none is configured. The webhook secret is included only for callers with workspace:manage_settings.",
+        "summary": "List Gitea integrations",
+        "description": "List every Gitea repository bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
         "parameters": [
           {
             "schema": {
@@ -19665,11 +20763,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Gitea integration details, or null",
+            "description": "The project's Gitea bindings and the repository binding usage",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GiteaIntegration"
+                  "$ref": "#/components/schemas/GiteaIntegrationList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -19685,17 +20793,7 @@
             }
           },
           "403": {
-            "description": "No access to the project, or missing project:read permission",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Project not found",
+            "description": "No workspace access, or missing workspace:manage_settings",
             "content": {
               "application/json": {
                 "schema": {
@@ -19708,74 +20806,45 @@
             "$ref": "#/components/responses/ApiKeyRateLimited"
           }
         }
-      },
-      "post": {
-        "operationId": "createGiteaIntegration",
+      }
+    },
+    "/gitea-integration/integration/{integrationId}": {
+      "get": {
+        "operationId": "getGiteaIntegrationById",
         "tags": [
           "Gitea"
         ],
-        "summary": "Create Gitea integration",
-        "description": "Link a project to a Gitea repository, creating the webhook Gitea will post events to. Use the verify route first to confirm the token really reaches the repository.",
+        "summary": "Get a Gitea integration by id",
+        "description": "Get one Gitea repository binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "baseUrl": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "description": "Omit to keep the token already stored for this project."
-                  },
-                  "repositoryOwner": {
-                    "type": "string",
-                    "minLength": 1
-                  },
-                  "repositoryName": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "required": [
-                  "baseUrl",
-                  "repositoryOwner",
-                  "repositoryName"
-                ]
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "The stored integration",
+            "description": "Gitea integration details, or null",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GiteaIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GiteaIntegration"
+                    },
+                    {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -19791,7 +20860,7 @@
             }
           },
           "403": {
-            "description": "No access to the project, or missing workspace:manage_settings",
+            "description": "No access to the integration's workspace",
             "content": {
               "application/json": {
                 "schema": {
@@ -19801,7 +20870,7 @@
             }
           },
           "404": {
-            "description": "Project not found",
+            "description": "Integration not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -19821,14 +20890,16 @@
           "Gitea"
         ],
         "summary": "Update Gitea integration",
-        "description": "Update the Gitea integration. Omitted fields keep their current value.",
+        "description": "Update one Gitea repository binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
@@ -19844,6 +20915,11 @@
                   },
                   "commentTaskLinkOnGiteaIssue": {
                     "type": "boolean"
+                  },
+                  "accessToken": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Replace this binding's stored token. Verified against the instance and the repository before it is stored."
                   }
                 }
               }
@@ -19881,6 +20957,16 @@
               }
             }
           },
+          "402": {
+            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
           "403": {
             "description": "No access to the project, or missing workspace:manage_settings",
             "content": {
@@ -19892,7 +20978,7 @@
             }
           },
           "404": {
-            "description": "Project or integration not found",
+            "description": "Integration not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -19922,14 +21008,16 @@
           "Gitea"
         ],
         "summary": "Delete Gitea integration",
-        "description": "Unlink a project from its Gitea repository.",
+        "description": "Unlink one Gitea repository binding. Its external links are removed with it; tasks created from its issues remain in the project. Other bindings of the project stay fully functional.",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
@@ -19980,14 +21068,97 @@
         }
       }
     },
-    "/gitea-integration/import-issues": {
-      "post": {
-        "operationId": "importGiteaIssues",
+    "/gitea-integration/project/{projectId}": {
+      "get": {
+        "operationId": "getGiteaIntegration",
         "tags": [
           "Gitea"
         ],
-        "summary": "Import Gitea issues",
-        "description": "Import the linked repository's issues as tasks. Issues that already have a task are refreshed rather than duplicated.",
+        "summary": "Get Gitea integration",
+        "description": "Get the Gitea integration for a project, or null when none is configured. The webhook secret is included only for callers with workspace:manage_settings.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Gitea integration details, or null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GiteaIntegration"
+                    },
+                    {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing project:read permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createGiteaIntegration",
+        "tags": [
+          "Gitea"
+        ],
+        "summary": "Create Gitea integration",
+        "description": "Link a project to one Gitea repository. A project can hold multiple repository bindings, and the same repository may be linked in other projects (decision D1); only same-project duplicates are rejected. Each binding gets its own webhook secret and webhook route.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -19995,12 +21166,136 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "projectId": {
-                    "type": "string"
+                  "baseUrl": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "accessToken": {
+                    "type": "string",
+                    "description": "Omit to reuse a token already stored for this project and instance."
+                  },
+                  "repositoryOwner": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "repositoryName": {
+                    "type": "string",
+                    "minLength": 1
                   }
                 },
                 "required": [
-                  "projectId"
+                  "baseUrl",
+                  "repositoryOwner",
+                  "repositoryName"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The stored integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GiteaIntegration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, or unknown project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing workspace:manage_settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The repository is already linked to this project (repository_already_linked)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/gitea-integration/import-issues": {
+      "post": {
+        "operationId": "importGiteaIssues",
+        "tags": [
+          "Gitea"
+        ],
+        "summary": "Import Gitea issues",
+        "description": "Import the linked repository's issues as tasks for one binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "integrationId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "projectId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Compat only; when present it must match the binding's project."
+                  }
+                },
+                "required": [
+                  "integrationId"
                 ]
               }
             }
@@ -20018,7 +21313,7 @@
             }
           },
           "400": {
-            "description": "projectId is required",
+            "description": "integrationId is required, or binding mismatch",
             "content": {
               "application/json": {
                 "schema": {
@@ -20048,7 +21343,7 @@
             }
           },
           "404": {
-            "description": "Project not found",
+            "description": "Integration or project not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -20070,7 +21365,7 @@
           "GitLab"
         ],
         "summary": "List GitLab projects",
-        "description": "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL.",
+        "description": "List the projects a GitLab token is a member of, for picking one to link. Sent as a POST because the token travels in the body rather than the URL. Each project is annotated with its linked state (linkedTo): bindings of the calling project itself, which block re-selection in the picker. Bindings owned by other projects are never reported.",
         "requestBody": {
           "required": true,
           "content": {
@@ -20273,14 +21568,14 @@
         }
       }
     },
-    "/gitlab-integration/project/{projectId}": {
+    "/gitlab-integration/project/{projectId}/integrations": {
       "get": {
-        "operationId": "getGitlabIntegration",
+        "operationId": "listGitlabIntegrations",
         "tags": [
           "GitLab"
         ],
-        "summary": "Get GitLab integration",
-        "description": "Get the GitLab integration for a project, or null when none is configured. The masked access token and the webhook secret are included only for callers with workspace:manage_settings.",
+        "summary": "List GitLab integrations",
+        "description": "List every GitLab project bound to the project, oldest first, together with the workspace's repository binding usage summary (WP10).",
         "parameters": [
           {
             "schema": {
@@ -20293,11 +21588,21 @@
         ],
         "responses": {
           "200": {
-            "description": "GitLab integration details, or null",
+            "description": "The project's GitLab bindings and the repository binding usage",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GitlabIntegration"
+                  "$ref": "#/components/schemas/GitlabIntegrationList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Unknown project, or its workspace could not be determined",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
                 }
               }
             }
@@ -20313,17 +21618,7 @@
             }
           },
           "403": {
-            "description": "No access to the project, or missing project:read permission",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Project not found",
+            "description": "No workspace access, or missing workspace:manage_settings",
             "content": {
               "application/json": {
                 "schema": {
@@ -20336,77 +21631,45 @@
             "$ref": "#/components/responses/ApiKeyRateLimited"
           }
         }
-      },
-      "post": {
-        "operationId": "createGitlabIntegration",
+      }
+    },
+    "/gitlab-integration/integration/{integrationId}": {
+      "get": {
+        "operationId": "getGitlabIntegrationById",
         "tags": [
           "GitLab"
         ],
-        "summary": "Create GitLab integration",
-        "description": "Link a project to a GitLab project. Kaneo generates the secret GitLab must send with each webhook; add the webhook in GitLab afterwards. Use the verify route first to confirm the token really reaches the project.",
+        "summary": "Get a GitLab integration by id",
+        "description": "Get one GitLab project binding, or null when the id does not exist. Authorization resolves integration -> project -> workspace (WP1).",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "baseUrl": {
-                    "type": "string",
-                    "format": "uri"
-                  },
-                  "accessToken": {
-                    "type": "string",
-                    "description": "Omit to keep the stored token only when the GitLab base URL is unchanged. A changed URL requires a new token."
-                  },
-                  "tokenType": {
-                    "type": "string",
-                    "enum": [
-                      "private",
-                      "bearer"
-                    ],
-                    "description": "`private` sends the token in PRIVATE-TOKEN, which is what personal, project and group access tokens expect. `bearer` sends it in Authorization, for an OAuth2 token you already hold. Defaults to `private`."
-                  },
-                  "projectPath": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "required": [
-                  "baseUrl",
-                  "projectPath"
-                ]
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "The stored integration",
+            "description": "GitLab integration details, or null",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GitlabIntegration"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid body",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GitlabIntegration"
+                    },
+                    {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    }
+                  ]
                 }
               }
             }
@@ -20422,7 +21685,7 @@
             }
           },
           "403": {
-            "description": "No access to the project, or missing workspace:manage_settings",
+            "description": "No access to the integration's workspace",
             "content": {
               "application/json": {
                 "schema": {
@@ -20432,17 +21695,7 @@
             }
           },
           "404": {
-            "description": "Project not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "That GitLab project is already linked to another Kaneo project",
+            "description": "Integration not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -20462,14 +21715,16 @@
           "GitLab"
         ],
         "summary": "Update GitLab integration",
-        "description": "Update the GitLab integration. Omitted fields keep their current value.",
+        "description": "Update one GitLab project binding by id. Omitted fields keep their current value. Reactivating an inactive binding (isActive false to true) enforces the plan's repository binding quota first.",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
@@ -20485,6 +21740,19 @@
                   },
                   "commentTaskLinkOnGitlabIssue": {
                     "type": "boolean"
+                  },
+                  "accessToken": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Replace this binding's stored token. Verified against the instance and the project before it is stored."
+                  },
+                  "tokenType": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "bearer"
+                    ],
+                    "description": "How the replacement token is sent. Defaults to the binding's current type."
                   }
                 }
               }
@@ -20514,6 +21782,16 @@
           },
           "401": {
             "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
             "content": {
               "application/json": {
                 "schema": {
@@ -20563,14 +21841,16 @@
           "GitLab"
         ],
         "summary": "Delete GitLab integration",
-        "description": "Unlink a project from its GitLab project.",
+        "description": "Unlink one GitLab project binding. Its external links are removed with it; tasks created from its issues remain in the project. Other bindings of the project stay fully functional.",
         "parameters": [
           {
             "schema": {
-              "type": "string"
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
             },
             "required": true,
-            "name": "projectId",
+            "name": "integrationId",
             "in": "path"
           }
         ],
@@ -20621,14 +21901,97 @@
         }
       }
     },
-    "/gitlab-integration/import-issues": {
-      "post": {
-        "operationId": "importGitlabIssues",
+    "/gitlab-integration/project/{projectId}": {
+      "get": {
+        "operationId": "getGitlabIntegration",
         "tags": [
           "GitLab"
         ],
-        "summary": "Import GitLab issues",
-        "description": "Import the linked project's open issues as tasks. Issues that already have a task are refreshed rather than duplicated. Requires task:create and task:update permissions.",
+        "summary": "Get GitLab integration",
+        "description": "Get the GitLab integration for a project, or null when none is configured. The masked access token and the webhook secret are included only for callers with workspace:manage_settings.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "GitLab integration details, or null",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GitlabIntegration"
+                    },
+                    {
+                      "type": [
+                        "object",
+                        "null"
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing project:read permission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      },
+      "post": {
+        "operationId": "createGitlabIntegration",
+        "tags": [
+          "GitLab"
+        ],
+        "summary": "Create GitLab integration",
+        "description": "Link a project to one GitLab project. A project can hold multiple repository bindings, and the same GitLab project may be linked in other projects (decision D1); only same-project duplicates are rejected. Kaneo generates the per-binding secret GitLab must send with each webhook; add the webhook in GitLab afterwards.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "name": "projectId",
+            "in": "path"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -20636,12 +21999,139 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "projectId": {
-                    "type": "string"
+                  "baseUrl": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "accessToken": {
+                    "type": "string",
+                    "description": "Omit to reuse a token already stored for this project and instance. A changed URL requires a new token."
+                  },
+                  "tokenType": {
+                    "type": "string",
+                    "enum": [
+                      "private",
+                      "bearer"
+                    ],
+                    "description": "`private` sends the token in PRIVATE-TOKEN, which is what personal, project and group access tokens expect. `bearer` sends it in Authorization, for an OAuth2 token you already hold. Defaults to `private`."
+                  },
+                  "projectPath": {
+                    "type": "string",
+                    "minLength": 1
                   }
                 },
                 "required": [
-                  "projectId"
+                  "baseUrl",
+                  "projectPath"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The stored integration",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitlabIntegration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid body, or unknown project",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "The plan's repository binding limit is reached (binding_limit_exceeded)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "No access to the project, or missing workspace:manage_settings",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Project not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "The GitLab project is already linked to this project (repository_already_linked)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiError"
+                }
+              }
+            }
+          },
+          "429": {
+            "$ref": "#/components/responses/ApiKeyRateLimited"
+          }
+        }
+      }
+    },
+    "/gitlab-integration/import-issues": {
+      "post": {
+        "operationId": "importGitlabIssues",
+        "tags": [
+          "GitLab"
+        ],
+        "summary": "Import GitLab issues",
+        "description": "Import the linked project's open issues as tasks for one binding (integrationId). Issues that already have a task are refreshed rather than duplicated. A projectId in the body is accepted for compat and must match the binding's project.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "integrationId": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "projectId": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Compat only; when present it must match the binding's project."
+                  }
+                },
+                "required": [
+                  "integrationId"
                 ]
               }
             }
@@ -20659,7 +22149,7 @@
             }
           },
           "400": {
-            "description": "projectId is required",
+            "description": "integrationId is required, or binding mismatch",
             "content": {
               "application/json": {
                 "schema": {
@@ -20689,7 +22179,7 @@
             }
           },
           "404": {
-            "description": "Project not found",
+            "description": "Integration or project not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -23316,7 +24806,7 @@
           "Workflow Rules"
         ],
         "summary": "Get workflow rules",
-        "description": "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires.",
+        "description": "Get every workflow rule for a project. A rule moves a task to a column when an integration event fires. Rules with a null integrationId are type-wide; rules with an integrationId are scoped to that repository binding (RFC 0001).",
         "parameters": [
           {
             "schema": {
@@ -23382,7 +24872,7 @@
           "Workflow Rules"
         ],
         "summary": "Upsert workflow rule",
-        "description": "Create a workflow rule, or update the target column of the existing rule for the same integration and event.",
+        "description": "Create a workflow rule, or update the target column of the existing rule for the same integration and event. Provide an optional integrationId to scope the rule to a single repository binding; omit it for a type-wide rule (RFC 0001).",
         "parameters": [
           {
             "schema": {
@@ -23415,6 +24905,9 @@
                     ]
                   },
                   "columnId": {
+                    "type": "string"
+                  },
+                  "integrationId": {
                     "type": "string"
                   }
                 },
