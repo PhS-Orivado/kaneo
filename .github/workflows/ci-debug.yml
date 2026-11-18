@@ -1,0 +1,221 @@
+name: pr ci debug
+
+# Temporary fork-only diagnostic pipeline (never merged into the PR): it
+# reproduces the upstream quality, unit, and integration gates, captures every
+# diagnostic into log files, re-emits the failures as GitHub annotations, and
+# hands the captured state to a collector job that commits the logs plus the
+# regenerated OpenAPI reference back to this branch, so the failures can be
+# read from the repository without downloading artifacts.
+on:
+  push:
+    branches: [multi-repo-debug]
+
+concurrency:
+  group: ci-debug-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Capture quality gates, never fail early
+        run: |
+          pnpm lint > lint.log 2>&1 || true
+          pnpm typecheck > typecheck.log 2>&1 || true
+          pnpm openapi:check:fix > openapi.log 2>&1 || true
+          cp apps/docs/openapi.json openapi.regenerated.json || true
+
+      - name: Re-emit diagnostics as annotations
+        run: node .github/scripts/parse-lint-log.mjs lint.log typecheck.log openapi.log || true
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### quality gates tail'
+            echo '```'
+            tail -c 6000 lint.log typecheck.log openapi.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-quality
+          path: |
+            lint.log
+            typecheck.log
+            openapi.log
+            openapi.regenerated.json
+          if-no-files-found: ignore
+
+  unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Capture unit tests, never fail early
+        env:
+          # Let jsdom supply browser storage instead of Node's native storage.
+          NODE_OPTIONS: --no-experimental-webstorage
+        run: pnpm test > unit.log 2>&1 || true
+
+      - name: Re-emit test failures as annotations
+        run: node .github/scripts/parse-test-log.mjs unit.log || true
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### unit tests tail'
+            echo '```'
+            tail -c 6000 unit.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-unit
+          path: unit.log
+          if-no-files-found: ignore
+
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3, 4]
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: kaneo_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d kaneo_test"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      NODE_ENV: test
+      AUTH_SECRET: test-secret-with-at-least-32-chars
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/kaneo_test
+      KANEO_API_URL: http://localhost:1337
+      KANEO_CLIENT_URL: http://localhost:5173
+      DISABLE_GUEST_ACCESS: "false"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Capture the integration shard, never fail early
+        run: |
+          pnpm --filter @kaneo/api exec vp run test:integration:run \
+            --shard=${{ matrix.shard }}/4 > integration-${{ matrix.shard }}.log 2>&1 || true
+
+      - name: Re-emit test failures as annotations
+        run: node .github/scripts/parse-test-log.mjs integration-${{ matrix.shard }}.log || true
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo '### integration shard ${{ matrix.shard }} tail'
+            echo '```'
+            tail -c 6000 integration-${{ matrix.shard }}.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: logs-integration-${{ matrix.shard }}
+          path: integration-${{ matrix.shard }}.log
+          if-no-files-found: ignore
+
+  collector:
+    needs: [quality, unit, integration]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: logs-*
+          merge-multiple: true
+          path: dl
+
+      - name: Stage captured state
+        run: |
+          mkdir -p ci-debug-logs
+          cp dl/*.log ci-debug-logs/ || true
+          if [ -f dl/openapi.regenerated.json ]; then
+            cp dl/openapi.regenerated.json apps/docs/openapi.json
+          fi
+
+      - name: Commit captured state
+        run: |
+          git config user.name "kaneo-debug-bot"
+          git config user.email "action@users.noreply.github.com"
+          git add apps/docs/openapi.json ci-debug-logs
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "chore: capture CI debug logs and regenerated openapi reference [skip ci]"
+            git push origin HEAD:${{ github.ref_name }} || echo "::error::collector git push failed"
+          fi
