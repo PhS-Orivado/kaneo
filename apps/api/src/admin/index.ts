@@ -489,6 +489,10 @@ const updateBrandingRoute = createRoute({
 
 const admin = apiRouter()
   .openapi(getOverviewRoute, async (c) => c.json(await getOverview(), 200))
+  .openapi(getBrandingRoute, async (c) => c.json(await getBranding(), 200))
+  .openapi(updateBrandingRoute, async (c) =>
+    c.json(await updateBranding(c.req.valid("json")), 200),
+  )
   .openapi(getAccessRoute, async (c) => {
     const { permissions } = await getUserAccess(c.get("userId"));
     return c.json({ permissions }, 200);
