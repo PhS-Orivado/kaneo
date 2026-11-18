@@ -1,5 +1,5 @@
-const fs = require("fs");
-const log = fs.readFileSync("lint.log", "utf8");
+import { readFileSync } from "node:fs";
+const log = readFileSync("lint.log", "utf8");
 const lines = log.split("\n");
 const structured = /^([^\s(]+)\((\d+),(\d+)\): error TS(\d+): (.*)$/;
 const seen = new Set();
