@@ -10,6 +10,7 @@
 - **ci:** add a local script that builds the kaneo, web and api images and pushes them to GHCR from a developer checkout, mirroring the manual workflow's tagging: see `docs/ci/build-images-locally.md`
 - **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
 - **ci:** add a manual dispatch workflow that builds and pushes a selectable subset of the container images to GHCR from any branch: see `docs/ci/build-images-selected.md`
+- **sync:** migrate 45 upstream commits from `usekaneo/kaneo` main into this fork: time tracking on tasks (#2218), start date and range filters (#2110), the subtasks display toggle on projects (`include_subtasks`, #2140), reading more secrets from `_FILE` variables (#2119), security dependency updates (hono 4.13.18, @hono/node-server 2.1.7, node-forge 1.4.3), React 19.3.1 and gesture-handler ~3.4.0; upstream migration `0073_thick_talisman` was renumbered to `0076_thick_talisman` because this fork already owns migrations 0073-0075: see `docs/database/migration-journal-ordering.md`
 
 ### Bug Fixes
 
@@ -23,6 +24,7 @@
 
 - **importers:** document the shared import model and where Jira attachments are mapped: see `packages/importers/README.md` in the same commit range
 - **sprints:** add `docs/sprints/testing.md`, mapping the sprint unit test coverage to the testing strategy of the requirements and implementation plan, and link it from the sprint planning overview
+- **database:** document the renumbering of upstream migration `0073_thick_talisman` to `0076_thick_talisman` and its journal `when` value: see `docs/database/migration-journal-ordering.md`
 
 ### Features
 
