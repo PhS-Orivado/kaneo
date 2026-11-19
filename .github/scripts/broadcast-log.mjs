@@ -19,7 +19,7 @@ for (const file of process.argv.slice(2)) {
       console.log(`::error::BROADCAST_LIMIT_REACHED (${file})`);
       process.exit(0);
     }
-    const safe = trimmed.replace(/[\`\r]/g, "").slice(0, 220);
+    const safe = trimmed.replace(/[`\r]/g, "").slice(0, 220);
     console.log(`::error file=${file}::${safe}`);
   }
 }
