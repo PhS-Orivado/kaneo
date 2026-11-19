@@ -8,7 +8,6 @@ import {
   type RepositoryProvider,
 } from "@/components/project/automations/repository-providers";
 import useGetGiteaIntegrations from "@/hooks/queries/gitea-integration/use-get-gitea-integrations";
-// eslint-disable-next-line -- single-specifier import cannot be wrapped
 import useGetGithubIntegrations from "@/hooks/queries/github-integration/use-get-github-integrations";
 import useGetGitlabIntegrations from "@/hooks/queries/gitlab-integration/use-get-gitlab-integrations";
 
