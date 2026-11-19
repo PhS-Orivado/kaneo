@@ -84,7 +84,10 @@ export function AutomationsSection({ projectId }: AutomationsSectionProps) {
           key={connection.id}
           connection={connection}
           columns={columns}
-          rules={rules.filter((rule) => rule.integrationType === connection.id)}
+          rules={rules.filter(
+            (rule) =>
+              rule.integrationType === connection.id && !rule.integrationId,
+          )}
           canEdit={canEdit}
           onChange={(event, columnId) =>
             changeRule(connection.id, event, columnId)
