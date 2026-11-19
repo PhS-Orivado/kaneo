@@ -1,7 +1,7 @@
 $ vp check
 error: Formatting issues found
 [38;2;244;191;117;1mdebug-results/.last-run.json[0m (0ms)
-[38;2;244;191;117;1mi18n/schema.json[0m (8ms)
+[38;2;244;191;117;1mi18n/schema.json[0m (9ms)
 
-Found formatting issues in 2 files (507ms, 4 threads). Run `vp check --fix` to fix them.
+Found formatting issues in 2 files (539ms, 4 threads). Run `vp check --fix` to fix them.
 [ELIFECYCLE] Command failed with exit code 1.
