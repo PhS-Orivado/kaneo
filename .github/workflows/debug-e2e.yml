@@ -1,0 +1,63 @@
+name: Debug e2e smoke failures
+
+on:
+  push:
+    branches: [sprint-planning-quality-debug]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  smoke-debug:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      KANEO_E2E_HOST: localhost
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: sprint-planning
+          persist-credentials: true
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+
+      - name: Install browser-test dependencies
+        run: pnpm --dir tests/e2e install --frozen-lockfile --ignore-scripts
+
+      - name: Install Chromium
+        run: pnpm --dir tests/e2e exec playwright install --with-deps chromium
+
+      - name: Build and start disposable test instance
+        run: docker compose -f tests/e2e/compose.yml up --build --wait --wait-timeout 900
+
+      - name: Run browser smoke tests with output capture
+        continue-on-error: true
+        run: pnpm --dir tests/e2e test 2>&1 | tee e2e-debug-log.txt
+
+      - name: Collect compose logs
+        if: always()
+        run: |
+          {
+            echo '===== docker compose logs ====='
+            docker compose -f tests/e2e/compose.yml logs --no-color || true
+          } >> e2e-debug-log.txt || true
+
+      - name: Publish debug results to branch
+        if: always()
+        run: |
+          git clone --depth 1 --branch sprint-planning-quality-debug --single-branch "https://x-access-token:${GITHUB_TOKEN}@github.com/PhS-Orivado/kaneo.git" /tmp/results-repo
+          mkdir -p /tmp/results-repo/debug-results
+          cp e2e-debug-log.txt "/tmp/results-repo/debug-results/e2e-log-$(date -u +%Y%m%dT%H%M%SZ).txt" || echo "no log file" >> /tmp/publish-note.txt
+          cd /tmp/results-repo
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A debug-results
+          git commit -m "chore(debug): record e2e failure log" || echo "nothing to commit"
+          git push origin sprint-planning-quality-debug
