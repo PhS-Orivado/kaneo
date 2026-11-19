@@ -1,5 +1,7 @@
 name: Debug e2e smoke failures
 
+# v3: verify the scoped sprint trigger fix on the current sprint-planning head.
+
 on:
   push:
     branches: [sprint-planning-quality-debug]
@@ -56,7 +58,8 @@ jobs:
             cp "$f" "/tmp/results-repo/debug-results/$f" 2>/dev/null || echo "missing $f" >> /tmp/results-repo/debug-results/step-e2e-run.log
           done
           cd /tmp/results-repo
-          git config user.name "github-actions[bot]"
+          git config user.name
+ "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A debug-results
           git commit -m "chore(debug): record e2e failure log" || echo "nothing to commit"
