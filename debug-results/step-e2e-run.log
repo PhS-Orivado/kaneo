@@ -1,8 +1,8 @@
 
 Running 1 test using 1 worker
 
-  ✘  1 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (22.0s)
-  ✘  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (retry #1) (21.1s)
+  ✘  1 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (20.0s)
+  ✘  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (retry #1) (19.4s)
 
 
   1) sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task ──────────────────
@@ -17,7 +17,7 @@ Running 1 test using 1 worker
     Call log:
       - Expect "toContainText" getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
       - waiting for getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
-        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_44_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_43_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
+        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_3o_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_3n_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
           - unexpected value "Backlog"
 
 
@@ -56,7 +56,7 @@ Running 1 test using 1 worker
     Call log:
       - Expect "toContainText" getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
       - waiting for getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
-        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_5q_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_5p_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
+        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_43_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_42_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
           - unexpected value "Backlog"
 
 
