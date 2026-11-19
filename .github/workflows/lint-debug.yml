@@ -1,9 +1,10 @@
 name: lint debug
 
-# Temporary fork-only debug branch. Runs the upstream quality gate with
-# autofix enabled, commits whatever the vite-plus formatter and lint
-# fixers change back to this branch, and broadcasts the remaining
-# diagnostics as GitHub annotations.
+# Temporary fork-only debug branch. Runs the upstream quality gate with the
+# formatter in write mode, commits every change the vite-plus tools make
+# back to this branch, and broadcasts the remaining diagnostics as
+# GitHub annotations (one step per log so the annotation budget is not
+# shared).
 on:
   push:
     branches: [multi-repo-lint-debug]
@@ -32,25 +33,32 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Apply the formatters and fixers
-        run: pnpm exec vp check --fix > fix.log 2>&1 || true
+      - name: Apply the formatter in write mode
+        run: pnpm format > fmt.log 2>&1 || true
 
       - name: Capture remaining diagnostics
         run: |
           pnpm lint > lint.log 2>&1 || true
           pnpm typecheck > typecheck.log 2>&1 || true
 
-      - name: Broadcast logs as annotations
-        run: node .github/scripts/broadcast-log.mjs fix.log lint.log typecheck.log
+      - name: Broadcast formatting output
+        run: node .github/scripts/broadcast-log.mjs fmt.log
 
-      - name: Commit autofixes
+      - name: Broadcast lint output
+        run: node .github/scripts/broadcast-log.mjs lint.log
+
+      - name: Broadcast typecheck output
+        run: node .github/scripts/broadcast-log.mjs typecheck.log
+
+      - name: Commit applied changes
         run: |
           git config user.name "kaneo-debug-bot"
           git config user.email "action@users.noreply.github.com"
           git add -A
+          git status --porcelain > git-status.txt || true
           if git diff --cached --quiet; then
-            echo "no autofix changes"
+            echo "no changes to commit"
           else
-            git commit -m "chore: apply vp check --fix (debug branch)"
+            git commit -m "chore: apply pnpm format (debug branch)"
             git push
           fi
