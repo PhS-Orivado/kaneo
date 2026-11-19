@@ -1,7 +1,7 @@
 name: Debug e2e smoke failures
 
-# v6: focus on the sprints spec and publish the Playwright error contexts so
-# the failing sprint assignment state can be inspected.
+# v7: collect the Playwright error contexts with escape-free shell syntax and
+# publish an inventory of what was collected.
 
 on:
   push:
@@ -52,9 +52,20 @@ jobs:
         run: |
           mkdir -p debug-artifacts
           if [ -d .cache/e2e/results ]; then
-            find .cache/e2e/results -type f ( -name "*.md" -o -name "*.json" -o -name "*.txt" ) -exec cp {} debug-artifacts/ ; 2>/dev/null || true
-            find .cache/e2e/results -type f -name "*.png" -exec cp {} debug-artifacts/ ; 2>/dev/null || true
+            cp .cache/e2e/results/*/*.md debug-artifacts/ 2>/dev/null || true
+            cp .cache/e2e/results/*/*.png debug-artifacts/ 2>/dev/null || true
+            cp .cache/e2e/results/*/*.txt debug-artifacts/ 2>/dev/null || true
+            cp .cache/e2e/results/*/*.json debug-artifacts/ 2>/dev/null || true
           fi
+          {
+            echo "PWD: $(pwd)"
+            echo "--- debug-artifacts ---"
+            ls -la debug-artifacts 2>/dev/null
+            echo "--- root cache results ---"
+            ls -la .cache/e2e/results 2>/dev/null || echo "no root cache"
+            echo "--- tests cache results ---"
+            ls -la tests/e2e/.cache/e2e/results 2>/dev/null || echo "no tests cache"
+          } > context-inventory.log 2>&1 || true
 
       - name: Publish debug results to branch
         if: always()
@@ -64,7 +75,7 @@ jobs:
           set -x
           git clone --depth 1 --branch sprint-planning-quality-debug --single-branch "https://x-access-token:${GH_TOKEN}@github.com/PhS-Orivado/kaneo.git" /tmp/results-repo
           mkdir -p /tmp/results-repo/debug-results/context
-          for f in step-install.log step-playwright.log step-compose.log step-e2e-run.log step-instance.log; do
+          for f in step-install.log step-playwright.log step-compose.log step-e2e-run.log step-instance.log context-inventory.log; do
             cp "$f" "/tmp/results-repo/debug-results/$f" 2>/dev/null || echo "missing $f" >> /tmp/results-repo/debug-results/step-e2e-run.log
           done
           cp debug-artifacts/* /tmp/results-repo/debug-results/context/ 2>/dev/null || true
