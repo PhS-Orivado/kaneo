@@ -1,87 +1,11 @@
+$ playwright test
 
-Running 1 test using 1 worker
+Running 5 tests using 1 worker
 
-  ✘  1 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (20.0s)
-  ✘  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (retry #1) (19.4s)
+  ✓  1 smoke.spec.ts:4:1 › sign up, create a workspace with a starter project, and sign in again (6.3s)
+  ✓  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (5.5s)
+  ✓  3 tasks.spec.ts:95:1 › create a project and task, then persist a task edit (4.7s)
+  ✓  4 tasks.spec.ts:115:1 › another workspace member receives task edits in realtime (34.7s)
+  ✓  5 tasks.spec.ts:215:1 › task timer persists across reloads and stops from task details (6.1s)
 
-
-  1) sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task ──────────────────
-
-    Error: expect(locator).toContainText(expected) failed
-
-    Locator: getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
-    Expected substring: "Sprint 1"
-    Timeout: 15000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toContainText" getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
-      - waiting for getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
-        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_3o_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_3n_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
-          - unexpected value "Backlog"
-
-
-      111 |     .last()
-      112 |     .click();
-    > 113 |   await expect(sprintTrigger).toContainText("Sprint 1");
-          |                               ^
-      114 |   await page.getByRole("button", { name: "Close", exact: true }).click();
-      115 |   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
-      116 |   await expect(
-        at /home/runner/work/kaneo/kaneo/tests/e2e/sprints.spec.ts:113:31
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task/error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task/trace.zip
-    Usage:
-
-        pnpm exec playwright show-trace ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
-
-    Error: expect(locator).toContainText(expected) failed
-
-    Locator: getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
-    Expected substring: "Sprint 1"
-    Timeout: 15000ms
-    Error: element(s) not found
-
-    Call log:
-      - Expect "toContainText" getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
-      - waiting for getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
-        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_43_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_42_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
-          - unexpected value "Backlog"
-
-
-      111 |     .last()
-      112 |     .click();
-    > 113 |   await expect(sprintTrigger).toContainText("Sprint 1");
-          |                               ^
-      114 |   await page.getByRole("button", { name: "Close", exact: true }).click();
-      115 |   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
-      116 |   await expect(
-        at /home/runner/work/kaneo/kaneo/tests/e2e/sprints.spec.ts:113:31
-
-    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
-    ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task-retry1/test-failed-1.png
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-    Error Context: ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task-retry1/error-context.md
-
-    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
-    ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task-retry1/trace.zip
-    Usage:
-
-        pnpm exec playwright show-trace ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task-retry1/trace.zip
-
-    ────────────────────────────────────────────────────────────────────────────────────────────────
-
-  1 failed
-    sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task ───────────────────
+  5 passed (58.0s)

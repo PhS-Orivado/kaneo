@@ -1,16 +1,7 @@
 PWD: /home/runner/work/kaneo/kaneo
 --- debug-artifacts ---
-total 104
-drwxr-xr-x  2 runner runner  4096 Nov 19 04:13 .
-drwxr-xr-x 26 runner runner  4096 Nov 19 04:13 ..
--rw-r--r--  1 runner runner  8665 Nov 19 04:13 error-context.md
--rw-r--r--  1 runner runner 84882 Nov 19 04:13 test-failed-1.png
---- root cache results ---
-total 20
-drwxr-xr-x 4 runner runner 4096 Nov 19 04:13 .
-drwxr-xr-x 4 runner runner 4096 Nov 19 04:13 ..
--rw-r--r-- 1 runner runner   96 Nov 19 04:13 .last-run.json
-drwxr-xr-x 2 runner runner 4096 Nov 19 04:13 sprints-plan-run-and-close-a-sprint-around-one-backlog-task
-drwxr-xr-x 2 runner runner 4096 Nov 19 04:13 sprints-plan-run-and-close-a-sprint-around-one-backlog-task-retry1
---- tests cache results ---
-no tests cache
+total 184
+drwxr-xr-x  2 runner runner  4096 Nov 19 04:19 .
+drwxr-xr-x 26 runner runner  4096 Nov 19 04:19 ..
+-rw-r--r--  1 runner runner 86162 Nov 19 04:19 timer-running.png
+-rw-r--r--  1 runner runner 86451 Nov 19 04:19 timer-stopped.png
