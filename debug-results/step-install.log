@@ -3,9 +3,9 @@ Packages are hard linked from the content-addressable store to the virtual store
   Content-addressable store is at: /home/runner/setup-pnpm/node_modules/.bin/store/v11
   Virtual store is at:             node_modules/.pnpm
 Downloading protoc-gen-ts@0.8.7: 0.00 B/6.60 MB
-Downloading googleapis@176.0.0: 0.00 B/17.23 MB
 Downloading @google-cloud/compute@5.3.0: 0.00 B/8.14 MB
-✓ Lockfile passes supply-chain policies (447 entries in 1.2s)
+Downloading googleapis@176.0.0: 0.00 B/17.23 MB
+✓ Lockfile passes supply-chain policies (447 entries in 776ms)
 Lockfile is up to date, resolution step is skipped
 Packages: +447
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -15,4 +15,4 @@ devDependencies:
 + @playwright/test 1.64.1
 + browserstack-node-sdk 1.75.1
 
-Done in 1.9s using pnpm v12.15.0
+Done in 1.8s using pnpm v12.15.0

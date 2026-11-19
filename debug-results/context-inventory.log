@@ -1,7 +1,7 @@
 PWD: /home/runner/work/kaneo/kaneo
 --- debug-artifacts ---
-total 184
-drwxr-xr-x  2 runner runner  4096 Nov 19 04:19 .
-drwxr-xr-x 26 runner runner  4096 Nov 19 04:19 ..
--rw-r--r--  1 runner runner 86162 Nov 19 04:19 timer-running.png
--rw-r--r--  1 runner runner 86451 Nov 19 04:19 timer-stopped.png
+total 176
+drwxr-xr-x  2 runner runner  4096 Nov 19 04:30 .
+drwxr-xr-x 26 runner runner  4096 Nov 19 04:30 ..
+-rw-r--r--  1 runner runner 80524 Nov 19 04:30 timer-running.png
+-rw-r--r--  1 runner runner 86195 Nov 19 04:30 timer-stopped.png

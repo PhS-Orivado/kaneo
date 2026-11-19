@@ -2,10 +2,10 @@ $ playwright test
 
 Running 5 tests using 1 worker
 
-  ✓  1 smoke.spec.ts:4:1 › sign up, create a workspace with a starter project, and sign in again (6.3s)
-  ✓  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (5.5s)
-  ✓  3 tasks.spec.ts:95:1 › create a project and task, then persist a task edit (4.7s)
-  ✓  4 tasks.spec.ts:115:1 › another workspace member receives task edits in realtime (34.7s)
-  ✓  5 tasks.spec.ts:215:1 › task timer persists across reloads and stops from task details (6.1s)
+  ✓  1 smoke.spec.ts:4:1 › sign up, create a workspace with a starter project, and sign in again (6.2s)
+  ✓  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (6.2s)
+  ✓  3 tasks.spec.ts:95:1 › create a project and task, then persist a task edit (4.5s)
+  ✓  4 tasks.spec.ts:115:1 › another workspace member receives task edits in realtime (34.3s)
+  ✓  5 tasks.spec.ts:215:1 › task timer persists across reloads and stops from task details (5.8s)
 
-  5 passed (58.0s)
+  5 passed (1.0m)
