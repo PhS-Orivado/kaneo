@@ -1,0 +1,41 @@
+name: lint debug
+
+# Temporary fork-only debug branch. Reproduces the upstream quality gates'
+# `pnpm lint` and `pnpm typecheck` and broadcasts every captured log line as
+# a GitHub annotation, so diagnostics can be read from the run page without
+# log access permissions.
+on:
+  push:
+    branches: [multi-repo-lint-debug]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Capture quality gates, never fail early
+        run: |
+          pnpm lint > lint.log 2>&1 || true
+          pnpm typecheck > typecheck.log 2>&1 || true
+
+      - name: Broadcast logs as annotations
+        run: node .github/scripts/broadcast-log.mjs lint.log typecheck.log
