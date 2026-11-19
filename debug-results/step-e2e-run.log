@@ -3,10 +3,10 @@ $ playwright test
 Running 5 tests using 1 worker
 
   ✓  1 smoke.spec.ts:4:1 › sign up, create a workspace with a starter project, and sign in again (6.4s)
-  ✘  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (4.6s)
-  ✘  3 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (retry #1) (4.8s)
-  ✓  4 tasks.spec.ts:95:1 › create a project and task, then persist a task edit (5.1s)
-  ✓  5 tasks.spec.ts:115:1 › another workspace member receives task edits in realtime (34.3s)
+  ✘  2 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (19.9s)
+  ✘  3 sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task (retry #1) (19.8s)
+  ✓  4 tasks.spec.ts:95:1 › create a project and task, then persist a task edit (4.8s)
+  ✓  5 tasks.spec.ts:115:1 › another workspace member receives task edits in realtime (35.4s)
   ✓  6 tasks.spec.ts:215:1 › task timer persists across reloads and stops from task details (5.4s)
 
 
@@ -14,25 +14,26 @@ Running 5 tests using 1 worker
 
     Error: expect(locator).toContainText(expected) failed
 
-    Locator: getByRole('button', { name: 'Backlog', exact: true })
+    Locator: getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
     Expected substring: "Sprint 1"
-    Error: strict mode violation: getByRole('button', { name: 'Backlog', exact: true }) resolved to 2 elements:
-        1) <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_46_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_45_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button> aka getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog' })
-        2) <button type="button" class="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-xs hover:bg-accent">…</button> aka locator('[id="_r_45_"]').getByRole('button', { name: 'Backlog' })
+    Timeout: 15000ms
+    Error: element(s) not found
 
     Call log:
-      - Expect "toContainText" getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
-      - waiting for getByRole('button', { name: 'Backlog', exact: true })
+      - Expect "toContainText" getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
+      - waiting for getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
+        2 × locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_3n_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_3m_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
+          - unexpected value "Backlog"
 
 
-      110 |     .last()
-      111 |     .click();
-    > 112 |   await expect(sprintTrigger).toContainText("Sprint 1");
+      111 |     .last()
+      112 |     .click();
+    > 113 |   await expect(sprintTrigger).toContainText("Sprint 1");
           |                               ^
-      113 |   await page.getByRole("button", { name: "Close", exact: true }).click();
-      114 |   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
-      115 |   await expect(
-        at /home/runner/work/kaneo/kaneo/tests/e2e/sprints.spec.ts:112:31
+      114 |   await page.getByRole("button", { name: "Close", exact: true }).click();
+      115 |   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
+      116 |   await expect(
+        at /home/runner/work/kaneo/kaneo/tests/e2e/sprints.spec.ts:113:31
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task/test-failed-1.png
@@ -52,25 +53,26 @@ Running 5 tests using 1 worker
 
     Error: expect(locator).toContainText(expected) failed
 
-    Locator: getByRole('button', { name: 'Backlog', exact: true })
+    Locator: getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
     Expected substring: "Sprint 1"
-    Error: strict mode violation: getByRole('button', { name: 'Backlog', exact: true }) resolved to 2 elements:
-        1) <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_44_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_43_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button> aka getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog' })
-        2) <button type="button" class="flex w-full items-center justify-between rounded-md px-2 py-1.5 text-xs hover:bg-accent">…</button> aka locator('[id="_r_43_"]').getByRole('button', { name: 'Backlog' })
+    Timeout: 15000ms
+    Error: element(s) not found
 
     Call log:
-      - Expect "toContainText" getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
-      - waiting for getByRole('button', { name: 'Backlog', exact: true })
+      - Expect "toContainText" getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true }) with timeout 15000ms
+      - waiting for getByRole('complementary', { name: 'Properties' }).getByRole('button', { name: 'Backlog', exact: true })
+        - locator resolved to <button tabindex="0" type="button" data-pressed="" data-popup-open="" id="base-ui-_r_46_" aria-expanded="true" aria-haspopup="dialog" aria-controls="_r_45_" data-slot="popover-trigger" data-base-ui-click-trigger="" class="relative inline-flex shrink-0 cursor-pointer items-center whitespace-nowrap rounded-lg border font-medium text-base outline-none transition-[box-shadow,scale] duration-150 ease-out active:scale-[0.97] before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(…>…</button>
+        - unexpected value "Backlog"
 
 
-      110 |     .last()
-      111 |     .click();
-    > 112 |   await expect(sprintTrigger).toContainText("Sprint 1");
+      111 |     .last()
+      112 |     .click();
+    > 113 |   await expect(sprintTrigger).toContainText("Sprint 1");
           |                               ^
-      113 |   await page.getByRole("button", { name: "Close", exact: true }).click();
-      114 |   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
-      115 |   await expect(
-        at /home/runner/work/kaneo/kaneo/tests/e2e/sprints.spec.ts:112:31
+      114 |   await page.getByRole("button", { name: "Close", exact: true }).click();
+      115 |   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
+      116 |   await expect(
+        at /home/runner/work/kaneo/kaneo/tests/e2e/sprints.spec.ts:113:31
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     ../../.cache/e2e/results/sprints-plan-run-and-close-a-sprint-around-one-backlog-task-retry1/test-failed-1.png
@@ -88,5 +90,5 @@ Running 5 tests using 1 worker
 
   1 failed
     sprints.spec.ts:65:1 › plan, run, and close a sprint around one backlog task ───────────────────
-  4 passed (1.1m)
+  4 passed (1.6m)
 [ELIFECYCLE] Test failed. See above for more details.
