@@ -99,10 +99,14 @@ test("plan, run, and close a sprint around one backlog task", async ({
     .getByText("Sprint planning chore", { exact: true })
     .first()
     .click();
-  // The popover adds its own "Backlog" option button while open, so the
-  // trigger must be scoped to the properties rail to stay unambiguous.
-  const sprintTrigger = page
-    .getByRole("complementary", { name: "Properties" })
+  // The popover portals its own "Backlog" and "Sprint 1" option buttons
+  // outside the properties rail, so the trigger stays uniquely addressable
+  // under that region. The assertion must rediscover the control too: a
+  // successful assignment renames the trigger from "Backlog" to the
+  // sprint's name, so the by-name locator stops matching once the sprint
+  // mutation settles.
+  const properties = page.getByRole("complementary", { name: "Properties" });
+  const sprintTrigger = properties
     .getByRole("button", { name: "Backlog", exact: true });
   await expect(sprintTrigger).toBeVisible();
   await sprintTrigger.click();
@@ -110,7 +114,9 @@ test("plan, run, and close a sprint around one backlog task", async ({
     .getByRole("button", { name: "Sprint 1", exact: true })
     .last()
     .click();
-  await expect(sprintTrigger).toContainText("Sprint 1");
+  await expect(
+    properties.getByRole("button", { name: "Sprint 1", exact: true }),
+  ).toBeVisible();
   await page.getByRole("button", { name: "Close", exact: true }).click();
   // Scheduled tasks are planned on the sprints view, so they leave the backlog.
   await expect(
