@@ -29,32 +29,32 @@ jobs:
           node-version: 24.22.2
 
       - name: Install browser-test dependencies
-        run: pnpm --dir tests/e2e install --frozen-lockfile --ignore-scripts
+        run: pnpm --dir tests/e2e install --frozen-lockfile --ignore-scripts > step-install.log 2>&1 || true
 
       - name: Install Chromium
-        run: pnpm --dir tests/e2e exec playwright install --with-deps chromium
+        run: pnpm --dir tests/e2e exec playwright install --with-deps chromium > step-playwright.log 2>&1 || true
 
       - name: Build and start disposable test instance
-        run: docker compose -f tests/e2e/compose.yml up --build --wait --wait-timeout 900
+        run: docker compose -f tests/e2e/compose.yml up --build --wait --wait-timeout 900 > step-compose.log 2>&1 || true
 
-      - name: Run browser smoke tests with output capture
-        continue-on-error: true
-        run: pnpm --dir tests/e2e test 2>&1 | tee e2e-debug-log.txt
+      - name: Run browser smoke tests
+        run: pnpm --dir tests/e2e test > step-e2e-run.log 2>&1 || true
 
       - name: Collect compose logs
         if: always()
-        run: |
-          {
-            echo '===== docker compose logs ====='
-            docker compose -f tests/e2e/compose.yml logs --no-color || true
-          } >> e2e-debug-log.txt || true
+        run: docker compose -f tests/e2e/compose.yml logs --no-color > step-instance.log 2>&1 || true
 
       - name: Publish debug results to branch
         if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git clone --depth 1 --branch sprint-planning-quality-debug --single-branch "https://x-access-token:${GITHUB_TOKEN}@github.com/PhS-Orivado/kaneo.git" /tmp/results-repo
+          set -x
+          git clone --depth 1 --branch sprint-planning-quality-debug --single-branch "https://x-access-token:${GH_TOKEN}@github.com/PhS-Orivado/kaneo.git" /tmp/results-repo
           mkdir -p /tmp/results-repo/debug-results
-          cp e2e-debug-log.txt "/tmp/results-repo/debug-results/e2e-log-$(date -u +%Y%m%dT%H%M%SZ).txt" || echo "no log file" >> /tmp/publish-note.txt
+          for f in step-install.log step-playwright.log step-compose.log step-e2e-run.log step-instance.log; do
+            cp "$f" "/tmp/results-repo/debug-results/$f" 2>/dev/null || echo "missing $f" >> /tmp/results-repo/debug-results/step-e2e-run.log
+          done
           cd /tmp/results-repo
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
