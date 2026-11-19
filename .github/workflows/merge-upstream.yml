@@ -1,0 +1,107 @@
+name: Merge upstream main
+
+# Temporary branch-maintenance workflow for this pull request branch
+# (upstream PR usekaneo/kaneo#2242). GitHub derives the pull request
+# merge ref by auto-merging the branch with the base branch WITHOUT
+# running the project formatter. The raw auto-merge of this branch with
+# upstream main produced a format-invalid test file, so the CI quality
+# gate (Run Vite+ checks, pnpm lint) failed on the merge ref even
+# though the branch itself is fully formatted. Merging upstream main
+# directly on the branch, with pnpm format applied to the merged tree,
+# makes the derived merge ref trivial: it fast-forwards to a tree that
+# already passed every quality check.
+#
+# The workflow runs exactly once: the merge commit it pushes removes
+# this workflow file, so it cannot trigger itself again and cannot
+# linger in the pull request.
+on:
+  push:
+    branches: [multi-repo]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: merge-upstream-main
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    if: ${{ github.repository == 'PhS-Orivado/kaneo' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout repository
+        uses: useblacksmith/checkout@2b9fe87d796feea153b455ec2f3125b471a7b0e7 # v1
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: Fetch upstream main
+        run: |
+          # Upstream is public; no credentials are needed to fetch it.
+          git remote add upstream https://github.com/usekaneo/kaneo.git
+          git fetch upstream main
+
+      - name: Merge upstream main
+        run: |
+          set -euo pipefail
+          git config user.name "kaneo-branch-bot"
+          git config user.email "noreply@github.com"
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "upstream/main is already contained in HEAD; nothing to merge."
+            exit 0
+          fi
+          if ! git merge --no-commit upstream/main; then
+            conflicts="$(git diff --name-only --diff-filter=U | tr '\n' ' ')"
+            echo "::error::merge conflicts with upstream main: ${conflicts}"
+            git merge --abort
+            exit 1
+          fi
+          # This workflow removes itself from the merge commit, so it can
+          # never run a second time or linger in the pull request.
+          git rm -q .github/workflows/merge-upstream.yml
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        with:
+          version: 12.18.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Apply the project formatter to the merged tree
+        run: pnpm format
+
+      - name: Run Vite+ checks
+        run: pnpm lint
+
+      - name: Check locale files against en-US
+        run: pnpm i18n:check
+
+      - name: Check the API reference against the routes
+        run: pnpm openapi:check
+
+      - name: Check drizzle migration journal ordering
+        run: pnpm migrations:check
+
+      - name: Run typecheck
+        run: pnpm typecheck
+
+      - name: Commit and push the verified merge
+        run: |
+          set -euo pipefail
+          if ! git rev-parse -q --verify MERGE_HEAD > /dev/null; then
+            echo "No merge pending; nothing to commit."
+            exit 0
+          fi
+          git add -A
+          git commit --no-verify -m "chore(ci): merge upstream main into this pull request branch" -m "GitHub derives the pull request merge ref without running the project formatter, and the raw auto-merge of this branch with upstream main produced a format-invalid tree, which made the CI quality job (Run Vite+ checks) fail on the merge ref. This merge applies pnpm format to the merged tree and verifies the complete quality gate (Vite+ checks, locale check, OpenAPI check, migration journal check, typecheck) before pushing, so the derived merge ref fast-forwards to a verified tree." -m "The temporary merge workflow file is removed by this commit; the temporary quality debugging workflow stays in place until the upstream quality job is confirmed green and is removed afterwards."
+          git push origin HEAD:multi-repo
