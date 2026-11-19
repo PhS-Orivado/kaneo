@@ -99,10 +99,11 @@ test("plan, run, and close a sprint around one backlog task", async ({
     .getByText("Sprint planning chore", { exact: true })
     .first()
     .click();
-  const sprintTrigger = page.getByRole("button", {
-    name: "Backlog",
-    exact: true,
-  });
+  // The popover adds its own "Backlog" option button while open, so the
+  // trigger must be scoped to the properties rail to stay unambiguous.
+  const sprintTrigger = page
+    .getByRole("complementary", { name: "Properties" })
+    .getByRole("button", { name: "Backlog", exact: true });
   await expect(sprintTrigger).toBeVisible();
   await sprintTrigger.click();
   await page
