@@ -1,13 +1,20 @@
 ## Unreleased
 
+### Tests
+
+- **api:** unit-test the sprint controllers: create, start, close, update, reorder, and task-sprint assignment now have colocated tests that pin the lifecycle guardrails (single active sprint, closed-sprint immutability, carry-over to a future target or the backlog), date validation, the duplicate-name 409 and the concurrent-create race mapped by the unique constraints, and the published events: see `docs/sprints/testing.md`
+- **web:** unit-test the sprint fetchers and React Query hooks: each typed-client call shape is pinned to `@kaneo/libs`, API failures assert `HttpError` status and message propagation, and every mutation hook asserts the `sprints`, `tasks`, and `task` cache invalidations the sprint views rely on: see `docs/sprints/testing.md`
+
 ### Features
 
+- **ci:** add a local script that builds the kaneo, web and api images and pushes them to GHCR from a developer checkout, mirroring the manual workflow's tagging: see `docs/ci/build-images-locally.md`
 - **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
 - **ci:** add a manual dispatch workflow that builds and pushes a selectable subset of the container images to GHCR from any branch: see `docs/ci/build-images-selected.md`
 - **sync:** migrate 45 upstream commits from `usekaneo/kaneo` main into this fork: time tracking on tasks (#2218), start date and range filters (#2110), the subtasks display toggle on projects (`include_subtasks`, #2140), reading more secrets from `_FILE` variables (#2119), security dependency updates (hono 4.13.18, @hono/node-server 2.1.7, node-forge 1.4.3), React 19.3.1 and gesture-handler ~3.4.0; upstream migration `0073_thick_talisman` was renumbered to `0076_thick_talisman` because this fork already owns migrations 0073-0075: see `docs/database/migration-journal-ordering.md`
 
 ### Bug Fixes
 
+- **ci:** stop the local image build script from aborting before the web build: with the SENTRY_* variables unset, the Sentry argument helper returned a non-zero status that set -e turned into a silent exit right after the first image; the Sentry handling was removed from the local script entirely, so source-map uploads stay with CI
 - **admin:** the test email endpoint no longer reports a bare "sent": the response now carries the SMTP server's acceptance line, the generated message ID, the recipient verdicts, and the transaction time, and fails with `SMTP_SEND_FAILED` when the relay resolves without accepting the recipient, so the UI toast shows what the server actually said instead of success for a message the relay may have dropped silently
 - **api:** repair silently skipped migrations 0073-0075: backdated `when` values in the Drizzle journal were older than migration 0072, so databases that had applied 0072 never received the sprint and multi-repository integration columns, which broke the `deferred-issue-edits` and `deferred-label-fields` cron jobs with `column externalLinkTable_integration.repository_key does not exist`; the journal timestamps were reordered and the migrations made idempotent so they replay safely on the next startup: see `docs/database/migration-journal-ordering.md`
 - **importers:** remove a dead Jira attachments module that failed the TypeScript build: [b7640f2](https://github.com/PhS-Orivado/kaneo/commit/b7640f24ab01d50f5adb86fec6728a50a3e9d83c)
@@ -16,6 +23,7 @@
 ### Documentation
 
 - **importers:** document the shared import model and where Jira attachments are mapped: see `packages/importers/README.md` in the same commit range
+- **sprints:** add `docs/sprints/testing.md`, mapping the sprint unit test coverage to the testing strategy of the requirements and implementation plan, and link it from the sprint planning overview
 - **database:** document the renumbering of upstream migration `0073_thick_talisman` to `0076_thick_talisman` and its journal `when` value: see `docs/database/migration-journal-ordering.md`
 
 ### Features
