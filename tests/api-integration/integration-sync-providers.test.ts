@@ -2083,4 +2083,3 @@ it("broadcasts deleted label availability even without changed links or an activ
       .missingLabels,
   ).toEqual(f.config.syncRules.outgoing.labels);
 });
-
