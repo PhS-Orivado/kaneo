@@ -440,11 +440,29 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     // a concurrent binding creation past the quota check. Token verification
     // above stays outside the transaction because it talks to GitLab over HTTP.
     const saved = await withRepositoryBindingQuotaLock(
+    // The binding row is re-read inside that lock so the reactivation
+    // decision and the passive isActive value reflect the post-lock state.
+    let reactivated = false;
       row.projectId,
       async (tx) => {
+        // Re-read the binding row under the lock: the pre-lock row may
+        // predate a concurrent pause or reactivation, and deciding the
+        // quota or the passive isActive value from that stale row would
+        // let a reactivation slip past the quota check or silently
+        // reactivate a concurrently paused binding.
+        const [current] = await tx
+          .select({ isActive: integrationTable.isActive })
+          .from(integrationTable)
+          .where(eq(integrationTable.id, row.id))
+          .limit(1);
+        if (!current) {
+          throw new HTTPException(404, { message: "Integration not found" });
+        }
+
         // Reactivation re-enters the binding count: check the quota right
-        // before the update writes isActive=true.
-        if (body.isActive === true && !row.isActive) {
+        // before the update writes isActive=true, from the post-lock state.
+        reactivated = body.isActive === true && current.isActive !== true;
+        if (reactivated) {
           await assertRepositoryBindingQuota(
             row.projectId,
             c.get("workspaceId"),
@@ -459,7 +477,7 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
             isActive:
               body.isActive !== undefined
                 ? body.isActive
-                : (row.isActive ?? true),
+                : (current.isActive ?? true),
             updatedAt: new Date(),
           })
           .where(
@@ -481,7 +499,7 @@ const gitlabIntegration = apiRouter<BaseVariables & { workspaceId: string }>()
     if (!updated) {
       throw new HTTPException(500, { message: "Failed to load integration" });
     }
-    if (body.isActive === true && !row.isActive)
+    if (reactivated)
       await publishEvent("integration.sync_rules_changed", {
         projectId: row.projectId,
         integrationId: row.id,
