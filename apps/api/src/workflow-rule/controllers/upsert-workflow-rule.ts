@@ -36,23 +36,22 @@ async function upsertWorkflowRule({
   }
 
   // A repository-specific rule must reference an integration of the same
-  // type in the same project. The route middleware (fromIntegration) already
-  // verified workspace access for the integration row.
+  // type in the same project. The lookup is scoped to the authorized
+  // project, so an integration from a foreign project is indistinguishable
+  // from a nonexistent one: both fail with the same 404 and the route never
+  // confirms the existence of ids outside the caller's project.
   let scopedIntegrationId: string | null = null;
   if (integrationId) {
     const integration = await db.query.integrationTable.findFirst({
-      where: eq(integrationTable.id, integrationId),
+      where: and(
+        eq(integrationTable.id, integrationId),
+        eq(integrationTable.projectId, projectId),
+      ),
     });
 
     if (!integration) {
       throw new HTTPException(404, {
         message: "Integration not found",
-      });
-    }
-
-    if (integration.projectId !== projectId) {
-      throw new HTTPException(400, {
-        message: "Integration does not belong to the provided project",
       });
     }
 

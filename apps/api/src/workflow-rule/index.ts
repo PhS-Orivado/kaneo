@@ -5,10 +5,7 @@ import {
   jsonResponse,
 } from "../openapi";
 import { requireWorkspacePermission } from "../utils/require-workspace-permission";
-import {
-  workspaceAccess,
-  workspaceAccessMiddleware,
-} from "../utils/workspace-access-middleware";
+import { workspaceAccess } from "../utils/workspace-access-middleware";
 import deleteWorkflowRule from "./controllers/delete-workflow-rule";
 import getWorkflowRules from "./controllers/get-workflow-rules";
 import upsertWorkflowRule from "./controllers/upsert-workflow-rule";
@@ -48,17 +45,14 @@ const upsertWorkflowRuleRoute = createRoute({
   description:
     "Create a workflow rule, or update the target column of the existing rule for the same integration and event. Provide an optional integrationId to scope the rule to a single repository binding; omit it for a type-wide rule (RFC 0001).",
   middleware: [
-    // RFC 0001 WP6: authorize the project, and the integration too when the
-    // rule targets one. The integration source is only consulted when the
-    // body carries an integrationId, so type-wide requests keep working; the
-    // controller additionally rejects an integration from a foreign project
-    // or of a mismatched type.
-    workspaceAccessMiddleware({
-      sources: [
-        { type: "lookup", resource: "project", idKey: "projectId" },
-        { type: "lookup", resource: "integration", idKey: "integrationId" },
-      ],
-    }),
+    // RFC 0001 WP6: the project lookup authorizes the request: it resolves
+    // the workspace and enforces project membership, so type-wide bodies
+    // keep working. The controller resolves an optional integrationId under
+    // the authorized project, keeping a foreign integration
+    // indistinguishable from a nonexistent one. The previous secondary
+    // integration source never ran (the project source resolved first and
+    // ended the lookup), so it is removed.
+    workspaceAccess.fromProject("projectId"),
     requireWorkspacePermission({ project: ["update"] }),
   ] as const,
   request: {
