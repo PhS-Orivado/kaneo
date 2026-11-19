@@ -1,15 +1,15 @@
 name: lint debug
 
-# Temporary fork-only debug branch. Reproduces the upstream quality gates'
-# `pnpm lint` and `pnpm typecheck` and broadcasts every captured log line as
-# a GitHub annotation, so diagnostics can be read from the run page without
-# log access permissions.
+# Temporary fork-only debug branch. Runs the upstream quality gate with
+# autofix enabled, commits whatever the vite-plus formatter and lint
+# fixers change back to this branch, and broadcasts the remaining
+# diagnostics as GitHub annotations.
 on:
   push:
     branches: [multi-repo-lint-debug]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   lint:
@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          persist-credentials: true
 
       - uses: pnpm/action-setup@v6.1.1
         with:
@@ -32,10 +32,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Capture quality gates, never fail early
+      - name: Apply the formatters and fixers
+        run: pnpm exec vp check --fix > fix.log 2>&1 || true
+
+      - name: Capture remaining diagnostics
         run: |
           pnpm lint > lint.log 2>&1 || true
           pnpm typecheck > typecheck.log 2>&1 || true
 
       - name: Broadcast logs as annotations
-        run: node .github/scripts/broadcast-log.mjs lint.log typecheck.log
+        run: node .github/scripts/broadcast-log.mjs fix.log lint.log typecheck.log
+
+      - name: Commit autofixes
+        run: |
+          git config user.name "kaneo-debug-bot"
+          git config user.email "action@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "no autofix changes"
+          else
+            git commit -m "chore: apply vp check --fix (debug branch)"
+            git push
+          fi
