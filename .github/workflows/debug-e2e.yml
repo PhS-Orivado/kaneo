@@ -1,7 +1,7 @@
 name: Debug e2e smoke failures
 
-# v7: collect the Playwright error contexts with escape-free shell syntax and
-# publish an inventory of what was collected.
+# v8: run the full smoke suite against the fixed sprint assertion, still
+# collecting the error contexts in case any test fails.
 
 on:
   push:
@@ -40,8 +40,8 @@ jobs:
       - name: Build and start disposable test instance
         run: docker compose -f tests/e2e/compose.yml up --build --wait --wait-timeout 900 > step-compose.log 2>&1 || true
 
-      - name: Run the sprint browser test
-        run: pnpm --dir tests/e2e exec playwright test sprints.spec.ts > step-e2e-run.log 2>&1 || true
+      - name: Run browser smoke tests
+        run: pnpm --dir tests/e2e test > step-e2e-run.log 2>&1 || true
 
       - name: Collect compose logs
         if: always()
@@ -61,10 +61,6 @@ jobs:
             echo "PWD: $(pwd)"
             echo "--- debug-artifacts ---"
             ls -la debug-artifacts 2>/dev/null
-            echo "--- root cache results ---"
-            ls -la .cache/e2e/results 2>/dev/null || echo "no root cache"
-            echo "--- tests cache results ---"
-            ls -la tests/e2e/.cache/e2e/results 2>/dev/null || echo "no tests cache"
           } > context-inventory.log 2>&1 || true
 
       - name: Publish debug results to branch
