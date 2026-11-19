@@ -1,0 +1,15 @@
+$ vp check
+pass: All 4645 files are correctly formatted (345ms, 4 threads)
+error: Lint issues found
+[38;2;225;80;80;1m×[0m [38;2;225;80;80;1meslint(no-unused-vars): Function 'insertedConfig' is declared but never used.[0m
+     ╭─[[38;2;92;157;255;1mtests/api/gitlab-integration/create-gitlab-integration.test.ts[0m:109:10]
+ [2m108[0m │ 
+ [2m109[0m │ function insertedConfig() {
+     · [38;2;246;87;248m         ───────┬──────[0m
+     ·                 [38;2;246;87;248m╰── [38;2;246;87;248m'insertedConfig' is declared here[0m[0m
+ [2m110[0m │   const values = mocks.insertValues.mock.calls[0]?.[0] as { config: string };
+     ╰────
+[38;2;106;159;181m  help: [0mConsider removing this declaration.
+
+Found 1 error and 0 warnings in 4604 files (1.9s, 4 threads)
+[ELIFECYCLE] Command failed with exit code 1.
