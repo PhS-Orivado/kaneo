@@ -295,8 +295,8 @@ reports:
   inline, which keeps the memoized range stable without new
   dependencies.
 - `sprint-task-row.tsx` renders two purely stop-propagation click
-  targets: the focusable row wrapper (keyboard handling is owned by the
-  context-menu trigger and the row's own key handlers) and the span
+  targets: the focusable row wrapper (keyboard handling is owned by
+  the context-menu trigger and the row's own key handlers) and the span
   around the per-row menu button (the button owns keyboard access).
   Both now carry an inline eslint-disable rationale, the pattern the
   kanban task card already uses for the same two jsx-a11y rules, so
@@ -404,6 +404,36 @@ assignment popover and pinned the quality gate reproduction:
   head, ran the suite, and committed the raw Playwright output, which
   isolated the sprint spec as the only failing test (the timer suite the
   previous round restored now passes against this head).
+
+A tenth round confirmed the sprint assignment works and repaired the
+assertion that hid it, together with the verification tooling:
+
+- **Sprint assignment verification.** The disposable verification stack
+  reproduced the scoped-trigger failure and published the Playwright error
+  context: at the moment the assertion timed out, the task sheet's
+  properties rail already showed the sprint control as "Sprint 1", the
+  popover was closed, and no error toast was present. The sprint
+  assignment API, the popover, and the cache invalidation all work; the
+  failing assertion was self-defeating. The spec located the trigger by
+  its exact accessible name "Backlog" and then expected that same by-name
+  locator to contain the replacement text: as soon as the assignment
+  succeeded, the renamed button stopped matching the locator and the
+  `toContainText` assertion waited on "element(s) not found" until it
+  timed out, reporting the shared early poll frames (where the popover
+  was still open) as an unexpected "Backlog" value. The assertion now
+  rediscovers the sprint control under the properties rail by its
+  post-assignment name, so the expectation matches exactly the state the
+  sprint feature produces.
+- **Verification tooling repairs.** The debug branch's log publisher had
+  itself been broken since its second revision: the workflow file carried
+  the bot identity as a command split across two YAML script lines
+  (`git config user.name` and the value apart), so every run after the
+  first failed at the publish step, and one revision also lost the
+  shell-escaped parentheses and semicolons of its context-collection
+  `find` commands, which silently collected nothing. The publisher line
+  is joined again and the collection uses escape-free globs, so each
+  verification run commits both the raw Playwright output and the
+  error-context snapshot of any failure.
 
 ## Changelog
 
