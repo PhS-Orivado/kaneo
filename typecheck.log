@@ -10,9 +10,9 @@ $ vp run -r typecheck
 
 ~/apps/mobile$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
 
-
-
 ~/packages/cli$ tsc -p tsconfig.json ⊘ cache disabled
+
+
 
 ~/apps/api$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
 
@@ -35,7 +35,7 @@ $ vp run -r typecheck
 
   dist/index.js  8.0mb ⚠️
 
-⚡ Done in 157ms
+⚡ Done in 159ms
 
 ~/packages/libs$ tsc --noEmit -p tsconfig.json ⊘ cache disabled
 
@@ -48,4 +48,4 @@ $ vp run -r typecheck
 ~/apps/web$ tsc --noEmit -p tsconfig.node.json ⊘ cache disabled
 
 ---
-vp run: 7/14 cache hit (50%), 22/22 successful, 7.21s saved. (Run `vp run --last-details` for full details)
+vp run: 7/14 cache hit (50%), 22/22 successful, 8.14s saved. (Run `vp run --last-details` for full details)
