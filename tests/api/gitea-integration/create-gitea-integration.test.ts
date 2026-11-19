@@ -19,7 +19,13 @@ vi.mock("../../../apps/api/src/database", () => {
       projectTable: {
         findFirst: async () => ({ id: "project", workspaceId: "workspace-1" }),
       },
-      integrationTable: { findFirst: m.config, findMany: async () => [] },
+      integrationTable: {
+        // The token-omitted reconnect flow scans all same-project rows to
+        // find the binding matching the requested server, so the stub mirrors
+        // findFirst with a one-row findMany result.
+        findFirst: m.config,
+        findMany: async () => [await m.config()],
+      },
     },
     // resolveRepositoryBindingLimits chains select().from().where().limit()
     // while countActiveRepositoryBindings awaits select().from().where()
