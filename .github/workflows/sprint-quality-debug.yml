@@ -1,0 +1,79 @@
+name: sprint quality debug
+
+# Temporary fork-only debug branch, mirroring the user's lint-debug pattern.
+# It replays the upstream quality and smoke jobs against the sprint-planning
+# tree, captures their raw output, and commits the logs to this branch so the
+# diagnostics are readable without Actions log access. Remove this branch
+# once the sprint-planning CI is green.
+on:
+  push:
+    branches: [sprint-planning-quality-debug]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sprint-quality-debug
+  cancel-in-progress: true
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      KANEO_E2E_HOST: localhost
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: pnpm/action-setup@v6.1.1
+        with:
+          version: 12.18.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.22.2
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Capture the quality gate output
+        run: |
+          pnpm lint > lint.log 2>&1 || true
+          pnpm typecheck > typecheck.log 2>&1 || true
+
+      - name: Build and start the disposable test instance
+        run: |
+          docker compose -f tests/e2e/compose.yml up --build --wait --wait-timeout 240 > compose.log 2>&1 || true
+
+      - name: Run the browser smoke tests
+        run: |
+          pnpm --dir tests/e2e install --frozen-lockfile --ignore-scripts > e2e-install.log 2>&1 || true
+          pnpm --dir tests/e2e exec playwright install --with-deps chromium > playwright-install.log 2>&1 || true
+          pnpm test:e2e > e2e.log 2>&1 || true
+
+      - name: Collect the instance logs
+        if: always()
+        run: |
+          docker compose -f tests/e2e/compose.yml logs --no-color > instance.log 2>&1 || true
+
+      - name: Stop the disposable test instance
+        if: always()
+        run: |
+          docker compose -f tests/e2e/compose.yml down --volumes >> compose.log 2>&1 || true
+
+      - name: Commit the captured diagnostics
+        if: always()
+        run: |
+          git config user.name "kaneo-debug-bot"
+          git config user.email "action@users.noreply.github.com"
+          mkdir -p debug-results
+          cp lint.log typecheck.log compose.log e2e-install.log playwright-install.log e2e.log instance.log debug-results/ 2>/dev/null || true
+          if [ -d .cache/e2e/results ]; then
+            find .cache/e2e/results -maxdepth 2 -type f \( -name "*.md" -o -name "*.json" -o -name "*.txt" \) -exec cp {} debug-results/ \; 2>/dev/null || true
+          fi
+          git add debug-results || true
+          git diff --cached --quiet || git commit --no-verify -m "chore: capture quality and smoke diagnostics (debug branch)"
+          git push
