@@ -35,6 +35,7 @@ DECLARE
 	v_base_url text;
 	scheme text;
 	rest text;
+	hostpart text;
 	slash integer;
 BEGIN
 	FOR binding IN
@@ -71,9 +72,25 @@ BEGIN
 					rest := substring(v_base_url from position('://' in v_base_url) + 3);
 					slash := position('/' in rest);
 					IF slash = 0 THEN
-						rest := lower(rest);
+						hostpart := lower(rest);
 					ELSE
-						rest := lower(left(rest, slash - 1)) || substring(rest from slash);
+						hostpart := lower(left(rest, slash - 1));
+					END IF;
+					-- Strip the scheme's default port so SQL-derived keys match the
+					-- TypeScript keys: giteaRepositoryKey and gitlabRepositoryKey
+					-- build the key from a URL origin, which never spells out :443
+					-- on https or :80 on http, so keeping the port would make the
+					-- SQL key miss the unique constraint on a re-link.
+					IF scheme = 'https' AND hostpart LIKE '%:443' THEN
+						hostpart := left(hostpart, length(hostpart) - 4);
+					END IF;
+					IF scheme = 'http' AND hostpart LIKE '%:80' THEN
+						hostpart := left(hostpart, length(hostpart) - 3);
+					END IF;
+					IF slash = 0 THEN
+						rest := hostpart;
+					ELSE
+						rest := hostpart || substring(rest from slash);
 					END IF;
 					v_base_url := rtrim(scheme || '://' || rest, '/');
 				END IF;
@@ -101,9 +118,25 @@ BEGIN
 					rest := substring(v_base_url from position('://' in v_base_url) + 3);
 					slash := position('/' in rest);
 					IF slash = 0 THEN
-						rest := lower(rest);
+						hostpart := lower(rest);
 					ELSE
-						rest := lower(left(rest, slash - 1)) || substring(rest from slash);
+						hostpart := lower(left(rest, slash - 1));
+					END IF;
+					-- Strip the scheme's default port so SQL-derived keys match the
+					-- TypeScript keys: giteaRepositoryKey and gitlabRepositoryKey
+					-- build the key from a URL origin, which never spells out :443
+					-- on https or :80 on http, so keeping the port would make the
+					-- SQL key miss the unique constraint on a re-link.
+					IF scheme = 'https' AND hostpart LIKE '%:443' THEN
+						hostpart := left(hostpart, length(hostpart) - 4);
+					END IF;
+					IF scheme = 'http' AND hostpart LIKE '%:80' THEN
+						hostpart := left(hostpart, length(hostpart) - 3);
+					END IF;
+					IF slash = 0 THEN
+						rest := hostpart;
+					ELSE
+						rest := hostpart || substring(rest from slash);
 					END IF;
 					v_base_url := rtrim(scheme || '://' || rest, '/');
 				END IF;
@@ -145,3 +178,10 @@ CREATE INDEX IF NOT EXISTS "workflow_rule_resolution_idx" ON "workflow_rule" USI
 -- it was renumbered to 0066) can replay it as a no-op, while fresh databases
 -- get the same end state. The backfill block only touches rows where
 -- repository_key IS NULL, so it is also safe to replay.
+--
+-- The gitea/gitlab branches of the backfill strip the scheme's default port
+-- (:443 on https, :80 on http) from the normalized base URL so the derived
+-- repository keys equal the TypeScript keys (giteaRepositoryKey and
+-- gitlabRepositoryKey build the key from a URL origin, which never contains
+-- the default port). Databases that ran an earlier version of this backfill
+-- and already stored port-carrying keys are repaired by 0077.

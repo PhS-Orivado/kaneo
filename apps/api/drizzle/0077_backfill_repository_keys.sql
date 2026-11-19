@@ -8,10 +8,20 @@
 -- be linked again without the unique constraint rejecting the duplicate,
 -- double-count quota usage, and stay invisible to linked-state lookups.
 --
--- 0076 now assigns through a v_base_url variable; this migration replays the
--- corrected block so databases that already ran the broken backfill converge
--- on the same end state. The block only touches rows where repository_key is
--- still NULL, so it is also a no-op for databases that never hit the error.
+-- 0076 now assigns through a v_base_url variable and strips the scheme's
+-- default port (:443 on https, :80 on http) from the normalized base URL,
+-- matching the TypeScript key derivation: giteaRepositoryKey and
+-- gitlabRepositoryKey build the key from a URL origin, which never spells
+-- out the default port. This migration replays the corrected block so
+-- databases that already ran an earlier backfill converge on the same end
+-- state.
+--
+-- The replay selects rows whose repository_key is still NULL and rows whose
+-- key was derived from a URL that spelled out the default port: such a key
+-- can never match a TypeScript-derived key again, so the unique constraint
+-- stays blind when the same repository is linked again. If a re-derived
+-- key collides with an existing key inside the same project, the per-row
+-- exception handler records a warning and leaves that row unchanged.
 
 DO $backfill$
 DECLARE
@@ -25,11 +35,21 @@ DECLARE
 	v_base_url text;
 	scheme text;
 	rest text;
+	hostpart text;
 	slash integer;
 BEGIN
 	FOR binding IN
 		SELECT id, type, config FROM integration
-		WHERE repository_key IS NULL AND type IN ('github', 'gitea', 'gitlab')
+		WHERE type IN ('github', 'gitea', 'gitlab')
+			AND (
+				repository_key IS NULL
+				-- Also re-derive keys an earlier run derived from a URL that
+				-- spelled out the scheme's default port. The TypeScript keys
+				-- come from a URL origin, which never contains the default
+				-- port, so such a key can never match again and the unique
+				-- constraint stays blind for a re-link of the repository.
+				OR repository_key ~ '^git(ea|lab):[a-z]+://[^/]*:(443|80)/'
+			)
 	LOOP
 		BEGIN
 			cfg := binding.config::jsonb;
@@ -61,9 +81,25 @@ BEGIN
 					rest := substring(v_base_url from position('://' in v_base_url) + 3);
 					slash := position('/' in rest);
 					IF slash = 0 THEN
-						rest := lower(rest);
+						hostpart := lower(rest);
 					ELSE
-						rest := lower(left(rest, slash - 1)) || substring(rest from slash);
+						hostpart := lower(left(rest, slash - 1));
+					END IF;
+					-- Strip the scheme's default port so SQL-derived keys match the
+					-- TypeScript keys: giteaRepositoryKey and gitlabRepositoryKey
+					-- build the key from a URL origin, which never spells out :443
+					-- on https or :80 on http, so keeping the port would make the
+					-- SQL key miss the unique constraint on a re-link.
+					IF scheme = 'https' AND hostpart LIKE '%:443' THEN
+						hostpart := left(hostpart, length(hostpart) - 4);
+					END IF;
+					IF scheme = 'http' AND hostpart LIKE '%:80' THEN
+						hostpart := left(hostpart, length(hostpart) - 3);
+					END IF;
+					IF slash = 0 THEN
+						rest := hostpart;
+					ELSE
+						rest := hostpart || substring(rest from slash);
 					END IF;
 					v_base_url := rtrim(scheme || '://' || rest, '/');
 				END IF;
@@ -91,9 +127,25 @@ BEGIN
 					rest := substring(v_base_url from position('://' in v_base_url) + 3);
 					slash := position('/' in rest);
 					IF slash = 0 THEN
-						rest := lower(rest);
+						hostpart := lower(rest);
 					ELSE
-						rest := lower(left(rest, slash - 1)) || substring(rest from slash);
+						hostpart := lower(left(rest, slash - 1));
+					END IF;
+					-- Strip the scheme's default port so SQL-derived keys match the
+					-- TypeScript keys: giteaRepositoryKey and gitlabRepositoryKey
+					-- build the key from a URL origin, which never spells out :443
+					-- on https or :80 on http, so keeping the port would make the
+					-- SQL key miss the unique constraint on a re-link.
+					IF scheme = 'https' AND hostpart LIKE '%:443' THEN
+						hostpart := left(hostpart, length(hostpart) - 4);
+					END IF;
+					IF scheme = 'http' AND hostpart LIKE '%:80' THEN
+						hostpart := left(hostpart, length(hostpart) - 3);
+					END IF;
+					IF slash = 0 THEN
+						rest := hostpart;
+					ELSE
+						rest := hostpart || substring(rest from slash);
 					END IF;
 					v_base_url := rtrim(scheme || '://' || rest, '/');
 				END IF;
