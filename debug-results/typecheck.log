@@ -25,5 +25,5 @@ $ vp run -r typecheck
 src/sprint/controllers/update-sprint.test.ts(87,24): error TS2532: Object is possibly 'undefined'.
 
 ---
-vp run: 1/7 cache hit (14%), 11/12 successful, 791ms saved. (Run `vp run --last-details` for full details)
+vp run: 1/7 cache hit (14%), 11/12 successful, 1.40s saved. (Run `vp run --last-details` for full details)
 [ELIFECYCLE] Command failed with exit code 1.
