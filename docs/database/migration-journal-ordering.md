@@ -72,3 +72,28 @@ acting.
   verify that the `drizzle.__drizzle_migrations` table's newest `created_at`
   is lower than `1793132700000` and inspect the startup logs for migration
   errors.
+
+## Upstream Sync Renumbering (2026-11-09)
+
+Upstream `usekaneo/kaneo` added migration `0073_thick_talisman` (`ALTER TABLE
+"project" ADD COLUMN "include_subtasks" boolean DEFAULT true NOT NULL;`) at
+journal index 73. This fork already owns migrations `0073_sprint_planning`
+through `0075_multi_repo_integrations`, so during the upstream sync the
+upstream migration was renumbered rather than overwriting the fork's entries:
+
+| field | value |
+| --- | --- |
+| idx | 76 |
+| tag | `0076_thick_talisman` |
+| when | `1793798733016` (upstream's original timestamp) |
+| SQL file | `apps/api/drizzle/0076_thick_talisman.sql` |
+| snapshot | `apps/api/drizzle/meta/0076_snapshot.json`, `prevId` set to the fork's `0075` snapshot (`a80e0bca-5fca-4cb4-9f08-5e05ef365c49`) |
+
+The `when` value `1793798733016` is upstream's unchanged timestamp; it is
+higher than `0075_multi_repo_integrations` (`1793132700000`), so the journal's
+monotonic ordering established by the fix above is preserved and existing
+databases that applied 0075 will apply 0076 on the next API startup.
+
+The historical `when` violations at entries 5-6 and 24-26 documented under
+"Known Remaining Anomalies" are pre-existing on both sides of the sync and
+were deliberately left untouched.
