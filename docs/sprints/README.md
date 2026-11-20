@@ -7,6 +7,7 @@ This folder contains the planning documents for adding Jira-style sprint plannin
 | [Feature list](./feature-list.md) | The required features grouped by area, each with a Jira reference and a MoSCoW priority. |
 | [Gap analysis](./gap-analysis.md) | The contrast between Kaneo's capability before the feature and the target, with reusable foundations and assumptions. |
 | [Requirements and implementation plan](./requirements-implementation-plan.md) | Functional requirements, business rules, data model, API design, UI specification, and the phased implementation plan. |
+| [Testing](./testing.md) | The unit test coverage of the sprint controllers, fetchers, and React Query hooks, mapped to the testing strategy. |
 
 ## Scope summary
 
