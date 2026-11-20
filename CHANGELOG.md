@@ -11,6 +11,7 @@
 - **ci:** add a manual dispatch workflow that builds and pushes the kaneo, web and api container images to GHCR from any branch
 - **ci:** add a manual dispatch workflow that builds and pushes a selectable subset of the container images to GHCR from any branch: see `docs/ci/build-images-selected.md`
 - **sync:** migrate 45 upstream commits from `usekaneo/kaneo` main into this fork: time tracking on tasks (#2218), start date and range filters (#2110), the subtasks display toggle on projects (`include_subtasks`, #2140), reading more secrets from `_FILE` variables (#2119), security dependency updates (hono 4.13.18, @hono/node-server 2.1.7, node-forge 1.4.3), React 19.3.1 and gesture-handler ~3.4.0; upstream migration `0073_thick_talisman` was renumbered to `0076_thick_talisman` because this fork already owns migrations 0073-0075: see `docs/database/migration-journal-ordering.md`
+- **sync:** migrate upstream `usekaneo/kaneo` main commits into this fork: release v2.50.0 (version bumps in `package.json` and `charts/kaneo/Chart.yaml`, release notes carried into this changelog) and the remediation of the vite RCE advisory GHSA-p4f5-76q4-ffq7 (vite-plus and vite-plus-core 1.4.0 to 1.6.0, vitest 5.0.5 to 5.1.0 in `pnpm-workspace.yaml` and `pnpm-lock.yaml`, upstream PR #2247)
 
 ### Bug Fixes
 
@@ -25,6 +26,38 @@
 - **importers:** document the shared import model and where Jira attachments are mapped: see `packages/importers/README.md` in the same commit range
 - **sprints:** add `docs/sprints/testing.md`, mapping the sprint unit test coverage to the testing strategy of the requirements and implementation plan, and link it from the sprint planning overview
 - **database:** document the renumbering of upstream migration `0073_thick_talisman` to `0076_thick_talisman` and its journal `when` value: see `docs/database/migration-journal-ordering.md`
+
+### Features
+
+- **web:** track time from task details: #2218
+- read more secrets from _FILE variables: #2119
+- **task:** add start date and range filters: #2110
+- **site:** link the iOS app from the hero, homepage, footer and pricing: [039d350](https://github.com/usekaneo/kaneo/commit/039d350c31aaad5930cd2e0ef7ff4bde0806530d)
+- **tasks:** add subtasks display toggle: #2140
+- **site:** price managed instances as a plan: [f9ad2b5](https://github.com/usekaneo/kaneo/commit/f9ad2b5ef42ad5c38c3ed11fa624f22d8e6e0589)
+
+### Bug Fixes
+
+- **dev:** build workspace packages before starting dev servers: #2237
+- **web:** use parent project for parent task links: #2211
+- **api:** send notification deliveries in the recipient's language: #2198
+- **api:** skip the issue state write when the issue is already in that state: #2208
+- **web:** close single-choice pickers in the create task modal after a selection: #2118
+- **web:** clear query cache before navigating on sign-out: #2165
+- **web:** remount task details and properties rail on taskId change: #2190
+- **cli:** link the skill's install step to the install guide: #2193
+- **ci:** port contention in ci: #2182
+- **web:** refetch both relation ends after a relation change: #2177
+- **web:** close image preview on clicks beside a small image: #2178
+
+### Documentation
+
+- update sponsors: [5069fb5](https://github.com/usekaneo/kaneo/commit/5069fb56ce309d5572ca3ed60d4d3c322a03a452)
+- add a mobile app guide: [265f1fd](https://github.com/usekaneo/kaneo/commit/265f1fd548d0cfe9686990b692abbcdfc15e3604)
+
+### Credits
+
+Huge thanks to @selfsimilar, @randoneering, @tinsever, @tongtongchuan, @thejdubb02, @VictorOnwukwe, @man-singh-dev, @luantaraschi, and @andrejsshell for helping!
 
 ### Features
 
