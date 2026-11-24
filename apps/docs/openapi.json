@@ -324,6 +324,9 @@
               "null"
             ],
             "description": "Task type, e.g. task or bug."
+          },
+          "isSubtask": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -547,6 +550,9 @@
               "boolean",
               "null"
             ]
+          },
+          "includeSubtasks": {
+            "type": "boolean"
           },
           "workspaceId": {
             "type": "string"
@@ -927,6 +933,9 @@
           "defaultSprintLengthDays": {
             "type": "number",
             "description": "Default sprint length in days; used to prefill a sprint's end date when it starts."
+          },
+          "includeSubtasks": {
+            "type": "boolean"
           }
         },
         "required": [
@@ -1440,6 +1449,9 @@
                   "null"
                 ],
                 "description": "The referenced workflow column; null for virtual statuses and legacy tasks without a column reference."
+              },
+              "isSubtask": {
+                "type": "boolean"
               },
               "subtaskCounts": {
                 "type": "object",
@@ -11082,6 +11094,9 @@
                     "type": "integer",
                     "minimum": 1,
                     "description": "Default sprint length in days. Used to prefill a new sprint's end date when starting it. Omit to keep the current value."
+                  },
+                  "includeSubtasks": {
+                    "type": "boolean"
                   }
                 },
                 "required": [
